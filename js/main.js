@@ -3,6 +3,8 @@ window.onload = () => {
     const loader = document.getElementById('loader');
     loader.style.visibility = 'hidden';
     loader.style.opacity = '0';
+    // Configuración inicial
+    elements.home.classList.add("agregar_dis");
 };
 
 // Verificar si es un dispositivo táctil
@@ -60,9 +62,7 @@ const elements = {
     elements.login.classList.toggle("agregar_dis", login);
     elements.aside.classList.toggle("agregar_dis", aside);
   }
-  
-  // Configuración inicial
-  elements.home.classList.add("agregar_dis");
+
   
   // Funciones para cada botón
   function btn_home() {
