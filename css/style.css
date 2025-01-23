@@ -1,0 +1,351 @@
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@keyframes reolad {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes moverpuntolog {
+  0% {
+    transform: translateX(0);
+  }
+  49% {
+    transform: translateX(175%) translateY(27%);
+  }
+  50% {
+    transform: translateX(175%) translateY(27%);
+  }
+  100% {
+    transform: translateX(0);
+    z-index: 100;
+  }
+}
+#loader {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ec6223;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  position: fixed;
+  z-index: 10000;
+}
+#loader #pizza_loader {
+  width: 10rem;
+  height: 10rem;
+  animation: reolad 2s infinite ease-in-out;
+}
+#loader #pizza_loader img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  #loader #box {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+  }
+  #loader #shadow {
+    width: 40px;
+    height: 4px;
+    margin-top: 15px;
+  }
+}
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@keyframes reolad {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes moverpuntolog {
+  0% {
+    transform: translateX(0);
+  }
+  49% {
+    transform: translateX(175%) translateY(27%);
+  }
+  50% {
+    transform: translateX(175%) translateY(27%);
+  }
+  100% {
+    transform: translateX(0);
+    z-index: 100;
+  }
+}
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+html {
+  box-sizing: border-box;
+}
+
+.c-cursor {
+  --size: 15px;
+  position: fixed;
+  width: var(--size);
+  height: var(--size);
+  top: calc(var(--size) / -2);
+  left: calc(var(--size) / -2);
+  transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) translateZ(0);
+  pointer-events: none;
+  transition: none;
+  z-index: 150000;
+  will-change: transform;
+}
+.is-debug .c-cursor {
+  transition: all 0.2s ease-in-out;
+}
+.c-cursor__inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #174891;
+  border: 1px solid #ffffff;
+  transition: all 0.15s ease-in-out;
+  opacity: 1;
+  transform: scale(1) translateZ(0);
+}
+.c-cursor.is-clicked .c-cursor__inner {
+  opacity: 0.5;
+}
+.c-cursor.is-hidden .c-cursor__inner {
+  opacity: 0;
+}
+.c-cursor.is-link-hovered .c-cursor__inner {
+  transform: scale(0.75) translateZ(0);
+  background-color: #0f3061;
+}
+
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+* {
+  scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+body {
+  background-color: #ec6223;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body header {
+  width: 20rem;
+  height: 6rem;
+  display: flex;
+  background-color: #174891;
+  position: fixed;
+  border-radius: 5rem;
+  z-index: 1000;
+}
+body header nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body header nav ul {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+body header nav ul li {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body header nav ul li button {
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body header nav ul li button img {
+  height: 100%;
+}
+body header nav ul li button:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body header nav ul li .iconbutton {
+  height: 100%;
+}
+body header nav ul li .iconbutton:hover {
+  opacity: 100%;
+  scale: 1;
+}
+body main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+body main .pages {
+  width: 50%;
+  height: 100%;
+  justify-items: center;
+  align-items: center;
+  display: none;
+}
+body main #home {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+body main #home .mancha1 {
+  width: 30%;
+  display: flex;
+  margin-left: -6vw;
+  margin-bottom: 60vh;
+  animation: fadeInDown 0.5s ease-in-out forwards;
+}
+body main #home .mancha1 img {
+  width: 100%;
+  height: 100%;
+}
+body main #home .mancha2 {
+  width: 30%;
+  display: flex;
+  margin-right: -6vw;
+  margin-top: 80vh;
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+body main #home .mancha2 img {
+  width: 100%;
+  height: 100%;
+}
+body main aside {
+  width: 50%;
+  height: 100%;
+  display: none;
+  background-color: #174891;
+  justify-items: center;
+  align-items: center;
+}
+body main aside article {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body main aside article div {
+  width: 50%;
+}
+body main aside article div img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}
+body main aside article h2 {
+  font-family: "NIMBUS";
+  color: #ffffff;
+  font-size: 3vh;
+  letter-spacing: 0.3rem;
+  text-align: center;
+}
+body main aside article p {
+  width: 45%;
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito";
+  color: #ffffff;
+  font-size: 2vh;
+  text-align: center;
+}
+body main .agregar_dis {
+  display: flex;
+}
+body .cambiar_nav {
+  top: 5%;
+  left: 17%;
+  width: 14rem;
+  height: 4rem;
+}/*# sourceMappingURL=style.css.map */
