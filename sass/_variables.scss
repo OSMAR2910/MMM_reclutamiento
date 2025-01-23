@@ -1,0 +1,28 @@
+//Colres
+$Blanco: #f2f0ed;
+$Negro: #0d0d0d;
+$Transparente: rgba(0, 0, 0, 0);
+//Colres DefaultColor 
+    $Principal: #ec6223;
+    $Secundario: #174891;
+    $Resalte: #0f3061;
+    $Fondo: #ec6223; 
+    $Texto: #ffffff;
+    
+///ipos de letra
+@font-face {
+    font-family: 'NIMBUS';
+    src: url(/fonts/TAN-NIMBUS.ttf);
+    font-style: normal;
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: 'Nunito';
+    src: url(/fonts/Nunito-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+  }
+
+//Letra
+$Letra1: 'NIMBUS';
+$Letra2: 'Nunito';
