@@ -22,17 +22,11 @@
     }
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 930px) {
   #loader {
-    #box {
-      width: 40px;
-      height: 40px;
-      border-radius: 3px;
-    }
-    #shadow { 
-      width: 40px;
-      height: 4px;
-      margin-top: 15px;
+    #pizza_loader {
+      width: 4rem;
+      height: 4rem;
     }
   }
 }
