@@ -58,65 +58,50 @@
         <section class="pages" id="pag1">
             <article>
                 <div class="texto_form">
-                    <h1>Suerte!</h1>
+                    <h1>¡Suerte!</h1>
                     <p>Llena el formulario y envialo para solicitar empleo.</p>
                 </div>
                 <div class="cont_form">
                     <form action="">
-                        <span>
+                        <div class="input-form">
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        </span>
-                        <span>
-                            <input type="text" text= "Ciudad" name="ciudad" id="ciudad" placeholder="Ciudad">
-                        </span>
-                        <span>
-                            <input type="email" name="email" id="email" placeholder="Email">
-                        </span>
-                        <span>
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        </span>
-                        <span>
-                            <input type="text" text= "Ciudad" name="ciudad" id="ciudad" placeholder="Ciudad">
-                        </span>
-                        <span>
-                            <input type="email" name="email" id="email" placeholder="Email">
-                        </span>
-                        <span>
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        </span>
-                        <span>
-                            <input type="text" text= "Ciudad" name="ciudad" id="ciudad" placeholder="Ciudad">
-                        </span>
-                        <span>
-                            <input type="email" name="email" id="email" placeholder="Email">
-                        </span>
-                        <span>
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        </span>
-                        <span>
-                            <input type="text" text= "Ciudad" name="ciudad" id="ciudad" placeholder="Ciudad">
-                        </span>
-                        <span>
-                            <input type="email" name="email" id="email" placeholder="Email">
-                        </span>
-                        <span>
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        </span>
-                        <span>
-                            <input type="text" text= "Ciudad" name="ciudad" id="ciudad" placeholder="Ciudad">
-                        </span>
-                        <span>
-                            <input type="email" name="email" id="email" placeholder="Email">
-                        </span>
-                        <span>
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
                             <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        </span>
-                        <span>
-                            <input type="text" text= "Ciudad" name="ciudad" id="ciudad" placeholder="Ciudad">
-                        </span>
-                        <span>
-                            <input type="email" name="email" id="email" placeholder="Email">
-                        </span>
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-form">
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                            <label><span><p>En este campo ingrese su nombre completo</p></span></label>
+                        </div>
+                        <div class="input-submit">
+                            <input type="button" type="button" id="btn_enviar_form" onclick="enviar_form()">
+                        </div>
                     </form>
                 </div>
             </article>
@@ -138,7 +123,7 @@
                                 <label><span>Contrasena</span></label>
                             </div>
                             <div class="input-submit">
-                                <input type="button" type="button" id="btn_submit" onclick="loguear()">
+                                <input type="button" type="button" id="btn_log_admin" onclick="log_admin()">
                             </div>
                         </form>
                         <div class="error" id="errorp">
@@ -160,7 +145,47 @@
             </div>
         </section>
         <section class="pages" id="pag3">
-
+            <div class="btn_regreso">
+                <button onclick="btn_admin_regreso()">
+                    <img src="img/Logos/interfaces/icons/atras.png" alt="atras">
+                </button>
+            </div>
+            <div class="admin_cont">
+                <div class="cont_edit">
+                    <button>
+                        <img src="img/Logos/interfaces/icons/editar.png" alt="editar">
+                    </button>
+                    <button>
+                        <img src="img/Logos/interfaces/icons/disquete.png" alt="guardar">
+                    </button>
+                </div>
+                <div class="cont_aceptados">
+                    <div class="box_green"></div>
+                    <div class="const_data" id="data_green">
+                        <ul>
+                            <li>
+                                <span>Osmar</span>
+                            </li>
+                            <li>
+                                <span>Damian</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cont_rechazados">
+                    <div class="box_red"></div>
+                    <div class="const_data" id="data_red">
+                        <ul>
+                            <li>
+                                <span>Osmar</span>
+                            </li>
+                            <li>
+                                <span>Damian</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
         <aside id="aside">
             <article>

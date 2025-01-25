@@ -58,8 +58,8 @@
   z-index: 10000;
 }
 #loader #pizza_loader {
-  width: 8rem;
-  height: 8rem;
+  width: 7rem;
+  height: 7rem;
   animation: reolad 2s infinite ease-in-out;
 }
 #loader #pizza_loader img {
@@ -201,8 +201,8 @@ body {
   align-items: center;
 }
 body header {
-  width: 20rem;
-  height: 6rem;
+  width: 20vw;
+  height: 6vw;
   display: flex;
   background-color: #174891;
   position: fixed;
@@ -242,6 +242,7 @@ body header nav ul li button {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.1s ease-in-out;
 }
 body header nav ul li button img {
   height: 100%;
@@ -283,8 +284,9 @@ body main #home {
 body main #home .mancha1 {
   width: 30%;
   display: flex;
-  margin-left: -6vw;
-  margin-bottom: 60vh;
+  position: fixed;
+  top: -8vh;
+  left: -6vw;
   animation: fadeInDown 0.5s ease-in-out forwards;
 }
 body main #home .mancha1 img {
@@ -294,8 +296,9 @@ body main #home .mancha1 img {
 body main #home .mancha2 {
   width: 30%;
   display: flex;
-  margin-right: -6vw;
-  margin-top: 80vh;
+  position: fixed;
+  bottom: -17vh;
+  right: -5vw;
   animation: fadeInUp 0.5s ease-in-out forwards;
 }
 body main #home .mancha2 img {
@@ -344,7 +347,7 @@ body main #pag1 article .cont_form {
   width: 85%;
   height: 70%;
   border: 0;
-  margin-top: 5%;
+  margin-top: 2%;
   overflow-x: hidden;
   overflow-y: scroll;
   display: flex;
@@ -363,14 +366,15 @@ body main #pag1 article .cont_form form {
   margin: 2%;
   gap: 4%;
 }
-body main #pag1 article .cont_form form span {
+body main #pag1 article .cont_form form .input-form {
   width: 100%;
   height: 7.3vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Nunito";
 }
-body main #pag1 article .cont_form form span input {
+body main #pag1 article .cont_form form .input-form input {
   width: 100%;
   height: 100%;
   border-radius: 5rem;
@@ -378,8 +382,9 @@ body main #pag1 article .cont_form form span input {
   border: 0;
   outline: none;
   text-align: center;
+  transition: all 0.2s ease-in-out;
 }
-body main #pag1 article .cont_form form span input:focus {
+body main #pag1 article .cont_form form .input-form input:focus {
   border: 0;
   outline: none;
   border: 2px solid #0f3061;
@@ -387,19 +392,54 @@ body main #pag1 article .cont_form form span input:focus {
   background: #0f3061;
   color: #ffffff;
 }
-body main #pag1 article .cont_form form span input::-moz-placeholder {
+body main #pag1 article .cont_form form .input-form input::-moz-placeholder {
   color: #0d0d0d;
-  font-family: "Nunito";
 }
-body main #pag1 article .cont_form form span input::placeholder {
+body main #pag1 article .cont_form form .input-form input::placeholder {
   color: #0d0d0d;
-  font-family: "Nunito";
 }
-body main #pag1 article .cont_form form span input:focus::-moz-placeholder {
+body main #pag1 article .cont_form form .input-form input:focus::-moz-placeholder {
   color: #ffffff;
 }
-body main #pag1 article .cont_form form span input:focus::placeholder {
+body main #pag1 article .cont_form form .input-form input:focus::placeholder {
   color: #ffffff;
+}
+body main #pag1 article .cont_form form .input-form input:focus ~ label {
+  scale: 1;
+  opacity: 100%;
+}
+body main #pag1 article .cont_form form .input-form label {
+  scale: 0;
+  opacity: 0;
+  width: 30%;
+  height: 3rem;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 17%;
+  background-color: #0f3061;
+  transition: all 0.1s ease-in-out;
+  border-radius: 5rem;
+  border: 2px solid #0f3061;
+  box-shadow: 0px 0px 10px 0px #0f3061;
+}
+body main #pag1 article .cont_form form .input-form label span {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag1 article .cont_form form .input-form label span p {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-size: 100%;
+  text-align: center;
+}
+body main #pag1 article .cont_form form .input-submit {
+  display: none;
 }
 body main #pag1 article .cont_form::-webkit-scrollbar {
   width: 12px;
@@ -426,6 +466,7 @@ body main #pag2 .Logincont {
 }
 body main #pag2 .Logincont .Login-cont {
   width: 20rem;
+  aspect-ratio: 2/2;
   border-radius: 2rem;
   background-color: #174891;
   display: flex;
@@ -584,6 +625,182 @@ body main #pag2 .Logincont.animacionlog {
   animation-duration: 0.9s;
   animation-fill-mode: forwards;
 }
+body main #pag3 {
+  width: 100%;
+  height: 100%;
+}
+body main #pag3 .btn_regreso {
+  width: 2.5%;
+  aspect-ratio: 2/2;
+  top: 0;
+  left: 0;
+  margin: 2.5%;
+  display: flex;
+  position: fixed;
+  transition: all 0.1s ease-in-out;
+}
+body main #pag3 .btn_regreso button {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .btn_regreso button img {
+  width: 100%;
+  height: 100%;
+}
+body main #pag3 .btn_regreso:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body main #pag3 .admin_cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito";
+  gap: 3%;
+}
+body main #pag3 .admin_cont .cont_edit {
+  width: 4%;
+  height: 16%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  background-color: #174891;
+  gap: 7%;
+}
+body main #pag3 .admin_cont .cont_edit button {
+  width: 80%;
+  height: 40%;
+  border: none;
+  border-radius: 4rem;
+  background-color: #ec6223;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_edit button img {
+  width: 60%;
+}
+body main #pag3 .admin_cont .cont_edit button:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body main #pag3 .admin_cont .cont_aceptados {
+  width: 60%;
+  height: 90%;
+  display: flex;
+  border-radius: 1.5rem;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  background-color: #174891;
+  gap: 2%;
+}
+body main #pag3 .admin_cont .cont_aceptados .box_green {
+  width: 98%;
+  height: 2rem;
+  margin-top: 1%;
+  background-color: #00bf63;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 2%;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul li {
+  width: 95%;
+  height: 4rem;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5%;
+}
+body main #pag3 .admin_cont .cont_rechazados {
+  width: 24%;
+  height: 90%;
+  display: flex;
+  border-radius: 1.5rem;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  background-color: #174891;
+  gap: 2%;
+}
+body main #pag3 .admin_cont .cont_rechazados .box_red {
+  width: 96%;
+  height: 2rem;
+  margin-top: 2%;
+  background-color: #ff3131;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5%;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 2%;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul li {
+  width: 90%;
+  height: 4rem;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5%;
+}
 body main aside {
   width: 50%;
   height: 100%;
@@ -602,16 +819,17 @@ body main aside article {
 }
 body main aside article div {
   width: 50%;
+  margin-top: 5%;
 }
 body main aside article div img {
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
+  border-radius: 2rem;
 }
 body main aside article h2 {
   font-family: "NIMBUS";
   color: #ffffff;
-  font-size: 3vh;
+  font-size: 3.2vh;
   letter-spacing: 0.3rem;
   text-align: center;
 }
@@ -621,7 +839,7 @@ body main aside article p {
   margin: 0;
   font-family: "Nunito";
   color: #ffffff;
-  font-size: 2vh;
+  font-size: 2.2vh;
   text-align: center;
 }
 body main .agregar_dis {
@@ -629,7 +847,7 @@ body main .agregar_dis {
 }
 body .cambiar_nav {
   top: 5vh;
-  left: 19vw;
-  width: 14rem;
-  height: 4rem;
+  left: 18vw;
+  width: 14vw;
+  height: 4vw;
 }/*# sourceMappingURL=style.css.map */

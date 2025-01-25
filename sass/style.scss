@@ -27,8 +27,8 @@ body {
   justify-content: center;
   align-items: center;
   header {
-    width: 20rem;
-    height: 6rem;
+    width: 20vw;
+    height: 6vw;
     display: flex;
     background-color: $Secundario;
     position: fixed;
@@ -64,6 +64,7 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: all 0.1s ease-in-out;
             img {
               height: 100%;
             }
@@ -106,8 +107,9 @@ body {
       .mancha1 {
         width: 30%;
         display: flex;
-        margin-left: -6vw;
-        margin-bottom: 60vh;
+        position: fixed;
+        top: -8vh;
+        left: -6vw;
         animation: fadeInDown 0.5s ease-in-out forwards;
         img {
           @include cover;
@@ -116,8 +118,9 @@ body {
       .mancha2 {
         width: 30%;
         display: flex;
-        margin-right: -6vw;
-        margin-top: 80vh;
+        position: fixed;
+        bottom: -17vh;
+        right: -5vw;
         animation: fadeInUp 0.5s ease-in-out forwards;
         img {
           @include cover;
@@ -166,7 +169,7 @@ body {
           width: 85%;
           height: 70%;
           border: 0;
-          margin-top: 5%;
+          margin-top: 2%;
           overflow-x: hidden;
           overflow-y: scroll;
           display: flex;
@@ -183,12 +186,13 @@ body {
             grid-template-columns: repeat(2, 1fr);
             margin: 2%;
             gap: 4%;
-            span {
+            .input-form {
               width: 100%;
               height: 7.3vh;
               display: flex;
               justify-content: center;
               align-items: center;
+              font-family: $Letra2;
               input {
                 width: 100%;
                 height: 100%;
@@ -197,6 +201,7 @@ body {
                 border: 0;
                 outline: none;
                 text-align: center;
+                transition: all 0.2s ease-in-out;
                 &:focus {
                   border: 0;
                   outline: none;
@@ -208,11 +213,47 @@ body {
               }
               input::placeholder{
                 color: $Negro;
-                font-family: $Letra2;
               }
               input:focus::placeholder {
                 color: $Texto;
               }
+              input:focus ~ label {
+                scale: 1;
+                opacity: 100%;
+              }
+
+              label {
+                scale: 0;
+                opacity: 0;
+                width: 30%;
+                height: 3rem;
+                display: flex;
+                position: absolute;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 17%;
+                background-color: $Resalte;
+                transition: all 0.1s ease-in-out;
+                border-radius: 5rem;
+                border: 2px solid $Resalte;
+                box-shadow: 0px 0px 10px 0px $Resalte;
+                span {
+                  width: 80%;
+                  height: 80%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  p {
+                    @include cover;
+                    color: $Texto;
+                    font-size: 100%;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+            .input-submit {
+              display: none;
             }
           }
         }
@@ -242,6 +283,7 @@ body {
 
         .Login-cont {
           width: 20rem;
+          aspect-ratio: 2/2;
           border-radius: 2rem;
           background-color: $Secundario;
           display: flex;
@@ -319,12 +361,11 @@ body {
                   outline: none;
                   text-align: center;
                   border: 2px solid $Texto;
-                }
-
-                input:focus {
-                  border: 2px solid $Resalte;
-                  box-shadow: 0px 0px 10px 0px $Resalte;
-                  background: $Resalte;
+                  &:focus {
+                    border: 2px solid $Resalte;
+                    box-shadow: 0px 0px 10px 0px $Resalte;
+                    background: $Resalte;
+                  }
                 }
 
                 input:focus ~ label,
@@ -424,6 +465,176 @@ body {
         animation-fill-mode: forwards;
       }
     }
+    #pag3 {
+      @include cover;
+      .btn_regreso {
+        width: 2.5%;
+        aspect-ratio: 2/2;
+        top: 0;
+        left: 0;
+        margin: 2.5%;
+        display: flex;
+        position: fixed;
+        transition: all 0.1s ease-in-out;
+        button {
+          @include cover;
+          background-color: $Transparente;
+          border: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            @include cover;
+          }
+        }
+        &:hover {
+          @include opacity;
+        }
+      }
+      .admin_cont {
+        @include cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: $Letra2;
+        gap: 3%;
+        .cont_edit {
+          width: 4%;
+          height: 16%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          border-radius: 1rem;
+          background-color: $Secundario;
+          gap: 7%;
+          button {
+            width: 80%;
+            height: 40%;
+            border: none;
+            border-radius: 4rem;
+            background-color: $Principal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.1s ease-in-out;
+            img {
+              width: 60%;
+            }
+            &:hover {
+              @include opacity;
+            }
+          }
+        }
+        .cont_aceptados {
+          width: 60%;
+          height: 90%;
+          display: flex;
+          border-radius: 1.5rem;
+          justify-content: start;
+          align-items: center;
+          flex-direction: column;
+          background-color: $Secundario; 
+          gap: 2%;
+          .box_green {
+            width: 98%;
+            height: 2rem;
+            margin-top: 1%;
+            background-color: $Green;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
+          .const_data {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            ul {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              padding: 0;
+              margin: 0;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+              gap: 2%;
+              li {
+                width: 95%;
+                height: 4rem;
+                display: flex;
+                background-color: $Texto;
+                border-radius: 1rem;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 5%;
+              }
+            }
+          }
+        }
+        .cont_rechazados {
+          width: 24%;
+          height: 90%;
+          display: flex;
+          border-radius: 1.5rem;
+          justify-content: start;
+          align-items: center;
+          flex-direction: column;
+          background-color: $Secundario; 
+          gap: 2%;
+          .box_red {
+            width: 96%;
+            height: 2rem;
+            margin-top: 2%;
+            background-color: $Red;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5%;
+          }
+          .const_data {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            ul {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              padding: 0;
+              margin: 0;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+              gap: 2%;
+              li {
+                width: 90%;
+                height: 4rem;
+                display: flex;
+                background-color: $Texto;
+                border-radius: 1rem;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 5%;
+              }
+            }
+          }
+        }
+      } 
+    }
     aside {
       width: 50%;
       height: 100%;
@@ -440,15 +651,16 @@ body {
         flex-direction: column;
         div {
           width: 50%;
+          margin-top: 5%;
           img {
             @include cover;
-            border-radius: 1rem;
+            border-radius: 2rem;
           }
         }
         h2 {
           font-family: $Letra1;
           color: $Texto;
-          font-size: 3vh;
+          font-size: 3.2vh;
           letter-spacing: 0.3rem;
           text-align: center;
         }
@@ -458,7 +670,7 @@ body {
           margin: 0;
           font-family: $Letra2;
           color: $Texto;
-          font-size: 2vh;
+          font-size: 2.2vh;
           text-align: center;
         }
       }
@@ -469,8 +681,8 @@ body {
   }
   .cambiar_nav {
     top: 5vh;
-    left: 19vw;
-    width: 14rem;
-    height: 4rem;
+    left: 18vw;
+    width: 14vw;
+    height: 4vw;
   }
 }

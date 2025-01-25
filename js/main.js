@@ -3,7 +3,7 @@ window.onload = () => {
     const loader = document.getElementById('loader');
     loader.style.visibility = 'hidden';
     loader.style.opacity = '0';
-    // Configuración inicial
+    // Configuración inicial 
     elements.home.classList.add("agregar_dis");
 };
 
@@ -52,15 +52,18 @@ const elements = {
     form: document.getElementById("pag1"),
     login: document.getElementById("pag2"),
     aside: document.getElementById("aside"),
+    admin: document.getElementById("pag3"),
+    tidioChat: document.getElementById("tidio-chat-iframe")
   };
   
   // Función genérica para gestionar clases según la vista activa
-  function toggleView({ home = false, header = false, form = false, login = false, aside = false }) {
+  function toggleView({ home = false, header = false, form = false, login = false, aside = false , admin = false}) {
     elements.home.classList.toggle("agregar_dis", home);
     elements.header.classList.toggle("cambiar_nav", header);
     elements.form.classList.toggle("agregar_dis", form);
     elements.login.classList.toggle("agregar_dis", login);
     elements.aside.classList.toggle("agregar_dis", aside);
+    elements.admin.classList.toggle("agregar_dis", admin);
   }
 
   
@@ -70,22 +73,26 @@ const elements = {
   }
   
   function btn_form() {
-    toggleView({ home: false, header: true, form: true, aside: true });
+    toggleView({ header: true, form: true, aside: true });
   }
   
   function btn_admin() {
-    toggleView({ home: false, header: true, login: true, aside: true });
+    toggleView({ header: true, login: true, aside: true });
+  }
+  function btn_admin_regreso() {
+    location.reload();
   }
 
   
-//Login// Seleccionar el formulario
+//Login
+// Seleccionar el formulario
 const formulario = document.getElementById("formuariolog");
 
 // Detectar el evento 'keydown' en el formulario
 formulario.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     e.preventDefault(); // Evita el comportamiento predeterminado de recargar la página
-    document.getElementById("btn_submit").click(); // Simula un clic en el botón de envío
+    document.getElementById("btn_log_admin").click(); // Simula un clic en el botón de envío
   }
 });
 // Función para cargar usuarios desde el archivo JSON
@@ -96,7 +103,7 @@ async function loadUsers() {
 }
 
 // Función para autenticar usuario y contraseña
-async function loguear() {
+async function log_admin() {
   // Obtener los valores ingresados por el usuario
   const username = document.getElementById("user").value;
   const password = document.getElementById("pass").value;
@@ -129,7 +136,7 @@ async function loguear() {
         form: document.getElementById("pag1"),
         login: document.getElementById("pag2"),
         admin: document.getElementById("pag3"),
-        aside: document.getElementById("aside"),
+        aside: document.getElementById("aside")
       };
       
       // Función para añadir o remover una clase en un grupo de elementos
@@ -153,6 +160,8 @@ async function loguear() {
       toggleClass([elements.admin], "agregar_dis", true);
       toggleClass([elements.header], "cambiar_nav", false);
       setStyle(elements.header, { display: "none" });
+      const tidioChat = document.getElementById("tidio-chat-iframe");
+      tidioChat.style.display = "none";
     }, 1000);
     const login = document.getElementById("Logincont");
     const logo = document.getElementById("Logo");
