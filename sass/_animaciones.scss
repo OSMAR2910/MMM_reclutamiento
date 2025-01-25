@@ -13,14 +13,14 @@
       transform: translateX(0);
     }
     49% {
-      transform: translateX(175%) translateY(27%);
+      transform: translateX(300%) translateY(-110%);
     }
     50% {
-      transform: translateX(175%) translateY(27%);
+      transform: translateX(300%) translateY(-110%);
     }
     100% {
       transform: translateX(0);
-      z-index: 100;
+      z-index: 1003;
     }
   }
 
