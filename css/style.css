@@ -274,6 +274,7 @@ body main .pages {
   justify-content: center;
   align-items: center;
   align-content: center;
+  overflow: hidden;
   display: none;
 }
 body main #home {
@@ -621,8 +622,8 @@ body main #pag2 .Logincont .Login-cont .Login-son .error.activolog {
   display: flex;
 }
 body main #pag2 .Logincont.animacionlog {
-  animation: bounceOutUp;
-  animation-duration: 0.9s;
+  animation: bounceOutRight;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 body main #pag3 {
@@ -668,8 +669,8 @@ body main #pag3 .admin_cont {
   gap: 3%;
 }
 body main #pag3 .admin_cont .cont_edit {
-  width: 4%;
-  height: 16%;
+  width: 4vw;
+  height: 8vw;
   display: flex;
   justify-content: center;
   align-items: center;
