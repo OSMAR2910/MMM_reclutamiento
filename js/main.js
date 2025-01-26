@@ -3,6 +3,7 @@ window.onload = () => {
     const loader = document.getElementById('loader');
     loader.style.visibility = 'hidden';
     loader.style.opacity = '0';
+    loader.style.display = 'none';
     // Configuración inicial 
     elements.home.classList.add("agregar_dis");
 };
