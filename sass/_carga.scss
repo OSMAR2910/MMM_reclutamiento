@@ -22,7 +22,15 @@
     }
   }
 }
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 900px) {
+  #loader {
+    #pizza_loader {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
   #loader {
     #pizza_loader {
       width: 4rem;
@@ -30,3 +38,4 @@
     }
   }
 }
+

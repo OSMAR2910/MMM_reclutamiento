@@ -67,7 +67,13 @@
   height: 100%;
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 900px) {
+  #loader #pizza_loader {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+@media screen and (max-width: 500px) {
   #loader #pizza_loader {
     width: 4rem;
     height: 4rem;
@@ -711,12 +717,12 @@ body main #pag3 .admin_cont .cont_aceptados {
   align-items: center;
   flex-direction: column;
   background-color: #174891;
-  gap: 2%;
+  gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_aceptados .box_green {
   width: 98%;
-  height: 2rem;
-  margin-top: 1%;
+  height: 3vh;
+  margin-top: 1vh;
   background-color: #00bf63;
   border-radius: 1rem;
   display: flex;
@@ -741,11 +747,11 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul {
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  gap: 2%;
+  gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul li {
   width: 95%;
-  height: 4rem;
+  height: 5vh;
   display: flex;
   background-color: #ffffff;
   border-radius: 1rem;
@@ -763,19 +769,18 @@ body main #pag3 .admin_cont .cont_rechazados {
   align-items: center;
   flex-direction: column;
   background-color: #174891;
-  gap: 2%;
+  gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_rechazados .box_red {
   width: 96%;
-  height: 2rem;
-  margin-top: 2%;
+  height: 3vh;
+  margin-top: 1vh;
   background-color: #ff3131;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 5%;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data {
   width: 100%;
@@ -794,11 +799,11 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul {
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  gap: 2%;
+  gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul li {
   width: 90%;
-  height: 4rem;
+  height: 5vh;
   display: flex;
   background-color: #ffffff;
   border-radius: 1rem;
@@ -863,29 +868,26 @@ body .cambiar_nav nav ul .circulo_icon {
   top: 9.3vh;
   left: 23.3vw;
 }
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 900px) {
   body header {
-    width: 65vw;
-    height: 20vw;
+    width: 50vw;
+    height: 15vw;
   }
   body header nav ul .circulo_icon {
-    width: 3.3vw;
-    height: 3.3vw;
+    width: 3vw;
+    height: 3vw;
     top: 50vh;
-    left: 43vw;
-  }
-  body main .pages {
-    width: 100%;
+    left: 44vw;
   }
   body main #home .mancha1 {
-    width: 90%;
+    width: 70%;
     top: -8vh;
-    left: -23vw;
+    left: -15vw;
   }
   body main #home .mancha2 {
-    width: 90%;
-    bottom: -13vh;
-    right: -23vw;
+    width: 70%;
+    bottom: -15vh;
+    right: -20vw;
   }
   body main #pag1 article {
     width: 90%;
@@ -930,145 +932,58 @@ body .cambiar_nav nav ul .circulo_icon {
     width: 17rem;
   }
   body main #pag3 .btn_regreso {
-    width: 6%;
+    width: 5%;
   }
   body main #pag3 .admin_cont {
     flex-direction: column;
-    gap: 3%;
+    gap: 3vh;
   }
   body main #pag3 .admin_cont .cont_edit {
-    width: 4vw;
-    height: 8vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 1rem;
-    background-color: #174891;
-    gap: 7%;
+    width: 17vw;
+    height: 7vw;
+    flex-direction: row;
+    border-radius: 0.7rem;
   }
   body main #pag3 .admin_cont .cont_edit button {
-    width: 80%;
-    height: 40%;
-    border: none;
-    border-radius: 4rem;
-    background-color: #ec6223;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.1s ease-in-out;
-  }
-  body main #pag3 .admin_cont .cont_edit button img {
-    width: 60%;
-  }
-  body main #pag3 .admin_cont .cont_edit button:hover {
-    opacity: 50%;
-    scale: 0.9;
+    width: 39.5%;
+    height: 80%;
+    border-radius: 5rem;
   }
   body main #pag3 .admin_cont .cont_aceptados {
-    width: 60%;
-    height: 90%;
-    display: flex;
-    border-radius: 1.5rem;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    background-color: #174891;
-    gap: 2%;
+    width: 90%;
+    height: 58vh;
+    border-radius: 1.3rem;
+    gap: 1vh;
   }
   body main #pag3 .admin_cont .cont_aceptados .box_green {
-    width: 98%;
+    width: 96%;
     height: 2rem;
-    margin-top: 1%;
-    background-color: #00bf63;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    margin-top: 1vh;
+    gap: 1vh;
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: 0;
-    margin: 0;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    gap: 2%;
+    gap: 1vh;
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul li {
-    width: 95%;
-    height: 4rem;
-    display: flex;
-    background-color: #ffffff;
-    border-radius: 1rem;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 5%;
+    gap: 1vw;
   }
   body main #pag3 .admin_cont .cont_rechazados {
-    width: 24%;
-    height: 90%;
-    display: flex;
-    border-radius: 1.5rem;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    background-color: #174891;
-    gap: 2%;
+    width: 90%;
+    height: 25vh;
+    border-radius: 1.3rem;
+    gap: 1vh;
   }
   body main #pag3 .admin_cont .cont_rechazados .box_red {
     width: 96%;
     height: 2rem;
-    margin-top: 2%;
-    background-color: #ff3131;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 5%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    margin-top: 1vh;
+    gap: 1vh;
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    padding: 0;
-    margin: 0;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    gap: 2%;
+    gap: 1vh;
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul li {
-    width: 90%;
-    height: 4rem;
-    display: flex;
-    background-color: #ffffff;
-    border-radius: 1rem;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 5%;
+    gap: 1vw;
   }
   body main aside {
     width: 0;
@@ -1097,8 +1012,49 @@ body .cambiar_nav nav ul .circulo_icon {
     height: 0;
     font-size: 0;
   }
-  body main .agregar_dis {
-    display: flex;
+  body .cambiar_nav {
+    top: 4vh;
+    left: 35vw;
+    width: 30vw;
+    height: 10vw;
+  }
+  body .cambiar_nav nav ul .circulo_icon {
+    width: 2vw;
+    height: 2vw;
+    top: 8vh;
+    left: 46vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  body header {
+    width: 65vw;
+    height: 20vw;
+  }
+  body header nav ul .circulo_icon {
+    width: 3.3vw;
+    height: 3.3vw;
+    top: 50vh;
+    left: 43vw;
+  }
+  body main .pages {
+    width: 100%;
+  }
+  body main #home .mancha1 {
+    width: 90%;
+    top: -8vh;
+    left: -23vw;
+  }
+  body main #home .mancha2 {
+    width: 90%;
+    bottom: -13vh;
+    right: -23vw;
+  }
+  body main #pag3 .btn_regreso {
+    width: 6%;
+  }
+  body main #pag3 .admin_cont .cont_edit {
+    width: 23vw;
+    height: 10vw;
   }
   body .cambiar_nav {
     top: 5vh;

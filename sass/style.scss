@@ -549,11 +549,11 @@ body {
           align-items: center;
           flex-direction: column;
           background-color: $Secundario; 
-          gap: 2%;
+          gap: 1.5vh;
           .box_green {
             width: 98%;
-            height: 2rem;
-            margin-top: 1%;
+            height: 3vh;
+            margin-top: 1vh;
             background-color: $Green;
             border-radius: 1rem;
             display: flex;
@@ -577,10 +577,10 @@ body {
               justify-content: start;
               align-items: center;
               flex-direction: column;
-              gap: 2%;
+              gap: 1.5vh;
               li {
                 width: 95%;
-                height: 4rem;
+                height: 5vh;
                 display: flex;
                 background-color: $Texto;
                 border-radius: 1rem;
@@ -601,18 +601,17 @@ body {
           align-items: center;
           flex-direction: column;
           background-color: $Secundario; 
-          gap: 2%;
+          gap: 1.5vh;
           .box_red {
             width: 96%;
-            height: 2rem;
-            margin-top: 2%;
+            height: 3vh;
+            margin-top: 1vh;
             background-color: $Red;
             border-radius: 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            gap: 5%;
           }
           .const_data {
             width: 100%;
@@ -630,10 +629,10 @@ body {
               justify-content: start;
               align-items: center;
               flex-direction: column;
-              gap: 2%;
+              gap: 1.5vh;
               li {
                 width: 90%;
-                height: 4rem;
+                height: 5vh;
                 display: flex;
                 background-color: $Texto;
                 border-radius: 1rem;
@@ -707,35 +706,32 @@ body {
       }
     }
   }
-  @media screen and (max-width: 930px) {
+  @media screen and (max-width: 900px) {
     header {
-      width: 65vw;
-      height: 20vw;
+      width: 50vw;
+      height: 15vw;
       nav {
         ul {
           .circulo_icon {
-            width: 3.3vw;
-            height: 3.3vw;
+            width: 3vw;
+            height: 3vw;
             top: 50vh;
-            left: 43vw;
+            left: 44vw;
           }
         }
       }
     }
     main {
-      .pages {
-        width: 100%;
-      }
       #home {
         .mancha1 {
-          width: 90%;
+          width: 70%;
           top: -8vh;
-          left: -23vw;
+          left: -15vw;
         }
         .mancha2 {
-          width: 90%;
-          bottom: -13vh;
-          right: -23vw;
+          width: 70%;
+          bottom: -15vh;
+          right: -20vw;
         }
       }
       #pag1 {
@@ -797,140 +793,58 @@ body {
       }
       #pag3 {
         .btn_regreso {
-          width: 6%;
+          width: 5%;
         }
         .admin_cont {
           flex-direction: column;
-          gap: 3%;
+          gap: 3vh;
           .cont_edit {
-            width: 4vw;
-            height: 8vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            border-radius: 1rem;
-            background-color: $Secundario;
-            gap: 7%;
+            width: 17vw;
+            height: 7vw;
+            flex-direction: row;
+            border-radius: .7rem;
             button {
-              width: 80%;
-              height: 40%;
-              border: none;
-              border-radius: 4rem;
-              background-color: $Principal;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              transition: all 0.1s ease-in-out;
-              img {
-                width: 60%;
-              }
-              &:hover {
-                @include opacity;
-              }
+              width: 39.5%;
+              height: 80%;
+              border-radius: 5rem;
             }
           }
           .cont_aceptados {
-            width: 60%;
-            height: 90%;
-            display: flex;
-            border-radius: 1.5rem;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            background-color: $Secundario; 
-            gap: 2%;
+            width: 90%;
+            height: 58vh;
+            border-radius: 1.3rem;
+            gap: 1vh;
             .box_green {
-              width: 98%;
+              width: 96%;
               height: 2rem;
-              margin-top: 1%;
-              background-color: $Green;
-              border-radius: 1rem;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
+              margin-top: 1vh;
+              gap: 1vh;
             }
             .const_data {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
               ul {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                padding: 0;
-                margin: 0;
-                justify-content: start;
-                align-items: center;
-                flex-direction: column;
-                gap: 2%;
+                gap: 1vh;
                 li {
-                  width: 95%;
-                  height: 4rem;
-                  display: flex;
-                  background-color: $Texto;
-                  border-radius: 1rem;
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  gap: 5%;
+                  gap: 1vw;
                 }
               }
             }
           }
           .cont_rechazados {
-            width: 24%;
-            height: 90%;
-            display: flex;
-            border-radius: 1.5rem;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            background-color: $Secundario; 
-            gap: 2%;
+            width: 90%;
+            height: 25vh;
+            border-radius: 1.3rem;
+            gap: 1vh;
             .box_red {
               width: 96%;
               height: 2rem;
-              margin-top: 2%;
-              background-color: $Red;
-              border-radius: 1rem;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
-              gap: 5%;
+              margin-top: 1vh;
+              gap: 1vh;
             }
             .const_data {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
               ul {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                padding: 0;
-                margin: 0;
-                justify-content: start;
-                align-items: center;
-                flex-direction: column;
-                gap: 2%;
+                gap: 1vh;
                 li {
-                  width: 90%;
-                  height: 4rem;
-                  display: flex;
-                  background-color: $Texto;
-                  border-radius: 1rem;
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  gap: 5%;
+                  gap: 1vw;
                 }
               }
             }
@@ -964,8 +878,65 @@ body {
           }
         }
       }
-      .agregar_dis {
-        display: flex;
+    }
+    .cambiar_nav {
+      top: 4vh;
+      left: 35vw;
+      width: 30vw;
+      height: 10vw;
+      nav {
+        ul {
+          .circulo_icon {
+            width: 2vw;
+            height: 2vw;
+            top: 8vh;
+            left: 46vw;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    header {
+      width: 65vw;
+      height: 20vw;
+      nav {
+        ul {
+          .circulo_icon {
+            width: 3.3vw;
+            height: 3.3vw;
+            top: 50vh;
+            left: 43vw;
+          }
+        }
+      }
+    }
+    main {
+      .pages {
+        width: 100%;
+      }
+      #home {
+        .mancha1 {
+          width: 90%;
+          top: -8vh;
+          left: -23vw;
+        }
+        .mancha2 {
+          width: 90%;
+          bottom: -13vh;
+          right: -23vw;
+        }
+      }
+      #pag3 {
+        .btn_regreso {
+          width: 6%;
+        }
+        .admin_cont {
+          .cont_edit {
+            width: 23vw;
+            height: 10vw;
+          }
+        } 
       }
     }
     .cambiar_nav {
