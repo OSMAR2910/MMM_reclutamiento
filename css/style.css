@@ -205,8 +205,8 @@ body header {
   height: 6vw;
   display: flex;
   background-color: #174891;
-  position: fixed;
   border-radius: 5rem;
+  position: fixed;
   z-index: 1000;
 }
 body header nav {
@@ -323,7 +323,7 @@ body main #pag1 {
 body main #pag1 article {
   width: 90%;
   height: 80%;
-  margin-top: 5vh;
+  margin-top: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -419,21 +419,22 @@ body main #pag1 article .cont_form form .input-form input:focus::placeholder {
 body main #pag1 article .cont_form form .input-form input:focus ~ label {
   scale: 1;
   opacity: 100%;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag1 article .cont_form form .input-form label {
   scale: 0;
   opacity: 0;
-  width: 30%;
-  height: 3rem;
+  top: 12vh;
+  left: 15vw;
+  width: 20vw;
+  height: 4vw;
+  position: fixed;
   display: flex;
-  position: absolute;
   justify-content: center;
   align-items: center;
-  margin-bottom: 17%;
   background-color: #0f3061;
   transition: all 0.1s ease-in-out;
   border-radius: 5rem;
-  border: 2px solid #0f3061;
   box-shadow: 0px 0px 10px 0px #0f3061;
 }
 body main #pag1 article .cont_form form .input-form label span {
@@ -447,8 +448,14 @@ body main #pag1 article .cont_form form .input-form label span p {
   width: 100%;
   height: 100%;
   color: #ffffff;
-  font-size: 100%;
+  font-size: 0.8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.1rem;
 }
 body main #pag1 article .cont_form form .input-submit {
   display: none;
@@ -464,6 +471,18 @@ body main #pag1 article .cont_form::-webkit-scrollbar-thumb {
   background-color: #ec6223;
   border-radius: 1rem;
   border: 3px solid #ffffff;
+}
+body main #pag1 article label {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag1 article label img {
+  width: 100%;
+  height: 100%;
 }
 body main #pag2 {
   animation: bounceInLeft 0.5s ease-in-out forwards;
@@ -889,10 +908,13 @@ body .cambiar_nav nav ul .circulo_icon {
     bottom: -15vh;
     right: -20vw;
   }
+  body main .pages {
+    width: 100%;
+  }
   body main #pag1 article {
     width: 90%;
     height: 80%;
-    margin: 0;
+    margin-top: 10vh;
   }
   body main #pag1 article .texto_form h1 {
     font-size: 3vh;
@@ -905,16 +927,13 @@ body .cambiar_nav nav ul .circulo_icon {
     grid-template-columns: repeat(1, 1fr);
   }
   body main #pag1 article .cont_form form .input-form label {
-    width: 60%;
-    height: 2rem;
-    margin-bottom: 35%;
-    border-radius: 4rem;
+    top: 12.5vh;
+    left: 20vw;
+    width: 60vw;
+    height: 11vw;
   }
   body main #pag1 article .cont_form form .input-form label span p {
-    font-size: 60%;
-  }
-  body main #pag1 article .cont_form form .input-submit {
-    display: none;
+    font-size: 2vw;
   }
   body main #pag1 article .cont_form::-webkit-scrollbar {
     width: 12px;
@@ -927,6 +946,11 @@ body .cambiar_nav nav ul .circulo_icon {
     background-color: #ec6223;
     border-radius: 1rem;
     border: 3px solid #ffffff;
+  }
+  body main #pag1 article label {
+    width: 6vw;
+    height: 6vw;
+    margin-top: 5vh;
   }
   body main #pag2 .Logincont .Login-cont {
     width: 17rem;
@@ -1036,9 +1060,6 @@ body .cambiar_nav nav ul .circulo_icon {
     top: 50vh;
     left: 43vw;
   }
-  body main .pages {
-    width: 100%;
-  }
   body main #home .mancha1 {
     width: 90%;
     top: -8vh;
@@ -1048,6 +1069,20 @@ body .cambiar_nav nav ul .circulo_icon {
     width: 90%;
     bottom: -13vh;
     right: -23vw;
+  }
+  body main #pag1 article .cont_form form .input-form label {
+    top: 10vh;
+    left: 20vw;
+    width: 60vw;
+    height: 12vw;
+  }
+  body main #pag1 article .cont_form form .input-form label span p {
+    font-size: 3vw;
+  }
+  body main #pag1 article label {
+    width: 8vw;
+    height: 8vw;
+    margin-top: 8vh;
   }
   body main #pag3 .btn_regreso {
     width: 6%;
