@@ -26,6 +26,74 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  .alertas {
+    top: 5vh;
+    left: 18vw;
+    width: 14vw;
+    height: 4vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1001;
+    .alerta {
+      @include cover;
+      display: none;
+      justify-content: center;
+      align-items: center; 
+      background-color: $Resalte;
+      border: 2px solid $Resalte;
+      box-shadow: 0px 0px 10px 0px $Resalte;
+      border-radius: 5rem;
+      animation: fadeInDown 0.5s ease-in-out forwards;
+      span {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          font-size: 1vw;
+          color: $Texto;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .alertas_admin {
+    top: 3vh;
+    left: 7vw;
+    width: 14vw;
+    height: 4vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1001;
+    .alerta_admin {
+      @include cover;
+      display: none;
+      justify-content: center;
+      align-items: center; 
+      background-color: $Resalte;
+      border: 2px solid $Resalte;
+      box-shadow: 0px 0px 10px 0px $Resalte;
+      border-radius: 5rem;
+      animation: fadeInDown 0.5s ease-in-out forwards;
+      span {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          font-size: 1vw;
+          color: $Texto;
+          text-align: center;
+        }
+      }
+    }
+  }
   header {
     width: 20vw;
     height: 6vw;
@@ -205,7 +273,7 @@ body {
               justify-content: center;
               align-items: center;
               font-family: $Letra2;
-              input {
+              .input {
                 width: 100%;
                 height: 100%;
                 border-radius: 5rem;
@@ -223,13 +291,13 @@ body {
                   color: $Texto;
                 }
               }
-              input::placeholder{
+              .input::placeholder{
                 color: $Negro;
               }
-              input:focus::placeholder {
+              .input:focus::placeholder {
                 color: $Texto;
               }
-              input:focus ~ label {
+              .input:focus ~ label {
                 scale: 1;
                 opacity: 100%;
                 transition: all 0.3s ease-in-out;
@@ -295,8 +363,12 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: all 0.1s ease-in-out;
           img {
             @include cover;
+          }
+          &:hover {
+            @include opacity;
           }
         }
       }
@@ -529,37 +601,62 @@ body {
         justify-content: center;
         align-items: center;
         font-family: $Letra2;
-        gap: 3%;
-        .cont_edit {
-          width: 4vw;
-          height: 8vw;
+        gap: 2%;
+        .cont_rechazados {
+          width: 20%;
+          height: 80%;
           display: flex;
-          justify-content: center;
+          border-radius: 1.5rem;
+          justify-content: start;
           align-items: center;
           flex-direction: column;
-          border-radius: 1rem;
-          background-color: $Secundario;
-          gap: 7%;
-          button {
-            width: 80%;
-            height: 40%;
-            border: none;
-            border-radius: 4rem;
-            background-color: $Principal;
+          background-color: $Secundario; 
+          margin-top: 10vh;
+          gap: 1.5vh;
+          .box_red {
+            width: 96%;
+            height: 3vh;
+            margin-top: 1vh;
+            background-color: $Red;
+            border-radius: 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.1s ease-in-out;
-            img {
-              width: 60%;
-            }
-            &:hover {
-              @include opacity;
+            flex-direction: column;
+          }
+          .const_data {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            ul {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              padding: 0;
+              margin: 0;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+              gap: 1.5vh;
+              li {
+                width: 90%;
+                height: 5vh;
+                display: flex;
+                background-color: $Texto;
+                border-radius: 1rem;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 5%;
+              }
             }
           }
         }
         .cont_aceptados {
-          width: 60%;
+          width: 74%;
           height: 90%;
           display: flex;
           border-radius: 1.5rem;
@@ -598,58 +695,6 @@ body {
               gap: 1.5vh;
               li {
                 width: 95%;
-                height: 5vh;
-                display: flex;
-                background-color: $Texto;
-                border-radius: 1rem;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 5%;
-              }
-            }
-          }
-        }
-        .cont_rechazados {
-          width: 24%;
-          height: 90%;
-          display: flex;
-          border-radius: 1.5rem;
-          justify-content: start;
-          align-items: center;
-          flex-direction: column;
-          background-color: $Secundario; 
-          gap: 1.5vh;
-          .box_red {
-            width: 96%;
-            height: 3vh;
-            margin-top: 1vh;
-            background-color: $Red;
-            border-radius: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-          }
-          .const_data {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            ul {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              padding: 0;
-              margin: 0;
-              justify-content: start;
-              align-items: center;
-              flex-direction: column;
-              gap: 1.5vh;
-              li {
-                width: 90%;
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
@@ -724,7 +769,33 @@ body {
       }
     }
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 900px) { 
+  .alertas {
+    top: 4vh;
+    left: 35vw;
+    width: 30vw;
+    height: 10vw;
+    .alerta {
+      span {
+        p {
+          font-size: 2vw;
+        }
+      }
+    }
+  }
+  .alertas_admin {
+    top: 4vh;
+    left: 35vw;
+    width: 30vw;
+    height: 10vw;
+    .alerta_admin {
+      span {
+        p {
+          font-size: 2vw;
+        }
+      }
+    }
+  }
     header {
       width: 50vw;
       height: 15vw;
@@ -819,7 +890,7 @@ body {
           width: 5%;
         }
         .admin_cont {
-          flex-direction: column;
+          flex-direction: column-reverse;
           gap: 3vh;
           .cont_edit {
             width: 17vw;
@@ -920,6 +991,32 @@ body {
     }
   }
   @media screen and (max-width: 500px) {
+    .alertas {
+      top: 5vh;
+      left: 25vw;
+      width: 50vw;
+      height: 15vw;
+     .alerta {
+       span {
+         p {
+           font-size: 3vw;
+         }
+       }
+     }
+   }
+   .alertas_admin {
+    top: 5vh;
+    left: 25vw;
+    width: 50vw;
+    height: 15vw;
+     .alerta_admin {
+       span {
+         p {
+           font-size: 3vw;
+         }
+       }
+     }
+   }
     header {
       width: 65vw;
       height: 20vw;
@@ -969,7 +1066,7 @@ body {
           label {
             width: 8vw;
             height: 8vw;
-            margin-top: 8vh;
+            margin-top: 5vh;
           }
         }
       }

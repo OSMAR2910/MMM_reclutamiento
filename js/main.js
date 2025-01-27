@@ -3,7 +3,6 @@ window.onload = () => {
     const loader = document.getElementById('loader');
     loader.style.visibility = 'hidden';
     loader.style.opacity = '0';
-    loader.style.display = 'none';
     // Configuración inicial 
     elements.home.classList.add("agregar_dis");
 };
@@ -83,10 +82,28 @@ const elements = {
   function btn_admin_regreso() {
     location.reload();
   }
-
+  const alertasConfig = {
+    alertas: 5000,
+    alertas_admin: 5000,
+    alerta_4: 5000,
+    alerta_5: 5000,
+    alerta_6: 5000,
+    alerta_7: 5000,
+  };
+  
+  // Función genérica para mostrar y ocultar alertas
+  const mostrarAlerta = (alertaId) => {
+    const alerta = document.getElementById(alertaId);
+    const tiempo = alertasConfig[alertaId] || 5000; // Usar tiempo configurado o 4000ms por defecto
+  
+    alerta.style.display = "flex"; // Mostrar alerta
+  
+    setTimeout(() => {
+      alerta.style.display = "none"; // Ocultar alerta después de un tiempo
+    }, tiempo);
+  };
   
 //Login
-// Seleccionar el formulario
 const formulario = document.getElementById("formuariolog");
 
 // Detectar el evento 'keydown' en el formulario
@@ -106,8 +123,8 @@ async function loadUsers() {
 // Función para autenticar usuario y contraseña
 async function log_admin() {
   // Obtener los valores ingresados por el usuario
-  const username = document.getElementById("user").value;
-  const password = document.getElementById("pass").value;
+  const username = document.getElementById("user").value.trim();
+  const password = document.getElementById("pass").value.trim();
 
   // Cargar los datos de usuarios desde el JSON
   const users = await loadUsers();
@@ -115,67 +132,70 @@ async function log_admin() {
   // Buscar el usuario por nombre
   const user = users.find((user) => user.user === username);
 
-  if (!user) {
-    // Si no se encuentra el usuario
-    setTimeout(function () {
-      const formuariolog = document.getElementById("formuariolog");
-      const error = document.getElementById("erroru");
+  // Referencias a elementos comunes
+  const formuariolog = document.getElementById("formuariolog");
+  const erroru = document.getElementById("erroru");
+  const errorp = document.getElementById("errorp");
+
+  // Manejar errores de autenticación
+  const mostrarError = (errorElement) => {
+    setTimeout(() => {
       formuariolog.classList.remove("activolog");
-      error.classList.add("activolog");
+      errorElement.classList.add("activolog");
     }, 200);
     formuariolog.classList.add("animacionform");
+  };
+
+  // Si el usuario no existe
+  if (!user) {
+    mostrarError(erroru);
     return;
   }
 
   // Verificar la contraseña
   if (user.pass === password) {
-    setTimeout(function () {
-      // Obtener referencias a los elementos
+    // Animación de login exitoso
+    setTimeout(() => {
+      // Referencias a elementos de navegación y vistas
       const elements = {
         home: document.getElementById("home"),
         header: document.getElementById("header"),
         form: document.getElementById("pag1"),
         login: document.getElementById("pag2"),
         admin: document.getElementById("pag3"),
-        aside: document.getElementById("aside")
+        aside: document.getElementById("aside"),
+        tidioChat: document.getElementById("tidio-chat-iframe"),
       };
-      
-      // Función para añadir o remover una clase en un grupo de elementos
+
+      // Función genérica para añadir o remover clases
       const toggleClass = (elements, className, add = true) => {
-        elements.forEach(element => {
+        elements.forEach((element) => {
           if (element) {
             add ? element.classList.add(className) : element.classList.remove(className);
           }
         });
       };
-      
-      // Función para modificar estilos de manera genérica
-      const setStyle = (element, styles) => {
-        if (element) {
-          Object.assign(element.style, styles);
-        }
-      };
-      
-      // Gestionar clases y estilos según la vista activa
+
+      // Cambiar clases y estilos para la vista de admin
       toggleClass([elements.home, elements.form, elements.login, elements.aside], "agregar_dis", false);
       toggleClass([elements.admin], "agregar_dis", true);
       toggleClass([elements.header], "cambiar_nav", false);
-      setStyle(elements.header, { display: "none" });
-      const tidioChat = document.getElementById("tidio-chat-iframe");
-      tidioChat.style.display = "none";
+      elements.header.style.display = "none";
+      if (elements.tidioChat) elements.tidioChat.style.display = "none";
+
+      // Mostrar alertas
+      mostrarAlerta("alertas_admin");
+      mostrarAlerta("alerta_4"); 
     }, 1000);
-    const login = document.getElementById("Logincont");
-    const logo = document.getElementById("Logo");
-    login.classList.add("animacionlog");
-    logo.classList.add("anilog");
+
+    // Animaciones adicionales
+    document.getElementById("Logincont").classList.add("animacionlog");
+    document.getElementById("Logo").classList.add("anilog");
   } else {
-    // Si se encuentra el usuario pero la contraseña es incorrecta
-    setTimeout(function () {
-      const formuariolog = document.getElementById("formuariolog");
-      const error = document.getElementById("errorp");
-      formuariolog.classList.remove("activolog");
-      error.classList.add("activolog");
-    }, 200);
-    formuariolog.classList.add("animacionform");
+    // Si la contraseña es incorrecta
+    mostrarError(errorp);
   }
 }
+
+
+
