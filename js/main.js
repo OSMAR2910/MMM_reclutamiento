@@ -83,18 +83,18 @@ const elements = {
     location.reload();
   }
   const alertasConfig = {
-    alertas: 5000,
-    alertas_admin: 5000,
-    alerta_4: 5000,
-    alerta_5: 5000,
-    alerta_6: 5000,
-    alerta_7: 5000,
+    alertas: 3000,
+    alertas_admin: 3000,
+    alerta_4: 3000,
+    alerta_5: 3000,
+    alerta_6: 3000,
+    alerta_7: 3000,
   };
   
   // Función genérica para mostrar y ocultar alertas
   const mostrarAlerta = (alertaId) => {
     const alerta = document.getElementById(alertaId);
-    const tiempo = alertasConfig[alertaId] || 5000; // Usar tiempo configurado o 4000ms por defecto
+    const tiempo = alertasConfig[alertaId] || 3000; // Usar tiempo configurado o 4000ms por defecto
   
     alerta.style.display = "flex"; // Mostrar alerta
   

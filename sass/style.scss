@@ -41,11 +41,11 @@ body {
       display: none;
       justify-content: center;
       align-items: center; 
-      background-color: $Resalte;
-      border: 2px solid $Resalte;
-      box-shadow: 0px 0px 10px 0px $Resalte;
+      background-color: $Resalte2;
+      border: 2px solid $Resalte2;
+      box-shadow: 0px 0px 10px 0px $Resalte2;
       border-radius: 5rem;
-      animation: fadeInDown 0.5s ease-in-out forwards;
+      animation: fadeInDown 0.2s ease-in-out forwards;
       span {
         width: 90%;
         height: 90%;
@@ -53,7 +53,7 @@ body {
         justify-content: center;
         align-items: center;
         p {
-          font-size: 1vw;
+          font-size: .8vw;
           color: $Texto;
           text-align: center;
         }
@@ -61,7 +61,7 @@ body {
     }
   }
   .alertas_admin {
-    top: 3vh;
+    top: 4.6vh;
     left: 7vw;
     width: 14vw;
     height: 4vw;
@@ -75,11 +75,11 @@ body {
       display: none;
       justify-content: center;
       align-items: center; 
-      background-color: $Resalte;
-      border: 2px solid $Resalte;
-      box-shadow: 0px 0px 10px 0px $Resalte;
+      background-color: $Resalte2;
+      border: 2px solid $Resalte2;
+      box-shadow: 0px 0px 10px 0px $Resalte2;
       border-radius: 5rem;
-      animation: fadeInDown 0.5s ease-in-out forwards;
+      animation: fadeInDown 0.2s ease-in-out forwards;
       span {
         width: 90%;
         height: 90%;
@@ -87,7 +87,7 @@ body {
         justify-content: center;
         align-items: center;
         p {
-          font-size: 1vw;
+          font-size: .8vw;
           color: $Texto;
           text-align: center;
         }
@@ -278,8 +278,8 @@ body {
                 height: 100%;
                 border-radius: 5rem;
                 background-color: $Texto;
-                border: 0;
                 outline: none;
+                border: 0;
                 text-align: center;
                 transition: all 0.2s ease-in-out;
                 &:focus {
@@ -300,7 +300,7 @@ body {
               .input:focus ~ label {
                 scale: 1;
                 opacity: 100%;
-                transition: all 0.3s ease-in-out;
+                transition: all 0.2s ease-in-out;
               }
 
               label {
@@ -314,10 +314,10 @@ body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color: $Resalte;
-                transition: all 0.1s ease-in-out;
+                background-color: $Resalte2;
+                transition: all 0.2s ease-in-out;
                 border-radius: 5rem;
-                box-shadow: 0px 0px 10px 0px $Resalte;
+                box-shadow: 0px 0px 10px 0px $Resalte2;
                 span {
                   width: 80%;
                   height: 80%;
@@ -572,7 +572,7 @@ body {
       .btn_regreso {
         width: 2.5%;
         aspect-ratio: 2/2;
-        top: 0;
+        top: 1vh;
         left: 0;
         margin: 2.5%;
         display: flex;
@@ -595,6 +595,91 @@ body {
           @include opacity;
         }
       }
+      .estatus_vacantes {
+        top: 4.6vh;
+        left: 7.5vw;
+        width: 13vw;
+        height: 4vw;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        gap: 5%;
+        .icons_status {
+          width: 90%;
+          height: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          input {
+            display: none;
+            &:checked ~ label {
+              @include opacity;
+              display: flex;
+            }
+            &:checked ~ .status_info {
+              visibility: visible;
+              animation: bounceInDown 0.2s ease-in-out forwards;
+            }
+          }
+          label {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 10rem;
+            transition: all 0.2s ease-in-out;
+          }
+          #label_status1 {
+            background-color: $Red;
+          }
+          #label_status2 {
+            background-color: $Orange;
+          }
+          #label_status3 {
+            background-color: $Green;
+          }
+          .status_info {
+            position: fixed;
+            display: flex;
+            visibility: hidden;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            background-color: $Secundario;
+            width: 15vw;
+            height: 40vh;
+            top: 15vh;
+            border-radius: 1.5rem;
+            text-align: center;
+            color: $Texto;
+            padding: .5vw;
+            box-shadow: 0px 0px 10px 0px $Resalte2;
+            .box_status {
+              width: 95%;
+              height: 5%;
+              border-radius: 2rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              p {
+                font-size: 1.5vh;
+                font-family: $Letra2;
+              }
+            }
+            .box_status1 {
+              background-color: $Red;
+            }
+            .box_status2 {
+              background-color: $Orange;
+            }
+            .box_status3 {
+              background-color: $Green;
+            }
+          }
+        }
+      }
       .admin_cont {
         @include cover;
         display: flex;
@@ -611,7 +696,7 @@ body {
           align-items: center;
           flex-direction: column;
           background-color: $Secundario; 
-          margin-top: 10vh;
+          margin-top: 15vh;
           gap: 1.5vh;
           .box_red {
             width: 96%;
@@ -641,8 +726,8 @@ body {
               align-items: center;
               flex-direction: column;
               gap: 1.5vh;
-              li {
-                width: 90%;
+              .vacante_itemred {
+                width: 95%;
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
@@ -650,14 +735,46 @@ body {
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                text-align: center;
+                transition: all 0.5s ease-in-out;
+                overflow: hidden;
                 gap: 5%;
+                .vacante_info {
+                  width: 90%;
+                  height: 90%;
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  justify-content: space-evenly;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 5%;
+                  span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1.1vh;
+                    color: $Resalte;
+                    strong {
+                      font-size: 1.3vh;
+                      color: $Resalte;
+                    }
+                  }
+                }
+                &:hover, &:active, &:focus {
+                  transition: all 0.5s ease-in-out;
+                  overflow-y: scroll;
+                  height: auto;
+                }
               }
             }
           }
         }
         .cont_aceptados {
           width: 74%;
-          height: 90%;
+          height: 95%;
           display: flex;
           border-radius: 1.5rem;
           justify-content: start;
@@ -693,7 +810,7 @@ body {
               align-items: center;
               flex-direction: column;
               gap: 1.5vh;
-              .vacante_item {
+              .vacante_itemgreen {
                 width: 95%;
                 height: 5vh;
                 display: flex;
@@ -1086,7 +1203,7 @@ body {
           label {
             width: 8vw;
             height: 8vw;
-            margin-top: 5vh;
+            margin-top: 3vh;
           }
         }
       }

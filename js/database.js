@@ -3,17 +3,17 @@ import { database, ref, push, set, onValue } from "./firebase.js";
 
 // Mapa de alertas con su ID y tiempo de visualización
 const alertasConfig = {
-    alertas: 5000,
-    alerta_1: 5000,
-    alerta_2: 5000,
-    alerta_3: 5000,
-    alerta_4: 5000,
+    alertas: 3000,
+    alerta_1: 3000,
+    alerta_2: 3000,
+    alerta_3: 3000,
+    alerta_4: 3000,
   };
   
   // Función genérica para mostrar y ocultar alertas
   const mostrarAlerta = (alertaId) => {
     const alerta = document.getElementById(alertaId);
-    const tiempo = alertasConfig[alertaId] || 5000; // Usar tiempo configurado o 4000ms por defecto
+    const tiempo = alertasConfig[alertaId] || 3000; // Usar tiempo configurado o 4000ms por defecto
   
     alerta.style.display = "flex"; // Mostrar alerta
   
@@ -76,38 +76,48 @@ const alertasConfig = {
   window.enviar_form = enviar_form;
 
  //Leer datos
-// Leer datos
-function mostrarDatos() {
+ function mostrarDatos() {
   const dataGreen = document.getElementById("data_green");
   const dataRed = document.getElementById("data_red");
   const vacantesRef = ref(database, "vacantes/");
 
-  // Limpiar los contenedores antes de actualizar
-  dataGreen.innerHTML = "";
-  dataRed.innerHTML = "";
-
   // Escuchar cambios en la base de datos en tiempo real
   onValue(vacantesRef, (snapshot) => {
+    // Crear fragmentos de documentos para mejorar el rendimiento
+    const fragmentGreen = document.createDocumentFragment();
+    const fragmentRed = document.createDocumentFragment();
+
+    // Limpiar los contenedores para asegurarnos de que estén vacíos antes de agregar nuevos elementos
+    dataGreen.innerHTML = ''; 
+    dataRed.innerHTML = '';
+
     if (snapshot.exists()) {
-      const ulGreen = document.createElement("ul"); // Un <ul> para las vacantes "fijo"
-      const ulRed = document.createElement("ul"); // Un <ul> para las vacantes "temporal"
+      // Crear el contenedor <ul> para las vacantes
+      const ulGreen = document.createElement("ul");
+      const ulRed = document.createElement("ul");
 
       snapshot.forEach((childSnapshot) => {
-        const nombre = childSnapshot.key; // El nombre ahora es la clave
-        const data = childSnapshot.val() || {}; // Evitar undefined
+        const nombre = childSnapshot.key;
+        const data = childSnapshot.val() || {};
 
         const listItem = document.createElement("li");
-        listItem.classList.add("vacante_item");
+        
+        // Agregar la clase correspondiente según el tipo de vacante
+        if (data.f_t === "Fijo") {
+          listItem.classList.add("vacante_itemgreen");
+        } else {
+          listItem.classList.add("vacante_itemred");
+        }
 
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("vacante_info");
 
-        // Lista de campos asegurando que nunca sean `undefined`
+        // Lista de campos con valores predeterminados
         const campos = [
-          { label: "Nombre", value: nombre },
+          { label: "Nombre", value: nombre, isName: true },
           { label: "Puesto", value: data.puesto || "No disponible" },
           { label: "Número", value: data.numero || "No disponible" },
-          { label: "Fecha Registro", value: data.fecha_r || "No disponible" },
+          { label: "Fecha Registro", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
           { label: "Edad", value: data.edad || "No disponible" },
           { label: "Dirección", value: data.direccion || "No disponible" },
           { label: "Ciudad", value: data.ciudad || "No disponible" },
@@ -120,32 +130,39 @@ function mostrarDatos() {
           { label: "Peso", value: data.peso || "No disponible" },
         ];
 
-        // Crear elementos <span> dinámicamente
+        // Crear elementos <span> dinámicamente para cada campo
         campos.forEach((campo) => {
           const span = document.createElement("span");
+
           span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
           infoContainer.appendChild(span);
         });
 
-        // Agregar el div con la información al <li>
         listItem.appendChild(infoContainer);
 
-        // Filtrar según el tipo 'l_f_t' (fijo/temporal)
-        if (data.l_f_t === "temporal") {
-          ulRed.appendChild(listItem); // Agregar al <ul> de vacantes temporales
-        } else if (data.l_f_t === "fijo") {
-          ulGreen.appendChild(listItem); // Agregar al <ul> de vacantes fijas
+        // Filtro para decidir en qué contenedor agregar el ítem
+        if (data.f_t === "Fijo") {  // Ejemplo de filtro, puedes cambiarlo por cualquier condición
+          ulGreen.appendChild(listItem);
+        } else {
+          ulRed.appendChild(listItem);
         }
       });
 
-      // Agregar los <ul> filtrados a los contenedores respectivos
-      dataGreen.appendChild(ulGreen);
-      dataRed.appendChild(ulRed);
+      // Agregar los <ul> al fragmento
+      fragmentGreen.appendChild(ulGreen);
+      fragmentRed.appendChild(ulRed);
 
+      // Agregar los fragmentos a los contenedores
+      dataGreen.appendChild(fragmentGreen);
+      dataRed.appendChild(fragmentRed);
     } else {
-      dataGreen.innerHTML = "<p>No hay vacantes fijas disponibles</p>";
-      dataRed.innerHTML = "<p>No hay vacantes temporales disponibles</p>";
+      dataGreen.innerHTML = "<p>No hay datos disponibles</p>";
+      dataRed.innerHTML = "<p>No hay datos disponibles</p>";
     }
+  }, (error) => {
+    console.error("Error al leer los datos:", error);
+    dataGreen.innerHTML = "<p>Error al cargar los datos</p>";
+    dataRed.innerHTML = "<p>Error al cargar los datos</p>";
   });
 }
 
