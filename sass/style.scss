@@ -40,7 +40,7 @@ body {
       @include cover;
       display: none;
       justify-content: center;
-      align-items: center; 
+      align-items: center;
       background-color: $Resalte2;
       border: 2px solid $Resalte2;
       box-shadow: 0px 0px 10px 0px $Resalte2;
@@ -53,7 +53,7 @@ body {
         justify-content: center;
         align-items: center;
         p {
-          font-size: .8vw;
+          font-size: 0.8vw;
           color: $Texto;
           text-align: center;
         }
@@ -74,7 +74,7 @@ body {
       @include cover;
       display: none;
       justify-content: center;
-      align-items: center; 
+      align-items: center;
       background-color: $Resalte2;
       border: 2px solid $Resalte2;
       box-shadow: 0px 0px 10px 0px $Resalte2;
@@ -87,7 +87,7 @@ body {
         justify-content: center;
         align-items: center;
         p {
-          font-size: .8vw;
+          font-size: 0.8vw;
           color: $Texto;
           text-align: center;
         }
@@ -101,7 +101,7 @@ body {
     background-color: $Secundario;
     border-radius: 5rem;
     position: fixed;
-    z-index: 1000; 
+    z-index: 1000;
     nav {
       width: 100%;
       height: 100%;
@@ -291,7 +291,7 @@ body {
                   color: $Texto;
                 }
               }
-              .input::placeholder{
+              .input::placeholder {
                 color: $Negro;
               }
               .input:focus::placeholder {
@@ -309,7 +309,7 @@ body {
                 top: 12vh;
                 left: 15vw;
                 width: 20vw;
-                height: 4vw; 
+                height: 4vw;
                 position: fixed;
                 display: flex;
                 justify-content: center;
@@ -327,7 +327,7 @@ body {
                   p {
                     @include cover;
                     color: $Texto;
-                    font-size: .8vw;
+                    font-size: 0.8vw;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -345,16 +345,16 @@ body {
           }
         }
         .cont_form::-webkit-scrollbar {
-          width: 12px;             
+          width: 12px;
         }
         .cont_form::-webkit-scrollbar-track {
-          background: $Texto;    
+          background: $Texto;
           border-radius: 1rem;
         }
         .cont_form::-webkit-scrollbar-thumb {
-          background-color: $Fondo;  
-          border-radius: 1rem;       
-          border: 3px solid $Texto; 
+          background-color: $Fondo;
+          border-radius: 1rem;
+          border: 3px solid $Texto;
         }
         label {
           width: 2.5vw;
@@ -647,15 +647,16 @@ body {
             justify-content: start;
             align-items: center;
             flex-direction: column;
-            background-color: $Secundario;
-            width: 15vw;
+            width: 16vw;
             height: 40vh;
             top: 15vh;
             border-radius: 1.5rem;
             text-align: center;
             color: $Texto;
-            padding: .5vw;
-            box-shadow: 0px 0px 10px 0px $Resalte2;
+            padding: 0.5vw;
+            background-color: $Box_admin;
+            box-shadow: 0px 0px 10px 0px $Box_admin;
+            gap: 1.5vh;
             .box_status {
               width: 95%;
               height: 5%;
@@ -677,6 +678,103 @@ body {
             .box_status3 {
               background-color: $Green;
             }
+            .data_status {
+              width: 100%;
+              height: 100%;
+              ul {
+                width: 100%;
+                height: auto;
+                display: flex;
+                padding: 0;
+                margin: 0;
+                margin-bottom: 1.5vh;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                gap: 1.5vh;
+                .vacante_asistieron {
+                  width: 95%;
+                  height: 5vh;
+                  display: flex;
+                  background-color: $Texto;
+                  border-radius: 1rem;
+                  justify-content: center;
+                  border: none;
+                  cursor: pointer;
+                  outline: none;
+                  overflow-y: hidden;
+                  align-items: center;
+                  .vacante_info {
+                    width: 85%;
+                    height: 100%;
+                    display: flex;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    justify-content: space-evenly;
+                    align-items: center;
+                    flex-direction: column;
+                    span {
+                      width: 100%;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      font-size: 1.2vh;
+                      color: $Resalte;
+                      strong {
+                        font-size: 1.4vh;
+                        color: $Resalte;
+                      }
+                    }
+                  }
+                  .btn-container {
+                    width: 15%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    justify-items: center;
+                    align-content: center;
+                    flex-direction: column;
+                    gap: 5px;
+                    button {
+                      border-radius: 5rem;
+                      width: 1vw;
+                      aspect-ratio: 2/2;
+                      border: none;
+                      transition: all 0.2s ease-in-out;
+                      &:hover {
+                        @include opacity;
+                      }
+                    }
+                    .btn-noAsistieron {
+                      background-color: $Red;
+                    }
+                    .btn-asistieron {
+                      background-color: $Orange;
+                    }
+                    .btn-contratado {
+                      background-color: $Green;
+                    }
+                    .btn-eliminar {
+                      background-image: url("../img/Logos/interfaces/icons/cerrar.png");
+                      background-repeat: no-repeat;
+                      background-size: cover;
+                      background-position: center;
+                    }
+                  }
+                  &:focus {
+                    overflow-y: scroll;
+                    height: auto;
+                    .vacante_info {
+                      width: 95%;
+                    }
+                    .btn-container {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -695,7 +793,8 @@ body {
           justify-content: start;
           align-items: center;
           flex-direction: column;
-          background-color: $Secundario; 
+          background-color: $Box_admin;
+          box-shadow: 0px 0px 10px 0px $Box_admin;
           margin-top: 15vh;
           gap: 1.5vh;
           .box_red {
@@ -713,15 +812,20 @@ body {
             width: 100%;
             height: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
             flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            border-radius: 1rem;
+            color: $Texto;
             ul {
               width: 100%;
-              height: 100%;
+              height: auto;
               display: flex;
               padding: 0;
               margin: 0;
+              margin-bottom: 1.5vh;
               justify-content: start;
               align-items: center;
               flex-direction: column;
@@ -731,16 +835,17 @@ body {
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
-                border-radius: 1rem;
+                border-radius: .6rem;
                 justify-content: center;
                 align-items: center;
-                flex-direction: column;
                 text-align: center;
-                transition: all 0.5s ease-in-out;
+                border: none;
+                cursor: pointer;
+                outline: none;
                 overflow: hidden;
                 gap: 5%;
                 .vacante_info {
-                  width: 90%;
+                  width: 80%;
                   height: 90%;
                   display: grid;
                   grid-template-columns: repeat(3, 1fr);
@@ -755,18 +860,58 @@ body {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.1vh;
+                    font-size: 1.4vh;
                     color: $Resalte;
                     strong {
-                      font-size: 1.3vh;
+                      font-size: 1.5vh;
                       color: $Resalte;
                     }
                   }
                 }
-                &:hover, &:active, &:focus {
-                  transition: all 0.5s ease-in-out;
+                .btn-container {
+                  width: 8%;
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr);
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 10%;
+                  button {
+                    height: 100%;
+                    border-radius: 5rem;
+                    width: 1vw;
+                    aspect-ratio: 2/2;
+                    border: none;
+                    transition: all 0.2s ease-in-out;
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+                  .btn-noAsistieron {
+                    background-color: $Red;
+                  }
+                  .btn-asistieron {
+                    background-color: $Orange;
+                  }
+                  .btn-contratado {
+                    background-color: $Green;
+                  }
+                  .btn-eliminar {
+                    background-image: url("../img/Logos/interfaces/icons/cerrar.png");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                  }
+                }
+                &:focus {
                   overflow-y: scroll;
                   height: auto;
+                  .vacante_info {
+                    width: 95%;
+                  }
+                  .btn-container {
+                    display: none;
+                  }
                 }
               }
             }
@@ -780,7 +925,8 @@ body {
           justify-content: start;
           align-items: center;
           flex-direction: column;
-          background-color: $Secundario; 
+          background-color: $Box_admin;
+          box-shadow: 0px 0px 10px 0px $Box_admin;
           gap: 1.5vh;
           .box_green {
             width: 98%;
@@ -795,17 +941,22 @@ body {
           }
           .const_data {
             width: 100%;
-            height: 100%;
+            height: 94%;
             display: flex;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
             flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            border-radius: 1.5rem;
+            color: $Texto;
             ul {
               width: 100%;
-              height: 100%;
+              height: auto;
               display: flex;
               padding: 0;
               margin: 0;
+              margin-bottom: 1.5vh;
               justify-content: start;
               align-items: center;
               flex-direction: column;
@@ -815,13 +966,14 @@ body {
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
-                border-radius: 1rem;
+                border-radius: .6rem;
                 justify-content: center;
+                border: none;
+                cursor: pointer;
+                outline: none;
                 align-items: center;
-                flex-direction: column;
-                gap: 5%;
                 .vacante_info {
-                  width: 100%;
+                  width: 97%;
                   height: 100%;
                   display: flex;
                   justify-content: space-evenly;
@@ -832,19 +984,53 @@ body {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.1vh;
+                    font-size: 1.4vh;
                     color: $Resalte;
                     strong {
-                      font-size: 1.3vh;
+                      font-size: 1.5vh;
                       color: $Resalte;
                     }
+                  }
+                }
+                .btn-container {
+                  width: 3%;
+                  height: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr);
+                  justify-items: center;
+                  align-content: center;
+                  gap: 10%;
+                  button {
+                    border-radius: 5rem;
+                    width: 1vw;
+                    aspect-ratio: 2/2;
+                    border: none;
+                    transition: all 0.2s ease-in-out;
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+                  .btn-noAsistieron {
+                    background-color: $Red;
+                  }
+                  .btn-asistieron {
+                    background-color: $Orange;
+                  }
+                  .btn-contratado {
+                    background-color: $Green;
+                  }
+                  .btn-eliminar {
+                    background-image: url("../img/Logos/interfaces/icons/cerrar.png");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
                   }
                 }
               }
             }
           }
         }
-      } 
+      }
     }
     aside {
       width: 50%;
@@ -897,42 +1083,42 @@ body {
     height: 4vw;
     nav {
       ul {
-        .circulo_icon { 
-          width: .8vw;
-          height: .8vw;
+        .circulo_icon {
+          width: 0.8vw;
+          height: 0.8vw;
           top: 9.3vh;
           left: 23.3vw;
         }
       }
     }
   }
-  @media screen and (max-width: 900px) { 
-  .alertas {
-    top: 4vh;
-    left: 35vw;
-    width: 30vw;
-    height: 10vw;
-    .alerta {
-      span {
-        p {
-          font-size: 2vw;
+  @media screen and (max-width: 900px) {
+    .alertas {
+      top: 4vh;
+      left: 35vw;
+      width: 30vw;
+      height: 10vw;
+      .alerta {
+        span {
+          p {
+            font-size: 2vw;
+          }
         }
       }
     }
-  }
-  .alertas_admin {
-    top: 4vh;
-    left: 35vw;
-    width: 30vw;
-    height: 10vw;
-    .alerta_admin {
-      span {
-        p {
-          font-size: 2vw;
+    .alertas_admin {
+      top: 4vh;
+      left: 35vw;
+      width: 30vw;
+      height: 10vw;
+      .alerta_admin {
+        span {
+          p {
+            font-size: 2vw;
+          }
         }
       }
     }
-  }
     header {
       width: 50vw;
       height: 15vw;
@@ -973,7 +1159,7 @@ body {
               font-size: 3vh;
               margin-bottom: 4%;
             }
-  
+
             p {
               font-size: 1.5vh;
             }
@@ -988,7 +1174,7 @@ body {
                   width: 60vw;
                   height: 11vw;
                   span {
-                    p{
+                    p {
                       font-size: 2vw;
                     }
                   }
@@ -997,16 +1183,16 @@ body {
             }
           }
           .cont_form::-webkit-scrollbar {
-            width: 12px;             
+            width: 12px;
           }
           .cont_form::-webkit-scrollbar-track {
-            background: $Texto;    
+            background: $Texto;
             border-radius: 1rem;
           }
           .cont_form::-webkit-scrollbar-thumb {
-            background-color: $Fondo;  
-            border-radius: 1rem;       
-            border: 3px solid $Texto; 
+            background-color: $Fondo;
+            border-radius: 1rem;
+            border: 3px solid $Texto;
           }
           label {
             width: 6vw;
@@ -1033,7 +1219,7 @@ body {
             width: 17vw;
             height: 7vw;
             flex-direction: row;
-            border-radius: .7rem;
+            border-radius: 0.7rem;
             button {
               width: 39.5%;
               height: 80%;
@@ -1080,7 +1266,7 @@ body {
               }
             }
           }
-        } 
+        }
       }
       aside {
         width: 0;
@@ -1133,27 +1319,27 @@ body {
       left: 25vw;
       width: 50vw;
       height: 15vw;
-     .alerta {
-       span {
-         p {
-           font-size: 3vw;
-         }
-       }
-     }
-   }
-   .alertas_admin {
-    top: 5vh;
-    left: 25vw;
-    width: 50vw;
-    height: 15vw;
-     .alerta_admin {
-       span {
-         p {
-           font-size: 3vw;
-         }
-       }
-     }
-   }
+      .alerta {
+        span {
+          p {
+            font-size: 3vw;
+          }
+        }
+      }
+    }
+    .alertas_admin {
+      top: 5vh;
+      left: 25vw;
+      width: 50vw;
+      height: 15vw;
+      .alerta_admin {
+        span {
+          p {
+            font-size: 3vw;
+          }
+        }
+      }
+    }
     header {
       width: 65vw;
       height: 20vw;
@@ -1192,7 +1378,7 @@ body {
                   width: 60vw;
                   height: 12vw;
                   span {
-                    p{
+                    p {
                       font-size: 3vw;
                     }
                   }
@@ -1216,7 +1402,7 @@ body {
             width: 23vw;
             height: 10vw;
           }
-        } 
+        }
       }
     }
     .cambiar_nav {

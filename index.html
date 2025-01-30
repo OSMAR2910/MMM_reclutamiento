@@ -52,12 +52,12 @@
         </div>
         <div class="alerta_admin" id="alerta_5">
             <span>
-                <p>Los datos se guardaron exitosamente.</p>
+                <p>HOla.</p>
             </span>
         </div>
         <div class="alerta_admin" id="alerta_6">
             <span>
-                <p>Ya esta listo para editarse.</p>
+                <p>El vacante se movio correctamente.</p>
             </span>
         </div>
         <div class="alerta_admin" id="alerta_7">
@@ -105,24 +105,23 @@
                 </div>
                 <div class="cont_form">
                     <form action="" id="myForm">
+                        <!--Fecha-->
+                        <div class="input-form">
+                            <input type="date" name="fecha_r" class="input" id="fecha_r" required />
+                            <label for="fecha_r"><span>
+                                    <p>
+                                        En este campo ingrese la fecha de llenado de la solicitud
+                                    </p>
+                                </span></label>
+                        </div>
+                        <!--Nombre-->
                         <div class="input-form">
                             <input type="text" name="nombre" class="input" id="nombre" placeholder="Nombre" required />
                             <label for="nombre"><span>
                                     <p>En este campo ingrese su nombre completo</p>
                                 </span></label>
                         </div>
-                        <div class="input-form">
-                            <select name="l_p_s" class="input" id="l_p_s" required>
-                                <option value="" disabled selected>Puesto</option>
-                                <option value="Cocina">Cocina</option>
-                                <option value="Mostrador">Mostrador</option>
-                                <option value="Subgerente">Subgerente</option>
-                                <option value="Gerente">Gerente</option>
-                            </select>
-                            <label for="l_p_s"><span>
-                                    <p>En este campo ingrese en qué se quiere desempeñar</p>
-                                </span></label>
-                        </div>
+                        <!--Numero telefonico-->
                         <div class="input-form">
                             <input type="number" name="numero" class="input" id="numero" placeholder="Número"
                                 required />
@@ -133,14 +132,43 @@
                                     </p>
                                 </span></label>
                         </div>
+                        <!--Puesto-->
                         <div class="input-form">
-                            <input type="date" name="fecha_r" class="input" id="fecha_r" required />
-                            <label for="fecha_r"><span>
-                                    <p>
-                                        En este campo ingrese la fecha de llenado de la solicitud
-                                    </p>
+                            <select name="l_p_s" class="input" id="l_p_s" required>
+                                <option value="" disabled selected>Puesto</option>
+                                <option value="Cocina">Cocina</option>
+                                <option value="Mostrador">Mostrador</option>
+                                <option value="Repartidor">Repartidor</option>
+                                <option value="Subgerente">Subgerente</option>
+                                <option value="Gerente">Gerente</option>
+                            </select>
+                            <label for="l_p_s"><span>
+                                    <p>En este campo ingrese en qué se quiere desempeñar</p>
                                 </span></label>
                         </div>
+                        <!--Fijo o Temporal-->
+                        <div class="input-form">
+                            <select name="l_f_t" class="input" id="l_f_t" required>
+                                <option value="" disabled selected>F/T</option>
+                                <option value="Fijo">Fijo</option>
+                                <option value="Temporal">Temporal</option>
+                            </select>
+                            <label for="l_f_t"><span>
+                                    <p>¿Buscas empleo fijo o temporal?</p>
+                                </span></label>
+                        </div>
+                        <!--Rotativo o Fijo-->
+                        <div class="input-form">
+                            <select name="l_r_f" class="input" id="l_r_f" required>
+                                <option value="" disabled selected>R/F</option>
+                                <option value="Rotativo">Rotativo</option>
+                                <option value="Fijo">Fijo</option>
+                            </select>
+                            <label for="l_r_f"><span>
+                                    <p>¿Buscas horarios rotativos o fijos?</p>
+                                </span></label>
+                        </div>
+                        <!--Edad-->
                         <div class="input-form">
                             <input type="number" name="edad" class="input" id="edad" placeholder="Edad" min="18"
                                 required />
@@ -148,16 +176,27 @@
                                     <p>En este campo ingrese su edad (mayor a 18 años)</p>
                                 </span></label>
                         </div>
+                        <!--Sexo-->
                         <div class="input-form">
-                            <input type="text" name="direccion" class="input" id="direccion" placeholder="Dirección"
-                                required />
-                            <label for="direccion"><span>
-                                    <p>
-                                        En este campo ingrese su domicilio (calle, número,
-                                        colonia)
-                                    </p>
+                            <select name="l_sex" class="input" id="l_sex" required>
+                                <option value="" disabled selected>Sexo</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                            <label for="l_sex"><span>
+                                    <p>En este campo ingrese su sexo</p>
                                 </span></label>
                         </div>
+                        <!--Nacionalidad-->
+                        <div class="input-form">
+                            <input type="text" name="nacion" class="input" id="nacion" placeholder="Nacionalidad"
+                                required />
+                            <label for="nacion"><span>
+                                    <p>En este campo ingrese su nacionalidad</p>
+                                </span></label>
+                        </div>
+                        <!--Ciudad-->
                         <div class="input-form">
                             <select name="l_ciu" class="input" id="l_ciu" required>
                                 <option value="" disabled selected>Ciudad</option>
@@ -173,19 +212,25 @@
                                     </p>
                                 </span></label>
                         </div>
+                        <!--Direccion-->
+                        <div class="input-form">
+                            <input type="text" name="direccion" class="input" id="direccion" placeholder="Dirección"
+                                required />
+                            <label for="direccion"><span>
+                                    <p>
+                                        En este campo ingrese su domicilio (calle, número,
+                                        colonia)
+                                    </p>
+                                </span></label>
+                        </div>
+                        <!--Codigo Postal-->
                         <div class="input-form">
                             <input type="number" name="cp" class="input" id="cp" placeholder="CP" required />
                             <label for="cp"><span>
                                     <p>En este campo ingrese su código postal</p>
                                 </span></label>
                         </div>
-                        <div class="input-form">
-                            <input type="number" name="casa_suc" class="input" id="casa_suc" placeholder="Casa-Suc"
-                                required />
-                            <label for="casa_suc"><span>
-                                    <p>Tiempo en minutos desde tu domicilio a la sucursal</p>
-                                </span></label>
-                        </div>
+                        <!--Tranposrte-->
                         <div class="input-form">
                             <input type="text" name="transporte" class="input" id="transporte" placeholder="Transporte"
                                 required />
@@ -193,34 +238,15 @@
                                     <p>Medio de transporte que utilizas</p>
                                 </span></label>
                         </div>
+                        <!--Tiempo de casa a suc-->
                         <div class="input-form">
-                            <select name="l_f_t" class="input" id="l_f_t" required>
-                                <option value="" disabled selected>F/T</option>
-                                <option value="Fijo">Fijo</option>
-                                <option value="Temporal">Temporal</option>
-                            </select>
-                            <label for="l_f_t"><span>
-                                    <p>¿Buscas empleo fijo o temporal?</p>
-                                </span></label>
-                        </div>
-                        <div class="input-form">
-                            <select name="l_sex" class="input" id="l_sex" required>
-                                <option value="" disabled selected>Sexo</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                            <label for="l_sex"><span>
-                                    <p>En este campo ingrese su sexo</p>
-                                </span></label>
-                        </div>
-                        <div class="input-form">
-                            <input type="text" name="nacion" class="input" id="nacion" placeholder="Nacionalidad"
+                            <input type="number" name="casa_suc" class="input" id="casa_suc" placeholder="Casa-Suc"
                                 required />
-                            <label for="nacion"><span>
-                                    <p>En este campo ingrese su nacionalidad</p>
+                            <label for="casa_suc"><span>
+                                    <p>Tiempo en minutos desde tu domicilio a la sucursal</p>
                                 </span></label>
                         </div>
+                        <!--Peso-->
                         <div class="input-form">
                             <input type="number" name="peso" class="input" id="peso" placeholder="Peso" min="40"
                                 required />
@@ -228,6 +254,7 @@
                                     <p>En este campo ingrese su peso aproximado en "kg"</p>
                                 </span></label>
                         </div>
+                        <!--Submit-->
                         <div class="input-submit">
                             <input type="button" id="btn_enviar_form" value="Enviar" onclick="enviar_form()" />
                         </div>
@@ -290,7 +317,7 @@
                     <label id="label_status1" for="status1"></label>
                     <div class="status_info">
                         <div class="box_status box_status1"><p>No asistio</p></div>
-                        <div id="data_status1">
+                        <div class="data_status" id="data_no_asistieron">
                         </div>
                     </div>
                 </div>
@@ -298,8 +325,8 @@
                     <input type="checkbox" id="status2" >
                     <label id="label_status2" for="status2"></label>
                     <div class="status_info">
-                        <div class="box_status box_status2"><p>No asistio</p></div>
-                        <div id="data_status2">
+                        <div class="box_status box_status2"><p>Asistio</p></div>
+                        <div class="data_status" id="data_asistieron">
                         </div>
                     </div>
                 </div>
@@ -307,8 +334,8 @@
                     <input type="checkbox" id="status3" >
                     <label id="label_status3" for="status3"></label>
                     <div class="status_info">
-                        <div class="box_status box_status3"><p>No asistio</p></div>
-                        <div id="data_status3">
+                        <div class="box_status box_status3"><p>Contratado</p></div>
+                        <div class="data_status" id="data_contratado">
                         </div>
                     </div>
                 </div>

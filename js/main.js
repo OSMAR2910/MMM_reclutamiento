@@ -190,7 +190,6 @@ async function log_admin() {
 
     // Animaciones adicionales
     document.getElementById("Logincont").classList.add("animacionlog");
-    document.getElementById("Logo").classList.add("anilog");
   } else {
     // Si la contraseña es incorrecta
     mostrarError(errorp);
