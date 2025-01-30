@@ -959,8 +959,8 @@ body main #pag3 .admin_cont {
   gap: 2%;
 }
 body main #pag3 .admin_cont .cont_rechazados {
-  width: 20%;
-  height: 80%;
+  width: 20vw;
+  height: 80vh;
   display: flex;
   border-radius: 1.5rem;
   justify-content: start;
@@ -1092,8 +1092,8 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:foc
   display: none;
 }
 body main #pag3 .admin_cont .cont_aceptados {
-  width: 74%;
-  height: 95%;
+  width: 74vw;
+  height: 95vh;
   display: flex;
   border-radius: 1.5rem;
   justify-content: start;
@@ -1272,7 +1272,7 @@ body .cambiar_nav nav ul .circulo_icon {
     font-size: 2vw;
   }
   body .alertas_admin {
-    top: 4vh;
+    top: 2.5vh;
     left: 35vw;
     width: 30vw;
     height: 10vw;
@@ -1303,41 +1303,14 @@ body .cambiar_nav nav ul .circulo_icon {
   body main .pages {
     width: 100%;
   }
-  body main #pag1 article {
-    width: 90%;
-    height: 80%;
-    margin-top: 10vh;
-  }
-  body main #pag1 article .texto_form h1 {
-    font-size: 3vh;
-    margin-bottom: 4%;
-  }
-  body main #pag1 article .texto_form p {
-    font-size: 1.5vh;
-  }
-  body main #pag1 article .cont_form form {
-    grid-template-columns: repeat(1, 1fr);
-  }
   body main #pag1 article .cont_form form .input-form label {
-    top: 12.5vh;
-    left: 20vw;
-    width: 60vw;
-    height: 11vw;
+    top: 14vh;
+    left: 25vw;
+    width: 50vw;
+    height: 10vw;
   }
   body main #pag1 article .cont_form form .input-form label span p {
     font-size: 2vw;
-  }
-  body main #pag1 article .cont_form::-webkit-scrollbar {
-    width: 12px;
-  }
-  body main #pag1 article .cont_form::-webkit-scrollbar-track {
-    background: #ffffff;
-    border-radius: 1rem;
-  }
-  body main #pag1 article .cont_form::-webkit-scrollbar-thumb {
-    background-color: #ec6223;
-    border-radius: 1rem;
-    border: 3px solid #ffffff;
   }
   body main #pag1 article label {
     width: 6vw;
@@ -1345,61 +1318,120 @@ body .cambiar_nav nav ul .circulo_icon {
     margin-top: 5vh;
   }
   body main #pag2 .Logincont .Login-cont {
-    width: 17rem;
+    width: 25rem;
+  }
+  body main #pag2 .Logincont.animacionlog {
+    animation: bounceOutRight;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  body main #pag3 {
+    width: 100%;
+    height: 100%;
   }
   body main #pag3 .btn_regreso {
-    width: 5%;
+    width: 6vw;
+  }
+  body main #pag3 .estatus_vacantes {
+    top: 3vh;
+    left: 37vw;
+    width: 25vw;
+    height: 8vw;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info {
+    width: 70vw;
+    height: 50vh;
+    top: 10vh;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span {
+    font-size: 1.2vh;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong {
+    font-size: 1.4vh;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
+    width: 10%;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
+    width: 3vw;
   }
   body main #pag3 .admin_cont {
     flex-direction: column-reverse;
-    gap: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_edit {
-    width: 17vw;
-    height: 7vw;
-    flex-direction: row;
-    border-radius: 0.7rem;
-  }
-  body main #pag3 .admin_cont .cont_edit button {
-    width: 39.5%;
-    height: 80%;
-    border-radius: 5rem;
-  }
-  body main #pag3 .admin_cont .cont_aceptados {
-    width: 90%;
-    height: 58vh;
-    border-radius: 1.3rem;
-    gap: 1vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .box_green {
-    width: 96%;
-    height: 2rem;
-    margin-top: 1vh;
-    gap: 1vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul {
-    gap: 1vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul li {
-    gap: 1vw;
   }
   body main #pag3 .admin_cont .cont_rechazados {
-    width: 90%;
-    height: 25vh;
-    border-radius: 1.3rem;
-    gap: 1vh;
+    width: 90vw;
+    height: 31vh;
+    margin: 0;
   }
-  body main #pag3 .admin_cont .cont_rechazados .box_red {
-    width: 96%;
-    height: 2rem;
-    margin-top: 1vh;
-    gap: 1vh;
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
+    overflow: hidden;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul {
-    gap: 1vh;
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
+    width: 92%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul li {
-    gap: 1vw;
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span {
+    font-size: 1.4vh;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong {
+    font-size: 1.5vh;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
+    width: 8%;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
+    width: 2.5vw;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
+    overflow-y: scroll;
+    height: auto;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
+    width: 95%;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
+    display: none;
+  }
+  body main #pag3 .admin_cont .cont_aceptados {
+    width: 90vw;
+    height: 51vh;
+    margin-top: 10vh;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
+    overflow: hidden;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
+    width: 92%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span {
+    font-size: 1.4vh;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong {
+    font-size: 1.5vh;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
+    width: 8%;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
+    width: 2.5vw;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
+    overflow-y: scroll;
+    height: auto;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
+    width: 95%;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
+    display: none;
   }
   body main aside {
     width: 0;
@@ -1452,7 +1484,7 @@ body .cambiar_nav nav ul .circulo_icon {
     font-size: 3vw;
   }
   body .alertas_admin {
-    top: 5vh;
+    top: 3.5vh;
     left: 25vw;
     width: 50vw;
     height: 15vw;
@@ -1480,26 +1512,123 @@ body .cambiar_nav nav ul .circulo_icon {
     bottom: -13vh;
     right: -23vw;
   }
+  body main #pag1 article .cont_form form {
+    grid-template-columns: repeat(1, 1fr);
+  }
   body main #pag1 article .cont_form form .input-form label {
-    top: 10vh;
-    left: 20vw;
-    width: 60vw;
+    top: 14vh;
+    left: 17.5vw;
+    width: 65vw;
     height: 12vw;
   }
   body main #pag1 article .cont_form form .input-form label span p {
     font-size: 3vw;
   }
   body main #pag1 article label {
-    width: 8vw;
-    height: 8vw;
-    margin-top: 3vh;
+    width: 6.3vw;
+    height: 6.3vw;
+    margin-top: 5vh;
+  }
+  body main #pag2 .Logincont .Login-cont {
+    width: 20rem;
+  }
+  body main #pag2 .Logincont.animacionlog {
+    animation: bounceOutRight;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  body main #pag3 {
+    width: 100%;
+    height: 100%;
   }
   body main #pag3 .btn_regreso {
-    width: 6%;
+    width: 8vw;
+    margin: 8%;
+    top: 85h;
   }
-  body main #pag3 .admin_cont .cont_edit {
-    width: 23vw;
-    height: 10vw;
+  body main #pag3 .estatus_vacantes {
+    top: 3vh;
+    left: 27.5vw;
+    width: 45vw;
+    height: 15vw;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info {
+    width: 65vw;
+    height: 50vh;
+    top: 10vh;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .box_status {
+    width: 97%;
+    margin-top: 0.8vh;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
+    width: 15%;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
+    width: 4vw;
+  }
+  body main #pag3 .admin_cont {
+    flex-direction: column-reverse;
+  }
+  body main #pag3 .admin_cont .cont_rechazados {
+    width: 90vw;
+    height: 31vh;
+    margin: 0;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
+    width: 10%;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
+    width: 4vw;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
+    overflow-y: scroll;
+    height: auto;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
+    width: 95%;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
+    display: none;
+  }
+  body main #pag3 .admin_cont .cont_aceptados {
+    width: 90vw;
+    height: 51vh;
+    margin-top: 10vh;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .box_green {
+    width: 96%;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
+    width: 10%;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
+    width: 4vw;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
+    overflow-y: scroll;
+    height: auto;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
+    width: 95%;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
+    display: none;
   }
   body .cambiar_nav {
     top: 5vh;
