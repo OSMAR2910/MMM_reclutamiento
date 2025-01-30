@@ -1463,8 +1463,10 @@ body {
           .icons_status {
             .status_info {
               width: 65vw;
-              height: 50vh;
+              height: 40vh;
               top: 10vh;
+              background-color: $Box_admin;
+              box-shadow: 0px 0px 10px 0px $Fondo;
               .box_status {
                 width: 97%;
                 margin-top: .8vh;
@@ -1494,7 +1496,11 @@ body {
           .cont_rechazados {
             width: 90vw;
             height: 30vh;
+            border-radius: 1rem;
             margin: 0;
+            .box_red {
+              width: 96%;
+            }
             .const_data {
               ul {
                 .vacante_itemred {
@@ -1525,8 +1531,9 @@ body {
           }
           .cont_aceptados {
             width: 90vw;
-            height: 50vh;
-            margin-top: 10vh;
+            height: 45vh;
+            margin-top: 6vh;
+            border-radius: 1rem;
             .box_green {
               width: 96%;
             }
