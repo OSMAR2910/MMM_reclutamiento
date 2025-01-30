@@ -159,8 +159,8 @@ function mostrarDatos() {
 
         vacantesActuales.add(nombre);
 
-        // Mostrar notificación solo si la vacante es nueva y está en dataGreen (tipo "Fijo")
-        if (!vacantesPrevias.has(nombre) && data.f_t === "Fijo") {
+        // Mostrar notificación solo si la vacante es nueva y está en dataGreen (tipo "Fijo" y "Rotativo")
+        if (!vacantesPrevias.has(nombre) && data.f_t === "Fijo" && data.r_f === "Rotativo") {
           mostrarNotificacion(`${nombre} es vacante para MMM`);
         }
 
@@ -168,7 +168,7 @@ function mostrarDatos() {
         listItem.classList.add(
           esAsistieron
             ? "vacante_asistieron"
-            : data.r_f === "rotativo" && data.f_t === "fijo"
+            : data.f_t === "Fijo" && data.r_f === "Rotativo"
             ? "vacante_itemgreen"
             : "vacante_itemred"
         );
@@ -188,7 +188,7 @@ function mostrarDatos() {
           { label: "Casa/Sucursal", value: data.casa_suc || "No disponible" },
           { label: "Transporte", value: data.transporte || "No disponible" },
           { label: "F/T", value: data.f_t || "No disponible" },
-          { label: "R/F.", value: data.r_f || "No disponible" },
+          { label: "R/F", value: data.r_f || "No disponible" },
           { label: "Sexo", value: data.sexo || "No disponible" },
           { label: "Nacionalidad", value: data.nacion || "No disponible" },
           { label: "Peso", value: data.peso || "No disponible" },
@@ -236,7 +236,7 @@ function mostrarDatos() {
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
-          data.f_t === "Fijo"
+          data.f_t === "Fijo" && data.r_f === "Rotativo"
             ? ulGreen.appendChild(listItem)
             : ulRed.appendChild(listItem);
         }
