@@ -1530,7 +1530,7 @@ body .cambiar_nav nav ul .circulo_icon {
     margin-top: 5vh;
   }
   body main #pag2 .Logincont .Login-cont {
-    width: 20rem;
+    width: 80vw;
   }
   body main #pag2 .Logincont.animacionlog {
     animation: bounceOutRight;
