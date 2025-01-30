@@ -1577,7 +1577,7 @@ body .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .admin_cont .cont_rechazados {
     width: 90vw;
-    height: 31vh;
+    height: 30vh;
     margin: 0;
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
@@ -1603,7 +1603,7 @@ body .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .admin_cont .cont_aceptados {
     width: 90vw;
-    height: 51vh;
+    height: 50vh;
     margin-top: 10vh;
   }
   body main #pag3 .admin_cont .cont_aceptados .box_green {
