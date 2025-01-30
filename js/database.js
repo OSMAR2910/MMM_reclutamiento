@@ -1,23 +1,27 @@
-// form.js
-import { database, ref, set, onValue, remove } from "./firebase.js";
+// Importar Firebase Authentication
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { database, ref, set, onValue, remove, app } from "./firebase.js";
+
+// Inicializar Firebase Auth
+const auth = getAuth(app);
 
 // Mapa de alertas con su ID y tiempo de visualización
 const alertasConfig = {
-  alertas: 1000,
-  alertas_admin: 1000,
-  alerta_1: 1000,
-  alerta_2: 1000,
-  alerta_3: 1000,
-  alerta_4: 1000,
-  alerta_5: 1000,
-  alerta_6: 1000,
-  alerta_7: 1000,
+  alertas: 1500,
+  alertas_admin: 1500,
+  alerta_1: 1500,
+  alerta_2: 1500,
+  alerta_3: 1500, 
+  alerta_4: 1500,
+  alerta_5: 1500,
+  alerta_6: 1500,
+  alerta_7: 1500,
 };
 
 // Función genérica para mostrar y ocultar alertas
 const mostrarAlerta = (alertaId) => {
   const alerta = document.getElementById(alertaId);
-  const tiempo = alertasConfig[alertaId] || 3000; // Usar tiempo configurado o 4000ms por defecto
+  const tiempo = alertasConfig[alertaId] || 3000; // Usar tiempo configurado o 3000ms por defecto
 
   alerta.style.display = "flex"; // Mostrar alerta
 
@@ -25,7 +29,8 @@ const mostrarAlerta = (alertaId) => {
     alerta.style.display = "none"; // Ocultar alerta después de un tiempo
   }, tiempo);
 };
-//Escribir datos
+
+// Escribir datos
 function enviar_form() {
   // Obtiene los valores del formulario
   const nombre = document.getElementById("nombre").value.trim(); // Eliminar espacios extras
@@ -92,7 +97,7 @@ function enviar_form() {
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_2");
       // Limpiar los campos del formulario
-      //document.getElementById("myForm").reset();
+      document.getElementById("myForm").reset();
     })
     .catch((error) => {
       console.error("Hubo un error: ", error.message);
@@ -104,7 +109,7 @@ function enviar_form() {
 // Asigna la función al objeto global 'window'
 window.enviar_form = enviar_form;
 
-//Leer datos
+// Leer datos
 function mostrarDatos() {
   const dataGreen = document.getElementById("data_green");
   const dataRed = document.getElementById("data_red");
@@ -117,20 +122,22 @@ function mostrarDatos() {
   const contratadoRef = ref(database, "contratado/");
   let vacantesPrevias = new Set();
 
-  // 🔹 **Mostrar vacantes generales (Fijas y Temporales)**
+  // Mostrar vacantes generales (Fijas y Temporales)
   onValue(vacantesRef, (snapshot) => {
     renderizarVacantes(snapshot, dataGreen, dataRed);
   });
 
-  // 🔹 **Mostrar vacantes en "Asistieron"**
+  // Mostrar vacantes en "Asistieron"
   onValue(asistieronRef, (snapshot) => {
     renderizarVacantes(snapshot, dataAsistieron, null, true);
   });
-  // 🔹 **Mostrar vacantes en "Nosistieron"**
+
+  // Mostrar vacantes en "Nosistieron"
   onValue(no_asistieronRef, (snapshot) => {
     renderizarVacantes(snapshot, dataNosistieron, null, true);
   });
-  // 🔹 **Mostrar vacantes en "Contratado"**
+
+  // Mostrar vacantes en "Contratado"
   onValue(contratadoRef, (snapshot) => {
     renderizarVacantes(snapshot, dataContratado, null, true);
   });
@@ -201,7 +208,7 @@ function mostrarDatos() {
           infoContainer.appendChild(span);
         });
 
-        // 🔹 **Botones con clases específicas pero sin ID**
+        // Botones con clases específicas pero sin ID
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-container");
 
@@ -257,7 +264,7 @@ function mostrarDatos() {
   }
 }
 
-// 🔹 **Función para crear botones sin ID**
+// Función para crear botones sin ID
 function crearBoton(texto, clase, onClick) {
   const btn = document.createElement("button");
   btn.classList.add(clase);
@@ -266,7 +273,7 @@ function crearBoton(texto, clase, onClick) {
   return btn;
 }
 
-// 🔹 **Función para mover una vacante a otra base de datos**
+// Función para mover una vacante a otra base de datos
 function moverVacante(nombre, data, nuevaDB) {
   const nuevaRef = ref(database, `${nuevaDB}/${nombre}`);
   const bases = ["vacantes", "asistieron", "no_asistieron", "contratado"];
@@ -306,7 +313,7 @@ function moverVacante(nombre, data, nuevaDB) {
   }, 500);
 }
 
-// 🔹 **Función para eliminar una vacante con confirmación**
+// Función para eliminar una vacante con confirmación
 function eliminarVacante(nombre, base) {
   if (confirm(`¿Estás seguro de eliminar la vacante "${nombre}"?`)) {
     let ruta = "";
@@ -341,7 +348,7 @@ function eliminarVacante(nombre, base) {
   }
 }
 
-// 🔹 **Función para mostrar una notificación cuando hay una nueva vacante**
+// Función para mostrar una notificación cuando hay una nueva vacante
 function mostrarNotificacion(mensaje) {
   if (Notification.permission === "granted") {
     new Notification(mensaje);
@@ -354,9 +361,113 @@ function mostrarNotificacion(mensaje) {
   }
 }
 
-// **Pedir permiso de notificaciones al cargar la página**
+// Pedir permiso de notificaciones al cargar la página
 if (Notification.permission !== "granted") {
   Notification.requestPermission();
 }
+
 // Ejecutar la función automáticamente al cargar la página
 document.addEventListener("DOMContentLoaded", mostrarDatos);
+
+const formulario = document.getElementById("formuariolog");
+if (formulario) {
+    formulario.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            document.getElementById("btn_log_admin").click();
+        }
+    });
+}
+
+// Función de inicio de sesión
+function login() {
+  const userInput = document.getElementById("user").value.trim();
+  const passInput = document.getElementById("pass").value.trim();
+  const email = userInput + "@gmail.com";
+
+  if (!userInput || !passInput) {
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_1"); 
+      return;
+  }
+
+  signInWithEmailAndPassword(auth, email, passInput)
+      .then(() => {
+          setTimeout(() => {
+              const elements = {
+                  home: document.getElementById("home"),
+                  header: document.getElementById("header"),
+                  form: document.getElementById("pag1"),
+                  login: document.getElementById("pag2"),
+                  admin: document.getElementById("pag3"),
+                  aside: document.getElementById("aside"),
+                  tidioChat: document.getElementById("tidio-chat-iframe"),
+              };
+
+              const toggleClass = (elements, className, add = true) => {
+                  elements.forEach((element) => {
+                      if (element) {
+                          add ? element.classList.add(className) : element.classList.remove(className);
+                      }
+                  });
+              };
+
+              toggleClass([elements.home, elements.form, elements.login, elements.aside], "agregar_dis", false);
+              toggleClass([elements.admin], "agregar_dis", true);
+              toggleClass([elements.header], "cambiar_nav", false);
+
+              elements.header.style.display = "none";
+              if (elements.tidioChat) elements.tidioChat.style.display = "none";
+
+              mostrarAlerta("alertas_admin");
+              mostrarAlerta("alerta_4");
+          }, 1000);
+
+          document.getElementById("Logincont").classList.add("animacionlog");
+          
+          // Llama a la función para actualizar los datos
+          mostrarDatos();
+
+      })
+      .catch((error) => {  
+          console.log("Código de error:", error.code); // Muestra el error en consola
+
+          const formuariolog = document.getElementById("formuariolog");
+          const errorall = document.getElementById("errorall");
+          const erroru = document.getElementById("erroru");
+          const errorp = document.getElementById("errorp");
+
+          const mostrarError = (errorElement) => {
+              setTimeout(() => {
+                  formuariolog.classList.remove("activolog");
+                  errorElement.classList.add("activolog");
+              }, 200);
+              formuariolog.classList.add("animacionform");
+          };
+
+          if (error.code === "auth/user-not-found" || error.code === "auth/invalid-email") {
+              mostrarError(erroru); // Usuario incorrecto
+          } else if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
+              mostrarError(errorp); // Contraseña incorrecta
+          } else {
+              mostrarError(errorall); // Otro error
+          }
+      });
+}
+
+// Asignar la función al botón de inicio de sesión
+document.getElementById("btn_log_admin").addEventListener("click", login);
+
+// Función para cerrar sesión
+const logoutButton = document.getElementById("logoutButton");
+
+// Agrega un evento de clic al botón
+logoutButton.addEventListener("click", function() {
+  signOut(auth).then(() => {
+    // Acción después de cerrar sesión exitosamente
+    console.log("Sesión cerrada con éxito.");
+  }).catch((error) => {
+    // Manejo de errores
+    console.error("Error al cerrar sesión: ", error);
+  });
+});

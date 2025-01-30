@@ -1,4 +1,3 @@
-// firebase.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
@@ -18,5 +17,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Exporta la base de datos, ref y push
-export { database, ref, set, onValue, remove};
+// Exportar Firebase App y la base de datos
+export { app, database, ref, set, onValue, remove };
+export async function fetchDatabaseData() {
+    const response = await fetch('/path-to-your-api-endpoint');
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return await response.json();
+}
