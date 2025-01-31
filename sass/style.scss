@@ -2,6 +2,7 @@
 @import "animaciones";
 @import "cursor";
 @import "variables";
+@import "game";
 
 * {
   scroll-behavior: smooth;
@@ -90,6 +91,60 @@ body {
           font-size: 0.8vw;
           color: $Texto;
           text-align: center;
+        }
+      }
+    }
+  }
+  .alertas_modal {
+    .alert_eliminacion_vacante {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10010;
+      display: none;
+      .alert_box {
+        width: 20vw; 
+        height: 15vh;
+        background-color: $Blanco;
+        display: flex;
+        font-family: $Letra2;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1vw;
+        border-radius: 1rem;
+        text-align: center;
+        color: $Box_admin;
+        .alert_btn_cont{
+          display: flex;
+          gap: .5vw;
+          .alert-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.1s ease-in-out;
+            &:hover, &:focus {
+              @include opacity;
+            }
+          }
+  
+          .alert-btn.confirm {
+            background-color: $Fondo;
+            color: white;
+          }
+  
+          .alert-btn.cancel {
+            background-color: $Secundario;
+            color: white;
+          }
         }
       }
     }
@@ -191,8 +246,11 @@ body {
         top: -8vh;
         left: -6vw;
         animation: fadeInDown 0.5s ease-in-out forwards;
-        img {
+        a {
           @include cover;
+          img {
+            @include cover;
+          }
         }
       }
       .mancha2 {
@@ -835,7 +893,7 @@ body {
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
-                border-radius: .6rem;
+                border-radius: 0.6rem;
                 justify-content: center;
                 align-items: center;
                 text-align: center;
@@ -966,7 +1024,7 @@ body {
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
-                border-radius: .6rem;
+                border-radius: 0.6rem;
                 justify-content: center;
                 border: none;
                 cursor: pointer;
@@ -1470,13 +1528,13 @@ body {
               box-shadow: 0px 0px 10px 0px $Fondo;
               .box_status {
                 width: 97%;
-                margin-top: .8vh;
+                margin-top: 0.8vh;
               }
               .data_status {
                 font-size: 3vw;
                 ul {
                   .vacante_asistieron {
-                    border-radius: .5rem;
+                    border-radius: 0.5rem;
                     .vacante_info {
                       width: 85%;
                       display: grid;

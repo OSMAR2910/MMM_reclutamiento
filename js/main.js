@@ -6,60 +6,6 @@ window.onload = () => {
     // Configuración inicial 
     elements.home.classList.add("agregar_dis");
 };
-//Obtener Anchura y Altura de la Ventana del Navegador
-function obtenerTamañoVentana() {
-  const anchuraVentana = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  const alturaVentana = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-
-  console.log(`Anchura de la ventana: ${anchuraVentana}px`);
-  console.log(`Altura de la ventana: ${alturaVentana}px`);
-
-  return { anchuraVentana, alturaVentana };
-};
-//Obtener Anchura y Altura del Documento Completo
-obtenerTamañoVentana();
-function obtenerTamañoDocumento() {
-  const anchuraDocumento = Math.max(
-      document.body.scrollWidth,
-      document.documentElement.scrollWidth,
-      document.body.offsetWidth,
-      document.documentElement.offsetWidth,
-      document.documentElement.clientWidth
-  );
-
-  const alturaDocumento = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.documentElement.clientHeight
-  );
-
-  console.log(`Anchura del documento: ${anchuraDocumento}px`);
-  console.log(`Altura del documento: ${alturaDocumento}px`);
-
-  return { anchuraDocumento, alturaDocumento };
-};
-//Ajustar el Contenido Basado en el Tamaño 
-function ajustarTamaño() {
-  const { anchuraVentana, alturaVentana } = obtenerTamañoVentana();
-  const { anchuraDocumento, alturaDocumento } = obtenerTamañoDocumento();
-
-  // Aquí puedes ajustar los estilos o realizar operaciones basadas en el tamaño
-  if (anchuraDocumento > anchuraVentana || alturaDocumento > alturaVentana) {
-      document.body.style.overflow = "auto"; // Permitir scroll si el contenido es más grande que la ventana
-  } else {
-      document.body.style.overflow = "hidden"; // Ocultar scroll si el contenido cabe en la ventana
-  }
-}
-
-// Llama a la función para ajustar el tamaño cuando la página se carga
-window.addEventListener('load', ajustarTamaño);
-
-// También puedes ajustar el tamaño cuando la ventana cambia de tamaño
-window.addEventListener('resize', ajustarTamaño);
-
-
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
