@@ -210,28 +210,23 @@ function mostrarDatos() {
         infoContainer.classList.add("vacante_info");
 
         const campos = [
+          { label: "Fecha", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
           { label: "Nombre", value: nombre, isName: true },
           { label: "Puesto", value: data.puesto || "No disponible" },
           { label: "Número", value: data.numero || "No disponible" },
-          {
-            label: "Fecha Registro",
-            value: data.fecha_r
-              ? new Date(data.fecha_r).toLocaleDateString()
-              : "No disponible",
-          },
           { label: "Edad", value: data.edad || "No disponible" },
-          { label: "Dirección", value: data.direccion || "No disponible" },
-          { label: "Ciudad", value: data.ciudad || "No disponible" },
-          { label: "CP", value: data.cp || "No disponible" },
-          { label: "Casa/Sucursal", value: data.casa_suc || "No disponible" },
-          { label: "Transporte", value: data.transporte || "No disponible" },
-          { label: "F/T", value: data.f_t || "No disponible" },
+          { label: "Docu", value: data.l_d_c || "No disponible" },
           { label: "R/F", value: data.r_f || "No disponible" },
+          { label: "F/T", value: data.f_t || "No disponible" },
+          { label: "Ciudad", value: data.ciudad || "No disponible" },
+          { label: "Dirección", value: data.direccion || "No disponible" },
+          { label: "CP", value: data.cp || "No disponible" },
+          { label: "Transporte", value: data.transporte || "No disponible" },
+          { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
           { label: "Sexo", value: data.sexo || "No disponible" },
-          { label: "Nacionalidad", value: data.nacion || "No disponible" },
-          { label: "Peso", value: data.peso || "No disponible" },
-          { label: "D/C", value: data.l_d_c || "No disponible" },
           { label: "E/C", value: data.e_c || "No disponible" },
+          { label: "Nacionalidad", value: data.nacion || "No disponible" },
+          { label: "Peso", value: data.peso || "No disponible" }
         ];
 
         campos.forEach((campo) => {
@@ -276,7 +271,7 @@ function mostrarDatos() {
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
-          data.l_d_c === "Si" && data.r_f === "Rotativo" && data.l_d_c === "Si"
+          data.f_t === "Fijo" && data.r_f === "Rotativo" && data.l_d_c === "Si"
             ? ulGreen.appendChild(listItem)
             : ulRed.appendChild(listItem);
         }

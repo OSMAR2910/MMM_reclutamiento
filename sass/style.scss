@@ -708,7 +708,7 @@ body {
             width: 16vw;
             height: 40vh;
             top: 15vh;
-            border-radius: 1.5rem;
+            border-radius: 1.5vw;
             text-align: center;
             color: $Texto;
             padding: 0.5vw;
@@ -755,7 +755,7 @@ body {
                   height: 5vh;
                   display: flex;
                   background-color: $Texto;
-                  border-radius: 1rem;
+                  border-radius: .5vw;
                   justify-content: center;
                   border: none;
                   cursor: pointer;
@@ -892,19 +892,19 @@ body {
                 width: 95%;
                 height: 5vh;
                 display: flex;
-                background-color: $Texto;
-                border-radius: 0.6rem;
                 justify-content: center;
                 align-items: center;
-                text-align: center;
+                background-color: $Texto;
+                border-radius: 0.6rem;
                 border: none;
                 cursor: pointer;
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
                 .vacante_info {
-                  width: 80%;
-                  height: 90%;
+                  width: 83%;
+                  text-align: center;
+                  height: 100%;
                   display: grid;
                   grid-template-columns: repeat(3, 1fr);
                   justify-content: space-evenly;
@@ -927,15 +927,14 @@ body {
                   }
                 }
                 .btn-container {
-                  width: 8%;
+                  width: 10%;
+                  height: 100%;
                   display: grid;
                   grid-template-columns: repeat(2, 1fr);
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  gap: 10%;
+                  justify-items: center;
+                  align-content: center;
+                  gap: 5%;
                   button {
-                    height: 100%;
                     border-radius: 5rem;
                     width: 1vw;
                     aspect-ratio: 2/2;
@@ -962,10 +961,10 @@ body {
                   }
                 }
                 &:focus {
-                  overflow-y: scroll;
-                  height: auto;
+                  height: 30vh;
                   .vacante_info {
-                    width: 95%;
+                    width: 80%;
+                    height: 90%;
                   }
                   .btn-container {
                     display: none;
@@ -1057,7 +1056,7 @@ body {
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: 10%;
+                  gap: 5%;
                   button {
                     border-radius: 5rem;
                     width: 1vw;
@@ -1297,7 +1296,7 @@ body {
                 .vacante_itemred {
                   overflow: hidden;
                   .vacante_info {
-                    width: 92%;
+                    width: 91%;
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     span {
@@ -1308,16 +1307,16 @@ body {
                     }
                   }
                   .btn-container {
-                    width: 8%;
+                    width: 7%;
                     button {
                       width: 2.5vw;
                     }
                   }
                   &:focus {
-                    overflow-y: scroll;
-                    height: auto;
+                    height: 20vh;
                     .vacante_info {
-                      width: 95%;
+                      width: 80%;
+                      height: 90%;
                     }
                     .btn-container {
                       display: none;
@@ -1347,16 +1346,16 @@ body {
                     }
                   }
                   .btn-container {
-                    width: 8%;
+                    width: 6%;
                     button {
                       width: 2.5vw;
                     }
                   }
                   &:focus {
-                    overflow-y: scroll;
-                    height: auto;
+                    height: 20vh;
                     .vacante_info {
-                      width: 95%;
+                      width: 80%;
+                      height: 90%;
                     }
                     .btn-container {
                       display: none;
@@ -1538,7 +1537,7 @@ body {
                     .vacante_info {
                       width: 85%;
                       display: grid;
-                      grid-template-columns: repeat(2, 1fr);
+                      grid-template-columns: repeat(3, 1fr);
                     }
                     .btn-container {
                       width: 15%;
@@ -1566,6 +1565,7 @@ body {
               font-size: 3vw;
               ul {
                 .vacante_itemred {
+                  justify-content: center;
                   .vacante_info {
                     width: 90%;
                     display: grid;
@@ -1578,10 +1578,11 @@ body {
                     }
                   }
                   &:focus {
-                    overflow-y: scroll;
-                    height: auto;
+                    height: 25vh;
                     .vacante_info {
-                      width: 95%;
+                      width: 90%;
+                      height: 90%;
+                    grid-template-columns: repeat(4, 1fr);
                     }
                     .btn-container {
                       display: none;
@@ -1603,6 +1604,7 @@ body {
               font-size: 3vw;
               ul {
                 .vacante_itemgreen {
+                  justify-content: center;
                   .vacante_info {
                     width: 90%;
                     display: grid;
@@ -1615,10 +1617,11 @@ body {
                     }
                   }
                   &:focus {
-                    overflow-y: scroll;
-                    height: auto;
+                    height: 25vh;
                     .vacante_info {
-                      width: 95%;
+                      width: 90%;
+                      height: 90%;
+                    grid-template-columns: repeat(4, 1fr);
                     }
                     .btn-container {
                       display: none;
