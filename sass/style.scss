@@ -1029,8 +1029,19 @@ body {
                 cursor: pointer;
                 outline: none;
                 align-items: center;
+                .btn-descargar-pdf {
+                    border-radius: 5rem;
+                    width: 1%;
+                    height: 80%;
+                    border: none;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+                    &:hover {
+                      @include opacity;
+                    }
+                }
                 .vacante_info {
-                  width: 97%;
+                  width: 96%;
                   height: 100%;
                   display: flex;
                   justify-content: space-evenly;

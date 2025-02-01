@@ -1218,8 +1218,20 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
   outline: none;
   align-items: center;
 }
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf {
+  border-radius: 5rem;
+  width: 1%;
+  height: 80%;
+  border: none;
+  background-color: #ec6223;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
-  width: 97%;
+  width: 96%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;

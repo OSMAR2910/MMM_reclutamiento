@@ -118,7 +118,7 @@ function enviar_form() {
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_2");
       // Limpiar los campos del formulario (opcional)
-      document.getElementById("myForm").reset();
+       document.getElementById("myForm").reset();
     })
     .catch((error) => {
       console.error("Hubo un error: ", error.message);
@@ -171,32 +171,22 @@ function mostrarDatos() {
   ) {
     const fragmentGreen = document.createDocumentFragment();
     const fragmentRed = document.createDocumentFragment();
-
+  
     containerGreen.innerHTML = "";
     if (containerRed) containerRed.innerHTML = "";
-
+  
     let vacantesActuales = new Set();
-
+  
     if (snapshot.exists()) {
       const ulGreen = document.createElement("ul");
       const ulRed = document.createElement("ul");
-
+  
       snapshot.forEach((childSnapshot) => {
         const nombre = childSnapshot.key;
         const data = childSnapshot.val() || {};
-
+  
         vacantesActuales.add(nombre);
-
-        // Mostrar notificación solo si la vacante es nueva y está en dataGreen (tipo "Fijo" y "Rotativo")
-        if (
-          !vacantesPrevias.has(nombre) &&
-          data.f_t === "Fijo" &&
-          data.r_f === "Rotativo" &&
-          data.l_d_c === "Si"
-        ) {
-          mostrarNotificacion(`${nombre} es vacante para MMM`);
-        } 
-
+  
         const listItem = document.createElement("button");
         listItem.classList.add(
           esAsistieron
@@ -205,10 +195,10 @@ function mostrarDatos() {
             ? "vacante_itemgreen"
             : "vacante_itemred"
         );
-
+  
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("vacante_info");
-
+  
         const campos = [
           { label: "Fecha", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
           { label: "Nombre", value: nombre, isName: true },
@@ -228,18 +218,23 @@ function mostrarDatos() {
           { label: "Nacionalidad", value: data.nacion || "No disponible" },
           { label: "Peso", value: data.peso || "No disponible" }
         ];
-
+  
         campos.forEach((campo) => {
           const span = document.createElement("span");
           if (campo.isName) span.classList.add("dbname");
           span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
           infoContainer.appendChild(span);
         });
-
+  
+        // Botón para descargar el PDF
+        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
+          descargarPDF(nombre, data)
+        );
+  
         // Botones con clases específicas pero sin ID
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-container");
-
+  
         const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
           moverVacante(nombre, data, "no_asistieron")
         );
@@ -257,17 +252,19 @@ function mostrarDatos() {
           if (containerGreen.id === "data_contratado") base = "contratado";
           eliminarVacante(nombre, base);
         });
-
+  
         btnContainer.append(
           btnNoAsistieron,
           btnAsistieron,
           btnContratado,
           btnEliminar
         );
-
+  
+        // Coloca el botón de descargar PDF antes de 'vacante_info'
+        listItem.appendChild(btnDescargarPDF);
         listItem.appendChild(infoContainer);
         listItem.appendChild(btnContainer);
-
+  
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
@@ -276,10 +273,10 @@ function mostrarDatos() {
             : ulRed.appendChild(listItem);
         }
       });
-
+  
       fragmentGreen.appendChild(ulGreen);
       if (containerRed) fragmentRed.appendChild(ulRed);
-
+  
       containerGreen.appendChild(fragmentGreen);
       if (containerRed) containerRed.appendChild(fragmentRed);
     } else {
@@ -287,9 +284,96 @@ function mostrarDatos() {
       if (containerRed)
         containerRed.innerHTML = "<p>No hay datos disponibles</p>";
     }
-
+  
     vacantesPrevias = vacantesActuales;
   }
+  
+  // Función para descargar el PDF con la información de la vacante
+  function descargarPDF(nombre, data) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Establecer color de fondo suave
+    doc.setFillColor(245, 245, 245);  // Fondo gris claro
+    doc.rect(0, 0, 210, 297, 'F'); // Fondo completo
+    
+    // Colores personalizados
+    const colorTitulo = [23, 72, 145];  // Azul oscuro
+    const colorEtiquetas = [60, 60, 60];  // Gris oscuro para etiquetas
+    const colorValores = [0, 0, 0];  // Negro para los valores
+    const colorLinea = [0, 0, 0]; // Línea separadora color negro
+    
+    // Título
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.setTextColor(...colorTitulo); // Azul oscuro para el título
+    doc.text("Información de la Vacante", 20, 20);
+    
+    // Línea separadora
+    doc.setDrawColor(...colorLinea);
+    doc.line(20, 22, 190, 22);
+    
+    let yPosition = 30; // Comienza a escribir debajo del título
+    
+    // Estilo de los campos (etiquetas)
+    doc.setFontSize(12);
+    const campoStyle = { font: "helvetica", size: 12, weight: "normal", color: colorEtiquetas };
+    
+    // Estilo de los valores (información)
+    const valueStyle = { font: "helvetica", size: 12, weight: "normal", color: colorValores };
+    
+    // Contenido de los datos con estilos
+    const content = [
+      { label: "Nombre", value: nombre },
+      { label: "Puesto", value: data.puesto || "No disponible" },
+      { label: "Número", value: data.numero || "No disponible" },
+      { label: "Edad", value: data.edad || "No disponible" },
+      { label: "Documento", value: data.l_d_c || "No disponible" },
+      { label: "Horario", value: data.r_f || "No disponible" },
+      { label: "Trabajo", value: data.f_t || "No disponible" },
+      { label: "Ciudad", value: data.ciudad || "No disponible" },
+      { label: "Dirección", value: data.direccion || "No disponible" },
+      { label: "Código Postal", value: data.cp || "No disponible" },
+      { label: "Transporte", value: data.transporte || "No disponible" },
+      { label: "Casa/Sucursal", value: data.casa_suc || "No disponible" },
+      { label: "Sexo", value: data.sexo || "No disponible" },
+      { label: "Estado Civil", value: data.e_c || "No disponible" },
+      { label: "Nacionalidad", value: data.nacion || "No disponible" },
+      { label: "Peso", value: data.peso || "No disponible" }
+    ];
+    
+    // Recorrer el contenido e imprimirlo con estilo
+    content.forEach((item, index) => {
+      // Etiqueta
+      doc.setFont(campoStyle.font, campoStyle.weight);
+      doc.setFontSize(campoStyle.size);
+      doc.setTextColor(...campoStyle.color);
+      doc.text(`${item.label}:`, 20, yPosition);
+    
+      // Valor
+      doc.setFont(valueStyle.font, valueStyle.weight);
+      doc.setFontSize(valueStyle.size);
+      doc.setTextColor(...valueStyle.color);
+      doc.text(item.value, 80, yPosition);
+    
+      // Aumentar la posición Y para el siguiente campo
+      yPosition += 12;
+    });
+    
+    // Línea separadora al final
+    doc.setDrawColor(...colorLinea);
+    doc.line(20, yPosition + 10, 190, yPosition + 10);
+    
+    // Agregar pie de página
+    yPosition += 20;
+    doc.setFontSize(10);
+    doc.setTextColor(...colorTitulo); // Azul oscuro para el pie de página
+    doc.text("Generado por el reclutador web de MMM.", 20, yPosition);
+    
+    // Descargar el PDF con el nombre de la vacante
+    doc.save(`Vacante_${nombre}.pdf`);
+  }
+  
 }
 
 // Función para crear botones sin ID
