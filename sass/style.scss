@@ -119,6 +119,7 @@ body {
         flex-direction: column;
         padding: 1vw;
         border-radius: 1rem;
+        font-size: 1vw;
         text-align: center;
         color: $Box_admin;
         .alert_btn_cont{
@@ -127,6 +128,7 @@ body {
           .alert-btn {
             padding: 10px 15px;
             border: none;
+            font-size: .8vw;
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
@@ -298,7 +300,7 @@ body {
             color: $Texto;
             text-align: center;
             font-size: 2vh;
-            margin: 0;
+            margin: 1%;
             letter-spacing: 0.1rem;
             font-family: $Letra2;
           }
@@ -762,6 +764,17 @@ body {
                   outline: none;
                   overflow-y: hidden;
                   align-items: center;
+                  .btn-descargar-pdf {
+                      border-radius: 5rem;
+                      width: 1%;
+                      height: 80%;
+                      border: none;
+                      background-color: $Principal;
+                      transition: all 0.2s ease-in-out;
+                      &:hover {
+                        @include opacity;
+                      }
+                  }
                   .vacante_info {
                     width: 85%;
                     height: 100%;
@@ -827,6 +840,9 @@ body {
                       width: 95%;
                     }
                     .btn-container {
+                      display: none;
+                    }
+                    .btn-descargar-pdf {
                       display: none;
                     }
                   }
@@ -901,6 +917,17 @@ body {
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
+                .btn-descargar-pdf {
+                    border-radius: 5rem;
+                    width: 1%;
+                    height: 80%;
+                    border: none;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+                    &:hover {
+                      @include opacity;
+                    }
+                }
                 .vacante_info {
                   width: 83%;
                   text-align: center;
@@ -962,6 +989,9 @@ body {
                 }
                 &:focus {
                   height: 30vh;
+                  .btn-descargar-pdf {
+                    display: none;
+                  }
                   .vacante_info {
                     width: 80%;
                     height: 90%;
@@ -1187,6 +1217,20 @@ body {
         }
       }
     }
+    .alertas_modal {
+      .alert_eliminacion_vacante {
+        .alert_box {
+          width: 40vw; 
+          height: 15vh;
+          font-size: 2.5vw;
+          .alert_btn_cont{
+            .alert-btn {
+              font-size: 2vw;
+            }
+          }
+        }
+      }
+    }
     header {
       width: 50vw;
       height: 15vw;
@@ -1273,6 +1317,7 @@ body {
               .data_status {
                 ul {
                   .vacante_asistieron {
+                    border-radius: 1vw;
                     .vacante_info {
                       width: 90%;
                       display: grid;
@@ -1285,9 +1330,10 @@ body {
                       }
                     }
                     .btn-container {
-                      width: 10%;
+                      width: 8%;
+                      gap: 4%;
                       button {
-                        width: 3vw;
+                        width: 2.6vw;
                       }
                     }
                   }
@@ -1325,6 +1371,9 @@ body {
                   }
                   &:focus {
                     height: 20vh;
+                    .btn-descargar-pdf {
+                      display: none;
+                    }
                     .vacante_info {
                       width: 80%;
                       height: 90%;
@@ -1364,6 +1413,9 @@ body {
                   }
                   &:focus {
                     height: 20vh;
+                    .btn-descargar-pdf {
+                      display: none;
+                    }
                     .vacante_info {
                       width: 80%;
                       height: 90%;
@@ -1446,6 +1498,20 @@ body {
         span {
           p {
             font-size: 3vw;
+          }
+        }
+      }
+    }
+    .alertas_modal {
+      .alert_eliminacion_vacante {
+        .alert_box {
+          width: 70vw; 
+          height: 15vh;
+          font-size: 3.5vw;
+          .alert_btn_cont{
+            .alert-btn {
+              font-size: 3vw;
+            }
           }
         }
       }
@@ -1590,6 +1656,9 @@ body {
                   }
                   &:focus {
                     height: 25vh;
+                    .btn-descargar-pdf {
+                      display: none;
+                    }
                     .vacante_info {
                       width: 90%;
                       height: 90%;
@@ -1629,6 +1698,9 @@ body {
                   }
                   &:focus {
                     height: 25vh;
+                    .btn-descargar-pdf {
+                      display: none;
+                    }
                     .vacante_info {
                       width: 90%;
                       height: 90%;

@@ -50,22 +50,23 @@ function enviar_form() {
 
   // Obtiene los valores del formulario
   const nombre = document.getElementById("nombre").value.trim(); // Eliminar espacios extras
-  const puesto = document.getElementById("l_p_s").value;
-  const r_f = document.getElementById("l_r_f").value;
+  const puesto = document.getElementById("puesto").value;
+  const horario = document.getElementById("horario").value;
   const numero = document.getElementById("numero").value;
   const fecha_r = document.getElementById("fecha_r").value; // Usamos el valor asignado
   const edad = document.getElementById("edad").value;
   const direccion = document.getElementById("direccion").value;
-  const ciudad = document.getElementById("l_ciu").value;
+  const ciudad = document.getElementById("ciudad").value;
   const cp = document.getElementById("cp").value;
-  const l_d_c = document.getElementById("l_d_c").value;
+  const docu = document.getElementById("docu").value;
   const casa_suc = document.getElementById("casa_suc").value;
   const transporte = document.getElementById("transporte").value;
-  const f_t = document.getElementById("l_f_t").value;
-  const sexo = document.getElementById("l_sex").value;
+  const empleo = document.getElementById("empleo").value;
+  const sexo = document.getElementById("sexo").value;
   const nacion = document.getElementById("nacion").value;
   const peso = document.getElementById("peso").value;
   const e_c = document.getElementById("e_c").value;
+  const altura = document.getElementById("altura").value;
 
   // Validación: Verificar que todos los campos estén llenos
   if (
@@ -79,12 +80,13 @@ function enviar_form() {
     !casa_suc ||
     !transporte ||
     !e_c ||
-    !l_d_c ||
-    !f_t ||
-    !r_f ||
+    !docu ||
+    !empleo ||
+    !horario ||
     !sexo ||
     !nacion ||
-    !peso
+    !altura ||
+    !peso 
   ) {
     mostrarAlerta("alertas");
     mostrarAlerta("alerta_1");
@@ -101,14 +103,15 @@ function enviar_form() {
     ciudad,
     cp,
     e_c,
-    l_d_c,
+    docu,
     casa_suc,
     transporte,
-    f_t,
-    r_f,
+    empleo,
+    horario,
     sexo,
     nacion,
     peso,
+    altura,
   };
 
   // Guardar en Firebase usando el nombre como clave
@@ -191,7 +194,7 @@ function mostrarDatos() {
         listItem.classList.add(
           esAsistieron
             ? "vacante_asistieron"
-            : data.f_t === "Fijo" && data.r_f === "Rotativo" && data.l_d_c === "Si"
+            : data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si"
             ? "vacante_itemgreen"
             : "vacante_itemred"
         );
@@ -205,18 +208,19 @@ function mostrarDatos() {
           { label: "Puesto", value: data.puesto || "No disponible" },
           { label: "Número", value: data.numero || "No disponible" },
           { label: "Edad", value: data.edad || "No disponible" },
-          { label: "Docu", value: data.l_d_c || "No disponible" },
-          { label: "R/F", value: data.r_f || "No disponible" },
-          { label: "F/T", value: data.f_t || "No disponible" },
+          { label: "Sexo", value: data.sexo || "No disponible" },
+          { label: "Horario", value: data.horario || "No disponible" },
+          { label: "Empleo", value: data.empleo || "No disponible" },
           { label: "Ciudad", value: data.ciudad || "No disponible" },
           { label: "Dirección", value: data.direccion || "No disponible" },
           { label: "CP", value: data.cp || "No disponible" },
           { label: "Transporte", value: data.transporte || "No disponible" },
           { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
-          { label: "Sexo", value: data.sexo || "No disponible" },
           { label: "E/C", value: data.e_c || "No disponible" },
           { label: "Nacionalidad", value: data.nacion || "No disponible" },
-          { label: "Peso", value: data.peso || "No disponible" }
+          { label: "Peso", value: data.peso || "No disponible" },
+          { label: "Altura", value: data.altura || "No disponible" },
+          { label: "Docu", value: data.docu || "No disponible" },
         ];
   
         campos.forEach((campo) => {
@@ -268,7 +272,7 @@ function mostrarDatos() {
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
-          data.f_t === "Fijo" && data.r_f === "Rotativo" && data.l_d_c === "Si"
+          data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si"
             ? ulGreen.appendChild(listItem)
             : ulRed.appendChild(listItem);
         }
@@ -307,7 +311,7 @@ function mostrarDatos() {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
     doc.setTextColor(...colorTitulo); // Azul oscuro para el título
-    doc.text("Información de la Vacante", 20, 20);
+    doc.text("Información del Vacante", 20, 20);
     
     // Línea separadora
     doc.setDrawColor(...colorLinea);
@@ -324,22 +328,24 @@ function mostrarDatos() {
     
     // Contenido de los datos con estilos
     const content = [
-      { label: "Nombre", value: nombre },
+      { label: "Fecha de llenado", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
+      { label: "Nombre", value: nombre, isName: true },
       { label: "Puesto", value: data.puesto || "No disponible" },
       { label: "Número", value: data.numero || "No disponible" },
       { label: "Edad", value: data.edad || "No disponible" },
-      { label: "Documento", value: data.l_d_c || "No disponible" },
-      { label: "Horario", value: data.r_f || "No disponible" },
-      { label: "Trabajo", value: data.f_t || "No disponible" },
+      { label: "Sexo", value: data.sexo || "No disponible" },
+      { label: "Nacionalidad", value: data.nacion || "No disponible" },
+      { label: "Estado Civil", value: data.e_c || "No disponible" },
+      { label: "Peso", value: data.peso || "No disponible" },
+      { label: "Altura", value: data.altura || "No disponible" },
+      { label: "Documentacion", value: data.docu || "No disponible" },
+      { label: "Horario", value: data.horario || "No disponible" },
+      { label: "Empleo", value: data.empleo || "No disponible" },
       { label: "Ciudad", value: data.ciudad || "No disponible" },
       { label: "Dirección", value: data.direccion || "No disponible" },
-      { label: "Código Postal", value: data.cp || "No disponible" },
+      { label: "CP", value: data.cp || "No disponible" },
       { label: "Transporte", value: data.transporte || "No disponible" },
-      { label: "Casa/Sucursal", value: data.casa_suc || "No disponible" },
-      { label: "Sexo", value: data.sexo || "No disponible" },
-      { label: "Estado Civil", value: data.e_c || "No disponible" },
-      { label: "Nacionalidad", value: data.nacion || "No disponible" },
-      { label: "Peso", value: data.peso || "No disponible" }
+      { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
     ];
     
     // Recorrer el contenido e imprimirlo con estilo
@@ -368,9 +374,9 @@ function mostrarDatos() {
     yPosition += 20;
     doc.setFontSize(10);
     doc.setTextColor(...colorTitulo); // Azul oscuro para el pie de página
-    doc.text("Generado por el reclutador web de MMM.", 20, yPosition);
+    doc.text("Generado por el reclutador Web de MMM.", 20, yPosition);
     
-    // Descargar el PDF con el nombre de la vacante
+    // Descargar el PDF con el nombre del vacante
     doc.save(`Vacante_${nombre}.pdf`);
   }
   

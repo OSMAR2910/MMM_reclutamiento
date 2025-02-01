@@ -12,13 +12,6 @@ import {
   randInteger,
 } from '../utils.js'
 import GameRunner from './GameRunner.js'
-// Función para iniciar el sonido de fondo
-function startBackgroundSound(audio) {
-  audio.loop = true;
-  audio.play().catch(error => {
-    console.error('Error playing background audio:', error);
-  });
-}
 
 export default class DinoGame extends GameRunner {
   constructor(width, height) {
@@ -29,15 +22,7 @@ export default class DinoGame extends GameRunner {
     this.canvas = this.createCanvas(width, height)
     this.canvasCtx = this.canvas.getContext('2d')
     this.spriteImage = null
-    this.spriteImageData = null   
-     // Audio properties
-    this.backgroundAudio = new Audio('./assets/background.mp3');
-    this.backgroundAudio.loop = true;
-
-    // Iniciar la música de fondo cuando el juego se inicializa
-    this.backgroundAudio.play().catch(error => {
-      console.error('Error playing background audio:', error);
-    });
+    this.spriteImageData = null
 
     /*
      * units
@@ -83,11 +68,17 @@ export default class DinoGame extends GameRunner {
 
   // ref for canvas pixel density:
   // https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio#correcting_resolution_in_a_%3Ccanvas%3E
-  createCanvas(width, height) {
+  createCanvas() {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
     const scale = window.devicePixelRatio
-
+  
+    // Ajusta el canvas al ancho de la ventana y mantiene una proporción de aspecto
+    const aspectRatio = 900 / 250 // Relación de aspecto original
+    const maxWidth = window.innerWidth * 0.95 // 95% del ancho de la ventana
+    const width = Math.min(maxWidth, 900) // Limita el ancho máximo a 900px
+    const height = width / aspectRatio // Calcula la altura basada en la relación de aspecto
+  
     this.width = width
     this.height = height
     canvas.style.width = width + 'px'
@@ -95,9 +86,32 @@ export default class DinoGame extends GameRunner {
     canvas.width = Math.floor(width * scale)
     canvas.height = Math.floor(height * scale)
     ctx.scale(scale, scale)
-
+  
     document.body.appendChild(canvas)
+    window.addEventListener('resize', () => this.resizeCanvas())
     return canvas
+  }
+  resizeCanvas() {
+    const scale = window.devicePixelRatio
+    const aspectRatio = 900 / 250
+    const maxWidth = window.innerWidth * 0.95
+    const width = Math.min(maxWidth, 900)
+    const height = width / aspectRatio
+  
+    this.width = width
+    this.height = height
+    this.canvas.style.width = width + 'px'
+    this.canvas.style.height = height + 'px'
+    this.canvas.width = Math.floor(width * scale)
+    this.canvas.height = Math.floor(height * scale)
+    this.canvasCtx.scale(scale, scale)
+  
+    // Ajustar la posición del Dino y del suelo
+    this.state.dino.baseY = this.height - this.state.settings.dinoGroundOffset
+    this.state.groundY = this.height - sprites.ground.h / 2
+  
+    // Redibuja el juego después de redimensionar
+    this.onFrame()
   }
 
   async preload() {
@@ -198,9 +212,8 @@ export default class DinoGame extends GameRunner {
         value: 0,
       },
     })
+
     this.start()
-    // Iniciar el sonido de fondo
-    startBackgroundSound(this.backgroundAudio);
   }
 
   endGame() {
@@ -229,8 +242,6 @@ export default class DinoGame extends GameRunner {
     this.state.isRunning = false
     this.drawScore()
     this.stop()
-    // Detener el sonido de fondo
-    stopBackgroundSound(this.backgroundAudio);
   }
 
   increaseDifficulty() {

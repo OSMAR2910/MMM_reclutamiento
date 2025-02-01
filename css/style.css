@@ -185,6 +185,62 @@ html {
   font-style: normal;
   font-weight: normal;
 }
+body #regreso {
+  width: 2.5%;
+  aspect-ratio: 2/2;
+  top: 1vh;
+  left: 0;
+  margin: 2%;
+  display: flex;
+  position: fixed;
+  transition: all 0.1s ease-in-out;
+}
+body #regreso a {
+  width: 100%;
+  height: 100%;
+}
+body #regreso a img {
+  width: 100%;
+  height: 100%;
+}
+body #regreso:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body .alertasgame {
+  top: 5vh;
+  left: 450vw;
+  width: 4vw;
+  height: 4vw;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1001;
+}
+body .alertasgame .alertagame {
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #f18f62;
+  border: 2px solid #f18f62;
+  box-shadow: 0px 0px 10px 0px #f18f62;
+  border-radius: 5rem;
+  animation: fadeInDown 0.2s ease-in-out forwards;
+}
+body .alertasgame .alertagame span {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .alertasgame .alertagame span img {
+  width: 100%;
+  height: 100%;
+}
 body canvas {
   border-radius: 0.5vw;
   border: 0.3vw solid #f2f0ed;
@@ -197,6 +253,18 @@ body canvas {
   bottom: 0;
   left: 0;
   right: 0;
+}
+@media screen and (max-width: 500px) {
+  body #regreso {
+    width: 8vw;
+    margin: 8%;
+  }
+  body .alertasgame {
+    top: 5vh;
+    left: 42.5vw;
+    width: 15vw;
+    height: 15vw;
+  }
 }
 
 * {
@@ -308,6 +376,7 @@ body .alertas_modal .alert_eliminacion_vacante .alert_box {
   flex-direction: column;
   padding: 1vw;
   border-radius: 1rem;
+  font-size: 1vw;
   text-align: center;
   color: #1b3c59;
 }
@@ -318,6 +387,7 @@ body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont {
 body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
   padding: 10px 15px;
   border: none;
+  font-size: 0.8vw;
   border-radius: 5px;
   cursor: pointer;
   margin: 5px;
@@ -490,7 +560,7 @@ body main #pag1 article .texto_form p {
   color: #ffffff;
   text-align: center;
   font-size: 2vh;
-  margin: 0;
+  margin: 1%;
   letter-spacing: 0.1rem;
   font-family: "Nunito";
 }
@@ -949,6 +1019,18 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   overflow-y: hidden;
   align-items: center;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf {
+  border-radius: 5rem;
+  width: 1%;
+  height: 80%;
+  border: none;
+  background-color: #ec6223;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
   width: 85%;
   height: 100%;
@@ -1016,6 +1098,9 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   width: 95%;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-container {
+  display: none;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-descargar-pdf {
   display: none;
 }
 body main #pag3 .admin_cont {
@@ -1089,6 +1174,18 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
   overflow: hidden;
   gap: 5%;
 }
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf {
+  border-radius: 5rem;
+  width: 1%;
+  height: 80%;
+  border: none;
+  background-color: #ec6223;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
   width: 83%;
   text-align: center;
@@ -1151,6 +1248,9 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .bt
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
   height: 30vh;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
+  display: none;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
   width: 80%;
@@ -1360,6 +1460,14 @@ body .cambiar_nav nav ul .circulo_icon {
   body .alertas_admin .alerta_admin span p {
     font-size: 2vw;
   }
+  body .alertas_modal .alert_eliminacion_vacante .alert_box {
+    width: 40vw;
+    height: 15vh;
+    font-size: 2.5vw;
+  }
+  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
+    font-size: 2vw;
+  }
   body header {
     width: 50vw;
     height: 15vw;
@@ -1423,6 +1531,9 @@ body .cambiar_nav nav ul .circulo_icon {
     height: 50vh;
     top: 10vh;
   }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
+    border-radius: 1vw;
+  }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
     width: 90%;
     display: grid;
@@ -1435,10 +1546,11 @@ body .cambiar_nav nav ul .circulo_icon {
     font-size: 1.4vh;
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
-    width: 10%;
+    width: 8%;
+    gap: 4%;
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
-    width: 3vw;
+    width: 2.6vw;
   }
   body main #pag3 .admin_cont {
     flex-direction: column-reverse;
@@ -1470,6 +1582,9 @@ body .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
     height: 20vh;
+  }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
+    display: none;
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
     width: 80%;
@@ -1505,6 +1620,9 @@ body .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
     height: 20vh;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf {
+    display: none;
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
     width: 80%;
@@ -1570,6 +1688,14 @@ body .cambiar_nav nav ul .circulo_icon {
     height: 15vw;
   }
   body .alertas_admin .alerta_admin span p {
+    font-size: 3vw;
+  }
+  body .alertas_modal .alert_eliminacion_vacante .alert_box {
+    width: 70vw;
+    height: 15vh;
+    font-size: 3.5vw;
+  }
+  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
     font-size: 3vw;
   }
   body header {
@@ -1693,6 +1819,9 @@ body .cambiar_nav nav ul .circulo_icon {
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
     height: 25vh;
   }
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
+    display: none;
+  }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
     width: 90%;
     height: 90%;
@@ -1729,6 +1858,9 @@ body .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
     height: 25vh;
+  }
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf {
+    display: none;
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
     width: 90%;
