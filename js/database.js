@@ -118,7 +118,7 @@ function enviar_form() {
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_2");
       // Limpiar los campos del formulario (opcional)
-      // document.getElementById("myForm").reset();
+      document.getElementById("myForm").reset();
     })
     .catch((error) => {
       console.error("Hubo un error: ", error.message);
