@@ -182,6 +182,69 @@
                   </span></label
                 >
               </div>
+              <!--Edad-->
+              <div class="input-form">
+                <input
+                  type="number"
+                  name="edad"
+                  class="input"
+                  id="edad"
+                  placeholder="Edad"
+                  min="18"
+                  required
+                />
+                <label for="edad"
+                  ><span>
+                    <p>En este campo ingrese su edad (mayor a 18 años)</p>
+                  </span></label
+                >
+              </div>
+              <!--Sexo-->
+              <div class="input-form">
+                <select name="l_sex" class="input" id="l_sex" required>
+                  <option value="" disabled selected>Sexo</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="l_sex"
+                  ><span>
+                    <p>En este campo ingrese su sexo</p>
+                  </span></label
+                >
+              </div>
+              <!--Estado civil-->
+              <div class="input-form">
+                <input
+                  type="text"
+                  name="e_c"
+                  class="input"
+                  id="e_c"
+                  placeholder="Estado civil"
+                  required
+                />
+                <label for="e_c"
+                  ><span>
+                    <p>En este campo ingrese su estado civil.</p>
+                  </span></label
+                >
+              </div>
+              <!--Nacionalidad-->
+              <div class="input-form">
+                <input
+                  type="text"
+                  name="nacion"
+                  class="input"
+                  id="nacion"
+                  placeholder="Nacionalidad"
+                  required
+                />
+                <label for="nacion"
+                  ><span>
+                    <p>En este campo ingrese su nacionalidad</p>
+                  </span></label
+                >
+              </div>
               <!--Puesto-->
               <div class="input-form">
                 <select name="l_p_s" class="input" id="l_p_s" required>
@@ -224,50 +287,16 @@
                   </span></label
                 >
               </div>
-              <!--Edad-->
+              <!--Documentacion-->
               <div class="input-form">
-                <input
-                  type="number"
-                  name="edad"
-                  class="input"
-                  id="edad"
-                  placeholder="Edad"
-                  min="18"
-                  required
-                />
-                <label for="edad"
-                  ><span>
-                    <p>En este campo ingrese su edad (mayor a 18 años)</p>
-                  </span></label
-                >
-              </div>
-              <!--Sexo-->
-              <div class="input-form">
-                <select name="l_sex" class="input" id="l_sex" required>
-                  <option value="" disabled selected>Sexo</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Femenino">Femenino</option>
-                  <option value="Otro">Otro</option>
+                <select name="l_d_c" class="input" id="l_d_c" required>
+                  <option value="" disabled selected>Documentacion?</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
                 </select>
-                <label for="l_sex"
+                <label for="l_d_c"
                   ><span>
-                    <p>En este campo ingrese su sexo</p>
-                  </span></label
-                >
-              </div>
-              <!--Nacionalidad-->
-              <div class="input-form">
-                <input
-                  type="text"
-                  name="nacion"
-                  class="input"
-                  id="nacion"
-                  placeholder="Nacionalidad"
-                  required
-                />
-                <label for="nacion"
-                  ><span>
-                    <p>En este campo ingrese su nacionalidad</p>
+                    <p>¿Tienes la docuemtacion completa?</p>
                   </span></label
                 >
               </div>

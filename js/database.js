@@ -58,12 +58,14 @@ function enviar_form() {
   const direccion = document.getElementById("direccion").value;
   const ciudad = document.getElementById("l_ciu").value;
   const cp = document.getElementById("cp").value;
+  const l_d_c = document.getElementById("l_d_c").value;
   const casa_suc = document.getElementById("casa_suc").value;
   const transporte = document.getElementById("transporte").value;
   const f_t = document.getElementById("l_f_t").value;
   const sexo = document.getElementById("l_sex").value;
   const nacion = document.getElementById("nacion").value;
   const peso = document.getElementById("peso").value;
+  const e_c = document.getElementById("e_c").value;
 
   // Validación: Verificar que todos los campos estén llenos
   if (
@@ -76,6 +78,8 @@ function enviar_form() {
     !cp ||
     !casa_suc ||
     !transporte ||
+    !e_c ||
+    !l_d_c ||
     !f_t ||
     !r_f ||
     !sexo ||
@@ -96,6 +100,8 @@ function enviar_form() {
     direccion,
     ciudad,
     cp,
+    e_c,
+    l_d_c,
     casa_suc,
     transporte,
     f_t,
@@ -185,7 +191,8 @@ function mostrarDatos() {
         if (
           !vacantesPrevias.has(nombre) &&
           data.f_t === "Fijo" &&
-          data.r_f === "Rotativo"
+          data.r_f === "Rotativo" &&
+          data.l_d_c === "Si"
         ) {
           mostrarNotificacion(`${nombre} es vacante para MMM`);
         } 
@@ -194,7 +201,7 @@ function mostrarDatos() {
         listItem.classList.add(
           esAsistieron
             ? "vacante_asistieron"
-            : data.f_t === "Fijo" && data.r_f === "Rotativo"
+            : data.f_t === "Fijo" && data.r_f === "Rotativo" && data.l_d_c === "Si"
             ? "vacante_itemgreen"
             : "vacante_itemred"
         );
@@ -223,6 +230,8 @@ function mostrarDatos() {
           { label: "Sexo", value: data.sexo || "No disponible" },
           { label: "Nacionalidad", value: data.nacion || "No disponible" },
           { label: "Peso", value: data.peso || "No disponible" },
+          { label: "D/C", value: data.l_d_c || "No disponible" },
+          { label: "E/C", value: data.e_c || "No disponible" },
         ];
 
         campos.forEach((campo) => {
@@ -267,7 +276,7 @@ function mostrarDatos() {
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
-          data.f_t === "Fijo" && data.r_f === "Rotativo"
+          data.l_d_c === "Si" && data.r_f === "Rotativo" && data.l_d_c === "Si"
             ? ulGreen.appendChild(listItem)
             : ulRed.appendChild(listItem);
         }
