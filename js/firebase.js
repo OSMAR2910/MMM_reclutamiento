@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+import { getDatabase, ref, set, onValue, remove, get } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -16,9 +17,10 @@ const firebaseConfig = {
 // Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const analytics = getAnalytics(app);
 
 // Exportar Firebase App y la base de datos
-export { app, database, ref, set, onValue, remove };
+export { app, database, ref, set, onValue, remove, get };
 export async function fetchDatabaseData() {
     const response = await fetch('/path-to-your-api-endpoint');
     if (!response.ok) {

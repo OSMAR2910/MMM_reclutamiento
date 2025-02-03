@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { database, ref, set, onValue, remove, app } from "./firebase.js";
+import { database, ref, set, onValue, remove, app, get } from "./firebase.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -397,45 +397,87 @@ function moverVacante(nombre, data, nuevaDB) {
   const bases = ["vacantes", "asistieron", "no_asistieron", "contratado"];
   let antiguaRef;
 
-  // Determinar la referencia anterior correcta
-  for (let base of bases) {
-    const refActual = ref(database, `${base}/${nombre}`);
-    onValue(
-      refActual,
-      (snapshot) => {
-        if (snapshot.exists()) {
-          antiguaRef = refActual;
+  // Función que devuelve una Promesa para buscar la referencia anterior
+  function buscarAntiguaRef() {
+    return new Promise((resolve, reject) => {
+      let encontrada = false;
+
+      // Iteramos sobre las bases de datos
+      bases.forEach((base) => {
+        const refActual = ref(database, `${base}/${nombre}`);
+        onValue(
+          refActual,
+          (snapshot) => {
+            if (snapshot.exists() && !encontrada) {
+              encontrada = true; // Marcamos como encontrada
+              resolve(refActual); // Resolvemos la Promesa con la referencia encontrada
+            }
+          },
+          { onlyOnce: true }
+        );
+      });
+
+      // Si no se encuentra ninguna referencia después de revisar todas las bases
+      setTimeout(() => {
+        if (!encontrada) {
+          resolve(null); // Resolvemos con null si no se encontró ninguna referencia
         }
-      },
-      { onlyOnce: true }
-    );
+      }, 500); // Ajusta este tiempo según sea necesario
+    });
   }
 
-  // Esperar un pequeño tiempo para asegurarse de que antiguaRef se haya determinado
-  setTimeout(() => {
-    if (antiguaRef) {
-      set(nuevaRef, data)
-        .then(() => {
-          remove(antiguaRef)
-            .then(() => {
-              mostrarAlerta("alertas_admin");
-              mostrarAlerta("alerta_6");
-              console.log(`Vacante ${nombre} movida a ${nuevaDB}`);
-            })
-            .catch((error) => {
-              console.error(
-                "Error al eliminar de la base de datos anterior:",
-                error
-              );
-            });
-        })
-        .catch((error) => {
-          console.error("Error al mover a la nueva base:", error);
-        });
-    } else {
+  // Verificar si el dato ya existe en el contenedor de destino
+  function verificarExistenciaEnDestino() {
+    return new Promise((resolve, reject) => {
+      get(nuevaRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          resolve(true); // El dato ya existe en el destino
+        } else {
+          resolve(false); // El dato no existe en el destino
+        }
+      });
+    });
+  }
+
+  // Usamos la Promesa para determinar antiguaRef
+  buscarAntiguaRef().then((refEncontrada) => {
+    antiguaRef = refEncontrada;
+
+    if (!antiguaRef) {
       console.error("No se pudo determinar la referencia anterior.");
+      return;
     }
-  }, 500);
+
+    // Verificamos si el dato ya existe en el contenedor de destino
+    verificarExistenciaEnDestino().then((existeEnDestino) => {
+      if (existeEnDestino) {
+        // Mostrar alerta indicando que el dato ya está en el contenedor
+        mostrarAlerta("alertas_admin");
+        mostrarAlerta("alerta_9");
+        console.log(`El dato ${nombre} ya existe en el contenedor ${nuevaDB}.`);
+      } else {
+        // Mover el dato si no existe en el destino
+        set(nuevaRef, data)
+          .then(() => {
+            remove(antiguaRef)
+              .then(() => {
+                mostrarAlerta("alertas_admin");
+                mostrarAlerta("alerta_6");
+                console.log(`Vacante ${nombre} movida a ${nuevaDB}`);
+              })
+              .catch((error) => {
+                console.error(
+                  "Error al eliminar de la base de datos anterior:",
+                  error
+                );
+              });
+          })
+          .catch((error) => {
+            console.error("Error al mover a la nueva base:", error);
+          });
+      }
+    });
+  });
 }
 
 // Función para eliminar una vacante con confirmación
