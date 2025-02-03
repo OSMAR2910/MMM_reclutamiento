@@ -24,17 +24,47 @@ const alertasConfig = {
   alerta_8: 2000,
 };
 
+// Variable para almacenar el timeout actual
+let timeoutAlarma;
+
 // Función genérica para mostrar y ocultar alertas
 const mostrarAlerta = (alertaId) => {
+  // Obtener la alerta específica por su ID
   const alerta = document.getElementById(alertaId);
-  const tiempo = alertasConfig[alertaId] || 3000; // Usar tiempo configurado o 3000ms por defecto
+  if (!alerta) {
+    console.error(`No se encontró ninguna alerta con el ID: ${alertaId}`);
+    return;
+  }
 
-  alerta.style.display = "flex"; // Mostrar alerta
+  // Cancelar el timeout de la alarma anterior (si existe)
+  if (timeoutAlarma) {
+    clearTimeout(timeoutAlarma);
+  }
 
-  setTimeout(() => {
-    alerta.style.display = "none"; // Ocultar alerta después de un tiempo
+  // Ocultar cualquier alarma visible
+  const todasLasAlarmas = document.querySelectorAll("[id^='alerta_']");
+  todasLasAlarmas.forEach((alarma) => {
+    alarma.style.display = "none";
+  });
+
+  // Mostrar la alerta actual
+  alerta.style.display = "flex";
+
+  // Obtener el tiempo de visualización configurado o usar 3000ms por defecto
+  const tiempo = alertasConfig[alertaId] || 3000;
+
+  // Programar la ocultación de la alerta después del tiempo especificado
+  timeoutAlarma = setTimeout(() => {
+    alerta.style.display = "none";
   }, tiempo);
+
+  // Agregar un evento de clic para ocultar la alarma al hacer clic en ella
+  alerta.onclick = () => {
+    alerta.style.display = "none";
+    clearTimeout(timeoutAlarma); // Cancelar el timeout al hacer clic
+  };
 };
+
 
 // Escribir datos
 function enviar_form() {
