@@ -713,6 +713,7 @@ body {
             border-radius: 1.5vw;
             text-align: center;
             color: $Texto;
+            font-family: $Letra2;
             padding: 0.5vw;
             background-color: $Box_admin;
             box-shadow: 0px 0px 10px 0px $Box_admin;
@@ -806,7 +807,7 @@ body {
                     justify-items: center;
                     align-content: center;
                     flex-direction: column;
-                    gap: 5px;
+                    gap: .1vw;
                     button {
                       border-radius: 5rem;
                       width: 1vw;
@@ -960,7 +961,7 @@ body {
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: 5%;
+                  gap: .1vw;
                   button {
                     border-radius: 5rem;
                     width: 1vw;
@@ -1097,7 +1098,7 @@ body {
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: 5%;
+                  gap: .1vw;
                   button {
                     border-radius: 5rem;
                     width: 1vw;

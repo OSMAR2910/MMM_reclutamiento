@@ -964,6 +964,7 @@ body main #pag3 .estatus_vacantes .icons_status .status_info {
   border-radius: 1.5vw;
   text-align: center;
   color: #ffffff;
+  font-family: "Nunito";
   padding: 0.5vw;
   background-color: #1b3c59;
   box-shadow: 0px 0px 10px 0px #1b3c59;
@@ -1062,7 +1063,7 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   justify-items: center;
   align-content: center;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.1vw;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
   border-radius: 5rem;
@@ -1218,7 +1219,7 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .bt
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-content: center;
-  gap: 5%;
+  gap: 0.1vw;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
   border-radius: 5rem;
@@ -1357,7 +1358,7 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .b
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
   align-content: center;
-  gap: 5%;
+  gap: 0.1vw;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
   border-radius: 5rem;
