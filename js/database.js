@@ -94,9 +94,8 @@ function enviar_form() {
   const empleo = document.getElementById("empleo").value;
   const sexo = document.getElementById("sexo").value;
   const nacion = document.getElementById("nacion").value;
-  const peso = document.getElementById("peso").value;
   const e_c = document.getElementById("e_c").value;
-  const altura = document.getElementById("altura").value;
+  const sucursal = document.getElementById("sucursal").value
 
   // Validación: Verificar que todos los campos estén llenos
   if (
@@ -115,8 +114,7 @@ function enviar_form() {
     !horario ||
     !sexo ||
     !nacion ||
-    !altura ||
-    !peso 
+    !sucursal 
   ) {
     mostrarAlerta("alertas");
     mostrarAlerta("alerta_1");
@@ -140,8 +138,7 @@ function enviar_form() {
     horario,
     sexo,
     nacion,
-    peso,
-    altura,
+    sucursal
   };
 
   // Guardar en Firebase usando el nombre como clave
@@ -236,6 +233,7 @@ function mostrarDatos() {
           { label: "Fecha", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
           { label: "Nombre", value: nombre, isName: true },
           { label: "Puesto", value: data.puesto || "No disponible" },
+          { label: "Sucursal", value: data.sucursal || "No disponible" },
           { label: "Número", value: data.numero || "No disponible" },
           { label: "Edad", value: data.edad || "No disponible" },
           { label: "Sexo", value: data.sexo || "No disponible" },
@@ -248,8 +246,6 @@ function mostrarDatos() {
           { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
           { label: "E/C", value: data.e_c || "No disponible" },
           { label: "Nacionalidad", value: data.nacion || "No disponible" },
-          { label: "Peso", value: data.peso || "No disponible" },
-          { label: "Altura", value: data.altura || "No disponible" },
           { label: "Docu", value: data.docu || "No disponible" },
         ];
   
@@ -361,6 +357,7 @@ function mostrarDatos() {
       { label: "Fecha de llenado", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
       { label: "Nombre", value: nombre, isName: true },
       { label: "Puesto", value: data.puesto || "No disponible" },
+      { label: "Sucursal", value: data.sucursal || "No disponible" },
       { label: "Número", value: data.numero || "No disponible" },
       { label: "Edad", value: data.edad || "No disponible" },
       { label: "Sexo", value: data.sexo || "No disponible" },

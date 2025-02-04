@@ -710,10 +710,11 @@ body {
             width: 16vw;
             height: 40vh;
             top: 15vh;
-            border-radius: 1.5vw;
+            border-radius: 1.2vw;
             text-align: center;
             color: $Texto;
             font-family: $Letra2;
+            font-size: .7vw;
             padding: 0.5vw;
             background-color: $Box_admin;
             box-shadow: 0px 0px 10px 0px $Box_admin;
@@ -742,6 +743,8 @@ body {
             .data_status {
               width: 100%;
               height: 100%;
+              overflow-x: hidden;
+              overflow-y: scroll;
               ul {
                 width: 100%;
                 height: auto;
@@ -864,7 +867,7 @@ body {
           width: 20vw;
           height: 80vh;
           display: flex;
-          border-radius: 1.5rem;
+          border-radius: 1.2vw;
           justify-content: start;
           align-items: center;
           flex-direction: column;
@@ -1009,7 +1012,7 @@ body {
           width: 74vw;
           height: 95vh;
           display: flex;
-          border-radius: 1.5rem;
+          border-radius: 1.2vw;
           justify-content: start;
           align-items: center;
           flex-direction: column;
