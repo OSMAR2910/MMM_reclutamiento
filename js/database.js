@@ -96,6 +96,8 @@ function enviar_form() {
   const nacion = document.getElementById("nacion").value;
   const e_c = document.getElementById("e_c").value;
   const sucursal = document.getElementById("sucursal").value
+  const problema_t = document.getElementById("problema_t").value;
+  const f_n = document.getElementById("f_n").value;
 
   // Validación: Verificar que todos los campos estén llenos
   if (
@@ -114,6 +116,8 @@ function enviar_form() {
     !horario ||
     !sexo ||
     !nacion ||
+    !problema_t ||
+    !f_n ||
     !sucursal 
   ) {
     mostrarAlerta("alertas");
@@ -138,6 +142,8 @@ function enviar_form() {
     horario,
     sexo,
     nacion,
+    problema_t,
+    f_n,
     sucursal
   };
 
@@ -221,7 +227,7 @@ function mostrarDatos() {
         listItem.classList.add(
           esAsistieron
             ? "vacante_asistieron"
-            : data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si"
+            : data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t == "no"
             ? "vacante_itemgreen"
             : "vacante_itemred"
         );
@@ -236,6 +242,7 @@ function mostrarDatos() {
           { label: "Sucursal", value: data.sucursal || "No disponible" },
           { label: "Número", value: data.numero || "No disponible" },
           { label: "Edad", value: data.edad || "No disponible" },
+          { label: "F.Nacimiento", value: data.f_n || "No disponible" },
           { label: "Sexo", value: data.sexo || "No disponible" },
           { label: "Horario", value: data.horario || "No disponible" },
           { label: "Empleo", value: data.empleo || "No disponible" },
@@ -244,6 +251,7 @@ function mostrarDatos() {
           { label: "CP", value: data.cp || "No disponible" },
           { label: "Transporte", value: data.transporte || "No disponible" },
           { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
+          { label: "Problema/T", value: data.problema_t || "No disponible" },
           { label: "E/C", value: data.e_c || "No disponible" },
           { label: "Nacionalidad", value: data.nacion || "No disponible" },
           { label: "Docu", value: data.docu || "No disponible" },
@@ -298,7 +306,7 @@ function mostrarDatos() {
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
-          data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si"
+          data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t == "no"
             ? ulGreen.appendChild(listItem)
             : ulRed.appendChild(listItem);
         }
@@ -360,6 +368,7 @@ function mostrarDatos() {
       { label: "Sucursal", value: data.sucursal || "No disponible" },
       { label: "Número", value: data.numero || "No disponible" },
       { label: "Edad", value: data.edad || "No disponible" },
+      { label: "F.Nacimiento", value: data.f_n || "No disponible" },
       { label: "Sexo", value: data.sexo || "No disponible" },
       { label: "Nacionalidad", value: data.nacion || "No disponible" },
       { label: "Estado Civil", value: data.e_c || "No disponible" },
@@ -373,6 +382,7 @@ function mostrarDatos() {
       { label: "CP", value: data.cp || "No disponible" },
       { label: "Transporte", value: data.transporte || "No disponible" },
       { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
+      { label: "Problema/T", value: data.problema_t || "No disponible" },
     ];
     
     // Recorrer el contenido e imprimirlo con estilo

@@ -135,198 +135,230 @@
           <form action="" id="myForm">
             <!--Fecha-->
             <input type="text" name="fecha_r" id="fecha_r" style="display: none" />
-            <!--Nombre-->
-            <div class="input-form">
-              <input type="text" name="nombre" class="input" id="nombre" placeholder="Nombre" required />
-              <label for="nombre"><span>
-                  <p>En este campo ingresé su nombre completo</p>
-                </span></label>
+            <!--Nombre,Edad, Numero telefonico-->
+            <div class="cont_inputform" id="inputform1">
+              <div class="input-form">
+                <input type="text" name="nombre" class="input" id="nombre" placeholder="Nombre" required />
+                <label for="nombre"><span>
+                    <p>En este campo ingresé su nombre completo</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="number" name="edad" class="input" id="edad" placeholder="Edad" min="18" required />
+                <label for="edad"><span>
+                    <p>En este campo ingresé su edad (mayor a 18 años).</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="tel" name="numero" class="input" id="numero" placeholder="Número" required />
+                <label for="numero"><span>
+                    <p>
+                      En este campo coloca tu número de contacto, comienza por la clave lada de tu ciudad.
+                    </p>
+                  </span></label>
+              </div>
             </div>
-            <!--Numero telefonico-->
-            <div class="input-form">
-              <input type="tel" name="numero" class="input" id="numero" placeholder="Número" required />
-              <label for="numero"><span>
-                  <p>
-                    En este campo coloca tu número de contacto, comienza por la clave lada de tu ciudad.
-                  </p>
-                </span></label>
+            <!--Sexo, Estado civil, Nacionalidad-->
+            <div class="cont_inputform" id="inputform2">
+              <div class="input-form">
+                <select name="sexo" class="input" id="sexo" required>
+                  <option value="" disabled selected>Sexo</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="sexo"><span>
+                    <p>En este campo ingresé su sexo.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="e_c" class="input" id="e_c" required>
+                  <option value="" disabled selected>Estado civil</option>
+                  <option value="Soltero">Soltero</option>
+                  <option value="Casado">Casado</option>
+                  <option value="Unionlibre">Unionlibre</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="e_c"><span>
+                    <p>
+                      En este campo ingresé su estado civil.
+                    </p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="nacion" class="input" id="nacion" required>
+                  <option value="" disabled selected>Nacionalidad</option>
+                  <option value="Mexicana">Mexicana</option>
+                  <option value="Estadounidense">Estadounidense</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="nacion"><span>
+                    <p>
+                      En este campo ingresé su nacionalidad.
+                    </p>
+                  </span></label>
+              </div>
             </div>
-            <!--Edad-->
-            <div class="input-form">
-              <input type="number" name="edad" class="input" id="edad" placeholder="Edad" min="18" required />
-              <label for="edad"><span>
-                  <p>En este campo ingresé su edad (mayor a 18 años).</p>
-                </span></label>
+            <!--Fecha de nacimiento, Direccion, Codigo postal -->
+            <div class="cont_inputform" id="inputform5">
+              <div class="input-form">
+                <input type="date" name="f_n" class="input" id="f_n" placeholder="Fecha/N" required />
+                <label for="f_n"><span>
+                    <p>En este campo ingrese su fecha de nacimiento.</p>
+                  </span>
+                </label>
+              </div>
+              <div class="input-form">
+                <input type="text" name="direccion" class="input" id="direccion" placeholder="Dirección" required />
+                <label for="direccion"><span>
+                    <p>En este campo ingrese su domicilio (calle, número, colonia).</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="number" name="cp" class="input" id="cp" placeholder="CP" required />
+                <label for="cp"><span>
+                    <p>En este campo ingresé su código postal.</p>
+                  </span></label>
+              </div>
             </div>
-            <!--Sexo-->
-            <div class="input-form">
-              <select name="sexo" class="input" id="sexo" required>
-                <option value="" disabled selected>Sexo</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-                <option value="Otro">Otro</option>
-              </select>
-              <label for="sexo"><span>
-                  <p>En este campo ingresé su sexo.</p>
-                </span></label>
+            <!--Puesto, Sucursal, Ciudad-->
+            <div class="cont_inputform" id="inputform3">
+              <div class="input-form">
+                <select name="puesto" class="input" id="puesto" required>
+                  <option value="" disabled selected>Puesto</option>
+                  <option value="Cocina">Cocina</option>
+                  <option value="Mostrador">Mostrador</option>
+                  <option value="Repartidor">Repartidor</option>
+                  <option value="Subgerente">Subgerente</option>
+                  <option value="Gerente">Gerente</option>
+                </select>
+                <label for="puesto"><span>
+                    <p>En este campo ingresé en qué se quiere desempeñar.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="sucursal" class="input" id="sucursal" required>
+                  <option value="" disabled selected>Sucursal</option>
+                  <option value="Playas">Playas</option>
+                  <option value="Altamira">Altamira</option>
+                  <option value="Libertad">Libertad</option>
+                  <option value="Sierra">Sierra</option>
+                  <option value="Cacho">Cacho</option>
+                  <option value="Hipódromo">Hipódromo</option>
+                  <option value="Santa fe">Santa fe</option>
+                  <option value="Villa Fontana">Villa Fontana</option>
+                  <option value="Huertas">Huertas</option>
+                  <option value="Monarca">Monarca</option>
+                  <option value="Otay">Otay</option>
+                  <option value="Rosarito">Rosarito</option>
+                  <option value="Florido">Florido</option>
+                  <option value="Tecate">Tecate</option>
+                  <option value="San ysidro">San ysidro</option>
+                </select>
+                <label for="sucursal"><span>
+                    <p>En este campo seleccione la sucursal que quiere postularse.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="ciudad" class="input" id="ciudad" required>
+                  <option value="" disabled selected>Ciudad</option>
+                  <option value="Tijuana">Tijuana</option>
+                  <option value="Tecate">Tecate</option>
+                  <option value="Rosarito">Rosarito</option>
+                  <option value="San Ysidro">San Ysidro</option>
+                </select>
+                <label for="ciudad"><span>
+                    <p>En este campo ingresé la ciudad en la que va a trabajar con nosotros.</p>
+                  </span></label>
+              </div>
             </div>
-            <!--Estado civil-->
-            <div class="input-form">
-              <select name="e_c" class="input" id="e_c" required>
-                <option value="" disabled selected>Estado civil</option>
-                <option value="Soltero">Soltero</option>
-                <option value="Casado">Casado</option>
-                <option value="Unionlibre">Unionlibre</option>
-                <option value="Otro">Otro</option>
-              </select>
-              <label for="e_c"><span>
-                  <p>
-                    En este campo ingresé su estado civil.
-                  </p>
-                </span></label>
+            <!--Empleo, Horario, Documentacion-->
+            <div class="cont_inputform" id="inputform4">
+              <div class="input-form">
+                <select name="empleo" class="input" id="empleo" required>
+                  <option value="" disabled selected>Empleo</option>
+                  <option value="Fijo">Fijo</option>
+                  <option value="Temporal">Temporal</option>
+                </select>
+                <label for="empleo"><span>
+                    <p>¿Buscas empleo fijo o temporal?</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="horario" class="input" id="horario" required>
+                  <option value="" disabled selected>Horario</option>
+                  <option value="Rotativo">Rotativo</option>
+                  <option value="Fijo">Fijo (Cierre)</option>
+                </select>
+                <label for="horario"><span>
+                    <p>¿Buscas horarios rotativos o fijos?</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="docu" class="input" id="docu" required>
+                  <option value="" disabled selected>Documentacion</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="docu"><span>
+                    <p>¿Tienes la docuemtacion completa?</p>
+                  </span></label>
+              </div>
             </div>
-            <!--Nacionalidad-->
-            <div class="input-form">
-              <select name="nacion" class="input" id="nacion" required>
-                <option value="" disabled selected>Nacionalidad</option>
-                <option value="Mexicana">Mexicana</option>
-                <option value="Estadounidense">Estadounidense</option>
-                <option value="Otro">Otro</option>
-              </select>
-              <label for="nacion"><span>
-                  <p>
-                    En este campo ingresé su nacionalidad.
-                  </p>
-                </span></label>
+            <!--Tranposrte, Tiempo de casa a suc, Problemas con el tranporte?-->
+            <div class="cont_inputform" id="inputform5">
+              <div class="input-form">
+                <select name="transporte" class="input" id="transporte" required>
+                  <option value="" disabled selected>Transporte</option>
+                  <option value="Carro">Carro</option>
+                  <option value="Moto">Moto</option>
+                  <option value="Publico">Publico</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="transporte"><span>
+                    <p>
+                      Medio de transporte que utilizas.
+                    </p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="number" name="casa_suc" class="input" id="casa_suc" placeholder="Casa-Suc" required />
+                <label for="casa_suc"><span>
+                    <p>Tiempo en minutos desde tu domicilio a la sucursal.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="problema_t" class="input" id="problema_t" required>
+                  <option value="" disabled selected>Dificutad?</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="problema_t"><span>
+                    <p>
+                      En este campo ingresa si se te dificulta el transporte a la sucursal.
+                    </p>
+                  </span></label>
+              </div>
             </div>
-            <!--Puesto-->
-            <div class="input-form">
-              <select name="puesto" class="input" id="puesto" required>
-                <option value="" disabled selected>Puesto</option>
-                <option value="Cocina">Cocina</option>
-                <option value="Mostrador">Mostrador</option>
-                <option value="Repartidor">Repartidor</option>
-                <option value="Subgerente">Subgerente</option>
-                <option value="Gerente">Gerente</option>
-              </select>
-              <label for="puesto"><span>
-                  <p>En este campo ingresé en qué se quiere desempeñar.</p>
-                </span></label>
+            <!--pagina de exito-->
+            <div class="exito_form" id="exito_form">
+              <img src="img/Logos/interfaces/icons/exito.png" alt="Exito">
             </div>
-            <!--Sucursal-->
-            <div class="input-form">
-              <select name="sucursal" class="input" id="sucursal" required>
-                <option value="" disabled selected>Sucursal</option>
-                <option value="Playas">Playas</option>
-                <option value="Altamira">Altamira</option>
-                <option value="Libertad">Libertad</option>
-                <option value="Sierra">Sierra</option>
-                <option value="Cacho">Cacho</option>
-                <option value="Hipódromo">Hipódromo</option>
-                <option value="Santa fe">Santa fe</option>
-                <option value="Villa Fontana">Villa Fontana</option>
-                <option value="Huertas">Huertas</option>
-                <option value="Monarca">Monarca</option>
-                <option value="Otay">Otay</option>
-                <option value="Rosarito">Rosarito</option>
-                <option value="Florido">Florido</option>
-                <option value="Tecate">Tecate</option>
-                <option value="San ysidro">San ysidro</option>
-              </select>
-              <label for="sucursal"><span>
-                  <p>En este campo seleccione la sucursal que quiere postularse.</p>
-                </span></label>
-            </div>
-            <!--Empleo-->
-            <div class="input-form">
-              <select name="empleo" class="input" id="empleo" required>
-                <option value="" disabled selected>Empleo</option>
-                <option value="Fijo">Fijo</option>
-                <option value="Temporal">Temporal</option>
-              </select>
-              <label for="empleo"><span>
-                  <p>¿Buscas empleo fijo o temporal?</p>
-                </span></label>
-            </div>
-            <!--Horario-->
-            <div class="input-form">
-              <select name="horario" class="input" id="horario" required>
-                <option value="" disabled selected>Horario</option>
-                <option value="Rotativo">Rotativo</option>
-                <option value="Fijo">Fijo (Cierre)</option>
-              </select>
-              <label for="horario"><span>
-                  <p>¿Buscas horarios rotativos o fijos?</p>
-                </span></label>
-            </div>
-            <!--Documentacion-->
-            <div class="input-form">
-              <select name="docu" class="input" id="docu" required>
-                <option value="" disabled selected>Documentacion</option>
-                <option value="Si">Si</option>
-                <option value="No">No</option>
-              </select>
-              <label for="docu"><span>
-                  <p>¿Tienes la docuemtacion completa?</p>
-                </span></label>
-            </div>
-            <!--Ciudad-->
-            <div class="input-form">
-              <select name="ciudad" class="input" id="ciudad" required>
-                <option value="" disabled selected>Ciudad</option>
-                <option value="Tijuana">Tijuana</option>
-                <option value="Tecate">Tecate</option>
-                <option value="Rosarito">Rosarito</option>
-                <option value="San Ysidro">San Ysidro</option>
-              </select>
-              <label for="ciudad"><span>
-                  <p>En este campo ingresé la ciudad en la que va a trabajar con nosotros.</p>
-                </span></label>
-            </div>
-            <!--Direccion-->
-            <div class="input-form">
-              <input type="text" name="direccion" class="input" id="direccion" placeholder="Dirección" required />
-              <label for="direccion"><span>
-                  <p>En este campo ingrese su domicilio (calle, número, colonia).</p>
-                </span></label>
-            </div>
-            <!--Codigo Postal-->
-            <div class="input-form">
-              <input type="number" name="cp" class="input" id="cp" placeholder="CP" required />
-              <label for="cp"><span>
-                  <p>En este campo ingresé su código postal.</p>
-                </span></label>
-            </div>
-            <!--Tranposrte-->
-            <div class="input-form">
-              <select name="transporte" class="input" id="transporte" required>
-                <option value="" disabled selected>Transporte</option>
-                <option value="Carro">Carro</option>
-                <option value="Moto">Moto</option>
-                <option value="Publico">Publico</option>
-                <option value="Otro">Otro</option>
-              </select>
-              <label for="transporte"><span>
-                  <p>
-                    Medio de transporte que utilizas.
-                  </p>
-                </span></label>
-            </div>
-            <!--Tiempo de casa a suc-->
-            <div class="input-form">
-              <input type="number" name="casa_suc" class="input" id="casa_suc" placeholder="Casa-Suc" required />
-              <label for="casa_suc"><span>
-                  <p>Tiempo en minutos desde tu domicilio a la sucursal.</p>
-                </span></label>
+            <!--Nex page-->
+            <div class="input-nex">
+              <input type="button" id="btn_next_form" onclick="btn_nex_form()" />
             </div>
             <!--Submit-->
             <div class="input-submit">
-              <input type="button" id="btn_enviar_form" value="Enviar" onclick="enviar_form()" />
+              <input type="button" id="btn_enviar_form" onclick="enviar_form()" />
             </div>
           </form>
         </div>
-        <label for="btn_enviar_form">
+        <label id="label_enviar" for="btn_enviar_form">
           <img src="img/Logos/interfaces/icons/enviar.png" alt="Enviar" />
+        </label>
+        <label id="label_next" for="btn_next_form">
+          <img src="img/Logos/interfaces/icons/flecha-correcta.png" alt="Next" />
         </label>
       </article>
     </section>

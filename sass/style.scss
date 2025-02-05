@@ -272,7 +272,6 @@ body {
       article {
         width: 90%;
         height: 80%;
-        margin-top: 10vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -306,98 +305,118 @@ body {
           }
         }
         .cont_form {
-          width: 85%;
-          height: 70%;
+          height: 40%;
+          aspect-ratio: 1.2/1;
           border: 0;
-          margin-top: 2%;
-          overflow-x: hidden;
-          overflow-y: scroll;
+          margin: 2%;
+          overflow: hidden;
           display: flex;
           justify-content: center;
           align-items: center;
+          border: .2vw solid $Resalte2;
+          box-shadow: 0px 0px 10px 0px $Resalte2;
+          border-radius: 2vw;
           form {
             width: 95%;
             height: 95%;
             border: 0;
-            display: grid;
+            display: flex;
             justify-items: center;
             align-items: center;
-            flex-direction: column;
-            grid-template-columns: repeat(2, 1fr);
             margin: 2%;
-            gap: 4%;
-            .input-form {
+            .cont_inputform {
               width: 100%;
-              height: 7.3vh;
-              display: flex;
+              height: 100%;
+              display: none;
               justify-content: center;
               align-items: center;
-              font-family: $Letra2;
-              .input {
+              grid-template-columns: repeat(1, 1fr);
+              .input-form {
                 width: 100%;
-                height: 100%;
-                border-radius: 5rem;
-                background-color: $Texto;
-                outline: none;
-                border: 0;
-                text-align: center;
-                transition: all 0.2s ease-in-out;
-                &:focus {
-                  border: 0;
-                  outline: none;
-                  border: 2px solid $Resalte;
-                  box-shadow: 0px 0px 10px 0px $Resalte;
-                  background: $Resalte;
-                  color: $Texto;
-                }
-              }
-              .input::placeholder {
-                color: $Negro;
-              }
-              .input:focus::placeholder {
-                color: $Texto;
-              }
-              .input:focus ~ label {
-                scale: 1;
-                opacity: 100%;
-                transition: all 0.2s ease-in-out;
-              }
-
-              label {
-                scale: 0;
-                opacity: 0;
-                top: 12vh;
-                left: 15vw;
-                width: 20vw;
-                height: 4vw;
-                position: fixed;
+                height: 7.3vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color: $Resalte2;
-                transition: all 0.2s ease-in-out;
-                border-radius: 5rem;
-                box-shadow: 0px 0px 10px 0px $Resalte2;
-                span {
-                  width: 80%;
-                  height: 80%;
+                font-family: $Letra2;
+                .input {
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 5rem;
+                  background-color: $Texto;
+                  outline: none;
+                  border: 0;
+                  text-align: center;
+                  transition: all 0.2s ease-in-out;
+                  &:focus {
+                    border: 0;
+                    outline: none;
+                    border: 2px solid $Resalte;
+                    box-shadow: 0px 0px 10px 0px $Resalte;
+                    background: $Resalte;
+                    color: $Texto;
+                  }
+                }
+                .input::placeholder {
+                  color: $Negro;
+                }
+                .input:focus::placeholder {
+                  color: $Texto;
+                }
+                .input:focus ~ label {
+                  scale: 1;
+                  opacity: 100%;
+                  transition: all 0.2s ease-in-out;
+                }
+  
+                label {
+                  scale: 0;
+                  opacity: 0;
+                  top: 21vh;
+                  left: 14vw;
+                  width: 20vw;
+                  height: 4vw;
+                  position: fixed;
                   display: flex;
                   justify-content: center;
                   align-items: center;
-                  p {
-                    @include cover;
-                    color: $Texto;
-                    font-size: 0.8vw;
+                  background-color: $Resalte2;
+                  transition: all 0.2s ease-in-out;
+                  border-radius: 5rem;
+                  box-shadow: 0px 0px 10px 0px $Resalte2;
+                  span {
+                    width: 80%;
+                    height: 80%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    text-align: center;
-                    margin: 0;
-                    padding: 0;
-                    letter-spacing: 0.1rem;
+                    p {
+                      @include cover;
+                      color: $Texto;
+                      font-size: 0.8vw;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      text-align: center;
+                      margin: 0;
+                      padding: 0;
+                      letter-spacing: 0.1rem;
+                    }
                   }
                 }
               }
+            }
+            .exito_form {
+              width: 100%;
+              height: 100%;
+              display: none;
+              justify-content: center;
+              align-items: center;
+              img {
+                width: 40%;
+              }
+            }
+            .input-nex {
+              display: none;
             }
             .input-submit {
               display: none;
@@ -417,10 +436,10 @@ body {
           border: 3px solid $Texto;
         }
         label {
-          width: 2.5vw;
-          height: 2.5vw;
-          margin-top: 5vh;
-          display: flex;
+          width: 2.2vw;
+          aspect-ratio: 2/2;
+          margin: 2%;
+          display: none;
           justify-content: center;
           align-items: center;
           transition: all 0.1s ease-in-out;
@@ -992,7 +1011,7 @@ body {
                   }
                 }
                 &:focus {
-                  height: 30vh;
+                  height: 35vh;
                   .btn-descargar-pdf {
                     display: none;
                   }
@@ -1267,17 +1286,30 @@ body {
       }
       #pag1 {
         article {
+          .texto_form {
+            width: 80%;
+            h1 {
+              font-size: 2.8vh;
+            }
+  
+            p {
+              font-size: 1.7vh;
+            }
+          }
           .cont_form {
+            border-radius: 4vw;
             form {
-              .input-form {
-                label {
-                  top: 14vh;
-                  left: 25vw;
-                  width: 50vw;
-                  height: 10vw;
-                  span {
-                    p {
-                      font-size: 2vw;
+              .cont_inputform {
+                .input-form {
+                  label {
+                    top: 23vh;
+                    left: 23vw;
+                    width: 50vw;
+                    height: 10vw;
+                    span {
+                      p {
+                        font-size: 2vw;
+                      }
                     }
                   }
                 }
@@ -1285,9 +1317,7 @@ body {
             }
           }
           label {
-            width: 6vw;
-            height: 6vw;
-            margin-top: 5vh;
+            width: 5vw;
           }
         }
       }
@@ -1374,7 +1404,7 @@ body {
                     }
                   }
                   &:focus {
-                    height: 20vh;
+                    height: 25vh;
                     .btn-descargar-pdf {
                       display: none;
                     }
@@ -1549,18 +1579,29 @@ body {
       }
       #pag1 {
         article {
+          .texto_form {
+            width: 90%;
+            h1 {
+              font-size: 3vh;
+            }
+            p {
+              font-size: 1.6vh;
+            }
+          }
           .cont_form {
+            border-radius: 7vw;
             form {
-              grid-template-columns: repeat(1, 1fr);
-              .input-form {
-                label {
-                  top: 14vh;
-                  left: 17.5vw;
-                  width: 65vw;
-                  height: 12vw;
-                  span {
-                    p {
-                      font-size: 3vw;
+              .cont_inputform {
+                .input-form {
+                  label {
+                    top: 22vh;
+                    left: 10vw;
+                    width: 70vw;
+                    height: 15vw;
+                    span {
+                      p {
+                        font-size: 3vw;
+                      }
                     }
                   }
                 }
@@ -1568,9 +1609,8 @@ body {
             }
           }
           label {
-            width: 6.3vw;
-            height: 6.3vw;
-            margin-top: 5vh;
+            width: 9vw;
+            margin: 5%;
           }
         }
       }
