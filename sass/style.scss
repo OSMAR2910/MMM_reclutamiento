@@ -770,6 +770,7 @@ body {
                 display: flex;
                 padding: 0;
                 margin: 0;
+                border: none;
                 margin-bottom: 1.5vh;
                 justify-content: start;
                 align-items: center;
@@ -783,8 +784,6 @@ body {
                   border-radius: .5vw;
                   justify-content: center;
                   border: none;
-                  cursor: pointer;
-                  outline: none;
                   overflow-y: hidden;
                   align-items: center;
                   .btn-descargar-pdf {
@@ -799,11 +798,11 @@ body {
                       }
                   }
                   .vacante_info {
-                    width: 85%;
+                    width: 80%;
                     height: 100%;
                     display: flex;
                     display: grid;
-                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-columns: repeat(2, 1fr);
                     justify-content: space-evenly;
                     align-items: center;
                     flex-direction: column;
@@ -825,6 +824,7 @@ body {
                     width: 15%;
                     height: 100%;
                     display: grid;
+                    border: none;
                     grid-template-columns: repeat(2, 1fr);
                     justify-items: center;
                     align-content: center;
@@ -861,6 +861,7 @@ body {
                     height: auto;
                     .vacante_info {
                       width: 95%;
+                      grid-template-columns: repeat(3, 1fr);
                     }
                     .btn-container {
                       display: none;
@@ -952,7 +953,7 @@ body {
                     }
                 }
                 .vacante_info {
-                  width: 83%;
+                  width: 87%;
                   text-align: center;
                   height: 100%;
                   display: grid;
@@ -968,16 +969,16 @@ body {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.4vh;
+                    font-size: 0.6vw;
                     color: $Resalte;
                     strong {
-                      font-size: 1.5vh;
+                      font-size: 0.7vw;
                       color: $Resalte;
                     }
                   }
                 }
                 .btn-container {
-                  width: 10%;
+                  width: 12%;
                   height: 100%;
                   display: grid;
                   grid-template-columns: repeat(2, 1fr);
@@ -1078,10 +1079,10 @@ body {
                 background-color: $Texto;
                 border-radius: 0.6rem;
                 justify-content: center;
+                align-items: center;
                 border: none;
                 cursor: pointer;
                 outline: none;
-                align-items: center;
                 .btn-descargar-pdf {
                     border-radius: 5rem;
                     width: 1%;
@@ -1105,10 +1106,10 @@ body {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.4vh;
+                    font-size: .6vw;
                     color: $Resalte;
                     strong {
-                      font-size: 1.5vh;
+                      font-size: .7vw;
                       color: $Resalte;
                     }
                   }
