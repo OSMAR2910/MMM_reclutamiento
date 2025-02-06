@@ -227,7 +227,7 @@ function mostrarDatos() {
         listItem.classList.add(
           esAsistieron
             ? "vacante_asistieron"
-            : data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t == "no"
+            : data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t == "No"
             ? "vacante_itemgreen"
             : "vacante_itemred"
         );
@@ -306,7 +306,7 @@ function mostrarDatos() {
         if (esAsistieron) {
           ulGreen.appendChild(listItem);
         } else {
-          data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t == "no"
+          data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t == "No"
             ? ulGreen.appendChild(listItem)
             : ulRed.appendChild(listItem);
         }
@@ -372,8 +372,6 @@ function mostrarDatos() {
       { label: "Sexo", value: data.sexo || "No disponible" },
       { label: "Nacionalidad", value: data.nacion || "No disponible" },
       { label: "Estado Civil", value: data.e_c || "No disponible" },
-      { label: "Peso", value: data.peso || "No disponible" },
-      { label: "Altura", value: data.altura || "No disponible" },
       { label: "Documentacion", value: data.docu || "No disponible" },
       { label: "Horario", value: data.horario || "No disponible" },
       { label: "Empleo", value: data.empleo || "No disponible" },

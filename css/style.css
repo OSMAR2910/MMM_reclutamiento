@@ -639,7 +639,7 @@ body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus
 body main #pag1 article .cont_form form .cont_inputform .input-form label {
   scale: 0;
   opacity: 0;
-  top: 21vh;
+  top: 20vh;
   left: 14vw;
   width: 20vw;
   height: 4vw;
@@ -1218,7 +1218,7 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .va
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  gap: 5%;
+  gap: 3%;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span {
   width: 100%;
