@@ -7,14 +7,13 @@ window.onload = () => {
     elements.home.classList.add("agregar_dis");
     elements.chatbot.classList.add("agregar_dis");
 };
-function updateViewportDimensions() {
-  const vh = window.innerHeight * 0.01; // 1% del viewport height
+function updateChatbotDimensions() {
+  const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Actualizar las dimensiones al cargar la página y cuando cambie el tamaño
-window.addEventListener('resize', updateViewportDimensions);
-window.addEventListener('load', updateViewportDimensions);
+window.addEventListener('resize', updateChatbotDimensions);
+window.addEventListener('load', updateChatbotDimensions);
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
