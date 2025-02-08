@@ -340,7 +340,7 @@ body canvas {
 }
 
 .max_chat {
-  position: fixed;
+  position: absolute;
   width: 20vw;
   height: 70vh;
   bottom: 0;
