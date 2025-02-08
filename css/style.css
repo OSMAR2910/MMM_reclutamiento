@@ -668,12 +668,7 @@ body canvas {
   width: 0px;
 }
 
-:root {
-  --vh: 100vh; /* Valor predeterminado */
-}
-
 body {
-  height: calc(var(--vh, 1vh) * 100);
   background-color: #ec6223;
   overflow: hidden;
   display: flex;
