@@ -8,6 +8,29 @@ window.onload = () => {
     elements.chatbot.classList.add("agregar_dis");
 };
 
+// Obtener el ancho y alto del viewport
+function getViewportSize() {
+  const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  console.log(`Ancho del viewport: ${viewportWidth}px`);
+  console.log(`Alto del viewport: ${viewportHeight}px`);
+
+  return { width: viewportWidth, height: viewportHeight };
+}
+
+// Llamar a la función cuando se carga la página
+window.addEventListener('load', () => {
+  const size = getViewportSize();
+  console.log('Dimensiones iniciales:', size);
+});
+
+// Actualizar las dimensiones si el usuario cambia el tamaño de la ventana
+window.addEventListener('resize', () => {
+  const size = getViewportSize();
+  console.log('Dimensiones actualizadas:', size);
+});
+
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
