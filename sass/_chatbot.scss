@@ -67,7 +67,8 @@
   }
 }
 .max_chat {
-  position: absolute;
+  height: calc(var(--vh, 1vh) * 100); /* Altura del viewport */
+  position: fixed;
   width: 20vw;
   height: 70vh;
   bottom: 0;
@@ -334,7 +335,10 @@
     width: 100vw;
     height: 100vh;
     margin: 0;
-    border-radius: 0;
+    border-radius: 0; /* Sin bordes redondeados */
+    position: fixed;
+    top: 0;
+    bottom: 0;
     .chat_header {
       height: 8%;
       border-radius: 6vw;

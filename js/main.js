@@ -7,42 +7,14 @@ window.onload = () => {
     elements.home.classList.add("agregar_dis");
     elements.chatbot.classList.add("agregar_dis");
 };
-
-function getScreenDimensions() {
-  const screenWidth = window.screen.width;
-  const screenHeight = window.screen.height;
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
-  console.log("Ancho de pantalla:", screenWidth);
-  console.log("Alto de pantalla:", screenHeight);
-  console.log("Ancho de ventana visible:", viewportWidth);
-  console.log("Alto de ventana visible:", viewportHeight);
+function updateViewportDimensions() {
+  const vh = window.innerHeight * 0.01; // 1% del viewport height
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Llamar a la función cuando la página cargue y cuando cambie el tamaño
-window.addEventListener("resize", getScreenDimensions);
-window.addEventListener("load", getScreenDimensions);
-
-window.addEventListener("resize", () => {
-  const newHeight = window.innerHeight;
-  console.log("Nueva altura de la ventana:", newHeight);
-
-  // Ajusta tu diseño si es necesario
-  document.documentElement.style.setProperty('--vh', `${newHeight}px`);
-});
-
-function toggleFullScreen() {
-  if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-  } else {
-      document.exitFullscreen();
-  }
-}
-
-// Llamar a la función al cargar la página
-window.addEventListener("load", toggleFullScreen);
-
+// Actualizar las dimensiones al cargar la página y cuando cambie el tamaño
+window.addEventListener('resize', updateViewportDimensions);
+window.addEventListener('load', updateViewportDimensions);
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
