@@ -22,7 +22,12 @@
   opacity: 50%;
   scale: 0.9;
 }
+:root {
+  --vh: 100vh; /* Valor predeterminado */
+}
+
 body {
+  height: calc(var(--vh, 1vh) * 100);
   background-color: $Fondo;
   overflow: hidden;
   display: flex;

@@ -8,28 +8,40 @@ window.onload = () => {
     elements.chatbot.classList.add("agregar_dis");
 };
 
-// Obtener el ancho y alto del viewport
-function getViewportSize() {
-  const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+function getScreenDimensions() {
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
 
-  console.log(`Ancho del viewport: ${viewportWidth}px`);
-  console.log(`Alto del viewport: ${viewportHeight}px`);
-
-  return { width: viewportWidth, height: viewportHeight };
+  console.log("Ancho de pantalla:", screenWidth);
+  console.log("Alto de pantalla:", screenHeight);
+  console.log("Ancho de ventana visible:", viewportWidth);
+  console.log("Alto de ventana visible:", viewportHeight);
 }
 
-// Llamar a la función cuando se carga la página
-window.addEventListener('load', () => {
-  const size = getViewportSize();
-  console.log('Dimensiones iniciales:', size);
+// Llamar a la función cuando la página cargue y cuando cambie el tamaño
+window.addEventListener("resize", getScreenDimensions);
+window.addEventListener("load", getScreenDimensions);
+
+window.addEventListener("resize", () => {
+  const newHeight = window.innerHeight;
+  console.log("Nueva altura de la ventana:", newHeight);
+
+  // Ajusta tu diseño si es necesario
+  document.documentElement.style.setProperty('--vh', `${newHeight}px`);
 });
 
-// Actualizar las dimensiones si el usuario cambia el tamaño de la ventana
-window.addEventListener('resize', () => {
-  const size = getViewportSize();
-  console.log('Dimensiones actualizadas:', size);
-});
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+  } else {
+      document.exitFullscreen();
+  }
+}
+
+// Llamar a la función al cargar la página
+window.addEventListener("load", toggleFullScreen);
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;

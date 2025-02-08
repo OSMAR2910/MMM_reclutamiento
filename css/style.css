@@ -605,8 +605,6 @@ body canvas {
     width: 100vw;
     height: 100vh;
     margin: 0;
-    top: 0;
-    bottom: 0;
     border-radius: 0;
   }
   .max_chat .chat_header {
@@ -670,7 +668,12 @@ body canvas {
   width: 0px;
 }
 
+:root {
+  --vh: 100vh; /* Valor predeterminado */
+}
+
 body {
+  height: calc(var(--vh, 1vh) * 100);
   background-color: #ec6223;
   overflow: hidden;
   display: flex;
