@@ -3,6 +3,7 @@ import { saveUnansweredMessage } from "./database.js";
 let intents = [];
 let isWelcomeMessageSent = false;
 
+// Cargar intents desde el JSON
 async function loadIntents() {
   try {
     const response = await fetch("./json/intents.json");
@@ -12,38 +13,63 @@ async function loadIntents() {
     console.log("✅ Intents cargados correctamente:", intents);
   } catch (error) {
     console.error("❌ Error cargando intents.json:", error);
-    alert(`Error cargando intents.json: ${error.message}. Verifica la consola.`);
   }
 }
 
+// Normalizar texto (eliminar tildes y convertir a minúsculas)
 function normalizeText(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-function getResponse(message) {
+// Encontrar la mejor intención basada en palabras clave
+function getBestIntent(message) {
   message = normalizeText(message);
+  let bestMatch = null;
+  let bestScore = 0;
 
+  for (const intent of intents) {
+    let score = 0;
+
+    for (const keyword of intent.keywords) {
+      const normalizedKeyword = normalizeText(keyword);
+      if (message.includes(normalizedKeyword)) {
+        score++; // Aumentamos el puntaje si hay coincidencia
+      }
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = intent;
+    }
+  }
+
+  // Si no hay una coincidencia fuerte, devuelve null
+  return bestScore > 0 ? bestMatch : null;
+}
+
+// Obtener la respuesta basada en la mejor intención detectada
+function getResponse(message) {
   if (!intents.length) {
     console.error("⚠️ Intents no están cargados.");
     return "Lo siento, no puedo responder en este momento.";
   }
 
-  for (const intent of intents) {
-    console.log(`🔍 Intento detectar coincidencia en: ${intent.tag}`);
-    if (intent.keywords.some(keyword => message.includes(normalizeText(keyword)))) {
-      console.log(`✅ Coincidencia en '${intent.tag}'`);
-      return intent.responses[Math.floor(Math.random() * intent.responses.length)];
-    }
+  const bestIntent = getBestIntent(message);
+
+  if (bestIntent) {
+    console.log(`✅ Coincidencia encontrada: '${bestIntent.tag}'`);
+    return bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
   }
 
-  console.log("🚫 Ninguna coincidencia encontrada.");
+  console.log("🚫 No encontré una respuesta adecuada.");
   saveUnansweredMessage(message);
-  return "Mmm, no sé a qué te refieres. ¿Podrías intentarlo de otra manera?";
+  return "No estoy seguro de lo que quieres decir. ¿Podrías explicarlo de otra manera?";
 }
 
+// Enviar mensajes al chat
 function sendMessage(sender, message, isBot = false) {
   const chatBox = document.getElementById("chat_box");
-  const messageElement = document.createElement("strong");
+  const messageElement = document.createElement("div");
   messageElement.className = isBot ? "bot_message" : "user_message";
 
   if (isBot) {
@@ -56,6 +82,7 @@ function sendMessage(sender, message, isBot = false) {
   scrollToBottom();
 }
 
+// Mostrar indicador de escritura
 function showTypingIndicator() {
   const chatBox = document.getElementById("chat_box");
   const typingIndicator = document.createElement("p");
@@ -66,22 +93,25 @@ function showTypingIndicator() {
   return typingIndicator;
 }
 
+// Enviar mensaje de bienvenida solo una vez
 function sendWelcomeMessage() {
   if (isWelcomeMessageSent) return;
   isWelcomeMessageSent = true;
   showTypingIndicator();
-  
+
   setTimeout(() => {
     document.querySelector(".typing")?.remove();
     sendMessage("bot", "¡Hola! ¿En qué puedo ayudarte? 😃", true);
   }, 2000);
 }
 
+// Mantener el chat en la parte inferior
 function scrollToBottom() {
   const chatBox = document.getElementById("chat_box");
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+// Manejo del botón de minimizar el chat
 document.getElementById("chat_min").addEventListener("click", () => {
   const chatBox = document.getElementById("chatbot");
   chatBox.classList.toggle("max_chat");
@@ -92,6 +122,7 @@ document.getElementById("chat_min").addEventListener("click", () => {
   }
 });
 
+// Evento de carga del chat
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("🚀 Cargando intents...");
   await loadIntents();

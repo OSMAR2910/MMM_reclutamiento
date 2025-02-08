@@ -1,6 +1,39 @@
 {
     "intents": [
         {
+            "tag": "Groserias",
+            "keywords": [
+                "caca",
+                "puto",
+                "mierda",
+                "verga",
+                "pene",
+                "popo",
+                "fuck",
+                "culo",
+                "tonto",
+                "bruto",
+                "idiota",
+                "cállate",
+                "estúpido",
+                "imbécil",
+                "cretino",
+                "tarado",
+                "inútil",
+                "fracasado",
+                "patético",
+                "lárgate",
+                "pinche",
+                "cagason"
+            ],
+            "responses": [
+                "¡Hola! Solo para que sepas, como soy un pavo muy elegante, no uso groserías. Mi vocabulario es tan limpio como mis plumas antes de navidad. 🦃✨ Así que si algo suena raro, ¡es solo mi estilo de pavo refinado!", 
+                "¡Uy, uy, uy! Como buen pavo educado, detecto un poco de lenguaje picante. Tranquilo, aquí no hay pavos enfadados, solo plumas suaves y buenas vibras. 😊", "¡Hola! Parece que estás usando palabras fuertes. Como soy un pavo muy elegante 🦃, prefiero mantener las cosas positivas. ¿Te gustaría intentarlo de nuevo con un tono más ligero? ¡Estoy aquí para ayudarte!",
+                "¡Vaya! Veo que algo te tiene molesto. Tranquilo, todos tenemos días difíciles. Si quieres, podemos hablarlo con calma y encontrar una solución.",
+                "¡Uy, uy, uy! Creo que alguien necesita un descanso. Como buen pavo zen 🦃🧘‍♂️, te invito a relajarte y probar con palabras más amables. ¡Las plumas suaves siempre ganan!"
+            ]
+        },
+        {
             "tag": "informacion_general",
             "keywords": [
                 "información",
@@ -9,7 +42,8 @@
                 "informacion",
                 "detalle",
                 "ayuda",
-                "consulta"
+                "consulta",
+                "trabajar"
             ],
             "responses": [
                 "Claro, ¿qué clase de información necesitas? 😊 Puestos de trabajo, actividades, horarios, salario, sucursales, etc. ¿Qué te interesa específicamente?"
@@ -28,10 +62,12 @@
                 "horas",
                 "abrir",
                 "cerrar",
-                "turnos"
+                "turnos",
+                "descanso",
+                "descansare"
             ],
             "responses": [
-                "Trabajamos 6 días a la semana con un día de descanso. Horarios rotativos de 8 horas entre las 10:00 a.m. y las 11:00 p.m (En Hipódromo la hora de cierre es a las 12:00 a.m). Los horarios se asignan semanalmente según las necesidades operativas."
+                "⏰ Trabajamos 6 días a la semana con un día de descanso. Horarios rotativos de 8 horas entre las 10:00 a.m. y las 11:00 p.m (En Hipódromo la hora de cierre es a las 12:00 a.m). Los horarios se asignan semanalmente según las necesidades operativas, tu dia de descanso lo asignara su gerente. 😉"
             ]
         },
         {
@@ -47,7 +83,7 @@
                 "labores"
             ],
             "responses": [
-                "Claro, ¿sobre qué puesto te gustaría saber más? 😊 ¿Cocinero, mostrador o reparto?"
+                "Claro, ¿sobre qué puesto te gustaría saber más? 😊 ¿Cocinero 🍳, mostrador 👥 o reparto 🚛?"
             ]
         },
         {
@@ -61,7 +97,7 @@
                 "ventas"
             ],
             "responses": [
-                "Te platico un poco sobre las actividades del puesto de atención al cliente: Tomar pedidos vía telefónica, atender clientes en mostrador, gestionar pedidos de Uber Eats o Didi Food, manejo de efectivo, control de inventario de sodas y aderezos, abastecimiento de materiales como kits de tenedores y servilletas, y realizar venta sugerida (promoción de complementos o platillos adicionales). Además, todos los puestos apoyan en actividades generales como limpieza, volanteo y flechado.\n\nBeneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\nNota: Este salario ya incluye deducciones de impuestos."
+                "Te platico un poco sobre las actividades del puesto de atención al cliente: Tomar pedidos vía telefónica 📞, atender clientes en mostrador, gestionar pedidos de Uber Eats o Didi Food 📱, manejo de efectivo 💰, control de inventario de sodas y aderezos, abastecimiento de materiales como kits de tenedores y servilletas, y realizar venta sugerida (promoción de complementos o platillos adicionales). Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos."
             ]
         },
         {
@@ -77,7 +113,7 @@
                 "comida"
             ],
             "responses": [
-                "Te platico un poco sobre las actividades del puesto de preparación de alimentos: Corte de vegetales, abastecimiento de mesa fría, elaboración de productos (estirar masa, añadir ingredientes, hornear, empaquetar), acomodo de cuarto frío, rallar queso, etc. Nota: El área de cocina es caliente debido a la proximidad del horno. Además, todos los puestos apoyan en actividades generales como limpieza, volanteo y flechado.\n\nBeneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\nNota: Este salario ya incluye deducciones de impuestos."
+                "Te platico un poco sobre las actividades del puesto de preparación de alimentos: Corte de vegetales 🥕, abastecimiento de mesa fría, elaboración de productos (estirar masa, añadir ingredientes, hornear 🍕, empaquetar), acomodo de cuarto frío, rallar queso 🧀, etc. Nota: El área de cocina es caliente debido a la proximidad del horno 🔥. Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍽️.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos."
             ]
         },
         {
@@ -87,10 +123,11 @@
                 "motociclista",
                 "entrega",
                 "domicilio",
-                "envío"
+                "envío",
+                "reparto"
             ],
             "responses": [
-                "Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza y organización.\n\nBeneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\nNota: Este salario ya incluye deducciones de impuestos."
+                "🚚 Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta 🏍️, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza 🧹 y organización.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍕.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos."
             ]
         },
         {
@@ -106,7 +143,7 @@
                 "tramite"
             ],
             "responses": [
-                "• Disponibilidad de horario.\n• Facilidad de transporte.\n• Documentación requerida: Acta de nacimiento, comprobante de estudios, comprobante de domicilio, INE, RFC (constancia de situación fiscal actualizada 2025), NSS, CURP, Licencia de moto vigente (en caso de ser repartidor).\n• Disposición para actividades de limpieza y volanteo.\n• Buena imagen personal (higiene, uñas cortas, sin esmalte ni uñas acrílicas, sin barba en áreas de cocina o atención al cliente, cabello corto o recogido).\n• Antidoping de orina (sin costo para ti).\n• Disposición para trabajar días festivos si la operación lo requiere.\n• En el caso de preparación y atención al cliente, disposición para apoyar en otras áreas si es necesario.\n• Uniforme: Pantalón tipo Dickies o similar en color azul marino, zapatos negros cerrados. Nota: El seguimiento es en linie, nosotros lo contactaremos a la entrega de documentos."
+                "📋 • Disponibilidad de horario.\n• Facilidad de transporte 🚗.\n• Documentación requerida: Acta de nacimiento, comprobante de estudios, comprobante de domicilio, INE, RFC (constancia de situación fiscal actualizada 2025), NSS, CURP, Licencia de moto vigente (en caso de ser repartidor).\n• Disposición para actividades de limpieza 🧹 y volanteo.\n• Buena imagen personal (higiene, uñas cortas, sin esmalte ni uñas acrílicas, sin barba en áreas de cocina o atención al cliente, cabello corto o recogido).\n• Antidoping de orina (sin costo para ti) 💉.\n• Disposición para trabajar días festivos si la operación lo requiere 🎆.\n• En el caso de preparación y atención al cliente, disposición para apoyar en otras áreas si es necesario.\n• Uniforme: Pantalón tipo Dickies o similar en color azul marino, zapatos negros cerrados. Nota: El seguimiento es en línea, nosotros lo contactaremos a la entrega de documentos."
             ]
         },
         {
@@ -124,7 +161,7 @@
                 "compensación"
             ],
             "responses": [
-                "Claro, ¿sobre qué puesto te gustaría saber? 😊 ¿Cocinero, mostrador o reparto?"
+                "😊 Claro, ¿sobre qué puesto te gustaría saber? Cocinero 🍳, mostrador 👥 o reparto 🚛?"
             ]
         },
         {
@@ -139,7 +176,18 @@
                 "reclutamiento"
             ],
             "responses": [
-                "El proceso de contratación y capacitación se lleva a cabo en nuestras oficinas en Siglo 21, Tijuana. El primer día es de 10:00 a.m. a 6:00 p.m. y se considera laborado. Trae copias de tus documentos. La duración total del proceso puede variar entre 1 y 3 días, dependiendo de la disponibilidad de los candidatos y la complejidad de los trámites."
+                "📝 El proceso de contratación y capacitación se lleva a cabo en nuestras oficinas en Siglo 21, Tijuana. El primer día es de 10:00 a.m. a 6:00 p.m. y se considera laborado ⏰. Trae copias de tus documentos. La duración total del proceso puede variar entre 1 y 3 días, dependiendo de la disponibilidad de los candidatos y la complejidad de los trámites."
+            ]
+        },
+        {
+            "tag": "formulario",
+            "keywords": [
+                "formulario",
+                "contratacion",
+                "cv"
+            ],
+            "responses": [
+                "📋 Para llenar el formulario, presiona al usuario que está en medio de la pantalla, después solo llena el formulario siguiendo las instrucciones ✍️."
             ]
         },
         {
@@ -163,7 +211,7 @@
                 "pans"
             ],
             "responses": [
-                "El uniforme consiste en pantalón azul marino (tipo Dickies), zapatos negros cerrados y playera blanca cuello redondo. Si no tienes uniforme completo, puedes usar mezclilla azul marino y tenis oscuros temporalmente. No se permiten prendas con logos de marcas, joyería visible ni piercings, los tatuajes se aceptan fuera de la zona facial."
+                "👕👖 El uniforme consiste en pantalón azul marino (tipo Dickies), zapatos negros cerrados 👞 y playera blanca cuello redondo. Si no tienes uniforme completo, puedes usar mezclilla azul marino y tenis oscuros temporalmente. No se permiten prendas con logos de marcas, joyería visible ni piercings, los tatuajes se aceptan fuera de la zona facial."
             ]
         },
         {
@@ -173,7 +221,7 @@
                 "contratación"
             ],
             "responses": [
-                "Nuestra oficina está ubicada en Siglo 21, Tijuana. Entre la sucursal y el Oxxo hay una puerta gris. Toca el timbre, jala la puerta y sube las escaleras. Aquí puedes llevar tus documentos físicos o digitales para iniciar el proceso."
+                "📍 Nuestra oficina está ubicada en Siglo 21, Tijuana. Entre la sucursal y el Oxxo hay una puerta gris. Toca el timbre 🔔, jala la puerta y sube las escaleras. Aquí puedes llevar tus documentos físicos o digitales para iniciar el proceso."
             ]
         },
         {
@@ -187,7 +235,7 @@
                 "recibir sueldo"
             ],
             "responses": [
-                "El pago se realiza a través de Banorte. Es importante tener buen historial en ese banco o no tener cuenta previa, ya que nosotros abrimos la cuenta de nómina."
+                "💳 El pago se realiza a través de Banorte. Es importante tener buen historial en ese banco o no tener cuenta previa, ya que nosotros abrimos la cuenta de nómina."
             ]
         },
         {
@@ -203,7 +251,7 @@
                 "conflicto de interés"
             ],
             "responses": [
-                "No se aceptan parejas o familiares directos trabajando en la misma sucursal para evitar conflictos de interés. Sin embargo, pueden trabajar en diferentes sucursales si cumplen con los requisitos."
+                "👨‍👩‍👧‍👦 No se aceptan parejas o familiares directos trabajando en la misma sucursal para evitar conflictos de interés. Sin embargo, pueden trabajar en diferentes sucursales si cumplen con los requisitos."
             ]
         },
         {
@@ -214,10 +262,16 @@
                 "prueba",
                 "toxicológica",
                 "examen",
-                "drogas"
+                "drogas",
+                "fumo",
+                "fumar",
+                "funmar",
+                "fumando",
+                "marijuana",
+                "marihuana"
             ],
             "responses": [
-                "Sí, realizamos una prueba de antidoping que solo permite marihuana, alcohol y tabaco como parte del proceso de contratación. Si no pasas la prueba, lamentablemente no podrás continuar con el proceso. Es importante mantener una conducta responsable para cumplir con este requisito."
+                "💉 Sí, realizamos una prueba de antidoping que solo permite marihuana 🌿, alcohol 🍷 y tabaco 🚬 como parte del proceso de contratación. Si no pasas la prueba, lamentablemente no podrás continuar con el proceso. Es importante mantener una conducta responsable para cumplir con este requisito."
             ]
         },
         {
@@ -229,112 +283,111 @@
                 "incompleto"
             ],
             "responses": [
-                "Si no tienes RFC, deberás tramitarlo. Si está vencido o desactualizado, podemos ayudarte en <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> para tramitarlo durante el proceso de contratación. Sin embargo, es importante que traigas los demás documentos requeridos como INE, CURP y acta de nacimiento para avanzar."
+                "📋 Si no tienes RFC, deberás tramitarlo. Si está vencido o desactualizado, podemos ayudarte en <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> para tramitarlo durante el proceso de contratación. Sin embargo, es importante que traigas los demás documentos requeridos como INE, CURP y acta de nacimiento para avanzar."
             ]
-        },
-        {
+        },{
             "tag": "Sucursal_Playas",
             "keywords": ["playas", "sucursal playas", "dirección playas"],
             "responses": [
-                "La sucursal Playas está ubicada aquí: <a href='https://maps.app.goo.gl/eTDXQDNb4A1nZqrk7' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Playas está ubicada aquí: <a href='https://maps.app.goo.gl/eTDXQDNb4A1nZqrk7' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Altamira",
             "keywords": ["altamira", "sucursal altamira", "dirección altamira"],
             "responses": [
-                "La sucursal Altamira está ubicada aquí: <a href='https://maps.app.goo.gl/wQdM2VmZ3JrGYijb8' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Altamira está ubicada aquí: <a href='https://maps.app.goo.gl/wQdM2VmZ3JrGYijb8' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Cacho",
             "keywords": ["cacho", "sucursal cacho", "dirección cacho"],
             "responses": [
-                "La sucursal Cacho está ubicada aquí: <a href='https://maps.app.goo.gl/NLTZUCJzB6q7Newc9' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Cacho está ubicada aquí: <a href='https://maps.app.goo.gl/NLTZUCJzB6q7Newc9' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Libertad",
             "keywords": ["libertad", "sucursal libertad", "dirección libertad"],
             "responses": [
-                "La sucursal Libertad está ubicada aquí: <a href='https://maps.app.goo.gl/PAALACRAG9fv6ewv5' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Libertad está ubicada aquí: <a href='https://maps.app.goo.gl/PAALACRAG9fv6ewv5' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Otay",
             "keywords": ["otay", "sucursal otay", "dirección otay"],
             "responses": [
-                "La sucursal Otay está ubicada aquí: <a href='https://maps.app.goo.gl/fjPvDvUpvfAV26MM7' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Otay está ubicada aquí: <a href='https://maps.app.goo.gl/fjPvDvUpvfAV26MM7' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Huertas",
             "keywords": ["huertas", "sucursal huertas", "dirección huertas"],
             "responses": [
-                "La sucursal Huertas está ubicada aquí: <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Huertas está ubicada aquí: <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Villa_Fontana",
             "keywords": ["villa fontana", "villa", "sucursal villa fontana", "dirección villa fontana"],
             "responses": [
-                "La sucursal Villa Fontana está ubicada aquí: <a href='https://maps.app.goo.gl/wsZoHs5H67dYLXxm6' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Villa Fontana está ubicada aquí: <a href='https://maps.app.goo.gl/wsZoHs5H67dYLXxm6' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Santa_Fe",
             "keywords": ["santa fe", "sucursal santa fe", "dirección santa fe"],
             "responses": [
-                "La sucursal Santa Fe está ubicada aquí: <a href='https://maps.app.goo.gl/PLAPKYWeNXotE5sq6' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Santa Fe está ubicada aquí: <a href='https://maps.app.goo.gl/PLAPKYWeNXotE5sq6' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Florido",
             "keywords": ["florido", "sucursal florido", "dirección florido"],
             "responses": [
-                "La sucursal Florido está ubicada aquí: <a href='https://maps.app.goo.gl/TcWedHPrVVh1w6Mx6' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Florido está ubicada aquí: <a href='https://maps.app.goo.gl/TcWedHPrVVh1w6Mx6' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Hipódromo",
             "keywords": ["hipódromo", "sucursal hipódromo", "dirección hipódromo"],
             "responses": [
-                "La sucursal Hipódromo está ubicada aquí: <a href='https://maps.app.goo.gl/PTKfJ4dAnYyAD59C6' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Hipódromo está ubicada aquí: <a href='https://maps.app.goo.gl/PTKfJ4dAnYyAD59C6' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Monarca",
             "keywords": ["monarca", "sucursal monarca", "dirección monarca"],
             "responses": [
-                "La sucursal Monarca está ubicada aquí: <a href='https://maps.app.goo.gl/VLMFKAr7akesUXk79' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Monarca está ubicada aquí: <a href='https://maps.app.goo.gl/VLMFKAr7akesUXk79' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Rosarito",
             "keywords": ["rosarito", "sucursal rosarito", "dirección rosarito"],
             "responses": [
-                "La sucursal Rosarito está ubicada aquí: <a href='https://maps.app.goo.gl/R7XGfo7mQVRbCmrp7' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Rosarito está ubicada aquí: <a href='https://maps.app.goo.gl/R7XGfo7mQVRbCmrp7' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Tecate",
             "keywords": ["tecate", "sucursal tecate", "dirección tecate"],
             "responses": [
-                "La sucursal Tecate está ubicada aquí: <a href='https://maps.app.goo.gl/42JBAaAKwazY9XEn7' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Tecate está ubicada aquí: <a href='https://maps.app.goo.gl/42JBAaAKwazY9XEn7' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_Sierra",
             "keywords": ["sierra", "sucursal sierra", "dirección sierra"],
             "responses": [
-                "La sucursal Sierra está ubicada aquí: <a href='https://maps.app.goo.gl/dXG71SnrcBxpe27J6' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal Sierra está ubicada aquí: <a href='https://maps.app.goo.gl/dXG71SnrcBxpe27J6' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
             "tag": "Sucursal_San_Ysidro",
             "keywords": ["san ysidro", "sucursal san ysidro", "dirección san ysidro"],
             "responses": [
-                "La sucursal San Ysidro está ubicada aquí: <a href='https://maps.app.goo.gl/LsXwvqUYbw39hkWz9' target='_blank'>Ubicación 📍</a>"
+                "📍 La sucursal San Ysidro está ubicada aquí: <a href='https://maps.app.goo.gl/LsXwvqUYbw39hkWz9' target='_blank'>Ver ubicación</a> 📍"
             ]
         },
         {
@@ -349,7 +402,7 @@
                 "nombres de sucursales"
             ],
             "responses": [
-                "Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro, Dime la sucursal para darte su ubicación. 😊"
+                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Dime la sucursal para darte su ubicación. 😊"
             ]
         }
     ]
