@@ -243,8 +243,8 @@ body .alertasgame .alertagame span img {
 }
 body canvas {
   border-radius: 0.5vw;
-  border: 0.3vw solid #f2f0ed;
-  box-shadow: 0px 0px 20px 0px #f2f0ed;
+  border: 0.3vw solid #ffffff;
+  box-shadow: 0px 0px 20px 0px #ffffff;
   display: flex;
   padding: 0;
   margin: auto;
@@ -267,6 +267,347 @@ body canvas {
   }
 }
 
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+.chatbot {
+  position: fixed;
+  animation: backInRight 1.5s ease-in-out forwards;
+  bottom: 0;
+  right: 0;
+  margin: 2%;
+  display: none;
+  z-index: 9999;
+  width: 4vw;
+  aspect-ratio: 2/2;
+  height: auto;
+  border-radius: 100%;
+  overflow-y: hidden;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  background-color: #ec6223;
+}
+.chatbot .chat_header {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #ec6223;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chatbot .chat_header .chat_icon {
+  display: none;
+}
+.chatbot .chat_header .chat_present {
+  display: none;
+}
+.chatbot .chat_header .chat_min {
+  width: 100%;
+  height: 100%;
+  margin: none;
+  background-color: #ec6223;
+  aspect-ratio: 2/2;
+  background-image: url("../img/Logos/interfaces/icons/charla.png");
+  background-size: 45%;
+  background-position: center;
+  border: none;
+  background-repeat: no-repeat;
+}
+.chatbot .chat_header .chat_min:hover {
+  background-color: #ec6223;
+  box-shadow: 0px 0px 10px 5px #ec6223;
+}
+.chatbot .chat_box {
+  display: none;
+}
+.chatbot hr {
+  display: none;
+}
+.chatbot .chat_form {
+  display: none;
+}
+
+.max_chat {
+  position: fixed;
+  width: 20vw;
+  height: 70vh;
+  bottom: 0;
+  right: 0;
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border-radius: 1.5vw;
+  overflow-y: scroll;
+  z-index: 9999;
+  background-color: #ffffff;
+}
+.max_chat .chat_header {
+  width: 90%;
+  height: 10%;
+  border-radius: 1.2vw;
+  display: flex;
+  margin-top: 6%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #174891;
+  box-shadow: 0px 0px 10px 5px #174891;
+}
+.max_chat .chat_header .chat_icon {
+  width: 12%;
+  aspect-ratio: 2/2;
+  display: flex;
+  margin-left: 4%;
+  background-color: #1b3c59;
+  box-shadow: 0px 0px 10px 5px #1b3c59;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
+  background-size: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.max_chat .chat_header .chat_present {
+  display: flex;
+}
+.max_chat .chat_header .chat_present h3 {
+  width: 100%;
+  height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8vw;
+  font-weight: 100;
+  color: #ffffff;
+  font-family: "Nunito";
+}
+.max_chat .chat_header .chat_min {
+  width: 6%;
+  height: auto;
+  margin-right: 8%;
+  aspect-ratio: 2/2;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  background-image: url("../img/Logos/interfaces/icons/flecha-min.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  padding: 5%;
+}
+.max_chat .chat_header .chat_min:hover {
+  background-color: #1b3c59;
+  box-shadow: 0px 0px 10px 5px #1b3c59;
+}
+.max_chat .chat_box {
+  width: 95%;
+  height: 75%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  padding: 2%;
+  justify-content: start;
+  flex-direction: column;
+  color: #174891;
+  font-family: "Nunito";
+  gap: 1vh;
+}
+.max_chat .chat_box .bot_message {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 0.5vh;
+}
+.max_chat .chat_box .bot_message span {
+  width: auto;
+  font-size: 0.5vw;
+  margin-left: 1vw;
+}
+.max_chat .chat_box .bot_message p {
+  width: auto;
+  text-align: center;
+  margin: 0;
+  max-width: 70%;
+  padding: 0;
+  border: 2px solid #174891;
+  padding: 3%;
+  font-weight: 170;
+  font-size: 0.7vw;
+  border-radius: 1vw;
+}
+.max_chat .chat_box .bot_message p a {
+  text-decoration: none;
+  color: #ec6223;
+}
+.max_chat .chat_box .user_message {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+}
+.max_chat .chat_box .user_message p {
+  text-align: center;
+  margin: none;
+  padding: none;
+  max-width: 70%;
+  border: 2px solid #174891;
+  padding: 3%;
+  font-weight: 170;
+  font-size: 0.7vw;
+  border-radius: 1vw;
+}
+.max_chat hr {
+  display: block;
+  width: 90%;
+  height: 1px;
+  border-radius: 1vw;
+  background-color: #174891;
+  color: #1b3c59;
+  padding: 0;
+  margin: 0;
+}
+.max_chat .chat_form {
+  width: 90%;
+  height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.max_chat .chat_form .chat_input {
+  width: 80%;
+  height: 90%;
+  color: #1b3c59;
+  font-family: "Nunito";
+  border: none;
+}
+.max_chat .chat_form .chat_input::-moz-placeholder {
+  color: #1b3c59;
+}
+.max_chat .chat_form .chat_input::placeholder {
+  color: #1b3c59;
+}
+.max_chat .chat_form .chat_input:focus {
+  border: none;
+  outline: none;
+  color: #1b3c59;
+}
+.max_chat .chat_form .chat_submit {
+  width: 7%;
+  aspect-ratio: 2/2;
+  display: none;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f3061;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 1.5vw;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.max_chat .chat_form .chat_submit img {
+  height: 100%;
+}
+
+.agregar_dis {
+  display: flex;
+}
+
+@media screen and (max-width: 900px) {
+  .chatbot {
+    width: 10vw;
+  }
+  .max_chat {
+    width: 70vw;
+    height: 80vh;
+    border-radius: 5vw;
+  }
+  .max_chat .chat_header {
+    border-radius: 5vw;
+    box-shadow: 0px 0px 7px 2px #1b3c59;
+  }
+  .max_chat .chat_header .chat_icon {
+    background-color: #1b3c59;
+    box-shadow: 0px 0px 7px 2px #1b3c59;
+  }
+  .max_chat .chat_header .chat_present h3 {
+    font-size: 3vw;
+  }
+  .max_chat .chat_header .chat_min {
+    width: 5%;
+  }
+  .max_chat .chat_header .chat_min:hover {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+  }
+  .max_chat .chat_box .bot_message span {
+    font-size: 1.7vw;
+  }
+  .max_chat .chat_box .bot_message p {
+    font-size: 2.3vw;
+    border-radius: 3vw;
+  }
+  .max_chat .chat_box .user_message p {
+    font-size: 2.3vw;
+    border-radius: 3vw;
+  }
+}
+@media screen and (max-width: 500px) {
+  .chatbot {
+    width: 15vw;
+    margin: 5%;
+  }
+  .max_chat {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+  .max_chat .chat_header {
+    border-radius: 9vw;
+    box-shadow: 0px 0px 10px 5px #174891;
+  }
+  .max_chat .chat_header .chat_icon {
+    width: 15%;
+    box-shadow: 0px 0px 10px 5px #1b3c59;
+  }
+  .max_chat .chat_header .chat_present h3 {
+    font-size: 3.5vw;
+  }
+  .max_chat .chat_header .chat_min:hover {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0);
+  }
+  .max_chat .chat_box .bot_message span {
+    font-size: 2.5vw;
+    margin-left: 2vw;
+  }
+  .max_chat .chat_box .bot_message p {
+    font-size: 3.5vw;
+    border-radius: 4vw;
+  }
+  .max_chat .chat_box .user_message p {
+    font-size: 3.5vw;
+    border-radius: 4vw;
+  }
+}
 * {
   scroll-behavior: smooth;
 }
@@ -368,7 +709,7 @@ body .alertas_modal .alert_eliminacion_vacante {
 body .alertas_modal .alert_eliminacion_vacante .alert_box {
   width: 20vw;
   height: 15vh;
-  background-color: #f2f0ed;
+  background-color: #ffffff;
   display: flex;
   font-family: "Nunito";
   justify-content: center;
@@ -572,8 +913,6 @@ body main #pag1 article .cont_form {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.2vw solid #f18f62;
-  box-shadow: 0px 0px 10px 0px #f18f62;
   border-radius: 2vw;
 }
 body main #pag1 article .cont_form form {

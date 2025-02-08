@@ -11,10 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1c4790-" />
   <meta name="msapplication-navbutton-color" content="#1c4790-" />
-  <script src="//code.tidio.co/ukvwtue3pwkabbt4k7ldspfa9vzpqazq.js" async></script>
+  <!--<script src="//code.tidio.co/ukvwtue3pwkabbt4k7ldspfa9vzpqazq.js" async></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <title>MMM Pizza</title>
+  <title>MMM</title>
 </head>
 
 <body>
@@ -27,6 +27,25 @@
     <div class="c-cursor | js-cursor">
       <div class="c-cursor__inner"></div>
     </div>
+  </section>
+  <section class="chatbot" id="chatbot">
+    <div class="chat_header" id="chat_header"> 
+      <div class="chat_icon" id="chat_icon">
+      </div>
+      <div class="chat_present" id="chat_present">
+        <h3>¿Tienes dudas? 🧐</h3>
+      </div>
+      <button class="chat_min" id="chat_min">
+      </button>
+    </div>
+    <div class="chat_box" id="chat_box"></div>
+    <hr />
+    <form class="chat_form" id="chat_form">
+        <input type="text" class="chat_input" id="chat_input" placeholder="Escribe tu duda...">
+        <button type="submit" class="chat_submit" id="chat_submit">
+          <img src="img/Logos/interfaces/icons/enviar.png" alt="">
+        </button>
+    </form>
   </section>
   <section class="alertas" id="alertas">
     <div class="alerta" id="alerta_1">
@@ -473,6 +492,7 @@
       </article>
     </aside>
   </main>
+  <script  type="module" src="js/chatbot.js"></script>
   <script type="module" src="js/firebase.js"></script>
   <script type="module" src="js/database.js"></script>
   <script src="js/main.js"></script>

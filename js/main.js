@@ -5,6 +5,7 @@ window.onload = () => {
     loader.style.opacity = '0';
     // Configuración inicial 
     elements.home.classList.add("agregar_dis");
+    elements.chatbot.classList.add("agregar_dis");
 };
 
 // Verificar si es un dispositivo táctil
@@ -106,7 +107,7 @@ const elements = {
     login: document.getElementById("pag2"),
     aside: document.getElementById("aside"),
     admin: document.getElementById("pag3"),
-    tidioChat: document.getElementById("tidio-chat-iframe")
+    chatbot: document.getElementById("chatbot")
   };
   // Función genérica para gestionar clases según la vista activa
   function toggleView({ home = false, header = false, form = false, login = false, aside = false , admin = false}) {

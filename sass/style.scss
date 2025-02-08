@@ -3,6 +3,7 @@
 @import "cursor";
 @import "variables";
 @import "game";
+@import "chatbot";
 
 * {
   scroll-behavior: smooth;
@@ -313,8 +314,6 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          border: .2vw solid $Resalte2;
-          box-shadow: 0px 0px 10px 0px $Resalte2;
           border-radius: 2vw;
           form {
             width: 95%;

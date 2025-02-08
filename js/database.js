@@ -5,10 +5,27 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-import { database, ref, set, onValue, remove, app, get } from "./firebase.js";
+import { database, ref, set, onValue, remove, app, get, push } from "./firebase.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
+
+// Función para guardar mensajes sin respuesta de chatbot
+export function saveUnansweredMessage(message) {
+  const messagesRef = ref(database, "mensajes_error");
+  const newMessageRef = push(messagesRef); // Crea una nueva entrada con un ID único
+
+  set(newMessageRef, {
+      message: message,
+      timestamp: new Date().toISOString() // Guarda la fecha y hora actual
+  })
+  .then(() => {
+      console.log("📌 Mensaje sin respuesta guardado en Firebase:", message);
+  })
+  .catch((error) => {
+      console.error("❌ Error guardando mensaje en Firebase:", error);
+  });
+}
 
 // Mapa de alertas con su ID y tiempo de visualización
 const alertasConfig = {
@@ -649,7 +666,7 @@ function login() {
           login: document.getElementById("pag2"),
           admin: document.getElementById("pag3"),
           aside: document.getElementById("aside"),
-          tidioChat: document.getElementById("tidio-chat-iframe"),
+          chatbot: document.getElementById("chatbot"),
         };
 
         const toggleClass = (elements, className, add = true) => {
@@ -671,7 +688,7 @@ function login() {
         toggleClass([elements.header], "cambiar_nav", false);
 
         elements.header.style.display = "none";
-        if (elements.tidioChat) elements.tidioChat.style.display = "none";
+        if (elements.chatbot) elements.chatbot.style.display = "none";
 
         mostrarAlerta("alertas_admin");
         mostrarAlerta("alerta_4");
