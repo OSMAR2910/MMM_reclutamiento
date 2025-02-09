@@ -13,8 +13,8 @@
   position: fixed;
   z-index: 10000;
   #pizza_loader {
-    width: 7rem;
-    height: 7rem;
+    width: 5vw;
+    aspect-ratio: 2/2;
     animation: reolad 2s infinite ease-in-out;
     img {
       width: 100%;
@@ -25,16 +25,14 @@
 @media screen and (max-width: 900px) {
   #loader {
     #pizza_loader {
-      width: 6rem;
-      height: 6rem;
+      width: 10vw;
     }
   }
 }
 @media screen and (max-width: 500px) {
   #loader {
     #pizza_loader {
-      width: 4rem;
-      height: 4rem;
+      width: 15vw;
     }
   }
 }

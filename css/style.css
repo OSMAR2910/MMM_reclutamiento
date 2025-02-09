@@ -98,8 +98,8 @@
   z-index: 10000;
 }
 #loader #pizza_loader {
-  width: 7rem;
-  height: 7rem;
+  width: 5vw;
+  aspect-ratio: 2/2;
   animation: reolad 2s infinite ease-in-out;
 }
 #loader #pizza_loader img {
@@ -109,14 +109,12 @@
 
 @media screen and (max-width: 900px) {
   #loader #pizza_loader {
-    width: 6rem;
-    height: 6rem;
+    width: 10vw;
   }
 }
 @media screen and (max-width: 500px) {
   #loader #pizza_loader {
-    width: 4rem;
-    height: 4rem;
+    width: 15vw;
   }
 }
 @font-face {
@@ -2490,8 +2488,8 @@ body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .admin_cont .cont_aceptados, html main #pag3 .admin_cont .cont_aceptados {
     width: 90vw;
-    height: 45vh;
-    margin-top: 6vh;
+    height: 53vh;
+    margin-top: 10vh;
     border-radius: 1rem;
   }
   body main #pag3 .admin_cont .cont_aceptados .box_green, html main #pag3 .admin_cont .cont_aceptados .box_green {
