@@ -616,9 +616,9 @@
         {
             "tag": "Sucursal_Hipódromo",
             "keywords": [
-                "hipódromo",
-                "sucursal hipódromo",
-                "dirección hipódromo"
+                "hipodromo",
+                "sucursal hipodromo",
+                "dirección hipodromo"
             ],
             "responses": [
                 "📍 ¡Al galope hacia Hipódromo! La sucursal está aquí: (No soy un caballo, pero también sé correr). 🐴🦃 <a href='https://maps.app.goo.gl/PTKfJ4dAnYyAD59C6' target='_blank'>Ver ubicación</a> 📍"
