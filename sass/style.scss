@@ -1171,6 +1171,7 @@ body, html {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        margin-top: -9%;
         div {
           width: 50%;
           margin-top: 5%;
@@ -1182,7 +1183,7 @@ body, html {
         h2 {
           font-family: $Letra1;
           color: $Texto;
-          font-size: 3.2vh;
+          font-size: 1.8vw;
           letter-spacing: 0.3rem;
           text-align: center;
         }
@@ -1192,7 +1193,7 @@ body, html {
           margin: 0;
           font-family: $Letra2;
           color: $Texto;
-          font-size: 2.2vh;
+          font-size: 1vw;
           text-align: center;
         }
       }
