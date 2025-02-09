@@ -179,7 +179,7 @@ function enviar_form() {
       mostrarAlerta("alerta_3");
     });
 };
-
+label_btnEnviar.addEventListener('click', enviar_form);
 // Asigna la función al objeto global 'window'
 window.enviar_form = enviar_form;
 
