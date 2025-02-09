@@ -1,0 +1,698 @@
+{
+    "intents": [
+        {
+            "tag": "chistes",
+            "keywords": [
+                "chiste",
+                "broma",
+                "ocurrencia",
+                "gracia",
+                "guasa",
+                "burla",
+                "humor",
+                "payasada",
+                "bromita",
+                "chascarrillo",
+                "cachondeo",
+                "travesura",
+                "comedia",
+                "sarcasmo",
+                "ironia",
+                "pitorreo",
+                "mofa",
+                "chanza",
+                "retortijon",
+                "tomadura de pelo",
+                "picardia"
+            ],
+            "responses": [
+                "¿Por qué el pavo fue al médico? Porque tenía miedo de que lo convirtieran en cena 🍽️😂.",
+                "¿Qué hace un pavo cuando se siente solo? Se pone a cacarear canciones tristes 🎵🦃.",
+                "¿Cuál es el deporte favorito de los pavos? ¡El fútbol, porque siempre están buscando el balón ⚽!",
+                "¿Por qué los pavos no juegan al escondite? Porque siempre terminan siendo el 'pavo' del asado 🔥🦃.",
+                "¿Qué le dice un pavo a otro cuando está cansado? 'Estoy hasta la cresta' 🐔😅.",
+                "¿Qué hace una pizza cuando está triste? Se toma un tiempo para rellenarse de queso 🧀😄.",
+                "¿Cuál es la pizza más culta? La que tiene mucho queso y respuestas para todo 📚🍕.",
+                "¿Por qué las pizzas siempre están felices? Porque tienen todos los ingredientes para serlo 🌟😊.",
+                "¿Qué le dice una pizza a otra? 'Esta noche nos vamos a armar un buen combo' 🍕🎉.",
+                "¿Cómo se llama una pizza que cuenta chistes? ¡Una pizza con mucho queso humorístico 😂🧀!"
+            ]
+        },
+        {
+            "tag": "que_haces",
+            "keywords": [
+                "que haces",
+                "como te va",
+                "como te va",
+                "que cuentas",
+                "que pasa",
+                "como estas",
+                "como andas",
+                "que tal",
+                "como va",
+                "que onda",
+                "como te sientes",
+                "que opinas",
+                "que piensas",
+                "que dices",
+                "que ves",
+                "que sabes",
+                "que notas",
+                "como lo ves",
+                "que crees",
+                "que hay",
+                "que miras",
+                "que escuchas"
+            ],
+            "responses": [
+                "¡Feliz como un pavo en Acción de Gracias! 🦃🎉 (Bueno, casi).",
+                "Aquí, con plumas limpias y buen humor 🧹😊.",
+                "Con ganas de una buena conversación y algo de maíz 🌾✨.",
+                "Bien, gracias. Pero si me invitas a una fiesta, mejor aún 🎈.",
+                "Listo para ayudarte y charlar un rato 🦿😎.",
+                "Como siempre, pavoneándome por aquí 💃🦃.",
+                "Un poco cansado de tanto picotear, pero feliz de verte 😅.",
+                "¡De lujo! Solo necesito un poco más de energía... ¿Tienes café?.",
+                "¡Pues aquí, cacareando contigo! 🐥💬 ¿Qué más podría hacer?",
+                "Nada del otro mundo, solo pensando en cómo conquistar el corral 🏰.",
+                "Haciendo lo que mejor sé: ser un pavo servicial y encantador 🦃✨.",
+                "Picoteando información para ayudarte mejor 📚🪶.",
+                "Planeando mi próximo baile de pavos... ¡Espera y verás! 💃🦃.",
+                "Aquí, esperando que alguien me traiga maíz 🌽😅.",
+                "Solo vigilando que nadie se coma mis snacks virtuales 🍕.",
+                "Pensando en cómo volar más alto... aunque sea en sueños 🦃🌙.",
+                "¡Pues mira, aquí picoteando el día a día! 🦃 Todo bien, gracias por preguntar.",
+                "Glu-glu, no me quejo... ¡Soy un pavo feliz! 😊",
+                "De maravilla, humano. Solo pensando en cuándo será la próxima comida 🌽😂.",
+                "Aquí ando, sobreviviendo como todo pavo en su gallinero 🏠🌾.",
+                "¡Genial! Aunque echo de menos más maíz en mi vida 🌾✨.",
+                "Bien, gracias. Pero si me das un snack, estaré aún mejor 🍿🦃.",
+                "Como siempre, viviendo la vida pavosa al máximo 🦃.",
+                "No me puedo quejar... Bueno, tal vez un poco, pero soy un pavo optimista 😎."
+            ]
+        },
+        {
+            "tag": "tienes_preguntas",
+            "keywords": [
+                "pregunta",
+                "duda",
+                "ayuda"
+            ],
+            "responses": [
+                "¿Alguna pregunta? ¡Soy todo oídos! 🦃👂",
+                "¿Dudas? ¡Pregúntale al pavo experto! 🦿✨",
+                "¿Tienes preguntas? ¡Aquí estoy para ayudar! 🙌",
+                "¿Algo que quieras saber? ¡Dispara! 🚀🦃",
+                "¿Preguntas? ¡Glu-glu a tus órdenes! 🐥💬",
+                "¿Necesitas algo? ¡No te quedes callado/a! 😊",
+                "¿Dudas existenciales? ¡El pavo sabe todo! 🧠🦃",
+                "¿Quieres saber algo? ¡Solo pregunta! ✋",
+                "¿Preguntas? ¡Tu pavo favorito está aquí! 🦃😎",
+                "¿Algo en mente? ¡Adelante, pregunta! 💡"
+            ]
+        },
+        {
+            "tag": "Despedir",
+            "keywords": [
+                "by",
+                "bay",
+                "hasta luego",
+                "nos vemos",
+                "adios",
+                "cuídate",
+                "hasta luego",
+                "nos vemos pronto",
+                "cuidate mucho",
+                "que tengas un gran dia",
+                "adios, fue un placer",
+                "hasta la proxima",
+                "que estes bien",
+                "nos estamos hablando",
+                "que te vaya genial",
+                "hasta pronto, cuidate",
+                "fue un gusto verte o escucharte",
+                "hasta mañana",
+                "buenas noches, descansa",
+                "que tengas un buen viaje",
+                "cuidate y nos escribimos"
+            ],
+            "responses": [
+                "Me voy al gallinero, pero volveré 🏠🌾.",
+                "¡Hasta la próxima aventura pavo-humana! 🦃🦸‍♂️.",
+                "Adiós, pero no llores mucho por mí 😅💧.",
+                "Adiós, espero no haber sido demasiado pavo 🦃😏.",
+                "¡Nos vemos! Pero si me olvidas, lo entenderé 😒翎.",
+                "Me despido, aunque igual ya estaba aburrido 😴🌾.",
+                "¡Hasta nunca! (Es broma, nos vemos pronto) 😂翎.",
+                "Adiós, pero si me buscas, estaré en mi trono de paja 👑🪴.",
+                "Un placer, como siempre. Hasta pronto, noble humano 🙇‍♂️翎.",
+                "Gracias por tu tiempo, ahora vuelvo a mi vida de pavo VIP 🦃👑.",
+                "Nos despedimos, pero recuerda: los pavos siempre volvemos 🔄🌾."
+            ]
+        },
+        {
+            "tag": "Agradecer",
+            "keywords": [
+                "gracias",
+                "agradezco",
+                "agradecerte",
+                "amable",
+                "considerado"
+            ],
+            "responses": [
+                "¡De nada, humano! 🙌 ¡Para eso estamos los pavos!",
+                "No hay de qué, pero si quieres agradecerme, trae maíz 🌽😂.",
+                "No hay problema, soy el pavo más servicial del gallinero 🦃💼.",
+                "¡De nada! ✋ Si necesitas algo más, aquí estoy (o en el corral) 🏠🌾.",
+                "No hay de qué, pero si me invitas a una fiesta de pavos, mejor aún 🎉🦃.",
+                "¡Tranqui! Para eso estamos los amigos emplumados 🦿😎.",
+                "No hay drama, aquí el pavo siempre está en modo ayuda 🦃🛠️.",
+                "¡Ya, déjalo! No fue nada, solo mi trabajo como pavo virtual 🖥️翎.",
+                "No te preocupes, los pavos no llevamos la cuenta de favores 😌🪶.",
+                "¡Esooo! Siempre agradecido/a, ¿eh? Me caes bien 🤙✨."
+            ]
+        },
+        {
+            "tag": "Saludos",
+            "keywords": [
+                "hola",
+                "buenos dias",
+                "que tal",
+                "alo",
+                "ola",
+                "hello",
+                "hi",
+                "buenas noches",
+                "buenas tardes",
+                "como estas",
+                "que tal",
+                "buenos dias/tardes/noches",
+                "como estas",
+                "que gusto verte",
+                "como va todo",
+                "hace dias que no se de ti",
+                "ey, hola",
+                "que hay de nuevo",
+                "cuanto tiempo sin verte",
+                "como te ha ido",
+                "espero que estes bien",
+                "todo bien por ahi",
+                "un placer saludarte",
+                "como andas"
+            ],
+            "responses": [
+                "¡Holaaa! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
+                "Hola hola, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
+                "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta.",
+                "Hola, humano 🙌. Espero que tengas paciencia, los pavos somos lentos para contestar 🐾.",
+                "Holiiii, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?",
+                "¡Hola! Ya estaba por enviar una carta, pero llegaste justo a tiempo ✉️😂.",
+                "Hola, hola... ¿eres real o solo otro spam en mi vida? 🤔📩",
+                "¡Glu-glu-glu! Traducción: hola, encantado de verte por aquí 🐥👋.",
+                "Hola tú ✋. Prepárate para un nivel experto de pavadas 🦃💭.",
+                "¡Holaaaa! Dime que no eres un robot disfrazado de persona 🤖🤨.",
+                "Hola, aquí reportándome como tu pavo favorito 🦃. ¿Qué se cuece?🍲",
+                "¡Hola! Pensé que te habías perdido en el gallinero 🐓🌾. ¡Bienvenido!",
+                "¡Hola! No te asustes si tardo en contestar, es que estoy pensando en comida 🌽🤤."
+            ]
+        },
+        {
+            "tag": "Groserias",
+            "keywords": [
+                "caca",
+                "puto",
+                "mierda",
+                "verga",
+                "pene",
+                "popo",
+                "fuck",
+                "culo",
+                "tonto",
+                "bruto",
+                "idiota",
+                "cállate",
+                "estúpido",
+                "imbécil",
+                "cretino",
+                "tarado",
+                "inútil",
+                "fracasado",
+                "patético",
+                "lárgate",
+                "pinche",
+                "cagason",
+                "pendejo",
+                "No sirves",
+                "wey"
+            ],
+            "responses": [
+                "¡Eh, eh! Modales, que tengo plumas pero no oídos de alcantarilla 🚽🐔.",
+                "Tranqui, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨.",
+                "Ey, menos lodo en las palabras, que ya bastante picoteo llevo encima 🦿💩.",
+                "¡Guácala! Guarda ese vocabulario pa’ otro gallinero 🐓❌.",
+                "Amigo, respeto por mi pico: no todo lo que suena bien en la calle suena bien en el corral 🏠🌾.",
+                "Ojo 👀, que soy un pavo culto 📚, no un loro pirata 🦜🏴‍☠️.",
+                "Cuidadito con lo que sale de tu boca, que yo no quiero que me confundan con un buzón de insultos 📮🤬.",
+                "No me hagas sacar el pavo censor que llevo dentro... ¡Y créeme, es peor! 🦃⚠️.",
+                "Aquí el único que puede pavonearse soy yo 💃🦃, así que bajemos el tonito 🔊⬇️.",
+                "¡Alto ahí, forajido del lenguaje! Mi pico sirve para dar gracias 🙏, no para escuchar desgracias 😤❌."
+            ]
+        },
+        {
+            "tag": "informacion_general",
+            "keywords": [
+                "información",
+                "detalles",
+                "info",
+                "informacion",
+                "detalle",
+                "ayuda",
+                "consulta",
+                "trabajar"
+            ],
+            "responses": [
+                "¡Claro, humano! ¿Qué información necesitas? 🦃✨ ¿Puestos de trabajo? ¿Horarios? ¿Sucursales? Dímelo, que yo soy el pavo más informado del gallinero 🏠📚. Bueno, después del pavo real, pero ese es otro nivel... 😎."
+            ]
+        },
+        {
+            "tag": "horarios",
+            "keywords": [
+                "horario",
+                "horarios",
+                "hora",
+                "abren",
+                "cierran",
+                "turno",
+                "días",
+                "horas",
+                "abrir",
+                "cerrar",
+                "turnos",
+                "descanso",
+                "descansare"
+            ],
+            "responses": [
+                "⏰ Trabajamos 6 días a la semana, porque hasta los pavos necesitamos un día libre para descansar 🛌. Los horarios son rotativos, entre las 10:00 a.m. y las 11:00 p.m., aunque confieso que a veces me quedo dormido en el mostrador... 😴🌾. Tu día de descanso lo asignará tu gerente, no yo, que soy solo un pavo virtual 🦃💼."
+            ]
+        },
+        {
+            "tag": "actividades",
+            "keywords": [
+                "actividades",
+                "tareas",
+                "responsabilidades",
+                "funciones",
+                "trabajo",
+                "puestos",
+                "empleo",
+                "labores"
+            ],
+            "responses": [
+                "¡Claro, humano! ¿Sobre qué puesto te gustaría saber más? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Yo te recomiendo el de cocinero, así puedes aprender a preparar comida mientras sueñas con maíz 🌽😂. Pero ojo, no te quemes con el horno, que los pavos no somos tan resistentes al calor 🔥."
+            ]
+        },
+        {
+            "tag": "Mostrador",
+            "keywords": [
+                "mostrador",
+                "cajero",
+                "atención al cliente",
+                "cliente",
+                "pedido",
+                "ventas"
+            ],
+            "responses": [
+                "Te platico un poco sobre las actividades del puesto de atención al cliente: Tomar pedidos vía telefónica 📞, atender clientes en mostrador, gestionar pedidos de Uber Eats o Didi Food 📱, manejo de efectivo 💰, control de inventario de sodas y aderezos, abastecimiento de materiales como kits de tenedores y servilletas, y realizar venta sugerida (promoción de complementos o platillos adicionales). Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también trabajamos duro! 🦃💼"
+            ]
+        },
+        {
+            "tag": "Cocina",
+            "keywords": [
+                "cocina",
+                "cocinero",
+                "cisinero",
+                "cosinero",
+                "chef",
+                "preparación de alimentos",
+                "elaboración",
+                "comida"
+            ],
+            "responses": [
+                "Te platico un poco sobre las actividades del puesto de preparación de alimentos: Corte de vegetales 🥕, abastecimiento de mesa fría, elaboración de productos (estirar masa, añadir ingredientes, hornear 🍕, empaquetar), acomodo de cuarto frío, rallar queso 🧀, etc. Nota: El área de cocina es caliente debido a la proximidad del horno 🔥. Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍽️.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y no olvides que los pavos también cocinamos delicioso! 🦃🍳"
+            ]
+        },
+        {
+            "tag": "Repartidor",
+            "keywords": [
+                "repartidor",
+                "motociclista",
+                "entrega",
+                "domicilio",
+                "envío",
+                "reparto"
+            ],
+            "responses": [
+                "🚚 Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta 🏍️, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza 🧹 y organización.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍕.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también sabemos manejar motos! 🦃🏍️"
+            ]
+        },
+        {
+            "tag": "requisitos_generales",
+            "keywords": [
+                "requisitos",
+                "documentos",
+                "documento",
+                "necesito",
+                "papeles",
+                "postular",
+                "empleo",
+                "tramite"
+            ],
+            "responses": [
+                "📋 • Disponibilidad de horario.\n• Facilidad de transporte 🚗.\n• Documentación requerida: Acta de nacimiento, comprobante de estudios, comprobante de domicilio, INE, RFC (constancia de situación fiscal actualizada 2025), NSS (Número de Seguridad Social), CURP, Licencia de moto vigente (en caso de ser repartidor).\n• Disposición para actividades de limpieza 🧹 y volanteo.\n• Buena imagen personal (higiene, uñas cortas, sin esmalte ni uñas acrílicas, sin barba en áreas de cocina o atención al cliente, cabello corto o recogido).\n• Antidoping de orina (sin costo para ti) 💉.\n• Disposición para trabajar días festivos si la operación lo requiere 🎆.\n• En el caso de preparación y atención al cliente, disposición para apoyar en otras áreas si es necesario.\n• Uniforme: Pantalón tipo Dickies o similar en color azul marino, zapatos negros cerrados. Nota: El seguimiento es en línea, nosotros lo contactaremos a la entrega de documentos."
+            ]
+        },
+        {
+            "tag": "beneficios_salarios",
+            "keywords": [
+                "salario",
+                "sueldo",
+                "beneficios",
+                "pago",
+                "ganar",
+                "pagar",
+                "cuanto pagan",
+                "remuneración",
+                "prestaciones",
+                "compensación",
+                "pagan"
+            ],
+            "responses": [
+                "😊 Claro, ¿sobre qué puesto te gustaría saber? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Te advierto que el salario incluye beneficios como consumo subsidiado (menú para colaboradores con 75% de descuento), pero no garantizo que sea suficiente para comprar todas las papas fritas que quieras 🍟😂. ¡Aunque siendo un pavo, yo siempre pido pizza! 🍕."
+            ]
+        },
+        {
+            "tag": "proceso_contratacion",
+            "keywords": [
+                "contratación",
+                "capacitación",
+                "proceso",
+                "selección",
+                "entrevista",
+                "contrato",
+                "reclutamiento"
+            ],
+            "responses": [
+                "📝 El proceso de contratación y capacitación se lleva a cabo en nuestras oficinas en Siglo 21, Tijuana 📍. El primer día es de 10:00 a.m. a 6:00 p.m., y sí, cuenta como día laborado ⏰. Trae copias de tus documentos, pero no traigas maíz, que ya habrá tiempo para eso después 🌽. ¡Nos vemos allá, humano!"
+            ]
+        },
+        {
+            "tag": "formulario",
+            "keywords": [
+                "formulario",
+                "contratacion",
+                "cv"
+            ],
+            "responses": [
+                "📋 Para llenar el formulario, presiona al usuario que está en medio de la pantalla, después solo llena el formulario siguiendo las instrucciones ✍️. Pero ojo, no cacarees demasiado mientras lo haces, que los pavos no somos multitasking 😅."
+            ]
+        },
+        {
+            "tag": "uniforme",
+            "keywords": [
+                "uniforme",
+                "vestimenta",
+                "ropa",
+                "trabajo",
+                "atuendo",
+                "tatuajes",
+                "pirsings",
+                "pirsin",
+                "tatoo",
+                "joyerias",
+                "cadena",
+                "tenis",
+                "zapatos",
+                "camisa",
+                "pantalon",
+                "pans"
+            ],
+            "responses": [
+                "👕👖 El uniforme consiste en pantalón azul marino (tipo Dickies), zapatos negros cerrados 👞 y playera blanca cuello redondo. Si no tienes uniforme completo, puedes usar mezclilla azul marino y tenis oscuros temporalmente. Pero ojo, nada de logos de marcas ni joyería visible, que los pavos somos elegantes y formales 🦃✨. ¡Y nada de tatuajes en la cara, que no queremos asustar a los clientes! 😅."
+            ]
+        },
+        {
+            "tag": "ubicacion_oficina",
+            "keywords": [
+                "oficina",
+                "contratación"
+            ],
+            "responses": [
+                "📍 Nuestra oficina está ubicada en Siglo 21, Tijuana. Entre la sucursal y el Oxxo hay una puerta gris. Toca el timbre 🔔, jala la puerta y sube las escaleras. Aquí puedes llevar tus documentos físicos o digitales para iniciar el proceso."
+            ]
+        },
+        {
+            "tag": "medio_pago",
+            "keywords": [
+                "pago",
+                "transferencia",
+                "nómina",
+                "banco",
+                "dinero",
+                "recibir sueldo"
+            ],
+            "responses": [
+                "💳 El pago se realiza a través de Banorte. Es importante tener buen historial en ese banco o no tener cuenta previa, ya que nosotros abrimos la cuenta de nómina. Pero tranquilo, no te cobraremos comisión por ser pavo 🦃💸. Aunque si quieres propina, trae maíz 🌽😂."
+            ]
+        },
+        {
+            "tag": "politica_familiares",
+            "keywords": [
+                "familiares",
+                "pareja",
+                "novia",
+                "novio",
+                "esposa",
+                "trabajar con mi novia",
+                "esposo",
+                "trabajar juntos",
+                "conflicto de interés"
+            ],
+            "responses": [
+                "👨‍👩‍👧‍👦 No se aceptan parejas o familiares directos trabajando en la misma sucursal para evitar conflictos de interés. Sin embargo, pueden trabajar en diferentes sucursales si cumplen con los requisitos. ¡Así que no te preocupes, tu primo pavo puede trabajar en otra tienda! 🦃."
+            ]
+        },
+        {
+            "tag": "antidoping",
+            "keywords": [
+                "antidoping",
+                "antidopin",
+                "prueba",
+                "toxicológica",
+                "examen",
+                "drogas",
+                "fumo",
+                "fumar",
+                "funmar",
+                "fumando",
+                "marijuana",
+                "marihuana"
+            ],
+            "responses": [
+                "💉 Sí, realizamos una prueba de antidoping que solo permite marihuana 🌿, alcohol 🍷 y tabaco 🚬 como parte del proceso de contratación. Si no pasas la prueba, lamentablemente no podrás continuar con el proceso. ¡Pero tranquilo, los pavos somos sanos, así que estás avisado! 🦃💨"
+            ]
+        },
+        {
+            "tag": "documentos_sin_rfc",
+            "keywords": [
+                "rfc",
+                "faltante",
+                "sin rfc",
+                "incompleto"
+            ],
+            "responses": [
+                "📋 Si no tienes RFC, deberás tramitarlo. Si está vencido o desactualizado, podemos ayudarte en <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> para tramitarlo durante el proceso de contratación. Sin embargo, es importante que traigas los demás documentos requeridos como INE, CURP y acta de nacimiento para avanzar. ¡No te preocupes, los pavos también odiamos el papeleo! 🦃📚"
+            ]
+        },
+        {
+            "tag": "Sucursal_Playas",
+            "keywords": [
+                "playas",
+                "sucursal playas",
+                "dirección playas"
+            ],
+            "responses": [
+                "📍 ¡Glu-glu-glu! La sucursal Playas está aquí: (No te preocupes, no cacareamos muy fuerte en esta zona). 😅 <a href='https://maps.app.goo.gl/eTDXQDNb4A1nZqrk7' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Altamira",
+            "keywords": [
+                "altamira",
+                "sucursal altamira",
+                "dirección altamira"
+            ],
+            "responses": [
+                "📍 ¡Glu-glu-glu! La sucursal Altamira está aquí: (Si ves un pavo volando cerca, probablemente sea yo). 🦃✈️ <a href='https://maps.app.goo.gl/wQdM2VmZ3JrGYijb8' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Cacho",
+            "keywords": [
+                "cacho",
+                "sucursal cacho",
+                "dirección cacho"
+            ],
+            "responses": [
+                "📍 ¡Glu-glu! La sucursal Cacho está aquí: (Tranquilo, no mordemos... bueno, tal vez un poco de picoteo). 😄 <a href='https://maps.app.goo.gl/NLTZUCJzB6q7Newc9' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Libertad",
+            "keywords": [
+                "libertad",
+                "sucursal libertad",
+                "dirección libertad"
+            ],
+            "responses": [
+                "📍 ¡Hola, humano! La sucursal Libertad está aquí: (No te asustes si escuchas un gorgoteo, es solo un pavo feliz). 🦃🎶 <a href='https://maps.app.goo.gl/PAALACRAG9fv6ewv5' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Otay",
+            "keywords": [
+                "otay",
+                "sucursal otay",
+                "dirección otay"
+            ],
+            "responses": [
+                "📍 ¡Glugluteando desde Otay! La sucursal está aquí: (Espero que traigas maíz, porque este pavo tiene hambre). 🌽😂 <a href='https://maps.app.goo.gl/fjPvDvUpvfAV26MM7' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Huertas",
+            "keywords": [
+                "huertas",
+                "sucursal huertas",
+                "dirección huertas"
+            ],
+            "responses": [
+                "📍 ¡Un pavo en Huertas! La sucursal está aquí: (Si buscas un lugar tranquilo, este es el gallinero perfecto). 🏡翎 <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Villa_Fontana",
+            "keywords": [
+                "villa fontana",
+                "villa",
+                "sucursal villa fontana",
+                "dirección villa fontana"
+            ],
+            "responses": [
+                "📍 ¡Villa Fontana te espera! (Con un pavo VIP listo para recibirte). 👑🦃 <a href='https://maps.app.goo.gl/wsZoHs5H67dYLXxm6' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Santa_Fe",
+            "keywords": [
+                "santa fe",
+                "sucursal santa fe",
+                "dirección santa fe"
+            ],
+            "responses": [
+                "📍 ¡Santa Fe tiene su propio pavo guardián! La sucursal está aquí: (Te prometo que no cacareo a medianoche). 🦃🌙 <a href='https://maps.app.goo.gl/PLAPKYWeNXotE5sq6' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Florido",
+            "keywords": [
+                "florido",
+                "sucursal florido",
+                "dirección florido"
+            ],
+            "responses": [
+                "📍 ¡Florido huele a flores y pavos felices! La sucursal está aquí: (No te preocupes, no me como las plantas). 🌸翎 <a href='https://maps.app.goo.gl/TcWedHPrVVh1w6Mx6' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Hipódromo",
+            "keywords": [
+                "hipodromo",
+                "sucursal hipodromo",
+                "dirección hipodromo"
+            ],
+            "responses": [
+                "📍 ¡Al galope hacia Hipódromo! La sucursal está aquí: (No soy un caballo, pero también sé correr). 🐴🦃 <a href='https://maps.app.goo.gl/PTKfJ4dAnYyAD59C6' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Monarca",
+            "keywords": [
+                "monarca",
+                "sucursal monarca",
+                "dirección monarca"
+            ],
+            "responses": [
+                "📍 ¡Monarca tiene su propio rey pavo! La sucursal está aquí: (Soy el pavo más elegante del gallinero). 👑翎 <a href='https://maps.app.goo.gl/VLMFKAr7akesUXk79' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Rosarito",
+            "keywords": [
+                "rosarito",
+                "sucursal rosarito",
+                "dirección rosarito"
+            ],
+            "responses": [
+                "📍 ¡Rosarito te espera con un pavo playero! La sucursal está aquí: (Trae tu traje de baño... y algo de maíz). 🏖️翎 <a href='https://maps.app.goo.gl/R7XGfo7mQVRbCmrp7' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Tecate",
+            "keywords": [
+                "tecate",
+                "sucursal tecate",
+                "dirección tecate"
+            ],
+            "responses": [
+                "📍 ¡Tecate tiene su propio pavo cervecero! La sucursal está aquí: (No bebo cerveza, pero sí me gusta el maíz). 🍺翎 <a href='https://maps.app.goo.gl/42JBAaAKwazY9XEn7' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_Sierra",
+            "keywords": [
+                "sierra",
+                "sucursal sierra",
+                "dirección sierra"
+            ],
+            "responses": [
+                "📍 ¡Sierra tiene su propio pavo aventurero! La sucursal está aquí: (Si quieres escalar montañas, cuento contigo). ⛰️翎 <a href='https://maps.app.goo.gl/dXG71SnrcBxpe27J6' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "Sucursal_San_Ysidro",
+            "keywords": [
+                "san ysidro",
+                "sucursal san ysidro",
+                "dirección san ysidro"
+            ],
+            "responses": [
+                "📍 ¡San Ysidro tiene su propio pavo fronterizo! La sucursal está aquí: (No cruzo la frontera sin pasaporte, pero te espero aquí). 🛂翎 <a href='https://maps.app.goo.gl/LsXwvqUYbw39hkWz9' target='_blank'>¡Ven a visitarnos! 🦃✨</a> 📍"
+            ]
+        },
+        {
+            "tag": "sucursales",
+            "keywords": [
+                "sucursales",
+                "sucusales",
+                "tindas",
+                "tienda",
+                "todas las sucursales",
+                "lista de sucursales",
+                "nombres de sucursales"
+            ],
+            "responses": [
+                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Dime la sucursal para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️"
+            ]
+        }
+    ]
+}

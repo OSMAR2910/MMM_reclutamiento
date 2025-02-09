@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="shortcut icon" href="img/Logos/Logo (5).png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ec6223-" />
+  <meta name="msapplication-navbutton-color" content="#ec6223-" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <title>MMM</title>
+</head>
+
+<body>
+  <section id="js-elementos">
+    <div id="loader">
+      <div id="pizza_loader">
+        <img src="img/Logos/interfaces/icons/pizza1.png" alt="" />
+      </div>
+    </div>
+    <div class="c-cursor | js-cursor">
+      <div class="c-cursor__inner"></div>
+    </div>
+  </section>
+  <section class="chatbot" id="chatbot">
+    <div class="chat_header" id="chat_header"> 
+      <div class="chat_icon" id="chat_icon">
+        <div class="status_green"></div>
+      </div>
+      <div class="chat_present" id="chat_present">
+        <h3>Sr.Pavo Chava</h3>
+        <p>En linea</p>
+      </div>
+      <button class="chat_min" id="chat_min">
+      </button>
+    </div>
+    <div class="chat_box" id="chat_box"></div>
+    <hr />
+    <form class="chat_form" id="chat_form">
+        <input type="text" class="chat_input" id="chat_input" placeholder="Escribe tu duda...">
+        <button type="submit" class="chat_submit" id="chat_submit">
+          <img src="img/Logos/interfaces/icons/enviar.png" alt="">
+        </button>
+    </form>
+  </section>
+  <div class="pavo_cont" id="pavo_cont">
+    <div class="pavo_msj" id="pavo_msj">
+    </div>
+    <div class="pavo">
+      <img src="img/Utilidades/pavo.gif" alt="pavo">
+    </div>
+  </div>
+  <section class="alertas" id="alertas">
+    <div class="alerta" id="alerta_1">
+      <span>
+        <p>Por favor, complete todos los campos 🤗</p>
+      </span>
+    </div>
+    <div class="alerta" id="alerta_2">
+      <span>
+        <p>Se a enviado correctamente el formulario 🫡</p>
+      </span>
+    </div>
+    <div class="alerta" id="alerta_3">
+      <span>
+        <p>Ocurrió un error al enviar el formulario 🤡</p>
+      </span>
+    </div>
+  </section>
+  <section class="alertas_admin" id="alertas_admin">
+    <div class="alerta_admin" id="alerta_4">
+      <span>
+        <p>¡Hola!😁, aqui estan todos los vacantes disponibles 🗃️</p>
+      </span>
+    </div>
+    <div class="alerta_admin" id="alerta_5">
+      <span>
+        <p>Error al eliminar vacante 🤡</p>
+      </span>
+    </div>
+    <div class="alerta_admin" id="alerta_6">
+      <span>
+        <p>El vacante se movio correctamente 🫨</p>
+      </span>
+    </div>
+    <div class="alerta_admin" id="alerta_7">
+      <span>
+        <p>Eliminaste un vacante 🫣</p>
+      </span>
+    </div>
+    <div class="alerta_admin" id="alerta_8">
+      <span>
+        <p>Casi eliminas un vacante 😬</p>
+      </span>
+    </div>
+    <div class="alerta_admin" id="alerta_9">
+      <span>
+        <p>Ese vacante ya esta ahí 😅</p>
+      </span>
+    </div>
+  </section>
+  <section class="alertas_modal" id="alertas_modal">
+    <div id="alert_eliminacion_vacante" class="alert_eliminacion_vacante">
+      <div class="alert_box">
+        <p id="message_eliminacion_vacante">Mensaje de la alerta</p>
+        <div class="alert_btn_cont">
+          <button id="confirm_eli" class="alert-btn confirm">
+            Sí, eliminar
+          </button>
+          <button id="cancel_eli" class="alert-btn cancel">
+            No, cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <header id="header">
+    <nav>
+      <ul>
+        <div class="circulo_icon"></div>
+        <li>
+          <button onclick="btn_form()">
+            <img src="img/Logos/interfaces/icons/usuario2.png" alt="Usuario" />
+          </button>
+        </li>
+        <li>
+          <button class="iconbutton" onclick="btn_home()">
+            <img src="img/Logos/Logo (3).png" alt="Logo" />
+          </button>
+        </li>
+        <li>
+          <button onclick="btn_admin()">
+            <img src="img/Logos/interfaces/icons/usuarios.png" alt="Usuarios" />
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="pages" id="home">
+      <div class="mancha1">
+        <a href="game/Game.html">
+          <img src="img/Utilidades/mancha1.png" alt="mancha1" />
+        </a>
+      </div>
+      <div class="mancha2">
+        <img src="img/Utilidades/mancha2.png" alt="mancha2" />
+      </div>
+    </section>
+    <section class="pages" id="pag1">
+      <article>
+        <div class="texto_form">
+          <h1>¡Suerte! ☺️</h1>
+          <p>Completa el formulario y envialo para tener tu solicitud.</p>
+        </div>
+        <div class="cont_form">
+          <form action="" id="myForm">
+            <!--Fecha-->
+            <input type="text" name="fecha_r" id="fecha_r" style="display: none" />
+            <!--Nombre,Edad, Numero telefonico-->
+            <div class="cont_inputform" id="inputform1">
+              <div class="input-form">
+                <input type="text" name="nombre" class="input" id="nombre" placeholder="Nombre" required />
+                <label for="nombre"><span>
+                    <p>En este campo ingresé su nombre completo</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="number" name="edad" class="input" id="edad" placeholder="Edad" min="18" required />
+                <label for="edad"><span>
+                    <p>En este campo ingresé su edad (mayor a 18 años).</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="tel" name="numero" class="input" id="numero" placeholder="Número" required />
+                <label for="numero"><span>
+                    <p>
+                      En este campo coloca tu número de contacto, comienza por la clave lada de tu ciudad.
+                    </p>
+                  </span></label>
+              </div>
+            </div>
+            <!--Sexo, Estado civil, Nacionalidad-->
+            <div class="cont_inputform" id="inputform2">
+              <div class="input-form">
+                <select name="sexo" class="input" id="sexo" required>
+                  <option value="" disabled selected>Sexo</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="sexo"><span>
+                    <p>En este campo ingresé su sexo.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="e_c" class="input" id="e_c" required>
+                  <option value="" disabled selected>Estado civil</option>
+                  <option value="Soltero">Soltero</option>
+                  <option value="Casado">Casado</option>
+                  <option value="Unionlibre">Unionlibre</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="e_c"><span>
+                    <p>
+                      En este campo ingresé su estado civil.
+                    </p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="nacion" class="input" id="nacion" required>
+                  <option value="" disabled selected>Nacionalidad</option>
+                  <option value="Mexicana">Mexicana</option>
+                  <option value="Estadounidense">Estadounidense</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="nacion"><span>
+                    <p>
+                      En este campo ingresé su nacionalidad.
+                    </p>
+                  </span></label>
+              </div>
+            </div>
+            <!--Fecha de nacimiento, Direccion, Codigo postal -->
+            <div class="cont_inputform" id="inputform5">
+              <div class="input-form">
+                <input type="date" name="f_n" class="input" id="f_n" placeholder="Fecha/N" required />
+                <label for="f_n"><span>
+                    <p>En este campo ingrese su fecha de nacimiento.</p>
+                  </span>
+                </label>
+              </div>
+              <div class="input-form">
+                <input type="text" name="direccion" class="input" id="direccion" placeholder="Dirección" required />
+                <label for="direccion"><span>
+                    <p>En este campo ingrese su domicilio (calle, número, colonia).</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="number" name="cp" class="input" id="cp" placeholder="CP" required />
+                <label for="cp"><span>
+                    <p>En este campo ingresé su código postal.</p>
+                  </span></label>
+              </div>
+            </div>
+            <!--Puesto, Sucursal, Ciudad-->
+            <div class="cont_inputform" id="inputform3">
+              <div class="input-form">
+                <select name="puesto" class="input" id="puesto" required>
+                  <option value="" disabled selected>Puesto</option>
+                  <option value="Cocina">Cocina</option>
+                  <option value="Mostrador">Mostrador</option>
+                  <option value="Repartidor">Repartidor</option>
+                  <option value="Subgerente">Subgerente</option>
+                  <option value="Gerente">Gerente</option>
+                </select>
+                <label for="puesto"><span>
+                    <p>En este campo ingresé en qué se quiere desempeñar.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="sucursal" class="input" id="sucursal" required>
+                  <option value="" disabled selected>Sucursal</option>
+                  <option value="Playas">Playas</option>
+                  <option value="Altamira">Altamira</option>
+                  <option value="Libertad">Libertad</option>
+                  <option value="Sierra">Sierra</option>
+                  <option value="Cacho">Cacho</option>
+                  <option value="Hipódromo">Hipódromo</option>
+                  <option value="Santa fe">Santa fe</option>
+                  <option value="Villa Fontana">Villa Fontana</option>
+                  <option value="Huertas">Huertas</option>
+                  <option value="Monarca">Monarca</option>
+                  <option value="Otay">Otay</option>
+                  <option value="Rosarito">Rosarito</option>
+                  <option value="Florido">Florido</option>
+                  <option value="Tecate">Tecate</option>
+                  <option value="San ysidro">San ysidro</option>
+                </select>
+                <label for="sucursal"><span>
+                    <p>En este campo seleccione la sucursal que quiere postularse.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="ciudad" class="input" id="ciudad" required>
+                  <option value="" disabled selected>Ciudad</option>
+                  <option value="Tijuana">Tijuana</option>
+                  <option value="Tecate">Tecate</option>
+                  <option value="Rosarito">Rosarito</option>
+                  <option value="San Ysidro">San Ysidro</option>
+                </select>
+                <label for="ciudad"><span>
+                    <p>En este campo ingresé la ciudad en la que va a trabajar con nosotros.</p>
+                  </span></label>
+              </div>
+            </div>
+            <!--Empleo, Horario, Documentacion-->
+            <div class="cont_inputform" id="inputform4">
+              <div class="input-form">
+                <select name="empleo" class="input" id="empleo" required>
+                  <option value="" disabled selected>Empleo</option>
+                  <option value="Fijo">Fijo</option>
+                  <option value="Temporal">Temporal</option>
+                </select>
+                <label for="empleo"><span>
+                    <p>¿Buscas empleo fijo o temporal?</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="horario" class="input" id="horario" required>
+                  <option value="" disabled selected>Horario</option>
+                  <option value="Rotativo">Rotativo</option>
+                  <option value="Fijo">Fijo (Cierre)</option>
+                </select>
+                <label for="horario"><span>
+                    <p>¿Buscas horarios rotativos o fijos?</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="docu" class="input" id="docu" required>
+                  <option value="" disabled selected>Documentacion</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="docu"><span>
+                    <p>¿Tienes la docuemtacion completa?</p>
+                  </span></label>
+              </div>
+            </div>
+            <!--Tranposrte, Tiempo de casa a suc, Problemas con el tranporte?-->
+            <div class="cont_inputform" id="inputform5">
+              <div class="input-form">
+                <select name="transporte" class="input" id="transporte" required>
+                  <option value="" disabled selected>Transporte</option>
+                  <option value="Carro">Carro</option>
+                  <option value="Moto">Moto</option>
+                  <option value="Publico">Publico</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <label for="transporte"><span>
+                    <p>
+                      Medio de transporte que utilizas.
+                    </p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <input type="number" name="casa_suc" class="input" id="casa_suc" placeholder="Casa-Suc" required />
+                <label for="casa_suc"><span>
+                    <p>Tiempo en minutos desde tu domicilio a la sucursal.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="problema_t" class="input" id="problema_t" required>
+                  <option value="" disabled selected>Dificutad?</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label for="problema_t"><span>
+                    <p>
+                      En este campo ingresa si se te dificulta el transporte a la sucursal.
+                    </p>
+                  </span></label>
+              </div>
+            </div>
+            <!--pagina de exito-->
+            <div class="exito_form" id="exito_form">
+              <img src="img/Logos/interfaces/icons/exito.png" alt="Exito">
+            </div>
+            <!--Nex page-->
+            <div class="input-nex">
+              <input type="button" id="btn_next_form" />
+            </div>
+            <!--Submit-->
+            <div class="input-submit">
+              <input type="button" id="btn_enviar_form" />
+            </div>
+          </form>
+        </div>
+        <label id="label_enviar" for="btn_enviar_form">
+          <img src="img/Logos/interfaces/icons/enviar.png" alt="Enviar" />
+        </label>
+        <label id="label_next" for="btn_next_form">
+          <img src="img/Logos/interfaces/icons/flecha-correcta.png" alt="Next" />
+        </label>
+      </article>
+    </section>
+    <section class="pages" id="pag2">
+      <div class="Logincont" id="Logincont">
+        <div class="Login-cont">
+          <div class="Login-son" id="Login-son">
+            <form class="formuariolog activolog" id="formuariolog">
+              <div class="wel" class="input-field">
+                <h3><span>Bienvenido</span></h3>
+              </div>
+              <div class="input-field">
+                <input id="user" type="text" name="user" autocomplete="off" required spellcheck="false" />
+                <label><span>Usuario</span></label>
+              </div>
+              <div class="input-field">
+                <input id="pass" type="password" name="Contraseña" autocomplete="off" required spellcheck="false" />
+                <label for="pass"><span>Contrasena</span></label>
+              </div>
+              <div class="input-submit">
+                <input type="button" type="button" id="btn_log_admin" />
+              </div>
+            </form>
+            <div class="error" id="errorall">
+              <div id="icon">
+                <img src="img/Logos/interfaces/icons/cerrar.png" alt="error" />
+              </div>
+              <h1>Algo es incorrecto</h1>
+              <a href="javascript:document.location.reload();">Intentar de nuevo</a>
+            </div>
+            <div class="error" id="errorp">
+              <div id="icon">
+                <img src="img/Logos/interfaces/icons/cerrar.png" alt="error" />
+              </div>
+              <h1>Contraseña incorrecta</h1>
+              <a href="javascript:document.location.reload();">Intentar de nuevo</a>
+            </div>
+            <div class="error" id="erroru">
+              <div id="icon">
+                <img src="img/Logos/interfaces/icons/cerrar.png" alt="error" />
+              </div>
+              <h1>Usuario incorrecto</h1>
+              <a href="javascript:document.location.reload();">Intentar de nuevo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="pages" id="pag3">
+      <div class="btn_regreso">
+        <button id="logoutButton" onclick="btn_admin_regreso()">
+          <img src="img/Logos/interfaces/icons/atras.png" alt="atras" />
+        </button>
+      </div>
+      <div class="estatus_vacantes">
+        <div class="icons_status">
+          <input type="checkbox" id="status1" />
+          <label id="label_status1" for="status1"></label>
+          <div class="status_info">
+            <div class="box_status box_status1">
+              <p>No asistio</p>
+            </div>
+            <div class="data_status" id="data_no_asistieron"></div>
+          </div>
+        </div>
+        <div class="icons_status">
+          <input type="checkbox" id="status2" />
+          <label id="label_status2" for="status2"></label>
+          <div class="status_info">
+            <div class="box_status box_status2">
+              <p>Asistio</p>
+            </div>
+            <div class="data_status" id="data_asistieron"></div>
+          </div>
+        </div>
+        <div class="icons_status">
+          <input type="checkbox" id="status3" />
+          <label id="label_status3" for="status3"></label>
+          <div class="status_info">
+            <div class="box_status box_status3">
+              <p>Contratado</p>
+            </div>
+            <div class="data_status" id="data_contratado"></div>
+          </div>
+        </div>
+      </div>
+      <div class="admin_cont">
+        <div class="cont_rechazados">
+          <div class="box_red"></div>
+          <div class="const_data" id="data_red"></div>
+        </div>
+        <div class="cont_aceptados">
+          <div class="box_green"></div>
+          <div class="const_data" id="data_green"></div>
+        </div>
+      </div>
+    </section>
+    <aside id="aside">
+      <article>
+        <div>
+          <img src="img/Utilidades/RERTO MMM.png" alt="RERTO MMM" />
+        </div>
+        <h2>Fundada en 1988</h2>
+        <p>
+          MMM Pizza también conocida como “Mamamia Pizza” cuenta con más de 35
+          años de experiencia, dedicada a la elaboración y venta de productos
+          de pizzería. Nuestro propósito es ofrecer un servicio excepcional
+          que garantice la calidad en cada aspecto de nuestro trabajo,
+          actualmente tenemos presencia tanto en el territorio de Baja
+          California como en Estados Unidos.
+        </p>
+      </article>
+    </aside>
+  </main>
+  <script  type="module" src="js/chatbot.js"></script>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/database.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
