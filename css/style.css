@@ -45,6 +45,46 @@
     z-index: 1003;
   }
 }
+@keyframes pavo_moving {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(150%);
+  }
+  50% {
+    transform: translateX(300%);
+  }
+  51% {
+    transform: translateX(300%);
+  }
+  75% {
+    transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pavo_rotate {
+  0% {
+    transform: rotateY(180deg);
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  51% {
+    transform: rotateY(0deg);
+  }
+  75% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
 #loader {
   width: 100vw;
   height: 100vh;
@@ -112,6 +152,46 @@
   100% {
     transform: translateX(0);
     z-index: 1003;
+  }
+}
+@keyframes pavo_moving {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(150%);
+  }
+  50% {
+    transform: translateX(300%);
+  }
+  51% {
+    transform: translateX(300%);
+  }
+  75% {
+    transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pavo_rotate {
+  0% {
+    transform: rotateY(180deg);
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  51% {
+    transform: rotateY(0deg);
+  }
+  75% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(0deg);
   }
 }
 @font-face {
@@ -279,6 +359,81 @@ body canvas {
   font-style: normal;
   font-weight: normal;
 }
+@font-face {
+  font-family: "NIMBUS";
+  src: url(/fonts/TAN-NIMBUS.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url(/fonts/Nunito-Regular.ttf);
+  font-style: normal;
+  font-weight: normal;
+}
+@keyframes reolad {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes moverpuntolog {
+  0% {
+    transform: translateX(0);
+  }
+  49% {
+    transform: translateX(300%) translateY(-110%);
+  }
+  50% {
+    transform: translateX(300%) translateY(-110%);
+  }
+  100% {
+    transform: translateX(0);
+    z-index: 1003;
+  }
+}
+@keyframes pavo_moving {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(150%);
+  }
+  50% {
+    transform: translateX(300%);
+  }
+  51% {
+    transform: translateX(300%);
+  }
+  75% {
+    transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pavo_rotate {
+  0% {
+    transform: rotateY(180deg);
+  }
+  25% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  51% {
+    transform: rotateY(0deg);
+  }
+  75% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
 .chatbot {
   position: fixed;
   animation: backInRight 1.5s ease-in-out forwards;
@@ -286,7 +441,7 @@ body canvas {
   right: 0;
   margin: 2%;
   display: none;
-  z-index: 9998;
+  z-index: 9999;
   width: 4vw;
   aspect-ratio: 2/2;
   height: auto;
@@ -296,6 +451,7 @@ body canvas {
   align-items: center;
   gap: 0;
   background-color: #ec6223;
+  box-shadow: 0 0 10px 5px #ec6223;
 }
 .chatbot .chat_header {
   width: 100%;
@@ -325,10 +481,6 @@ body canvas {
   border: none;
   background-repeat: no-repeat;
 }
-.chatbot .chat_header .chat_min:hover {
-  background-color: #ec6223;
-  box-shadow: 0px 0px 10px 5px #ec6223;
-}
 .chatbot .chat_box {
   display: none;
 }
@@ -346,6 +498,7 @@ body canvas {
   bottom: 0;
   right: 0;
   margin: 2%;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -544,6 +697,42 @@ body canvas {
   height: 100%;
 }
 
+.pavo_cont {
+  width: 4vw;
+  height: 8vh;
+  position: fixed;
+  animation: pavo_moving 5s ease-in-out infinite;
+  right: 19vw;
+  bottom: 0;
+  z-index: 9998;
+}
+.pavo_cont .pavo_msj {
+  width: 10vw;
+  height: 1.5vh;
+  position: absolute;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: -4.5vw;
+  bottom: 11vh;
+  border-radius: 2vw;
+  font-size: 0.6vw;
+  font-family: "Nunito";
+  background-color: #0f3061;
+  color: #ffffff;
+  text-align: center;
+}
+.pavo_cont .pavo {
+  width: 100%;
+  height: 100%;
+}
+.pavo_cont .pavo img {
+  width: 100%;
+  height: 100%;
+  animation: pavo_rotate 5s ease-in-out infinite;
+}
+
 .agregar_dis {
   display: flex;
 }
@@ -556,6 +745,8 @@ body canvas {
     width: 70vw;
     height: 80vh;
     border-radius: 5vw;
+    background-color: #ffffff;
+    box-shadow: none;
   }
   .max_chat .chat_header {
     border-radius: 4vw;
@@ -595,6 +786,19 @@ body canvas {
   .max_chat .chat_box .user_message p {
     font-size: 2.3vw;
     border-radius: 3vw;
+  }
+  .pavo_cont {
+    width: 7vw;
+    height: 7vh;
+    right: 38vw;
+  }
+  .pavo_cont .pavo_msj {
+    width: 25vw;
+    padding: 0.8rem;
+    left: -8vw;
+    bottom: 9vh;
+    border-radius: 3vw;
+    font-size: 1.6vw;
   }
 }
 @media screen and (max-width: 500px) {
@@ -662,6 +866,18 @@ body canvas {
   .max_chat .chat_form .chat_input {
     width: 80%;
     height: 90%;
+  }
+  .pavo_cont {
+    width: 15vw;
+    right: 74vw;
+  }
+  .pavo_cont .pavo_msj {
+    width: 37vw;
+    padding: 0.8rem;
+    left: -10vw;
+    bottom: 9vh;
+    border-radius: 5vw;
+    font-size: 2.3vw;
   }
 }
 * {
@@ -884,7 +1100,7 @@ body main, html main {
 }
 body main .pages, html main .pages {
   width: 50%;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -1290,7 +1506,7 @@ body main #pag2 .Logincont.animacionlog, html main #pag2 .Logincont.animacionlog
 }
 body main #pag3, html main #pag3 {
   width: 100%;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
 }
 body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
   width: 2.5%;
@@ -1948,7 +2164,7 @@ body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3, html main #pag3 {
     width: 100%;
-    height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
   }
   body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
     width: 6vw;
@@ -2186,7 +2402,7 @@ body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3, html main #pag3 {
     width: 100%;
-    height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
   }
   body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
     width: 8vw;

@@ -126,7 +126,7 @@ const elements = {
   }
   // Funciones para cada botón
   function btn_home() {
-    toggleView({ home: true });
+    toggleView({ home: true});
   }
   function btn_form() {
     toggleView({ header: true, form: true, aside: true });

@@ -233,7 +233,7 @@ body, html {
     margin: 0;
     .pages {
       width: 50%;
-      height: 100%;
+      height: calc(var(--vh, 1vh) * 100);
       justify-items: center;
       justify-content: center;
       align-items: center;
@@ -649,7 +649,8 @@ body, html {
       }
     }
     #pag3 {
-      @include cover;
+      width: 100%;
+      height: calc(var(--vh, 1vh) * 100);
       .btn_regreso {
         width: 2.5%;
         aspect-ratio: 2/2;
@@ -1337,7 +1338,8 @@ body, html {
         }
       }
       #pag3 {
-        @include cover;
+        width: 100%;
+        height: calc(var(--vh, 1vh) * 100);
         .btn_regreso {
           width: 6vw;
         }
@@ -1630,7 +1632,8 @@ body, html {
         }
       }
       #pag3 {
-        @include cover;
+        width: 100%;
+        height: calc(var(--vh, 1vh) * 100);
         .btn_regreso {
           width: 8vw;
           margin: 8%;

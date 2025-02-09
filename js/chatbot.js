@@ -97,13 +97,67 @@ function showTypingIndicator() {
 function sendWelcomeMessage() {
   if (isWelcomeMessageSent) return;
   isWelcomeMessageSent = true;
-  showTypingIndicator();
 
-  setTimeout(() => {
-    document.querySelector(".typing")?.remove();
-    sendMessage("bot", "¡Hola! ¿En qué puedo ayudarte? 😃", true);
-  }, 2000);
+  // Buscar el intent con el tag "Saludos"
+  const saludosIntent = intents.find(intent => intent.tag === "Saludos");
+
+  if (saludosIntent && saludosIntent.responses && saludosIntent.responses.length > 0) {
+    // Seleccionar un saludo al azar
+    const randomSaludo = saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)];
+
+    // Mostrar indicador de escritura
+    showTypingIndicator();
+
+    // Enviar el mensaje de bienvenida después de un retraso
+    setTimeout(() => {
+      document.querySelector(".typing")?.remove();
+      sendMessage("bot", randomSaludo, true);
+    }, 2000);
+  } else {
+    console.error("❌ No se encontró el tag 'Saludos' o no tiene respuestas.");
+    sendMessage("bot", "¡Hola! ¿En qué puedo ayudarte? 😃", true); // Respuesta por defecto
+  }
 }
+
+// Función para obtener una respuesta aleatoria del tag 'tienes_preguntas'
+function getRandomTienesPreguntasResponse() {
+  // Buscar el intent con el tag 'tienes_preguntas'
+  const tienesPreguntasIntent = intents.find(intent => intent.tag === "tienes_preguntas");
+
+  if (tienesPreguntasIntent && tienesPreguntasIntent.responses && tienesPreguntasIntent.responses.length > 0) {
+    // Seleccionar una respuesta aleatoria
+    const randomResponse = tienesPreguntasIntent.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)];
+    return randomResponse;
+  } else {
+    console.error("❌ No se encontró el tag 'tienes_preguntas' o no tiene respuestas.");
+    return "¿En qué puedo ayudarte?"; // Respuesta por defecto
+  }
+}
+
+// Función para mostrar la respuesta en el elemento con ID 'pavo_msj'
+function updatePavoMsj() {
+  const pavoMsjElement = document.getElementById("pavo_msj");
+
+  if (pavoMsjElement) {
+    // Obtener una respuesta aleatoria del tag 'tienes_preguntas'
+    const randomResponse = getRandomTienesPreguntasResponse();
+
+    // Actualizar el contenido del elemento con la respuesta dentro de un <span>
+    pavoMsjElement.innerHTML = `${randomResponse}`;
+  } else {
+    console.error("❌ No se encontró el elemento con ID 'pavo_msj'.");
+  }
+}
+
+// Ejecutar la función cuando se carga el DOM
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Cargando intents...");
+  await loadIntents(); // Cargar los intents
+  console.log("Intents cargados.");
+
+  // Actualizar el mensaje en 'pavo_msj' después de cargar los intents
+  updatePavoMsj();
+});
 
 // Mantener el chat en la parte inferior
 function scrollToBottom() {
@@ -114,19 +168,24 @@ function scrollToBottom() {
 // Manejo del botón de minimizar el chat
 document.getElementById("chat_min").addEventListener("click", () => {
   const chatBox = document.getElementById("chatbot");
+  const pavo = document.getElementById("pavo_cont");
+
   chatBox.classList.toggle("max_chat");
 
   if (chatBox.classList.contains("max_chat")) {
+    pavo.style.display = 'none';
     sendWelcomeMessage();
     setTimeout(scrollToBottom, 0);
+  } else {
+    pavo.style.display = 'flex';
   }
 });
 
 // Evento de carga del chat
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("🚀 Cargando intents...");
+  console.log("Cargando intents...");
   await loadIntents();
-  console.log("✅ Intents cargados.");
+  console.log("Intents cargados.");
 
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
@@ -134,7 +193,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const chatBox = document.getElementById("chat_box");
 
   if (!form || !input || !sendButton || !chatBox) {
-    console.error("❌ Elementos del chat no encontrados.");
+    console.error("Elementos del chat no encontrados.");
     return;
   }
 

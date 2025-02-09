@@ -667,6 +667,7 @@ function login() {
           admin: document.getElementById("pag3"),
           aside: document.getElementById("aside"),
           chatbot: document.getElementById("chatbot"),
+          pavo_cont: document.getElementById("pavo_cont")
         };
 
         const toggleClass = (elements, className, add = true) => {
@@ -688,6 +689,7 @@ function login() {
         toggleClass([elements.header], "cambiar_nav", false);
 
         elements.header.style.display = "none";
+        elements.pavo_cont.style.display = "none";
         if (elements.chatbot) elements.chatbot.style.display = "none";
 
         mostrarAlerta("alertas_admin");
