@@ -1732,8 +1732,13 @@ html {
             form {
               .cont_inputform {
                 .input-form {
+                  .input { 
+                    .select-items {
+                      border-radius: 1.5rem 1.5rem 2rem 2rem;
+                    }
+                  }
                   label {
-                    top: 22vh;
+                    top: 18vh;
                     left: 10vw;
                     width: 70vw;
                     height: 15vw;
