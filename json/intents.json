@@ -62,7 +62,16 @@
                 "que crees",
                 "que hay",
                 "que miras",
-                "que escuchas"
+                "que escuchas",
+                "que hay de nuevo",
+                "cuanto tiempo sin verte",
+                "como te ha ido",
+                "espero que estes bien",
+                "todo bien por ahi",
+                "un placer saludarte",
+                "como andas",
+                "como va todo",
+                "como estas"
             ],
             "responses": [
                 "¡Feliz como un pavo en Acción de Gracias! 🦃🎉 (Bueno, casi).",
@@ -184,21 +193,12 @@
                 "hi",
                 "buenas noches",
                 "buenas tardes",
-                "como estas",
                 "que tal",
                 "buenos dias/tardes/noches",
                 "como estas",
                 "que gusto verte",
-                "como va todo",
                 "hace dias que no se de ti",
-                "ey, hola",
-                "que hay de nuevo",
-                "cuanto tiempo sin verte",
-                "como te ha ido",
-                "espero que estes bien",
-                "todo bien por ahi",
-                "un placer saludarte",
-                "como andas"
+                "ey, hola"
             ],
             "responses": [
                 "¡Holaaa! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
@@ -256,6 +256,34 @@
                 "No me hagas sacar el pavo censor que llevo dentro... ¡Y créeme, es peor! 🦃⚠️.",
                 "Aquí el único que puede pavonearse soy yo 💃🦃, así que bajemos el tonito 🔊⬇️.",
                 "¡Alto ahí, forajido del lenguaje! Mi pico sirve para dar gracias 🙏, no para escuchar desgracias 😤❌."
+            ]
+        },
+        {
+            "tag": "Soy_gay?",
+            "keywords": [
+                "gay",
+                "homosexual",
+                "lgbt",
+                "lgbt+",
+                "gai",
+                "homosexual",
+                "queer",
+                "del arcoiris",
+                "de la comunidad",
+                "no hetero",
+                "de la diversidad"
+            ],
+            "responses": [
+                "Soy tan heterosexual que hasta mi sombra sale con una chica. 😎🦃 Pero, oye, todos somos únicos y eso es lo que nos hace especiales. ¡Respeto para todos! 🌈✨",
+                "No soy gay, pero si lo fuera, sería el más divertido del arcoíris. 🌈😂 Aunque, por ahora, mi corazón late por las pavas. 💘🦃",
+                "Soy tan straight que hasta mi plato favorito es el pavo al horno. 🍗😋 Pero, oye, si alguien necesita un amigo para reírse, aquí estoy. 🤗🦃",
+                "No soy gay, pero si lo fuera, sería el rey de las fiestas. 🎉👑 Aunque, por ahora, prefiero ser el rey de los chistes malos. 😜🦃",
+                "Soy tan heterosexual que hasta mi GPS solo me guía hacia citas con chicas. 🗺️💃 Pero, oye, si necesitas un amigo para charlar, aquí estoy. 🦃🤝",
+                "No soy gay, pero si lo fuera, sería el mejor bailarín de la pista. 🕺💃 Aunque, por ahora, prefiero ser el mejor contador de chistes. 😂🦃",
+                "Soy tan straight que hasta mi teléfono solo tiene apps para ligar con chicas. 📱💖 Pero, oye, si necesitas un amigo para reírte, aquí estoy. 😄🦃",
+                "No soy gay, pero si lo fuera, sería el más elegante del lugar. 🕴️✨ Aunque, por ahora, prefiero ser el más gracioso. 😜🦃",
+                "Soy tan heterosexual que hasta mi perro solo ladra a las chicas. 🐕👧 Pero, oye, si necesitas un amigo para pasar un buen rato, aquí estoy. 🤗🦃",
+                "No soy gay, pero si lo fuera, sería el más simpático del grupo. 😊🌈 Aunque, por ahora, prefiero ser el más chistoso. 😂🦃"
             ]
         },
         {

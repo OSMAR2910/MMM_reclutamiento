@@ -23,7 +23,8 @@
   scale: 0.9;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   background-color: $Fondo;
@@ -113,7 +114,7 @@ body, html {
       z-index: 10010;
       display: none;
       .alert_box {
-        width: 20vw; 
+        width: 20vw;
         height: 15vh;
         background-color: $Blanco;
         display: flex;
@@ -126,27 +127,28 @@ body, html {
         font-size: 1vw;
         text-align: center;
         color: $Box_admin;
-        .alert_btn_cont{
+        .alert_btn_cont {
           display: flex;
-          gap: .5vw;
+          gap: 0.5vw;
           .alert-btn {
             padding: 10px 15px;
             border: none;
-            font-size: .8vw;
+            font-size: 0.8vw;
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
             transition: all 0.1s ease-in-out;
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
               @include opacity;
             }
           }
-  
+
           .alert-btn.confirm {
             background-color: $Fondo;
             color: white;
           }
-  
+
           .alert-btn.cancel {
             background-color: $Secundario;
             color: white;
@@ -292,17 +294,16 @@ body, html {
             width: 100%;
             color: $Texto;
             text-align: center;
-            font-size: 3vh;
+            font-size: 4vh;
             margin: 0;
             letter-spacing: 0.1rem;
             font-family: $Letra1;
           }
-
-          p {
+          h3 {
             width: 100%;
             color: $Texto;
             text-align: center;
-            font-size: 2vh;
+            font-size: 1.5vh;
             margin: 1%;
             letter-spacing: 0.1rem;
             font-family: $Letra2;
@@ -313,7 +314,6 @@ body, html {
           aspect-ratio: 1.2/1;
           border: 0;
           margin: 2%;
-          overflow: hidden;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -322,7 +322,7 @@ body, html {
             height: 2%;
             background-color: $Secundario;
             border-radius: 1rem;
-            transition: all .5s ease-in-out;
+            transition: all 0.5s ease-in-out;
           }
           form {
             width: 95%;
@@ -345,7 +345,11 @@ body, html {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-family: $Letra2;
+                font-family: $Letra2; 
+                .custom-select {
+                  position: relative;
+                  display: inline-block;
+                }
                 .input {
                   width: 100%;
                   height: 100%;
@@ -353,8 +357,40 @@ body, html {
                   background-color: $Texto;
                   outline: none;
                   border: 0;
+                  color: $Box_admin;
+                  font-family: $Letra2; 
                   text-align: center;
-                  transition: all 0.2s ease-in-out; 
+                  select {
+                    position: absolute;
+                    opacity: 0;
+                    pointer-events: none;
+                    width: 0;
+                    height: 0;
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                  }
+                  .select-selected {
+                    cursor: pointer;
+                    position: relative;
+                    border-radius: 5rem;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    color: $Box_admin;
+                    outline: none;
+                    border: 0;
+                    &:focus {
+                      border: 0;
+                      outline: none;
+                      border: 2px solid $Resalte;
+                      box-shadow: 0px 0px 10px 0px $Resalte;
+                      background: $Resalte;
+                      color: $Texto;
+                    }
+                  }
                   &:focus {
                     border: 0;
                     outline: none;
@@ -362,10 +398,38 @@ body, html {
                     box-shadow: 0px 0px 10px 0px $Resalte;
                     background: $Resalte;
                     color: $Texto;
+                    .select-items {
+                      display: block;
+                    }
+                  }
+                }
+                .select-items {
+                  position: absolute;
+                  width: 100%;
+                  display: none;
+                  font-family: $Letra2; 
+                  z-index: 99;
+                  top: 2vh;
+                  border-radius: 1.5rem 1.5rem 2rem 2rem;
+                  max-height: 20vh;
+                  overflow-y: scroll;
+                  border: 0;
+                  outline: none;
+                  border: 2px solid $Resalte;
+                  box-shadow: 0px 0px 10px 2px $Resalte;
+                  background: $Resalte;
+                  color: $Texto;
+                  div.disabled {
+                    color: gray;
+                    pointer-events: none;
+                  }
+                  div {
+                    padding: 1rem;
+                    cursor: pointer;
                   }
                 }
                 .input::placeholder {
-                  color: $Negro;
+                  color: $Box_admin;
                 }
                 .input:focus::placeholder {
                   color: $Texto;
@@ -375,7 +439,6 @@ body, html {
                   opacity: 100%;
                   transition: all 0.2s ease-in-out;
                 }
-  
                 label {
                   scale: 0;
                   opacity: 0;
@@ -400,7 +463,7 @@ body, html {
                     p {
                       @include cover;
                       color: $Texto;
-                      font-size: 0.8vw;
+                      font-size: 0.7vw;
                       display: flex;
                       justify-content: center;
                       align-items: center;
@@ -754,7 +817,7 @@ body, html {
             text-align: center;
             color: $Texto;
             font-family: $Letra2;
-            font-size: .7vw;
+            font-size: 0.7vw;
             padding: 0.5vw;
             background-color: $Box_admin;
             box-shadow: 0px 0px 10px 0px $Box_admin;
@@ -815,21 +878,21 @@ body, html {
                   height: 5vh;
                   display: flex;
                   background-color: $Texto;
-                  border-radius: .5vw;
+                  border-radius: 0.5vw;
                   justify-content: center;
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
                   .btn-descargar-pdf {
-                      border-radius: 5rem;
-                      width: 1%;
-                      height: 80%;
-                      border: none;
-                      background-color: $Principal;
-                      transition: all 0.2s ease-in-out;
-                      &:hover {
-                        @include opacity;
-                      }
+                    border-radius: 5rem;
+                    width: 1%;
+                    height: 80%;
+                    border: none;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+                    &:hover {
+                      @include opacity;
+                    }
                   }
                   .vacante_info {
                     width: 80%;
@@ -863,7 +926,7 @@ body, html {
                     justify-items: center;
                     align-content: center;
                     flex-direction: column;
-                    gap: .1vw;
+                    gap: 0.1vw;
                     button {
                       border-radius: 5rem;
                       width: 1vw;
@@ -985,15 +1048,15 @@ body, html {
                 overflow: hidden;
                 gap: 5%;
                 .btn-descargar-pdf {
-                    border-radius: 5rem;
-                    width: 1%;
-                    height: 80%;
-                    border: none;
-                    background-color: $Principal;
-                    transition: all 0.2s ease-in-out;
-                    &:hover {
-                      @include opacity;
-                    }
+                  border-radius: 5rem;
+                  width: 1%;
+                  height: 80%;
+                  border: none;
+                  background-color: $Principal;
+                  transition: all 0.2s ease-in-out;
+                  &:hover {
+                    @include opacity;
+                  }
                 }
                 .vacante_info {
                   width: 87%;
@@ -1027,7 +1090,7 @@ body, html {
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: .1vw;
+                  gap: 0.1vw;
                   button {
                     border-radius: 5rem;
                     width: 1vw;
@@ -1136,15 +1199,15 @@ body, html {
                 cursor: pointer;
                 outline: none;
                 .btn-descargar-pdf {
-                    border-radius: 5rem;
-                    width: 1%;
-                    height: 80%;
-                    border: none;
-                    background-color: $Principal;
-                    transition: all 0.2s ease-in-out;
-                    &:hover {
-                      @include opacity;
-                    }
+                  border-radius: 5rem;
+                  width: 1%;
+                  height: 80%;
+                  border: none;
+                  background-color: $Principal;
+                  transition: all 0.2s ease-in-out;
+                  &:hover {
+                    @include opacity;
+                  }
                 }
                 .vacante_info {
                   width: 96%;
@@ -1158,10 +1221,10 @@ body, html {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: .6vw;
+                    font-size: 0.6vw;
                     color: $Resalte;
                     strong {
-                      font-size: .7vw;
+                      font-size: 0.7vw;
                       color: $Resalte;
                     }
                   }
@@ -1173,7 +1236,7 @@ body, html {
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: .1vw;
+                  gap: 0.1vw;
                   button {
                     border-radius: 5rem;
                     width: 1vw;
@@ -1223,7 +1286,7 @@ body, html {
         margin-top: -9%;
         div {
           width: 50%;
-          margin-top: 5%;
+          margin-top: 3%;
           img {
             @include cover;
             border-radius: 2rem;
@@ -1235,11 +1298,13 @@ body, html {
           font-size: 1.8vw;
           letter-spacing: 0.3rem;
           text-align: center;
+          margin: 1%;
+          margin-top: 3%;
         }
         p {
           width: 45%;
           padding: 0;
-          margin: 0;
+          margin: 1%;
           font-family: $Letra2;
           color: $Texto;
           font-size: 1vw;
@@ -1297,10 +1362,10 @@ body, html {
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
-          width: 40vw; 
+          width: 40vw;
           height: 15vh;
           font-size: 2.5vw;
-          .alert_btn_cont{
+          .alert_btn_cont {
             .alert-btn {
               font-size: 2vw;
             }
@@ -1343,10 +1408,9 @@ body, html {
           .texto_form {
             width: 80%;
             h1 {
-              font-size: 2.8vh;
+              font-size: 3vh;
             }
-  
-            p {
+            h3 {
               font-size: 1.7vh;
             }
           }
@@ -1355,6 +1419,11 @@ body, html {
             form {
               .cont_inputform {
                 .input-form {
+                  .input { 
+                    .select-items {
+                      border-radius: 1.5rem 1.5rem 3rem 3rem;
+                    }
+                  }
                   label {
                     top: 23vh;
                     left: 23vw;
@@ -1606,10 +1675,10 @@ body, html {
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
-          width: 70vw; 
+          width: 70vw;
           height: 15vh;
           font-size: 3.5vw;
-          .alert_btn_cont{
+          .alert_btn_cont {
             .alert-btn {
               font-size: 3vw;
             }
@@ -1649,11 +1718,12 @@ body, html {
           .texto_form {
             width: 90%;
             h1 {
-              font-size: 3vh;
+              font-size: 4vh;
             }
-            p {
-              font-size: 1.6vh;
+            h3 {
+              font-size: 1.5vh;
             }
+            margin-bottom: 4%;
           }
           .cont_form {
             .progress-bar {
@@ -1776,7 +1846,7 @@ body, html {
                     .vacante_info {
                       width: 90%;
                       height: 90%;
-                    grid-template-columns: repeat(4, 1fr);
+                      grid-template-columns: repeat(4, 1fr);
                     }
                     .btn-container {
                       display: none;
@@ -1818,7 +1888,7 @@ body, html {
                     .vacante_info {
                       width: 90%;
                       height: 90%;
-                    grid-template-columns: repeat(4, 1fr);
+                      grid-template-columns: repeat(4, 1fr);
                     }
                     .btn-container {
                       display: none;

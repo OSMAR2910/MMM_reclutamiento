@@ -886,7 +886,8 @@ body canvas {
   width: 0px;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   background-color: #ec6223;
@@ -895,7 +896,8 @@ body, html {
   justify-content: center;
   align-items: center;
 }
-body .alertas, html .alertas {
+body .alertas,
+html .alertas {
   top: 5vh;
   left: 18vw;
   width: 14vw;
@@ -906,7 +908,8 @@ body .alertas, html .alertas {
   position: fixed;
   z-index: 1001;
 }
-body .alertas .alerta, html .alertas .alerta {
+body .alertas .alerta,
+html .alertas .alerta {
   width: 100%;
   height: 100%;
   display: none;
@@ -918,19 +921,22 @@ body .alertas .alerta, html .alertas .alerta {
   border-radius: 5rem;
   animation: fadeInDown 0.2s ease-in-out forwards;
 }
-body .alertas .alerta span, html .alertas .alerta span {
+body .alertas .alerta span,
+html .alertas .alerta span {
   width: 90%;
   height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body .alertas .alerta span p, html .alertas .alerta span p {
+body .alertas .alerta span p,
+html .alertas .alerta span p {
   font-size: 0.8vw;
   color: #ffffff;
   text-align: center;
 }
-body .alertas_admin, html .alertas_admin {
+body .alertas_admin,
+html .alertas_admin {
   top: 4.6vh;
   left: 7vw;
   width: 14vw;
@@ -941,7 +947,8 @@ body .alertas_admin, html .alertas_admin {
   position: fixed;
   z-index: 1001;
 }
-body .alertas_admin .alerta_admin, html .alertas_admin .alerta_admin {
+body .alertas_admin .alerta_admin,
+html .alertas_admin .alerta_admin {
   width: 100%;
   height: 100%;
   display: none;
@@ -953,19 +960,22 @@ body .alertas_admin .alerta_admin, html .alertas_admin .alerta_admin {
   border-radius: 5rem;
   animation: fadeInDown 0.2s ease-in-out forwards;
 }
-body .alertas_admin .alerta_admin span, html .alertas_admin .alerta_admin span {
+body .alertas_admin .alerta_admin span,
+html .alertas_admin .alerta_admin span {
   width: 90%;
   height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body .alertas_admin .alerta_admin span p, html .alertas_admin .alerta_admin span p {
+body .alertas_admin .alerta_admin span p,
+html .alertas_admin .alerta_admin span p {
   font-size: 0.8vw;
   color: #ffffff;
   text-align: center;
 }
-body .alertas_modal .alert_eliminacion_vacante, html .alertas_modal .alert_eliminacion_vacante {
+body .alertas_modal .alert_eliminacion_vacante,
+html .alertas_modal .alert_eliminacion_vacante {
   position: fixed;
   top: 0;
   left: 0;
@@ -978,7 +988,8 @@ body .alertas_modal .alert_eliminacion_vacante, html .alertas_modal .alert_elimi
   z-index: 10010;
   display: none;
 }
-body .alertas_modal .alert_eliminacion_vacante .alert_box, html .alertas_modal .alert_eliminacion_vacante .alert_box {
+body .alertas_modal .alert_eliminacion_vacante .alert_box,
+html .alertas_modal .alert_eliminacion_vacante .alert_box {
   width: 20vw;
   height: 15vh;
   background-color: #ffffff;
@@ -993,11 +1004,13 @@ body .alertas_modal .alert_eliminacion_vacante .alert_box, html .alertas_modal .
   text-align: center;
   color: #1b3c59;
 }
-body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont {
+body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont,
+html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont {
   display: flex;
   gap: 0.5vw;
 }
-body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
+body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn,
+html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
   padding: 10px 15px;
   border: none;
   font-size: 0.8vw;
@@ -1006,19 +1019,24 @@ body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert
   margin: 5px;
   transition: all 0.1s ease-in-out;
 }
-body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:hover, body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:focus, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:hover, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:focus {
+body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:hover, body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:focus,
+html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:hover,
+html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn:focus {
   opacity: 50%;
   scale: 0.9;
 }
-body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.confirm, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.confirm {
+body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.confirm,
+html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.confirm {
   background-color: #ec6223;
   color: white;
 }
-body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.cancel, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.cancel {
+body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.cancel,
+html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.cancel {
   background-color: #174891;
   color: white;
 }
-body header, html header {
+body header,
+html header {
   width: 20vw;
   height: 6vw;
   display: flex;
@@ -1027,14 +1045,16 @@ body header, html header {
   position: fixed;
   z-index: 1000;
 }
-body header nav, html header nav {
+body header nav,
+html header nav {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body header nav ul, html header nav ul {
+body header nav ul,
+html header nav ul {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -1044,7 +1064,8 @@ body header nav ul, html header nav ul {
   align-items: center;
   gap: 5%;
 }
-body header nav ul .circulo_icon, html header nav ul .circulo_icon {
+body header nav ul .circulo_icon,
+html header nav ul .circulo_icon {
   width: 1vw;
   height: 1vw;
   background-color: #ffffff;
@@ -1054,14 +1075,16 @@ body header nav ul .circulo_icon, html header nav ul .circulo_icon {
   left: 47.8vw;
   animation: moverpuntolog 3s ease-in-out infinite;
 }
-body header nav ul li, html header nav ul li {
+body header nav ul li,
+html header nav ul li {
   list-style: none;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body header nav ul li button, html header nav ul li button {
+body header nav ul li button,
+html header nav ul li button {
   height: 50%;
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -1073,21 +1096,26 @@ body header nav ul li button, html header nav ul li button {
   transition: all 0.1s ease-in-out;
   z-index: 1002;
 }
-body header nav ul li button img, html header nav ul li button img {
+body header nav ul li button img,
+html header nav ul li button img {
   height: 100%;
 }
-body header nav ul li button:hover, html header nav ul li button:hover {
+body header nav ul li button:hover,
+html header nav ul li button:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body header nav ul li .iconbutton, html header nav ul li .iconbutton {
+body header nav ul li .iconbutton,
+html header nav ul li .iconbutton {
   height: 85%;
 }
-body header nav ul li .iconbutton:hover, html header nav ul li .iconbutton:hover {
+body header nav ul li .iconbutton:hover,
+html header nav ul li .iconbutton:hover {
   opacity: 100%;
   scale: 1;
 }
-body main, html main {
+body main,
+html main {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -1096,7 +1124,8 @@ body main, html main {
   padding: 0;
   margin: 0;
 }
-body main .pages, html main .pages {
+body main .pages,
+html main .pages {
   width: 50%;
   height: calc(var(--vh, 1vh) * 100);
   justify-items: center;
@@ -1106,12 +1135,14 @@ body main .pages, html main .pages {
   overflow: hidden;
   display: none;
 }
-body main #home, html main #home {
+body main #home,
+html main #home {
   width: 100%;
   justify-content: space-between;
   align-items: center;
 }
-body main #home .mancha1, html main #home .mancha1 {
+body main #home .mancha1,
+html main #home .mancha1 {
   width: 30%;
   display: flex;
   position: fixed;
@@ -1119,15 +1150,18 @@ body main #home .mancha1, html main #home .mancha1 {
   left: -6vw;
   animation: fadeInDown 0.5s ease-in-out forwards;
 }
-body main #home .mancha1 a, html main #home .mancha1 a {
+body main #home .mancha1 a,
+html main #home .mancha1 a {
   width: 100%;
   height: 100%;
 }
-body main #home .mancha1 a img, html main #home .mancha1 a img {
+body main #home .mancha1 a img,
+html main #home .mancha1 a img {
   width: 100%;
   height: 100%;
 }
-body main #home .mancha2, html main #home .mancha2 {
+body main #home .mancha2,
+html main #home .mancha2 {
   width: 30%;
   display: flex;
   position: fixed;
@@ -1135,14 +1169,17 @@ body main #home .mancha2, html main #home .mancha2 {
   right: -5vw;
   animation: fadeInUp 0.5s ease-in-out forwards;
 }
-body main #home .mancha2 img, html main #home .mancha2 img {
+body main #home .mancha2 img,
+html main #home .mancha2 img {
   width: 100%;
   height: 100%;
 }
-body main #pag1, html main #pag1 {
+body main #pag1,
+html main #pag1 {
   animation: bounceInLeft 0.5s ease-in-out forwards;
 }
-body main #pag1 article, html main #pag1 article {
+body main #pag1 article,
+html main #pag1 article {
   width: 90%;
   height: 80%;
   display: flex;
@@ -1150,7 +1187,8 @@ body main #pag1 article, html main #pag1 article {
   align-items: center;
   flex-direction: column;
 }
-body main #pag1 article .texto_form, html main #pag1 article .texto_form {
+body main #pag1 article .texto_form,
+html main #pag1 article .texto_form {
   width: 100%;
   height: 10%;
   display: flex;
@@ -1158,42 +1196,46 @@ body main #pag1 article .texto_form, html main #pag1 article .texto_form {
   align-items: center;
   flex-direction: column;
 }
-body main #pag1 article .texto_form h1, html main #pag1 article .texto_form h1 {
+body main #pag1 article .texto_form h1,
+html main #pag1 article .texto_form h1 {
   width: 100%;
   color: #ffffff;
   text-align: center;
-  font-size: 3vh;
+  font-size: 4vh;
   margin: 0;
   letter-spacing: 0.1rem;
   font-family: "NIMBUS";
 }
-body main #pag1 article .texto_form p, html main #pag1 article .texto_form p {
+body main #pag1 article .texto_form h3,
+html main #pag1 article .texto_form h3 {
   width: 100%;
   color: #ffffff;
   text-align: center;
-  font-size: 2vh;
+  font-size: 1.5vh;
   margin: 1%;
   letter-spacing: 0.1rem;
   font-family: "Nunito";
 }
-body main #pag1 article .cont_form, html main #pag1 article .cont_form {
+body main #pag1 article .cont_form,
+html main #pag1 article .cont_form {
   height: 40%;
   aspect-ratio: 1.2/1;
   border: 0;
   margin: 2%;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-body main #pag1 article .cont_form .progress-bar, html main #pag1 article .cont_form .progress-bar {
+body main #pag1 article .cont_form .progress-bar,
+html main #pag1 article .cont_form .progress-bar {
   height: 2%;
   background-color: #174891;
   border-radius: 1rem;
   transition: all 0.5s ease-in-out;
 }
-body main #pag1 article .cont_form form, html main #pag1 article .cont_form form {
+body main #pag1 article .cont_form form,
+html main #pag1 article .cont_form form {
   width: 95%;
   height: 95%;
   border: 0;
@@ -1202,7 +1244,8 @@ body main #pag1 article .cont_form form, html main #pag1 article .cont_form form
   align-items: center;
   margin: 2%;
 }
-body main #pag1 article .cont_form form .cont_inputform, html main #pag1 article .cont_form form .cont_inputform {
+body main #pag1 article .cont_form form .cont_inputform,
+html main #pag1 article .cont_form form .cont_inputform {
   width: 100%;
   height: 100%;
   display: none;
@@ -1210,7 +1253,8 @@ body main #pag1 article .cont_form form .cont_inputform, html main #pag1 article
   align-items: center;
   grid-template-columns: repeat(1, 1fr);
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form, html main #pag1 article .cont_form form .cont_inputform .input-form {
+body main #pag1 article .cont_form form .cont_inputform .input-form,
+html main #pag1 article .cont_form form .cont_inputform .input-form {
   width: 100%;
   height: 7.3vh;
   display: flex;
@@ -1218,17 +1262,50 @@ body main #pag1 article .cont_form form .cont_inputform .input-form, html main #
   align-items: center;
   font-family: "Nunito";
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form .input, html main #pag1 article .cont_form form .cont_inputform .input-form .input {
+body main #pag1 article .cont_form form .cont_inputform .input-form .custom-select,
+html main #pag1 article .cont_form form .cont_inputform .input-form .custom-select {
+  position: relative;
+  display: inline-block;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .input,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input {
   width: 100%;
   height: 100%;
   border-radius: 5rem;
   background-color: #ffffff;
   outline: none;
   border: 0;
+  color: #1b3c59;
+  font-family: "Nunito";
   text-align: center;
-  transition: all 0.2s ease-in-out;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus, html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus {
+body main #pag1 article .cont_form form .cont_inputform .input-form .input select,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input select {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .input .select-selected,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input .select-selected {
+  cursor: pointer;
+  position: relative;
+  border-radius: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #1b3c59;
+  outline: none;
+  border: 0;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .input .select-selected:focus,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input .select-selected:focus {
   border: 0;
   outline: none;
   border: 2px solid #0f3061;
@@ -1236,24 +1313,69 @@ body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus
   background: #0f3061;
   color: #ffffff;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form .input::-moz-placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input::-moz-placeholder {
-  color: #0d0d0d;
+body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus {
+  border: 0;
+  outline: none;
+  border: 2px solid #0f3061;
+  box-shadow: 0px 0px 10px 0px #0f3061;
+  background: #0f3061;
+  color: #ffffff;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form .input::placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input::placeholder {
-  color: #0d0d0d;
+body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus .select-items,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus .select-items {
+  display: block;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .select-items,
+html main #pag1 article .cont_form form .cont_inputform .input-form .select-items {
+  position: absolute;
+  width: 100%;
+  display: none;
+  font-family: "Nunito";
+  z-index: 99;
+  top: 2vh;
+  border-radius: 1.5rem 1.5rem 2rem 2rem;
+  max-height: 20vh;
+  overflow-y: scroll;
+  border: 0;
+  outline: none;
+  border: 2px solid #0f3061;
+  box-shadow: 0px 0px 10px 2px #0f3061;
+  background: #0f3061;
+  color: #ffffff;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .select-items div.disabled,
+html main #pag1 article .cont_form form .cont_inputform .input-form .select-items div.disabled {
+  color: gray;
+  pointer-events: none;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .select-items div,
+html main #pag1 article .cont_form form .cont_inputform .input-form .select-items div {
+  padding: 1rem;
+  cursor: pointer;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .input::-moz-placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input::-moz-placeholder {
+  color: #1b3c59;
+}
+body main #pag1 article .cont_form form .cont_inputform .input-form .input::placeholder,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input::placeholder {
+  color: #1b3c59;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::-moz-placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::-moz-placeholder {
   color: #ffffff;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::placeholder {
+body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::placeholder,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::placeholder {
   color: #ffffff;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus ~ label, html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus ~ label {
+body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus ~ label,
+html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus ~ label {
   scale: 1;
   opacity: 100%;
   transition: all 0.2s ease-in-out;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form label, html main #pag1 article .cont_form form .cont_inputform .input-form label {
+body main #pag1 article .cont_form form .cont_inputform .input-form label,
+html main #pag1 article .cont_form form .cont_inputform .input-form label {
   scale: 0;
   opacity: 0;
   top: 20vh;
@@ -1269,18 +1391,20 @@ body main #pag1 article .cont_form form .cont_inputform .input-form label, html 
   border-radius: 5rem;
   box-shadow: 0px 0px 10px 0px #f18f62;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form label span, html main #pag1 article .cont_form form .cont_inputform .input-form label span {
+body main #pag1 article .cont_form form .cont_inputform .input-form label span,
+html main #pag1 article .cont_form form .cont_inputform .input-form label span {
   width: 80%;
   height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body main #pag1 article .cont_form form .cont_inputform .input-form label span p, html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
+body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
+html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
   width: 100%;
   height: 100%;
   color: #ffffff;
-  font-size: 0.8vw;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1289,35 +1413,43 @@ body main #pag1 article .cont_form form .cont_inputform .input-form label span p
   padding: 0;
   letter-spacing: 0.1rem;
 }
-body main #pag1 article .cont_form form .exito_form, html main #pag1 article .cont_form form .exito_form {
+body main #pag1 article .cont_form form .exito_form,
+html main #pag1 article .cont_form form .exito_form {
   width: 100%;
   height: 100%;
   display: none;
   justify-content: center;
   align-items: center;
 }
-body main #pag1 article .cont_form form .exito_form img, html main #pag1 article .cont_form form .exito_form img {
+body main #pag1 article .cont_form form .exito_form img,
+html main #pag1 article .cont_form form .exito_form img {
   width: 40%;
 }
-body main #pag1 article .cont_form form .input-nex, html main #pag1 article .cont_form form .input-nex {
+body main #pag1 article .cont_form form .input-nex,
+html main #pag1 article .cont_form form .input-nex {
   display: none;
 }
-body main #pag1 article .cont_form form .input-submit, html main #pag1 article .cont_form form .input-submit {
+body main #pag1 article .cont_form form .input-submit,
+html main #pag1 article .cont_form form .input-submit {
   display: none;
 }
-body main #pag1 article .cont_form::-webkit-scrollbar, html main #pag1 article .cont_form::-webkit-scrollbar {
+body main #pag1 article .cont_form::-webkit-scrollbar,
+html main #pag1 article .cont_form::-webkit-scrollbar {
   width: 12px;
 }
-body main #pag1 article .cont_form::-webkit-scrollbar-track, html main #pag1 article .cont_form::-webkit-scrollbar-track {
+body main #pag1 article .cont_form::-webkit-scrollbar-track,
+html main #pag1 article .cont_form::-webkit-scrollbar-track {
   background: #ffffff;
   border-radius: 1rem;
 }
-body main #pag1 article .cont_form::-webkit-scrollbar-thumb, html main #pag1 article .cont_form::-webkit-scrollbar-thumb {
+body main #pag1 article .cont_form::-webkit-scrollbar-thumb,
+html main #pag1 article .cont_form::-webkit-scrollbar-thumb {
   background-color: #ec6223;
   border-radius: 1rem;
   border: 3px solid #ffffff;
 }
-body main #pag1 article label, html main #pag1 article label {
+body main #pag1 article label,
+html main #pag1 article label {
   width: 2vw;
   aspect-ratio: 2/2;
   margin: 1%;
@@ -1326,18 +1458,22 @@ body main #pag1 article label, html main #pag1 article label {
   align-items: center;
   transition: all 0.1s ease-in-out;
 }
-body main #pag1 article label img, html main #pag1 article label img {
+body main #pag1 article label img,
+html main #pag1 article label img {
   width: 100%;
   height: 100%;
 }
-body main #pag1 article label:hover, html main #pag1 article label:hover {
+body main #pag1 article label:hover,
+html main #pag1 article label:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag2, html main #pag2 {
+body main #pag2,
+html main #pag2 {
   animation: bounceInLeft 0.5s ease-in-out forwards;
 }
-body main #pag2 .Logincont, html main #pag2 .Logincont {
+body main #pag2 .Logincont,
+html main #pag2 .Logincont {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1345,7 +1481,8 @@ body main #pag2 .Logincont, html main #pag2 .Logincont {
   justify-content: center;
   align-items: center;
 }
-body main #pag2 .Logincont .Login-cont, html main #pag2 .Logincont .Login-cont {
+body main #pag2 .Logincont .Login-cont,
+html main #pag2 .Logincont .Login-cont {
   width: 20rem;
   aspect-ratio: 2/2;
   border-radius: 2rem;
@@ -1354,7 +1491,8 @@ body main #pag2 .Logincont .Login-cont, html main #pag2 .Logincont .Login-cont {
   justify-content: center;
   align-items: center;
 }
-body main #pag2 .Logincont .Login-cont .Login-son, html main #pag2 .Logincont .Login-cont .Login-son {
+body main #pag2 .Logincont .Login-cont .Login-son,
+html main #pag2 .Logincont .Login-cont .Login-son {
   width: 100%;
   height: 100%;
   margin: 5%;
@@ -1364,7 +1502,8 @@ body main #pag2 .Logincont .Login-cont .Login-son, html main #pag2 .Logincont .L
   overflow: hidden;
   z-index: 10;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog {
   width: 100%;
   height: 100%;
   padding: 5%;
@@ -1374,12 +1513,14 @@ body main #pag2 .Logincont .Login-cont .Login-son .formuariolog, html main #pag2
   align-items: center;
   flex-direction: column;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel {
   flex-direction: column;
   text-align: center;
   margin-bottom: 1vh;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 {
   width: 100%;
   color: #ffffff;
   font-size: 2vh;
@@ -1388,11 +1529,13 @@ body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3, html ma
   align-items: center;
   font-family: "NIMBUS";
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 span, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 span {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 span,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 span {
   color: #ffffff;
   letter-spacing: 0.1rem;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field {
   position: relative;
   display: flex;
   justify-content: center;
@@ -1403,14 +1546,17 @@ body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field, ht
   font-family: "Nunito";
 }
 body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input::-webkit-inner-spin-button,
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input::-webkit-outer-spin-button, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input::-webkit-inner-spin-button,
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input::-webkit-outer-spin-button,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input::-webkit-inner-spin-button,
 html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input[type=number], html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input[type=number] {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input[type=number],
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input[type=number] {
   -moz-appearance: textfield;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input {
   width: 100%;
   height: 100%;
   border-radius: 5rem;
@@ -1422,13 +1568,15 @@ body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field inp
   text-align: center;
   border: 2px solid #ffffff;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus {
   border: 2px solid #0f3061;
   box-shadow: 0px 0px 10px 0px #0f3061;
   background: #0f3061;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
 html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label {
   top: 0;
   font-size: 15px;
@@ -1438,7 +1586,8 @@ html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field inp
   border-radius: 1rem;
   padding: 1% 3%;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field .toggle-password, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field .toggle-password {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field .toggle-password,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field .toggle-password {
   width: 15%;
   aspect-ratio: 2/2;
   position: absolute;
@@ -1452,7 +1601,8 @@ body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field .to
   padding: 0;
   right: 5%;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1464,21 +1614,26 @@ body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field lab
   pointer-events: none;
   transition: 0.3s;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label span, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label span {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label span,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label span {
   margin-left: 3px;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-submit input, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-submit input {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-submit input,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-submit input {
   display: none;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog.activolog, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog.activolog {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog.activolog,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog.activolog {
   display: flex;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .formuariolog.animacionform, html main #pag2 .Logincont .Login-cont .Login-son .formuariolog.animacionform {
+body main #pag2 .Logincont .Login-cont .Login-son .formuariolog.animacionform,
+html main #pag2 .Logincont .Login-cont .Login-son .formuariolog.animacionform {
   animation: bounceOutRight;
   animation-duration: 0.7s;
   animation-fill-mode: forwards;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .error, html main #pag2 .Logincont .Login-cont .Login-son .error {
+body main #pag2 .Logincont .Login-cont .Login-son .error,
+html main #pag2 .Logincont .Login-cont .Login-son .error {
   width: 65%;
   height: 100%;
   padding: 15%;
@@ -1492,16 +1647,19 @@ body main #pag2 .Logincont .Login-cont .Login-son .error, html main #pag2 .Login
   animation-duration: 0.7s;
   animation-fill-mode: forwards;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .error #icon, html main #pag2 .Logincont .Login-cont .Login-son .error #icon {
+body main #pag2 .Logincont .Login-cont .Login-son .error #icon,
+html main #pag2 .Logincont .Login-cont .Login-son .error #icon {
   width: 7rem;
   height: 7rem;
   margin-bottom: 15%;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .error #icon img, html main #pag2 .Logincont .Login-cont .Login-son .error #icon img {
+body main #pag2 .Logincont .Login-cont .Login-son .error #icon img,
+html main #pag2 .Logincont .Login-cont .Login-son .error #icon img {
   width: 100%;
   height: 100%;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .error h1, html main #pag2 .Logincont .Login-cont .Login-son .error h1 {
+body main #pag2 .Logincont .Login-cont .Login-son .error h1,
+html main #pag2 .Logincont .Login-cont .Login-son .error h1 {
   width: 100%;
   text-align: center;
   font-size: 1.1vh;
@@ -1509,24 +1667,29 @@ body main #pag2 .Logincont .Login-cont .Login-son .error h1, html main #pag2 .Lo
   letter-spacing: 0.1rem;
   color: #ffffff;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .error a, html main #pag2 .Logincont .Login-cont .Login-son .error a {
+body main #pag2 .Logincont .Login-cont .Login-son .error a,
+html main #pag2 .Logincont .Login-cont .Login-son .error a {
   font-family: "Nunito";
   color: #ffffff;
   font-size: 1.2vh;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .error.activolog, html main #pag2 .Logincont .Login-cont .Login-son .error.activolog {
+body main #pag2 .Logincont .Login-cont .Login-son .error.activolog,
+html main #pag2 .Logincont .Login-cont .Login-son .error.activolog {
   display: flex;
 }
-body main #pag2 .Logincont.animacionlog, html main #pag2 .Logincont.animacionlog {
+body main #pag2 .Logincont.animacionlog,
+html main #pag2 .Logincont.animacionlog {
   animation: bounceOutRight;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
-body main #pag3, html main #pag3 {
+body main #pag3,
+html main #pag3 {
   width: 100%;
   height: 100%;
 }
-body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
+body main #pag3 .btn_regreso,
+html main #pag3 .btn_regreso {
   width: 2.5%;
   aspect-ratio: 2/2;
   top: 1vh;
@@ -1536,7 +1699,8 @@ body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
   position: fixed;
   transition: all 0.1s ease-in-out;
 }
-body main #pag3 .btn_regreso button, html main #pag3 .btn_regreso button {
+body main #pag3 .btn_regreso button,
+html main #pag3 .btn_regreso button {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
@@ -1547,15 +1711,18 @@ body main #pag3 .btn_regreso button, html main #pag3 .btn_regreso button {
   justify-content: center;
   align-items: center;
 }
-body main #pag3 .btn_regreso button img, html main #pag3 .btn_regreso button img {
+body main #pag3 .btn_regreso button img,
+html main #pag3 .btn_regreso button img {
   width: 100%;
   height: 100%;
 }
-body main #pag3 .btn_regreso:hover, html main #pag3 .btn_regreso:hover {
+body main #pag3 .btn_regreso:hover,
+html main #pag3 .btn_regreso:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .estatus_vacantes, html main #pag3 .estatus_vacantes {
+body main #pag3 .estatus_vacantes,
+html main #pag3 .estatus_vacantes {
   top: 4.6vh;
   left: 7.5vw;
   width: 13vw;
@@ -1567,26 +1734,31 @@ body main #pag3 .estatus_vacantes, html main #pag3 .estatus_vacantes {
   z-index: 1000;
   gap: 5%;
 }
-body main #pag3 .estatus_vacantes .icons_status, html main #pag3 .estatus_vacantes .icons_status {
+body main #pag3 .estatus_vacantes .icons_status,
+html main #pag3 .estatus_vacantes .icons_status {
   width: 90%;
   height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body main #pag3 .estatus_vacantes .icons_status input, html main #pag3 .estatus_vacantes .icons_status input {
+body main #pag3 .estatus_vacantes .icons_status input,
+html main #pag3 .estatus_vacantes .icons_status input {
   display: none;
 }
-body main #pag3 .estatus_vacantes .icons_status input:checked ~ label, html main #pag3 .estatus_vacantes .icons_status input:checked ~ label {
+body main #pag3 .estatus_vacantes .icons_status input:checked ~ label,
+html main #pag3 .estatus_vacantes .icons_status input:checked ~ label {
   opacity: 50%;
   scale: 0.9;
   display: flex;
 }
-body main #pag3 .estatus_vacantes .icons_status input:checked ~ .status_info, html main #pag3 .estatus_vacantes .icons_status input:checked ~ .status_info {
+body main #pag3 .estatus_vacantes .icons_status input:checked ~ .status_info,
+html main #pag3 .estatus_vacantes .icons_status input:checked ~ .status_info {
   visibility: visible;
   animation: bounceInDown 0.2s ease-in-out forwards;
 }
-body main #pag3 .estatus_vacantes .icons_status label, html main #pag3 .estatus_vacantes .icons_status label {
+body main #pag3 .estatus_vacantes .icons_status label,
+html main #pag3 .estatus_vacantes .icons_status label {
   width: 100%;
   height: 100%;
   border: none;
@@ -1594,16 +1766,20 @@ body main #pag3 .estatus_vacantes .icons_status label, html main #pag3 .estatus_
   border-radius: 10rem;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .estatus_vacantes .icons_status #label_status1, html main #pag3 .estatus_vacantes .icons_status #label_status1 {
+body main #pag3 .estatus_vacantes .icons_status #label_status1,
+html main #pag3 .estatus_vacantes .icons_status #label_status1 {
   background-color: #ff3131;
 }
-body main #pag3 .estatus_vacantes .icons_status #label_status2, html main #pag3 .estatus_vacantes .icons_status #label_status2 {
+body main #pag3 .estatus_vacantes .icons_status #label_status2,
+html main #pag3 .estatus_vacantes .icons_status #label_status2 {
   background-color: #FFD700;
 }
-body main #pag3 .estatus_vacantes .icons_status #label_status3, html main #pag3 .estatus_vacantes .icons_status #label_status3 {
+body main #pag3 .estatus_vacantes .icons_status #label_status3,
+html main #pag3 .estatus_vacantes .icons_status #label_status3 {
   background-color: #00bf63;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info, html main #pag3 .estatus_vacantes .icons_status .status_info {
+body main #pag3 .estatus_vacantes .icons_status .status_info,
+html main #pag3 .estatus_vacantes .icons_status .status_info {
   position: fixed;
   display: flex;
   visibility: hidden;
@@ -1623,7 +1799,8 @@ body main #pag3 .estatus_vacantes .icons_status .status_info, html main #pag3 .e
   box-shadow: 0px 0px 10px 0px #1b3c59;
   gap: 1.5vh;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .box_status, html main #pag3 .estatus_vacantes .icons_status .status_info .box_status {
+body main #pag3 .estatus_vacantes .icons_status .status_info .box_status,
+html main #pag3 .estatus_vacantes .icons_status .status_info .box_status {
   width: 95%;
   height: 5%;
   border-radius: 2rem;
@@ -1631,20 +1808,25 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .box_status, html m
   justify-content: center;
   align-items: center;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .box_status p, html main #pag3 .estatus_vacantes .icons_status .status_info .box_status p {
+body main #pag3 .estatus_vacantes .icons_status .status_info .box_status p,
+html main #pag3 .estatus_vacantes .icons_status .status_info .box_status p {
   font-size: 1.5vh;
   font-family: "Nunito";
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .box_status1, html main #pag3 .estatus_vacantes .icons_status .status_info .box_status1 {
+body main #pag3 .estatus_vacantes .icons_status .status_info .box_status1,
+html main #pag3 .estatus_vacantes .icons_status .status_info .box_status1 {
   background-color: #ff3131;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .box_status2, html main #pag3 .estatus_vacantes .icons_status .status_info .box_status2 {
+body main #pag3 .estatus_vacantes .icons_status .status_info .box_status2,
+html main #pag3 .estatus_vacantes .icons_status .status_info .box_status2 {
   background-color: #FFD700;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .box_status3, html main #pag3 .estatus_vacantes .icons_status .status_info .box_status3 {
+body main #pag3 .estatus_vacantes .icons_status .status_info .box_status3,
+html main #pag3 .estatus_vacantes .icons_status .status_info .box_status3 {
   background-color: #00bf63;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -1654,7 +1836,8 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status, html 
   align-items: center;
   flex-direction: column;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data {
   margin-top: 30%;
   width: 40%;
   aspect-ratio: 2/2;
@@ -1663,7 +1846,8 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_da
   background-position: center;
   background-repeat: no-repeat;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul {
   width: 100%;
   height: auto;
   display: flex;
@@ -1676,7 +1860,8 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul, ht
   flex-direction: column;
   gap: 1.5vh;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
   width: 95%;
   height: 5vh;
   display: flex;
@@ -1687,7 +1872,8 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   overflow-y: hidden;
   align-items: center;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf {
   border-radius: 5rem;
   width: 1%;
   height: 80%;
@@ -1695,11 +1881,13 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   background-color: #ec6223;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf:hover, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf:hover {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-descargar-pdf:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
   width: 80%;
   height: 100%;
   display: flex;
@@ -1709,7 +1897,8 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   align-items: center;
   flex-direction: column;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1718,11 +1907,13 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   font-size: 1.2vh;
   color: #0f3061;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong {
   font-size: 1.4vh;
   color: #0f3061;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
   width: 15%;
   height: 100%;
   display: grid;
@@ -1733,47 +1924,58 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   flex-direction: column;
   gap: 0.1vw;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
   border-radius: 5rem;
   width: 1vw;
   aspect-ratio: 2/2;
   border: none;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button:hover, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button:hover {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-noAsistieron, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-noAsistieron {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-noAsistieron,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-noAsistieron {
   background-color: #ff3131;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-asistieron, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-asistieron {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-asistieron,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-asistieron {
   background-color: #FFD700;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-contratado, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-contratado {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-contratado,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-contratado {
   background-color: #00bf63;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-eliminar, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-eliminar {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-eliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-eliminar {
   background-image: url("../img/Logos/interfaces/icons/cerrar.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus {
   overflow-y: scroll;
   height: auto;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info {
   width: 95%;
   grid-template-columns: repeat(3, 1fr);
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-container, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-container {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-container {
   display: none;
 }
-body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-descargar-pdf, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-descargar-pdf {
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-descargar-pdf,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .btn-descargar-pdf {
   display: none;
 }
-body main #pag3 .admin_cont, html main #pag3 .admin_cont {
+body main #pag3 .admin_cont,
+html main #pag3 .admin_cont {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1782,7 +1984,8 @@ body main #pag3 .admin_cont, html main #pag3 .admin_cont {
   font-family: "Nunito";
   gap: 2%;
 }
-body main #pag3 .admin_cont .cont_rechazados, html main #pag3 .admin_cont .cont_rechazados {
+body main #pag3 .admin_cont .cont_rechazados,
+html main #pag3 .admin_cont .cont_rechazados {
   width: 20vw;
   height: 80vh;
   display: flex;
@@ -1795,7 +1998,8 @@ body main #pag3 .admin_cont .cont_rechazados, html main #pag3 .admin_cont .cont_
   margin-top: 15vh;
   gap: 1.5vh;
 }
-body main #pag3 .admin_cont .cont_rechazados .box_red, html main #pag3 .admin_cont .cont_rechazados .box_red {
+body main #pag3 .admin_cont .cont_rechazados .box_red,
+html main #pag3 .admin_cont .cont_rechazados .box_red {
   width: 96%;
   height: 3vh;
   margin-top: 1vh;
@@ -1806,7 +2010,8 @@ body main #pag3 .admin_cont .cont_rechazados .box_red, html main #pag3 .admin_co
   align-items: center;
   flex-direction: column;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data, html main #pag3 .admin_cont .cont_rechazados .const_data {
+body main #pag3 .admin_cont .cont_rechazados .const_data,
+html main #pag3 .admin_cont .cont_rechazados .const_data {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1818,7 +2023,8 @@ body main #pag3 .admin_cont .cont_rechazados .const_data, html main #pag3 .admin
   border-radius: 1rem;
   color: #ffffff;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data .no_data, html main #pag3 .admin_cont .cont_rechazados .const_data .no_data {
+body main #pag3 .admin_cont .cont_rechazados .const_data .no_data,
+html main #pag3 .admin_cont .cont_rechazados .const_data .no_data {
   margin-top: 60%;
   width: 40%;
   aspect-ratio: 2/2;
@@ -1827,7 +2033,8 @@ body main #pag3 .admin_cont .cont_rechazados .const_data .no_data, html main #pa
   background-position: center;
   background-repeat: no-repeat;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul, html main #pag3 .admin_cont .cont_rechazados .const_data ul {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul {
   width: 100%;
   height: auto;
   display: flex;
@@ -1839,7 +2046,8 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul, html main #pag3 .ad
   flex-direction: column;
   gap: 1.5vh;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
   width: 95%;
   height: 5vh;
   display: flex;
@@ -1853,7 +2061,8 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred, ht
   overflow: hidden;
   gap: 5%;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf {
   border-radius: 5rem;
   width: 1%;
   height: 80%;
@@ -1861,11 +2070,13 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .bt
   background-color: #ec6223;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf:hover, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf:hover {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf:hover,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-descargar-pdf:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
   width: 87%;
   text-align: center;
   height: 100%;
@@ -1876,7 +2087,8 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .va
   flex-direction: column;
   gap: 3%;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1886,11 +2098,13 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .va
   font-size: 0.6vw;
   color: #0f3061;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong {
   font-size: 0.7vw;
   color: #0f3061;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
   width: 12%;
   height: 100%;
   display: grid;
@@ -1899,46 +2113,57 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .bt
   align-content: center;
   gap: 0.1vw;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
   border-radius: 5rem;
   width: 1vw;
   aspect-ratio: 2/2;
   border: none;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button:hover, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button:hover {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button:hover,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-noAsistieron, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-noAsistieron {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-noAsistieron,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-noAsistieron {
   background-color: #ff3131;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-asistieron, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-asistieron {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-asistieron,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-asistieron {
   background-color: #FFD700;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-contratado, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-contratado {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-contratado,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-contratado {
   background-color: #00bf63;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-eliminar, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-eliminar {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-eliminar,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-eliminar {
   background-image: url("../img/Logos/interfaces/icons/cerrar.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
   height: 35vh;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
   display: none;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
   width: 80%;
   height: 90%;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
   display: none;
 }
-body main #pag3 .admin_cont .cont_aceptados, html main #pag3 .admin_cont .cont_aceptados {
+body main #pag3 .admin_cont .cont_aceptados,
+html main #pag3 .admin_cont .cont_aceptados {
   width: 74vw;
   height: 95vh;
   display: flex;
@@ -1950,7 +2175,8 @@ body main #pag3 .admin_cont .cont_aceptados, html main #pag3 .admin_cont .cont_a
   box-shadow: 0px 0px 10px 0px #1b3c59;
   gap: 1.5vh;
 }
-body main #pag3 .admin_cont .cont_aceptados .box_green, html main #pag3 .admin_cont .cont_aceptados .box_green {
+body main #pag3 .admin_cont .cont_aceptados .box_green,
+html main #pag3 .admin_cont .cont_aceptados .box_green {
   width: 98%;
   height: 3vh;
   margin-top: 1vh;
@@ -1961,7 +2187,8 @@ body main #pag3 .admin_cont .cont_aceptados .box_green, html main #pag3 .admin_c
   align-items: center;
   flex-direction: column;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data, html main #pag3 .admin_cont .cont_aceptados .const_data {
+body main #pag3 .admin_cont .cont_aceptados .const_data,
+html main #pag3 .admin_cont .cont_aceptados .const_data {
   width: 100%;
   height: 94%;
   display: flex;
@@ -1973,7 +2200,8 @@ body main #pag3 .admin_cont .cont_aceptados .const_data, html main #pag3 .admin_
   border-radius: 1.5rem;
   color: #ffffff;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data .no_data, html main #pag3 .admin_cont .cont_aceptados .const_data .no_data {
+body main #pag3 .admin_cont .cont_aceptados .const_data .no_data,
+html main #pag3 .admin_cont .cont_aceptados .const_data .no_data {
   margin-top: 20%;
   width: 15%;
   aspect-ratio: 2/2;
@@ -1982,7 +2210,8 @@ body main #pag3 .admin_cont .cont_aceptados .const_data .no_data, html main #pag
   background-position: center;
   background-repeat: no-repeat;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul, html main #pag3 .admin_cont .cont_aceptados .const_data ul {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul {
   width: 100%;
   height: auto;
   display: flex;
@@ -1994,7 +2223,8 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul, html main #pag3 .adm
   flex-direction: column;
   gap: 1.5vh;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
   width: 95%;
   height: 5vh;
   display: flex;
@@ -2006,7 +2236,8 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen, h
   cursor: pointer;
   outline: none;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf {
   border-radius: 5rem;
   width: 1%;
   height: 80%;
@@ -2014,18 +2245,21 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .b
   background-color: #ec6223;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf:hover, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf:hover {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf:hover,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-descargar-pdf:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
   width: 96%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -2034,11 +2268,13 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .v
   font-size: 0.6vw;
   color: #0f3061;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong {
   font-size: 0.7vw;
   color: #0f3061;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
   width: 3%;
   height: 100%;
   display: grid;
@@ -2047,33 +2283,40 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .b
   align-content: center;
   gap: 0.1vw;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
   border-radius: 5rem;
   width: 1vw;
   aspect-ratio: 2/2;
   border: none;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button:hover, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button:hover {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button:hover,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button:hover {
   opacity: 50%;
   scale: 0.9;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-noAsistieron, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-noAsistieron {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-noAsistieron,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-noAsistieron {
   background-color: #ff3131;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-asistieron, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-asistieron {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-asistieron,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-asistieron {
   background-color: #FFD700;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-contratado, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-contratado {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-contratado,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-contratado {
   background-color: #00bf63;
 }
-body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-eliminar, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-eliminar {
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-eliminar,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-eliminar {
   background-image: url("../img/Logos/interfaces/icons/cerrar.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-body main aside, html main aside {
+body main aside,
+html main aside {
   width: 50%;
   height: 100%;
   display: none;
@@ -2081,7 +2324,8 @@ body main aside, html main aside {
   justify-items: center;
   align-items: center;
 }
-body main aside article, html main aside article {
+body main aside article,
+html main aside article {
   width: 100%;
   height: 100%;
   display: flex;
@@ -2090,292 +2334,369 @@ body main aside article, html main aside article {
   flex-direction: column;
   margin-top: -9%;
 }
-body main aside article div, html main aside article div {
+body main aside article div,
+html main aside article div {
   width: 50%;
-  margin-top: 5%;
+  margin-top: 3%;
 }
-body main aside article div img, html main aside article div img {
+body main aside article div img,
+html main aside article div img {
   width: 100%;
   height: 100%;
   border-radius: 2rem;
 }
-body main aside article h2, html main aside article h2 {
+body main aside article h2,
+html main aside article h2 {
   font-family: "NIMBUS";
   color: #ffffff;
   font-size: 1.8vw;
   letter-spacing: 0.3rem;
   text-align: center;
+  margin: 1%;
+  margin-top: 3%;
 }
-body main aside article p, html main aside article p {
+body main aside article p,
+html main aside article p {
   width: 45%;
   padding: 0;
-  margin: 0;
+  margin: 1%;
   font-family: "Nunito";
   color: #ffffff;
   font-size: 1vw;
   text-align: center;
 }
-body main .agregar_dis, html main .agregar_dis {
+body main .agregar_dis,
+html main .agregar_dis {
   display: flex;
 }
-body .cambiar_nav, html .cambiar_nav {
+body .cambiar_nav,
+html .cambiar_nav {
   top: 5vh;
   left: 18vw;
   width: 14vw;
   height: 4vw;
 }
-body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
+body .cambiar_nav nav ul .circulo_icon,
+html .cambiar_nav nav ul .circulo_icon {
   width: 0.8vw;
   height: 0.8vw;
   top: 9.3vh;
   left: 23.3vw;
 }
 @media screen and (max-width: 900px) {
-  body .alertas, html .alertas {
+  body .alertas,
+  html .alertas {
     top: 4vh;
     left: 35vw;
     width: 30vw;
     height: 10vw;
   }
-  body .alertas .alerta span p, html .alertas .alerta span p {
+  body .alertas .alerta span p,
+  html .alertas .alerta span p {
     font-size: 2vw;
   }
-  body .alertas_admin, html .alertas_admin {
+  body .alertas_admin,
+  html .alertas_admin {
     top: 2.5vh;
     left: 35vw;
     width: 30vw;
     height: 10vw;
   }
-  body .alertas_admin .alerta_admin span p, html .alertas_admin .alerta_admin span p {
+  body .alertas_admin .alerta_admin span p,
+  html .alertas_admin .alerta_admin span p {
     font-size: 2vw;
   }
-  body .alertas_modal .alert_eliminacion_vacante .alert_box, html .alertas_modal .alert_eliminacion_vacante .alert_box {
+  body .alertas_modal .alert_eliminacion_vacante .alert_box,
+  html .alertas_modal .alert_eliminacion_vacante .alert_box {
     width: 40vw;
     height: 15vh;
     font-size: 2.5vw;
   }
-  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
+  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn,
+  html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
     font-size: 2vw;
   }
-  body header, html header {
+  body header,
+  html header {
     width: 50vw;
     height: 15vw;
   }
-  body header nav ul .circulo_icon, html header nav ul .circulo_icon {
+  body header nav ul .circulo_icon,
+  html header nav ul .circulo_icon {
     width: 3vw;
     height: 3vw;
     top: 50vh;
     left: 44vw;
   }
-  body main #home .mancha1, html main #home .mancha1 {
+  body main #home .mancha1,
+  html main #home .mancha1 {
     width: 70%;
     top: -8vh;
     left: -15vw;
   }
-  body main #home .mancha2, html main #home .mancha2 {
+  body main #home .mancha2,
+  html main #home .mancha2 {
     width: 70%;
     bottom: -15vh;
     right: -20vw;
   }
-  body main .pages, html main .pages {
+  body main .pages,
+  html main .pages {
     width: 100%;
   }
-  body main #pag1 article .texto_form, html main #pag1 article .texto_form {
+  body main #pag1 article .texto_form,
+  html main #pag1 article .texto_form {
     width: 80%;
   }
-  body main #pag1 article .texto_form h1, html main #pag1 article .texto_form h1 {
-    font-size: 2.8vh;
+  body main #pag1 article .texto_form h1,
+  html main #pag1 article .texto_form h1 {
+    font-size: 3vh;
   }
-  body main #pag1 article .texto_form p, html main #pag1 article .texto_form p {
+  body main #pag1 article .texto_form h3,
+  html main #pag1 article .texto_form h3 {
     font-size: 1.7vh;
   }
-  body main #pag1 article .cont_form, html main #pag1 article .cont_form {
+  body main #pag1 article .cont_form,
+  html main #pag1 article .cont_form {
     border-radius: 4vw;
   }
-  body main #pag1 article .cont_form form .cont_inputform .input-form label, html main #pag1 article .cont_form form .cont_inputform .input-form label {
+  body main #pag1 article .cont_form form .cont_inputform .input-form .input .select-items,
+  html main #pag1 article .cont_form form .cont_inputform .input-form .input .select-items {
+    border-radius: 1.5rem 1.5rem 3rem 3rem;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label {
     top: 23vh;
     left: 23vw;
     width: 50vw;
     height: 10vw;
   }
-  body main #pag1 article .cont_form form .cont_inputform .input-form label span p, html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
+  body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
     font-size: 2vw;
   }
-  body main #pag1 article label, html main #pag1 article label {
+  body main #pag1 article label,
+  html main #pag1 article label {
     width: 5vw;
   }
-  body main #pag2 .Logincont .Login-cont, html main #pag2 .Logincont .Login-cont {
+  body main #pag2 .Logincont .Login-cont,
+  html main #pag2 .Logincont .Login-cont {
     width: 25rem;
   }
-  body main #pag2 .Logincont.animacionlog, html main #pag2 .Logincont.animacionlog {
+  body main #pag2 .Logincont.animacionlog,
+  html main #pag2 .Logincont.animacionlog {
     animation: bounceOutRight;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
-  body main #pag3, html main #pag3 {
+  body main #pag3,
+  html main #pag3 {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
   }
-  body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
+  body main #pag3 .btn_regreso,
+  html main #pag3 .btn_regreso {
     width: 6vw;
   }
-  body main #pag3 .estatus_vacantes, html main #pag3 .estatus_vacantes {
+  body main #pag3 .estatus_vacantes,
+  html main #pag3 .estatus_vacantes {
     top: 3vh;
     left: 37vw;
     width: 25vw;
     height: 8vw;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info, html main #pag3 .estatus_vacantes .icons_status .status_info {
+  body main #pag3 .estatus_vacantes .icons_status .status_info,
+  html main #pag3 .estatus_vacantes .icons_status .status_info {
     width: 70vw;
     height: 50vh;
     top: 10vh;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status .no_data {
     margin-top: 20%;
     width: 30%;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
     border-radius: 1vw;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
     width: 90%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span {
     font-size: 1.2vh;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span strong {
     font-size: 1.4vh;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
     width: 8%;
     gap: 4%;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
     width: 2.6vw;
   }
-  body main #pag3 .admin_cont, html main #pag3 .admin_cont {
+  body main #pag3 .admin_cont,
+  html main #pag3 .admin_cont {
     flex-direction: column-reverse;
   }
-  body main #pag3 .admin_cont .cont_rechazados, html main #pag3 .admin_cont .cont_rechazados {
+  body main #pag3 .admin_cont .cont_rechazados,
+  html main #pag3 .admin_cont .cont_rechazados {
     width: 90vw;
     height: 31vh;
     margin: 0;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data .no_data, html main #pag3 .admin_cont .cont_rechazados .const_data .no_data {
+  body main #pag3 .admin_cont .cont_rechazados .const_data .no_data,
+  html main #pag3 .admin_cont .cont_rechazados .const_data .no_data {
     margin-top: 7%;
     width: 20%;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
     overflow: hidden;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
     width: 91%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span {
     font-size: 1.4vh;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info span strong {
     font-size: 1.5vh;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
     width: 7%;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
     width: 2.5vw;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
     height: 25vh;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
     display: none;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
     width: 80%;
     height: 90%;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
     display: none;
   }
-  body main #pag3 .admin_cont .cont_aceptados, html main #pag3 .admin_cont .cont_aceptados {
+  body main #pag3 .admin_cont .cont_aceptados,
+  html main #pag3 .admin_cont .cont_aceptados {
     width: 90vw;
     height: 51vh;
     margin-top: 10vh;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data .no_data, html main #pag3 .admin_cont .cont_aceptados .const_data .no_data {
+  body main #pag3 .admin_cont .cont_aceptados .const_data .no_data,
+  html main #pag3 .admin_cont .cont_aceptados .const_data .no_data {
     margin-top: 20%;
     width: 20%;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
     overflow: hidden;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
     width: 92%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span {
     font-size: 1.4vh;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info span strong {
     font-size: 1.5vh;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
     width: 6%;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
     width: 2.5vw;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
     height: 20vh;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf {
     display: none;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
     width: 80%;
     height: 90%;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
     display: none;
   }
-  body main aside, html main aside {
+  body main aside,
+  html main aside {
     width: 0;
     height: 0;
     display: none;
   }
-  body main aside article, html main aside article {
+  body main aside article,
+  html main aside article {
     width: 0;
     height: 0;
   }
-  body main aside article div, html main aside article div {
+  body main aside article div,
+  html main aside article div {
     width: 0;
     height: 0;
   }
-  body main aside article div img, html main aside article div img {
+  body main aside article div img,
+  html main aside article div img {
     width: 0;
     height: 0;
   }
-  body main aside article h2, html main aside article h2 {
+  body main aside article h2,
+  html main aside article h2 {
     width: 0;
     height: 0;
     font-size: 0;
   }
-  body main aside article p, html main aside article p {
+  body main aside article p,
+  html main aside article p {
     width: 0;
     height: 0;
     font-size: 0;
   }
-  body .cambiar_nav, html .cambiar_nav {
+  body .cambiar_nav,
+  html .cambiar_nav {
     top: 4vh;
     left: 35vw;
     width: 30vw;
     height: 10vw;
   }
-  body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
+  body .cambiar_nav nav ul .circulo_icon,
+  html .cambiar_nav nav ul .circulo_icon {
     width: 2vw;
     height: 2vw;
     top: 8vh;
@@ -2383,101 +2704,125 @@ body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
   }
 }
 @media screen and (max-width: 500px) {
-  body .alertas, html .alertas {
+  body .alertas,
+  html .alertas {
     top: 5vh;
     left: 25vw;
     width: 50vw;
     height: 15vw;
   }
-  body .alertas .alerta span p, html .alertas .alerta span p {
+  body .alertas .alerta span p,
+  html .alertas .alerta span p {
     font-size: 3vw;
   }
-  body .alertas_admin, html .alertas_admin {
+  body .alertas_admin,
+  html .alertas_admin {
     top: 3.5vh;
     left: 25vw;
     width: 50vw;
     height: 15vw;
   }
-  body .alertas_admin .alerta_admin span p, html .alertas_admin .alerta_admin span p {
+  body .alertas_admin .alerta_admin span p,
+  html .alertas_admin .alerta_admin span p {
     font-size: 3vw;
   }
-  body .alertas_modal .alert_eliminacion_vacante .alert_box, html .alertas_modal .alert_eliminacion_vacante .alert_box {
+  body .alertas_modal .alert_eliminacion_vacante .alert_box,
+  html .alertas_modal .alert_eliminacion_vacante .alert_box {
     width: 70vw;
     height: 15vh;
     font-size: 3.5vw;
   }
-  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn, html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
+  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn,
+  html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
     font-size: 3vw;
   }
-  body header, html header {
+  body header,
+  html header {
     width: 65vw;
     height: 20vw;
   }
-  body header nav ul .circulo_icon, html header nav ul .circulo_icon {
+  body header nav ul .circulo_icon,
+  html header nav ul .circulo_icon {
     width: 3.3vw;
     height: 3.3vw;
     top: 50vh;
     left: 43vw;
   }
-  body main #home .mancha1, html main #home .mancha1 {
+  body main #home .mancha1,
+  html main #home .mancha1 {
     width: 90%;
     top: -8vh;
     left: -23vw;
   }
-  body main #home .mancha2, html main #home .mancha2 {
+  body main #home .mancha2,
+  html main #home .mancha2 {
     width: 90%;
     bottom: -13vh;
     right: -23vw;
   }
-  body main #pag1 article .texto_form, html main #pag1 article .texto_form {
+  body main #pag1 article .texto_form,
+  html main #pag1 article .texto_form {
     width: 90%;
+    margin-bottom: 4%;
   }
-  body main #pag1 article .texto_form h1, html main #pag1 article .texto_form h1 {
-    font-size: 3vh;
+  body main #pag1 article .texto_form h1,
+  html main #pag1 article .texto_form h1 {
+    font-size: 4vh;
   }
-  body main #pag1 article .texto_form p, html main #pag1 article .texto_form p {
-    font-size: 1.6vh;
+  body main #pag1 article .texto_form h3,
+  html main #pag1 article .texto_form h3 {
+    font-size: 1.5vh;
   }
-  body main #pag1 article .cont_form .progress-bar, html main #pag1 article .cont_form .progress-bar {
+  body main #pag1 article .cont_form .progress-bar,
+  html main #pag1 article .cont_form .progress-bar {
     height: 3%;
   }
-  body main #pag1 article .cont_form form .cont_inputform .input-form label, html main #pag1 article .cont_form form .cont_inputform .input-form label {
+  body main #pag1 article .cont_form form .cont_inputform .input-form label,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label {
     top: 22vh;
     left: 10vw;
     width: 70vw;
     height: 15vw;
   }
-  body main #pag1 article .cont_form form .cont_inputform .input-form label span p, html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
+  body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
     font-size: 3vw;
   }
-  body main #pag1 article label, html main #pag1 article label {
+  body main #pag1 article label,
+  html main #pag1 article label {
     width: 9vw;
     margin: 5%;
   }
-  body main #pag2 .Logincont .Login-cont, html main #pag2 .Logincont .Login-cont {
+  body main #pag2 .Logincont .Login-cont,
+  html main #pag2 .Logincont .Login-cont {
     width: 80vw;
   }
-  body main #pag2 .Logincont.animacionlog, html main #pag2 .Logincont.animacionlog {
+  body main #pag2 .Logincont.animacionlog,
+  html main #pag2 .Logincont.animacionlog {
     animation: bounceOutRight;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
-  body main #pag3, html main #pag3 {
+  body main #pag3,
+  html main #pag3 {
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
   }
-  body main #pag3 .btn_regreso, html main #pag3 .btn_regreso {
+  body main #pag3 .btn_regreso,
+  html main #pag3 .btn_regreso {
     width: 8vw;
     margin: 8%;
     top: 85h;
   }
-  body main #pag3 .estatus_vacantes, html main #pag3 .estatus_vacantes {
+  body main #pag3 .estatus_vacantes,
+  html main #pag3 .estatus_vacantes {
     top: 3vh;
     left: 27.5vw;
     width: 45vw;
     height: 15vw;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info, html main #pag3 .estatus_vacantes .icons_status .status_info {
+  body main #pag3 .estatus_vacantes .icons_status .status_info,
+  html main #pag3 .estatus_vacantes .icons_status .status_info {
     width: 65vw;
     height: 40vh;
     top: 12vh;
@@ -2485,117 +2830,148 @@ body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
     background-color: #1b3c59;
     box-shadow: 0px 0px 10px 0px #ec6223;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .box_status, html main #pag3 .estatus_vacantes .icons_status .status_info .box_status {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .box_status,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .box_status {
     width: 97%;
     margin-top: 0.8vh;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status {
     font-size: 3vw;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron {
     border-radius: 0.5rem;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
     width: 85%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
     width: 15%;
   }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button, html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
     width: 4vw;
   }
-  body main #pag3 .admin_cont, html main #pag3 .admin_cont {
+  body main #pag3 .admin_cont,
+  html main #pag3 .admin_cont {
     flex-direction: column-reverse;
   }
-  body main #pag3 .admin_cont .cont_rechazados, html main #pag3 .admin_cont .cont_rechazados {
+  body main #pag3 .admin_cont .cont_rechazados,
+  html main #pag3 .admin_cont .cont_rechazados {
     width: 90vw;
     height: 30vh;
     border-radius: 1rem;
     margin: 0;
   }
-  body main #pag3 .admin_cont .cont_rechazados .box_red, html main #pag3 .admin_cont .cont_rechazados .box_red {
+  body main #pag3 .admin_cont .cont_rechazados .box_red,
+  html main #pag3 .admin_cont .cont_rechazados .box_red {
     width: 96%;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data, html main #pag3 .admin_cont .cont_rechazados .const_data {
+  body main #pag3 .admin_cont .cont_rechazados .const_data,
+  html main #pag3 .admin_cont .cont_rechazados .const_data {
     font-size: 3vw;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred {
     justify-content: center;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .vacante_info {
     width: 90%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
     width: 10%;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
     width: 4vw;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
     height: 25vh;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-descargar-pdf {
     display: none;
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .vacante_info {
     width: 90%;
     height: 90%;
     grid-template-columns: repeat(4, 1fr);
   }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container, html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
+  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container,
+  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus .btn-container {
     display: none;
   }
-  body main #pag3 .admin_cont .cont_aceptados, html main #pag3 .admin_cont .cont_aceptados {
+  body main #pag3 .admin_cont .cont_aceptados,
+  html main #pag3 .admin_cont .cont_aceptados {
     width: 90vw;
     height: 53vh;
     margin-top: 10vh;
     border-radius: 1rem;
   }
-  body main #pag3 .admin_cont .cont_aceptados .box_green, html main #pag3 .admin_cont .cont_aceptados .box_green {
+  body main #pag3 .admin_cont .cont_aceptados .box_green,
+  html main #pag3 .admin_cont .cont_aceptados .box_green {
     width: 96%;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data, html main #pag3 .admin_cont .cont_aceptados .const_data {
+  body main #pag3 .admin_cont .cont_aceptados .const_data,
+  html main #pag3 .admin_cont .cont_aceptados .const_data {
     font-size: 3vw;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen {
     justify-content: center;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .vacante_info {
     width: 90%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
     width: 10%;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
     width: 4vw;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
     height: 25vh;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-descargar-pdf {
     display: none;
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .vacante_info {
     width: 90%;
     height: 90%;
     grid-template-columns: repeat(4, 1fr);
   }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container, html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
+  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container,
+  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
     display: none;
   }
-  body .cambiar_nav, html .cambiar_nav {
+  body .cambiar_nav,
+  html .cambiar_nav {
     top: 5vh;
     left: 25vw;
     width: 50vw;
     height: 15vw;
   }
-  body .cambiar_nav nav ul .circulo_icon, html .cambiar_nav nav ul .circulo_icon {
+  body .cambiar_nav nav ul .circulo_icon,
+  html .cambiar_nav nav ul .circulo_icon {
     width: 2.8vw;
     height: 2.8vw;
     top: 8.5vh;

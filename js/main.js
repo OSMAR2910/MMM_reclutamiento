@@ -245,6 +245,69 @@ label_btnNext.addEventListener('click', showNextForm);
 // Agregar evento al botón "Enviar"
 label_btnEnviar.addEventListener('click', enviar_fo);
 
+// Personalización de selects
+document.querySelectorAll("select").forEach((select) => {
+  const customSelect = document.createElement("div");
+  customSelect.classList.add("custom-select", "input");
+
+  const label = document.querySelector(`label[for='${select.id}']`);
+  if (label) {
+    label.classList.add("custom-label");
+  }
+
+  const selectedDiv = document.createElement("div");
+  selectedDiv.classList.add("select-selected");
+  selectedDiv.textContent = select.options[select.selectedIndex].text;
+  selectedDiv.setAttribute("tabindex", "0");
+
+  const optionsDiv = document.createElement("div");
+  optionsDiv.classList.add("select-items");
+
+  Array.from(select.options).forEach((option, index) => {
+    const optionDiv = document.createElement("div");
+    optionDiv.textContent = option.text;
+    if (option.disabled) {
+      optionDiv.classList.add("disabled");
+    } else {
+      optionDiv.addEventListener("click", () => {
+        select.selectedIndex = index;
+        selectedDiv.textContent = option.text;
+        select.dispatchEvent(new Event("change"));
+        optionsDiv.style.display = "none"; // Cierra las opciones después de la selección
+        if (label) {
+          label.style.opacity = "0";
+          label.style.scale = "0";
+        }
+      });
+    }
+    optionsDiv.appendChild(optionDiv);
+  });
+
+  selectedDiv.addEventListener("focus", () => {
+    optionsDiv.style.display = "block";
+    if (label) {
+      label.style.opacity = "1";
+      label.style.scale = "1";
+    }
+  });
+
+  // Detectar clic fuera del select para cerrar las opciones
+  document.addEventListener("click", (event) => {
+    if (!customSelect.contains(event.target)) {
+      optionsDiv.style.display = "none";
+      if (label && !select.value) {
+        label.style.opacity = "0";
+        label.style.scale = "0";
+      }
+    }
+  });
+
+  customSelect.appendChild(selectedDiv);
+  customSelect.appendChild(optionsDiv);
+  select.parentNode.insertBefore(customSelect, select);
+  select.style.display = "none";
+});
+
 // Inicializar el formulario
 initForm();
 updateProgress();
