@@ -184,21 +184,15 @@
         {
             "tag": "Saludos",
             "keywords": [
-                "hola",
                 "buenos dias",
                 "que tal",
-                "alo",
-                "ola",
-                "hello",
-                "hi",
                 "buenas noches",
                 "buenas tardes",
                 "que tal",
                 "buenos dias/tardes/noches",
                 "como estas",
                 "que gusto verte",
-                "hace dias que no se de ti",
-                "ey, hola"
+                "hace dias que no se de ti"
             ],
             "responses": [
                 "¡Holaaa! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
