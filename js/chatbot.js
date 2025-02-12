@@ -3,10 +3,17 @@ import { saveUnansweredMessage } from "./database.js";
 let intents = [];
 let isWelcomeMessageSent = false;
 
-// Cargar intents desde el JSON
+// Cargar intents desde Netlify
 async function loadIntents() {
   try {
-    const response = await fetch("./json/intents.json");
+    const response = await fetch("https://mmm-rh.netlify.app/json/intents.json", {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache' // Evita problemas de cache
+      }
+    });
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
     intents = data.intents || [];
@@ -21,7 +28,7 @@ function normalizeText(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-// Encontrar la mejor intención basada en palabras clave
+// Obtener la mejor intención
 function getBestIntent(message) {
   message = normalizeText(message);
   let bestMatch = null;
@@ -29,41 +36,33 @@ function getBestIntent(message) {
 
   for (const intent of intents) {
     let score = 0;
-
     for (const keyword of intent.keywords) {
       const normalizedKeyword = normalizeText(keyword);
       if (message.includes(normalizedKeyword)) {
-        score++; // Aumentamos el puntaje si hay coincidencia
+        score++;
       }
     }
-
     if (score > bestScore) {
       bestScore = score;
       bestMatch = intent;
     }
   }
-
-  // Si no hay una coincidencia fuerte, devuelve null
   return bestScore > 0 ? bestMatch : null;
 }
 
-// Obtener la respuesta basada en la mejor intención detectada
+// Obtener la respuesta
 function getResponse(message) {
   if (!intents.length) {
     console.error("⚠️ Intents no están cargados.");
     return "Lo siento, no puedo responder en este momento.";
   }
-
   const bestIntent = getBestIntent(message);
-
   if (bestIntent) {
-    console.log(`✅ Coincidencia encontrada: '${bestIntent.tag}'`);
     return bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
   }
-
   console.log("🚫 No encontré una respuesta adecuada.");
   saveUnansweredMessage(message);
-  return "No estoy seguro de lo que quieres decir. ¿Podrías explicarlo de otra manera?";
+  return "¡Glu-glu! No estoy seguro de lo que quieres decir, humano. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨";
 }
 
 // Enviar mensajes al chat
@@ -162,15 +161,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Mantener el chat en la parte inferior
 function scrollToBottom() {
   const chatBox = document.getElementById("chat_box");
-  chatBox.scrollTop = chatBox.scrollHeight;
+  // Compatibilidad total con Safari iOS
+  setTimeout(() => {
+    chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+  }, 100);
 }
 
-// Manejo del botón de minimizar el chat
+// Corregido: Botón de minimizar/maximizar el chat en iOS
 document.getElementById("chat_min").addEventListener("click", () => {
   const chatBox = document.getElementById("chatbot");
   const pavo = document.getElementById("pavo_cont");
 
+  // Se fuerza el reflujo para iOS
   chatBox.classList.toggle("max_chat");
+  void chatBox.offsetHeight; // 👈 Forzando reflujo en iOS
 
   if (chatBox.classList.contains("max_chat")) {
     pavo.style.display = 'none';

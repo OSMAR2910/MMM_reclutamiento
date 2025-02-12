@@ -2491,9 +2491,15 @@ html .cambiar_nav nav ul .circulo_icon {
     bottom: -15vh;
     right: -20vw;
   }
+  body main #home .ap_tc,
+  html main #home .ap_tc {
+    width: 25vw;
+    font-size: 1vw;
+  }
   body main .pages,
   html main .pages {
     width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
   }
   body main #pag1 article .texto_form,
   html main #pag1 article .texto_form {
@@ -2575,7 +2581,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info span {
@@ -2593,6 +2599,10 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
     width: 2.6vw;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info {
+    grid-template-columns: repeat(4, 1fr);
   }
   body main #pag3 .admin_cont,
   html main #pag3 .admin_cont {
@@ -2811,6 +2821,11 @@ html .cambiar_nav nav ul .circulo_icon {
     bottom: -13vh;
     right: -23vw;
   }
+  body main #home .ap_tc,
+  html main #home .ap_tc {
+    width: 35vw;
+    font-size: 1.5vw;
+  }
   body main #pag1 article .texto_form,
   html main #pag1 article .texto_form {
     width: 90%;
@@ -2900,17 +2915,26 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .vacante_info {
-    width: 85%;
+    width: 80%;
+    height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    gap: 0%;
+    grid-template-columns: repeat(2, 1fr);
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container {
     width: 15%;
+    height: 100%;
+    display: grid;
+    border: none;
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container button {
     width: 4vw;
+  }
+  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info,
+  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron:focus .vacante_info {
+    grid-template-columns: repeat(3, 1fr);
   }
   body main #pag3 .admin_cont,
   html main #pag3 .admin_cont {
@@ -3017,6 +3041,19 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container,
   html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus .btn-container {
     display: none;
+  }
+  body main #ap_tc div,
+  html main #ap_tc div {
+    width: 90%;
+    height: 70%;
+    margin-bottom: 20%;
+    gap: 1%;
+    flex-direction: column;
+  }
+  body main #ap_tc div div,
+  html main #ap_tc div div {
+    gap: 1%;
+    border-radius: 3vw;
   }
   body .cambiar_nav,
   html .cambiar_nav {

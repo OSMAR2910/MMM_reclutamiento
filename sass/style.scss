@@ -1295,7 +1295,7 @@ html {
         gap: 5%;
         color: $Box_admin;
         font-family: $Letra2;
-      div {
+      div { 
         height: 100%;
         display: flex;
         align-items: center;
@@ -1445,9 +1445,14 @@ html {
           bottom: -15vh;
           right: -20vw;
         }
+        .ap_tc {
+          width: 25vw;
+          font-size: 1vw;
+        }
       }
       .pages {
         width: 100%;
+        height: calc(var(--vh, 1vh) * 100);
       }
       #pag1 {
         article {
@@ -1529,7 +1534,7 @@ html {
                     .vacante_info {
                       width: 90%;
                       display: grid;
-                      grid-template-columns: repeat(4, 1fr);
+                      grid-template-columns: repeat(3, 1fr);
                       span {
                         font-size: 1.2vh;
                         strong {
@@ -1542,6 +1547,11 @@ html {
                       gap: 4%;
                       button {
                         width: 2.6vw;
+                      }
+                    }
+                    &:focus {
+                      .vacante_info {
+                        grid-template-columns: repeat(4, 1fr);
                       }
                     }
                   }
@@ -1758,6 +1768,10 @@ html {
           bottom: -13vh;
           right: -23vw;
         }
+        .ap_tc {
+          width: 35vw;
+          font-size: 1.5vw;
+        }
       }
       #pag1 {
         article {
@@ -1847,14 +1861,24 @@ html {
                   .vacante_asistieron {
                     border-radius: 0.5rem;
                     .vacante_info {
-                      width: 85%;
+                      width: 80%;
+                      height: 100%;
                       display: grid;
-                      grid-template-columns: repeat(3, 1fr);
+                      gap: 0%;
+                      grid-template-columns: repeat(2, 1fr);
                     }
                     .btn-container {
                       width: 15%;
+                      height: 100%;
+                      display: grid;
+                      border: none;
                       button {
                         width: 4vw;
+                      }
+                    }
+                    &:focus {
+                      .vacante_info {
+                        grid-template-columns: repeat(3, 1fr);
                       }
                     }
                   }
@@ -1948,6 +1972,19 @@ html {
                 }
               }
             }
+          }
+        }
+      }
+      #ap_tc {
+        div {
+          width: 90%;
+          height: 70%;
+          margin-bottom: 20%;
+          gap: 1%;
+          flex-direction: column;
+          div {
+            gap: 1%;
+            border-radius: 3vw;
           }
         }
       }
