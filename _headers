@@ -1,4 +1,5 @@
 /json/intents.json
   Access-Control-Allow-Origin: *
-  Access-Control-Allow-Headers: Content-Type
+  Access-Control-Allow-Headers: Content-Type, Cache-Control
+  Access-Control-Allow-Methods: GET, OPTIONS
   Cache-Control: no-cache
