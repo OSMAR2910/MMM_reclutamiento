@@ -648,7 +648,7 @@ html {
                   width: 15%;
                   aspect-ratio: 2/2;
                   position: absolute;
-                  background-image: url("../img/Logos/interfaces/icons/no_mostrar.png");
+                  background-image: url("../img/Logos/interfaces/icons/no_mostrar.svg");
                   background-size: 90%;
                   background-position: center;
                   background-repeat: no-repeat;
@@ -1936,8 +1936,9 @@ html {
                   }
                   .btn-container {
                     width: 10%;
+                    gap: 5%;
                     button {
-                      width: 4vw;
+                      width: 4.2vw;
                     }
                   }
                   &:focus {
@@ -1978,8 +1979,9 @@ html {
                   }
                   .btn-container {
                     width: 10%;
+                    gap: 5%;
                     button {
-                      width: 4vw;
+                      width: 4.2vw;
                     }
                   }
                   &:focus {

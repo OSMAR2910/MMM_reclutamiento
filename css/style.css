@@ -815,6 +815,7 @@ body canvas {
   }
   .max_chat .chat_header {
     height: 8%;
+    min-height: 3.5rem;
     border-radius: 7vw;
     box-shadow: 0px 0px 10px 5px #174891;
   }
@@ -1607,7 +1608,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field .to
   width: 15%;
   aspect-ratio: 2/2;
   position: absolute;
-  background-image: url("../img/Logos/interfaces/icons/no_mostrar.png");
+  background-image: url("../img/Logos/interfaces/icons/no_mostrar.svg");
   background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;
@@ -2997,10 +2998,11 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container,
   html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container {
     width: 10%;
+    gap: 5%;
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button,
   html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container button {
-    width: 4vw;
+    width: 4.2vw;
   }
   body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus,
   html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred:focus {
@@ -3048,10 +3050,11 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container,
   html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container {
     width: 10%;
+    gap: 5%;
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button,
   html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container button {
-    width: 4vw;
+    width: 4.2vw;
   }
   body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus,
   html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen:focus {
