@@ -473,7 +473,7 @@ body canvas {
   margin: none;
   background-color: #ec6223;
   aspect-ratio: 2/2;
-  background-image: url("../img/Logos/interfaces/icons/charla.png");
+  background-image: url("../img/Logos/interfaces/icons/charla.svg");
   background-size: 45%;
   background-position: center;
   border: none;
@@ -574,7 +574,7 @@ body canvas {
   aspect-ratio: 2/2;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  background-image: url("../img/Logos/interfaces/icons/flecha-min.png");
+  background-image: url("../img/Logos/interfaces/icons/flecha-min.svg");
   background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;
@@ -1971,7 +1971,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-eliminar,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_asistieron .btn-container .btn-eliminar {
-  background-image: url("../img/Logos/interfaces/icons/cerrar.png");
+  background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2160,7 +2160,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .bt
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-eliminar,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_itemred .btn-container .btn-eliminar {
-  background-image: url("../img/Logos/interfaces/icons/cerrar.png");
+  background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2330,7 +2330,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .b
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-eliminar,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .btn-container .btn-eliminar {
-  background-image: url("../img/Logos/interfaces/icons/cerrar.png");
+  background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
