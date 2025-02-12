@@ -1174,6 +1174,20 @@ html main #home .mancha2 img {
   width: 100%;
   height: 100%;
 }
+body main #home .ap_tc,
+html main #home .ap_tc {
+  width: 11%;
+  display: flex;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0);
+  bottom: 1vh;
+  border: 0;
+  color: #ffffff;
+  left: 0.5vw;
+  animation: fadeInUp 0.5s ease-in-out forwards;
+  font-family: "Nunito";
+  font-size: 0.5vw;
+}
 body main #pag1,
 html main #pag1 {
   animation: bounceInLeft 0.5s ease-in-out forwards;
@@ -2314,6 +2328,43 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_itemgreen .b
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+body main #ap_tc,
+html main #ap_tc {
+  animation: bounceInLeft 0.5s ease-in-out forwards;
+  gap: 5%;
+  align-items: end;
+  justify-content: center;
+}
+body main #ap_tc div,
+html main #ap_tc div {
+  width: 90%;
+  height: 70%;
+  margin-bottom: 10%;
+  display: flex;
+  gap: 5%;
+  color: #1b3c59;
+  font-family: "Nunito";
+}
+body main #ap_tc div div,
+html main #ap_tc div div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 2%;
+  border-radius: 1vw;
+  text-align: center;
+}
+body main #ap_tc div div p,
+html main #ap_tc div div p {
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 body main aside,
 html main aside {

@@ -272,6 +272,19 @@ html {
           @include cover;
         }
       }
+      .ap_tc {
+        width: 11%;
+        display: flex;
+        position: fixed;
+        background-color: $Transparente;
+        bottom: 1vh;
+        border: 0;
+        color: $Texto;
+        left: .5vw;
+        animation: fadeInUp 0.5s ease-in-out forwards;
+        font-family: $Letra2;
+        font-size: .5vw;
+      }
     }
     #pag1 {
       animation: bounceInLeft 0.5s ease-in-out forwards;
@@ -1267,6 +1280,39 @@ html {
             }
           }
         }
+      }
+    }
+    #ap_tc {
+      animation: bounceInLeft 0.5s ease-in-out forwards;
+      gap: 5%;
+      align-items: end;
+      justify-content: center;
+      div {
+        width: 90%;
+        height: 70%;
+        margin-bottom: 10%;
+        display: flex;
+        gap: 5%;
+        color: $Box_admin;
+        font-family: $Letra2;
+      div {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        background-color: $Blanco;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        padding: 2%;
+        border-radius: 1vw;
+        text-align: center;
+        p {
+          border: 0;
+          margin: 0;
+          padding: 0;
+        }
+      }
       }
     }
     aside {

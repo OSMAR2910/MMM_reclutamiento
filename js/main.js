@@ -113,16 +113,18 @@ const elements = {
     login: document.getElementById("pag2"),
     aside: document.getElementById("aside"),
     admin: document.getElementById("pag3"),
-    chatbot: document.getElementById("chatbot")
+    chatbot: document.getElementById("chatbot"),
+    ap_tc: document.getElementById("ap_tc")
   };
   // Función genérica para gestionar clases según la vista activa
-  function toggleView({ home = false, header = false, form = false, login = false, aside = false , admin = false}) {
+  function toggleView({ home = false, header = false, form = false, login = false, aside = false , admin = false, ap_tc = false}) {
     elements.home.classList.toggle("agregar_dis", home);
     elements.header.classList.toggle("cambiar_nav", header);
     elements.form.classList.toggle("agregar_dis", form);
     elements.login.classList.toggle("agregar_dis", login);
     elements.aside.classList.toggle("agregar_dis", aside);
     elements.admin.classList.toggle("agregar_dis", admin);
+    elements.ap_tc.classList.toggle("agregar_dis", ap_tc)
   }
   // Funciones para cada botón
   function btn_home() {
@@ -136,6 +138,9 @@ const elements = {
   }
   function btn_admin_regreso() {
     location.reload();
+  }
+  function btn_aptc() {
+    toggleView({ header: true, ap_tc: true, aside: true });
   }
 
   //funciones para fomulario
