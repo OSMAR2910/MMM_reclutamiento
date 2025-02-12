@@ -7,15 +7,19 @@ window.onload = () => {
     elements.home.classList.add("agregar_dis");
     elements.chatbot.classList.add("agregar_dis");
 };
+document.body.style.display = 'none';
+document.body.offsetHeight; // Forzar redibujado
+document.body.style.display = '';
 function updateChatbotDimensions() {
-  const vh = window.innerHeight * 0.01;
+  const vh = (window.visualViewport ? window.visualViewport.height : window.innerHeight) * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
-
 window.addEventListener('resize', updateChatbotDimensions);
 window.addEventListener('load', updateChatbotDimensions);
 // Verificar si es un dispositivo táctil
-const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+const isTouchDevice = () => {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+};
 
 if (!isTouchDevice()) {
     const cursorEl = document.querySelector('.js-cursor');
