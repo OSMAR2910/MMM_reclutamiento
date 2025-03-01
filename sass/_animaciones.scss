@@ -63,3 +63,12 @@
     transform: rotateY(0deg);
   } 
 }
+@keyframes btncita {
+  0% {
+    transform: translatey(300%);
+  }
+  100% {
+    transform: translatey(0);
+    opacity: 100;
+  }
+}

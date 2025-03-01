@@ -7,6 +7,8 @@
 
 * {
   scroll-behavior: smooth;
+  -webkit-scroll-behavior: smooth; /* Para Safari */
+  -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
 }
 
 *::-webkit-scrollbar {
@@ -29,21 +31,63 @@ html {
   padding: 0;
   background-color: $Fondo;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
   display: flex;
   justify-content: center;
   align-items: center;
-  .alertas {
-    top: 5vh;
-    left: 18vw;
-    width: 14vw;
-    height: 4vw;
-    display: none;
+
+  .desactivacion {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
     justify-content: center;
     align-items: center;
+    .mascota_triste {
+      width: 15vw;
+      height: 40vh;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .desactiv_texto {
+      width: 50vw;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      font-family: $Letra2;
+      color: $Texto;
+      border-radius: 1vw;
+      gap: 2vh;
+      h1 {
+        font-size: 2.5vw;
+        margin: 0;
+      }
+      p {
+        font-size: 2vw;
+        margin: 0;
+      }
+    }
+  }
+
+  .alertas {
+    display: none;
     position: fixed;
-    z-index: 1001;
+    z-index: 1008;
+
     .alerta {
-      @include cover;
+      top: 5vh;
+      left: 17.9vw;
+      width: 14vw;
+      height: 4vw;
+      position: fixed;
+      z-index: 1009;
       display: none;
       justify-content: center;
       align-items: center;
@@ -52,12 +96,14 @@ html {
       box-shadow: 0px 0px 10px 0px $Resalte2;
       border-radius: 5rem;
       animation: fadeInDown 0.2s ease-in-out forwards;
+
       span {
         width: 90%;
         height: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
+
         p {
           font-size: 0.8vw;
           color: $Texto;
@@ -65,19 +111,13 @@ html {
         }
       }
     }
-  }
-  .alertas_admin {
-    top: 4.6vh;
-    left: 7vw;
-    width: 14vw;
-    height: 4vw;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 1001;
     .alerta_admin {
-      @include cover;
+      top: 4.2vh;
+      left: 19.4vw;
+      width: 13vw;
+      height: 4.5vw;
+      position: fixed;
+      z-index: 1010;
       display: none;
       justify-content: center;
       align-items: center;
@@ -86,15 +126,49 @@ html {
       box-shadow: 0px 0px 10px 0px $Resalte2;
       border-radius: 5rem;
       animation: fadeInDown 0.2s ease-in-out forwards;
+
       span {
         width: 90%;
         height: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
+
         p {
-          font-size: 0.8vw;
+          font-size: 0.9vw;
           color: $Texto;
+          font-family: $Letra2;
+          text-align: center;
+        }
+      }
+    }
+    .alerta_manager {
+      top: 3.2vh;
+      left: 45.4vw;
+      width: 9vw;
+      height: 5vw;
+      position: fixed;
+      z-index: 1011;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-color: $Resalte2;
+      border: 2px solid $Resalte2;
+      box-shadow: 0px 0px 10px 0px $Resalte2;
+      border-radius: 5rem;
+      animation: fadeInDown 0.2s ease-in-out forwards;
+
+      span {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        p {
+          font-size: 0.9vw;
+          color: $Texto;
+          font-family: $Letra2;
           text-align: center;
         }
       }
@@ -113,6 +187,7 @@ html {
       align-items: center;
       z-index: 10010;
       display: none;
+
       .alert_box {
         width: 20vw;
         height: 15vh;
@@ -127,17 +202,20 @@ html {
         font-size: 1vw;
         text-align: center;
         color: $Box_admin;
+
         .alert_btn_cont {
           display: flex;
-          gap: 0.5vw;
+          gap: .5vw;
+
           .alert-btn {
-            padding: 10px 15px;
+            width: auto;
+            padding: .3rem .6rem;
             border: none;
             font-size: 0.8vw;
-            border-radius: 5px;
+            border-radius: .5vw;
             cursor: pointer;
-            margin: 5px;
             transition: all 0.1s ease-in-out;
+
             &:hover,
             &:focus {
               @include opacity;
@@ -156,7 +234,237 @@ html {
         }
       }
     }
+
+    .modal-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      z-index: 10011;
+
+      .modal-content {
+        width: 20vw;
+        height: 40vh;
+        background-color: $Secundario;
+        display: flex;
+        font-family: $Letra2;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1vw;
+        border-radius: 1.5vw;
+        font-size: 1vw;
+        text-align: center;
+
+        h2 {
+          width: 100%;
+          margin-bottom: 3vh;
+          font-size: 1vw;
+          letter-spacing: .2rem;
+          color: $Blanco;
+          font-family: $Letra1;
+          text-align: center;
+        }
+
+        form {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 1vw;
+          .input-form {
+            width: 100%;
+            height: 7.3vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: $Letra2;
+
+            .custom-select {
+              position: relative;
+              display: inline-block;
+            }
+
+            .input {
+              width: 100%;
+              height: 100%;
+              border-radius: 5rem;
+              background-color: $Texto;
+              outline: none;
+              border: 0;
+              color: $Box_admin;
+              font-family: $Letra2;
+              text-align: center;
+              font-size: .7vw;
+
+              select {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+                width: 0;
+                height: 0;
+                margin: 0;
+                padding: 0;
+                border: none;
+              }
+
+              .select-selected {
+                cursor: pointer;
+                position: relative;
+                border-radius: 5rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                color: $Box_admin;
+                outline: none;
+                border: 0;
+
+                &:focus {
+                  border: 0;
+                  outline: none;
+                  border: 2px solid $Resalte;
+                  box-shadow: 0px 0px 10px 0px $Resalte;
+                  background: $Resalte;
+                  color: $Texto;
+                }
+              }
+
+              &:focus {
+                border: 0;
+                outline: none;
+                border: 2px solid $Resalte;
+                box-shadow: 0px 0px 10px 0px $Resalte;
+                background: $Resalte;
+                color: $Texto;
+
+                .select-items {
+                  display: block;
+                }
+              }
+            }
+
+            .select-items {
+              position: absolute;
+              width: 100%;
+              display: none;
+              font-family: $Letra2;
+              z-index: 99;
+              top: 2vh;
+              border-radius: 1.5rem 1.5rem 2rem 2rem;
+              max-height: 20vh;
+              overflow-y: scroll;
+              border: 0;
+              outline: none;
+              border: 2px solid $Resalte;
+              box-shadow: 0px 0px 10px 2px $Resalte;
+              background: $Resalte;
+              color: $Texto;
+
+              div.disabled {
+                color: gray;
+                pointer-events: none;
+              }
+
+              div {
+                padding: 1rem;
+                cursor: pointer;
+              }
+            }
+
+            .input::placeholder {
+              color: $Box_admin;
+            }
+
+            .input:focus::placeholder {
+              color: $Texto;
+            }
+
+            .input:focus ~ label {
+              display: flex;
+              transition: all 0.2s ease-in-out;
+            }
+
+            label {
+              animation: fadeIn 0.3s ease-in-out forwards;
+              top: 30vh;
+              left: 45vw;
+              width: 10vw;
+              height: 3vw;
+              position: fixed;
+              display: none;
+              justify-content: center;
+              align-items: center;
+              background-color: $Resalte2;
+              transition: all 0.2s ease-in-out;
+              border-radius: 5rem;
+              box-shadow: 0px 0px 10px 0px $Resalte2;
+
+              span {
+                width: 80%;
+                height: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                  @include cover;
+                  color: $Texto;
+                  font-size: 0.6vw;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  margin: 0;
+                  padding: 0;
+                  letter-spacing: 0.1rem;
+                }
+              }
+            }
+          }
+
+          .modal-buttons {
+            display: flex;
+            gap: 0.5vw;
+
+            button {
+              padding: 10px 15px;
+              border: none;
+              font-size: 0.8vw;
+              border-radius: 5px;
+              cursor: pointer;
+              margin: 5px;
+              transition: all 0.1s ease-in-out;
+
+              &:hover,
+              &:focus {
+                @include opacity;
+              }
+
+              &#cancelar_cita {
+                background-color: $Resalte2;
+                color: white;
+              }
+
+              &#enviar_cita {
+                background-color: $Resalte;
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
   }
+
   header {
     width: 20vw;
     height: 6vw;
@@ -165,12 +473,14 @@ html {
     border-radius: 5rem;
     position: fixed;
     z-index: 1000;
+
     nav {
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+
       ul {
         width: 100%;
         height: 100%;
@@ -180,6 +490,7 @@ html {
         justify-content: center;
         align-items: center;
         gap: 5%;
+
         .circulo_icon {
           width: 1vw;
           height: 1vw;
@@ -190,12 +501,14 @@ html {
           left: 47.8vw;
           animation: moverpuntolog 3s ease-in-out infinite;
         }
+
         li {
           list-style: none;
           height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
+
           button {
             height: 50%;
             background-color: $Transparente;
@@ -207,15 +520,19 @@ html {
             align-items: center;
             transition: all 0.1s ease-in-out;
             z-index: 1002;
+
             img {
               height: 100%;
             }
+
             &:hover {
               @include opacity;
             }
           }
+
           .iconbutton {
             height: 85%;
+
             &:hover {
               opacity: 100%;
               scale: 1;
@@ -225,14 +542,17 @@ html {
       }
     }
   }
+
   main {
     width: 100vw;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
     margin: 0;
+    overflow: hidden;
+
     .pages {
       width: 50%;
       height: calc(var(--vh, 1vh) * 100);
@@ -243,10 +563,12 @@ html {
       overflow: hidden;
       display: none;
     }
+
     #home {
       width: 100%;
       justify-content: space-between;
       align-items: center;
+
       .mancha1 {
         width: 30%;
         display: flex;
@@ -254,13 +576,16 @@ html {
         top: -8vh;
         left: -6vw;
         animation: fadeInDown 0.5s ease-in-out forwards;
+
         a {
           @include cover;
+
           img {
             @include cover;
           }
         }
       }
+
       .mancha2 {
         width: 30%;
         display: flex;
@@ -268,26 +593,30 @@ html {
         bottom: -17vh;
         right: -5vw;
         animation: fadeInUp 0.5s ease-in-out forwards;
+
         img {
           @include cover;
         }
       }
+
       .ap_tc {
-        width: 11%;
+        width: 15vw;
         display: flex;
         position: fixed;
         background-color: $Transparente;
         bottom: 1vh;
         border: 0;
         color: $Texto;
-        left: .5vw;
+        left: 0.5vw;
         animation: fadeInUp 0.5s ease-in-out forwards;
         font-family: $Letra2;
-        font-size: .5vw;
+        font-size: 0.5vw;
       }
     }
+
     #pag1 {
-      animation: bounceInLeft 0.5s ease-in-out forwards;
+      animation: fadeInLeftBig 0.5s ease-in-out forwards;
+
       article {
         width: 90%;
         height: 80%;
@@ -295,6 +624,7 @@ html {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
         .texto_form {
           width: 100%;
           height: 10%;
@@ -312,6 +642,7 @@ html {
             letter-spacing: 0.1rem;
             font-family: $Letra1;
           }
+
           h3 {
             width: 100%;
             color: $Texto;
@@ -322,6 +653,7 @@ html {
             font-family: $Letra2;
           }
         }
+
         .cont_form {
           height: 40%;
           aspect-ratio: 1.2/1;
@@ -331,12 +663,14 @@ html {
           justify-content: center;
           align-items: center;
           flex-direction: column;
+
           .progress-bar {
             height: 2%;
             background-color: $Secundario;
             border-radius: 1rem;
             transition: all 0.5s ease-in-out;
           }
+
           form {
             width: 95%;
             height: 95%;
@@ -345,6 +679,7 @@ html {
             justify-items: center;
             align-items: center;
             margin: 2%;
+
             .cont_inputform {
               width: 100%;
               height: 100%;
@@ -352,17 +687,66 @@ html {
               justify-content: center;
               align-items: center;
               grid-template-columns: repeat(1, 1fr);
+
               .input-form {
                 width: 100%;
                 height: 7.3vh;
                 display: flex;
+                position: relative;
                 justify-content: center;
                 align-items: center;
-                font-family: $Letra2; 
+                font-family: $Letra2;
+                
+                .custom-dropdown {
+                  position: absolute;
+                  left: 2%;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  border-radius: 5px;
+                  padding: 5px 10px;
+                  cursor: pointer;
+                  font-size: .8vw;
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  z-index: 10;
+                  color: $Resalte;
+                
+                  .dropdown-list {
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    top: 100%;
+                    background: $Blanco;
+                    border-radius: .8vw;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    width: max-content;
+                    max-height: 150px;
+                    overflow-y: auto;
+                    z-index: 20;
+                
+                    li {
+                      padding: 8px;
+                      cursor: pointer;
+                      transition: background 0.3s;
+                      display: flex;
+                      align-items: center;
+                      gap: 5px;
+                
+                      &:hover {
+                        background: #f0f0f0;
+                      }
+                    }
+                  }
+                }
+                
                 .custom-select {
                   position: relative;
                   display: inline-block;
                 }
+
                 .input {
                   width: 100%;
                   height: 100%;
@@ -371,8 +755,9 @@ html {
                   outline: none;
                   border: 0;
                   color: $Box_admin;
-                  font-family: $Letra2; 
+                  font-family: $Letra2;
                   text-align: center;
+
                   select {
                     position: absolute;
                     opacity: 0;
@@ -383,6 +768,7 @@ html {
                     padding: 0;
                     border: none;
                   }
+
                   .select-selected {
                     cursor: pointer;
                     position: relative;
@@ -395,6 +781,7 @@ html {
                     color: $Box_admin;
                     outline: none;
                     border: 0;
+
                     &:focus {
                       border: 0;
                       outline: none;
@@ -404,6 +791,7 @@ html {
                       color: $Texto;
                     }
                   }
+
                   &:focus {
                     border: 0;
                     outline: none;
@@ -411,16 +799,18 @@ html {
                     box-shadow: 0px 0px 10px 0px $Resalte;
                     background: $Resalte;
                     color: $Texto;
+
                     .select-items {
                       display: block;
                     }
                   }
                 }
+
                 .select-items {
                   position: absolute;
                   width: 100%;
                   display: none;
-                  font-family: $Letra2; 
+                  font-family: $Letra2;
                   z-index: 99;
                   top: 2vh;
                   border-radius: 1.5rem 1.5rem 2rem 2rem;
@@ -432,47 +822,53 @@ html {
                   box-shadow: 0px 0px 10px 2px $Resalte;
                   background: $Resalte;
                   color: $Texto;
+
                   div.disabled {
                     color: gray;
                     pointer-events: none;
                   }
+
                   div {
                     padding: 1rem;
                     cursor: pointer;
                   }
                 }
+
                 .input::placeholder {
                   color: $Box_admin;
                 }
+
                 .input:focus::placeholder {
                   color: $Texto;
                 }
+
                 .input:focus ~ label {
-                  scale: 1;
-                  opacity: 100%;
+                  display:flex;
                   transition: all 0.2s ease-in-out;
                 }
+
                 label {
-                  scale: 0;
-                  opacity: 0;
+                  animation: fadeIn 0.3s ease-in-out forwards;
                   top: 20vh;
                   left: 14vw;
                   width: 20vw;
                   height: 4vw;
                   position: fixed;
-                  display: flex;
+                  display: none;
                   justify-content: center;
                   align-items: center;
                   background-color: $Resalte2;
                   transition: all 0.2s ease-in-out;
                   border-radius: 5rem;
                   box-shadow: 0px 0px 10px 0px $Resalte2;
+
                   span {
                     width: 80%;
                     height: 80%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
                     p {
                       @include cover;
                       color: $Texto;
@@ -489,36 +885,44 @@ html {
                 }
               }
             }
+
             .exito_form {
               width: 100%;
               height: 100%;
               display: none;
               justify-content: center;
               align-items: center;
+
               img {
                 width: 40%;
               }
             }
+
             .input-nex {
               display: none;
             }
+
             .input-submit {
               display: none;
             }
           }
         }
+
         .cont_form::-webkit-scrollbar {
           width: 12px;
         }
+
         .cont_form::-webkit-scrollbar-track {
           background: $Texto;
           border-radius: 1rem;
         }
+
         .cont_form::-webkit-scrollbar-thumb {
           background-color: $Fondo;
           border-radius: 1rem;
           border: 3px solid $Texto;
         }
+
         label {
           width: 2vw;
           aspect-ratio: 2/2;
@@ -527,17 +931,21 @@ html {
           justify-content: center;
           align-items: center;
           transition: all 0.1s ease-in-out;
+
           img {
             @include cover;
           }
+
           &:hover {
             @include opacity;
           }
         }
       }
     }
+
     #pag2 {
-      animation: bounceInLeft 0.5s ease-in-out forwards;
+      animation: fadeInRightBig 0.5s ease-in-out forwards;
+
       .Logincont {
         width: 100%;
         height: 100%;
@@ -565,7 +973,7 @@ html {
             overflow: hidden;
             z-index: 10;
 
-            .formuariolog {
+            .form-login {
               width: 100%;
               height: 100%;
               padding: 5%;
@@ -575,6 +983,7 @@ html {
               align-items: center;
               flex-direction: column;
               gap: 6%;
+
               .wel {
                 flex-direction: column;
                 justify-content: center;
@@ -627,6 +1036,7 @@ html {
                   outline: none;
                   text-align: center;
                   border: 2px solid $Texto;
+
                   &:focus {
                     border: 2px solid $Resalte;
                     box-shadow: 0px 0px 10px 0px $Resalte;
@@ -644,6 +1054,7 @@ html {
                   border-radius: 1rem;
                   padding: 1% 3%;
                 }
+
                 .toggle-password {
                   width: 15%;
                   aspect-ratio: 2/2;
@@ -658,6 +1069,7 @@ html {
                   padding: 0;
                   right: 5%;
                 }
+
                 label {
                   display: flex;
                   justify-content: center;
@@ -675,19 +1087,21 @@ html {
                   }
                 }
               }
+
               .input-submit {
                 display: none;
+
                 input {
                   display: none;
                 }
               }
             }
 
-            .formuariolog.activolog {
+            .form-login.activolog {
               display: flex;
             }
 
-            .formuariolog.animacionform {
+            .form-login.animacionform {
               animation: bounceOutRight;
               animation-duration: 0.7s;
               animation-fill-mode: forwards;
@@ -711,6 +1125,7 @@ html {
                 width: 7rem;
                 height: 7rem;
                 margin-bottom: 15%;
+
                 img {
                   width: 100%;
                   height: 100%;
@@ -739,23 +1154,51 @@ html {
           }
         }
       }
+
       .Logincont.animacionlog {
         animation: bounceOutRight;
         animation-duration: 0.5s;
         animation-fill-mode: forwards;
       }
+
+      .btn_cita {
+        position: fixed;
+        display: flex;
+        opacity: 0;
+        width: 2vw;
+        aspect-ratio: 1/1;
+        bottom: 0;
+        right: 0;
+        background-color: $Transparente;
+        border: none;
+        margin: 2%;
+        transition: all 0.2s ease-in-out;
+        animation: btncita 0.5s ease-in-out forwards;
+        animation-delay: 0.5s;
+        img {
+          height: 100%;
+        }
+
+        &:hover {
+          @include opacity;
+        }
+      }
     }
+
     #pag3 {
       @include cover;
+
       .btn_regreso {
-        width: 2.5%;
+        width: 2.5vw;
         aspect-ratio: 2/2;
-        top: 1vh;
+        top: -2vh;
         left: 0;
-        margin: 2.5%;
+        margin: 2%;
         display: flex;
         position: fixed;
         transition: all 0.1s ease-in-out;
+        z-index: 999;
+
         button {
           @include cover;
           background-color: $Transparente;
@@ -765,42 +1208,53 @@ html {
           display: flex;
           justify-content: center;
           align-items: center;
+
           img {
             @include cover;
           }
         }
+
         &:hover {
           @include opacity;
         }
       }
+
       .estatus_vacantes {
-        top: 4.6vh;
-        left: 7.5vw;
-        width: 13vw;
-        height: 4vw;
+        top: 3.5vh;
+        left: 19vw;
+        width: 12vw;
+        height: 3.5vw;
         display: flex;
+        background-color: $Box_admin;
+        padding: 1vw;
+        border-radius: 5vw;
         justify-content: space-evenly;
         align-items: center;
         position: fixed;
         z-index: 1000;
         gap: 5%;
+
         .icons_status {
           width: 90%;
           height: 90%;
           display: flex;
           justify-content: center;
           align-items: center;
+
           input {
             display: none;
+
             &:checked ~ label {
               @include opacity;
               display: flex;
             }
+
             &:checked ~ .status_info {
-              visibility: visible;
+              display: flex;
               animation: bounceInDown 0.2s ease-in-out forwards;
             }
           }
+
           label {
             width: 100%;
             height: 100%;
@@ -809,26 +1263,30 @@ html {
             border-radius: 10rem;
             transition: all 0.2s ease-in-out;
           }
+
           #label_status1 {
             background-color: $Red;
           }
+
           #label_status2 {
             background-color: $Orange;
           }
+
           #label_status3 {
             background-color: $Green;
           }
+
           .status_info {
             position: fixed;
-            display: flex;
-            visibility: hidden;
+            display: none;
             justify-content: start;
             align-items: center;
+            transition: none; 
             flex-direction: column;
-            width: 16vw;
-            height: 40vh;
-            top: 15vh;
-            border-radius: 1.2vw;
+            width: 15vw;
+            height: 75vh;
+            top: 18vh;
+            left: 18vw;
             text-align: center;
             color: $Texto;
             font-family: $Letra2;
@@ -837,27 +1295,33 @@ html {
             background-color: $Box_admin;
             box-shadow: 0px 0px 10px 0px $Box_admin;
             gap: 1.5vh;
+
             .box_status {
-              width: 95%;
+              width: 100%;
               height: 5%;
               border-radius: 2rem;
               display: flex;
               justify-content: center;
               align-items: center;
+
               p {
                 font-size: 1.5vh;
                 font-family: $Letra2;
               }
             }
+
             .box_status1 {
               background-color: $Red;
             }
+
             .box_status2 {
               background-color: $Orange;
             }
+
             .box_status3 {
               background-color: $Green;
             }
+
             .data_status {
               width: 100%;
               height: 100%;
@@ -867,6 +1331,7 @@ html {
               justify-content: start;
               align-items: center;
               flex-direction: column;
+
               .no_data {
                 margin-top: 30%;
                 width: 40%;
@@ -876,6 +1341,7 @@ html {
                 background-position: center;
                 background-repeat: no-repeat;
               }
+
               ul {
                 width: 100%;
                 height: auto;
@@ -888,7 +1354,10 @@ html {
                 align-items: center;
                 flex-direction: column;
                 gap: 1.5vh;
-                .vacante_asistieron {
+
+                .vacante_item_noasistieron,
+                .vacante_item_asistieron,
+                .vacante_item_contratado {
                   width: 95%;
                   height: 5vh;
                   display: flex;
@@ -898,26 +1367,56 @@ html {
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
-                  .btn-descargar-pdf {
-                    border-radius: 5rem;
-                    width: 1%;
-                    height: 80%;
-                    border: none;
-                    background-color: $Principal;
-                    transition: all 0.2s ease-in-out;
-                    &:hover {
-                      @include opacity;
+
+                  .btn_container2 {
+                    width: 4%;
+                    height: 90%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 0;
+
+                    .btn-descargar-pdf {
+                      border-radius: 1vw;
+                      width: 100%;
+                      height: 45%;
+                      border: none;
+                      margin: 0;
+                      padding: 0;
+                      background-color: $Principal;
+                      transition: all 0.2s ease-in-out;
+
+                      &:hover {
+                        @include opacity;
+                      }
+                    }
+
+                    .btn-agendar-cita {
+                      border-radius: 1vw;
+                      width: 100%;
+                      height: 45%;
+                      border: none;
+                      margin: 0;
+                      padding: 0;
+                      background-color: $Resalte;
+                      transition: all 0.2s ease-in-out;
+
+                      &:hover {
+                        @include opacity;
+                      }
                     }
                   }
+
                   .vacante_info {
-                    width: 80%;
+                    width: 81%;
                     height: 100%;
-                    display: flex;
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     justify-content: space-evenly;
                     align-items: center;
                     flex-direction: column;
+
                     span {
                       width: 100%;
                       display: flex;
@@ -926,12 +1425,14 @@ html {
                       align-items: center;
                       font-size: 1.2vh;
                       color: $Resalte;
+
                       strong {
                         font-size: 1.4vh;
                         color: $Resalte;
                       }
                     }
                   }
+
                   .btn-container {
                     width: 15%;
                     height: 100%;
@@ -942,25 +1443,31 @@ html {
                     align-content: center;
                     flex-direction: column;
                     gap: 0.1vw;
+
                     button {
                       border-radius: 5rem;
                       width: 1vw;
                       aspect-ratio: 2/2;
                       border: none;
                       transition: all 0.2s ease-in-out;
+
                       &:hover {
                         @include opacity;
                       }
                     }
+
                     .btn-noAsistieron {
                       background-color: $Red;
                     }
+
                     .btn-asistieron {
                       background-color: $Orange;
                     }
+
                     .btn-contratado {
                       background-color: $Green;
                     }
+
                     .btn-eliminar {
                       background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
                       background-repeat: no-repeat;
@@ -968,17 +1475,28 @@ html {
                       background-position: center;
                     }
                   }
+
                   &:focus {
                     overflow-y: scroll;
-                    height: auto;
-                    .vacante_info {
-                      width: 95%;
-                      grid-template-columns: repeat(3, 1fr);
-                    }
+                    height: 25vh;
+
                     .btn-container {
                       display: none;
                     }
-                    .btn-descargar-pdf {
+
+                    .vacante_info {
+                      width: 95%;
+                      height: 95%;
+                      grid-template-columns: repeat(3, 1fr);
+                      span {
+                        font-size: 0.5vw;
+                        strong {
+                          font-size: 0.6vw;
+                        }
+                      }
+                    }
+
+                    .btn_container2 {
                       display: none;
                     }
                   }
@@ -988,36 +1506,52 @@ html {
           }
         }
       }
+
       .admin_cont {
-        @include cover;
+        width: 97vw;
+        height: 95vh;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-between;
+        align-items: start;
         font-family: $Letra2;
+        position: relative;
+        border: none;
+        margin: 0;
+        padding: 0;
         gap: 2%;
+        background-color: $Box_admin;
+        -webkit-mask:
+          url("../img/Utilidades/top-center.png") center / contain no-repeat,
+          url("../img/Utilidades/top-left.png") center / contain no-repeat,
+          url("../img/Utilidades/top-right.png") center / contain no-repeat,
+          linear-gradient(#000000 0 0);
+        mask-size: 20vw, 5vw, 6vw;
+        mask-position: 14.5vw 0vh, left top, right top;
+        mask-composite: exclude;
+        border-radius: 0vw 3vw 3vw 3vw;
+
         .cont_rechazados {
-          width: 20vw;
-          height: 80vh;
+          width: 15.7%;
+          height: 95%;
           display: flex;
           border-radius: 1.2vw;
           justify-content: start;
-          align-items: center;
+          align-items: end;
           flex-direction: column;
           background-color: $Box_admin;
           box-shadow: 0px 0px 10px 0px $Box_admin;
-          margin-top: 15vh;
+          margin: 1vw;
           gap: 1.5vh;
+
           .box_red {
-            width: 96%;
+            width: 70%;
             height: 3vh;
             margin-top: 1vh;
             background-color: $Red;
             border-radius: 1rem;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
           }
+
           .const_data {
             width: 100%;
             height: 100%;
@@ -1029,6 +1563,7 @@ html {
             overflow-y: scroll;
             border-radius: 1rem;
             color: $Texto;
+
             .no_data {
               margin-top: 60%;
               width: 40%;
@@ -1038,6 +1573,7 @@ html {
               background-position: center;
               background-repeat: no-repeat;
             }
+
             ul {
               width: 100%;
               height: auto;
@@ -1049,7 +1585,8 @@ html {
               align-items: center;
               flex-direction: column;
               gap: 1.5vh;
-              .vacante_itemred {
+
+              .vacante_item_red {
                 width: 95%;
                 height: 5vh;
                 display: flex;
@@ -1062,27 +1599,58 @@ html {
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
-                .btn-descargar-pdf {
-                  border-radius: 5rem;
-                  width: 1%;
-                  height: 80%;
-                  border: none;
-                  background-color: $Principal;
-                  transition: all 0.2s ease-in-out;
-                  &:hover {
-                    @include opacity;
+
+                .btn_container2 {
+                  width: 5%;
+                  height: 90%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 0;
+
+                  .btn-descargar-pdf {
+                    border-radius: 1vw;
+                    width: 100%;
+                    height: 45%;
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+
+                  .btn-agendar-cita {
+                    border-radius: 1vw;
+                    width: 100%;
+                    height: 45%;
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $Resalte;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
                   }
                 }
+
                 .vacante_info {
-                  width: 87%;
+                  width: 85%;
                   text-align: center;
                   height: 100%;
                   display: grid;
-                  grid-template-columns: repeat(3, 1fr);
-                  justify-content: space-evenly;
+                  grid-template-columns: repeat(2, 1fr);
+                  justify-content: center;
                   align-items: center;
                   flex-direction: column;
-                  gap: 3%;
+                  gap: 4%;
+
                   span {
                     width: 100%;
                     height: 100%;
@@ -1092,39 +1660,47 @@ html {
                     align-items: center;
                     font-size: 0.6vw;
                     color: $Resalte;
+
                     strong {
                       font-size: 0.7vw;
                       color: $Resalte;
                     }
                   }
                 }
+
                 .btn-container {
-                  width: 12%;
+                  width: 15%;
                   height: 100%;
                   display: grid;
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
                   gap: 0.1vw;
+
                   button {
                     border-radius: 5rem;
                     width: 1vw;
                     aspect-ratio: 2/2;
                     border: none;
                     transition: all 0.2s ease-in-out;
+
                     &:hover {
                       @include opacity;
                     }
                   }
+
                   .btn-noAsistieron {
                     background-color: $Red;
                   }
+
                   .btn-asistieron {
                     background-color: $Orange;
                   }
+
                   .btn-contratado {
                     background-color: $Green;
                   }
+
                   .btn-eliminar {
                     background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
                     background-repeat: no-repeat;
@@ -1132,15 +1708,26 @@ html {
                     background-position: center;
                   }
                 }
+
                 &:focus {
                   height: 35vh;
-                  .btn-descargar-pdf {
+
+                  .btn_container2 {
                     display: none;
                   }
+
                   .vacante_info {
-                    width: 80%;
-                    height: 90%;
+                    width: 95%;
+                    height: 95%;
+                    grid-template-columns: repeat(3, 1fr);
+                    span {
+                      font-size: 0.5vw;
+                      strong {
+                        font-size: 0.6vw;
+                      }
+                    }
                   }
+
                   .btn-container {
                     display: none;
                   }
@@ -1149,48 +1736,51 @@ html {
             }
           }
         }
-        .cont_aceptados {
-          width: 74vw;
-          height: 95vh;
+
+        .cont_citas {
+          width: 15%;
+          height: 80%;
           display: flex;
           border-radius: 1.2vw;
           justify-content: start;
-          align-items: center;
+          align-items: end;
           flex-direction: column;
           background-color: $Box_admin;
           box-shadow: 0px 0px 10px 0px $Box_admin;
+          margin-top: 15vh;
           gap: 1.5vh;
-          .box_green {
-            width: 98%;
+
+          .box_gray {
+            width: 100%;
             height: 3vh;
             margin-top: 1vh;
-            background-color: $Green;
+            background-color: $Gray;
             border-radius: 1rem;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
           }
+
           .const_data {
             width: 100%;
-            height: 94%;
+            height: 100%;
             display: flex;
             justify-content: start;
             align-items: center;
             flex-direction: column;
             overflow-x: hidden;
             overflow-y: scroll;
-            border-radius: 1.5rem;
+            border-radius: 1rem;
             color: $Texto;
+
             .no_data {
-              margin-top: 20%;
-              width: 15%;
+              margin-top: 60%;
+              width: 40%;
               aspect-ratio: 2/2;
               background-image: url("../img//Utilidades/no_data.png");
               background-size: cover;
               background-position: center;
               background-repeat: no-repeat;
             }
+
             ul {
               width: 100%;
               height: auto;
@@ -1202,35 +1792,63 @@ html {
               align-items: center;
               flex-direction: column;
               gap: 1.5vh;
-              .vacante_itemgreen {
+
+              .vacante_item_citas {
                 width: 95%;
-                height: 5vh;
+                height: 3.5vh;
                 display: flex;
-                background-color: $Texto;
-                border-radius: 0.6rem;
                 justify-content: center;
                 align-items: center;
+                background-color: $Texto;
+                border-radius: 0.6rem;
                 border: none;
                 cursor: pointer;
                 outline: none;
-                .btn-descargar-pdf {
-                  border-radius: 5rem;
-                  width: 1%;
-                  height: 80%;
-                  border: none;
-                  background-color: $Principal;
-                  transition: all 0.2s ease-in-out;
-                  &:hover {
-                    @include opacity;
+                overflow: hidden;
+                gap: 5%;
+
+                .btn_container2 {
+                  width: 5%;
+                  height: 90%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 0;
+
+                  .btn-descargar-pdf {
+                    border-radius: 1vw;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+
+                  .btn-agendar-cita {
+                    display: none;
                   }
                 }
+
                 .vacante_info {
-                  width: 96%;
+                  width: 95%;
+                  text-align: center;
                   height: 100%;
-                  display: flex;
-                  justify-content: space-evenly;
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr);
+                  justify-content: center;
                   align-items: center;
+                  flex-direction: column;
+                  gap: 5%;
+
                   span {
+                    width: 100%;
                     height: 100%;
                     display: flex;
                     flex-direction: column;
@@ -1238,44 +1856,491 @@ html {
                     align-items: center;
                     font-size: 0.6vw;
                     color: $Resalte;
+
                     strong {
                       font-size: 0.7vw;
                       color: $Resalte;
                     }
                   }
                 }
+
                 .btn-container {
-                  width: 3%;
+                  display: none;
+                }
+
+                &:focus {
+                  height: 15vh;
+                  .btn_container2 {
+                    display: none;
+                  }
+                  .vacante_info {
+                    height: 95%;
+                    grid-template-columns: repeat(2, 1fr);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .cont_aceptados {
+          width: 70%;
+          height: 95%;
+          display: flex;
+          border-radius: 1.2vw;
+          justify-content: start;
+          align-items: start;
+          flex-direction: column;
+          background-color: $Box_admin;
+          box-shadow: 0px 0px 10px 0px $Box_admin;
+          margin: 1vw;
+          gap: 1.5vh;
+
+          .box_green {
+            width: 92%;
+            height: 3vh;
+            margin-top: 1vh;
+            background-color: $Green;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          }
+
+          .const_data {
+            width: 100%;
+            height: 94%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            border-radius: 1.5rem;
+            color: $Texto;
+
+            .no_data {
+              margin-top: 20%;
+              width: 15%;
+              aspect-ratio: 2/2;
+              background-image: url("../img//Utilidades/no_data.png");
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+
+            ul {
+              width: 100%;
+              height: auto;
+              display: flex;
+              padding: 0;
+              margin: 0;
+              margin-bottom: 1.5vh;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+              gap: 1.5vh;
+              .vacante_item_green {
+                width: 95%;
+                height: 5vh;
+                display: flex;
+                background-color: $Texto; 
+                border-radius: 0.6rem;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                cursor: pointer;
+                outline: none;
+
+                .btn_container2 {
+                  width: 1%;
+                  height: 90%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 0;
+
+                  .btn-descargar-pdf {
+                    border-radius: 1vw;
+                    width: 100%;
+                    height: 45%;
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+
+                  .btn-agendar-cita {
+                    border-radius: 1vw;
+                    width: 100%;
+                    height: 45%;
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $Resalte;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+                }
+
+                .vacante_info {
+                  width: 95.5%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: space-evenly;
+                  align-items: center;
+
+                  span {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 0.5vw;
+                    color: $Resalte;
+
+                    strong {
+                      font-size: 0.6vw;
+                      color: $Resalte;
+                    }
+                  }
+                }
+
+                .btn-container {
+                  width: 3.5%;
                   height: 100%;
                   display: grid;
                   grid-template-columns: repeat(2, 1fr);
                   justify-items: center;
                   align-content: center;
                   gap: 0.1vw;
+
                   button {
                     border-radius: 5rem;
                     width: 1vw;
                     aspect-ratio: 2/2;
                     border: none;
                     transition: all 0.2s ease-in-out;
+
                     &:hover {
                       @include opacity;
                     }
                   }
+
                   .btn-noAsistieron {
                     background-color: $Red;
                   }
+
                   .btn-asistieron {
                     background-color: $Orange;
                   }
+
                   .btn-contratado {
                     background-color: $Green;
                   }
+
                   .btn-eliminar {
                     background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;
+                  }
+                }
+
+                &:focus {
+                  height: 5vh;
+
+                  .btn_container2 {
+                    display: none;
+                  }
+
+                  .vacante_info {
+                    width: 100%;
+
+                    span {
+                      font-size: 0.5vw;
+
+                      strong {
+                        font-size: 0.6vw;
+                      }
+                    }
+                  }
+
+                  .btn-container {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .mensajes_usuarios {
+        top: 0vh;
+        right: 0vw;
+        margin: 1%;
+        width: 4vw;
+        height: 4vh;
+        display: flex;
+        background-color: $Box_admin;
+        padding: .5vw;
+        border-radius: 1vw;
+        justify-content: space-evenly;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        gap: 5%;
+
+        .icons_mj {
+          width: 90%;
+          height: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          input {
+            display: none;
+
+            &:checked ~ label {
+              @include opacity;
+              display: flex;
+            }
+
+            &:checked ~ .mj_user_info {
+              display: flex;
+              animation: bounceInDown 0.2s ease-in-out forwards;
+            }
+          }
+
+          label {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 10rem;
+            transition: all 0.2s ease-in-out;
+          }
+
+          #label_mj_user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+              height: 70%;
+            }
+          }
+
+          .mj_user_info {
+            position: fixed;
+            display: none;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            width: 15vw;
+            height: 75vh;
+            top: 17vh;
+            left: 18vw;
+            text-align: center;
+            color: $Texto;
+            font-family: $Letra2;
+            font-size: 0.7vw;
+            padding: 0.5vw;
+            background-color: $Box_admin;
+            box-shadow: 0px 0px 10px 0px $Box_admin;
+            gap: 1.5vh;
+            .filter-container {
+              width: 100%;
+              height: 3.5vh;
+              border-radius: 1vw;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              transition: all .1s ease-in-out;
+              .input-field {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                width: 100%;
+                height: 100%;
+                font-family: $Letra2;
+
+                input::-webkit-inner-spin-button,
+                input::-webkit-outer-spin-button {
+                  -webkit-appearance: none;
+                }
+
+                input[type="text"] {
+                  -moz-appearance: textfield;
+                }
+
+                input {
+                  @include cover;
+                  border-radius: 5rem;
+                  font-size: .7vw;
+                  display: flex;
+                  background-color: $Secundario;
+                  color: $Texto;
+                  outline: none;
+                  text-align: center;
+                  border: 0;
+
+                  &:focus {
+                    box-shadow: 0px 0px 10px 0px $Resalte;
+                    background: $Resalte;
+                  }
+                }
+
+                input:focus ~ label,
+                input:not(:placeholder-shown) ~ label {
+                  top: -1%;
+                  font-size: .5vw;
+                  background: $Principal;
+                  color: $Texto;
+                  border-radius: 1rem;
+                  padding: 0 3%;
+                }
+
+                label {
+                  width: auto;
+                  height: auto;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 0;
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: $Texto;
+                  font-size: .7vw;
+                  pointer-events: none;
+                  transition: 0.3s;
+
+                  span {
+                    margin-left: 3px;
+                  }
+                }
+              }
+            }
+            .data_mj_user {
+              width: 100%;
+              height: 100%;
+              overflow-x: hidden;
+              overflow-y: scroll;
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+
+              .no_data {
+                margin-top: 30%;
+                width: 40%;
+                aspect-ratio: 2/2;
+                background-image: url("../img//Utilidades/no_data.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+
+              ul {
+                width: 100%;
+                height: auto;
+                display: flex;
+                padding: 0;
+                margin: 0;
+                border: none;
+                margin-bottom: 1.5vh;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                gap: 1.5vh;
+
+                button {
+                  width: 95%;
+                  height: 5vh;
+                  display: flex;
+                  background-color: $Texto;
+                  border-radius: 0.5vw;
+                  justify-content: center;
+                  border: none;
+                  overflow-y: hidden;
+                  align-items: center;
+                  font-family: $Letra2;
+                  .user-div {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1vw;
+                    color: $Box_admin;
+                  }
+                  .user-messages {
+                    display: none;
+                  }
+                  &:focus {
+                    overflow: hidden;
+                    height: 25vh;
+                  .user-div {
+                    display: none;
+                  }
+                  .user-messages {
+                    width: 90%;
+                    height: 90%;
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5vh;
+                    .message {
+                      width: 100%;
+                      height: auto;
+                      span {
+                        width: 100%;
+                        height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: start;
+                        text-align: start;
+                        color: $Box_admin;
+                        strong {
+                          width: auto;
+                          font-size: 0.5vw;
+                          margin: 2%;
+                        }
+                        p {
+                          width: auto;
+                          height: auto;
+                          margin: 0;
+                          font-size: 0.6vw;
+                          padding: .5vw;
+                          border: 1.5px solid $Box_admin;
+                          padding: 3%;
+                          font-weight: 170;
+                          font-size: 0.7vw;
+                          border-radius: 1vw;
+                        }
+                        time {
+                          width: 100%;
+                          font-size: 0.4vw;
+                          margin: 2%;
+                        }
+                      }
+                    }
+                  }
                   }
                 }
               }
@@ -1284,11 +2349,721 @@ html {
         }
       }
     }
+
+    #pag4 {
+      animation: fadeInUpBig 0.5s ease-in-out forwards;
+
+      .Logincont {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .Login-cont {
+          width: 20rem;
+          aspect-ratio: 2/2;
+          border-radius: 2rem;
+          background-color: $Secundario;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .Login-son {
+            width: 100%;
+            height: 100%;
+            margin: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            z-index: 10;
+
+            .form-login {
+              width: 100%;
+              height: 100%;
+              padding: 5%;
+              display: none;
+              overflow: hidden;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              gap: 6%;
+
+              .wel {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+
+                h3 {
+                  width: 100%;
+                  color: $Texto;
+                  font-size: 2vh;
+                  padding: 0;
+                  margin: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-family: $Letra1;
+
+                  span {
+                    color: $Texto;
+                    letter-spacing: 0.1rem;
+                  }
+                }
+              }
+
+              .input-field {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                height: 3.5rem;
+                font-family: $Letra2;
+
+                input::-webkit-inner-spin-button,
+                input::-webkit-outer-spin-button {
+                  -webkit-appearance: none;
+                }
+
+                input[type="number"] {
+                  -moz-appearance: textfield;
+                }
+
+                input {
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 5rem;
+                  font-size: 17px;
+                  padding: 0px 10px;
+                  background-color: $Transparente;
+                  color: $Texto;
+                  outline: none;
+                  text-align: center;
+                  border: 2px solid $Texto;
+
+                  &:focus {
+                    border: 2px solid $Resalte;
+                    box-shadow: 0px 0px 10px 0px $Resalte;
+                    background: $Resalte;
+                  }
+                }
+
+                input:focus ~ label,
+                input:valid ~ label {
+                  top: 0;
+                  font-size: 15px;
+                  padding: 0 6px;
+                  background: $Principal;
+                  color: $Texto;
+                  border-radius: 1rem;
+                  padding: 1% 3%;
+                }
+
+                .toggle-password {
+                  width: 15%;
+                  aspect-ratio: 2/2;
+                  position: absolute;
+                  background-image: url("../img/Logos/interfaces/icons/no_mostrar.svg");
+                  background-size: 90%;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-color: transparent;
+                  border: 0;
+                  margin: 0;
+                  padding: 0;
+                  right: 5%;
+                }
+
+                label {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: $Texto;
+                  font-size: 17px;
+                  pointer-events: none;
+                  transition: 0.3s;
+
+                  span {
+                    margin-left: 3px;
+                  }
+                }
+              }
+
+              .input-submit {
+                display: none;
+
+                input {
+                  display: none;
+                }
+              }
+            }
+
+            .form-login.activolog {
+              display: flex;
+            }
+
+            .form-login.animacionform {
+              animation: bounceOutRight;
+              animation-duration: 0.7s;
+              animation-fill-mode: forwards;
+            }
+
+            .form-login.activolog {
+              display: flex;
+            }
+
+            .error {
+              width: 65%;
+              height: 100%;
+              padding: 15%;
+              display: none;
+              overflow: hidden;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              z-index: 94;
+              animation: bounceInLeft;
+              animation-duration: 0.7s;
+              animation-fill-mode: forwards;
+
+              #icon {
+                width: 7rem;
+                height: 7rem;
+                margin-bottom: 15%;
+
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+
+              h1 {
+                width: 100%;
+                text-align: center;
+                font-size: 1.1vh;
+                font-family: $Letra1;
+                letter-spacing: 0.1rem;
+                color: $Texto;
+              }
+
+              a {
+                font-family: $Letra2;
+                color: $Texto;
+                font-size: 1.2vh;
+              }
+            }
+
+            .error.activolog {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      .Logincont.animacionlog {
+        animation: bounceOutRight;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    #pag5 {
+      @include cover;
+      .btn_regreso {
+        width: 2.5vw;
+        aspect-ratio: 2/2;
+        top: -2vh;
+        left: 0;
+        margin: 2%;
+        display: flex;
+        position: fixed;
+        transition: all 0.1s ease-in-out;
+        z-index: 999;
+
+        button {
+          @include cover;
+          background-color: $Transparente;
+          border: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            @include cover;
+          }
+        }
+
+        &:hover {
+          @include opacity;
+        }
+      }
+      .estatus_citas_manager {
+        top: 2.5vh;
+        left: 45vw;
+        width: 8vw;
+        height: 4vw;
+        display: flex;
+        background-color: $Box_admin;
+        padding: 1vw;
+        border-radius: 3vw;
+        justify-content: space-evenly;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        gap: 10%;
+
+        .icons_status {
+          width: 90%;
+          height: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          input {
+            display: none;
+
+            &:checked ~ label {
+              @include opacity;
+              display: flex;
+            }
+
+            &:checked ~ .status_info {
+              display: flex;
+              animation: bounceInDown 0.2s ease-in-out forwards;
+            }
+          }
+
+          label {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 10rem;
+            transition: all 0.2s ease-in-out;
+          }
+
+          #label_status1_manager {
+            background-color: $Red;
+          }
+
+          #label_status2_manager {
+            background-color: $Green;
+          }
+
+          .status_info {
+            position: fixed;
+            display: none;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            width: 28vw;
+            height: 80vh;
+            top: 15vh;
+            left: 35.5vw;
+            text-align: center;
+            color: $Texto;
+            border-radius: 0 0 3vw 3vw;
+            font-family: $Letra2;
+            font-size: 0.7vw;
+            padding: 0.5vw;
+            background-color: $Box_admin;
+            box-shadow: 0px 0px 10px 0px $Box_admin;
+            gap: 1.5vh;
+
+            .box_status {
+              width: 95%;
+              height: 5%;
+              border-radius: 2rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              p {
+                font-size: 1.5vh;
+                font-family: $Letra2;
+              }
+            }
+
+            .box_status1 {
+              background-color: $Red;
+            }
+
+            .box_status2 {
+              background-color: $Green;
+            }
+
+            .data_status {
+              width: 100%;
+              height: 100%;
+              overflow-x: hidden;
+              overflow-y: scroll;
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+
+              .no_data {
+                margin-top: 30%;
+                width: 40%;
+                aspect-ratio: 2/2;
+                background-image: url("../img//Utilidades/no_data.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+
+              ul {
+                width: 100%;
+                height: auto;
+                display: flex;
+                padding: 0;
+                margin: 0;
+                border: none;
+                margin-bottom: 1.5vh;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                gap: 1.5vh;
+
+                .vacante_item_citasManagerNoasistio,
+                .vacante_item_citasManagerAsistio {
+                  width: 95%;
+                  height: 5vh;
+                  display: flex;
+                  background-color: $Texto;
+                  border-radius: 0.5vw;
+                  justify-content: center;
+                  border: none;
+                  overflow-y: hidden;
+                  align-items: center;
+
+                  .btn_container2 {
+                    width: 3%;
+                    height: 90%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 0;
+
+                    .btn-descargar-pdf {
+                      border-radius: 1vw;
+                      width: 100%;
+                      height: 100%;
+                      border: none;
+                      margin: 0;
+                      padding: 0;
+                      background-color: $Principal;
+                      transition: all 0.2s ease-in-out;
+
+                      &:hover {
+                        @include opacity;
+                      }
+                    }
+
+                    .btn-agendar-cita {
+                      display: none;
+                    }
+                  }
+
+                  .vacante_info {
+                    width: 80%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    justify-content: space-evenly;
+                    align-items: center;
+                    flex-direction: column;
+
+                    span {
+                      width: 100%;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      font-size: 1.2vh;
+                      color: $Resalte;
+
+                      strong {
+                        font-size: 1.4vh;
+                        color: $Resalte;
+                      }
+                    }
+                  }
+
+                  .btn-container {
+                    width: 20%;
+                    height: 100%;
+                    display: grid;
+                    border: none;
+                    grid-template-columns: repeat(2, 1fr);
+                    justify-items: center;
+                    align-content: center;
+                    flex-direction: column;
+                    gap: 0.1vw;
+
+                    button {
+                      border-radius: 5rem;
+                      width: 2vw;
+                      aspect-ratio: 2/2;
+                      border: none;
+                      transition: all 0.2s ease-in-out;
+
+                      &:hover {
+                        @include opacity;
+                      }
+                    }
+
+                    .btn-noAsistieron {
+                      background-color: $Red;
+                    }
+
+                    .btn-asistieron {
+                      background-color: $Green;
+                    }
+
+                    .btn-contratado {
+                      display: none;
+                    }
+
+                    .btn-eliminar {
+                      display: none;
+                    }
+                  }
+
+                  &:focus {
+                    overflow-y: scroll;
+                    height: auto;
+
+                    .vacante_info {
+                      width: 95%;
+                      grid-template-columns: repeat(4, 1fr);
+                    }
+
+                    .btn-container {
+                      display: none;
+                    }
+
+                    .btn-descargar-pdf {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .cont_manager {
+        width: 30vw;
+        height: 95vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        font-family: $Letra2;
+        position: relative;
+        border: none;
+        margin: 0;
+        padding: 0;
+        gap: 2%;
+        background-color: $Box_admin; 
+        -webkit-mask: url("../img/Utilidades/top-center2.png") center / contain
+            no-repeat,
+          linear-gradient(#000000 0 0);
+        mask-size: 15vw;
+        mask-position: top center;
+        mask-composite: exclude;
+        border-radius: 3vw;
+        .cont_citas_manager {
+          width: 100%;
+          height: 80%;
+          display: flex;
+          border-radius: 1.2vw;
+          justify-content: start;
+          align-items: end;
+          flex-direction: column;
+          background-color: $Box_admin;
+          box-shadow: 0px 0px 10px 0px $Box_admin;
+          margin-top: 15vh;
+          gap: 1.5vh;
+          .const_data {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            border-radius: 1rem;
+            color: $Texto;
+
+            .no_data {
+              margin-top: 40%;
+              width: 40%;
+              aspect-ratio: 2/2;
+              background-image: url("../img//Utilidades/no_data.png");
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+
+            ul {
+              width: 100%;
+              height: auto;
+              display: flex;
+              padding: 0;
+              margin: 0;
+              margin-bottom: 1.5vh;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+              gap: 1.5vh;
+
+              .vacante_item_citasManager { 
+                width: 95%;
+                height: 5vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $Texto;
+                border-radius: .5vw;
+                border: none;
+                cursor: pointer;
+                outline: none;
+                overflow: hidden;
+                gap: 5%;
+
+                .btn_container2 {
+                  width: 3%;
+                  height: 90%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 0;
+
+                  .btn-descargar-pdf {
+                    border-radius: 1vw;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    background-color: $Principal;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+
+                  .btn-agendar-cita {
+                    display: none;
+                  }
+                }
+
+                .vacante_info {
+                  width: 77%;
+                  text-align: center;
+                  height: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr);
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  gap: 5%;
+
+                  span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 0.6vw;
+                    color: $Resalte;
+
+                    strong {
+                      font-size: 0.7vw;
+                      color: $Resalte;
+                    }
+                  }
+                }
+                
+                .btn-container {
+                  width: 20%;
+                  height: 100%;
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr);
+                  justify-items: center;
+                  align-content: center;
+                  gap: 0.1vw;
+
+                  button {
+                    border-radius: 5rem;
+                    width: 2vw;
+                    aspect-ratio: 2/2;
+                    border: none;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                      @include opacity;
+                    }
+                  }
+
+                  .btn-noAsistieron {
+                    background-color: $Red;
+                  }
+
+                  .btn-asistieron {
+                    background-color: $Green;
+                  }
+
+                  .btn-contratado {
+                    display: none;
+                  }
+
+                  .btn-eliminar {
+                    display: none;
+                  }
+                }
+
+                &:focus {
+                  height: 10vh;
+                  .vacante_info {
+                    width: 77%;
+                    height: 90%;
+                    grid-template-columns: repeat(3, 1fr);
+                  }
+                  .btn_container2 {
+                    display: none;
+                  }
+                  .btn-container {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     #ap_tc {
       animation: bounceInLeft 0.5s ease-in-out forwards;
       gap: 5%;
       align-items: end;
       justify-content: center;
+
       div {
         width: 90%;
         height: 70%;
@@ -1297,26 +3072,29 @@ html {
         gap: 5%;
         color: $Box_admin;
         font-family: $Letra2;
-      div { 
-        height: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        position: relative;
-        background-color: $Blanco;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        padding: 2%;
-        border-radius: 1vw;
-        text-align: center;
-        p {
-          border: 0;
-          margin: 0;
-          padding: 0;
+
+        div {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          position: relative;
+          background-color: $Blanco;
+          overflow-x: hidden;
+          overflow-y: scroll;
+          padding: 2%;
+          border-radius: 1vw;
+          text-align: center;
+
+          p {
+            border: 0;
+            margin: 0;
+            padding: 0;
+          }
         }
       }
-      }
     }
+
     aside {
       width: 50%;
       height: 100%;
@@ -1324,6 +3102,8 @@ html {
       background-color: $Secundario;
       justify-items: center;
       align-items: center;
+      z-index: 1000;
+
       article {
         width: 100%;
         height: 100%;
@@ -1332,14 +3112,17 @@ html {
         align-items: center;
         flex-direction: column;
         margin-top: -9%;
+
         div {
           width: 50%;
           margin-top: 3%;
+
           img {
             @include cover;
             border-radius: 2rem;
           }
         }
+
         h2 {
           font-family: $Letra1;
           color: $Texto;
@@ -1349,6 +3132,7 @@ html {
           margin: 1%;
           margin-top: 3%;
         }
+
         p {
           width: 45%;
           padding: 0;
@@ -1360,15 +3144,18 @@ html {
         }
       }
     }
+
     .agregar_dis {
       display: flex;
     }
   }
+
   .cambiar_nav {
     top: 5vh;
     left: 18vw;
     width: 14vw;
     height: 4vw;
+
     nav {
       ul {
         .circulo_icon {
@@ -1380,29 +3167,40 @@ html {
       }
     }
   }
+
   @media screen and (max-width: 900px) {
     .alertas {
-      top: 4vh;
-      left: 35vw;
-      width: 30vw;
-      height: 10vw;
       .alerta {
+        top: 3.8vh;
+        left: 34.7vw;
+        width: 30vw;
+        height: 10vw;
         span {
           p {
-            font-size: 2vw;
+            font-size: 1.7vw;
           }
         }
       }
-    }
-    .alertas_admin {
-      top: 2.5vh;
-      left: 35vw;
-      width: 30vw;
-      height: 10vw;
       .alerta_admin {
+        top: 1.8vh;
+        left: 38.5vw;
+        width: 22.5vw;
+        height: 8.9vw;
         span {
           p {
-            font-size: 2vw;
+            font-size: 1.7vw;
+          }
+        }
+      }
+      .alerta_manager {
+        top: 2vh;
+        left: 41.1vw;
+        width: 17.5vw;
+        height: 9.5vw;
+        border-radius: 4vw;
+        span {
+          p {
+            font-size: 1.7vw;
           }
         }
       }
@@ -1410,20 +3208,73 @@ html {
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
-          width: 40vw;
-          height: 15vh;
-          font-size: 2.5vw;
+          width: 35vw;
+          height: 10vh;
+          font-size: 2vw;
           .alert_btn_cont {
             .alert-btn {
-              font-size: 2vw;
+              font-size: 1.5vw;
+            }
+          }
+        }
+      }
+      .modal-container {
+        .modal-content {
+          width: 50vw;
+          height: 40vh;
+          padding: 2vw;
+          border-radius: 5vw;
+          font-size: 1vw;
+  
+          h2 {
+            width: 100%;
+            margin-bottom: 3vh;
+            font-size: 2.5vw;
+            letter-spacing: .3rem;
+          }
+  
+          form {
+            height: 100%;
+            gap: 2vw;
+            .input-form {
+              height: 8vh;
+              .input {
+                border-radius: 5rem;
+                font-size: 2vw;
+              }
+  
+              label {
+                top: 30vh;
+                left: 25vw;
+                width: 50vw;
+                height: 6vw;
+  
+                span {
+                  p {
+                    font-size: 2vw;
+                    letter-spacing: 0.1rem;
+                  }
+                }
+              }
+            }
+  
+            .modal-buttons {
+              gap: 1vw;
+  
+              button {
+                font-size: 2.5vw;
+                border-radius: 1vw;
+              }
             }
           }
         }
       }
     }
+
     header {
       width: 50vw;
       height: 15vw;
+
       nav {
         ul {
           .circulo_icon {
@@ -1435,53 +3286,67 @@ html {
         }
       }
     }
+
     main {
+      .pages {
+        width: 100%;
+        height: calc(var(--vh, 1vh) * 100);
+      }
+
       #home {
         .mancha1 {
           width: 70%;
           top: -8vh;
           left: -15vw;
         }
+
         .mancha2 {
           width: 70%;
           bottom: -15vh;
           right: -20vw;
         }
+
         .ap_tc {
           width: 25vw;
           font-size: 1vw;
         }
       }
-      .pages {
-        width: 100%;
-        height: calc(var(--vh, 1vh) * 100);
-      }
+
       #pag1 {
         article {
           .texto_form {
             width: 80%;
+
             h1 {
               font-size: 3vh;
             }
+
             h3 {
               font-size: 1.7vh;
             }
           }
+
           .cont_form {
             border-radius: 4vw;
+
             form {
               .cont_inputform {
                 .input-form {
-                  .input { 
+                  .custom-dropdown {
+                    font-size: 2vw;
+                  }
+                  .input {
                     .select-items {
                       border-radius: 1.5rem 1.5rem 3rem 3rem;
                     }
                   }
+
                   label {
                     top: 23vh;
                     left: 23vw;
                     width: 50vw;
                     height: 10vw;
+
                     span {
                       p {
                         font-size: 2vw;
@@ -1492,68 +3357,111 @@ html {
               }
             }
           }
+
           label {
             width: 5vw;
           }
         }
       }
+
       #pag2 {
         .Logincont {
           .Login-cont {
-            width: 25rem;
+            width: 40vw;
           }
         }
-        .Logincont.animacionlog {
-          animation: bounceOutRight;
-          animation-duration: 0.5s;
-          animation-fill-mode: forwards;
+        .btn_cita {
+          width: 7vw;
+          left: 0;
         }
       }
+
       #pag3 {
-        width: 100%;
-        height: calc(var(--vh, 1vh) * 100);
+        @include cover;
+
         .btn_regreso {
-          width: 6vw;
+          width: 5vw;
+          aspect-ratio: 2/2;
+          top: -.5%;
+          left: 1%;
+          margin: 2%;
         }
+  
         .estatus_vacantes {
-          top: 3vh;
-          left: 37vw;
-          width: 25vw;
-          height: 8vw;
+          top: 1.8vh;
+          left: 38.5vw;
+          width: 20vw;
+          height: 6.5vw;
+          padding: 1.5vw;
+          border-radius: 5vw;
+  
           .icons_status {
             .status_info {
-              width: 70vw;
-              height: 50vh;
-              top: 10vh;
-              .data_status {
-                .no_data {
-                  margin-top: 20%;
-                  width: 30%;
+              width: 95vw;
+              height: 85vh;
+              top: 11vh;
+              left: 1.5vw;
+  
+              .box_status {
+                p {
+                  font-size: 2vw;
                 }
+              }
+  
+              .data_status {
                 ul {
-                  .vacante_asistieron {
-                    border-radius: 1vw;
+                  .vacante_item_noasistieron,
+                  .vacante_item_asistieron,
+                  .vacante_item_contratado {
+                    border-radius: 1.5vw;
+  
+                    .btn_container2 {
+                      width: 1.5%;
+                    }
+  
                     .vacante_info {
-                      width: 90%;
-                      display: grid;
+                      width: 91%;
                       grid-template-columns: repeat(3, 1fr);
+  
                       span {
-                        font-size: 1.2vh;
+                        font-size: 2vw;
+  
                         strong {
-                          font-size: 1.4vh;
+                          font-size: 2.5vw;
                         }
                       }
                     }
+  
                     .btn-container {
-                      width: 8%;
-                      gap: 4%;
+                      width: 7.5%;
+                      height: 100%;
+  
                       button {
-                        width: 2.6vw;
+                        width: 3vw;
                       }
                     }
+  
                     &:focus {
+                      height: 30vh;
+  
+                      .btn-container {
+                        display: none;
+                      }
+  
                       .vacante_info {
-                        grid-template-columns: repeat(4, 1fr);
+                        width: 95%;
+                        height: 95%;
+                        grid-template-columns: repeat(3, 1fr);
+                        span {
+                          font-size: 2vw;
+                          strong {
+                            font-size: 2.5vw;
+                          }
+                        }
+                      }
+  
+                      .btn_container2 {
+                        display: none;
                       }
                     }
                   }
@@ -1562,46 +3470,87 @@ html {
             }
           }
         }
+  
         .admin_cont {
+          width: 97vw;
+          height: calc(var(--vh, 1vh) * 97);
+          position: absolute;
+          justify-content: start;
+          align-items: center;
           flex-direction: column-reverse;
+          mask-size: 32vw, 10vw, 15vw;
+          mask-position: center top, left top, right top;
+  
           .cont_rechazados {
-            width: 90vw;
-            height: 31vh;
+            width: 95%;
+            height: 40vh;
             margin: 0;
+            overflow: hidden;
+            justify-content: start;
+            align-items: center;
+  
+            .box_red {
+              width: 100%;
+              height: 3vh;
+            }
             .const_data {
+
               .no_data {
-                margin-top: 7%;
-                width: 20%;
+                margin-top: 60%;
+                width: 40%;
               }
+  
               ul {
-                .vacante_itemred {
+  
+                .vacante_item_red {
                   overflow: hidden;
+                  .btn_container2 {
+                    width: 2%;
+                  }
+  
                   .vacante_info {
-                    width: 91%;
+                    width: 95%;
                     display: grid;
-                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-columns: repeat(3, 1fr);
+  
                     span {
-                      font-size: 1.4vh;
+                      font-size: 2vw;
+  
                       strong {
-                        font-size: 1.5vh;
+                        font-size: 2.5vw;
                       }
                     }
                   }
+  
                   .btn-container {
-                    width: 7%;
+                    width: 7.5%;
+                    gap: 5%;
                     button {
-                      width: 2.5vw;
+                      border-radius: 5vw;
+                      width: 2.7vw;
                     }
                   }
+  
                   &:focus {
-                    height: 25vh;
-                    .btn-descargar-pdf {
+                    height: 35vh;
+  
+                    .btn_container2 {
                       display: none;
                     }
+  
                     .vacante_info {
-                      width: 80%;
-                      height: 90%;
+                      width: 95%;
+                      height: 95%;
+                      grid-template-columns: repeat(4, 1fr);
+                      span {
+                        font-size: 2vw;
+    
+                        strong {
+                          font-size: 2.5vw;
+                        }
+                      }
                     }
+  
                     .btn-container {
                       display: none;
                     }
@@ -1610,46 +3559,231 @@ html {
               }
             }
           }
-          .cont_aceptados {
-            width: 90vw;
-            height: 51vh;
-            margin-top: 10vh;
+  
+          .cont_citas {
+            width: 95%;
+            height: 40vh;
+            margin: 0;
+            overflow: hidden;
+            justify-content: start;
+            align-items: center;
+  
+            .box_gray {
+              width: 100%;
+              height: 3vh;
+            }
             .const_data {
+
               .no_data {
-                margin-top: 20%;
-                width: 20%;
+                margin-top: 60%;
+                width: 40%;
               }
+  
               ul {
-                .vacante_itemgreen {
+  
+                .vacante_item_citas {
                   overflow: hidden;
+                  .btn_container2 {
+                    width: 2%;
+                    .btn-descargar-pdf {
+                      height: 100%;
+                    }
+                    .btn-agendar-cita {
+                      display: none;
+                    }
+                  }
+  
                   .vacante_info {
-                    width: 92%;
+                    width: 95%;
                     display: grid;
-                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-columns: repeat(3, 1fr);
+  
                     span {
-                      font-size: 1.4vh;
+                      font-size: 2vw;
+  
                       strong {
-                        font-size: 1.5vh;
+                        font-size: 2.5vw;
                       }
                     }
                   }
+  
                   .btn-container {
-                    width: 6%;
-                    button {
-                      width: 2.5vw;
-                    }
+                    display: none;
                   }
+  
                   &:focus {
-                    height: 20vh;
-                    .btn-descargar-pdf {
+                    height: 35vh;
+  
+                    .btn_container2 {
                       display: none;
                     }
+  
                     .vacante_info {
-                      width: 80%;
-                      height: 90%;
+                      width: 95%;
+                      height: 95%;
+                      grid-template-columns: repeat(4, 1fr);
+                      span {
+                        font-size: 2vw;
+    
+                        strong {
+                          font-size: 2.5vw;
+                        }
+                      }
                     }
+  
                     .btn-container {
                       display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+  
+          .cont_aceptados {
+            width: 95%;
+            height: 40vh;
+            margin-top: 10vh;
+            overflow: hidden;
+            justify-content: start;
+            align-items: center;
+  
+            .box_green {
+              width: 100%;
+              height: 3vh;
+            }
+            .const_data {
+
+              .no_data {
+                margin-top: 60%;
+                width: 40%;
+              }
+  
+              ul {
+  
+                .vacante_item_green {
+                  overflow: hidden;
+                  .btn_container2 {
+                    width: 2%;
+                  }
+  
+                  .vacante_info {
+                    width: 95%;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+  
+                    span {
+                      font-size: 2vw;
+  
+                      strong {
+                        font-size: 2.5vw;
+                      }
+                    }
+                  }
+  
+                  .btn-container {
+                    width: 7.5%;
+                    gap: 5%;
+                    button {
+                      border-radius: 5vw;
+                      width: 2.7vw;
+                    }
+                  }
+  
+                  &:focus {
+                    height: 35vh;
+  
+                    .btn_container2 {
+                      display: none;
+                    }
+  
+                    .vacante_info {
+                      width: 95%;
+                      height: 95%;
+                      grid-template-columns: repeat(4, 1fr);
+                      span {
+                        font-size: 2vw;
+    
+                        strong {
+                          font-size: 2.5vw;
+                        }
+                      }
+                    }
+  
+                    .btn-container {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+  
+        .mensajes_usuarios {
+          width: 10.5vw;
+          height: 5vh;
+          border-radius: 2vw;
+  
+          .icons_mj {
+  
+            label {
+              border-radius: 10rem;
+            }
+  
+            .mj_user_info {
+              width: 95vw;
+              height: 85vh;
+              top: 11vh;
+              left: 1.5vw;
+              font-size: 1vw;
+              .filter-container {
+                width: 100%;
+                height: 4vh;
+                border-radius: 2vw;
+                .input-field {
+                  input {
+                    @include cover;
+                    border-radius: 2vw;
+                    font-size: 2vw;
+                  }
+  
+                  input:focus ~ label,
+                  input:not(:placeholder-shown) ~ label {
+                    font-size: 1.5vw;
+                  }
+  
+                  label {
+                    font-size: 2vw;
+                  }
+                }
+              }
+              .data_mj_user {
+                ul {
+                  button {
+                    border-radius: 2vw;
+                    .user-div {
+                      font-size: 2vw;
+                    }
+                    &:focus {
+                      overflow: hidden;
+                      height: 30vh;
+                    .user-messages {
+                      .message {
+                        span {
+                          strong {
+                            font-size: 1vw;
+                          }
+                          p {
+                            font-size: 1.4vw;
+                            border-radius: 2vw;
+                          }
+                          time {
+                            font-size: .9vw;
+                          }
+                        }
+                      }
+                    }
                     }
                   }
                 }
@@ -1658,26 +3792,213 @@ html {
           }
         }
       }
+
+      #pag4 {
+        .Logincont {
+          .Login-cont {
+            width: 40vw;
+          }
+        }
+      }
+  
+      #pag5 {
+        @include cover;
+        .btn_regreso {
+          width: 5vw;
+          aspect-ratio: 2/2;
+          top: 1%;
+          left: 1.5%;
+          margin: 2%;
+        }
+        .estatus_citas_manager {
+          top: 2vh;
+          left: 41.1vw;
+          width: 15vw;
+          height: 7vw;
+          padding: 1.5vw;
+          border-radius: 4vw;
+          .icons_status {
+            .status_info {
+              width: 95vw;
+              height: 85vh;
+              top: 11vh;
+              left: 1.7vw;
+  
+              .box_status {
+                p {
+                  font-size: 2vw;
+                }
+              }
+  
+              .data_status {
+                ul {
+                  .vacante_item_noasistieron,
+                  .vacante_item_asistieron,
+                  .vacante_item_contratado {
+                    border-radius: 2vw;
+  
+                    .btn_container2 {
+                      width: 1.5%;
+                    }
+  
+                    .vacante_info {
+                      width: 91%;
+                      grid-template-columns: repeat(3, 1fr);
+  
+                      span {
+                        font-size: 2vw;
+  
+                        strong {
+                          font-size: 2.5vw;
+                        }
+                      }
+                    }
+  
+                    .btn-container {
+                      width: 7.5%;
+                      height: 100%;
+  
+                      button {
+                        width: 3vw;
+                      }
+                    }
+  
+                    &:focus {
+                      height: 30vh;
+  
+                      .btn-container {
+                        display: none;
+                      }
+  
+                      .vacante_info {
+                        width: 95%;
+                        height: 95%;
+                        grid-template-columns: repeat(3, 1fr);
+                        span {
+                          font-size: 2vw;
+                          strong {
+                            font-size: 2.5vw;
+                          }
+                        }
+                      }
+  
+                      .btn_container2 {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .cont_manager {
+          width: 97vw;
+          height: calc(var(--vh, 1vh) * 97);
+          position: absolute;
+          justify-content: start;
+          align-items: center;
+          flex-direction: column-reverse;
+          mask-size: 27vw;
+          border-radius: 4vw;
+          .cont_citas_manager {
+            height: 85%;
+            border-radius: 1.2vw;
+            margin-top: 10vh;
+            .const_data {
+              ul {
+                .vacante_item_citasManager { 
+                  border-radius: 1.5vw;
+                  .btn_container2 {
+                    width: 2%;
+                  }
+                  .vacante_info {
+                    width: 83%;
+                    grid-template-columns: repeat(3, 1fr);
+                    span {
+                      font-size: 2vw;
+                      strong {
+                        font-size: 2.5vw;
+                      }
+                    }
+                  }
+                  
+                  .btn-container {
+                    width: 15%;
+  
+                    button {
+                      width: 5vw;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      #ap_tc {
+        animation: bounceInLeft 0.5s ease-in-out forwards;
+        gap: 5%;
+        align-items: end;
+        justify-content: center;
+  
+        div {
+          width: 90%;
+          height: 70%;
+          margin-bottom: 10%;
+          display: flex;
+          gap: 5%;
+          color: $Box_admin;
+          font-family: $Letra2;
+  
+          div {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            background-color: $Blanco;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding: 2%;
+            border-radius: 1vw;
+            text-align: center;
+  
+            p {
+              border: 0;
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
+
       aside {
         width: 0;
         height: 0;
         display: none;
+
         article {
           width: 0;
           height: 0;
+
           div {
             width: 0;
             height: 0;
+
             img {
               width: 0;
               height: 0;
             }
           }
+
           h2 {
             width: 0;
             height: 0;
             font-size: 0;
           }
+
           p {
             width: 0;
             height: 0;
@@ -1686,11 +4007,13 @@ html {
         }
       }
     }
+
     .cambiar_nav {
       top: 4vh;
       left: 35vw;
       width: 30vw;
       height: 10vw;
+
       nav {
         ul {
           .circulo_icon {
@@ -1703,29 +4026,41 @@ html {
       }
     }
   }
+
   @media screen and (max-width: 500px) {
     .alertas {
-      top: 5vh;
-      left: 25vw;
-      width: 50vw;
-      height: 15vw;
       .alerta {
+        top: 3.8vh;
+        left: 34.7vw;
+        width: 30vw;
+        height: 10vw;
         span {
           p {
-            font-size: 3vw;
+            font-size: 2.6vw;
           }
         }
       }
-    }
-    .alertas_admin {
-      top: 3.5vh;
-      left: 25vw;
-      width: 50vw;
-      height: 15vw;
       .alerta_admin {
+        top: 1.9vh;
+        left: 36.5vw;
+        width: 26vw;
+        height: 9.5vw;
+        border-radius: 4vw;
         span {
           p {
-            font-size: 3vw;
+            font-size: 2.6vw;
+          }
+        }
+      }
+      .alerta_manager {
+        top: 2.7vh;
+        left: 36vw;
+        width: 27vw;
+        height: 13vw;
+        border-radius: 6vw;
+        span {
+          p {
+            font-size: 2.6vw;
           }
         }
       }
@@ -1733,20 +4068,68 @@ html {
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
-          width: 70vw;
-          height: 15vh;
-          font-size: 3.5vw;
+          width: 55vw;
+          height: 10vh;
+          font-size: 3vw;
           .alert_btn_cont {
+            gap: 2vw;
             .alert-btn {
-              font-size: 3vw;
+              font-size: 2.5vw;
+              border-radius: 1vw;
+            }
+          }
+        }
+      }
+      .modal-container {
+        .modal-content {
+          width: 80vw;
+          height: 40vh;
+          padding: 3vw;
+          border-radius: 6vw;
+  
+          h2 {
+            font-size: 3.5vw;
+          }
+  
+          form {
+            gap: 3vw;
+            .input-form {
+              .input {
+                font-size: 3vw;
+              }
+  
+              label {
+                top: 30vh;
+                left: 10vw;
+                width: 80vw;
+                height: 9vw;
+  
+                span {
+                  p {
+                    font-size: 3vw;
+                    letter-spacing: 0.1rem;
+                  }
+                }
+              }
+            }
+  
+            .modal-buttons {
+              gap: 2vw;
+  
+              button {
+                font-size: 3.5vw;
+                border-radius: 2vw;
+              }
             }
           }
         }
       }
     }
+
     header {
       width: 65vw;
       height: 20vw;
+
       nav {
         ul {
           .circulo_icon {
@@ -1758,6 +4141,7 @@ html {
         }
       }
     }
+
     main {
       #home {
         .mancha1 {
@@ -1765,45 +4149,58 @@ html {
           top: -8vh;
           left: -23vw;
         }
+
         .mancha2 {
           width: 90%;
           bottom: -13vh;
           right: -23vw;
         }
+
         .ap_tc {
           width: 35vw;
           font-size: 1.5vw;
         }
       }
+
       #pag1 {
         article {
           .texto_form {
             width: 90%;
+
             h1 {
               font-size: 4vh;
             }
+
             h3 {
               font-size: 1.5vh;
             }
+
             margin-bottom: 4%;
           }
+
           .cont_form {
             .progress-bar {
               height: 3%;
             }
+
             form {
               .cont_inputform {
                 .input-form {
-                  .input { 
+                  .custom-dropdown {
+                    font-size: 3.5vw;
+                  }
+                  .input {
                     .select-items {
                       border-radius: 1.5rem 1.5rem 2rem 2rem;
                     }
                   }
+
                   label {
                     top: 18vh;
                     left: 10vw;
                     width: 70vw;
                     height: 15vw;
+
                     span {
                       p {
                         font-size: 3vw;
@@ -1814,17 +4211,20 @@ html {
               }
             }
           }
+
           label {
             width: 9vw;
             margin: 5%;
           }
         }
       }
+
       #pag2 {
         .Logincont {
           .Login-cont {
             width: 70vw;
             border-radius: 8vw;
+
             .Login-son {
               .formuariolog {
                 .wel {
@@ -1832,17 +4232,19 @@ html {
                     font-size: 5vw;
                   }
                 }
-  
+
                 .input-field {
                   height: 13vw;
+
                   input {
                     font-size: 3.5vw;
                   }
-  
+
                   input:focus ~ label,
                   input:valid ~ label {
                     font-size: 3vw;
                   }
+
                   label {
                     font-size: 3.5vw;
                   }
@@ -1851,61 +4253,97 @@ html {
             }
           }
         }
-        .Logincont.animacionlog {
-          animation: bounceOutRight;
-          animation-duration: 0.5s;
-          animation-fill-mode: forwards;
+        .btn_cita {
+          width: 8vw;
+          left: 0;
         }
       }
+
       #pag3 {
-        width: 100%;
-        height: calc(var(--vh, 1vh) * 100);
+        @include cover;
+
         .btn_regreso {
           width: 8vw;
-          margin: 8%;
-          top: 85h;
+          top: 0;
+          left: 1%;
+          margin: 2%;
         }
+  
         .estatus_vacantes {
-          top: 3vh;
-          left: 27.5vw;
-          width: 45vw;
-          height: 15vw;
+          top: 1.5vh;
+          left: 35.5vw;
+          width: 25vw;
+          height: 8.5vw;
+          padding: 2vw;
+          border-radius: 5vw;
+  
           .icons_status {
             .status_info {
-              width: 65vw;
-              height: 40vh;
-              top: 12vh;
-              border-radius: 1rem;
-              background-color: $Box_admin;
-              box-shadow: 0px 0px 10px 0px $Fondo;
+              width: 95vw;
+              height: 90vh;
+              top: 8vh;
+              left: 1.5vw;
+  
               .box_status {
-                width: 97%;
-                margin-top: 0.8vh;
+                p {
+                  font-size: 3vw;
+                }
               }
+  
               .data_status {
-                font-size: 3vw;
                 ul {
-                  .vacante_asistieron {
-                    border-radius: 0.5rem;
-                    .vacante_info {
-                      width: 80%;
-                      height: 100%;
-                      display: grid;
-                      gap: 0%;
-                      grid-template-columns: repeat(2, 1fr);
+                  .vacante_item_noasistieron,
+                  .vacante_item_asistieron,
+                  .vacante_item_contratado {
+                    border-radius: 2vw;
+  
+                    .btn_container2 {
+                      width: 2.5%;
                     }
-                    .btn-container {
-                      width: 15%;
-                      height: 100%;
-                      display: grid;
-                      border: none;
-                      button {
-                        width: 4vw;
+  
+                    .vacante_info {
+                      width: 88%;
+                      grid-template-columns: repeat(3, 1fr);
+  
+                      span {
+                        font-size: 2.5vw;
+  
+                        strong {
+                          font-size: 3vw;
+                        }
                       }
                     }
+  
+                    .btn-container {
+                      width: 11.5%;
+                      height: 100%;
+  
+                      button {
+                        width: 4.5vw;
+                      }
+                    }
+  
                     &:focus {
+                      height: 30vh;
+  
+                      .btn-container {
+                        display: none;
+                      }
+  
                       .vacante_info {
+                        width: 95%;
+                        height: 95%;
                         grid-template-columns: repeat(3, 1fr);
+                        span {
+                          font-size: 2vw;
+                          strong {
+                            font-size: 2.5vw;
+                          }
+                        }
+                      }
+  
+                      .btn_container2 {
+                        display: none;
                       }
                     }
                   }
@@ -1914,43 +4352,81 @@ html {
             }
           }
         }
+  
         .admin_cont {
+          width: 97vw;
+          height: calc(var(--vh, 1vh) * 97);
+          position: absolute;
+          justify-content: start;
+          align-items: center;
           flex-direction: column-reverse;
+          mask-size: 40vw, 15vw, 20vw;
+          mask-position: center top, left top, right top;
+  
           .cont_rechazados {
-            width: 90vw;
-            height: 30vh;
-            border-radius: 1rem;
+            width: 95%;
+            height: 40vh;
             margin: 0;
+            overflow: hidden;
+            justify-content: start;
+            align-items: center;
+  
             .box_red {
-              width: 96%;
+              width: 100%;
+              height: 3vh;
             }
             .const_data {
-              font-size: 3vw;
+
+              .no_data {
+                margin-top: 60%;
+                width: 40%;
+              }
+  
               ul {
-                .vacante_itemred {
-                  justify-content: center;
-                  .vacante_info {
-                    width: 90%;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
+  
+                .vacante_item_red {
+                  overflow: hidden;
+                  border-radius: 1.5vw;
+  
+                  .btn_container2 {
+                    width: 2.5%;
                   }
-                  .btn-container {
-                    width: 10%;
-                    gap: 5%;
-                    button {
-                      width: 4.2vw;
+
+                  .vacante_info {
+                    width: 88%;
+                    grid-template-columns: repeat(3, 1fr);
+
+                    span {
+                      font-size: 2.5vw;
+
+                      strong {
+                        font-size: 3vw;
+                      }
                     }
                   }
+
+                  .btn-container {
+                    width: 11.5%;
+                    height: 100%;
+
+                    button {
+                      width: 4.5vw;
+                    }
+                  }
+  
                   &:focus {
-                    height: 25vh;
-                    .btn-descargar-pdf {
+                    height: 35vh;
+  
+                    .btn_container2 {
                       display: none;
                     }
+  
                     .vacante_info {
-                      width: 90%;
-                      height: 90%;
+                      width: 95%;
+                      height: 95%;
                       grid-template-columns: repeat(4, 1fr);
                     }
+  
                     .btn-container {
                       display: none;
                     }
@@ -1959,43 +4435,232 @@ html {
               }
             }
           }
-          .cont_aceptados {
-            width: 90vw;
-            height: 53vh;
-            margin-top: 10vh;
-            border-radius: 1rem;
-            .box_green {
-              width: 96%;
+  
+          .cont_citas {
+            width: 95%;
+            height: 40vh;
+            margin: 0;
+            overflow: hidden;
+            justify-content: start;
+            align-items: center;
+  
+            .box_gray {
+              width: 100%;
+              height: 3vh;
             }
             .const_data {
-              font-size: 3vw;
+
+              .no_data {
+                margin-top: 60%;
+                width: 40%;
+              }
+  
               ul {
-                .vacante_itemgreen {
-                  justify-content: center;
-                  .vacante_info {
-                    width: 90%;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                  }
-                  .btn-container {
-                    width: 10%;
-                    gap: 5%;
-                    button {
-                      width: 4.2vw;
-                    }
-                  }
-                  &:focus {
-                    height: 25vh;
+  
+                .vacante_item_citas {
+                  overflow: hidden;
+                  border-radius: 1.5vw;
+                  .btn_container2 {
+                    width: 2%;
                     .btn-descargar-pdf {
+                      height: 100%;
+                    }
+                    .btn-agendar-cita {
                       display: none;
                     }
-                    .vacante_info {
-                      width: 90%;
-                      height: 90%;
-                      grid-template-columns: repeat(4, 1fr);
+                  }
+  
+                  .vacante_info {
+                    width: 98%;
+                    grid-template-columns: repeat(3, 1fr);
+
+                    span {
+                      font-size: 2.5vw;
+
+                      strong {
+                        font-size: 3vw;
+                      }
                     }
+                  }
+  
+                  .btn-container {
+                    display: none;
+                  }
+  
+                  &:focus {
+                    height: 10vh;
+  
+                    .btn_container2 {
+                      display: none;
+                    }
+  
+                    .vacante_info {
+                      width: 95%;
+                      height: 95%;
+                      grid-template-columns: repeat(4, 1fr);
+                      span {
+                        font-size: 2vw;
+    
+                        strong {
+                          font-size: 2.5vw;
+                        }
+                      }
+                    }
+  
                     .btn-container {
                       display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+  
+          .cont_aceptados {
+            width: 95%;
+            height: 40vh;
+            margin-top: 6.5vh;
+            overflow: hidden;
+            justify-content: start;
+            align-items: center;
+  
+            .box_green {
+              width: 100%;
+              height: 3vh;
+            }
+            .const_data {
+
+              .no_data {
+                margin-top: 60%;
+                width: 40%;
+              }
+  
+              ul {
+  
+                .vacante_item_green {
+                  overflow: hidden;
+                  border-radius: 1.5vw;
+  
+                  .btn_container2 {
+                    width: 2.5%;
+                  }
+
+                  .vacante_info {
+                    width: 88%;
+                    grid-template-columns: repeat(3, 1fr);
+
+                    span {
+                      font-size: 2.5vw;
+
+                      strong {
+                        font-size: 3vw;
+                      }
+                    }
+                  }
+
+                  .btn-container {
+                    width: 11.5%;
+                    height: 100%;
+
+                    button {
+                      width: 4.5vw;
+                    }
+                  }
+  
+                  &:focus {
+                    height: 35vh;
+  
+                    .btn_container2 {
+                      display: none;
+                    }
+  
+                    .vacante_info {
+                      width: 95%;
+                      height: 95%;
+                      grid-template-columns: repeat(4, 1fr);
+                      span {
+                        font-size: 2vw;
+    
+                        strong {
+                          font-size: 2.5vw;
+                        }
+                      }
+                    }
+  
+                    .btn-container {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+  
+        .mensajes_usuarios {
+          width: 15vw;
+          top: .4%;
+          height: 4.5vh;
+          border-radius: 3vw;
+  
+          .icons_mj {
+  
+            label {
+              border-radius: 10rem;
+            }
+  
+            .mj_user_info {
+              width: 95vw;
+              height: 85vh;
+              top: 8vh;
+              left: 1.5vw;
+              .filter-container {
+                width: 100%;
+                height: 4vh;
+                border-radius: 2vw;
+                .input-field {
+                  input {
+                    @include cover;
+                    border-radius: 2vw;
+                    font-size: 2.5vw;
+                  }
+  
+                  input:focus ~ label,
+                  input:not(:placeholder-shown) ~ label {
+                    font-size: 2vw;
+                  }
+  
+                  label {
+                    font-size: 2.5vw;
+                  }
+                }
+              }
+              .data_mj_user {
+                ul {
+                  button {
+                    border-radius: 2.5vw;
+                    .user-div {
+                      font-size: 2.5vw;
+                    }
+                    &:focus {
+                      overflow: hidden;
+                      height: 30vh;
+                    .user-messages {
+                      .message {
+                        span {
+                          strong {
+                            font-size: 1.5vw;
+                          }
+                          p {
+                            font-size: 1.9vw;
+                            border-radius: 2vw;
+                          }
+                          time {
+                            font-size: 1.3vw;
+                          }
+                        }
+                      }
+                    }
                     }
                   }
                 }
@@ -2004,6 +4669,157 @@ html {
           }
         }
       }
+
+      #pag4 {
+        .Logincont {
+          .Login-cont {
+            width: 70vw;
+            border-radius: 8vw;
+
+            .Login-son {
+              .formuariolog {
+                .wel {
+                  h3 {
+                    font-size: 5vw;
+                  }
+                }
+
+                .input-field {
+                  height: 13vw;
+
+                  input {
+                    font-size: 3.5vw;
+                  }
+
+                  input:focus ~ label,
+                  input:valid ~ label {
+                    font-size: 3vw;
+                  }
+
+                  label {
+                    font-size: 3.5vw;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      #pag5 {
+        @include cover;
+        .btn_regreso {
+          width: 8vw;
+          left: 2vw;
+          top: 1.5vh;
+        }
+        .estatus_citas_manager {
+          top: 2.2vh;
+          left: 35vw;
+          width: 26vw;
+          height: 12vw;
+          padding: 2vw;
+          border-radius: 7vw;
+          .icons_status {
+            .status_info {
+              .box_status {
+                p {
+                  font-size: 3vw;
+                }
+              }
+  
+              .data_status {
+                ul {
+                  .vacante_item_citasManagerNoasistio,
+                  .vacante_item_citasManagerAsistio {
+                    border-radius: 2vw;
+                    .btn_container2 {
+                      width: 3%;
+                    }
+                    .vacante_info {
+                      width: 78%;
+                      grid-template-columns: repeat(2, 1fr);
+                      span {
+                        font-size: 3vw;
+                        strong {
+                          font-size: 3.5vw;
+                        }
+                      }
+                    }
+                    
+                    .btn-container {
+                      width: 25%;
+    
+                      button {
+                        width: 8vw;
+                      }
+                    }
+  
+                    &:focus {
+                      height: 15vh;
+  
+                      .btn-container {
+                        display: none;
+                      }
+  
+                      .vacante_info {
+                        width: 95%;
+                        height: 95%;
+                        grid-template-columns: repeat(3, 1fr);
+                        span {
+                          font-size: 2vw;
+                          strong {
+                            font-size: 2.5vw;
+                          }
+                        }
+                      }
+  
+                      .btn_container2 {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .cont_manager {
+          mask-size: 45vw;
+          border-radius: 5vw;
+          .cont_citas_manager {
+            .const_data {
+              ul {
+                .vacante_item_citasManager { 
+                  border-radius: 2vw;
+                  .btn_container2 {
+                    width: 3%;
+                  }
+                  .vacante_info {
+                    width: 78%;
+                    grid-template-columns: repeat(2, 1fr);
+                    span {
+                      font-size: 3vw;
+                      strong {
+                        font-size: 3.5vw;
+                      }
+                    }
+                  }
+                  
+                  .btn-container {
+                    width: 25%;
+  
+                    button {
+                      width: 8vw;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
       #ap_tc {
         div {
           width: 90%;
@@ -2011,6 +4827,7 @@ html {
           margin-bottom: 20%;
           gap: 1%;
           flex-direction: column;
+
           div {
             gap: 1%;
             border-radius: 3vw;
@@ -2018,11 +4835,13 @@ html {
         }
       }
     }
+
     .cambiar_nav {
       top: 5vh;
       left: 25vw;
       width: 50vw;
       height: 15vw;
+
       nav {
         ul {
           .circulo_icon {

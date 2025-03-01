@@ -24,7 +24,7 @@
   border-radius: 100%;
   overflow-y: hidden;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   gap: 0;
   background-color: $Principal;
   box-shadow: 0 0 10px 5px $Principal;
@@ -53,6 +53,9 @@
       border: none;
       background-repeat: no-repeat;
     }
+    .name_id{
+      display: none;
+    }
   }
   .chat_box {
     display: none;
@@ -60,8 +63,29 @@
   hr {
     display: none;
   }
+  .user_info_container {
+    display: none;
+    form {
+      display: none;
+      .input-form {
+        display: none;
+        .input {
+          display: none;
+        }
+      }
+      .start_chat_button {
+        display: none;
+      }
+    }
+  }
   .chat_form {
     display: none;
+    .chat_input {
+      display: none;
+    }
+    .chat_submit {
+      display: none;
+    }
   }
 }
 .max_chat {
@@ -79,6 +103,8 @@
   border-radius: 1.5vw;
   overflow-y: scroll;
   background-color: $Blanco;
+  border: 2px solid $Box_admin;
+  box-shadow: 0px 0px 15px 2px $Box_admin;
   .chat_header {
     width: 90%;
     height: 10%;
@@ -86,6 +112,7 @@
     border-radius: 1.2vw;
     display: flex;
     margin-top: 6%;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     background-color: $Secundario;
@@ -105,7 +132,7 @@
       background-position: center;
       background-repeat: no-repeat;
       .status_green {
-        width: .5vw;
+        width: 0.5vw;
         aspect-ratio: 2/2;
         background-color: $Green;
         border-radius: 100%;
@@ -158,6 +185,22 @@
         box-shadow: none;
       }
     }
+    .name_id{
+      width: 30%;
+      height: 2.5vh;
+      background-color: $Resalte;
+      box-shadow: 0px 0px 5px 2px $Resalte;
+      border-radius: 1vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $Texto;
+      font-family: $Letra2;
+      font-size: 0.5vw;
+      position: absolute;
+      left: 35%;
+      bottom: -15%;
+    }
   }
   .chat_box {
     width: 95%;
@@ -172,16 +215,20 @@
     color: $Secundario;
     font-family: $Letra2;
     gap: 1vh;
+    p {
+      font-weight: 170;
+      font-size: 0.7vw;
+    }
     .bot_message {
       width: 90%;
       display: flex;
       justify-content: center;
       align-items: start;
       flex-direction: column;
-      gap: .5vh;
+      gap: 0.5vh;
       span {
         width: auto;
-        font-size: .5vw;
+        font-size: 0.5vw;
         margin-left: 1vw;
       }
       p {
@@ -190,10 +237,10 @@
         margin: 0;
         max-width: 70%;
         padding: 0;
-        border: 2px solid $Secundario;
+        border: 1.5px solid $Secundario;
         padding: 3%;
         font-weight: 170;
-        font-size: .7vw;
+        font-size: 0.7vw;
         border-radius: 1vw;
         a {
           text-decoration: none;
@@ -210,10 +257,10 @@
         margin: none;
         padding: none;
         max-width: 70%;
-        border: 2px solid $Secundario;
+        border: 1.5px solid $Secundario;
         padding: 3%;
         font-weight: 170;
-        font-size: .7vw;
+        font-size: 0.7vw;
         border-radius: 1vw;
       }
     }
@@ -226,16 +273,165 @@
     background-color: $Secundario;
     padding: 0;
     margin: 0;
+    border: none
+  }
+  .user_info_container {
+    @include cover;
+    animation: fadeInUp 0.2s ease-in-out forwards;
+    height: 50%;
+    display: none;
+    background-color: $Secundario;
+    box-shadow: 0px 0px 5px 3px $Secundario;
+    position: absolute;
+    bottom: 0;
+    border-radius: 4vw 4vw 0 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form {
+      @include cover;
+      border: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .input-form {
+        width: 70%;
+        height: 7vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: $Letra2;
+
+        .custom-select {
+          position: relative;
+          display: inline-block;
+        }
+
+        .input {
+          width: 100%;
+          height: 100%;
+          border-radius: 5rem;
+          background-color: $Texto;
+          outline: none;
+          border: 0;
+          display: flex;
+          color: $Box_admin;
+          font-family: $Letra2;
+          text-align: center;
+
+          select {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            border: none;
+          }
+
+          .select-selected {
+            cursor: pointer;
+            position: relative;
+            border-radius: 5rem;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: $Box_admin;
+            outline: none;
+            border: 0;
+
+            &:focus {
+              border: 0;
+              outline: none;
+              border: 2px solid $Resalte;
+              box-shadow: 0px 0px 10px 0px $Resalte;
+              background: $Resalte;
+              color: $Texto;
+            }
+          }
+
+          &:focus {
+            border: 0;
+            outline: none;
+            border: 2px solid $Resalte;
+            box-shadow: 0px 0px 10px 0px $Resalte;
+            background: $Resalte;
+            color: $Texto;
+
+            .select-items {
+              display: block;
+            }
+          }
+        }
+
+        .select-items {
+          position: absolute;
+          width: 100%;
+          display: none;
+          font-family: $Letra2;
+          z-index: 99;
+          top: 2vh;
+          border-radius: 1.5rem 1.5rem 2rem 2rem;
+          max-height: 20vh;
+          overflow-y: scroll;
+          border: 0;
+          outline: none;
+          border: 2px solid $Resalte;
+          box-shadow: 0px 0px 10px 2px $Resalte;
+          background: $Resalte;
+          color: $Texto;
+
+          div.disabled {
+            color: gray;
+            pointer-events: none;
+          }
+
+          div {
+            padding: 1rem;
+            cursor: pointer;
+          }
+        }
+
+        .input::placeholder {
+          color: $Box_admin;
+        }
+
+        .input:focus::placeholder {
+          color: $Texto;
+        }
+      }
+      .start_chat_button {
+        border: 0;
+        display: flex;
+        padding: 0.8vw;
+        color: $Blanco;
+        border-radius: 1vw;
+        background-color: $Fondo;
+        margin-top: 7%;
+        font-family: $Letra2;
+        transition: all .3s ease-in-out;
+        &:hover {
+          background-color: $Resalte2;
+          box-shadow: 0px 0px 10px 0px $Resalte2;
+        }
+      }
+    }
   }
   .chat_form {
     width: 90%;
     height: 8%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     .chat_input {
       width: 80%;
       height: 90%;
+      display: flex;
       color: $Box_admin;
       font-family: $Letra2;
       border: none;
@@ -248,9 +444,10 @@
       }
     }
     .chat_submit {
-      width: 7%;
+      width: 0%;
       aspect-ratio: 2/2;
       display: none;
+      scale: 0;
       border: none;
       justify-content: center;
       align-items: center;
@@ -285,11 +482,11 @@
     left: -4.5vw;
     bottom: 11vh;
     border-radius: 2vw;
-    font-size: .6vw;
+    font-size: 0.6vw;
     font-family: $Letra2;
     background-color: $Resalte;
     color: $Texto;
-    text-align: center
+    text-align: center;
   }
   .pavo {
     @include cover;
@@ -313,6 +510,7 @@
     border-radius: 5vw;
     background-color: $Blanco;
     box-shadow: none;
+    border: none;
     .chat_header {
       border-radius: 4vw;
       box-shadow: 0px 0px 9px 5px $Box_admin;
@@ -340,6 +538,10 @@
           box-shadow: none;
         }
       }
+      .name_id{
+        border-radius: 2vw;
+        font-size: 2vw;
+      }
     }
     .chat_box {
       .bot_message {
@@ -358,9 +560,19 @@
         }
       }
     }
+    .user_info_container {
+      box-shadow: 0px 0px 9px 5px $Box_admin;
+      border-radius: 6vw 6vw 0 0;
+      form {
+        .start_chat_button {
+          padding: 2vw;
+          border-radius: 1.5vw;
+        }
+      }
+    }
   }
   .pavo_cont {
-    width: 7vw;
+    width: 8vw;
     height: 7vh;
     right: 38vw;
     .pavo_msj {
@@ -382,7 +594,7 @@
     width: 100vw;
     height: calc(var(--vh, 1vh) * 100);
     margin: 0;
-    border-radius: 0; 
+    border-radius: 0;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -415,6 +627,10 @@
           background-color: $Transparente;
           box-shadow: 0px 0px 10px 5px $Transparente;
         }
+      }
+      .name_id{
+        border-radius: 3vw;
+        font-size: 2.5vw;
       }
     }
     .chat_box {

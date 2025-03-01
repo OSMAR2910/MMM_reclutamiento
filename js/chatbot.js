@@ -1,7 +1,16 @@
-import { saveUnansweredMessage } from "./database.js";
+// Importar Firebase
+import { app, database, ref, push, set } from "./firebase.js";
 
 let intents = [];
 let isWelcomeMessageSent = false;
+let messageBuffer = [];
+let userName = null;
+let userIdName = localStorage.getItem("userIdName");
+
+// Generar un ID aleatorio simple
+function generateRandomId() {
+  return Math.random().toString(36).substring(2, 8); // Genera un ID de 6 caracteres (ej. "abc123")
+}
 
 // Cargar intents desde Netlify
 async function loadIntents() {
@@ -11,7 +20,7 @@ async function loadIntents() {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache' // Evita problemas de cache
+        'Cache-Control': 'no-cache'
       }
     });
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -23,7 +32,7 @@ async function loadIntents() {
   }
 }
 
-// Normalizar texto (eliminar tildes y convertir a minúsculas)
+// Normalizar texto
 function normalizeText(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
@@ -56,13 +65,33 @@ function getResponse(message) {
     console.error("⚠️ Intents no están cargados.");
     return "Lo siento, no puedo responder en este momento.";
   }
+
   const bestIntent = getBestIntent(message);
   if (bestIntent) {
     return bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
+  } else {
+    // Si no hay intención, guardamos el mensaje sin respuesta y devolvemos el mensaje predeterminado
+    console.log("🚫 No encontré una respuesta adecuada para:", message);
+    saveUnansweredMessage(message); // Llamamos a la función para guardar
+    return "¡Glu-glu! No estoy seguro de lo que quieres decir, humano. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨";
   }
-  console.log("🚫 No encontré una respuesta adecuada.");
-  saveUnansweredMessage(message);
-  return "¡Glu-glu! No estoy seguro de lo que quieres decir, humano. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨";
+}
+
+// Guardar mensajes en Firebase cada 10 mensajes
+async function saveMessagesToFirebase() {
+  if (!userIdName || messageBuffer.length === 0) {
+    console.log("🚫 No se guardan mensajes: userIdName o buffer vacío", { userIdName, bufferLength: messageBuffer.length });
+    return;
+  }
+
+  try {
+    const userRef = ref(database, `chatMessages/${userIdName}`);
+    await push(userRef, { messages: [...messageBuffer] });
+    console.log(`✅ ${messageBuffer.length} mensajes añadidos al historial en Firebase para ${userIdName}`);
+    messageBuffer = [];
+  } catch (error) {
+    console.error("❌ Error guardando mensajes en Firebase:", error);
+  }
 }
 
 // Enviar mensajes al chat
@@ -73,12 +102,44 @@ function sendMessage(sender, message, isBot = false) {
 
   if (isBot) {
     messageElement.innerHTML = `<span>Sr.Pavo Chava</span><p>${message}</p>`;
+    messageBuffer.push({ sender: "Sr.Pavo Chava", message, timestamp: new Date().toISOString() });
   } else {
     messageElement.innerHTML = `<p>${message}</p>`;
+    messageBuffer.push({ sender: userIdName, message, timestamp: new Date().toISOString() });
+  }
+
+  console.log("📩 Mensaje añadido al buffer. Total:", messageBuffer.length, "Mensajes:", messageBuffer);
+  if (messageBuffer.length >= 10) {
+    console.log("📤 Guardando mensajes en Firebase...");
+    saveMessagesToFirebase();
   }
 
   chatBox.appendChild(messageElement);
   scrollToBottom();
+}
+
+// Actualizar el nombre con ID en el chat
+function updateUserIdDisplay() {
+  const userIdElement = document.getElementById("user_id_display");
+  if (userIdElement) {
+    userIdElement.innerHTML = ""; // Limpiar el contenedor
+    userIdElement.textContent = userIdName ? `${userIdName}` : "Usuario no identificado";
+  }
+}
+
+// Función para guardar mensajes sin respuesta de chatbot
+async function saveUnansweredMessage(message) {
+  try {
+    const messagesRef = ref(database, "mensajes_error");
+    const newMessageRef = push(messagesRef);
+    await set(newMessageRef, {
+      message: message,
+      timestamp: new Date().toISOString(),
+    });
+    console.log("📌 Mensaje sin respuesta guardado en Firebase:", message);
+  } catch (error) {
+    console.error("❌ Error guardando mensaje sin respuesta en Firebase:", error);
+  }
 }
 
 // Mostrar indicador de escritura
@@ -92,104 +153,81 @@ function showTypingIndicator() {
   return typingIndicator;
 }
 
-// Enviar mensaje de bienvenida solo una vez
+// Enviar mensaje de bienvenida
 function sendWelcomeMessage() {
-  if (isWelcomeMessageSent) return;
+  if (isWelcomeMessageSent || !userIdName) return;
   isWelcomeMessageSent = true;
 
-  // Buscar el intent con el tag "Saludos"
   const saludosIntent = intents.find(intent => intent.tag === "Saludos");
-
   if (saludosIntent && saludosIntent.responses && saludosIntent.responses.length > 0) {
-    // Seleccionar un saludo al azar
     const randomSaludo = saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)];
-
-    // Mostrar indicador de escritura
     showTypingIndicator();
-
-    // Enviar el mensaje de bienvenida después de un retraso
     setTimeout(() => {
       document.querySelector(".typing")?.remove();
       sendMessage("bot", randomSaludo, true);
     }, 2000);
   } else {
-    console.error("❌ No se encontró el tag 'Saludos' o no tiene respuestas.");
-    sendMessage("bot", "¡Hola! ¿En qué puedo ayudarte? 😃", true); // Respuesta por defecto
+    sendMessage("bot", "¡Hola! ¿En qué puedo ayudarte? 😃", true);
   }
 }
 
-// Función para obtener una respuesta aleatoria del tag 'tienes_preguntas'
+// Obtener respuesta aleatoria para 'tienes_preguntas'
 function getRandomTienesPreguntasResponse() {
-  // Buscar el intent con el tag 'tienes_preguntas'
   const tienesPreguntasIntent = intents.find(intent => intent.tag === "tienes_preguntas");
-
-  if (tienesPreguntasIntent && tienesPreguntasIntent.responses && tienesPreguntasIntent.responses.length > 0) {
-    // Seleccionar una respuesta aleatoria
-    const randomResponse = tienesPreguntasIntent.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)];
-    return randomResponse;
-  } else {
-    console.error("❌ No se encontró el tag 'tienes_preguntas' o no tiene respuestas.");
-    return "¿En qué puedo ayudarte?"; // Respuesta por defecto
-  }
+  return tienesPreguntasIntent?.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)] || "¿En qué puedo ayudarte?";
 }
 
-// Función para mostrar la respuesta en el elemento con ID 'pavo_msj'
+// Actualizar mensaje en 'pavo_msj'
 function updatePavoMsj() {
   const pavoMsjElement = document.getElementById("pavo_msj");
-
   if (pavoMsjElement) {
-    // Obtener una respuesta aleatoria del tag 'tienes_preguntas'
-    const randomResponse = getRandomTienesPreguntasResponse();
-
-    // Actualizar el contenido del elemento con la respuesta dentro de un <span>
-    pavoMsjElement.innerHTML = `${randomResponse}`;
-  } else {
-    console.error("❌ No se encontró el elemento con ID 'pavo_msj'.");
+    pavoMsjElement.innerHTML = `${getRandomTienesPreguntasResponse()}`;
   }
 }
 
-// Ejecutar la función cuando se carga el DOM
-document.addEventListener("DOMContentLoaded", async () => {
-  console.log("Cargando intents...");
-  await loadIntents(); // Cargar los intents
-  console.log("Intents cargados.");
+// Manejar el formulario de nombre y asignar ID
+function handleNameForm() {
+  const nameForm = document.getElementById("name_form");
+  const userInfoContainer = document.getElementById("user_info_container");
+  const chatForm = document.getElementById("chat_form");
 
-  // Actualizar el mensaje en 'pavo_msj' después de cargar los intents
-  updatePavoMsj();
-});
+  if (!userIdName) {
+    userInfoContainer.style.display = "block";
+    chatForm.style.display = "none";
+    nameForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      userName = document.getElementById("user_name").value.trim();
+      if (userName) {
+        const randomId = generateRandomId();
+        userIdName = `${randomId}-${userName}`;
+        localStorage.setItem("userIdName", userIdName);
+        userInfoContainer.style.display = "none";
+        chatForm.style.display = "flex";
+        updateUserIdDisplay();
+        sendWelcomeMessage();
+      }
+    });
+  } else {
+    userInfoContainer.style.display = "none";
+    chatForm.style.display = "flex";
+    updateUserIdDisplay();
+    sendWelcomeMessage();
+  }
+}
 
-// Mantener el chat en la parte inferior
+// Scroll al final del chat
 function scrollToBottom() {
   const chatBox = document.getElementById("chat_box");
-  // Compatibilidad total con Safari iOS
   setTimeout(() => {
     chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
   }, 100);
 }
 
-// Corregido: Botón de minimizar/maximizar el chat en iOS
-document.getElementById("chat_min").addEventListener("click", () => {
-  const chatBox = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-
-  // Se fuerza el reflujo para iOS
-  chatBox.classList.toggle("max_chat");
-  void chatBox.offsetHeight; // 👈 Forzando reflujo en iOS
-
-  if (chatBox.classList.contains("max_chat")) {
-    pavo.style.display = 'none';
-    sendWelcomeMessage();
-    setTimeout(scrollToBottom, 0);
-  } else {
-    pavo.style.display = 'flex';
-  }
-});
-
-// Evento de carga del chat
+// Evento DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("Cargando intents...");
   await loadIntents();
-  console.log("Intents cargados.");
+  updatePavoMsj();
+  handleNameForm();
 
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
@@ -205,13 +243,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-
     const userMessage = input.value.trim();
     if (!userMessage) return;
 
     sendButton.disabled = true;
     sendMessage("user", userMessage);
-
     const typingIndicator = showTypingIndicator();
 
     setTimeout(() => {
@@ -224,4 +260,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     input.value = "";
   });
+  // Guardar mensajes pendientes al salir de la página
+  window.addEventListener("beforeunload", () => {
+    if (messageBuffer.length > 0) {
+      saveMessagesToFirebase(); // Guardar los mensajes restantes
+    }
+  });
+});
+
+// Minimizar/maximizar chat
+document.getElementById("chat_min").addEventListener("click", () => {
+  const chatBox = document.getElementById("chatbot");
+  const pavo = document.getElementById("pavo_cont");
+
+  chatBox.classList.toggle("max_chat");
+  void chatBox.offsetHeight;
+
+  if (chatBox.classList.contains("max_chat")) {
+    pavo.style.display = 'none';
+    sendWelcomeMessage();
+    setTimeout(scrollToBottom, 0);
+  } else {
+    pavo.style.display = 'flex';
+  }
 });

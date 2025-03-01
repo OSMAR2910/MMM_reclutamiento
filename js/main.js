@@ -1,60 +1,124 @@
 // Carga
 window.onload = () => {
-    const loader = document.getElementById('loader');
-    loader.style.visibility = 'hidden';
-    loader.style.opacity = '0';
-    // Configuración inicial 
-    elements.home.classList.add("agregar_dis");
-    elements.chatbot.classList.add("agregar_dis");
-};
-document.body.style.display = 'none';
-document.body.offsetHeight; // Forzar redibujado
-document.body.style.display = '';
-function updateChatbotDimensions() {
-  const vh = (window.visualViewport ? window.visualViewport.height : window.innerHeight) * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-window.addEventListener('resize', updateChatbotDimensions);
-window.addEventListener('load', updateChatbotDimensions);
-// Verificar si es un dispositivo táctil
-const isTouchDevice = () => {
-  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+  const loader = document.getElementById("loader");
+  if (loader) {
+      loader.style.visibility = "hidden";
+      loader.style.opacity = "0";
+  }
+
+  // Configuración inicial inmediata
+  elements.home?.classList.add("agregar_dis");
+  elements.chatbot?.classList.add("agregar_dis");
+
+  // Inicializar la app con el valor actual de window.env
+  initializeApp();
+  // No need to call updateDesactiveMode here anymore
 };
 
+// Redimensionar y manejar viewport (optimizado para iOS)
+function updateChatbotDimensions() {
+  const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
+
+function adjustFixedElements() {
+  const chatbot = elements.chatbot;
+  if (chatbot) {
+    chatbot.style.bottom = window.visualViewport
+      ? `${window.visualViewport.offsetTop + 20}px`
+      : "20px";
+  }
+}
+
+// Debounce para optimizar eventos de viewport
+function debounce(func, wait = 16) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+
+const handleViewportChanges = debounce(() => {
+  requestAnimationFrame(() => {
+    updateChatbotDimensions();
+    adjustFixedElements();
+  });
+});
+
+["load", "resize", "orientationchange", "scroll"].forEach((event) =>
+  window.addEventListener(event, handleViewportChanges)
+);
+
+// Verificar si es un dispositivo táctil
+const isTouchDevice = () =>
+  "ontouchstart" in window ||
+  navigator.maxTouchPoints > 0 ||
+  window.matchMedia("(pointer: coarse)").matches;
+
 if (!isTouchDevice()) {
-    const cursorEl = document.querySelector('.js-cursor');
+  document.querySelectorAll("a, button, .js-link").forEach((el) => {
+    el.addEventListener("touchstart", () =>
+      el.classList.add("is-link-hovered")
+    );
+    el.addEventListener("touchend", () =>
+      el.classList.remove("is-link-hovered")
+    );
+  });
+
+  const cursorEl = document.querySelector(".js-cursor");
+  if (cursorEl) {
     const classes = {
-        clicked: 'is-clicked',
-        hidden: 'is-hidden',
-        linkHovered: 'is-link-hovered',
-        customCursor: 'has-custom-cursor'
+      clicked: "is-clicked",
+      hidden: "is-hidden",
+      linkHovered: "is-link-hovered",
+      customCursor: "has-custom-cursor",
     };
 
     const onMouseMove = (e) => {
-        cursorEl.style.setProperty('--cursor-x', `${e.clientX}px`);
-        cursorEl.style.setProperty('--cursor-y', `${e.clientY}px`);
+      cursorEl.style.setProperty("--cursor-x", `${e.clientX}px`);
+      cursorEl.style.setProperty("--cursor-y", `${e.clientY}px`);
     };
 
-    const toggleClass = (className, add) => {
-        cursorEl.classList[add ? 'add' : 'remove'](className);
-    };
+    const toggleClass = (className, add) =>
+      cursorEl.classList[add ? "add" : "remove"](className);
 
     const handleLinkHoverEvents = () => {
-        document.querySelectorAll('a, button, .js-link, input[type="button"], input[type="submit"]').forEach(el => {
-            el.addEventListener('mouseover', () => toggleClass(classes.linkHovered, true));
-            el.addEventListener('mouseout', () => toggleClass(classes.linkHovered, false));
+      document
+        .querySelectorAll(
+          'a, button, .js-link, input[type="button"], input[type="submit"]'
+        )
+        .forEach((el) => {
+          el.addEventListener("mouseover", () =>
+            toggleClass(classes.linkHovered, true)
+          );
+          el.addEventListener("mouseout", () =>
+            toggleClass(classes.linkHovered, false)
+          );
         });
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mousedown', () => toggleClass(classes.clicked, true));
-    document.addEventListener('mouseup', () => toggleClass(classes.clicked, false));
-    document.addEventListener('mouseenter', () => toggleClass(classes.hidden, false));
-    document.addEventListener('mouseleave', () => toggleClass(classes.hidden, true));
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mousedown", () =>
+      toggleClass(classes.clicked, true)
+    );
+    document.addEventListener("mouseup", () =>
+      toggleClass(classes.clicked, false)
+    );
+    document.addEventListener("mouseenter", () =>
+      toggleClass(classes.hidden, false)
+    );
+    document.addEventListener("mouseleave", () =>
+      toggleClass(classes.hidden, true)
+    );
 
     handleLinkHoverEvents();
     document.body.classList.add(classes.customCursor);
+  }
+} else {
+  document.body.classList.remove("has-custom-cursor");
 }
+
 // Mapa de alertas con su ID y tiempo de visualización
 const alertasConfig = {
   alertas: 2000,
@@ -71,188 +135,181 @@ const alertasConfig = {
 // Variable para almacenar el timeout actual
 let timeoutAlarma;
 
-// Función genérica para mostrar y ocultar alertas
 const mostrarAlerta = (alertaId) => {
-  // Obtener la alerta específica por su ID
   const alerta = document.getElementById(alertaId);
   if (!alerta) {
     console.error(`No se encontró ninguna alerta con el ID: ${alertaId}`);
     return;
   }
 
-  // Cancelar el timeout de la alarma anterior (si existe)
-  if (timeoutAlarma) {
-    clearTimeout(timeoutAlarma);
-  }
+  if (timeoutAlarma) clearTimeout(timeoutAlarma);
 
-  // Ocultar cualquier alarma visible
-  const todasLasAlarmas = document.querySelectorAll("[id^='alerta_']");
-  todasLasAlarmas.forEach((alarma) => {
-    alarma.style.display = "none";
-  });
+  document
+    .querySelectorAll("[id^='alerta_']")
+    .forEach((alarma) => (alarma.style.display = "none"));
 
-  // Mostrar la alerta actual
   alerta.style.display = "flex";
-
-  // Obtener el tiempo de visualización configurado o usar 3000ms por defecto
   const tiempo = alertasConfig[alertaId] || 3000;
 
-  // Programar la ocultación de la alerta después del tiempo especificado
-  timeoutAlarma = setTimeout(() => {
-    alerta.style.display = "none";
-  }, tiempo);
-
-  // Agregar un evento de clic para ocultar la alarma al hacer clic en ella
+  timeoutAlarma = setTimeout(() => (alerta.style.display = "none"), tiempo);
   alerta.onclick = () => {
     alerta.style.display = "none";
-    clearTimeout(timeoutAlarma); // Cancelar el timeout al hacer clic
+    clearTimeout(timeoutAlarma);
   };
 };
+
 // Cambiar secciones navigation
-// Obtener los elementos una sola vez para optimizar el rendimiento
 const elements = {
-    home: document.getElementById("home"),
-    header: document.getElementById("header"),
-    form: document.getElementById("pag1"),
-    login: document.getElementById("pag2"),
-    aside: document.getElementById("aside"),
-    admin: document.getElementById("pag3"),
-    chatbot: document.getElementById("chatbot"),
-    ap_tc: document.getElementById("ap_tc")
-  };
-  // Función genérica para gestionar clases según la vista activa
-  function toggleView({ home = false, header = false, form = false, login = false, aside = false , admin = false, ap_tc = false}) {
-    elements.home.classList.toggle("agregar_dis", home);
-    elements.header.classList.toggle("cambiar_nav", header);
-    elements.form.classList.toggle("agregar_dis", form);
-    elements.login.classList.toggle("agregar_dis", login);
-    elements.aside.classList.toggle("agregar_dis", aside);
-    elements.admin.classList.toggle("agregar_dis", admin);
-    elements.ap_tc.classList.toggle("agregar_dis", ap_tc)
-  }
-  // Funciones para cada botón
-  function btn_home() {
-    toggleView({ home: true});
-  }
-  function btn_form() {
-    toggleView({ header: true, form: true, aside: true });
-  }
-  function btn_admin() {
-    toggleView({ header: true, login: true, aside: true });
-  }
-  function btn_admin_regreso() {
-    location.reload();
-  }
-  function btn_aptc() {
-    toggleView({ header: true, ap_tc: true, aside: true });
-  }
+  header: document.getElementById("header"),
+  home: document.getElementById("home"),
+  form: document.getElementById("pag1"),
+  login: document.getElementById("pag2"),
+  admin: document.getElementById("pag3"),
+  login_manager: document.getElementById("pag4"),
+  admin_manager: document.getElementById("pag5"),
+  aside: document.getElementById("aside"),
+  chatbot: document.getElementById("chatbot"),
+  ap_tc: document.getElementById("ap_tc"),
+};
 
-  //funciones para fomulario
-// Obtener todos los formularios
-const forms = document.querySelectorAll('.cont_inputform');
-const exito = document.getElementById('exito_form');
-let currentFormIndex = 0;
-
-// Obtener los botones
-const label_btnNext = document.getElementById('label_next');
-const label_btnEnviar = document.getElementById('label_enviar');
-
-// Función para inicializar el formulario
-function initForm() {
-  // Mostrar el primer formulario por defecto
-  forms[currentFormIndex].style.display = 'grid';
-  // Mostrar el botón "Siguiente" después de cargar el primer formulario
-  label_btnNext.style.display = 'flex';
+function toggleView({
+  home = false,
+  header = false,
+  form = false,
+  login = false,
+  login_manager = false,
+  aside = false,
+  admin = false,
+  admin_manager = false,
+  ap_tc = false,
+}) {
+  elements.home?.classList.toggle("agregar_dis", home);
+  elements.header?.classList.toggle("cambiar_nav", header);
+  elements.form?.classList.toggle("agregar_dis", form);
+  elements.login?.classList.toggle("agregar_dis", login);
+  elements.aside?.classList.toggle("agregar_dis", aside);
+  elements.admin?.classList.toggle("agregar_dis", admin);
+  elements.ap_tc?.classList.toggle("agregar_dis", ap_tc);
+  elements.admin_manager?.classList.toggle("agregar_dis", admin_manager);
+  elements.login_manager?.classList.toggle("agregar_dis", login_manager);
 }
 
-// Función para validar que los inputs del formulario actual no estén vacíos
+// Funciones para cada botón
+function btn_home() {
+  toggleView({ home: true });
+}
+function btn_form() {
+  toggleView({ header: true, form: true, aside: true });
+}
+function btn_admin() {
+  toggleView({ header: true, login: true, aside: true });
+}
+function admin_manager() {
+  toggleView({ header: true, login_manager: true, aside: true });
+}
+function btn_admin_regreso() {
+  location.reload();
+}
+function btn_aptc() {
+  toggleView({ header: true, ap_tc: true, aside: true });
+}
+
+// Obtener todos los formularios
+const forms = document.querySelectorAll(".cont_inputform");
+const exito = document.getElementById("exito_form");
+let currentFormIndex = 0;
+
+const label_btnNext = document.getElementById("label_next");
+const label_btnEnviar = document.getElementById("label_enviar");
+
+function initForm() {
+  if (forms.length) {
+    forms[currentFormIndex].style.display = "grid";
+    label_btnNext.style.display = "flex";
+  }
+}
+
 function validateForm() {
-  const inputs = forms[currentFormIndex].querySelectorAll('input, select, textarea'); // Obtener todos los inputs del formulario actual
-  for (let input of inputs) {
-    if (!input.value.trim()) { // Verificar si el valor está vacío o contiene solo espacios
+  const inputs = forms[currentFormIndex].querySelectorAll(
+    "input, select, textarea"
+  );
+  for (const input of inputs) {
+    if (!input.value.trim()) {
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_1");
-      return false; // Detener la validación y retornar falso
+      return false;
     }
   }
-  return true; // Si todos los campos están completos, retornar verdadero
+  return true;
 }
 
 // Agregar funcionalidad para mostrar/ocultar contraseñas
-document.querySelectorAll('.input-field input[type="password"]').forEach(input => {
-  const toggleButton = document.createElement('button');
-  toggleButton.type = 'button';
-  toggleButton.textContent = '';
-  toggleButton.classList.add('toggle-password');
-  input.parentNode.appendChild(toggleButton);
-  
-  toggleButton.addEventListener('click', () => {
-      input.type = input.type === 'password' ? 'text' : 'password';
+document
+  .querySelectorAll('.input-field input[type="password"]')
+  .forEach((input) => {
+    const toggleButton = document.createElement("button");
+    toggleButton.type = "button";
+    toggleButton.textContent = "";
+    toggleButton.classList.add("toggle-password");
+    toggleButton.setAttribute("aria-label", "Toggle password visibility");
+    input.parentNode.appendChild(toggleButton);
+
+    toggleButton.addEventListener("click", () =>
+      input.type === "password"
+        ? (input.type = "text")
+        : (input.type = "password")
+    );
   });
-});
 
-// Agregar barra de progreso en el formulario
-const progressBar = document.createElement('div');
-progressBar.classList.add('progress-bar');
-progressBar.id = 'progreso';
-document.querySelector('.cont_form').prepend(progressBar);
-
-function updateProgress() {
-    const progress = ((currentFormIndex + 1) / forms.length) * 90;
-    document.getElementById('progreso').style.width = progress + '%';
+// Agregar barra de progreso
+function initProgressBar() {
+  const contForm = document.querySelector(".cont_form");
+  if (contForm) {
+    const progressBar = document.createElement("div");
+    progressBar.classList.add("progress-bar");
+    progressBar.id = "progreso";
+    progressBar.setAttribute("role", "progressbar");
+    progressBar.setAttribute("aria-valuemin", "0");
+    progressBar.setAttribute("aria-valuemax", "100");
+    contForm.prepend(progressBar);
+  }
 }
 
-// Función para mostrar el siguiente formulario
-function showNextForm() {
-  // Validar que los campos del formulario actual no estén vacíos
-  if (!validateForm()) {
-    return; // Si la validación falla, detener la ejecución
+function updateProgress() {
+  const progreso = document.getElementById("progreso");
+  if (progreso) {
+    const progress = ((currentFormIndex + 1) / forms.length) * 90;
+    progreso.style.width = `${progress}%`;
+    progreso.setAttribute("aria-valuenow", Math.round(progress));
   }
+}
 
-  // Ocultar el formulario actual
-  forms[currentFormIndex].style.display = 'none';
+function showNextForm() {
+  if (!validateForm()) return;
 
-  // Incrementar el índice para mostrar el siguiente formulario
+  forms[currentFormIndex].style.display = "none";
   currentFormIndex++;
 
-  // Verificar si estamos en el último formulario
   if (currentFormIndex === forms.length - 1) {
-    // Si es el último formulario, ocultar el botón "Siguiente" y mostrar el botón "Enviar"
-    label_btnNext.style.display = 'none';
-    label_btnEnviar.style.display = 'flex';
+    label_btnNext.style.display = "none";
+    label_btnEnviar.style.display = "flex";
   }
 
-  // Mostrar el siguiente formulario
-  forms[currentFormIndex].style.display = 'grid';
+  forms[currentFormIndex].style.display = "grid";
   updateProgress();
 }
 
-// Función para manejar el envío del formulario
 function enviar_fo() {
-  // Validar que los campos del último formulario no estén vacíos
-  if (!validateForm()) {
-    return; // Si la validación falla, detener la ejecución
-  }
+  if (!validateForm()) return;
 
-  // Ocultar todos los formularios
-  forms.forEach(form => form.style.display = 'none');
-
-  // Ocultar el botón "Enviar"
-  label_btnEnviar.style.display = 'none';
-
-
-  //ocutar barra de progreso
-  progressBar.style.display = 'none';
-
-  // Mostrar la página de éxito con display: flex
-  exito.style.display = 'flex';
+  forms.forEach((form) => (form.style.display = "none"));
+  label_btnEnviar.style.display = "none";
+  document.getElementById("progreso").style.display = "none";
+  exito.style.display = "flex";
 }
 
-// Agregar evento al botón "Siguiente"
-label_btnNext.addEventListener('click', showNextForm);
-
-// Agregar evento al botón "Enviar"
-label_btnEnviar.addEventListener('click', enviar_fo);
+label_btnNext?.addEventListener("click", showNextForm);
+label_btnEnviar?.addEventListener("click", enviar_fo);
 
 // Personalización de selects
 document.querySelectorAll("select").forEach((select) => {
@@ -260,9 +317,7 @@ document.querySelectorAll("select").forEach((select) => {
   customSelect.classList.add("custom-select", "input");
 
   const label = document.querySelector(`label[for='${select.id}']`);
-  if (label) {
-    label.classList.add("custom-label");
-  }
+  label?.classList.add("custom-label");
 
   const selectedDiv = document.createElement("div");
   selectedDiv.classList.add("select-selected");
@@ -275,17 +330,15 @@ document.querySelectorAll("select").forEach((select) => {
   Array.from(select.options).forEach((option, index) => {
     const optionDiv = document.createElement("div");
     optionDiv.textContent = option.text;
-    if (option.disabled) {
-      optionDiv.classList.add("disabled");
-    } else {
+    if (option.disabled) optionDiv.classList.add("disabled");
+    else {
       optionDiv.addEventListener("click", () => {
         select.selectedIndex = index;
         selectedDiv.textContent = option.text;
         select.dispatchEvent(new Event("change"));
-        optionsDiv.style.display = "none"; // Cierra las opciones después de la selección
+        optionsDiv.style.display = "none";
         if (label) {
-          label.style.opacity = "0";
-          label.style.scale = "0";
+          label.style.display = "none";
         }
       });
     }
@@ -295,18 +348,16 @@ document.querySelectorAll("select").forEach((select) => {
   selectedDiv.addEventListener("focus", () => {
     optionsDiv.style.display = "block";
     if (label) {
-      label.style.opacity = "1";
-      label.style.scale = "1";
+      label.style.display = "flex";
     }
   });
 
-  // Detectar clic fuera del select para cerrar las opciones
   document.addEventListener("click", (event) => {
     if (!customSelect.contains(event.target)) {
       optionsDiv.style.display = "none";
       if (label && !select.value) {
-        label.style.opacity = "0";
-        label.style.scale = "0";
+        label.style.display = "none";
+        label.style.display = "none";
       }
     }
   });
@@ -317,6 +368,101 @@ document.querySelectorAll("select").forEach((select) => {
   select.style.display = "none";
 });
 
-// Inicializar el formulario
-initForm();
-updateProgress();
+// Función de checkboxes
+document.addEventListener("DOMContentLoaded", () => {
+  const checkboxes = [
+    ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
+    ...document.querySelectorAll(
+      '.estatus_citas_manager input[type="checkbox"]'
+    ),
+    ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
+  ];
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        checkboxes.forEach((otherCheckbox) => {
+          if (otherCheckbox !== this) otherCheckbox.checked = false;
+        });
+      }
+    });
+  });
+});
+
+// Agregar número de país
+function initializeCountryCode() {
+  const numeroInput = document.getElementById("numero");
+  if (!numeroInput) return;
+
+  const paises = [
+    { code: "+52", flag: "🇲🇽" },
+    { code: "+1", flag: "🇺🇸" },
+  ];
+
+  let codigoSeleccionado = "+52";
+  const dropdown = document.createElement("div");
+  dropdown.classList.add("custom-dropdown");
+
+  const selectedCountry = document.createElement("div");
+  selectedCountry.classList.add("selected");
+  selectedCountry.textContent = `🇲🇽 +52`;
+  selectedCountry.setAttribute("role", "button");
+  selectedCountry.setAttribute("aria-expanded", "false");
+
+  const dropdownList = document.createElement("ul");
+  dropdownList.classList.add("dropdown-list");
+  dropdownList.style.display = "none";
+
+  paises.forEach((pais) => {
+    const li = document.createElement("li");
+    li.textContent = `${pais.flag} ${pais.code}`;
+    li.dataset.code = pais.code;
+
+    li.addEventListener("click", () => {
+      codigoSeleccionado = pais.code;
+      selectedCountry.textContent = li.textContent;
+      dropdownList.style.display = "none";
+      selectedCountry.setAttribute("aria-expanded", "false");
+      if (!numeroInput.value.trim()) numeroInput.value = codigoSeleccionado;
+    });
+
+    dropdownList.appendChild(li);
+  });
+
+  selectedCountry.addEventListener("click", () => {
+    const isExpanded = dropdownList.style.display === "block";
+    dropdownList.style.display = isExpanded ? "none" : "block";
+    selectedCountry.setAttribute("aria-expanded", !isExpanded);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!dropdown.contains(event.target)) {
+      dropdownList.style.display = "none";
+      selectedCountry.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  dropdown.appendChild(selectedCountry);
+  dropdown.appendChild(dropdownList);
+  numeroInput.parentNode.insertBefore(dropdown, numeroInput);
+
+  numeroInput.addEventListener("input", function () {
+    let numero = this.value.replace(/\D/g, "");
+    if (numero.length === 0) this.value = codigoSeleccionado;
+    else if (!numero.startsWith(codigoSeleccionado.replace("+", "")))
+      this.value = codigoSeleccionado + numero;
+  });
+
+  numeroInput.addEventListener("blur", function () {
+    if (!this.value.startsWith(codigoSeleccionado))
+      this.value = codigoSeleccionado + this.value;
+  });
+}
+
+// Al final, reemplaza tu `initializeApp`
+function initializeApp() {
+  initForm();
+  initProgressBar();
+  updateProgress();
+  initializeCountryCode();
+}
