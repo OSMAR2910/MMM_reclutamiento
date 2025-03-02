@@ -296,6 +296,18 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 7%;
+      p {
+        display: none;
+      }
+      .what_name {
+        display: flex;
+        font-size: .7vw;
+        color: $Texto;
+        font-family: $Letra1;
+        margin: 0;
+        padding: 0;
+      }
       .input-form {
         width: 70%;
         height: 7vh;
@@ -412,7 +424,6 @@
         color: $Blanco;
         border-radius: 1vw;
         background-color: $Fondo;
-        margin-top: 7%;
         font-family: $Letra2;
         transition: all .3s ease-in-out;
         &:hover {
@@ -540,10 +551,13 @@
       }
       .name_id{
         border-radius: 2vw;
-        font-size: 2vw;
+        font-size: 1.8vw;
       }
     }
     .chat_box {
+      p {
+        font-size: 2.3vw;
+      }
       .bot_message {
         span {
           font-size: 1.7vw;
@@ -635,6 +649,9 @@
     }
     .chat_box {
       height: 79%;
+      p {
+        font-size: 3.5vw;
+      }
       .bot_message {
         span {
           font-size: 2.5vw;

@@ -4,7 +4,7 @@ import { app, database, ref, push, set } from "./firebase.js";
 let intents = [];
 let isWelcomeMessageSent = false;
 let messageBuffer = [];
-let userName = null;
+let userName = localStorage.getItem("userName");
 let userIdName = localStorage.getItem("userIdName");
 
 // Generar un ID aleatorio simple
@@ -68,12 +68,15 @@ function getResponse(message) {
 
   const bestIntent = getBestIntent(message);
   if (bestIntent) {
-    return bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
+    let response = bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
+    // Reemplazar ${userName} con el valor de localStorage
+    const storedUserName = localStorage.getItem("userName") || "Humano";
+    return response.replace("${userName}", storedUserName);
   } else {
-    // Si no hay intención, guardamos el mensaje sin respuesta y devolvemos el mensaje predeterminado
     console.log("🚫 No encontré una respuesta adecuada para:", message);
-    saveUnansweredMessage(message); // Llamamos a la función para guardar
-    return "¡Glu-glu! No estoy seguro de lo que quieres decir, humano. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨";
+    saveUnansweredMessage(message);
+    const storedUserName = localStorage.getItem("userName") || "Humano";
+    return `¡Glu-glu! No estoy seguro de lo que quieres decir, ${storedUserName}. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨`;
   }
 }
 
@@ -192,7 +195,7 @@ function handleNameForm() {
   const chatForm = document.getElementById("chat_form");
 
   if (!userIdName) {
-    userInfoContainer.style.display = "block";
+    userInfoContainer.style.display = "flex";
     chatForm.style.display = "none";
     nameForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -201,6 +204,7 @@ function handleNameForm() {
         const randomId = generateRandomId();
         userIdName = `${randomId}-${userName}`;
         localStorage.setItem("userIdName", userIdName);
+        localStorage.setItem("userName", userName);
         userInfoContainer.style.display = "none";
         chatForm.style.display = "flex";
         updateUserIdDisplay();

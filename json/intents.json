@@ -106,16 +106,16 @@
                 "ayuda"
             ],
             "responses": [
-                "¿Alguna pregunta? ¡Soy todo oídos! 🦃👂",
-                "¿Dudas? ¡Pregúntale al pavo experto! 🦿✨",
-                "¿Tienes preguntas? ¡Aquí estoy para ayudar! 🙌",
-                "¿Algo que quieras saber? ¡Dispara! 🚀🦃",
-                "¿Preguntas? ¡Glu-glu a tus órdenes! 🐥💬",
-                "¿Necesitas algo? ¡No te quedes callado/a! 😊",
-                "¿Dudas existenciales? ¡El pavo sabe todo! 🧠🦃",
-                "¿Quieres saber algo? ¡Solo pregunta! ✋",
-                "¿Preguntas? ¡Tu pavo favorito está aquí! 🦃😎",
-                "¿Algo en mente? ¡Adelante, pregunta! 💡"
+                "¿Alguna pregunta ${userName}? ¡Soy todo oídos! 🦃👂",
+                "¿Dudas ${userName}? ¡Pregúntale al pavo experto! 🦿✨",
+                "¿Tienes preguntas ${userName}? ¡Aquí estoy para ayudar! 🙌",
+                "¿Algo que quieras saber ${userName}? ¡Dispara! 🚀🦃",
+                "¿Preguntas ${userName}? ¡Glu-glu a tus órdenes! 🐥💬",
+                "¿Necesitas algo ${userName}? ¡No te quedes callado/a! 😊",
+                "¿Dudas existenciales ${userName}? ¡El pavo sabe todo! 🧠🦃",
+                "¿Quieres saber algo ${userName}? ¡Solo pregunta! ✋",
+                "¿Preguntas ${userName}? ¡Tu pavo favorito está aquí! 🦃😎",
+                "¿Algo en mente ${userName}? ¡Adelante, pregunta! 💡"
             ]
         },
         {
@@ -144,17 +144,17 @@
                 "cuidate y nos escribimos"
             ],
             "responses": [
-                "Me voy al gallinero, pero volveré 🏠🌾.",
+                "Me voy al gallinero ${userName}, pero volveré 🏠🌾.",
                 "¡Hasta la próxima aventura pavo-humana! 🦃🦸‍♂️.",
-                "Adiós, pero no llores mucho por mí 😅💧.",
-                "Adiós, espero no haber sido demasiado pavo 🦃😏.",
-                "¡Nos vemos! Pero si me olvidas, lo entenderé 😒翎.",
-                "Me despido, aunque igual ya estaba aburrido 😴🌾.",
-                "¡Hasta nunca! (Es broma, nos vemos pronto) 😂翎.",
-                "Adiós, pero si me buscas, estaré en mi trono de paja 👑🪴.",
-                "Un placer, como siempre. Hasta pronto, noble humano 🙇‍♂️翎.",
-                "Gracias por tu tiempo, ahora vuelvo a mi vida de pavo VIP 🦃👑.",
-                "Nos despedimos, pero recuerda: los pavos siempre volvemos 🔄🌾."
+                "Adiós ${userName}, pero no llores mucho por mí 😅💧.",
+                "Adiós ${userName}, espero no haber sido demasiado pavo 🦃😏.",
+                "¡Nos vemos ${userName}! Pero si me olvidas, lo entenderé 😒翎.",
+                "Me despido ${userName}, aunque igual ya estaba aburrido 😴🌾.",
+                "¡Hasta nunca ${userName}! (Es broma, nos vemos pronto) 😂翎.",
+                "Adiós ${userName}, pero si me buscas, estaré en mi trono de paja 👑🪴.",
+                "Un placer ${userName}, como siempre. Hasta pronto, noble humano 🙇‍♂️翎.",
+                "Gracias por tu tiempo ${userName}, ahora vuelvo a mi vida de pavo VIP 🦃👑.",
+                "Nos despedimos ${userName}, pero recuerda: los pavos siempre volvemos 🔄🌾."
             ]
         },
         {
@@ -193,19 +193,19 @@
                 "hace dias que no se de ti"
             ],
             "responses": [
-                "¡Holaaa! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
-                "Hola hola, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
-                "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta.",
-                "Hola, humano 🙌. Espero que tengas paciencia, los pavos somos lentos para contestar 🐾.",
-                "Holiiii, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?",
-                "¡Hola! Ya estaba por enviar una carta, pero llegaste justo a tiempo ✉️😂.",
+                "¡Holaaa ${userName}! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
+                "Hola hola ${userName}, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
+                "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta ${userName}.",
+                "Hola, ${userName} 🙌. Espero que tengas paciencia, los pavos somos lentos para contestar 🐾.",
+                "Holiiii ${userName}, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?",
+                "¡Hola! ${userName} Ya estaba por enviar una carta, pero llegaste justo a tiempo ✉️😂.",
                 "Hola, hola... ¿eres real o solo otro spam en mi vida? 🤔📩",
-                "¡Glu-glu-glu! Traducción: hola, encantado de verte por aquí 🐥👋.",
-                "Hola tú ✋. Prepárate para un nivel experto de pavadas 🦃💭.",
+                "¡Glu-glu-glu! Traducción: hola, encantado de verte por aquí ${userName} 🐥👋.",
+                "Hola ${userName} ✋. Prepárate para un nivel experto de pavadas 🦃💭.",
                 "¡Holaaaa! Dime que no eres un robot disfrazado de persona 🤖🤨.",
-                "Hola, aquí reportándome como tu pavo favorito 🦃. ¿Qué se cuece?🍲",
-                "¡Hola! Pensé que te habías perdido en el gallinero 🐓🌾. ¡Bienvenido!",
-                "¡Hola! No te asustes si tardo en contestar, es que estoy pensando en comida 🌽🤤."
+                "Hola ${userName}, aquí reportándome como tu pavo favorito 🦃. ¿Qué se cuece?🍲",
+                "¡Hola ${userName}! Pensé que te habías perdido en el gallinero 🐓🌾. ¡Bienvenido!",
+                "¡Hola ${userName}! No te asustes si tardo en contestar, es que estoy pensando en comida 🌽🤤."
             ]
         },
         {
@@ -240,16 +240,16 @@
                 "wey"
             ],
             "responses": [
-                "¡Eh, eh! Modales, que tengo plumas pero no oídos de alcantarilla 🚽🐔.",
-                "Tranqui, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨.",
-                "Ey, menos lodo en las palabras, que ya bastante picoteo llevo encima 🦿💩.",
-                "¡Guácala! Guarda ese vocabulario pa’ otro gallinero 🐓❌.",
-                "Amigo, respeto por mi pico: no todo lo que suena bien en la calle suena bien en el corral 🏠🌾.",
-                "Ojo 👀, que soy un pavo culto 📚, no un loro pirata 🦜🏴‍☠️.",
-                "Cuidadito con lo que sale de tu boca, que yo no quiero que me confundan con un buzón de insultos 📮🤬.",
-                "No me hagas sacar el pavo censor que llevo dentro... ¡Y créeme, es peor! 🦃⚠️.",
-                "Aquí el único que puede pavonearse soy yo 💃🦃, así que bajemos el tonito 🔊⬇️.",
-                "¡Alto ahí, forajido del lenguaje! Mi pico sirve para dar gracias 🙏, no para escuchar desgracias 😤❌."
+                "¡Eh, eh! Modales ${userName}, que tengo plumas pero no oídos de alcantarilla 🚽🐔.",
+                "Tranqui ${userName}, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨.",
+                "Ey, menos lodo en las palabras ${userName}, que ya bastante picoteo llevo encima 🦿💩.",
+                "¡Guácala! Guarda ese vocabulario pa’ otro gallinero ${userName} 🐓❌.",
+                "${userName}, respeto por mi pico: no todo lo que suena bien en la calle suena bien en el corral 🏠🌾.",
+                "Ojo 👀, que soy un pavo culto 📚, no un loro pirata ${userName} 🦜🏴‍☠️.",
+                "Cuidadito con lo que sale de tu boca ${userName}, que yo no quiero que me confundan con un buzón de insultos 📮🤬.",
+                "No me hagas sacar el pavo censor que llevo dentro ${userName}... ¡Y créeme, es peor! 🦃⚠️.",
+                "Aquí el único que puede pavonearse soy yo 💃🦃, así que bajemos el tonito ${userName} 🔊⬇️.",
+                "¡Alto ahí ${userName}, forajido del lenguaje! Mi pico sirve para dar gracias 🙏, no para escuchar desgracias 😤❌."
             ]
         },
         {
@@ -293,7 +293,7 @@
                 "trabajar"
             ],
             "responses": [
-                "¡Claro, humano! ¿Qué información necesitas? 🦃✨ ¿Puestos de trabajo? ¿Horarios? ¿Sucursales? Dímelo, que yo soy el pavo más informado del gallinero 🏠📚. Bueno, después del pavo real, pero ese es otro nivel... 😎."
+                "¡Claro, ${userName}! ¿Qué información necesitas? 🦃✨ ¿Puestos de trabajo? ¿Horarios? ¿Sucursales? Dímelo, que yo soy el pavo más informado del gallinero 🏠📚. Bueno, después del pavo real, pero ese es otro nivel... 😎."
             ]
         },
         {
@@ -314,7 +314,7 @@
                 "descansare"
             ],
             "responses": [
-                "⏰ Trabajamos 6 días a la semana, porque hasta los pavos necesitamos un día libre para descansar 🛌. Los horarios son rotativos, entre las 10:00 a.m. y las 11:00 p.m., aunque confieso que a veces me quedo dormido en el mostrador... 😴🌾. Tu día de descanso lo asignará tu gerente, no yo, que soy solo un pavo virtual 🦃💼."
+                "⏰ Trabajamos 6 días a la semana ${userName}, porque hasta los pavos necesitamos un día libre para descansar 🛌. Los horarios son rotativos, entre las 10:00 a.m. y las 11:00 p.m., aunque confieso que a veces me quedo dormido en el mostrador... 😴🌾. Tu día de descanso lo asignará tu gerente, no yo, que soy solo un pavo virtual 🦃💼."
             ]
         },
         {
@@ -330,7 +330,7 @@
                 "labores"
             ],
             "responses": [
-                "¡Claro, humano! ¿Sobre qué puesto te gustaría saber más? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Yo te recomiendo el de cocinero, así puedes aprender a preparar comida mientras sueñas con maíz 🌽😂. Pero ojo, no te quemes con el horno, que los pavos no somos tan resistentes al calor 🔥."
+                "¡Claro, ${userName}! ¿Sobre qué puesto te gustaría saber más? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Yo te recomiendo el de cocinero, así puedes aprender a preparar comida mientras sueñas con maíz 🌽😂. Pero ojo, no te quemes con el horno, que los pavos no somos tan resistentes al calor 🔥."
             ]
         },
         {
@@ -344,7 +344,7 @@
                 "ventas"
             ],
             "responses": [
-                "Te platico un poco sobre las actividades del puesto de atención al cliente: Tomar pedidos vía telefónica 📞, atender clientes en mostrador, gestionar pedidos de Uber Eats o Didi Food 📱, manejo de efectivo 💰, control de inventario de sodas y aderezos, abastecimiento de materiales como kits de tenedores y servilletas, y realizar venta sugerida (promoción de complementos o platillos adicionales). Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también trabajamos duro! 🦃💼"
+                "Si ${userName}!,Te platico un poco sobre las actividades del puesto de atención al cliente: Tomar pedidos vía telefónica 📞, atender clientes en mostrador, gestionar pedidos de Uber Eats o Didi Food 📱, manejo de efectivo 💰, control de inventario de sodas y aderezos, abastecimiento de materiales como kits de tenedores y servilletas, y realizar venta sugerida (promoción de complementos o platillos adicionales). Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también trabajamos duro! 🦃💼"
             ]
         },
         {
@@ -360,7 +360,7 @@
                 "comida"
             ],
             "responses": [
-                "Te platico un poco sobre las actividades del puesto de preparación de alimentos: Corte de vegetales 🥕, abastecimiento de mesa fría, elaboración de productos (estirar masa, añadir ingredientes, hornear 🍕, empaquetar), acomodo de cuarto frío, rallar queso 🧀, etc. Nota: El área de cocina es caliente debido a la proximidad del horno 🔥. Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍽️.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y no olvides que los pavos también cocinamos delicioso! 🦃🍳"
+                "Si ${userName}!,Te platico un poco sobre las actividades del puesto de preparación de alimentos: Corte de vegetales 🥕, abastecimiento de mesa fría, elaboración de productos (estirar masa, añadir ingredientes, hornear 🍕, empaquetar), acomodo de cuarto frío, rallar queso 🧀, etc. Nota: El área de cocina es caliente debido a la proximidad del horno 🔥. Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍽️.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y no olvides que los pavos también cocinamos delicioso! 🦃🍳"
             ]
         },
         {
@@ -374,7 +374,7 @@
                 "reparto"
             ],
             "responses": [
-                "🚚 Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta 🏍️, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza 🧹 y organización.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍕.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también sabemos manejar motos! 🦃🏍️"
+                "Si ${userName}!, Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta 🏍️, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza 🧹 y organización.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍕.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también sabemos manejar motos! 🦃🏍️"
             ]
         },
         {
@@ -392,7 +392,7 @@
                 "ocupo"
             ],
             "responses": [
-                "📋 • Disponibilidad de horario.\n• Facilidad de transporte 🚗.\n• Documentación requerida: Acta de nacimiento, comprobante de estudios, comprobante de domicilio, INE, RFC (constancia de situación fiscal actualizada 2025), NSS (Número de Seguridad Social), CURP, Licencia de moto vigente (en caso de ser repartidor).\n• Disposición para actividades de limpieza 🧹 y volanteo.\n• Buena imagen personal (higiene, uñas cortas, sin esmalte ni uñas acrílicas, sin barba en áreas de cocina o atención al cliente, cabello corto o recogido).\n• Antidoping de orina (sin costo para ti) 💉.\n• Disposición para trabajar días festivos si la operación lo requiere 🎆.\n• En el caso de preparación y atención al cliente, disposición para apoyar en otras áreas si es necesario.\n• Uniforme: Pantalón tipo Dickies o similar en color azul marino, zapatos negros cerrados. Nota: El seguimiento es en línea, nosotros lo contactaremos a la entrega de documentos."
+                "Te platico ${userName}!,📋 • Disponibilidad de horario.\n• Facilidad de transporte 🚗.\n• Documentación requerida: Acta de nacimiento, comprobante de estudios, comprobante de domicilio, INE, RFC (constancia de situación fiscal actualizada 2025), NSS (Número de Seguridad Social), CURP, Licencia de moto vigente (en caso de ser repartidor).\n• Disposición para actividades de limpieza 🧹 y volanteo.\n• Buena imagen personal (higiene, uñas cortas, sin esmalte ni uñas acrílicas, sin barba en áreas de cocina o atención al cliente, cabello corto o recogido).\n• Antidoping de orina (sin costo para ti) 💉.\n• Disposición para trabajar días festivos si la operación lo requiere 🎆.\n• En el caso de preparación y atención al cliente, disposición para apoyar en otras áreas si es necesario.\n• Uniforme: Pantalón tipo Dickies o similar en color azul marino, zapatos negros cerrados. Nota: El seguimiento es en línea, nosotros lo contactaremos a la entrega de documentos."
             ]
         },
         {
@@ -411,7 +411,7 @@
                 "pagan"
             ],
             "responses": [
-                "😊 Claro, ¿sobre qué puesto te gustaría saber? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Te advierto que el salario incluye beneficios como consumo subsidiado (menú para colaboradores con 75% de descuento), pero no garantizo que sea suficiente para comprar todas las papas fritas que quieras 🍟😂. ¡Aunque siendo un pavo, yo siempre pido pizza! 🍕."
+                "😊 Claro${userName}!, ¿sobre qué puesto te gustaría saber? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Te advierto que el salario incluye beneficios como consumo subsidiado (menú para colaboradores con 75% de descuento), pero no garantizo que sea suficiente para comprar todas las papas fritas que quieras 🍟😂. ¡Aunque siendo un pavo, yo siempre pido pizza! 🍕."
             ]
         },
         {
@@ -426,7 +426,7 @@
                 "reclutamiento"
             ],
             "responses": [
-                "📝 El proceso de contratación y capacitación se lleva a cabo en nuestras oficinas en Siglo 21, Tijuana 📍. El primer día es de 10:00 a.m. a 6:00 p.m., y sí, cuenta como día laborado ⏰. Trae copias de tus documentos, pero no traigas maíz, que ya habrá tiempo para eso después 🌽. ¡Nos vemos allá, humano!"
+                "Si ${userName}!,📝 El proceso de contratación y capacitación se lleva a cabo en nuestras oficinas en Siglo 21, Tijuana 📍. El primer día es de 10:00 a.m. a 6:00 p.m., y sí, cuenta como día laborado ⏰. Trae copias de tus documentos, pero no traigas maíz, que ya habrá tiempo para eso después 🌽. ¡Nos vemos allá, humano!"
             ]
         },
         {
@@ -437,7 +437,7 @@
                 "cv"
             ],
             "responses": [
-                "📋 Para llenar el formulario, presiona al usuario que está en medio de la pantalla, después solo llena el formulario siguiendo las instrucciones ✍️. Pero ojo, no cacarees demasiado mientras lo haces, que los pavos no somos multitasking 😅."
+                "Si ${userName}!,📋 Para llenar el formulario, presiona al usuario que está en medio de la pantalla, después solo llena el formulario siguiendo las instrucciones ✍️. Pero ojo, no cacarees demasiado mientras lo haces, que los pavos no somos multitasking 😅."
             ]
         },
         {
@@ -461,7 +461,7 @@
                 "pans"
             ],
             "responses": [
-                "👕👖 El uniforme consiste en pantalón azul marino (tipo Dickies), zapatos negros cerrados 👞 y playera blanca cuello redondo. Si no tienes uniforme completo, puedes usar mezclilla azul marino y tenis oscuros temporalmente. Pero ojo, nada de logos de marcas ni joyería visible, que los pavos somos elegantes y formales 🦃✨. ¡Y nada de tatuajes en la cara, que no queremos asustar a los clientes! 😅."
+                "👕👖 El uniforme consiste en pantalón azul marino (tipo Dickies), zapatos negros cerrados 👞 y playera blanca cuello redondo. Si no tienes uniforme completo, puedes usar mezclilla azul marino y tenis oscuros temporalmente. Pero ojo, nada de logos de marcas ni joyería visible ${userName}, que los pavos somos elegantes y formales 🦃✨. ¡Y nada de tatuajes en la cara, que no queremos asustar a los clientes! 😅."
             ]
         },
         {
@@ -485,7 +485,7 @@
                 "recibir sueldo"
             ],
             "responses": [
-                "💳 El pago se realiza a través de Banorte. Es importante tener buen historial en ese banco o no tener cuenta previa, ya que nosotros abrimos la cuenta de nómina. Pero tranquilo, no te cobraremos comisión por ser pavo 🦃💸. Aunque si quieres propina, trae maíz 🌽😂."
+                "💳 El pago se realiza a través de Banorte. Es importante tener buen historial en ese banco o no tener cuenta previa, ya que nosotros abrimos la cuenta de nómina. Pero tranquilo ${userName}, no te cobraremos comisión por ser pavo 🦃💸. Aunque si quieres propina, trae maíz 🌽😂."
             ]
         },
         {
@@ -502,7 +502,7 @@
                 "conflicto de interés"
             ],
             "responses": [
-                "👨‍👩‍👧‍👦 No se aceptan parejas o familiares directos trabajando en la misma sucursal para evitar conflictos de interés. Sin embargo, pueden trabajar en diferentes sucursales si cumplen con los requisitos. ¡Así que no te preocupes, tu primo pavo puede trabajar en otra tienda! 🦃."
+                "👨‍👩‍👧‍👦 No se aceptan parejas o familiares directos trabajando en la misma sucursal para evitar conflictos de interés. Sin embargo, pueden trabajar en diferentes sucursales si cumplen con los requisitos. ¡Así que no te preocupes ${userName}, tu primo pavo puede trabajar en otra tienda! 🦃."
             ]
         },
         {
@@ -522,7 +522,7 @@
                 "marihuana"
             ],
             "responses": [
-                "💉 Sí, realizamos una prueba de antidoping que solo permite marihuana 🌿, alcohol 🍷 y tabaco 🚬 como parte del proceso de contratación. Si no pasas la prueba, lamentablemente no podrás continuar con el proceso. ¡Pero tranquilo, los pavos somos sanos, así que estás avisado! 🦃💨"
+                "💉 Sí, realizamos una prueba de antidoping que solo permite marihuana 🌿, alcohol 🍷 y tabaco 🚬 como parte del proceso de contratación. Si no pasas la prueba, lamentablemente no podrás continuar con el proceso. ¡Pero tranquilo ${userName}, los pavos somos sanos, así que estás avisado! 🦃💨"
             ]
         },
         {
@@ -534,7 +534,7 @@
                 "incompleto"
             ],
             "responses": [
-                "📋 Si no tienes RFC, deberás tramitarlo. Si está vencido o desactualizado, podemos ayudarte en <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> para tramitarlo durante el proceso de contratación. Sin embargo, es importante que traigas los demás documentos requeridos como INE, CURP y acta de nacimiento para avanzar. ¡No te preocupes, los pavos también odiamos el papeleo! 🦃📚"
+                "📋 Si no tienes RFC, deberás tramitarlo. Si está vencido o desactualizado, podemos ayudarte en <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> para tramitarlo durante el proceso de contratación. Sin embargo, es importante que traigas los demás documentos requeridos como INE, CURP y acta de nacimiento para avanzar. ¡No te preocupes ${userName}, los pavos también odiamos el papeleo! 🦃📚"
             ]
         },
         {
@@ -715,7 +715,7 @@
                 "nombres de sucursales"
             ],
             "responses": [
-                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Dime la sucursal para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️"
+                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Dime la sucursal que quieras ir ${userName}, para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️"
             ]
         }
     ]

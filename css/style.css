@@ -752,6 +752,18 @@ body canvas {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 7%;
+}
+.max_chat .user_info_container form p {
+  display: none;
+}
+.max_chat .user_info_container form .what_name {
+  display: flex;
+  font-size: 0.7vw;
+  color: #ffffff;
+  font-family: "NIMBUS";
+  margin: 0;
+  padding: 0;
 }
 .max_chat .user_info_container form .input-form {
   width: 70%;
@@ -863,7 +875,6 @@ body canvas {
   color: #ffffff;
   border-radius: 1vw;
   background-color: #ec6223;
-  margin-top: 7%;
   font-family: "Nunito";
   transition: all 0.3s ease-in-out;
 }
@@ -997,7 +1008,10 @@ body canvas {
   }
   .max_chat .chat_header .name_id {
     border-radius: 2vw;
-    font-size: 2vw;
+    font-size: 1.8vw;
+  }
+  .max_chat .chat_box p {
+    font-size: 2.3vw;
   }
   .max_chat .chat_box .bot_message span {
     font-size: 1.7vw;
@@ -1083,6 +1097,9 @@ body canvas {
   }
   .max_chat .chat_box {
     height: 79%;
+  }
+  .max_chat .chat_box p {
+    font-size: 3.5vw;
   }
   .max_chat .chat_box .bot_message span {
     font-size: 2.5vw;
