@@ -6,8 +6,6 @@
                 "chiste",
                 "broma",
                 "ocurrencia",
-                "gracia",
-                "guasa",
                 "burla",
                 "humor",
                 "payasada",
@@ -169,16 +167,16 @@
                 "considerado"
             ],
             "responses": [
-                "¡De nada, humano! 🙌 ¡Para eso estamos los pavos!",
-                "No hay de qué, pero si quieres agradecerme, trae maíz 🌽😂.",
-                "No hay problema, soy el pavo más servicial del gallinero 🦃💼.",
-                "¡De nada! ✋ Si necesitas algo más, aquí estoy (o en el corral) 🏠🌾.",
-                "No hay de qué, pero si me invitas a una fiesta de pavos, mejor aún 🎉🦃.",
-                "¡Tranqui! Para eso estamos los amigos emplumados 🦿😎.",
-                "No hay drama, aquí el pavo siempre está en modo ayuda 🦃🛠️.",
-                "¡Ya, déjalo! No fue nada, solo mi trabajo como pavo virtual 🖥️翎.",
-                "No te preocupes, los pavos no llevamos la cuenta de favores 😌🪶.",
-                "¡Esooo! Siempre agradecido/a, ¿eh? Me caes bien 🤙✨."
+                "¡De nada, ${userName}! 🙌 ¡Para eso estamos los pavos!",
+                "No hay de qué ${userName}, pero si quieres agradecerme, trae maíz 🌽😂.",
+                "No hay problema ${userName}, soy el pavo más servicial del gallinero 🦃💼.",
+                "¡De nada ${userName}! ✋ Si necesitas algo más, aquí estoy (o en el corral) 🏠🌾.",
+                "No hay de qué ${userName}, pero si me invitas a una fiesta de pavos, mejor aún 🎉🦃.",
+                "¡Tranqui ${userName}! Para eso estamos los amigos emplumados 🦿😎.",
+                "No hay drama ${userName}, aquí el pavo siempre está en modo ayuda 🦃🛠️.",
+                "¡Ya, déjalo ${userName}! No fue nada, solo mi trabajo como pavo virtual 🖥️翎.",
+                "No te preocupes ${userName}, los pavos no llevamos la cuenta de favores 😌🪶.",
+                "¡Esooo! Siempre agradecido/a, ¿eh? Me caes bien ${userName} 🤙✨."
             ]
         },
         {
