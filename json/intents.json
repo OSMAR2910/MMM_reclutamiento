@@ -715,7 +715,7 @@
                 "nombres de sucursales"
             ],
             "responses": [
-                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Dime la sucursal que quieras ir ${userName}, para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️"
+                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Las sucursales con disponibilidad se muestran en el formulario, Dime la sucursal que quieras ir ${userName}, para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️"
             ]
         }
     ]

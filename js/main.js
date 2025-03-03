@@ -440,6 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ...document.querySelectorAll('.disponibilidad_sucu input[type="checkbox"]'),
     ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
     ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
+    ...document.querySelectorAll('.estatus_citas_manager input[type="checkbox"]')
   ];
 
   checkboxes.forEach((checkbox) => {
