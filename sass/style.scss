@@ -7,8 +7,10 @@
 
 * {
   scroll-behavior: smooth;
-  -webkit-scroll-behavior: smooth; /* Para Safari */
-  -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+  -webkit-scroll-behavior: smooth;
+  /* Para Safari */
+  -webkit-overflow-scrolling: touch;
+  /* Mejora el scroll en iOS */
 }
 
 *::-webkit-scrollbar {
@@ -31,7 +33,8 @@ html {
   padding: 0;
   background-color: $Fondo;
   overflow: hidden;
-  -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Mejora el scroll en iOS */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +45,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .mascota_triste {
       width: 15vw;
       height: 40vh;
@@ -53,6 +57,7 @@ html {
       background-size: cover;
       background-repeat: no-repeat;
     }
+
     .desactiv_texto {
       width: 50vw;
       height: 50vh;
@@ -65,10 +70,12 @@ html {
       color: $Texto;
       border-radius: 1vw;
       gap: 2vh;
+
       h1 {
         font-size: 2.5vw;
         margin: 0;
       }
+
       p {
         font-size: 2vw;
         margin: 0;
@@ -111,6 +118,7 @@ html {
         }
       }
     }
+
     .alerta_admin {
       top: 4.2vh;
       left: 19.4vw;
@@ -142,6 +150,7 @@ html {
         }
       }
     }
+
     .alerta_manager {
       top: 3.2vh;
       left: 45.4vw;
@@ -174,6 +183,7 @@ html {
       }
     }
   }
+
   .alertas_modal {
     .alert_eliminacion_vacante {
       position: fixed;
@@ -205,14 +215,14 @@ html {
 
         .alert_btn_cont {
           display: flex;
-          gap: .5vw;
+          gap: 0.5vw;
 
           .alert-btn {
             width: auto;
-            padding: .3rem .6rem;
+            padding: 0.3rem 0.6rem;
             border: none;
             font-size: 0.8vw;
-            border-radius: .5vw;
+            border-radius: 0.5vw;
             cursor: pointer;
             transition: all 0.1s ease-in-out;
 
@@ -266,7 +276,7 @@ html {
           width: 100%;
           margin-bottom: 3vh;
           font-size: 1vw;
-          letter-spacing: .2rem;
+          letter-spacing: 0.2rem;
           color: $Blanco;
           font-family: $Letra1;
           text-align: center;
@@ -279,6 +289,7 @@ html {
           align-items: center;
           flex-direction: column;
           gap: 1vw;
+
           .input-form {
             width: 100%;
             height: 7.3vh;
@@ -302,7 +313,7 @@ html {
               color: $Box_admin;
               font-family: $Letra2;
               text-align: center;
-              font-size: .7vw;
+              font-size: 0.7vw;
 
               select {
                 position: absolute;
@@ -696,7 +707,7 @@ html {
                 justify-content: center;
                 align-items: center;
                 font-family: $Letra2;
-                
+
                 .custom-dropdown {
                   position: absolute;
                   left: 2%;
@@ -705,20 +716,20 @@ html {
                   border-radius: 5px;
                   padding: 5px 10px;
                   cursor: pointer;
-                  font-size: .8vw;
+                  font-size: 0.8vw;
                   display: flex;
                   align-items: center;
                   gap: 5px;
                   z-index: 10;
                   color: $Resalte;
-                
+
                   .dropdown-list {
                     display: none;
                     position: absolute;
                     left: 0;
                     top: 100%;
                     background: $Blanco;
-                    border-radius: .8vw;
+                    border-radius: 0.8vw;
                     list-style: none;
                     padding: 0;
                     margin: 0;
@@ -726,7 +737,7 @@ html {
                     max-height: 150px;
                     overflow-y: auto;
                     z-index: 20;
-                
+
                     li {
                       padding: 8px;
                       cursor: pointer;
@@ -734,14 +745,14 @@ html {
                       display: flex;
                       align-items: center;
                       gap: 5px;
-                
+
                       &:hover {
                         background: #f0f0f0;
                       }
                     }
                   }
                 }
-                
+
                 .custom-select {
                   position: relative;
                   display: inline-block;
@@ -843,7 +854,7 @@ html {
                 }
 
                 .input:focus ~ label {
-                  display:flex;
+                  display: flex;
                   transition: all 0.2s ease-in-out;
                 }
 
@@ -1175,6 +1186,7 @@ html {
         transition: all 0.2s ease-in-out;
         animation: btncita 0.5s ease-in-out forwards;
         animation-delay: 0.5s;
+
         img {
           height: 100%;
         }
@@ -1281,7 +1293,7 @@ html {
             display: none;
             justify-content: start;
             align-items: center;
-            transition: none; 
+            transition: none;
             flex-direction: column;
             width: 15vw;
             height: 75vh;
@@ -1367,6 +1379,7 @@ html {
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
+                  transition: all 0.2s ease-in-out;
 
                   .btn_container2 {
                     width: 4%;
@@ -1416,6 +1429,7 @@ html {
                     justify-content: space-evenly;
                     align-items: center;
                     flex-direction: column;
+                    transition: all 0.2s ease-in-out;
 
                     span {
                       width: 100%;
@@ -1488,8 +1502,10 @@ html {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(3, 1fr);
+
                       span {
                         font-size: 0.5vw;
+
                         strong {
                           font-size: 0.6vw;
                         }
@@ -1520,12 +1536,12 @@ html {
         padding: 0;
         gap: 2%;
         background-color: $Box_admin;
-        -webkit-mask:
-          url("../img/Utilidades/top-center.png") center / contain no-repeat,
+        -webkit-mask: url("../img/Utilidades/top-center.png") center / contain
+            no-repeat,
           url("../img/Utilidades/top-left.png") center / contain no-repeat,
           url("../img/Utilidades/top-right.png") center / contain no-repeat,
           linear-gradient(#000000 0 0);
-        mask-size: 20vw, 5vw, 6vw;
+        mask-size: 20vw, 5vw, 10vw;
         mask-position: 14.5vw 0vh, left top, right top;
         mask-composite: exclude;
         border-radius: 0vw 3vw 3vw 3vw;
@@ -1599,6 +1615,7 @@ html {
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
+                transition: all 0.2s ease-in-out;
 
                 .btn_container2 {
                   width: 5%;
@@ -1650,6 +1667,7 @@ html {
                   align-items: center;
                   flex-direction: column;
                   gap: 4%;
+                  transition: all 0.2s ease-in-out;
 
                   span {
                     width: 100%;
@@ -1720,8 +1738,10 @@ html {
                     width: 95%;
                     height: 95%;
                     grid-template-columns: repeat(3, 1fr);
+
                     span {
                       font-size: 0.5vw;
+
                       strong {
                         font-size: 0.6vw;
                       }
@@ -1806,6 +1826,7 @@ html {
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
+                transition: all 0.2s ease-in-out;
 
                 .btn_container2 {
                   width: 5%;
@@ -1846,6 +1867,7 @@ html {
                   align-items: center;
                   flex-direction: column;
                   gap: 5%;
+                  transition: all 0.2s ease-in-out;
 
                   span {
                     width: 100%;
@@ -1870,9 +1892,11 @@ html {
 
                 &:focus {
                   height: 15vh;
+
                   .btn_container2 {
                     display: none;
                   }
+
                   .vacante_info {
                     height: 95%;
                     grid-template-columns: repeat(2, 1fr);
@@ -1897,7 +1921,7 @@ html {
           gap: 1.5vh;
 
           .box_green {
-            width: 92%;
+            width: 86%;
             height: 3vh;
             margin-top: 1vh;
             background-color: $Green;
@@ -1941,17 +1965,19 @@ html {
               align-items: center;
               flex-direction: column;
               gap: 1.5vh;
+
               .vacante_item_green {
                 width: 95%;
                 height: 5vh;
                 display: flex;
-                background-color: $Texto; 
+                background-color: $Texto;
                 border-radius: 0.6rem;
                 justify-content: center;
                 align-items: center;
                 border: none;
                 cursor: pointer;
                 outline: none;
+                transition: all 0.2s ease-in-out;
 
                 .btn_container2 {
                   width: 1%;
@@ -1999,6 +2025,7 @@ html {
                   display: flex;
                   justify-content: space-evenly;
                   align-items: center;
+                  transition: all 0.2s ease-in-out;
 
                   span {
                     height: 100%;
@@ -2087,14 +2114,14 @@ html {
       }
 
       .mensajes_usuarios {
-        top: 0vh;
+        top: -0.2vh;
         right: 0vw;
         margin: 1%;
         width: 4vw;
         height: 4vh;
         display: flex;
         background-color: $Box_admin;
-        padding: .5vw;
+        padding: 0.5vw;
         border-radius: 1vw;
         justify-content: space-evenly;
         align-items: center;
@@ -2136,6 +2163,7 @@ html {
             display: flex;
             justify-content: center;
             align-items: center;
+
             img {
               height: 70%;
             }
@@ -2159,6 +2187,7 @@ html {
             background-color: $Box_admin;
             box-shadow: 0px 0px 10px 0px $Box_admin;
             gap: 1.5vh;
+
             .filter-container {
               width: 100%;
               height: 3.5vh;
@@ -2167,7 +2196,8 @@ html {
               justify-content: center;
               align-items: center;
               flex-direction: column;
-              transition: all .1s ease-in-out;
+              transition: all 0.1s ease-in-out;
+
               .input-field {
                 position: relative;
                 display: flex;
@@ -2189,7 +2219,7 @@ html {
                 input {
                   @include cover;
                   border-radius: 5rem;
-                  font-size: .7vw;
+                  font-size: 0.7vw;
                   display: flex;
                   background-color: $Secundario;
                   color: $Texto;
@@ -2206,7 +2236,7 @@ html {
                 input:focus ~ label,
                 input:not(:placeholder-shown) ~ label {
                   top: -1%;
-                  font-size: .5vw;
+                  font-size: 0.5vw;
                   background: $Principal;
                   color: $Texto;
                   border-radius: 1rem;
@@ -2224,7 +2254,7 @@ html {
                   top: 50%;
                   transform: translateY(-50%);
                   color: $Texto;
-                  font-size: .7vw;
+                  font-size: 0.7vw;
                   pointer-events: none;
                   transition: 0.3s;
 
@@ -2234,6 +2264,7 @@ html {
                 }
               }
             }
+
             .data_mj_user {
               width: 100%;
               height: 100%;
@@ -2278,6 +2309,8 @@ html {
                   overflow-y: hidden;
                   align-items: center;
                   font-family: $Letra2;
+                  transition: all 0.2s ease-in-out;
+
                   .user-div {
                     width: 100%;
                     height: 100%;
@@ -2287,60 +2320,69 @@ html {
                     font-size: 1vw;
                     color: $Box_admin;
                   }
+
                   .user-messages {
                     display: none;
                   }
+
                   &:focus {
                     overflow: hidden;
                     height: 25vh;
-                  .user-div {
-                    display: none;
-                  }
-                  .user-messages {
-                    width: 90%;
-                    height: 90%;
-                    overflow-x: hidden;
-                    overflow-y: scroll;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1.5vh;
-                    .message {
-                      width: 100%;
-                      height: auto;
-                      span {
+
+                    .user-div {
+                      display: none;
+                    }
+
+                    .user-messages {
+                      width: 90%;
+                      height: 90%;
+                      overflow-x: hidden;
+                      overflow-y: scroll;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 1.5vh;
+
+                      .message {
                         width: 100%;
                         height: auto;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: start;
-                        text-align: start;
-                        color: $Box_admin;
-                        strong {
-                          width: auto;
-                          font-size: 0.5vw;
-                          margin: 2%;
-                        }
-                        p {
-                          width: auto;
-                          height: auto;
-                          margin: 0;
-                          font-size: 0.6vw;
-                          padding: .5vw;
-                          border: 1.5px solid $Box_admin;
-                          padding: 3%;
-                          font-weight: 170;
-                          font-size: 0.7vw;
-                          border-radius: 1vw;
-                        }
-                        time {
+
+                        span {
                           width: 100%;
-                          font-size: 0.4vw;
-                          margin: 2%;
+                          height: auto;
+                          display: flex;
+                          flex-direction: column;
+                          justify-content: center;
+                          align-items: start;
+                          text-align: start;
+                          color: $Box_admin;
+
+                          strong {
+                            width: auto;
+                            font-size: 0.5vw;
+                            margin: 2%;
+                          }
+
+                          p {
+                            width: auto;
+                            height: auto;
+                            margin: 0;
+                            font-size: 0.6vw;
+                            padding: 0.5vw;
+                            border: 1.5px solid $Box_admin;
+                            padding: 3%;
+                            font-weight: 170;
+                            font-size: 0.7vw;
+                            border-radius: 1vw;
+                          }
+
+                          time {
+                            width: 100%;
+                            font-size: 0.4vw;
+                            margin: 2%;
+                          }
                         }
                       }
                     }
-                  }
                   }
                 }
               }
@@ -2348,6 +2390,234 @@ html {
           }
         }
       }
+
+      .disponibilidad_sucu {
+        top: -0.2vh;
+        right: 5.4vw;
+        margin: 1%;
+        width: 3vw;
+        height: 5vh;
+        display: flex;
+        background-color: $Box_admin;
+        padding: 0.3vw;
+        border-radius: 1vw;
+        justify-content: space-evenly;
+        align-items: center;
+        position: fixed;
+        z-index: 1000;
+        gap: 5%;
+
+        .icons_sucu {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          input {
+            display: none;
+
+            &:checked ~ label {
+              @include opacity;
+              display: flex;
+            }
+
+            &:checked ~ .sucu_user_info {
+              display: flex;
+              animation: bounceInDown 0.2s ease-in-out forwards;
+            }
+          }
+
+          label {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            border-radius: 10rem;
+            transition: all 0.2s ease-in-out;
+          }
+
+          #label_sucu_user {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+              height: 100%;
+            }
+          }
+
+          .sucu_user_info {
+            position: fixed;
+            display: none;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            width: 15vw;
+            height: 75vh;
+            top: 17vh;
+            left: 18vw;
+            text-align: center;
+            color: $Texto;
+            font-family: $Letra2;
+            font-size: 0.7vw;
+            padding: 0.5vw;
+            background-color: $Box_admin;
+            box-shadow: 0px 0px 10px 0px $Box_admin;
+            gap: 1.5vh;
+            .filter-container {
+              width: 100%;
+              height: 3.5vh;
+              border-radius: 1vw;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              transition: all 0.1s ease-in-out;
+
+              .input-field {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: end;
+                width: 100%;
+                height: 100%;
+                font-family: $Letra2;
+
+                input::-webkit-inner-spin-button,
+                input::-webkit-outer-spin-button {
+                  -webkit-appearance: none;
+                }
+
+                input[type="text"] {
+                  -moz-appearance: textfield;
+                }
+
+                input {
+                  @include cover;
+                  border-radius: 5rem;
+                  font-size: 0.7vw;
+                  display: flex;
+                  background-color: $Secundario;
+                  color: $Texto;
+                  outline: none;
+                  text-align: center;
+                  border: 0;
+
+                  &:focus {
+                    box-shadow: 0px 0px 10px 0px $Resalte;
+                    background: $Resalte;
+                  }
+                }
+
+                input:focus ~ label,
+                input:not(:placeholder-shown) ~ label {
+                  top: -1%;
+                  font-size: 0.5vw;
+                  background: $Principal;
+                  color: $Texto;
+                  border-radius: 1rem;
+                  padding: 0 3%;
+                }
+
+                label {
+                  width: auto;
+                  height: auto;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 0;
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: $Texto;
+                  font-size: 0.7vw;
+                  pointer-events: none;
+                  transition: 0.3s;
+
+                  span {
+                    margin-left: 3px;
+                  }
+                }
+              }
+            }
+            .data_sucu_user {
+              width: 100%;
+              height: 100%;
+              overflow-x: hidden;
+              overflow-y: scroll;
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              flex-direction: column;
+              .sucursal_list {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+                border: none;
+                gap: 1.5vh;
+                .sucursal_item {
+                  width: 90%;
+                  height: 4vh;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  list-style: none;
+                  padding: .3vw;
+                  border-radius: 2vw;
+                  background-color: $Blanco;
+                  .sucursal_info {
+                    width: 50%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    strong {
+                      color: $Box_admin;
+                      font-size: 1vw; 
+                    }
+                  }
+                  .checkbox_container {
+                    width: 20%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    input[type="checkbox"] {
+                      & ~ .sucursal_label {
+                        width: 20px;
+                        height: 20px;
+                        background-color: $Red; 
+                        border-radius: 50%; 
+                        display: inline-block;
+                      }
+                      
+                      // Estado chequeado - círculo rojo
+                      &:checked ~ .sucursal_label {
+                        background-color: $Green; 
+                      }
+                    }
+                    .sucursal_label {
+                      height: 100%;
+                      aspect-ratio: 2/2;
+                      transition: all 0.2s ease-in-out;
+                      &:hover {
+                        @include opacity;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
     }
 
     #pag4 {
@@ -2575,6 +2845,7 @@ html {
 
     #pag5 {
       @include cover;
+
       .btn_regreso {
         width: 2.5vw;
         aspect-ratio: 2/2;
@@ -2605,6 +2876,7 @@ html {
           @include opacity;
         }
       }
+
       .estatus_citas_manager {
         top: 2.5vh;
         left: 45vw;
@@ -2862,6 +3134,7 @@ html {
           }
         }
       }
+
       .cont_manager {
         width: 30vw;
         height: 95vh;
@@ -2874,7 +3147,7 @@ html {
         margin: 0;
         padding: 0;
         gap: 2%;
-        background-color: $Box_admin; 
+        background-color: $Box_admin;
         -webkit-mask: url("../img/Utilidades/top-center2.png") center / contain
             no-repeat,
           linear-gradient(#000000 0 0);
@@ -2882,6 +3155,7 @@ html {
         mask-position: top center;
         mask-composite: exclude;
         border-radius: 3vw;
+
         .cont_citas_manager {
           width: 100%;
           height: 80%;
@@ -2894,6 +3168,7 @@ html {
           box-shadow: 0px 0px 10px 0px $Box_admin;
           margin-top: 15vh;
           gap: 1.5vh;
+
           .const_data {
             width: 100%;
             height: 100%;
@@ -2928,14 +3203,14 @@ html {
               flex-direction: column;
               gap: 1.5vh;
 
-              .vacante_item_citasManager { 
+              .vacante_item_citasManager {
                 width: 95%;
                 height: 5vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 background-color: $Texto;
-                border-radius: .5vw;
+                border-radius: 0.5vw;
                 border: none;
                 cursor: pointer;
                 outline: none;
@@ -2998,7 +3273,7 @@ html {
                     }
                   }
                 }
-                
+
                 .btn-container {
                   width: 20%;
                   height: 100%;
@@ -3039,14 +3314,17 @@ html {
 
                 &:focus {
                   height: 10vh;
+
                   .vacante_info {
                     width: 77%;
                     height: 90%;
                     grid-template-columns: repeat(3, 1fr);
                   }
+
                   .btn_container2 {
                     display: none;
                   }
+
                   .btn-container {
                     display: none;
                   }
@@ -3175,29 +3453,34 @@ html {
         left: 34.7vw;
         width: 30vw;
         height: 10vw;
+
         span {
           p {
             font-size: 1.7vw;
           }
         }
       }
+
       .alerta_admin {
         top: 1.8vh;
         left: 38.5vw;
         width: 22.5vw;
         height: 8.9vw;
+
         span {
           p {
             font-size: 1.7vw;
           }
         }
       }
+
       .alerta_manager {
         top: 2vh;
         left: 41.1vw;
         width: 17.5vw;
         height: 9.5vw;
         border-radius: 4vw;
+
         span {
           p {
             font-size: 1.7vw;
@@ -3205,12 +3488,14 @@ html {
         }
       }
     }
+
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
           width: 35vw;
           height: 10vh;
           font-size: 2vw;
+
           .alert_btn_cont {
             .alert-btn {
               font-size: 1.5vw;
@@ -3218,6 +3503,7 @@ html {
           }
         }
       }
+
       .modal-container {
         .modal-content {
           width: 50vw;
@@ -3225,30 +3511,32 @@ html {
           padding: 2vw;
           border-radius: 5vw;
           font-size: 1vw;
-  
+
           h2 {
             width: 100%;
             margin-bottom: 3vh;
             font-size: 2.5vw;
-            letter-spacing: .3rem;
+            letter-spacing: 0.3rem;
           }
-  
+
           form {
             height: 100%;
             gap: 2vw;
+
             .input-form {
               height: 8vh;
+
               .input {
                 border-radius: 5rem;
                 font-size: 2vw;
               }
-  
+
               label {
                 top: 30vh;
                 left: 25vw;
                 width: 50vw;
                 height: 6vw;
-  
+
                 span {
                   p {
                     font-size: 2vw;
@@ -3257,10 +3545,10 @@ html {
                 }
               }
             }
-  
+
             .modal-buttons {
               gap: 1vw;
-  
+
               button {
                 font-size: 2.5vw;
                 border-radius: 1vw;
@@ -3335,6 +3623,7 @@ html {
                   .custom-dropdown {
                     font-size: 2vw;
                   }
+
                   .input {
                     .select-items {
                       border-radius: 1.5rem 1.5rem 3rem 3rem;
@@ -3370,6 +3659,7 @@ html {
             width: 40vw;
           }
         }
+
         .btn_cita {
           width: 7vw;
           left: 0;
@@ -3382,11 +3672,11 @@ html {
         .btn_regreso {
           width: 5vw;
           aspect-ratio: 2/2;
-          top: -.5%;
+          top: -0.5%;
           left: 1%;
           margin: 2%;
         }
-  
+
         .estatus_vacantes {
           top: 1.8vh;
           left: 38.5vw;
@@ -3394,72 +3684,74 @@ html {
           height: 6.5vw;
           padding: 1.5vw;
           border-radius: 5vw;
-  
+
           .icons_status {
             .status_info {
               width: 95vw;
               height: 85vh;
               top: 11vh;
               left: 1.5vw;
-  
+
               .box_status {
                 p {
                   font-size: 2vw;
                 }
               }
-  
+
               .data_status {
                 ul {
                   .vacante_item_noasistieron,
                   .vacante_item_asistieron,
                   .vacante_item_contratado {
                     border-radius: 1.5vw;
-  
+
                     .btn_container2 {
                       width: 1.5%;
                     }
-  
+
                     .vacante_info {
                       width: 91%;
                       grid-template-columns: repeat(3, 1fr);
-  
+
                       span {
                         font-size: 2vw;
-  
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       width: 7.5%;
                       height: 100%;
-  
+
                       button {
                         width: 3vw;
                       }
                     }
-  
+
                     &:focus {
                       height: 30vh;
-  
+
                       .btn-container {
                         display: none;
                       }
-  
+
                       .vacante_info {
                         width: 95%;
                         height: 95%;
                         grid-template-columns: repeat(3, 1fr);
+
                         span {
                           font-size: 2vw;
+
                           strong {
                             font-size: 2.5vw;
                           }
                         }
                       }
-  
+
                       .btn_container2 {
                         display: none;
                       }
@@ -3470,7 +3762,7 @@ html {
             }
           }
         }
-  
+
         .admin_cont {
           width: 97vw;
           height: calc(var(--vh, 1vh) * 97);
@@ -3480,7 +3772,7 @@ html {
           flex-direction: column-reverse;
           mask-size: 32vw, 10vw, 15vw;
           mask-position: center top, left top, right top;
-  
+
           .cont_rechazados {
             width: 95%;
             height: 40vh;
@@ -3488,69 +3780,71 @@ html {
             overflow: hidden;
             justify-content: start;
             align-items: center;
-  
+
             .box_red {
               width: 100%;
               height: 3vh;
             }
-            .const_data {
 
+            .const_data {
               .no_data {
                 margin-top: 60%;
                 width: 40%;
               }
-  
+
               ul {
-  
                 .vacante_item_red {
                   overflow: hidden;
+
                   .btn_container2 {
                     width: 2%;
                   }
-  
+
                   .vacante_info {
                     width: 95%;
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-  
+
                     span {
                       font-size: 2vw;
-  
+
                       strong {
                         font-size: 2.5vw;
                       }
                     }
                   }
-  
+
                   .btn-container {
                     width: 7.5%;
                     gap: 5%;
+
                     button {
                       border-radius: 5vw;
                       width: 2.7vw;
                     }
                   }
-  
+
                   &:focus {
                     height: 35vh;
-  
+
                     .btn_container2 {
                       display: none;
                     }
-  
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(4, 1fr);
+
                       span {
                         font-size: 2vw;
-    
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       display: none;
                     }
@@ -3559,7 +3853,7 @@ html {
               }
             }
           }
-  
+
           .cont_citas {
             width: 95%;
             height: 40vh;
@@ -3567,70 +3861,73 @@ html {
             overflow: hidden;
             justify-content: start;
             align-items: center;
-  
+
             .box_gray {
               width: 100%;
               height: 3vh;
             }
-            .const_data {
 
+            .const_data {
               .no_data {
                 margin-top: 60%;
                 width: 40%;
               }
-  
+
               ul {
-  
                 .vacante_item_citas {
                   overflow: hidden;
+
                   .btn_container2 {
                     width: 2%;
+
                     .btn-descargar-pdf {
                       height: 100%;
                     }
+
                     .btn-agendar-cita {
                       display: none;
                     }
                   }
-  
+
                   .vacante_info {
                     width: 95%;
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-  
+
                     span {
                       font-size: 2vw;
-  
+
                       strong {
                         font-size: 2.5vw;
                       }
                     }
                   }
-  
+
                   .btn-container {
                     display: none;
                   }
-  
+
                   &:focus {
                     height: 35vh;
-  
+
                     .btn_container2 {
                       display: none;
                     }
-  
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(4, 1fr);
+
                       span {
                         font-size: 2vw;
-    
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       display: none;
                     }
@@ -3639,7 +3936,7 @@ html {
               }
             }
           }
-  
+
           .cont_aceptados {
             width: 95%;
             height: 40vh;
@@ -3647,69 +3944,71 @@ html {
             overflow: hidden;
             justify-content: start;
             align-items: center;
-  
+
             .box_green {
               width: 100%;
               height: 3vh;
             }
-            .const_data {
 
+            .const_data {
               .no_data {
                 margin-top: 60%;
                 width: 40%;
               }
-  
+
               ul {
-  
                 .vacante_item_green {
                   overflow: hidden;
+
                   .btn_container2 {
                     width: 2%;
                   }
-  
+
                   .vacante_info {
                     width: 95%;
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-  
+
                     span {
                       font-size: 2vw;
-  
+
                       strong {
                         font-size: 2.5vw;
                       }
                     }
                   }
-  
+
                   .btn-container {
                     width: 7.5%;
                     gap: 5%;
+
                     button {
                       border-radius: 5vw;
                       width: 2.7vw;
                     }
                   }
-  
+
                   &:focus {
                     height: 35vh;
-  
+
                     .btn_container2 {
                       display: none;
                     }
-  
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(4, 1fr);
+
                       span {
                         font-size: 2vw;
-    
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       display: none;
                     }
@@ -3719,71 +4018,78 @@ html {
             }
           }
         }
-  
+
         .mensajes_usuarios {
           width: 10.5vw;
           height: 5vh;
           border-radius: 2vw;
-  
+
           .icons_mj {
-  
             label {
               border-radius: 10rem;
             }
-  
+
             .mj_user_info {
               width: 95vw;
               height: 85vh;
               top: 11vh;
               left: 1.5vw;
               font-size: 1vw;
+
               .filter-container {
                 width: 100%;
                 height: 4vh;
                 border-radius: 2vw;
+
                 .input-field {
                   input {
                     @include cover;
                     border-radius: 2vw;
                     font-size: 2vw;
                   }
-  
+
                   input:focus ~ label,
                   input:not(:placeholder-shown) ~ label {
                     font-size: 1.5vw;
                   }
-  
+
                   label {
                     font-size: 2vw;
                   }
                 }
               }
+
               .data_mj_user {
                 ul {
                   button {
                     border-radius: 2vw;
+
                     .user-div {
                       font-size: 2vw;
                     }
+
                     &:focus {
                       overflow: hidden;
                       height: 30vh;
-                    .user-messages {
-                      .message {
-                        span {
-                          strong {
-                            font-size: 1vw;
-                          }
-                          p {
-                            font-size: 1.4vw;
-                            border-radius: 2vw;
-                          }
-                          time {
-                            font-size: .9vw;
+
+                      .user-messages {
+                        .message {
+                          span {
+                            strong {
+                              font-size: 1vw;
+                            }
+
+                            p {
+                              font-size: 1.4vw;
+                              border-radius: 2vw;
+                            }
+
+                            time {
+                              font-size: 0.9vw;
+                            }
                           }
                         }
                       }
-                    }
                     }
                   }
                 }
@@ -3800,9 +4106,10 @@ html {
           }
         }
       }
-  
+
       #pag5 {
         @include cover;
+
         .btn_regreso {
           width: 5vw;
           aspect-ratio: 2/2;
@@ -3810,6 +4117,7 @@ html {
           left: 1.5%;
           margin: 2%;
         }
+
         .estatus_citas_manager {
           top: 2vh;
           left: 41.1vw;
@@ -3817,71 +4125,74 @@ html {
           height: 7vw;
           padding: 1.5vw;
           border-radius: 4vw;
+
           .icons_status {
             .status_info {
               width: 95vw;
               height: 85vh;
               top: 11vh;
               left: 1.7vw;
-  
+
               .box_status {
                 p {
                   font-size: 2vw;
                 }
               }
-  
+
               .data_status {
                 ul {
                   .vacante_item_noasistieron,
                   .vacante_item_asistieron,
                   .vacante_item_contratado {
                     border-radius: 2vw;
-  
+
                     .btn_container2 {
                       width: 1.5%;
                     }
-  
+
                     .vacante_info {
                       width: 91%;
                       grid-template-columns: repeat(3, 1fr);
-  
+
                       span {
                         font-size: 2vw;
-  
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       width: 7.5%;
                       height: 100%;
-  
+
                       button {
                         width: 3vw;
                       }
                     }
-  
+
                     &:focus {
                       height: 30vh;
-  
+
                       .btn-container {
                         display: none;
                       }
-  
+
                       .vacante_info {
                         width: 95%;
                         height: 95%;
                         grid-template-columns: repeat(3, 1fr);
+
                         span {
                           font-size: 2vw;
+
                           strong {
                             font-size: 2.5vw;
                           }
                         }
                       }
-  
+
                       .btn_container2 {
                         display: none;
                       }
@@ -3892,6 +4203,7 @@ html {
             }
           }
         }
+
         .cont_manager {
           width: 97vw;
           height: calc(var(--vh, 1vh) * 97);
@@ -3901,31 +4213,37 @@ html {
           flex-direction: column-reverse;
           mask-size: 27vw;
           border-radius: 4vw;
+
           .cont_citas_manager {
             height: 85%;
             border-radius: 1.2vw;
             margin-top: 10vh;
+
             .const_data {
               ul {
-                .vacante_item_citasManager { 
+                .vacante_item_citasManager {
                   border-radius: 1.5vw;
+
                   .btn_container2 {
                     width: 2%;
                   }
+
                   .vacante_info {
                     width: 83%;
                     grid-template-columns: repeat(3, 1fr);
+
                     span {
                       font-size: 2vw;
+
                       strong {
                         font-size: 2.5vw;
                       }
                     }
                   }
-                  
+
                   .btn-container {
                     width: 15%;
-  
+
                     button {
                       width: 5vw;
                     }
@@ -3936,13 +4254,13 @@ html {
           }
         }
       }
-  
+
       #ap_tc {
         animation: bounceInLeft 0.5s ease-in-out forwards;
         gap: 5%;
         align-items: end;
         justify-content: center;
-  
+
         div {
           width: 90%;
           height: 70%;
@@ -3951,7 +4269,7 @@ html {
           gap: 5%;
           color: $Box_admin;
           font-family: $Letra2;
-  
+
           div {
             height: 100%;
             display: flex;
@@ -3964,7 +4282,7 @@ html {
             padding: 2%;
             border-radius: 1vw;
             text-align: center;
-  
+
             p {
               border: 0;
               margin: 0;
@@ -4030,34 +4348,39 @@ html {
   @media screen and (max-width: 500px) {
     .alertas {
       .alerta {
-        top: 3.8vh;
-        left: 34.7vw;
-        width: 30vw;
-        height: 10vw;
+        top: 5vh;
+        left: 24.5vw;
+        width: 50vw;
+        height: 15vw;
+
         span {
           p {
             font-size: 2.6vw;
           }
         }
       }
+
       .alerta_admin {
         top: 1.9vh;
         left: 36.5vw;
         width: 26vw;
         height: 9.5vw;
         border-radius: 4vw;
+
         span {
           p {
             font-size: 2.6vw;
           }
         }
       }
+
       .alerta_manager {
         top: 2.7vh;
         left: 36vw;
         width: 27vw;
         height: 13vw;
         border-radius: 6vw;
+
         span {
           p {
             font-size: 2.6vw;
@@ -4065,14 +4388,17 @@ html {
         }
       }
     }
+
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
           width: 55vw;
           height: 10vh;
           font-size: 3vw;
+
           .alert_btn_cont {
             gap: 2vw;
+
             .alert-btn {
               font-size: 2.5vw;
               border-radius: 1vw;
@@ -4080,30 +4406,32 @@ html {
           }
         }
       }
+
       .modal-container {
         .modal-content {
           width: 80vw;
           height: 40vh;
           padding: 3vw;
           border-radius: 6vw;
-  
+
           h2 {
             font-size: 3.5vw;
           }
-  
+
           form {
             gap: 3vw;
+
             .input-form {
               .input {
                 font-size: 3vw;
               }
-  
+
               label {
                 top: 30vh;
                 left: 10vw;
                 width: 80vw;
                 height: 9vw;
-  
+
                 span {
                   p {
                     font-size: 3vw;
@@ -4112,10 +4440,10 @@ html {
                 }
               }
             }
-  
+
             .modal-buttons {
               gap: 2vw;
-  
+
               button {
                 font-size: 3.5vw;
                 border-radius: 2vw;
@@ -4189,6 +4517,7 @@ html {
                   .custom-dropdown {
                     font-size: 3.5vw;
                   }
+
                   .input {
                     .select-items {
                       border-radius: 1.5rem 1.5rem 2rem 2rem;
@@ -4253,6 +4582,7 @@ html {
             }
           }
         }
+
         .btn_cita {
           width: 8vw;
           left: 0;
@@ -4268,7 +4598,7 @@ html {
           left: 1%;
           margin: 2%;
         }
-  
+
         .estatus_vacantes {
           top: 1.5vh;
           left: 35.5vw;
@@ -4276,72 +4606,74 @@ html {
           height: 8.5vw;
           padding: 2vw;
           border-radius: 5vw;
-  
+
           .icons_status {
             .status_info {
               width: 95vw;
               height: 90vh;
               top: 8vh;
               left: 1.5vw;
-  
+
               .box_status {
                 p {
                   font-size: 3vw;
                 }
               }
-  
+
               .data_status {
                 ul {
                   .vacante_item_noasistieron,
                   .vacante_item_asistieron,
                   .vacante_item_contratado {
                     border-radius: 2vw;
-  
+
                     .btn_container2 {
                       width: 2.5%;
                     }
-  
+
                     .vacante_info {
                       width: 88%;
                       grid-template-columns: repeat(3, 1fr);
-  
+
                       span {
                         font-size: 2.5vw;
-  
+
                         strong {
                           font-size: 3vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       width: 11.5%;
                       height: 100%;
-  
+
                       button {
                         width: 4.5vw;
                       }
                     }
-  
+
                     &:focus {
                       height: 30vh;
-  
+
                       .btn-container {
                         display: none;
                       }
-  
+
                       .vacante_info {
                         width: 95%;
                         height: 95%;
                         grid-template-columns: repeat(3, 1fr);
+
                         span {
                           font-size: 2vw;
+
                           strong {
                             font-size: 2.5vw;
                           }
                         }
                       }
-  
+
                       .btn_container2 {
                         display: none;
                       }
@@ -4352,7 +4684,7 @@ html {
             }
           }
         }
-  
+
         .admin_cont {
           width: 97vw;
           height: calc(var(--vh, 1vh) * 97);
@@ -4362,7 +4694,7 @@ html {
           flex-direction: column-reverse;
           mask-size: 40vw, 15vw, 20vw;
           mask-position: center top, left top, right top;
-  
+
           .cont_rechazados {
             width: 95%;
             height: 40vh;
@@ -4370,24 +4702,23 @@ html {
             overflow: hidden;
             justify-content: start;
             align-items: center;
-  
+
             .box_red {
               width: 100%;
               height: 3vh;
             }
-            .const_data {
 
+            .const_data {
               .no_data {
                 margin-top: 60%;
                 width: 40%;
               }
-  
+
               ul {
-  
                 .vacante_item_red {
                   overflow: hidden;
                   border-radius: 1.5vw;
-  
+
                   .btn_container2 {
                     width: 2.5%;
                   }
@@ -4413,20 +4744,20 @@ html {
                       width: 4.5vw;
                     }
                   }
-  
+
                   &:focus {
                     height: 35vh;
-  
+
                     .btn_container2 {
                       display: none;
                     }
-  
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(4, 1fr);
                     }
-  
+
                     .btn-container {
                       display: none;
                     }
@@ -4435,7 +4766,7 @@ html {
               }
             }
           }
-  
+
           .cont_citas {
             width: 95%;
             height: 40vh;
@@ -4443,33 +4774,35 @@ html {
             overflow: hidden;
             justify-content: start;
             align-items: center;
-  
+
             .box_gray {
               width: 100%;
               height: 3vh;
             }
-            .const_data {
 
+            .const_data {
               .no_data {
                 margin-top: 60%;
                 width: 40%;
               }
-  
+
               ul {
-  
                 .vacante_item_citas {
                   overflow: hidden;
                   border-radius: 1.5vw;
+
                   .btn_container2 {
                     width: 2%;
+
                     .btn-descargar-pdf {
                       height: 100%;
                     }
+
                     .btn-agendar-cita {
                       display: none;
                     }
                   }
-  
+
                   .vacante_info {
                     width: 98%;
                     grid-template-columns: repeat(3, 1fr);
@@ -4482,31 +4815,32 @@ html {
                       }
                     }
                   }
-  
+
                   .btn-container {
                     display: none;
                   }
-  
+
                   &:focus {
                     height: 10vh;
-  
+
                     .btn_container2 {
                       display: none;
                     }
-  
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(4, 1fr);
+
                       span {
                         font-size: 2vw;
-    
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       display: none;
                     }
@@ -4515,7 +4849,7 @@ html {
               }
             }
           }
-  
+
           .cont_aceptados {
             width: 95%;
             height: 40vh;
@@ -4523,24 +4857,23 @@ html {
             overflow: hidden;
             justify-content: start;
             align-items: center;
-  
+
             .box_green {
               width: 100%;
               height: 3vh;
             }
-            .const_data {
 
+            .const_data {
               .no_data {
                 margin-top: 60%;
                 width: 40%;
               }
-  
+
               ul {
-  
                 .vacante_item_green {
                   overflow: hidden;
                   border-radius: 1.5vw;
-  
+
                   .btn_container2 {
                     width: 2.5%;
                   }
@@ -4566,27 +4899,28 @@ html {
                       width: 4.5vw;
                     }
                   }
-  
+
                   &:focus {
                     height: 35vh;
-  
+
                     .btn_container2 {
                       display: none;
                     }
-  
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(4, 1fr);
+
                       span {
                         font-size: 2vw;
-    
+
                         strong {
                           font-size: 2.5vw;
                         }
                       }
                     }
-  
+
                     .btn-container {
                       display: none;
                     }
@@ -4596,71 +4930,78 @@ html {
             }
           }
         }
-  
+
         .mensajes_usuarios {
           width: 15vw;
-          top: .4%;
+          top: 0.4%;
           height: 4.5vh;
           border-radius: 3vw;
-  
+
           .icons_mj {
-  
             label {
               border-radius: 10rem;
             }
-  
+
             .mj_user_info {
               width: 95vw;
               height: 85vh;
               top: 8vh;
               left: 1.5vw;
+
               .filter-container {
                 width: 100%;
                 height: 4vh;
                 border-radius: 2vw;
+
                 .input-field {
                   input {
                     @include cover;
                     border-radius: 2vw;
                     font-size: 2.5vw;
                   }
-  
+
                   input:focus ~ label,
                   input:not(:placeholder-shown) ~ label {
                     font-size: 2vw;
                   }
-  
+
                   label {
                     font-size: 2.5vw;
                   }
                 }
               }
+
               .data_mj_user {
                 ul {
                   button {
                     border-radius: 2.5vw;
+
                     .user-div {
                       font-size: 2.5vw;
                     }
+
                     &:focus {
                       overflow: hidden;
                       height: 30vh;
-                    .user-messages {
-                      .message {
-                        span {
-                          strong {
-                            font-size: 1.5vw;
-                          }
-                          p {
-                            font-size: 1.9vw;
-                            border-radius: 2vw;
-                          }
-                          time {
-                            font-size: 1.3vw;
+
+                      .user-messages {
+                        .message {
+                          span {
+                            strong {
+                              font-size: 1.5vw;
+                            }
+
+                            p {
+                              font-size: 1.9vw;
+                              border-radius: 2vw;
+                            }
+
+                            time {
+                              font-size: 1.3vw;
+                            }
                           }
                         }
                       }
-                    }
                     }
                   }
                 }
@@ -4705,14 +5046,16 @@ html {
           }
         }
       }
-  
+
       #pag5 {
         @include cover;
+
         .btn_regreso {
           width: 8vw;
           left: 2vw;
           top: 1.5vh;
         }
+
         .estatus_citas_manager {
           top: 2.2vh;
           left: 35vw;
@@ -4720,6 +5063,7 @@ html {
           height: 12vw;
           padding: 2vw;
           border-radius: 7vw;
+
           .icons_status {
             .status_info {
               .box_status {
@@ -4727,53 +5071,59 @@ html {
                   font-size: 3vw;
                 }
               }
-  
+
               .data_status {
                 ul {
                   .vacante_item_citasManagerNoasistio,
                   .vacante_item_citasManagerAsistio {
                     border-radius: 2vw;
+
                     .btn_container2 {
                       width: 3%;
                     }
+
                     .vacante_info {
                       width: 78%;
                       grid-template-columns: repeat(2, 1fr);
+
                       span {
                         font-size: 3vw;
+
                         strong {
                           font-size: 3.5vw;
                         }
                       }
                     }
-                    
+
                     .btn-container {
                       width: 25%;
-    
+
                       button {
                         width: 8vw;
                       }
                     }
-  
+
                     &:focus {
                       height: 15vh;
-  
+
                       .btn-container {
                         display: none;
                       }
-  
+
                       .vacante_info {
                         width: 95%;
                         height: 95%;
                         grid-template-columns: repeat(3, 1fr);
+
                         span {
                           font-size: 2vw;
+
                           strong {
                             font-size: 2.5vw;
                           }
                         }
                       }
-  
+
                       .btn_container2 {
                         display: none;
                       }
@@ -4784,31 +5134,37 @@ html {
             }
           }
         }
+
         .cont_manager {
           mask-size: 45vw;
           border-radius: 5vw;
+
           .cont_citas_manager {
             .const_data {
               ul {
-                .vacante_item_citasManager { 
+                .vacante_item_citasManager {
                   border-radius: 2vw;
+
                   .btn_container2 {
                     width: 3%;
                   }
+
                   .vacante_info {
                     width: 78%;
                     grid-template-columns: repeat(2, 1fr);
+
                     span {
                       font-size: 3vw;
+
                       strong {
                         font-size: 3.5vw;
                       }
                     }
                   }
-                  
+
                   .btn-container {
                     width: 25%;
-  
+
                     button {
                       width: 8vw;
                     }

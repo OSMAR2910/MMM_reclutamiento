@@ -14,6 +14,7 @@ import {
   app,
   get
 } from "./firebase.js";
+import { personalizarSelect } from "./main.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -41,6 +42,11 @@ const alertasConfig = {
   alerta_18: 2000,
   alerta_19: 2000,
   alerta_20: 2000,
+  alerta_21: 2000,
+  alerta_22: 2000,
+  alerta_23: 2000,
+  alerta_24: 2000,
+  alerta_25: 2000,
 };
 
 // Variable para almacenar el timeout actual
@@ -668,6 +674,8 @@ function mostrarDatos() {
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   }
+  // Mostrar sucursales disponibles con checkboxes
+  mostrarSucursalesDisponibles();
 }
 
 function mostrarMensajesUsuarios() {
@@ -769,6 +777,160 @@ function mostrarMensajesUsuarios() {
       renderMessages(snapshot, filterText);
     });
   });
+}
+// Función para mostrar sucursales disponibles en data_sucu_user con checkboxes
+function mostrarSucursalesDisponibles() {
+  const dataSucuUser = document.getElementById("data_sucu_user");
+  const filterInput = document.getElementById("sucu_filter"); // Referencia al input de filtro
+
+  if (!dataSucuUser) {
+    console.error("Elemento 'data_sucu_user' no encontrado en el DOM.");
+    return;
+  }
+
+  if (!filterInput) {
+    console.error("Elemento 'sucu_filter' no encontrado en el DOM.");
+    return;
+  }
+
+  dataSucuUser.innerHTML = "<p>Cargando sucursales...</p>";
+
+  const disSucuRef = ref(database, "disSucu");
+
+  // Función para renderizar las sucursales con filtro
+  function renderizarSucursales(sucursales, filtro = '') {
+    dataSucuUser.innerHTML = "";
+    
+    if (!sucursales) {
+      dataSucuUser.innerHTML = "<div class='no_data'>No hay sucursales disponibles</div>";
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    const ul = document.createElement("ul");
+    ul.classList.add("sucursal_list");
+
+    Object.entries(sucursales)
+      .filter(([nombre]) => nombre.toLowerCase().includes(filtro.toLowerCase()))
+      .forEach(([nombre, disponible]) => {
+        const li = document.createElement("li");
+        li.classList.add("sucursal_item");
+
+        const sucursalDiv = document.createElement("div");
+        sucursalDiv.classList.add("sucursal_info");
+        sucursalDiv.innerHTML = `<strong>${nombre}</strong>`;
+
+        const checkboxId = `checkbox-${nombre}`;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = checkboxId;
+        checkbox.checked = disponible;
+        checkbox.classList.add("sucursal_checkbox");
+
+        const label = document.createElement("label");
+        label.htmlFor = checkboxId;
+        label.classList.add("sucursal_label");
+
+        checkbox.addEventListener("change", () => {
+          const nuevoEstado = checkbox.checked;
+          const sucursalRef = ref(database, `disSucu/${nombre}`);
+
+          set(sucursalRef, nuevoEstado)
+            .then(() => {
+              console.log(`Estado de ${nombre} actualizado a ${nuevoEstado}`);
+              mostrarAlerta("alertas");
+              mostrarAlerta("alerta_20");
+            })
+            .catch((error) => {
+              console.error("Error al actualizar estado:", error);
+              mostrarAlerta("alertas");
+              mostrarAlerta("alerta_21");
+            });
+        });
+
+        const checkboxContainer = document.createElement("div");
+        checkboxContainer.classList.add("checkbox_container");
+        checkboxContainer.appendChild(checkbox);
+        checkboxContainer.appendChild(label);
+
+        li.appendChild(sucursalDiv);
+        li.appendChild(checkboxContainer);
+        ul.appendChild(li);
+      });
+
+    fragment.appendChild(ul);
+    dataSucuUser.appendChild(fragment);
+  }
+
+  // Cargar datos iniciales y agregar el filtro en tiempo real
+  get(disSucuRef)
+    .then((snapshot) => {
+      const sucursales = snapshot.val();
+      renderizarSucursales(sucursales); // Renderizado inicial
+
+      // Escuchar cambios en el input de filtro
+      filterInput.addEventListener('input', (e) => {
+        renderizarSucursales(sucursales, e.target.value);
+      });
+    })
+    .catch((error) => {
+      console.error("Error al leer de Firebase:", error);
+      dataSucuUser.innerHTML = "<div class='error'>Error al cargar sucursales</div>";
+    });
+}
+
+// Función para cargar y personalizar sucursales disponibles desde Firebase
+function cargarSucursalesDisponibles() {
+  const sucursalSelect = document.getElementById("sucursal");
+  if (!sucursalSelect) {
+    console.error("❌ No se encontró el select de sucursales.");
+    return;
+  }
+
+  const disSucuRef = ref(database, "disSucu");
+
+  // ✅ 1. Eliminar cualquier personalización previa para evitar duplicados
+  const existingCustomSelect = sucursalSelect.parentNode.querySelector(".custom-select");
+  if (existingCustomSelect) {
+    existingCustomSelect.remove();
+  }
+
+  sucursalSelect.style.display = ""; // Asegurar visibilidad antes de personalizar
+
+  onValue(disSucuRef, (snapshot) => {
+    if (snapshot.exists()) {
+      const sucursales = snapshot.val();
+      console.log("🔹 Sucursales obtenidas de Firebase:", sucursales);
+
+      // ✅ 2. Limpiar opciones dinámicas y agregar un placeholder
+      sucursalSelect.innerHTML = '<option value="" disabled selected>Sucursal</option>';
+
+      // ✅ 3. Agregar las sucursales disponibles
+      Object.entries(sucursales).forEach(([nombre, disponible]) => {
+        if (disponible) {
+          const option = document.createElement("option");
+          option.value = nombre;
+          option.textContent = nombre;
+          sucursalSelect.appendChild(option);
+        }
+      });
+
+      // ✅ 4. Aplicar personalización después de que el select tenga opciones
+      setTimeout(() => {
+        personalizarSelect(sucursalSelect);
+      }, 50);
+    } else {
+      console.warn("⚠️ No se encontraron sucursales en Firebase.");
+      sucursalSelect.innerHTML = '<option value="" disabled selected>No hay sucursales disponibles</option>';
+    }
+  });
+
+  // ✅ 5. Observar cambios en las opciones del select
+  const observer = new MutationObserver(() => {
+    personalizarSelect(sucursalSelect);
+  });
+
+  observer.observe(sucursalSelect, { childList: true });
 }
 
 // 📌 Función para crear botones dinámicamente
@@ -1192,4 +1354,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Asignar eventos a ambos formularios
   asignarEventos("admin");
   asignarEventos("manager");
+  cargarSucursalesDisponibles();
 });

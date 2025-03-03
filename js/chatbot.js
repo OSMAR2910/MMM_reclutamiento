@@ -4,12 +4,12 @@ import { app, database, ref, push, set } from "./firebase.js";
 let intents = [];
 let isWelcomeMessageSent = false;
 let messageBuffer = [];
-let userName = localStorage.getItem("userName");
+let userName = localStorage.getItem("userName") || "Humano"; // Valor por defecto "Humano"
 let userIdName = localStorage.getItem("userIdName");
 
 // Generar un ID aleatorio simple
 function generateRandomId() {
-  return Math.random().toString(36).substring(2, 8); // Genera un ID de 6 caracteres (ej. "abc123")
+  return Math.random().toString(36).substring(2, 8);
 }
 
 // Cargar intents desde Netlify
@@ -69,14 +69,12 @@ function getResponse(message) {
   const bestIntent = getBestIntent(message);
   if (bestIntent) {
     let response = bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
-    // Reemplazar ${userName} con el valor de localStorage
-    const storedUserName = localStorage.getItem("userName") || "Humano";
-    return response.replace("${userName}", storedUserName);
+    // Reemplazar ${userName} con el valor actual de userName
+    return response.replace("${userName}", userName);
   } else {
     console.log("🚫 No encontré una respuesta adecuada para:", message);
     saveUnansweredMessage(message);
-    const storedUserName = localStorage.getItem("userName") || "Humano";
-    return `¡Glu-glu! No estoy seguro de lo que quieres decir, ${storedUserName}. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨`;
+    return `¡Glu-glu! No estoy seguro de lo que quieres decir, ${userName}. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨`;
   }
 }
 
@@ -163,21 +161,23 @@ function sendWelcomeMessage() {
 
   const saludosIntent = intents.find(intent => intent.tag === "Saludos");
   if (saludosIntent && saludosIntent.responses && saludosIntent.responses.length > 0) {
-    const randomSaludo = saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)];
+    let randomSaludo = saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)];
+    randomSaludo = randomSaludo.replace("${userName}", userName); // Reemplazar en el mensaje de bienvenida
     showTypingIndicator();
     setTimeout(() => {
       document.querySelector(".typing")?.remove();
       sendMessage("bot", randomSaludo, true);
     }, 2000);
   } else {
-    sendMessage("bot", "¡Hola! ¿En qué puedo ayudarte? 😃", true);
+    sendMessage("bot", `¡Hola, ${userName}! ¿En qué puedo ayudarte? 😃`, true);
   }
 }
 
 // Obtener respuesta aleatoria para 'tienes_preguntas'
 function getRandomTienesPreguntasResponse() {
   const tienesPreguntasIntent = intents.find(intent => intent.tag === "tienes_preguntas");
-  return tienesPreguntasIntent?.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)] || "¿En qué puedo ayudarte?";
+  let response = tienesPreguntasIntent?.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)] || "¿En qué puedo ayudarte?";
+  return response.replace("${userName}", userName); // Reemplazar aquí también
 }
 
 // Actualizar mensaje en 'pavo_msj'
@@ -199,19 +199,18 @@ function handleNameForm() {
     chatForm.style.display = "none";
     nameForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      userName = document.getElementById("user_name").value.trim();
-      if (userName) {
-        const randomId = generateRandomId();
-        userIdName = `${randomId}-${userName}`;
-        localStorage.setItem("userIdName", userIdName);
-        localStorage.setItem("userName", userName);
-        userInfoContainer.style.display = "none";
-        chatForm.style.display = "flex";
-        updateUserIdDisplay();
-        sendWelcomeMessage();
-      }
+      userName = document.getElementById("user_name").value.trim() || "Humano"; // "Humano" si no hay entrada
+      const randomId = generateRandomId();
+      userIdName = `${randomId}-${userName}`;
+      localStorage.setItem("userIdName", userIdName);
+      localStorage.setItem("userName", userName); // Guardar el nombre
+      userInfoContainer.style.display = "none";
+      chatForm.style.display = "flex";
+      updateUserIdDisplay();
+      sendWelcomeMessage();
     });
   } else {
+    userName = localStorage.getItem("userName") || "Humano"; // Recuperar o usar "Humano"
     userInfoContainer.style.display = "none";
     chatForm.style.display = "flex";
     updateUserIdDisplay();
@@ -264,10 +263,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     input.value = "";
   });
-  // Guardar mensajes pendientes al salir de la página
+
   window.addEventListener("beforeunload", () => {
     if (messageBuffer.length > 0) {
-      saveMessagesToFirebase(); // Guardar los mensajes restantes
+      saveMessagesToFirebase();
     }
   });
 });

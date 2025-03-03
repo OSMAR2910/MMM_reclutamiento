@@ -149,6 +149,18 @@
         <p>¡Genial! Descargaste su información correctamente 🎉</p>
       </span>
     </div>
+    <!-- Ya cambiaste el estado de la sucursal 🔁 -->
+    <div class="alerta_admin" id="alerta_20">
+      <span>
+        <p>Ya cambiaste el estado de la sucursal 🔁</p>
+      </span>
+    </div>
+    <!-- Ocurrió un problema al actualizar la sucursal 😕." -->
+    <div class="alerta_admin" id="alerta_21">
+      <span>
+        <p>Ocurrió un problema al actualizar la sucursal 😕."</p>
+      </span>
+    </div>
     <!-- ¡Hola!😁, aqui estan todos los vacantes disponibles 🗃️ -->
     <div class="alerta_manager" id="alerta_14">
       <span>
@@ -258,17 +270,17 @@
       <ul>
         <div class="circulo_icon"></div>
         <li>
-          <button onclick="btn_form()">
+          <button id="btn_form">
             <img src="img/Logos/interfaces/icons/usuario2.svg" alt="Usuario" />
           </button>
         </li>
         <li>
-          <button class="iconbutton" onclick="btn_home()">
+          <button class="iconbutton" id="btn_home">
             <img src="img/Logos/Logo (3).svg" alt="Logo" />
           </button>
         </li>
         <li>
-          <button onclick="btn_admin()">
+          <button id="btn_admin">
             <img src="img/Logos/interfaces/icons/usuarios.svg" alt="Usuarios" />
           </button>
         </li>
@@ -285,7 +297,7 @@
       <div class="mancha2">
         <img src="img/Utilidades/mancha2.png" alt="mancha2" />
       </div>
-      <button class="ap_tc" onclick="btn_aptc()">
+      <button class="ap_tc" id="btnAptc">
         Aviso de Privacidad y Términos y Condiciones
       </button>
     </section>
@@ -403,25 +415,9 @@
               </div>
               <div class="input-form">
                 <select name="sucursal" class="input" id="sucursal" required>
-                  <option value="" disabled selected>Sucursal</option>
-                  <option value="Playas">Playas</option>
-                  <option value="Altamira">Altamira</option>
-                  <option value="Libertad">Libertad</option>
-                  <option value="Sierra">Sierra</option>
-                  <option value="Cacho">Cacho</option>
-                  <option value="Hipódromo">Hipódromo</option>
-                  <option value="Santa fe">Santa fe</option>
-                  <option value="Villa Fontana">Villa Fontana</option>
-                  <option value="Huertas">Huertas</option>
-                  <option value="Monarca">Monarca</option>
-                  <option value="Otay">Otay</option>
-                  <option value="Rosarito">Rosarito</option>
-                  <option value="Florido">Florido</option>
-                  <option value="Tecate">Tecate</option>
-                  <option value="San ysidro">San ysidro</option>
                 </select>
                 <label for="sucursal"><span>
-                    <p>Elige la sucursal en la que deseas postularte 🏬.</p>
+                    <p>Elige la sucursal que actualmente ocupa vacantes 🏬.</p>
                   </span></label>
               </div>
               <div class="input-form">
@@ -572,8 +568,8 @@
           </div>
         </div>
       </div>
-      <button class="btn_cita" onclick="admin_manager()">
-        <img src="img/Logos/interfaces/icons/cita.svg" alt="" cita>
+      <button class="btn_cita" id="btnAdminManager">
+        <img src="img/Logos/interfaces/icons/cita.svg" alt="cita">
       </button>
     </section>
     <section class="pages" id="pag3">
@@ -642,6 +638,23 @@
               </div>
             </div>
             <div class="data_mj_user" id="data_mj_user"></div>
+          </div>
+        </div>
+      </div>
+      <div class="disponibilidad_sucu">
+        <div class="icons_sucu">
+          <input type="checkbox" id="sucu_user" />
+          <label id="label_sucu_user" for="sucu_user">
+            <img src="img/Logos/interfaces/icons/rama.svg" alt="sucu">
+          </label>
+          <div class="sucu_user_info">
+            <div class="filter-container">
+              <div class="input-field">
+                <input type="text" id="sucu_filter" class="filter_sucu" placeholder=" " spellcheck="false">
+                <label><span>Buscar sucursal..</span></label>
+              </div>
+            </div>
+            <div class="data_sucu_user" id="data_sucu_user"></div>
           </div>
         </div>
       </div>
@@ -859,7 +872,7 @@
   <script type="module" src="js/firebase.js" defer></script>
   <script type="module" src="js/chatbot.js" defer></script>
   <script type="module" src="js/database.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script type="module" src="js/main.js" defer></script>
 </body>
 
 </html>

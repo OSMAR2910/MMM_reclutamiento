@@ -2,17 +2,16 @@
 window.onload = () => {
   const loader = document.getElementById("loader");
   if (loader) {
-      loader.style.visibility = "hidden";
-      loader.style.opacity = "0";
+    loader.style.visibility = "hidden";
+    loader.style.opacity = "0";
   }
 
   // Configuración inicial inmediata
   elements.home?.classList.add("agregar_dis");
   elements.chatbot?.classList.add("agregar_dis");
 
-  // Inicializar la app con el valor actual de window.env
+  // Inicializar la app
   initializeApp();
-  // No need to call updateDesactiveMode here anymore
 };
 
 // Redimensionar y manejar viewport (optimizado para iOS)
@@ -30,7 +29,6 @@ function adjustFixedElements() {
   }
 }
 
-// Debounce para optimizar eventos de viewport
 function debounce(func, wait = 16) {
   let timeout;
   return (...args) => {
@@ -132,7 +130,6 @@ const alertasConfig = {
   alerta_8: 2000,
 };
 
-// Variable para almacenar el timeout actual
 let timeoutAlarma;
 
 const mostrarAlerta = (alertaId) => {
@@ -197,21 +194,32 @@ function toggleView({
 // Funciones para cada botón
 function btn_home() {
   toggleView({ home: true });
+  console.log("Botón Home clicado");
 }
+
 function btn_form() {
   toggleView({ header: true, form: true, aside: true });
+  console.log("Botón Form clicado");
 }
+
 function btn_admin() {
   toggleView({ header: true, login: true, aside: true });
+  console.log("Botón Admin clicado");
 }
+
 function admin_manager() {
   toggleView({ header: true, login_manager: true, aside: true });
+  console.log("Botón Admin Manager clicado");
 }
+
 function btn_admin_regreso() {
   location.reload();
+  console.log("Botón Regreso clicado");
 }
+
 function btn_aptc() {
   toggleView({ header: true, ap_tc: true, aside: true });
+  console.log("Botón APTC clicado");
 }
 
 // Obtener todos los formularios
@@ -243,25 +251,19 @@ function validateForm() {
   return true;
 }
 
-// Agregar funcionalidad para mostrar/ocultar contraseñas
-document
-  .querySelectorAll('.input-field input[type="password"]')
-  .forEach((input) => {
-    const toggleButton = document.createElement("button");
-    toggleButton.type = "button";
-    toggleButton.textContent = "";
-    toggleButton.classList.add("toggle-password");
-    toggleButton.setAttribute("aria-label", "Toggle password visibility");
-    input.parentNode.appendChild(toggleButton);
+document.querySelectorAll('.input-field input[type="password"]').forEach((input) => {
+  const toggleButton = document.createElement("button");
+  toggleButton.type = "button";
+  toggleButton.textContent = "";
+  toggleButton.classList.add("toggle-password");
+  toggleButton.setAttribute("aria-label", "Toggle password visibility");
+  input.parentNode.appendChild(toggleButton);
 
-    toggleButton.addEventListener("click", () =>
-      input.type === "password"
-        ? (input.type = "text")
-        : (input.type = "password")
-    );
-  });
+  toggleButton.addEventListener("click", () =>
+    input.type === "password" ? (input.type = "text") : (input.type = "password")
+  );
+});
 
-// Agregar barra de progreso
 function initProgressBar() {
   const contForm = document.querySelector(".cont_form");
   if (contForm) {
@@ -299,83 +301,145 @@ function showNextForm() {
   updateProgress();
 }
 
-function enviar_fo() {
-  if (!validateForm()) return;
+const FORM_KEY = 'formVac';
 
+function enviar_fo() {
+  const isFormSubmitted = localStorage.getItem(FORM_KEY) === 'true';
+  console.log('¿Formulario ya enviado?', isFormSubmitted);
+
+  if (isFormSubmitted) {
+    console.log('Mostrando estado de formulario ya enviado');
+    forms.forEach((form) => {
+      form.style.display = "none";
+      console.log('Ocultando formulario:', form);
+    });
+    if (label_btnEnviar) label_btnEnviar.style.display = "none";
+    if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+    if (exito) {
+      exito.style.display = "flex";
+      console.log('Mostrando mensaje de éxito');
+    }
+    mostrarAlerta("alerta_2");
+    return;
+  }
+
+  if (!validateForm()) {
+    console.log('Validación fallida');
+    return;
+  }
+
+  console.log('Formulario válido, procesando envío');
   forms.forEach((form) => (form.style.display = "none"));
-  label_btnEnviar.style.display = "none";
-  document.getElementById("progreso").style.display = "none";
-  exito.style.display = "flex";
+  if (label_btnEnviar) label_btnEnviar.style.display = "none";
+  if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+  if (exito) exito.style.display = "flex";
+  
+  localStorage.setItem(FORM_KEY, 'true');
+  console.log('Formulario guardado como enviado en localStorage');
 }
 
 label_btnNext?.addEventListener("click", showNextForm);
 label_btnEnviar?.addEventListener("click", enviar_fo);
 
 // Personalización de selects
-document.querySelectorAll("select").forEach((select) => {
+function personalizarSelect(select) {
+  // ✅ 1. Eliminar cualquier personalización previa antes de aplicar una nueva
+  const existingCustomSelect = select.parentNode.querySelector(".custom-select");
+  if (existingCustomSelect) {
+    existingCustomSelect.remove();
+  }
+
+  // ✅ 2. Obtener el label correcto
+  const label = document.querySelector(`label[for='${select.id}']`);
+  if (label) {
+    label.classList.add("custom-label");
+    label.style.display = "none"; // 🔥 Ocultar por defecto
+  }
+
+  // ✅ 3. Crear el contenedor personalizado para el select
   const customSelect = document.createElement("div");
   customSelect.classList.add("custom-select", "input");
 
-  const label = document.querySelector(`label[for='${select.id}']`);
-  label?.classList.add("custom-label");
-
+  // ✅ 4. Crear el elemento visual que simula el select
   const selectedDiv = document.createElement("div");
   selectedDiv.classList.add("select-selected");
-  selectedDiv.textContent = select.options[select.selectedIndex].text;
+  selectedDiv.textContent = select.options[select.selectedIndex]?.text || "Selecciona una opción";
   selectedDiv.setAttribute("tabindex", "0");
 
+  // ✅ 5. Contenedor para las opciones
   const optionsDiv = document.createElement("div");
   optionsDiv.classList.add("select-items");
 
+  let isClickInside = false; // Previene que el blur cierre el menú antes de seleccionar
+
+  // ✅ 6. Crear opciones dentro del select personalizado
   Array.from(select.options).forEach((option, index) => {
     const optionDiv = document.createElement("div");
     optionDiv.textContent = option.text;
-    if (option.disabled) optionDiv.classList.add("disabled");
-    else {
-      optionDiv.addEventListener("click", () => {
+
+    if (option.disabled) {
+      optionDiv.classList.add("disabled");
+    } else {
+      optionDiv.addEventListener("mousedown", (event) => {
+        isClickInside = true; // 🚀 Evita el cierre prematuro del menú
+        event.preventDefault();
+
         select.selectedIndex = index;
         selectedDiv.textContent = option.text;
         select.dispatchEvent(new Event("change"));
         optionsDiv.style.display = "none";
-        if (label) {
-          label.style.display = "none";
-        }
+
+        if (label) label.style.display = "none"; // 🔥 Ocultar label tras selección
       });
     }
     optionsDiv.appendChild(optionDiv);
   });
 
+  // ✅ 7. Mostrar el label cuando el select tiene foco
   selectedDiv.addEventListener("focus", () => {
     optionsDiv.style.display = "block";
-    if (label) {
-      label.style.display = "flex";
-    }
+    if (label) label.style.display = "flex"; // 🔥 Mostrar el label correctamente
+  });
+
+  selectedDiv.addEventListener("click", () => {
+    optionsDiv.style.display = "block";
+    if (label) label.style.display = "flex"; // 🔥 Mostrar el label al hacer clic
+  });
+
+  // ✅ 8. Cerrar el menú solo si no se está seleccionando una opción
+  selectedDiv.addEventListener("blur", () => {
+    setTimeout(() => {
+      if (!isClickInside) {
+        optionsDiv.style.display = "none";
+        if (label) label.style.display = "none";
+      }
+      isClickInside = false;
+    }, 100);
   });
 
   document.addEventListener("click", (event) => {
     if (!customSelect.contains(event.target)) {
       optionsDiv.style.display = "none";
-      if (label && !select.value) {
-        label.style.display = "none";
-        label.style.display = "none";
-      }
+      if (label) label.style.display = "none";
     }
   });
 
+  // ✅ 9. Agregar todo al DOM
   customSelect.appendChild(selectedDiv);
   customSelect.appendChild(optionsDiv);
   select.parentNode.insertBefore(customSelect, select);
-  select.style.display = "none";
-});
+  select.style.display = "none"; // Ocultar el select nativo
+}
+
 
 // Función de checkboxes
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded");
+
   const checkboxes = [
-    ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
-    ...document.querySelectorAll(
-      '.estatus_citas_manager input[type="checkbox"]'
-    ),
+    ...document.querySelectorAll('.disponibilidad_sucu input[type="checkbox"]'),
     ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
+    ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
   ];
 
   checkboxes.forEach((checkbox) => {
@@ -387,9 +451,33 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Personalizar todos los selects al cargar la página
+  document.querySelectorAll("select").forEach((select) => {
+    personalizarSelect(select);
+  });
+
+  // Asignar eventos a los botones
+  const btnHome = document.getElementById("btn_home");
+  const btnForm = document.getElementById("btn_form");
+  const btnAdmin = document.getElementById("btn_admin");
+  const btnAdminManager = document.getElementById("btnAdminManager");
+  const btnAptc = document.getElementById("btnAptc");
+
+  if (btnHome) btnHome.addEventListener("click", btn_home);
+  if (btnForm) btnForm.addEventListener("click", btn_form);
+  if (btnAdmin) btnAdmin.addEventListener("click", btn_admin);
+  if (btnAdminManager) btnAdminManager.addEventListener("click", admin_manager);
+  if (btnAptc) btnAptc.addEventListener("click", btn_aptc);
+
+  // Verificación de que los botones existen
+  console.log("btn_home:", btnHome);
+  console.log("btn_form:", btnForm);
+  console.log("btn_admin:", btnAdmin);
+  console.log("btnAdminManager:", btnAdminManager);
+  console.log("btnAptc:", btnAptc);
 });
 
-// Agregar número de país
 function initializeCountryCode() {
   const numeroInput = document.getElementById("numero");
   if (!numeroInput) return;
@@ -459,10 +547,34 @@ function initializeCountryCode() {
   });
 }
 
-// Al final, reemplaza tu `initializeApp`
 function initializeApp() {
+  console.log('Inicializando la aplicación');
+  
+  if (localStorage.getItem(FORM_KEY) === null) {
+    localStorage.setItem(FORM_KEY, 'false');
+    console.log('Estableciendo formVac como false por primera vez');
+  }
+  
   initForm();
   initProgressBar();
   updateProgress();
   initializeCountryCode();
+  
+  const isFormSubmitted = localStorage.getItem(FORM_KEY) === 'true';
+  console.log('Estado inicial del formulario:', isFormSubmitted);
+  
+  if (isFormSubmitted) {
+    console.log('Configurando vista para formulario ya enviado');
+    forms.forEach((form) => (form.style.display = "none"));
+    if (label_btnEnviar) label_btnEnviar.style.display = "none";
+    if (label_btnNext) label_btnNext.style.display = "none";
+    if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+    if (exito) {
+      exito.style.display = "flex";
+      console.log('Mostrando mensaje de éxito en inicialización');
+    }
+  }
 }
+
+// Exportar la función personalizarSelect para que database.js la use
+export { personalizarSelect };
