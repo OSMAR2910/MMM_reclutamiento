@@ -14,22 +14,58 @@ window.onload = () => {
   initializeApp();
 };
 
-// Redimensionar y manejar viewport (optimizado para iOS)
+// Manejo del viewport y teclado (optimizado para tu SASS)
 function updateChatbotDimensions() {
   const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 }
 
-function adjustFixedElements() {
+function adjustChatbotPosition() {
   const chatbot = elements.chatbot;
-  if (chatbot) {
-    chatbot.style.bottom = window.visualViewport
-      ? `${window.visualViewport.offsetTop + 20}px`
-      : "20px";
+  if (!chatbot) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const keyboardHeight = window.innerHeight - viewportHeight;
+
+  if (chatbot.classList.contains("max_chat")) {
+    if (keyboardHeight > 0) {
+      // Teclado visible: ajustar bottom para que esté sobre el teclado
+      chatbot.style.bottom = `${keyboardHeight / window.innerHeight * 100}vh`; // Relativo en vh
+      chatbot.style.maxHeight = `calc(var(--vh, 1vh) * 100 - ${keyboardHeight / window.innerHeight * 100}vh)`; // Limitar altura
+    } else {
+      // Teclado oculto: restaurar posición del SASS
+      chatbot.style.bottom = "0"; // Como en tu SASS
+      chatbot.style.maxHeight = ""; // Dejar que el SASS controle la altura
+    }
+  } else {
+    // Estado minimizado: mantener posición del SASS
+    chatbot.style.bottom = "0";
+    chatbot.style.maxHeight = "";
   }
 }
 
-function debounce(func, wait = 16) {
+function scrollChatToBottom() {
+  const chatBox = document.getElementById("chat_box");
+  const chatInput = document.getElementById("chat_input");
+  if (!chatBox || !chatInput) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const keyboardHeight = window.innerHeight - viewportHeight;
+
+  requestAnimationFrame(() => {
+    chatBox.scrollTo({
+      top: chatBox.scrollHeight,
+      behavior: "smooth",
+    });
+
+    if (keyboardHeight > 0) {
+      // Asegurar que el input sea visible sobre el teclado
+      chatInput.scrollIntoView({ block: "end", behavior: "smooth" });
+    }
+  });
+}
+
+function debounce(func, wait = 100) {
   let timeout;
   return (...args) => {
     clearTimeout(timeout);
@@ -40,13 +76,34 @@ function debounce(func, wait = 16) {
 const handleViewportChanges = debounce(() => {
   requestAnimationFrame(() => {
     updateChatbotDimensions();
-    adjustFixedElements();
+    adjustChatbotPosition();
+    scrollChatToBottom();
   });
-});
+}, 100);
 
 ["load", "resize", "orientationchange", "scroll"].forEach((event) =>
   window.addEventListener(event, handleViewportChanges)
 );
+
+// Manejo específico del teclado al enfocar el input
+document.addEventListener("DOMContentLoaded", () => {
+  const chatInput = document.getElementById("chat_input");
+  if (chatInput) {
+    chatInput.addEventListener("focus", () => {
+      setTimeout(() => {
+        adjustChatbotPosition();
+        scrollChatToBottom();
+      }, 300); // Retraso para que el teclado aparezca
+    });
+
+    chatInput.addEventListener("blur", () => {
+      setTimeout(() => {
+        adjustChatbotPosition();
+        scrollChatToBottom();
+      }, 300); // Retraso para que el teclado se oculte
+    });
+  }
+});
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
@@ -430,7 +487,6 @@ function personalizarSelect(select) {
   select.parentNode.insertBefore(customSelect, select);
   select.style.display = "none"; // Ocultar el select nativo
 }
-
 
 // Función de checkboxes
 document.addEventListener("DOMContentLoaded", () => {
