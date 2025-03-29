@@ -14,7 +14,7 @@ import {
   app,
   get
 } from "./firebase.js";
-import { personalizarSelect } from "./main.js";
+import { personalizarSelect, toggleView, elements } from "./main.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -1116,6 +1116,44 @@ const asignarEventos = (tipo) => {
   btn.addEventListener("click", () => iniciarSesion(tipo));
 };
 
+function regresarAlLogin(tipo) {
+  const isManager = tipo === "manager";
+  console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Inicio`);
+
+  toggleView({
+    home: false,
+    header: true,
+    form: false,
+    login: !isManager,
+    login_manager: isManager,
+    aside: true,
+    admin: false,
+    admin_manager: false,
+  });
+
+  if (elements.header) {
+    elements.header.style.display = "flex";
+    console.log("Header restaurado a display: flex");
+  }
+  if (elements.pavo_cont) {
+    elements.pavo_cont.style.display = "flex";
+    console.log("Pavo_cont restaurado a display: flex");
+  }
+  if (elements.chatbot) {
+    elements.chatbot.style.display = "flex";
+    console.log("Chatbot restaurado a display: flex");
+  }
+
+  // Forzar actualización del DOM con un pequeño retraso
+  setTimeout(() => {
+    console.log("Llamando a mostrarBotonEntrar después de retraso...");
+    mostrarBotonEntrar(tipo);
+  }, 100);
+
+  console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
+}
+
+// Modificación de iniciarSesion para guardar la sesión
 const iniciarSesion = (tipo) => {
   const isManager = tipo === "manager";
   const login = isManager
@@ -1156,166 +1194,66 @@ const iniciarSesion = (tipo) => {
   }
 
   signInWithEmailAndPassword(auth, email, passInput)
-    .then(() => {
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log("Inicio de sesión exitoso:", user.email);
+
+      // Limpiar el estado del otro tipo de usuario en localStorage
       if (isManager) {
-        if (
-            userInput !== "playas" && 
-            userInput !== "altamira" && 
-            userInput !== "libertad" && 
-            userInput !== "sierra" && 
-            userInput !== "cacho" && 
-            userInput !== "hipodromo" && 
-            userInput !== "santafe" && 
-            userInput !== "villafontana" && 
-            userInput !== "huertas" && 
-            userInput !== "monarca" && 
-            userInput !== "otay" && 
-            userInput !== "rosarito" && 
-            userInput !== "florido" && 
-            userInput !== "tecate" && 
-            userInput !== "sanysidro"
-        ) {
-            sessionStorage.removeItem("sucursal");
-            mostrarError(erroru);
-            return;
+        localStorage.removeItem("isAdminLoggedIn");
+        const sucursalesValidas = [
+          "playas", "altamira", "libertad", "sierra", "cacho", "hipodromo",
+          "santafe", "villafontana", "huertas", "monarca", "otay", "rosarito",
+          "florido", "tecate", "sanysidro"
+        ];
+        if (!sucursalesValidas.includes(userInput)) {
+          localStorage.removeItem("sucursal");
+          mostrarError(erroru);
+          return;
         }
-        sessionStorage.setItem("sucursal", userInput);
-    } else {
-        if (
-            userInput === "playas" || 
-            userInput === "altamira" || 
-            userInput === "libertad" || 
-            userInput === "sierra" || 
-            userInput === "cacho" || 
-            userInput === "hipodromo" || 
-            userInput === "santafe" || 
-            userInput === "villafontana" || 
-            userInput === "huertas" || 
-            userInput === "monarca" || 
-            userInput === "otay" || 
-            userInput === "rosarito" || 
-            userInput === "florido" || 
-            userInput === "tecate" || 
-            userInput === "sanysidro"
-        ) {
-            mostrarError(erroru);
-            return;
-        }
-    }
-      //Mostrar dependido el login
-      if (isManager) {
-        // Si es sucursal, continuar con la animación y redireccionamiento
-        setTimeout(() => {
-          const elements = {
-            home: document.getElementById("home"),
-            header: document.getElementById("header"),
-            form: document.getElementById("pag1"),
-            login: document.getElementById("pag2"),
-            admin: document.getElementById("pag3"),
-            login_manager: document.getElementById("pag4"),
-            manager: document.getElementById("pag5"),
-            aside: document.getElementById("aside"),
-            chatbot: document.getElementById("chatbot"),
-            pavo_cont: document.getElementById("pavo_cont"),
-          };
-
-          const toggleClass = (elements, className, add = true) => {
-            elements.forEach((element) => {
-              if (element) {
-                add
-                  ? element.classList.add(className)
-                  : element.classList.remove(className);
-              }
-            });
-          };
-
-          toggleClass(
-            [
-              elements.home,
-              elements.form,
-              elements.login,
-              elements.aside,
-              elements.login_manager,
-              elements.admin,
-            ],
-            "agregar_dis",
-            false
-          );
-          toggleClass([elements.manager], "agregar_dis", true);
-          toggleClass([elements.header], "cambiar_nav", false);
-
-          elements.header.style.display = "none";
-          elements.pavo_cont.style.display = "none";
-          if (elements.chatbot) elements.chatbot.style.display = "none";
-
-          mostrarAlerta("alertas");
-          mostrarAlerta("alerta_14");
-        }, 1000);
-
-        // Añadir animación de salida
-        login.classList.add("animacionlog");
-
-        mostrarDatos();
-        mostrarMensajesUsuarios()
+        localStorage.setItem("sucursal", userInput);
+        localStorage.setItem("isManagerLoggedIn", "true");
       } else {
-        // Si es sucursal, continuar con la animación y redireccionamiento
-        setTimeout(() => {
-          const elements = {
-            home: document.getElementById("home"),
-            header: document.getElementById("header"),
-            form: document.getElementById("pag1"),
-            login: document.getElementById("pag2"),
-            admin: document.getElementById("pag3"),
-            login_manager: document.getElementById("pag4"),
-            manager: document.getElementById("pag5"),
-            aside: document.getElementById("aside"),
-            chatbot: document.getElementById("chatbot"),
-            pavo_cont: document.getElementById("pavo_cont"),
-          };
-
-          const toggleClass = (elements, className, add = true) => {
-            elements.forEach((element) => {
-              if (element) {
-                add
-                  ? element.classList.add(className)
-                  : element.classList.remove(className);
-              }
-            });
-          };
-
-          toggleClass(
-            [
-              elements.home,
-              elements.form,
-              elements.login,
-              elements.aside,
-              elements.login_manager,
-              elements.manager,
-            ],
-            "agregar_dis",
-            false
-          );
-          toggleClass([elements.admin], "agregar_dis", true);
-          toggleClass([elements.header], "cambiar_nav", false);
-
-          elements.header.style.display = "none";
-          elements.pavo_cont.style.display = "none";
-          if (elements.chatbot) elements.chatbot.style.display = "none";
-
-          mostrarAlerta("alertas");
-          mostrarAlerta("alerta_4");
-        }, 1000);
-
-        // Añadir animación de salida
-        login.classList.add("animacionlog");
-
-        mostrarDatos();
-        mostrarMensajesUsuarios()
+        localStorage.removeItem("isManagerLoggedIn");
+        localStorage.removeItem("sucursal");
+        const sucursalesInvalidas = [
+          "playas", "altamira", "libertad", "sierra", "cacho", "hipodromo",
+          "santafe", "villafontana", "huertas", "monarca", "otay", "rosarito",
+          "florido", "tecate", "sanysidro"
+        ];
+        if (sucursalesInvalidas.includes(userInput)) {
+          mostrarError(erroru);
+          return;
+        }
+        localStorage.setItem("isAdminLoggedIn", "true");
       }
+
+      // Mostrar la sección correspondiente
+      setTimeout(() => {
+        toggleView({
+          home: false,
+          header: false,
+          form: false,
+          login: false,
+          login_manager: false,
+          aside: false,
+          admin: !isManager,
+          admin_manager: isManager,
+        });
+        if (elements.header) elements.header.style.display = "none";
+        if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
+        if (elements.chatbot) elements.chatbot.style.display = "none";
+
+        mostrarAlerta("alertas");
+        mostrarAlerta(isManager ? "alerta_14" : "alerta_4");
+      }, 1000);
+
+      login.classList.add("animacionlog");
+      mostrarDatos();
+      mostrarMensajesUsuarios();
     })
     .catch((error) => {
       console.log("Código de error:", error.code);
-
       if (
         error.code === "auth/user-not-found" ||
         error.code === "auth/invalid-email"
@@ -1332,17 +1270,111 @@ const iniciarSesion = (tipo) => {
     });
 };
 
+// Función para mostrar el botón "Entrar" si ya hay sesión
+function mostrarBotonEntrar(tipo) {
+  const isManager = tipo === "manager";
+  const loginContainer = isManager
+    ? document.getElementById("Logincont_sucu")
+    : document.getElementById("Logincont");
+  const form = isManager
+    ? document.getElementById("Login-cont_manager")
+    : document.getElementById("Login-cont");
+  const otherLoginContainer = isManager
+    ? document.getElementById("Logincont")
+    : document.getElementById("Logincont_sucu");
+
+  if (!loginContainer || !form) {
+    console.error(`No se encontró el contenedor o formulario para ${tipo}`);
+    return;
+  }
+
+  // Verificar el estado de autenticación con Firebase
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(`Usuario autenticado detectado: ${user.email}`);
+      const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
+      const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
+
+      // Determinar si el usuario actual es admin o manager basado en localStorage
+      const currentUserType = isAdminLoggedIn ? "admin" : isManagerLoggedIn ? "manager" : null;
+
+      // Si hay un usuario logueado y coincide con el tipo actual
+      if (currentUserType === tipo) {
+        form.style.display = "none";
+
+        let entrarBtn = loginContainer.querySelector(".entrar-btn");
+        if (!entrarBtn) {
+          console.log(`Creando botón Entrar para ${tipo}...`);
+          entrarBtn = document.createElement("button");
+          entrarBtn.classList.add("entrar-btn");
+          entrarBtn.textContent = "Entrar";
+          entrarBtn.addEventListener("click", () => {
+            console.log(`Botón Entrar clicado para ${tipo}`);
+            toggleView({
+              home: false,
+              header: false,
+              form: false,
+              login: false,
+              login_manager: false,
+              aside: false,
+              admin: !isManager,
+              admin_manager: isManager,
+            });
+            if (elements.header) elements.header.style.display = "none";
+            if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
+            if (elements.chatbot) elements.chatbot.style.display = "none";
+            mostrarDatos();
+            mostrarMensajesUsuarios();
+          });
+          loginContainer.appendChild(entrarBtn);
+        }
+        entrarBtn.style.display = "block";
+
+        // Ocultar el botón "Entrar" del otro tipo de login
+        if (otherLoginContainer) {
+          const otherEntrarBtn = otherLoginContainer.querySelector(".entrar-btn");
+          if (otherEntrarBtn) {
+            otherEntrarBtn.style.display = "none";
+          }
+          otherLoginContainer.querySelector(".login-cont").style.display = "flex"; // Mostrar formulario del otro tipo
+        }
+      } else {
+        // Si el tipo no coincide, ocultar botón y mostrar formulario
+        form.style.display = "flex";
+        const entrarBtn = loginContainer.querySelector(".entrar-btn");
+        if (entrarBtn) {
+          entrarBtn.style.display = "none";
+        }
+      }
+    } else {
+      // No hay usuario autenticado, mostrar formulario y ocultar botón
+      console.log("No hay usuario autenticado, mostrando formulario...");
+      form.style.display = "flex";
+      const entrarBtn = loginContainer.querySelector(".entrar-btn");
+      if (entrarBtn) {
+        entrarBtn.style.display = "none";
+      }
+      // Limpiar localStorage si no hay usuario autenticado
+      localStorage.removeItem("isAdminLoggedIn");
+      localStorage.removeItem("isManagerLoggedIn");
+      localStorage.removeItem("sucursal");
+    }
+  });
+}
+
 // Función para cerrar sesión
 const logoutButtons = document.querySelectorAll(
-  "#logoutButton, #logoutButton2"
+  "#logoutButton1, #logoutButton2"
 );
-// Itera sobre los elementos y agrega el evento a cada uno
 logoutButtons.forEach((button) => {
   button.addEventListener("click", async () => {
     try {
       await signOut(auth);
+      localStorage.removeItem("isAdminLoggedIn");
+      localStorage.removeItem("isManagerLoggedIn");
+      localStorage.removeItem("sucursal");
       console.log("Sesión cerrada con éxito.");
-      window.location.reload();
+      window.location.reload(); // Recarga la página para reflejar los cambios
     } catch (error) {
       console.error("Error al cerrar sesión:", error.message);
       alert("No se pudo cerrar sesión. Por favor, intenta de nuevo.");
@@ -1351,8 +1383,17 @@ logoutButtons.forEach((button) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Asignar eventos a ambos formularios
   asignarEventos("admin");
   asignarEventos("manager");
   cargarSucursalesDisponibles();
+
+  // Llamar a mostrarBotonEntrar para ambos tipos al cargar la página
+  mostrarBotonEntrar("admin");
+  mostrarBotonEntrar("manager");
+
+  const regreso1 = document.getElementById("regreso1");
+  const regreso2 = document.getElementById("regreso2");
+
+  if (regreso1) regreso1.addEventListener("click", () => regresarAlLogin("admin"));
+  if (regreso2) regreso2.addEventListener("click", () => regresarAlLogin("manager"));
 });

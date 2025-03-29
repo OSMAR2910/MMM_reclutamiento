@@ -17,30 +17,28 @@ window.onload = () => {
 // Manejo del viewport y teclado (optimizado para tu SASS)
 function updateChatbotDimensions() {
   const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
 function adjustChatbotPosition() {
   const chatbot = elements.chatbot;
-  if (!chatbot) return;
+  const chatInput = document.getElementById("chat_input");
+  if (!chatbot || !chatInput) return;
 
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   const keyboardHeight = window.innerHeight - viewportHeight;
 
   if (chatbot.classList.contains("max_chat")) {
     if (keyboardHeight > 0) {
-      // Teclado visible: ajustar bottom para que esté sobre el teclado
-      chatbot.style.bottom = `${keyboardHeight / window.innerHeight * 100}vh`; // Relativo en vh
-      chatbot.style.maxHeight = `calc(var(--vh, 1vh) * 100 - ${keyboardHeight / window.innerHeight * 100}vh)`; // Limitar altura
+      // Teclado visible: ajustar la posición y altura del chatbot
+      chatbot.style.bottom = `${keyboardHeight}px`; // Elevar el chatbot sobre el teclado
+      chatbot.style.height = `${viewportHeight - keyboardHeight}px`; // Ajustar altura al espacio visible
+      chatInput.scrollIntoView({ block: "nearest", behavior: "smooth" }); // Asegurar que el input sea visible
     } else {
-      // Teclado oculto: restaurar posición del SASS
-      chatbot.style.bottom = "0"; // Como en tu SASS
-      chatbot.style.maxHeight = ""; // Dejar que el SASS controle la altura
+      // Teclado oculto: restaurar valores por defecto
+      chatbot.style.bottom = "0";
+      chatbot.style.height = ""; // Dejar que el CSS/SASS controle la altura
     }
-  } else {
-    // Estado minimizado: mantener posición del SASS
-    chatbot.style.bottom = "0";
-    chatbot.style.maxHeight = "";
   }
 }
 
@@ -49,22 +47,13 @@ function scrollChatToBottom() {
   const chatInput = document.getElementById("chat_input");
   if (!chatBox || !chatInput) return;
 
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const keyboardHeight = window.innerHeight - viewportHeight;
-
   requestAnimationFrame(() => {
-    chatBox.scrollTo({
-      top: chatBox.scrollHeight,
-      behavior: "smooth",
-    });
-
-    if (keyboardHeight > 0) {
-      // Asegurar que el input sea visible sobre el teclado
-      chatInput.scrollIntoView({ block: "end", behavior: "smooth" });
-    }
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll instantáneo al final
+    chatInput.scrollIntoView({ block: "nearest", behavior: "smooth" }); // Asegurar input visible
   });
 }
 
+// Debounce para evitar cálculos excesivos
 function debounce(func, wait = 100) {
   let timeout;
   return (...args) => {
@@ -73,6 +62,7 @@ function debounce(func, wait = 100) {
   };
 }
 
+// Manejo de eventos del viewport y teclado
 const handleViewportChanges = debounce(() => {
   requestAnimationFrame(() => {
     updateChatbotDimensions();
@@ -81,9 +71,19 @@ const handleViewportChanges = debounce(() => {
   });
 }, 100);
 
-["load", "resize", "orientationchange", "scroll"].forEach((event) =>
+// Escuchar eventos relevantes
+["resize", "orientationchange"].forEach((event) =>
   window.addEventListener(event, handleViewportChanges)
 );
+
+// Usar visualViewport para detectar cambios en el teclado
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", handleViewportChanges);
+  window.visualViewport.addEventListener("scroll", handleViewportChanges);
+} else {
+  // Fallback para navegadores sin visualViewport
+  window.addEventListener("scroll", handleViewportChanges);
+}
 
 // Manejo específico del teclado al enfocar el input
 document.addEventListener("DOMContentLoaded", () => {
@@ -93,14 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         adjustChatbotPosition();
         scrollChatToBottom();
-      }, 300); // Retraso para que el teclado aparezca
+      }, 200); // Retraso para esperar a que el teclado aparezca
     });
 
     chatInput.addEventListener("blur", () => {
       setTimeout(() => {
         adjustChatbotPosition();
         scrollChatToBottom();
-      }, 300); // Retraso para que el teclado se oculte
+      }, 200); // Retraso para esperar a que el teclado se oculte
+    });
+
+    // Ajustar el scroll al escribir
+    chatInput.addEventListener("input", () => {
+      setTimeout(scrollChatToBottom, 100);
     });
   }
 });
@@ -213,20 +218,20 @@ const mostrarAlerta = (alertaId) => {
 };
 
 // Cambiar secciones navigation
-const elements = {
+export const elements = {
   header: document.getElementById("header"),
   home: document.getElementById("home"),
   form: document.getElementById("pag1"),
   login: document.getElementById("pag2"),
   admin: document.getElementById("pag3"),
   login_manager: document.getElementById("pag4"),
-  admin_manager: document.getElementById("pag5"),
+  admin_manager: document.getElementById("pag5"), // Corregido
   aside: document.getElementById("aside"),
   chatbot: document.getElementById("chatbot"),
-  ap_tc: document.getElementById("ap_tc"),
+  pavo_cont: document.getElementById("pavo_cont"),
 };
 
-function toggleView({
+export function toggleView({
   home = false,
   header = false,
   form = false,
@@ -269,15 +274,11 @@ function admin_manager() {
   console.log("Botón Admin Manager clicado");
 }
 
-function btn_admin_regreso() {
-  location.reload();
-  console.log("Botón Regreso clicado");
-}
-
 function btn_aptc() {
   toggleView({ header: true, ap_tc: true, aside: true });
   console.log("Botón APTC clicado");
 }
+
 
 // Obtener todos los formularios
 const forms = document.querySelectorAll(".cont_inputform");
