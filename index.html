@@ -142,23 +142,17 @@
       <span>
         <p>Agendaste la cita correctamente 🤠</p>
       </span>
+    </div>   
+    <!-- Casi envias la cita 😬 -->
+    <div class="alerta_admin" id="alerta_24">
+      <span>
+        <p>Casi envias la cita 😬</p>
+      </span>
     </div>
     <!-- ¡Genial! Descargaste su información correctamente 🎉 -->
     <div class="alerta_admin" id="alerta_13">
       <span>
         <p>¡Genial! Descargaste su información correctamente 🎉</p>
-      </span>
-    </div>
-    <!-- Ya cambiaste el estado de la sucursal 🔁 -->
-    <div class="alerta_admin" id="alerta_20">
-      <span>
-        <p>Ya cambiaste el estado de la sucursal 🔁</p>
-      </span>
-    </div>
-    <!-- Ocurrió un problema al actualizar la sucursal 😕." -->
-    <div class="alerta_admin" id="alerta_21">
-      <span>
-        <p>Ocurrió un problema al actualizar la sucursal 😕."</p>
       </span>
     </div>
     <!-- ¡Hola!😁, aqui estan todos los vacantes disponibles 🗃️ -->
@@ -197,6 +191,30 @@
         <p>Error al eliminar vacante 🤡</p>
       </span>
     </div>
+    <!-- Ya cambiaste el estado de la sucursal 🔁 -->
+    <div class="alerta_admin" id="alerta_20">
+      <span>
+        <p>Ya cambiaste el estado de la sucursal 🔁</p>
+      </span>
+    </div>
+    <!-- Ocurrió un problema al actualizar la sucursal 😕." -->
+    <div class="alerta_admin" id="alerta_21">
+      <span>
+        <p>Ocurrió un problema al actualizar la sucursal 😕."</p>
+      </span>
+    </div>
+    <!-- Se cambió el estado de la vacante. ✅💼 -->
+    <div class="alerta_manager" id="alerta_22">
+      <span>
+        <p>Se cambió el estado de la vacante. ✅💼</p>
+      </span>
+    </div>
+    <!-- Error al cambiar el estado de la vacante. ❌📝 -->
+    <div class="alerta_manager" id="alerta_23">
+      <span>
+        <p>Error al cambiar el estado de la vacante. ❌📝</p>
+      </span>
+    </div>
   </section>
   <section class="alertas_modal" id="alertas_modal">
     <div id="alert_eliminacion_vacante" class="alert_eliminacion_vacante">
@@ -214,7 +232,7 @@
     </div>
     <div id="modal-container" class="modal-container">
       <div class="modal-content">
-        <h2>Agendar un encuentro</h2>
+        <h2>Agendar</h2>
         <form id="form_agendar_cita">
           <div class="input-form">
             <input type="date" name="fecha_cita" class="input" id="fecha_cita" placeholder="Fecha" required />
@@ -533,7 +551,7 @@
               </div>
               <div class="input-field">
                 <input id="user" type="text" name="user" autocomplete="username" required spellcheck="false" />
-                <label><span>Usuario</span></label>
+                <label for="user"><span>Usuario</span></label>
               </div>
               <div class="input-field">
                 <input id="pass" type="password" name="Contraseña" autocomplete="current-password" required
@@ -573,13 +591,24 @@
       </button>
     </section>
     <section class="pages" id="pag3">
-      <div class="btn_regreso">
-        <button id="regreso1">
-          <img src="img/Logos/interfaces/icons/atras.svg" alt="atras" />
-        </button>
-        <button id="logoutButton1">
-          <img src="img/Logos/interfaces/icons/cerrar-sesion.png" alt="cerrar-sesion">
-        </button>
+
+      <div class="settings">
+        <div class="icons_settings">
+          <input type="checkbox" id="settings1" />
+          <label id="label_settings" for="settings1">
+            <img src="img/Logos/interfaces/icons/ajuste.svg" alt="settings">
+          </label>
+          <div class="settings_info" id="settings_info">
+            <div class="data_settings">
+              <button id="regreso1">
+                <img src="img/Logos/interfaces/icons/atras.svg" alt="atras" />
+              </button>
+              <button id="logoutButton1">
+                <img src="img/Logos/interfaces/icons/cerrar-sesion.png" alt="cerrar-sesion">
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="estatus_vacantes">
         <div class="icons_status">
@@ -637,7 +666,7 @@
             <div class="filter-container">
               <div class="input-field">
                 <input type="text" id="user-filter" class="filter-input" placeholder=" " spellcheck="false">
-                <label><span>Buscar usuario...</span></label>
+                <label for="user-filter"><span>Buscar usuario...</span></label>
               </div>
             </div>
             <div class="data_mj_user" id="data_mj_user"></div>
@@ -654,7 +683,7 @@
             <div class="filter-container">
               <div class="input-field">
                 <input type="text" id="sucu_filter" class="filter_sucu" placeholder=" " spellcheck="false">
-                <label><span>Buscar sucursal..</span></label>
+                <label for="sucu_filter"><span>Buscar sucursal..</span></label>
               </div>
             </div>
             <div class="data_sucu_user" id="data_sucu_user"></div>
@@ -708,13 +737,24 @@
       </div>
     </section>
     <section class="pages" id="pag5">
-      <div class="btn_regreso">
-        <button id="regreso2">
-          <img src="img/Logos/interfaces/icons/atras.svg" alt="atras" />
-        </button>
-        <button id="logoutButton2">
-          <img src="img/Logos/interfaces/icons/cerrar-sesion.png" alt="cerrar-sesion">
-        </button>
+
+      <div class="settings">
+        <div class="icons_settings">
+          <input type="checkbox" id="settings2" />
+          <label id="label_settings" for="settings2">
+            <img src="img/Logos/interfaces/icons/ajuste.svg" alt="settings">
+          </label>
+          <div class="settings_info" id="settings_info">
+            <div class="data_settings">
+              <button id="regreso2">
+                <img src="img/Logos/interfaces/icons/atras.svg" alt="atras" />
+              </button>
+              <button id="logoutButton2">
+                <img src="img/Logos/interfaces/icons/cerrar-sesion.png" alt="cerrar-sesion">
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="estatus_citas_manager">
         <div class="icons_status">
@@ -737,6 +777,9 @@
             <div class="data_status" id="data_cita_asistieron"></div>
           </div>
         </div>
+      </div>
+      <div class="sucursal_cont">
+        <span class="sucursal" id="sucursal_activa">Sucursal</span>
       </div>
       <div class="cont_manager">
         <div class="cont_citas_manager">

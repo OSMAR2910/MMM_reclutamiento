@@ -267,268 +267,214 @@ function mostrarDatos() {
     renderizarVacantes(snapshot, dataContratado, null, true);
   });
 
-  function renderizarVacantes(
-    snapshot,
-    containerGreen,
-    containerRed,
-    esAsistieron = false
-  ) {
+  function renderizarVacantes(snapshot, containerGreen, containerRed, esAsistieron = false) {
     const fragmentGreen = document.createDocumentFragment();
     const fragmentRed = document.createDocumentFragment();
-    const sucursalActual = sessionStorage.getItem("sucursal"); //Obtener la sucursal en sesión
-
+    const sucursalActual = localStorage.getItem("sucursal"); // Cambiado a localStorage
+    const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
+  
+    console.log("Sucursal actual:", sucursalActual); // Depuración
+    console.log("Es manager:", isManagerLoggedIn); // Depuración
+    console.log("Contenedor:", containerGreen.id); // Depuración
+  
     containerGreen.innerHTML = "";
     if (containerRed) containerRed.innerHTML = "";
-
+  
     let vacantesActuales = new Set();
-
+  
     if (snapshot.exists()) {
       const ulGreen = document.createElement("ul");
       const ulRed = document.createElement("ul");
-
+  
       snapshot.forEach((childSnapshot) => {
         const nombre = childSnapshot.key;
         const data = childSnapshot.val() || {};
-
-        // 📌 Si el contenedor es data_citas, filtramos por sucursal
-        if (
-          containerGreen.id === "data_citas_manager" ||
-          containerGreen.id === "data_cita_no_asistieron" ||
-          containerGreen.id === "data_cita_asistieron"
-        ) {
-          if (!sucursalActual || data.sucursal_cita !== sucursalActual) {
-            return; // 🚀 Si la sucursal no coincide, no lo mostramos
-          }
+        data.aptoStatus = data.aptoStatus || "Pendiente"; // Default status
+  
+        // Filtrar por sucursal solo si es manager y es un contenedor de citas
+        const esContenedorCitas = [
+          "data_citas",
+          "data_citas_manager",
+          "data_cita_no_asistieron",
+          "data_cita_asistieron",
+        ].includes(containerGreen.id);
+  
+        if (isManagerLoggedIn && esContenedorCitas && sucursalActual && data.sucursal_cita !== sucursalActual) {
+          console.log(`Omitiendo ${nombre} - Sucursal cita: ${data.sucursal_cita} no coincide con ${sucursalActual}`);
+          return; // Saltar si la sucursal no coincide
         }
-
+  
         vacantesActuales.add(nombre);
-
+  
         const listItem = document.createElement("button");
-        // Asignar clase basada en el ID del contenedor
-        let claseItem = "vacante_item"; // Clase base común
-
-        if (containerGreen.id === "data_citas") {
-          claseItem += "_citas";
-        } else if (containerGreen.id === "data_citas_manager") {
-          claseItem += "_citasManager";
-        } else if (containerGreen.id === "data_cita_no_asistieron") {
-          claseItem += "_citasManagerNoasistio";
-        } else if (containerGreen.id === "data_cita_asistieron") {
-          claseItem += "_citasManagerAsistio";
-        } else if (containerGreen.id === "data_asistieron") {
-          claseItem += "_asistieron";
-        } else if (containerGreen.id === "data_no_asistieron") {
-          claseItem += "_noasistieron";
-        } else if (containerGreen.id === "data_contratado") {
-          claseItem += "_contratado";
-        } else {
-          // Clase por defecto si no coincide con ningún ID específico
-          claseItem += esAsistieron
-            ? "_status"
-            : data.empleo === "Fijo" &&
-              data.horario === "Rotativo" &&
-              data.docu === "Si" &&
-              data.problema_t == "No"
-            ? "_green"
-            : "_red";
-        }
-
+        let claseItem = "vacante_item";
+        if (containerGreen.id === "data_citas") claseItem += "_citas";
+        else if (containerGreen.id === "data_citas_manager") claseItem += "_citasManager";
+        else if (containerGreen.id === "data_cita_no_asistieron") claseItem += "_citasManagerNoasistio";
+        else if (containerGreen.id === "data_cita_asistieron") claseItem += "_citasManagerAsistio";
+        else if (containerGreen.id === "data_asistieron") claseItem += "_asistieron";
+        else if (containerGreen.id === "data_no_asistieron") claseItem += "_noasistieron";
+        else if (containerGreen.id === "data_contratado") claseItem += "_contratado";
+        else claseItem += esAsistieron ? "_status" : (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No") ? "_green" : "_red";
+  
         listItem.classList.add(claseItem);
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("vacante_info");
-
-        const campos =
-          containerGreen.id === "data_citas" ||
-          containerGreen.id === "data_citas_manager" ||
-          containerGreen.id === "data_cita_no_asistieron" ||
-          containerGreen.id === "data_cita_asistieron"
-            ? [
-                { label: "Nombre", value: nombre, isName: true },
-                {
-                  label: "Fecha Cita",
-                  value: data.fecha_cita || "No disponible",
-                },
-                {
-                  label: "Hora Cita",
-                  value: data.hora_cita || "No disponible",
-                },
-                {
-                  label: "Sucursal Cita",
-                  value: data.sucursal_cita || "No disponible",
-                },
-                { label: "Puesto", value: data.puesto || "No disponible" },
-                { label: "Número", value: data.numero || "No disponible" },
-              ]
-            : [
-                {
-                  label: "Fecha",
-                  value: data.fecha_r
-                    ? new Date(data.fecha_r).toLocaleDateString()
-                    : "No disponible",
-                },
-                { label: "Nombre", value: nombre, isName: true },
-                { label: "Puesto", value: data.puesto || "No disponible" },
-                { label: "Sucursal", value: data.sucursal || "No disponible" },
-                { label: "Número", value: data.numero || "No disponible" },
-                { label: "Edad", value: data.edad || "No disponible" },
-                { label: "F.Nacimiento", value: data.f_n || "No disponible" },
-                { label: "Sexo", value: data.sexo || "No disponible" },
-                {
-                  label: "Nacionalidad",
-                  value: data.nacion || "No disponible",
-                },
-                { label: "Estado Civil", value: data.e_c || "No disponible" },
-                { label: "Documentacion", value: data.docu || "No disponible" },
-                { label: "Horario", value: data.horario || "No disponible" },
-                { label: "Empleo", value: data.empleo || "No disponible" },
-                { label: "Ciudad", value: data.ciudad || "No disponible" },
-                {
-                  label: "Dirección",
-                  value: data.direccion || "No disponible",
-                },
-                { label: "CP", value: data.cp || "No disponible" },
-                {
-                  label: "Transporte",
-                  value: data.transporte || "No disponible",
-                },
-                { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
-                {
-                  label: "Problema/T",
-                  value: data.problema_t || "No disponible",
-                },
-              ];
-
+  
+        const campos = (containerGreen.id === "data_citas" || containerGreen.id === "data_citas_manager" || containerGreen.id === "data_cita_no_asistieron" || containerGreen.id === "data_cita_asistieron") ?
+          [
+            { label: "Nombre", value: nombre, isName: true },
+            { label: "Fecha Cita", value: data.fecha_cita || "No disponible" },
+            { label: "Hora Cita", value: data.hora_cita || "No disponible" },
+            { label: "Sucursal Cita", value: data.sucursal_cita || "No disponible" },
+            { label: "Puesto", value: data.puesto || "No disponible" },
+            { label: "Número", value: data.numero || "No disponible" },
+            { label: "Estatus", value: data.aptoStatus, isApto: true }
+          ] :
+          [
+            { label: "Fecha", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
+            { label: "Nombre", value: nombre, isName: true },
+            { label: "Puesto", value: data.puesto || "No disponible" },
+            { label: "Sucursal", value: data.sucursal || "No disponible" },
+            { label: "Número", value: data.numero || "No disponible" },
+            { label: "Edad", value: data.edad || "No disponible" },
+            { label: "F.Nacimiento", value: data.f_n || "No disponible" },
+            { label: "Sexo", value: data.sexo || "No disponible" },
+            { label: "Nacionalidad", value: data.nacion || "No disponible" },
+            { label: "Estado Civil", value: data.e_c || "No disponible" },
+            { label: "Documentacion", value: data.docu || "No disponible" },
+            { label: "Horario", value: data.horario || "No disponible" },
+            { label: "Empleo", value: data.empleo || "No disponible" },
+            { label: "Ciudad", value: data.ciudad || "No disponible" },
+            { label: "Dirección", value: data.direccion || "No disponible" },
+            { label: "CP", value: data.cp || "No disponible" },
+            { label: "Transporte", value: data.transporte || "No disponible" },
+            { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
+            { label: "Problema/T", value: data.problema_t || "No disponible" },
+            { label: "Estatus", value: data.aptoStatus, isApto: true }
+          ];
+  
         campos.forEach((campo) => {
           const span = document.createElement("span");
           if (campo.isName) span.classList.add("dbname");
           span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
           infoContainer.appendChild(span);
         });
-
-        // 📌 Botón para descargar el PDF
+  
         const btnContainer2 = document.createElement("div");
         btnContainer2.classList.add("btn_container2");
-
-        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
-          descargarPDF(nombre, data)
-        );
-        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () =>
-          abrirModalCita(nombre, data)
-        );
-
+        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () => descargarPDF(nombre, data));
+        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () => abrirModalCita(nombre, data));
         btnContainer2.append(btnDescargarPDF, btnAgendarCita);
-
-        // Botones con clases específicas pero sin ID
+  
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-container");
-
-        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
-          moverVacante(nombre, data, "no_asistieron")
-        );
-        const btnAsistieron = crearBoton("", "btn-asistieron", () =>
-          moverVacante(nombre, data, "asistieron")
-        );
-        const btnContratado = crearBoton("", "btn-contratado", () =>
-          moverVacante(nombre, data, "contratado")
-        );
+  
+        // Add apto select/status
+        if (containerGreen.id === "data_citas_manager" || containerGreen.id === "data_cita_no_asistieron" || containerGreen.id === "data_cita_asistieron") {
+          const aptoSelect = document.createElement("select");
+          aptoSelect.classList.add("apto-select");
+          aptoSelect.id = `apto-select-${nombre}`;
+          const options = [
+            { value: "Pendiente", text: "🤷" },
+            { value: "Apto", text: "👍" },
+            { value: "No apto", text: "👎" }
+          ];
+          options.forEach(opt => {
+            const option = document.createElement("option");
+            option.value = opt.value;
+            option.textContent = opt.text;
+            if (data.aptoStatus === opt.value) option.selected = true;
+            aptoSelect.appendChild(option);
+          });
+          aptoSelect.addEventListener("change", () => updateAptoStatus(nombre, aptoSelect.value, containerGreen.id));
+          btnContainer.appendChild(aptoSelect);
+          personalizarSelect(aptoSelect);
+        } 
+  
+        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () => moverVacante(nombre, data, "no_asistieron"));
+        const btnAsistieron = crearBoton("", "btn-asistieron", () => moverVacante(nombre, data, "asistieron"));
+        const btnContratado = crearBoton("", "btn-contratado", () => moverVacante(nombre, data, "contratado"));
         const btnEliminar = crearBoton("", "btn-eliminar", () => {
-          let base = "vacantes"; // Por defecto en vacantes
-          if (containerGreen.id === "data_no_asistieron")
-            base = "no_asistieron";
+          let base = "vacantes";
+          if (containerGreen.id === "data_no_asistieron") base = "no_asistieron";
           if (containerGreen.id === "data_asistieron") base = "asistieron";
           if (containerGreen.id === "data_contratado") base = "contratado";
           eliminarVacante(nombre, base);
         });
-
-        btnContainer.append(
-          btnNoAsistieron,
-          btnAsistieron,
-          btnContratado,
-          btnEliminar
-        );
-
-        // Coloca el botón de descargar PDF antes de 'vacante_info'
+  
+        btnContainer.append(btnNoAsistieron, btnAsistieron, btnContratado, btnEliminar);
+  
         listItem.appendChild(btnContainer2);
         listItem.appendChild(infoContainer);
         listItem.appendChild(btnContainer);
-
-        if (esAsistieron) {
-          ulGreen.appendChild(listItem);
-        } else {
-          data.empleo === "Fijo" &&
-          data.horario === "Rotativo" &&
-          data.docu === "Si" &&
-          data.problema_t == "No"
-            ? ulGreen.appendChild(listItem)
-            : ulRed.appendChild(listItem);
-        }
+  
+        if (esAsistieron) ulGreen.appendChild(listItem);
+        else (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No") 
+          ? ulGreen.appendChild(listItem) 
+          : ulRed.appendChild(listItem);
       });
-
+  
       fragmentGreen.appendChild(ulGreen);
       if (containerRed) fragmentRed.appendChild(ulRed);
-
       containerGreen.appendChild(fragmentGreen);
       if (containerRed) containerRed.appendChild(fragmentRed);
     } else {
       containerGreen.innerHTML = "<div class='no_data'></div>";
       if (containerRed) containerRed.innerHTML = "<div class='no_data'></div>";
     }
-
+  
     vacantesPrevias = vacantesActuales;
   }
-
-  // Función para descargar el PDF con la información de la vacante
+  function updateAptoStatus(nombre, nuevoEstado, containerId) {
+    let rutaDB;
+    switch (containerId) {
+      case "data_citas_manager": rutaDB = `citas_vacantes/${nombre}`; break;
+      case "data_cita_no_asistieron": rutaDB = `no_asistieron/${nombre}`; break;
+      case "data_cita_asistieron": rutaDB = `asistieron/${nombre}`; break;
+      default: return;
+    }
+  
+    const vacanteRef = ref(database, rutaDB);
+    get(vacanteRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const datosActuales = snapshot.val();
+        set(vacanteRef, { ...datosActuales, aptoStatus: nuevoEstado })
+          .then(() => {
+            console.log(`Estado apto actualizado a ${nuevoEstado} para ${nombre}`);
+            mostrarAlerta("alertas");
+            mostrarAlerta("alerta_22");
+          })
+          .catch((error) => {
+            console.error("Error al actualizar el estado apto:", error);
+            mostrarAlerta("alertas");
+            mostrarAlerta("alerta_23");
+          });
+      }
+    });
+  }
   function descargarPDF(nombre, data) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-
-    // Establecer color de fondo suave
-    doc.setFillColor(245, 245, 245); // Fondo gris claro
-    doc.rect(0, 0, 210, 297, "F"); // Fondo completo
-
-    // Colores personalizados
-    const colorTitulo = [23, 72, 145]; // Azul oscuro
-    const colorEtiquetas = [60, 60, 60]; // Gris oscuro para etiquetas
-    const colorValores = [0, 0, 0]; // Negro para los valores
-    const colorLinea = [0, 0, 0]; // Línea separadora color negro
-
-    // Título
+    doc.setFillColor(245, 245, 245);
+    doc.rect(0, 0, 210, 297, "F");
+    const colorTitulo = [23, 72, 145];
+    const colorEtiquetas = [60, 60, 60];
+    const colorValores = [0, 0, 0];
+    const colorLinea = [0, 0, 0];
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.setTextColor(...colorTitulo); // Azul oscuro para el título
+    doc.setTextColor(...colorTitulo);
     doc.text("Información del Vacante", 20, 20);
-
-    // Línea separadora
     doc.setDrawColor(...colorLinea);
     doc.line(20, 22, 190, 22);
-
-    let yPosition = 30; // Comienza a escribir debajo del título
-
-    // Estilo de los campos (etiquetas)
+    let yPosition = 30;
     doc.setFontSize(12);
-    const campoStyle = {
-      font: "helvetica",
-      size: 12,
-      weight: "normal",
-      color: colorEtiquetas,
-    };
-
-    // Estilo de los valores (información)
-    const valueStyle = {
-      font: "helvetica",
-      size: 12,
-      weight: "normal",
-      color: colorValores,
-    };
-
-    // Contenido de los datos con estilos
+    const campoStyle = { font: "helvetica", size: 12, weight: "normal", color: colorEtiquetas };
+    const valueStyle = { font: "helvetica", size: 12, weight: "normal", color: colorValores };
+  
     const content = [
-      {
-        label: "Fecha de llenado",
-        value: data.fecha_r
-          ? new Date(data.fecha_r).toLocaleDateString()
-          : "No disponible",
-      },
+      { label: "Fecha de llenado", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
       { label: "Nombre", value: nombre, isName: true },
       { label: "Puesto", value: data.puesto || "No disponible" },
       { label: "Sucursal", value: data.sucursal || "No disponible" },
@@ -547,37 +493,27 @@ function mostrarDatos() {
       { label: "Transporte", value: data.transporte || "No disponible" },
       { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
       { label: "Problema/T", value: data.problema_t || "No disponible" },
+      { label: "Estatus", value: data.aptoStatus, isApto: true }
     ];
-
-    // Recorrer el contenido e imprimirlo con estilo
-    content.forEach((item, index) => {
-      // Etiqueta
+  
+    content.forEach((item) => {
       doc.setFont(campoStyle.font, campoStyle.weight);
       doc.setFontSize(campoStyle.size);
       doc.setTextColor(...campoStyle.color);
       doc.text(`${item.label}:`, 20, yPosition);
-
-      // Valor
       doc.setFont(valueStyle.font, valueStyle.weight);
       doc.setFontSize(valueStyle.size);
       doc.setTextColor(...valueStyle.color);
       doc.text(item.value, 80, yPosition);
-
-      // Aumentar la posición Y para el siguiente campo
       yPosition += 12;
     });
-
-    // Línea separadora al final
+  
     doc.setDrawColor(...colorLinea);
     doc.line(20, yPosition + 10, 190, yPosition + 10);
-
-    // Agregar pie de página
     yPosition += 20;
     doc.setFontSize(10);
-    doc.setTextColor(...colorTitulo); // Azul oscuro para el pie de página
+    doc.setTextColor(...colorTitulo);
     doc.text("Generado por el reclutador Web de MMM.", 20, yPosition);
-
-    // Descargar el PDF con el nombre del vacante
     doc.save(`Vacante_${nombre}.pdf`);
     mostrarAlerta("alertas");
     verificarDisplay("pag5", "alerta_13", "alerta_18");
@@ -666,7 +602,7 @@ function mostrarDatos() {
     document.getElementById("cancelar_cita").onclick = () => {
       modalContainer.style.display = "none";
       mostrarAlerta("alertas");
-      mostrarAlerta("alerta_13"); // Cancelado
+      mostrarAlerta("alerta_24"); // Cancelado
     };
   }
   function enviarMensajeWhatsApp(numero, nombre, fecha, hora, sucursal) {
@@ -933,7 +869,7 @@ function cargarSucursalesDisponibles() {
   observer.observe(sucursalSelect, { childList: true });
 }
 
-// 📌 Función para crear botones dinámicamente
+//Función para crear botones dinámicamente
 function crearBoton(texto, clase, onClick) {
   const btn = document.createElement("button");
   btn.classList.add(clase);
@@ -1198,7 +1134,6 @@ const iniciarSesion = (tipo) => {
       const user = userCredential.user;
       console.log("Inicio de sesión exitoso:", user.email);
 
-      // Limpiar el estado del otro tipo de usuario en localStorage
       if (isManager) {
         localStorage.removeItem("isAdminLoggedIn");
         const sucursalesValidas = [
@@ -1213,6 +1148,13 @@ const iniciarSesion = (tipo) => {
         }
         localStorage.setItem("sucursal", userInput);
         localStorage.setItem("isManagerLoggedIn", "true");
+
+        // Actualizar el elemento sucursal_activa desde localStorage
+        const sucursalActivaElement = document.getElementById("sucursal_activa");
+        if (sucursalActivaElement) {
+          const sucursalFormateada = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
+          sucursalActivaElement.textContent = sucursalFormateada;
+        }
       } else {
         localStorage.removeItem("isManagerLoggedIn");
         localStorage.removeItem("sucursal");
@@ -1228,7 +1170,6 @@ const iniciarSesion = (tipo) => {
         localStorage.setItem("isAdminLoggedIn", "true");
       }
 
-      // Mostrar la sección correspondiente
       setTimeout(() => {
         toggleView({
           home: false,
@@ -1288,19 +1229,15 @@ function mostrarBotonEntrar(tipo) {
     return;
   }
 
-  // Verificar el estado de autenticación con Firebase
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log(`Usuario autenticado detectado: ${user.email}`);
       const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
       const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
-
-      // Determinar si el usuario actual es admin o manager basado en localStorage
       const currentUserType = isAdminLoggedIn ? "admin" : isManagerLoggedIn ? "manager" : null;
 
-      // Si hay un usuario logueado y coincide con el tipo actual
       if (currentUserType === tipo) {
-        form.style.display = "none";
+        if (form) form.style.display = "none";
 
         let entrarBtn = loginContainer.querySelector(".entrar-btn");
         if (!entrarBtn) {
@@ -1323,38 +1260,40 @@ function mostrarBotonEntrar(tipo) {
             if (elements.header) elements.header.style.display = "none";
             if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
             if (elements.chatbot) elements.chatbot.style.display = "none";
+
+            // Actualizar sucursal_activa desde localStorage al entrar
+            if (isManager) {
+              const sucursalActivaElement = document.getElementById("sucursal_activa");
+              const sucursalGuardada = localStorage.getItem("sucursal");
+              if (sucursalActivaElement && sucursalGuardada) {
+                const sucursalFormateada = sucursalGuardada.charAt(0).toUpperCase() + sucursalGuardada.slice(1).toLowerCase();
+                sucursalActivaElement.textContent = sucursalFormateada;
+              }
+            }
+
             mostrarDatos();
             mostrarMensajesUsuarios();
           });
           loginContainer.appendChild(entrarBtn);
         }
-        entrarBtn.style.display = "block";
+        if (entrarBtn) entrarBtn.style.display = "block";
 
-        // Ocultar el botón "Entrar" del otro tipo de login
         if (otherLoginContainer) {
           const otherEntrarBtn = otherLoginContainer.querySelector(".entrar-btn");
-          if (otherEntrarBtn) {
-            otherEntrarBtn.style.display = "none";
-          }
-          otherLoginContainer.querySelector(".login-cont").style.display = "flex"; // Mostrar formulario del otro tipo
+          if (otherEntrarBtn) otherEntrarBtn.style.display = "none";
+          const otherLoginCont = otherLoginContainer.querySelector(".login-cont");
+          if (otherLoginCont) otherLoginCont.style.display = "flex";
         }
       } else {
-        // Si el tipo no coincide, ocultar botón y mostrar formulario
-        form.style.display = "flex";
+        if (form) form.style.display = "flex";
         const entrarBtn = loginContainer.querySelector(".entrar-btn");
-        if (entrarBtn) {
-          entrarBtn.style.display = "none";
-        }
+        if (entrarBtn) entrarBtn.style.display = "none";
       }
     } else {
-      // No hay usuario autenticado, mostrar formulario y ocultar botón
       console.log("No hay usuario autenticado, mostrando formulario...");
-      form.style.display = "flex";
+      if (form) form.style.display = "flex";
       const entrarBtn = loginContainer.querySelector(".entrar-btn");
-      if (entrarBtn) {
-        entrarBtn.style.display = "none";
-      }
-      // Limpiar localStorage si no hay usuario autenticado
+      if (entrarBtn) entrarBtn.style.display = "none";
       localStorage.removeItem("isAdminLoggedIn");
       localStorage.removeItem("isManagerLoggedIn");
       localStorage.removeItem("sucursal");
@@ -1374,7 +1313,7 @@ logoutButtons.forEach((button) => {
       localStorage.removeItem("isManagerLoggedIn");
       localStorage.removeItem("sucursal");
       console.log("Sesión cerrada con éxito.");
-      window.location.reload(); // Recarga la página para reflejar los cambios
+      window.location.reload();
     } catch (error) {
       console.error("Error al cerrar sesión:", error.message);
       alert("No se pudo cerrar sesión. Por favor, intenta de nuevo.");

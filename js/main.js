@@ -17,7 +17,9 @@ window.onload = () => {
 // Manejo del viewport y teclado (optimizado para tu SASS)
 function updateChatbotDimensions() {
   const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
+  const totalHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.documentElement.style.setProperty('--full-height', `${totalHeight}px`);
 }
 
 function adjustChatbotPosition() {
@@ -30,26 +32,34 @@ function adjustChatbotPosition() {
 
   if (chatbot.classList.contains("max_chat")) {
     if (keyboardHeight > 0) {
-      // Teclado visible: ajustar la posición y altura del chatbot
-      chatbot.style.bottom = `${keyboardHeight}px`; // Elevar el chatbot sobre el teclado
-      chatbot.style.height = `${viewportHeight - keyboardHeight}px`; // Ajustar altura al espacio visible
-      chatInput.scrollIntoView({ block: "nearest", behavior: "smooth" }); // Asegurar que el input sea visible
+      const offset = 10;
+      chatbot.style.bottom = `${keyboardHeight}px`;
+      chatbot.style.height = `${viewportHeight - keyboardHeight}px`;
+      const inputRect = chatInput.getBoundingClientRect();
+      const chatBox = document.getElementById("chat_box");
+      if (inputRect.bottom > viewportHeight - keyboardHeight) {
+        chatBox.scrollTo({
+          top: chatBox.scrollHeight,
+          behavior: "smooth"
+        });
+        chatInput.scrollIntoView({ block: "end", behavior: "smooth" });
+      }
     } else {
-      // Teclado oculto: restaurar valores por defecto
       chatbot.style.bottom = "0";
-      chatbot.style.height = ""; // Dejar que el CSS/SASS controle la altura
+      chatbot.style.height = "var(--full-height)";
     }
   }
 }
 
 function scrollChatToBottom() {
   const chatBox = document.getElementById("chat_box");
-  const chatInput = document.getElementById("chat_input");
-  if (!chatBox || !chatInput) return;
+  if (!chatBox) return;
 
   requestAnimationFrame(() => {
-    chatBox.scrollTop = chatBox.scrollHeight; // Scroll instantáneo al final
-    chatInput.scrollIntoView({ block: "nearest", behavior: "smooth" }); // Asegurar input visible
+    chatBox.scrollTo({
+      top: chatBox.scrollHeight,
+      behavior: "smooth"
+    });
   });
 }
 
@@ -69,7 +79,7 @@ const handleViewportChanges = debounce(() => {
     adjustChatbotPosition();
     scrollChatToBottom();
   });
-}, 100);
+}, 50);
 
 // Escuchar eventos relevantes
 ["resize", "orientationchange"].forEach((event) =>
@@ -89,27 +99,13 @@ if (window.visualViewport) {
 document.addEventListener("DOMContentLoaded", () => {
   const chatInput = document.getElementById("chat_input");
   if (chatInput) {
-    chatInput.addEventListener("focus", () => {
-      setTimeout(() => {
-        adjustChatbotPosition();
-        scrollChatToBottom();
-      }, 200); // Retraso para esperar a que el teclado aparezca
-    });
-
-    chatInput.addEventListener("blur", () => {
-      setTimeout(() => {
-        adjustChatbotPosition();
-        scrollChatToBottom();
-      }, 200); // Retraso para esperar a que el teclado se oculte
-    });
-
-    // Ajustar el scroll al escribir
+    chatInput.addEventListener("focus", handleViewportChanges);
+    chatInput.addEventListener("blur", handleViewportChanges);
     chatInput.addEventListener("input", () => {
-      setTimeout(scrollChatToBottom, 100);
+      setTimeout(scrollChatToBottom, 50);
     });
   }
 });
-
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||
@@ -278,7 +274,6 @@ function btn_aptc() {
   toggleView({ header: true, ap_tc: true, aside: true });
   console.log("Botón APTC clicado");
 }
-
 
 // Obtener todos los formularios
 const forms = document.querySelectorAll(".cont_inputform");
@@ -497,7 +492,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ...document.querySelectorAll('.disponibilidad_sucu input[type="checkbox"]'),
     ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
     ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
-    ...document.querySelectorAll('.estatus_citas_manager input[type="checkbox"]')
+    ...document.querySelectorAll('.estatus_citas_manager input[type="checkbox"]'),
+    ...document.querySelectorAll('.settings input[type="checkbox"]')
   ];
 
   checkboxes.forEach((checkbox) => {
