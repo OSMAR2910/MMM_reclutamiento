@@ -6,6 +6,7 @@
   <link rel="shortcut icon" href="img/Logos/Logo (5).svg" type="image/x-icon" />
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="/manifest.json">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#ec6223-" />
@@ -542,12 +543,18 @@
       </article>
     </section>
     <section class="pages" id="pag2">
+      <div class="cont-install-btn">
+        <button id="installButton" class="install-btn">
+          <img src="img/Logos/interfaces/icons/descargar.svg" alt="">
+        </button>
+      </div>
       <div class="Logincont" id="Logincont">
         <div class="Login-cont" id="Login-cont">
           <div class="Login-son" id="Login-son">
             <form class="form-login activolog" id="form_log">
               <div class="wel" class="input-field">
                 <h3><span>Bienvenido</span></h3>
+                <p>Escribe tu clave "Admin"</p>
               </div>
               <div class="input-field">
                 <input id="user" type="text" name="user" autocomplete="username" required spellcheck="false" />
@@ -561,6 +568,7 @@
               <div class="input-submit">
                 <input type="button" type="button" id="btn_log_admin" />
               </div>
+              <label class="label_btn_log_manager" for="btn_log_admin">Entrar</label>
             </form>
             <div class="error" id="errorall">
               <div id="icon">
@@ -587,11 +595,13 @@
         </div>
       </div>
       <button class="btn_cita" id="btnAdminManager">
-        <img src="img/Logos/interfaces/icons/cita.svg" alt="cita">
+        <img src="img/Logos/interfaces/icons/rama.svg" alt="cita">
       </button>
     </section>
-    <section class="pages" id="pag3">
-
+    <section class="pages" id="pag3"> 
+      <div class="orientation-message" id="orientation-message-pag1">
+        <p>Por favor, coloca tu dispositivo en horizontal para usar este modo o usa una computadora.</p>
+      </div>
       <div class="settings">
         <div class="icons_settings">
           <input type="checkbox" id="settings1" />
@@ -698,6 +708,7 @@
             <form class="form-login activolog" id="form_log_manager">
               <div class="wel" class="input-field">
                 <h3><span>Bienvenido</span></h3>
+                <p>Escribe tu clave "Sucursal"</p>
               </div>
               <div class="input-field">
                 <input id="user_sucu" type="text" name="user" autocomplete="username" required spellcheck="false" />
@@ -710,6 +721,7 @@
               <div class="input-submit">
                 <input type="button" type="button" id="btn_log_manager" />
               </div>
+              <label class="label_btn_log_manager" for="btn_log_manager">Entrar</label>
             </form>
             <div class="error" id="errorall_sucu">
               <div id="icon">
@@ -735,6 +747,9 @@
           </div>
         </div>
       </div>
+      <button class="btn_admin2" id="btnAdmin2">
+        <img src="img/Logos/interfaces/icons/usuarios.svg" alt="cita">
+      </button>
     </section>
     <section class="pages" id="pag5">
 

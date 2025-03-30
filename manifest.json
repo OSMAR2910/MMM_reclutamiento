@@ -1,0 +1,17 @@
+{
+    "name": "MMM",
+    "short_name": "MMM-RH",
+    "description": "Reclutador automatico de MMM",
+    "start_url": "/index.html#pag2",
+    "display": "standalone",
+    "background_color": "#ec6223",
+    "theme_color": "#ec6223",
+    "icons": [
+      {
+        "src": "img/Logos/Logo (5).svg",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "scope": "/"
+  }

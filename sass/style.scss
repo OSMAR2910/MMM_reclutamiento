@@ -963,6 +963,35 @@ html {
     #pag2 {
       animation: fadeInRightBig 0.5s ease-in-out forwards;
 
+      .cont-install-btn {
+        width: 2.5vw;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 1vh;
+        right: 1vw;
+        cursor: pointer;
+        .install-btn {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          background-color: $Secundario;
+          border: none;
+          border: .3rem solid $Box_admin;
+          border-radius: 50%;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
       .Logincont {
         width: 100%;
         height: 100%;
@@ -999,6 +1028,7 @@ html {
               justify-content: center;
               align-items: center;
               flex-direction: column;
+              position: relative;
               gap: 6%;
 
               .wel {
@@ -1021,6 +1051,19 @@ html {
                     color: $Texto;
                     letter-spacing: 0.1rem;
                   }
+                }
+                p {
+                  width: 100%;
+                  color: $Texto;
+                  font-size: 1vh;
+                  padding: 0;
+                  margin: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-family: $Letra2;
+                  color: $Texto;
+                  letter-spacing: 0.1rem;
                 }
               }
 
@@ -1111,6 +1154,16 @@ html {
                 input {
                   display: none;
                 }
+              }
+              .label_btn_log_manager {
+                color: $Texto;
+                bottom: 9%;
+                border-radius: 3vw;
+                background-color: $Fondo;
+                padding: .3rem .6rem;
+                position: absolute;
+                font-family: $Letra2;
+                font-size: .9em;
               }
             }
 
@@ -1220,13 +1273,30 @@ html {
     #pag3 {
       @include cover;
 
+      .orientation-message {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $Fondo;
+        color: $Texto;
+        font-family: $Letra2;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        text-align: center;
+        z-index: 10000;
+      }
+
       .settings {
         top: 2.5vh;
         left: 1.5vw;
         width: 4vw;
-        height: 5vh;
+        height: 4.8vh;
         display: flex;
-        border-radius: 5vw;
+        border-radius: 10%;
         justify-content: space-evenly;
         align-items: center;
         position: fixed;
@@ -1271,19 +1341,19 @@ html {
       
           .settings_info {
             position: fixed;
-            display: none; // Oculto por defecto
+            display: none;
             justify-content: start;
             align-items: center;
             flex-direction: column;
-            top: 6.3vh;
-            left: 1vw;
-            width: 3.4vw;
+            top: 8.5vh;
+            left: 2vw;
+            width: 3vw;
             height: 7vh;
             text-align: center;
-            border-radius: 0 0 1vw 0;
+            border-radius: .7vw;
             color: $Texto;
             font-family: $Letra2;
-            padding: 0.5vw;
+            padding: 0.3vw;
             background-color: $Fondo;
             gap: 1.5vh;
       
@@ -1352,7 +1422,7 @@ html {
 
             &:checked ~ .status_info {
               display: flex;
-              animation: bounceInDown 0.2s ease-in-out forwards;
+              animation: fadeIn 0.2s ease-in-out forwards;
             }
           }
 
@@ -1688,7 +1758,7 @@ html {
               margin-bottom: 1.5vh;
               justify-content: start;
               align-items: center;
-              flex-direction: column-reverse;
+              flex-direction: column;
               gap: 1.5vh;
 
               .vacante_item_red {
@@ -2052,7 +2122,7 @@ html {
               margin-bottom: 1.5vh;
               justify-content: start;
               align-items: center;
-              flex-direction: column-reverse;
+              flex-direction: column;
               gap: 1.5vh;
 
               .vacante_item_green {
@@ -2237,7 +2307,7 @@ html {
 
             &:checked ~ .mj_user_info {
               display: flex;
-              animation: bounceInDown 0.2s ease-in-out forwards;
+              animation: fadeIn 0.2s ease-in-out forwards;
             }
           }
 
@@ -2386,7 +2456,7 @@ html {
                 margin-bottom: 1.5vh;
                 justify-content: start;
                 align-items: center;
-                flex-direction: column-reverse;
+                flex-direction: column;
                 gap: 1.5vh;
 
                 button {
@@ -2515,7 +2585,7 @@ html {
 
             &:checked ~ .sucu_user_info {
               display: flex;
-              animation: bounceInDown 0.2s ease-in-out forwards;
+              animation: fadeIn 0.2s ease-in-out forwards;
             }
           }
 
@@ -2749,6 +2819,7 @@ html {
               justify-content: center;
               align-items: center;
               flex-direction: column;
+              position: relative;
               gap: 6%;
 
               .wel {
@@ -2771,6 +2842,19 @@ html {
                     color: $Texto;
                     letter-spacing: 0.1rem;
                   }
+                }
+                p {
+                  width: 100%;
+                  color: $Texto;
+                  font-size: 1vh;
+                  padding: 0;
+                  margin: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-family: $Letra2;
+                  color: $Texto;
+                  letter-spacing: 0.1rem;
                 }
               }
 
@@ -2862,6 +2946,16 @@ html {
                   display: none;
                 }
               }
+              .label_btn_log_manager {
+                color: $Texto;
+                bottom: 9%;
+                border-radius: 3vw;
+                background-color: $Fondo;
+                padding: .3rem .6rem;
+                position: absolute;
+                font-family: $Letra2;
+                font-size: .9em;
+              }
             }
 
             .form-login.activolog {
@@ -2937,6 +3031,30 @@ html {
           &:hover {
             scale: 1.3;
           }
+        }
+      }
+      
+      .btn_admin2 {
+        position: fixed;
+        display: flex;
+        opacity: 0;
+        width: 2vw;
+        aspect-ratio: 1/1;
+        bottom: 0;
+        right: 0;
+        background-color: $Transparente;
+        border: none;
+        margin: 2%;
+        transition: all 0.2s ease-in-out;
+        animation: btncita 0.5s ease-in-out forwards;
+        animation-delay: 0.5s;
+
+        img {
+          height: 100%;
+        }
+
+        &:hover {
+          @include opacity;
         }
       }
 
@@ -3015,6 +3133,7 @@ html {
             font-family: $Letra2;
             padding: 0.5vw;
             background-color: $Box_admin;
+            overflow: hidden;
             gap: 1.5vh;
       
             .data_settings {
@@ -3741,889 +3860,6 @@ html {
     }
   }
 
-  @media screen and (max-width: 900px) {
-    .alertas {
-      .alerta {
-        top: 3.8vh;
-        left: 34.7vw;
-        width: 30vw;
-        height: 10vw;
-
-        span {
-          p {
-            font-size: 1.7vw;
-          }
-        }
-      }
-
-      .alerta_admin {
-        top: 1.8vh;
-        left: 38.5vw;
-        width: 22.5vw;
-        height: 8.9vw;
-
-        span {
-          p {
-            font-size: 1.7vw;
-          }
-        }
-      }
-
-      .alerta_manager {
-        top: 2vh;
-        left: 41.1vw;
-        width: 17.5vw;
-        height: 9.5vw;
-        border-radius: 4vw;
-
-        span {
-          p {
-            font-size: 1.7vw;
-          }
-        }
-      }
-    }
-
-    .alertas_modal {
-      .alert_eliminacion_vacante {
-        .alert_box {
-          width: 35vw;
-          height: 10vh;
-          font-size: 2vw;
-
-          .alert_btn_cont {
-            .alert-btn {
-              font-size: 1.5vw;
-            }
-          }
-        }
-      }
-
-      .modal-container {
-        .modal-content {
-          width: 50vw;
-          height: 40vh;
-          padding: 2vw;
-          border-radius: 5vw;
-          font-size: 1vw;
-
-          h2 {
-            width: 100%;
-            margin-bottom: 3vh;
-            font-size: 2.5vw;
-            letter-spacing: 0.3rem;
-          }
-
-          form {
-            height: 100%;
-            gap: 2vw;
-
-            .input-form {
-              height: 8vh;
-
-              .input {
-                border-radius: 5rem;
-                font-size: 2vw;
-              }
-
-              label {
-                top: 30vh;
-                left: 25vw;
-                width: 50vw;
-                height: 6vw;
-
-                span {
-                  p {
-                    font-size: 2vw;
-                    letter-spacing: 0.1rem;
-                  }
-                }
-              }
-            }
-
-            .modal-buttons {
-              gap: 1vw;
-
-              button {
-                font-size: 2.5vw;
-                border-radius: 1vw;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    header {
-      width: 50vw;
-      height: 15vw;
-
-      nav {
-        ul {
-          .circulo_icon {
-            width: 3vw;
-            height: 3vw;
-            top: 50vh;
-            left: 44vw;
-          }
-        }
-      }
-    }
-
-    main {
-      .pages {
-        width: 100%;
-        height: calc(var(--vh, 1vh) * 100);
-      }
-
-      #home {
-        .mancha1 {
-          width: 70%;
-          top: -8vh;
-          left: -15vw;
-        }
-
-        .mancha2 {
-          width: 70%;
-          bottom: -15vh;
-          right: -20vw;
-        }
-
-        .ap_tc {
-          width: 25vw;
-          font-size: 1vw;
-        }
-      }
-
-      #pag1 {
-        article {
-          .texto_form {
-            width: 80%;
-
-            h1 {
-              font-size: 3vh;
-            }
-
-            h3 {
-              font-size: 1.7vh;
-            }
-          }
-
-          .cont_form {
-            border-radius: 4vw;
-
-            form {
-              .cont_inputform {
-                .input-form {
-                  .custom-dropdown {
-                    font-size: 2vw;
-                  }
-
-                  .input {
-                    .select-items {
-                      border-radius: 1.5rem 1.5rem 3rem 3rem;
-                    }
-                  }
-
-                  label {
-                    top: 23vh;
-                    left: 23vw;
-                    width: 50vw;
-                    height: 10vw;
-
-                    span {
-                      p {
-                        font-size: 2vw;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          label {
-            width: 5vw;
-          }
-        }
-      }
-
-      #pag2 {
-        .Logincont {
-          .Login-cont {
-            width: 40vw;
-          }
-        }
-
-        .btn_cita {
-          width: 7vw;
-          left: 0;
-        }
-      }
-
-      #pag3 {
-        @include cover;
-
-        .estatus_vacantes {
-          top: 1.8vh;
-          left: 38.5vw;
-          width: 20vw;
-          height: 6.5vw;
-          padding: 1.5vw;
-          border-radius: 5vw;
-
-          .icons_status {
-            .status_info {
-              width: 95vw;
-              height: 85vh;
-              top: 11vh;
-              left: 1.5vw;
-
-              .box_status {
-                p {
-                  font-size: 2vw;
-                }
-              }
-
-              .data_status {
-                ul {
-                  .vacante_item_noasistieron,
-                  .vacante_item_asistieron,
-                  .vacante_item_contratado {
-                    border-radius: 1.5vw;
-
-                    .btn_container2 {
-                      width: 1.5%;
-                    }
-
-                    .vacante_info {
-                      width: 91%;
-                      grid-template-columns: repeat(3, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      width: 7.5%;
-                      height: 100%;
-
-                      button {
-                        width: 3vw;
-                      }
-                    }
-
-                    &:focus {
-                      height: 30vh;
-
-                      .btn-container {
-                        display: none;
-                      }
-
-                      .vacante_info {
-                        width: 95%;
-                        height: 95%;
-                        grid-template-columns: repeat(3, 1fr);
-
-                        span {
-                          font-size: 2vw;
-
-                          strong {
-                            font-size: 2.5vw;
-                          }
-                        }
-                      }
-
-                      .btn_container2 {
-                        display: none;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .admin_cont {
-          width: 97vw;
-          height: calc(var(--vh, 1vh) * 97);
-          position: absolute;
-          justify-content: start;
-          align-items: center;
-          flex-direction: column-reverse;
-          mask-size: 32vw, 10vw, 15vw;
-          mask-position: center top, left top, right top;
-
-          .cont_rechazados {
-            width: 95%;
-            height: 40vh;
-            margin: 0;
-            overflow: hidden;
-            justify-content: start;
-            align-items: center;
-
-            .box_red {
-              width: 100%;
-              height: 3vh;
-            }
-
-            .const_data {
-              .no_data {
-                margin-top: 60%;
-                width: 40%;
-              }
-
-              ul {
-                .vacante_item_red {
-                  overflow: hidden;
-
-                  .btn_container2 {
-                    width: 2%;
-                  }
-
-                  .vacante_info {
-                    width: 95%;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2vw;
-
-                      strong {
-                        font-size: 2.5vw;
-                      }
-                    }
-                  }
-
-                  .btn-container {
-                    width: 7.5%;
-                    gap: 5%;
-
-                    button {
-                      border-radius: 5vw;
-                      width: 2.7vw;
-                    }
-                  }
-
-                  &:focus {
-                    height: 35vh;
-
-                    .btn_container2 {
-                      display: none;
-                    }
-
-                    .vacante_info {
-                      width: 95%;
-                      height: 95%;
-                      grid-template-columns: repeat(4, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      display: none;
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          .cont_citas {
-            width: 95%;
-            height: 40vh;
-            margin: 0;
-            overflow: hidden;
-            justify-content: start;
-            align-items: center;
-
-            .box_gray {
-              width: 100%;
-              height: 3vh;
-            }
-
-            .const_data {
-              .no_data {
-                margin-top: 60%;
-                width: 40%;
-              }
-
-              ul {
-                .vacante_item_citas {
-                  overflow: hidden;
-
-                  .btn_container2 {
-                    width: 2%;
-
-                    .btn-descargar-pdf {
-                      height: 100%;
-                    }
-
-                    .btn-agendar-cita {
-                      display: none;
-                    }
-                  }
-
-                  .vacante_info {
-                    width: 95%;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2vw;
-
-                      strong {
-                        font-size: 2.5vw;
-                      }
-                    }
-                  }
-
-                  .btn-container {
-                    display: none;
-                  }
-
-                  &:focus {
-                    height: 35vh;
-
-                    .btn_container2 {
-                      display: none;
-                    }
-
-                    .vacante_info {
-                      width: 95%;
-                      height: 95%;
-                      grid-template-columns: repeat(4, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      display: none;
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          .cont_aceptados {
-            width: 95%;
-            height: 40vh;
-            margin-top: 10vh;
-            overflow: hidden;
-            justify-content: start;
-            align-items: center;
-
-            .box_green {
-              width: 100%;
-              height: 3vh;
-            }
-
-            .const_data {
-              .no_data {
-                margin-top: 60%;
-                width: 40%;
-              }
-
-              ul {
-                .vacante_item_green {
-                  overflow: hidden;
-
-                  .btn_container2 {
-                    width: 2%;
-                  }
-
-                  .vacante_info {
-                    width: 95%;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2vw;
-
-                      strong {
-                        font-size: 2.5vw;
-                      }
-                    }
-                  }
-
-                  .btn-container {
-                    width: 7.5%;
-                    gap: 5%;
-
-                    button {
-                      border-radius: 5vw;
-                      width: 2.7vw;
-                    }
-                  }
-
-                  &:focus {
-                    height: 35vh;
-
-                    .btn_container2 {
-                      display: none;
-                    }
-
-                    .vacante_info {
-                      width: 95%;
-                      height: 95%;
-                      grid-template-columns: repeat(4, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      display: none;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .mensajes_usuarios {
-          width: 10.5vw;
-          height: 5vh;
-          border-radius: 2vw;
-
-          .icons_mj {
-            label {
-              border-radius: 10rem;
-            }
-
-            .mj_user_info {
-              width: 95vw;
-              height: 85vh;
-              top: 11vh;
-              left: 1.5vw;
-              font-size: 1vw;
-
-              .filter-container {
-                width: 100%;
-                height: 4vh;
-                border-radius: 2vw;
-
-                .input-field {
-                  input {
-                    @include cover;
-                    border-radius: 2vw;
-                    font-size: 2vw;
-                  }
-
-                  input:focus ~ label,
-                  input:not(:placeholder-shown) ~ label {
-                    font-size: 1.5vw;
-                  }
-
-                  label {
-                    font-size: 2vw;
-                  }
-                }
-              }
-
-              .data_mj_user {
-                ul {
-                  button {
-                    border-radius: 2vw;
-
-                    .user-div {
-                      font-size: 2vw;
-                    }
-
-                    &:focus {
-                      overflow: hidden;
-                      height: 30vh;
-
-                      .user-messages {
-                        .message {
-                          span {
-                            strong {
-                              font-size: 1vw;
-                            }
-
-                            p {
-                              font-size: 1.4vw;
-                              border-radius: 2vw;
-                            }
-
-                            time {
-                              font-size: 0.9vw;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      #pag4 {
-        .Logincont {
-          .Login-cont {
-            width: 40vw;
-          }
-        }
-      }
-
-      #pag5 {
-        @include cover;
-
-        .estatus_citas_manager {
-          top: 2vh;
-          left: 41.1vw;
-          width: 15vw;
-          height: 7vw;
-          padding: 1.5vw;
-          border-radius: 4vw;
-
-          .icons_status {
-            .status_info {
-              width: 95vw;
-              height: 85vh;
-              top: 11vh;
-              left: 1.7vw;
-
-              .box_status {
-                p {
-                  font-size: 2vw;
-                }
-              }
-
-              .data_status {
-                ul {
-                  .vacante_item_noasistieron,
-                  .vacante_item_asistieron,
-                  .vacante_item_contratado {
-                    border-radius: 2vw;
-
-                    .btn_container2 {
-                      width: 1.5%;
-                    }
-
-                    .vacante_info {
-                      width: 91%;
-                      grid-template-columns: repeat(3, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      width: 7.5%;
-                      height: 100%;
-
-                      button {
-                        width: 3vw;
-                      }
-                    }
-
-                    &:focus {
-                      height: 30vh;
-
-                      .btn-container {
-                        display: none;
-                      }
-
-                      .vacante_info {
-                        width: 95%;
-                        height: 95%;
-                        grid-template-columns: repeat(3, 1fr);
-
-                        span {
-                          font-size: 2vw;
-
-                          strong {
-                            font-size: 2.5vw;
-                          }
-                        }
-                      }
-
-                      .btn_container2 {
-                        display: none;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .cont_manager {
-          width: 97vw;
-          height: calc(var(--vh, 1vh) * 97);
-          position: absolute;
-          justify-content: start;
-          align-items: center;
-          flex-direction: column-reverse;
-          mask-size: 27vw;
-          border-radius: 4vw;
-
-          .cont_citas_manager {
-            height: 85%;
-            border-radius: 1.2vw;
-            margin-top: 10vh;
-
-            .const_data {
-              ul {
-                .vacante_item_citasManager {
-                  border-radius: 1.5vw;
-
-                  .btn_container2 {
-                    width: 2%;
-                  }
-
-                  .vacante_info {
-                    width: 83%;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2vw;
-
-                      strong {
-                        font-size: 2.5vw;
-                      }
-                    }
-                  }
-
-                  .btn-container {
-                    width: 15%;
-
-                    button {
-                      width: 5vw;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      #ap_tc {
-        animation: bounceInLeft 0.5s ease-in-out forwards;
-        gap: 5%;
-        align-items: end;
-        justify-content: center;
-
-        div {
-          width: 90%;
-          height: 70%;
-          margin-bottom: 10%;
-          display: flex;
-          gap: 5%;
-          color: $Box_admin;
-          font-family: $Letra2;
-
-          div {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            position: relative;
-            background-color: $Blanco;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            padding: 2%;
-            border-radius: 1vw;
-            text-align: center;
-
-            p {
-              border: 0;
-              margin: 0;
-              padding: 0;
-            }
-          }
-        }
-      }
-
-      aside {
-        width: 0;
-        height: 0;
-        display: none;
-
-        article {
-          width: 0;
-          height: 0;
-
-          div {
-            width: 0;
-            height: 0;
-
-            img {
-              width: 0;
-              height: 0;
-            }
-          }
-
-          h2 {
-            width: 0;
-            height: 0;
-            font-size: 0;
-          }
-
-          p {
-            width: 0;
-            height: 0;
-            font-size: 0;
-          }
-        }
-      }
-    }
-
-    .cambiar_nav {
-      top: 4vh;
-      left: 35vw;
-      width: 30vw;
-      height: 10vw;
-
-      nav {
-        ul {
-          .circulo_icon {
-            width: 2vw;
-            height: 2vw;
-            top: 8vh;
-            left: 46vw;
-          }
-        }
-      }
-    }
-  }
-
   @media screen and (max-width: 500px) {
     .alertas {
       .alerta {
@@ -4750,6 +3986,10 @@ html {
     }
 
     main {
+      .pages {
+        width: 100%;
+        height: calc(var(--vh, 1vh) * 100);
+      }
       #home {
         .mancha1 {
           width: 90%;
@@ -4828,6 +4068,9 @@ html {
       }
 
       #pag2 {
+        .cont-install-btn {
+          width: 10vw;
+        }
         .Logincont {
           .Login-cont {
             width: 70vw;
@@ -4875,6 +4118,11 @@ html {
 
       #pag3 {
         @include cover;
+
+        .orientation-message {
+          display: flex;
+        }
+
         .settings {
           top: 1.3vh;
           left: 2vw;
@@ -5348,6 +4596,11 @@ html {
             font-size: 8vw;
           }
         }
+        
+        .btn_admin2 {
+          width: 8vw;
+          left: 0;
+        }
       }
 
       #pag5 {
@@ -5361,14 +4614,19 @@ html {
           border-radius: 1vw;
           .icons_settings {
             .settings_info {
-              width: 15vw;
-              height: 9vh;
-              top: 5.5vh;
-              left: 1.5vw;
-              border-radius: 0 0 2vw 0;
+              width: 12vw;
+              height: 7vh;
+              top: 2.5vh;
+              left: 19vw;
+              border-radius: 3vw;
               background-color: $Fondo;
               .data_settings {
                 background-color: $Fondo;
+                button {
+                  img {
+                    height: 70%;
+                  }
+                }
               }
             }
           }
@@ -5384,6 +4642,10 @@ html {
 
           .icons_status {
             .status_info {
+              width: 95vw;
+              height: 85vh;
+              top: 11vh;
+              left: 1.7vw;
               .box_status {
                 p {
                   font-size: 3vw;
@@ -5475,10 +4737,19 @@ html {
         }
 
         .cont_manager {
+          width: 97vw;
+          height: calc(var(--vh, 1vh) * 97);
+          position: absolute;
+          justify-content: start;
+          align-items: center;
+          flex-direction: column-reverse;
           mask-size: 45vw, 20vw;
           border-radius: 9vw;
 
           .cont_citas_manager {
+            height: 85%;
+            border-radius: 1.2vw;
+            margin-top: 10vh;
             .const_data {
               ul {
                 .vacante_item_citasManager {
@@ -5535,6 +4806,39 @@ html {
           div {
             gap: 1%;
             border-radius: 3vw;
+          }
+        }
+      }
+
+      aside {
+        width: 0;
+        height: 0;
+        display: none;
+
+        article {
+          width: 0;
+          height: 0;
+
+          div {
+            width: 0;
+            height: 0;
+
+            img {
+              width: 0;
+              height: 0;
+            }
+          }
+
+          h2 {
+            width: 0;
+            height: 0;
+            font-size: 0;
+          }
+
+          p {
+            width: 0;
+            height: 0;
+            font-size: 0;
           }
         }
       }

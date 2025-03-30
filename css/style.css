@@ -324,7 +324,7 @@ body .alertasgame .alertagame {
   border: 2px solid #f18f62;
   box-shadow: 0px 0px 10px 0px #f18f62;
   border-radius: 5rem;
-  animation: fadeInDown 0.2s ease-in-out forwards;
+  animation: fadeInDown 0.5s ease-in-out forwards;
 }
 body .alertasgame .alertagame span {
   width: 90%;
@@ -353,13 +353,20 @@ body canvas {
 @media screen and (max-width: 500px) {
   body #regreso {
     width: 8vw;
-    margin: 8%;
+    margin: 3%;
   }
   body .alertasgame {
-    top: 5vh;
-    left: 42.5vw;
-    width: 15vw;
-    height: 15vw;
+    top: 40vh;
+    display: flex;
+    left: 30vw;
+    width: 40vw;
+    height: 40vw;
+  }
+  body .alertasgame .alertagame {
+    display: flex;
+  }
+  body canvas {
+    display: none;
   }
 }
 
@@ -585,20 +592,22 @@ body canvas {
   background-size: 75%;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 }
 .max_chat .chat_header .chat_icon .status_green {
   width: 0.5vw;
   aspect-ratio: 2/2;
   background-color: #00bf63;
   border-radius: 100%;
-  margin-top: 3.5vh;
-  margin-left: 1.7vw;
+  bottom: 0;
+  right: 0;
   position: absolute;
 }
 .max_chat .chat_header .chat_present {
   display: flex;
+  position: absolute;
+  left: 20%;
   flex-direction: column;
-  margin-right: 5vw;
 }
 .max_chat .chat_header .chat_present h3 {
   width: 100%;
@@ -1056,7 +1065,7 @@ body canvas {
   }
   .max_chat {
     width: 100vw;
-    height: calc(var(--full-height, 100vh));
+    height: var(--full-height);
     margin: 0;
     border-radius: 0;
     position: fixed;
@@ -1065,7 +1074,7 @@ body canvas {
   }
   .max_chat .chat_header {
     height: 8%;
-    min-height: 3.5rem;
+    min-height: 4rem;
     border-radius: 7vw;
     box-shadow: 0px 0px 10px 5px #174891;
   }
@@ -1075,11 +1084,9 @@ body canvas {
   }
   .max_chat .chat_header .chat_icon .status_green {
     width: 2.6vw;
-    margin-top: 4.5vh;
-    margin-left: 9vw;
   }
   .max_chat .chat_header .chat_present {
-    margin-right: 30vw;
+    left: 25%;
   }
   .max_chat .chat_header .chat_present h3 {
     font-size: 3.5vw;
@@ -1097,9 +1104,11 @@ body canvas {
   .max_chat .chat_header .name_id {
     border-radius: 3vw;
     font-size: 2.5vw;
+    min-height: 1rem;
   }
   .max_chat .chat_box {
     height: 79%;
+    max-height: calc(var(--full-height) - 60px);
   }
   .max_chat .chat_box p {
     font-size: 3.5vw;
@@ -1129,6 +1138,7 @@ body canvas {
   }
   .max_chat .chat_form {
     height: 6%;
+    min-height: 2rem;
   }
   .max_chat .chat_form .chat_input {
     width: 80%;
@@ -2118,6 +2128,38 @@ body main #pag2,
 html main #pag2 {
   animation: fadeInRightBig 0.5s ease-in-out forwards;
 }
+body main #pag2 .cont-install-btn,
+html main #pag2 .cont-install-btn {
+  width: 2.5vw;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 1vh;
+  right: 1vw;
+  cursor: pointer;
+}
+body main #pag2 .cont-install-btn .install-btn,
+html main #pag2 .cont-install-btn .install-btn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #174891;
+  border: none;
+  border: 0.3rem solid #1b3c59;
+  border-radius: 50%;
+}
+body main #pag2 .cont-install-btn .install-btn img,
+html main #pag2 .cont-install-btn .install-btn img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 body main #pag2 .Logincont,
 html main #pag2 .Logincont {
   width: 100%;
@@ -2158,6 +2200,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
   gap: 6%;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel,
@@ -2180,6 +2223,20 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 {
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 span,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 span {
+  color: #ffffff;
+  letter-spacing: 0.1rem;
+}
+body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p,
+html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p {
+  width: 100%;
+  color: #ffffff;
+  font-size: 1vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito";
   color: #ffffff;
   letter-spacing: 0.1rem;
 }
@@ -2273,6 +2330,17 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit {
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit input,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit input {
   display: none;
+}
+body main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
+html main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
+  color: #ffffff;
+  bottom: 9%;
+  border-radius: 3vw;
+  background-color: #ec6223;
+  padding: 0.3rem 0.6rem;
+  position: absolute;
+  font-family: "Nunito";
+  font-size: 0.9em;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login.activolog,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login.activolog {
@@ -2381,14 +2449,31 @@ html main #pag3 {
   width: 100%;
   height: 100%;
 }
+body main #pag3 .orientation-message,
+html main #pag3 .orientation-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ec6223;
+  color: #ffffff;
+  font-family: "Nunito";
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  text-align: center;
+  z-index: 10000;
+}
 body main #pag3 .settings,
 html main #pag3 .settings {
   top: 2.5vh;
   left: 1.5vw;
   width: 4vw;
-  height: 5vh;
+  height: 4.8vh;
   display: flex;
-  border-radius: 5vw;
+  border-radius: 10%;
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
@@ -2439,15 +2524,15 @@ html main #pag3 .settings .icons_settings .settings_info {
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  top: 6.3vh;
-  left: 1vw;
-  width: 3.4vw;
+  top: 8.5vh;
+  left: 2vw;
+  width: 3vw;
   height: 7vh;
   text-align: center;
-  border-radius: 0 0 1vw 0;
+  border-radius: 0.7vw;
   color: #ffffff;
   font-family: "Nunito";
-  padding: 0.5vw;
+  padding: 0.3vw;
   background-color: #ec6223;
   gap: 1.5vh;
 }
@@ -2518,7 +2603,7 @@ html main #pag3 .estatus_vacantes .icons_status input:checked ~ label {
 body main #pag3 .estatus_vacantes .icons_status input:checked ~ .status_info,
 html main #pag3 .estatus_vacantes .icons_status input:checked ~ .status_info {
   display: flex;
-  animation: bounceInDown 0.2s ease-in-out forwards;
+  animation: fadeIn 0.2s ease-in-out forwards;
 }
 body main #pag3 .estatus_vacantes .icons_status label,
 html main #pag3 .estatus_vacantes .icons_status label {
@@ -2942,7 +3027,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul {
   margin-bottom: 1.5vh;
   justify-content: start;
   align-items: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red,
@@ -3310,7 +3395,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul {
   margin-bottom: 1.5vh;
   justify-content: start;
   align-items: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green,
@@ -3499,7 +3584,7 @@ html main #pag3 .mensajes_usuarios .icons_mj input:checked ~ label {
 body main #pag3 .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info,
 html main #pag3 .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info {
   display: flex;
-  animation: bounceInDown 0.2s ease-in-out forwards;
+  animation: fadeIn 0.2s ease-in-out forwards;
 }
 body main #pag3 .mensajes_usuarios .icons_mj label,
 html main #pag3 .mensajes_usuarios .icons_mj label {
@@ -3660,7 +3745,7 @@ html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul {
   margin-bottom: 1.5vh;
   justify-content: start;
   align-items: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 1.5vh;
 }
 body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button,
@@ -3789,7 +3874,7 @@ html main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ label {
 body main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info,
 html main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info {
   display: flex;
-  animation: bounceInDown 0.2s ease-in-out forwards;
+  animation: fadeIn 0.2s ease-in-out forwards;
 }
 body main #pag3 .disponibilidad_sucu .icons_sucu label,
 html main #pag3 .disponibilidad_sucu .icons_sucu label {
@@ -4042,6 +4127,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
   gap: 6%;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel,
@@ -4064,6 +4150,20 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 {
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 span,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 span {
+  color: #ffffff;
+  letter-spacing: 0.1rem;
+}
+body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p,
+html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p {
+  width: 100%;
+  color: #ffffff;
+  font-size: 1vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito";
   color: #ffffff;
   letter-spacing: 0.1rem;
 }
@@ -4158,6 +4258,17 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-submit input {
   display: none;
 }
+body main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
+html main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
+  color: #ffffff;
+  bottom: 9%;
+  border-radius: 3vw;
+  background-color: #ec6223;
+  padding: 0.3rem 0.6rem;
+  position: absolute;
+  font-family: "Nunito";
+  font-size: 0.9em;
+}
 body main #pag4 .Logincont .Login-cont .Login-son .form-login.activolog,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login.activolog {
   display: flex;
@@ -4232,6 +4343,31 @@ html main #pag4 .Logincont .entrar-btn {
 body main #pag4 .Logincont .entrar-btn:hover,
 html main #pag4 .Logincont .entrar-btn:hover {
   scale: 1.3;
+}
+body main #pag4 .btn_admin2,
+html main #pag4 .btn_admin2 {
+  position: fixed;
+  display: flex;
+  opacity: 0;
+  width: 2vw;
+  aspect-ratio: 1/1;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin: 2%;
+  transition: all 0.2s ease-in-out;
+  animation: btncita 0.5s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+body main #pag4 .btn_admin2 img,
+html main #pag4 .btn_admin2 img {
+  height: 100%;
+}
+body main #pag4 .btn_admin2:hover,
+html main #pag4 .btn_admin2:hover {
+  opacity: 50%;
+  scale: 0.9;
 }
 body main #pag4 .Logincont.animacionlog,
 html main #pag4 .Logincont.animacionlog {
@@ -4312,6 +4448,7 @@ html main #pag5 .settings .icons_settings .settings_info {
   font-family: "Nunito";
   padding: 0.5vw;
   background-color: #1b3c59;
+  overflow: hidden;
   gap: 1.5vh;
 }
 body main #pag5 .settings .icons_settings .settings_info .data_settings,
@@ -5117,901 +5254,6 @@ html .cambiar_nav nav ul .circulo_icon {
   top: 9.3vh;
   left: 23.3vw;
 }
-@media screen and (max-width: 900px) {
-  body .alertas .alerta,
-  html .alertas .alerta {
-    top: 3.8vh;
-    left: 34.7vw;
-    width: 30vw;
-    height: 10vw;
-  }
-  body .alertas .alerta span p,
-  html .alertas .alerta span p {
-    font-size: 1.7vw;
-  }
-  body .alertas .alerta_admin,
-  html .alertas .alerta_admin {
-    top: 1.8vh;
-    left: 38.5vw;
-    width: 22.5vw;
-    height: 8.9vw;
-  }
-  body .alertas .alerta_admin span p,
-  html .alertas .alerta_admin span p {
-    font-size: 1.7vw;
-  }
-  body .alertas .alerta_manager,
-  html .alertas .alerta_manager {
-    top: 2vh;
-    left: 41.1vw;
-    width: 17.5vw;
-    height: 9.5vw;
-    border-radius: 4vw;
-  }
-  body .alertas .alerta_manager span p,
-  html .alertas .alerta_manager span p {
-    font-size: 1.7vw;
-  }
-  body .alertas_modal .alert_eliminacion_vacante .alert_box,
-  html .alertas_modal .alert_eliminacion_vacante .alert_box {
-    width: 35vw;
-    height: 10vh;
-    font-size: 2vw;
-  }
-  body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn,
-  html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn {
-    font-size: 1.5vw;
-  }
-  body .alertas_modal .modal-container .modal-content,
-  html .alertas_modal .modal-container .modal-content {
-    width: 50vw;
-    height: 40vh;
-    padding: 2vw;
-    border-radius: 5vw;
-    font-size: 1vw;
-  }
-  body .alertas_modal .modal-container .modal-content h2,
-  html .alertas_modal .modal-container .modal-content h2 {
-    width: 100%;
-    margin-bottom: 3vh;
-    font-size: 2.5vw;
-    letter-spacing: 0.3rem;
-  }
-  body .alertas_modal .modal-container .modal-content form,
-  html .alertas_modal .modal-container .modal-content form {
-    height: 100%;
-    gap: 2vw;
-  }
-  body .alertas_modal .modal-container .modal-content form .input-form,
-  html .alertas_modal .modal-container .modal-content form .input-form {
-    height: 8vh;
-  }
-  body .alertas_modal .modal-container .modal-content form .input-form .input,
-  html .alertas_modal .modal-container .modal-content form .input-form .input {
-    border-radius: 5rem;
-    font-size: 2vw;
-  }
-  body .alertas_modal .modal-container .modal-content form .input-form label,
-  html .alertas_modal .modal-container .modal-content form .input-form label {
-    top: 30vh;
-    left: 25vw;
-    width: 50vw;
-    height: 6vw;
-  }
-  body .alertas_modal .modal-container .modal-content form .input-form label span p,
-  html .alertas_modal .modal-container .modal-content form .input-form label span p {
-    font-size: 2vw;
-    letter-spacing: 0.1rem;
-  }
-  body .alertas_modal .modal-container .modal-content form .modal-buttons,
-  html .alertas_modal .modal-container .modal-content form .modal-buttons {
-    gap: 1vw;
-  }
-  body .alertas_modal .modal-container .modal-content form .modal-buttons button,
-  html .alertas_modal .modal-container .modal-content form .modal-buttons button {
-    font-size: 2.5vw;
-    border-radius: 1vw;
-  }
-  body header,
-  html header {
-    width: 50vw;
-    height: 15vw;
-  }
-  body header nav ul .circulo_icon,
-  html header nav ul .circulo_icon {
-    width: 3vw;
-    height: 3vw;
-    top: 50vh;
-    left: 44vw;
-  }
-  body main .pages,
-  html main .pages {
-    width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
-  }
-  body main #home .mancha1,
-  html main #home .mancha1 {
-    width: 70%;
-    top: -8vh;
-    left: -15vw;
-  }
-  body main #home .mancha2,
-  html main #home .mancha2 {
-    width: 70%;
-    bottom: -15vh;
-    right: -20vw;
-  }
-  body main #home .ap_tc,
-  html main #home .ap_tc {
-    width: 25vw;
-    font-size: 1vw;
-  }
-  body main #pag1 article .texto_form,
-  html main #pag1 article .texto_form {
-    width: 80%;
-  }
-  body main #pag1 article .texto_form h1,
-  html main #pag1 article .texto_form h1 {
-    font-size: 3vh;
-  }
-  body main #pag1 article .texto_form h3,
-  html main #pag1 article .texto_form h3 {
-    font-size: 1.7vh;
-  }
-  body main #pag1 article .cont_form,
-  html main #pag1 article .cont_form {
-    border-radius: 4vw;
-  }
-  body main #pag1 article .cont_form form .cont_inputform .input-form .custom-dropdown,
-  html main #pag1 article .cont_form form .cont_inputform .input-form .custom-dropdown {
-    font-size: 2vw;
-  }
-  body main #pag1 article .cont_form form .cont_inputform .input-form .input .select-items,
-  html main #pag1 article .cont_form form .cont_inputform .input-form .input .select-items {
-    border-radius: 1.5rem 1.5rem 3rem 3rem;
-  }
-  body main #pag1 article .cont_form form .cont_inputform .input-form label,
-  html main #pag1 article .cont_form form .cont_inputform .input-form label {
-    top: 23vh;
-    left: 23vw;
-    width: 50vw;
-    height: 10vw;
-  }
-  body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
-  html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
-    font-size: 2vw;
-  }
-  body main #pag1 article label,
-  html main #pag1 article label {
-    width: 5vw;
-  }
-  body main #pag2 .Logincont .Login-cont,
-  html main #pag2 .Logincont .Login-cont {
-    width: 40vw;
-  }
-  body main #pag2 .btn_cita,
-  html main #pag2 .btn_cita {
-    width: 7vw;
-    left: 0;
-  }
-  body main #pag3,
-  html main #pag3 {
-    width: 100%;
-    height: 100%;
-  }
-  body main #pag3 .estatus_vacantes,
-  html main #pag3 .estatus_vacantes {
-    top: 1.8vh;
-    left: 38.5vw;
-    width: 20vw;
-    height: 6.5vw;
-    padding: 1.5vw;
-    border-radius: 5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info {
-    width: 95vw;
-    height: 85vh;
-    top: 11vh;
-    left: 1.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .box_status p,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .box_status p {
-    font-size: 2vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado {
-    border-radius: 1.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 {
-    width: 1.5%;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info {
-    width: 91%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container {
-    width: 7.5%;
-    height: 100%;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button {
-    width: 3vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus {
-    height: 30vh;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag3 .admin_cont,
-  html main #pag3 .admin_cont {
-    width: 97vw;
-    height: calc(var(--vh, 1vh) * 97);
-    position: absolute;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column-reverse;
-    -webkit-mask-size: 32vw, 10vw, 15vw;
-            mask-size: 32vw, 10vw, 15vw;
-    -webkit-mask-position: center top, left top, right top;
-            mask-position: center top, left top, right top;
-  }
-  body main #pag3 .admin_cont .cont_rechazados,
-  html main #pag3 .admin_cont .cont_rechazados {
-    width: 95%;
-    height: 40vh;
-    margin: 0;
-    overflow: hidden;
-    justify-content: start;
-    align-items: center;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .box_red,
-  html main #pag3 .admin_cont .cont_rechazados .box_red {
-    width: 100%;
-    height: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data .no_data,
-  html main #pag3 .admin_cont .cont_rechazados .const_data .no_data {
-    margin-top: 60%;
-    width: 40%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red {
-    overflow: hidden;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 {
-    width: 2%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info {
-    width: 95%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container {
-    width: 7.5%;
-    gap: 5%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container button,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container button {
-    border-radius: 5vw;
-    width: 2.7vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus {
-    height: 35vh;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn_container2,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas,
-  html main #pag3 .admin_cont .cont_citas {
-    width: 95%;
-    height: 40vh;
-    margin: 0;
-    overflow: hidden;
-    justify-content: start;
-    align-items: center;
-  }
-  body main #pag3 .admin_cont .cont_citas .box_gray,
-  html main #pag3 .admin_cont .cont_citas .box_gray {
-    width: 100%;
-    height: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data .no_data,
-  html main #pag3 .admin_cont .cont_citas .const_data .no_data {
-    margin-top: 60%;
-    width: 40%;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas {
-    overflow: hidden;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 {
-    width: 2%;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-descargar-pdf,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-descargar-pdf {
-    height: 100%;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-agendar-cita,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-agendar-cita {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info {
-    width: 95%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus {
-    height: 35vh;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn_container2,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn-container,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_aceptados,
-  html main #pag3 .admin_cont .cont_aceptados {
-    width: 95%;
-    height: 40vh;
-    margin-top: 10vh;
-    overflow: hidden;
-    justify-content: start;
-    align-items: center;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .box_green,
-  html main #pag3 .admin_cont .cont_aceptados .box_green {
-    width: 100%;
-    height: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data .no_data,
-  html main #pag3 .admin_cont .cont_aceptados .const_data .no_data {
-    margin-top: 60%;
-    width: 40%;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green {
-    overflow: hidden;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2 {
-    width: 2%;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info {
-    width: 95%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container {
-    width: 7.5%;
-    gap: 5%;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container button,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container button {
-    border-radius: 5vw;
-    width: 2.7vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus {
-    height: 35vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .mensajes_usuarios,
-  html main #pag3 .mensajes_usuarios {
-    width: 10.5vw;
-    height: 5vh;
-    border-radius: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj label,
-  html main #pag3 .mensajes_usuarios .icons_mj label {
-    border-radius: 10rem;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info {
-    width: 95vw;
-    height: 85vh;
-    top: 11vh;
-    left: 1.5vw;
-    font-size: 1vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container {
-    width: 100%;
-    height: 4vh;
-    border-radius: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input {
-    width: 100%;
-    height: 100%;
-    border-radius: 2vw;
-    font-size: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
-    font-size: 1.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
-    font-size: 1.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label {
-    font-size: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button {
-    border-radius: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div {
-    font-size: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus {
-    overflow: hidden;
-    height: 30vh;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong {
-    font-size: 1vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p {
-    font-size: 1.4vw;
-    border-radius: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time {
-    font-size: 0.9vw;
-  }
-  body main #pag4 .Logincont .Login-cont,
-  html main #pag4 .Logincont .Login-cont {
-    width: 40vw;
-  }
-  body main #pag5,
-  html main #pag5 {
-    width: 100%;
-    height: 100%;
-  }
-  body main #pag5 .estatus_citas_manager,
-  html main #pag5 .estatus_citas_manager {
-    top: 2vh;
-    left: 41.1vw;
-    width: 15vw;
-    height: 7vw;
-    padding: 1.5vw;
-    border-radius: 4vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info {
-    width: 95vw;
-    height: 85vh;
-    top: 11vh;
-    left: 1.7vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p {
-    font-size: 2vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado {
-    border-radius: 2vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 {
-    width: 1.5%;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info {
-    width: 91%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container {
-    width: 7.5%;
-    height: 100%;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button {
-    width: 3vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus {
-    height: 30vh;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container {
-    display: none;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
-  body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
-  html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag5 .cont_manager,
-  html main #pag5 .cont_manager {
-    width: 97vw;
-    height: calc(var(--vh, 1vh) * 97);
-    position: absolute;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column-reverse;
-    -webkit-mask-size: 27vw;
-            mask-size: 27vw;
-    border-radius: 4vw;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager,
-  html main #pag5 .cont_manager .cont_citas_manager {
-    height: 85%;
-    border-radius: 1.2vw;
-    margin-top: 10vh;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager {
-    border-radius: 1.5vw;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2 {
-    width: 2%;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info {
-    width: 83%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span strong,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container {
-    width: 15%;
-  }
-  body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button,
-  html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button {
-    width: 5vw;
-  }
-  body main #ap_tc,
-  html main #ap_tc {
-    animation: bounceInLeft 0.5s ease-in-out forwards;
-    gap: 5%;
-    align-items: end;
-    justify-content: center;
-  }
-  body main #ap_tc div,
-  html main #ap_tc div {
-    width: 90%;
-    height: 70%;
-    margin-bottom: 10%;
-    display: flex;
-    gap: 5%;
-    color: #1b3c59;
-    font-family: "Nunito";
-  }
-  body main #ap_tc div div,
-  html main #ap_tc div div {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    background-color: #ffffff;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding: 2%;
-    border-radius: 1vw;
-    text-align: center;
-  }
-  body main #ap_tc div div p,
-  html main #ap_tc div div p {
-    border: 0;
-    margin: 0;
-    padding: 0;
-  }
-  body main aside,
-  html main aside {
-    width: 0;
-    height: 0;
-    display: none;
-  }
-  body main aside article,
-  html main aside article {
-    width: 0;
-    height: 0;
-  }
-  body main aside article div,
-  html main aside article div {
-    width: 0;
-    height: 0;
-  }
-  body main aside article div img,
-  html main aside article div img {
-    width: 0;
-    height: 0;
-  }
-  body main aside article h2,
-  html main aside article h2 {
-    width: 0;
-    height: 0;
-    font-size: 0;
-  }
-  body main aside article p,
-  html main aside article p {
-    width: 0;
-    height: 0;
-    font-size: 0;
-  }
-  body .cambiar_nav,
-  html .cambiar_nav {
-    top: 4vh;
-    left: 35vw;
-    width: 30vw;
-    height: 10vw;
-  }
-  body .cambiar_nav nav ul .circulo_icon,
-  html .cambiar_nav nav ul .circulo_icon {
-    width: 2vw;
-    height: 2vw;
-    top: 8vh;
-    left: 46vw;
-  }
-}
 @media screen and (max-width: 500px) {
   body .alertas .alerta,
   html .alertas .alerta {
@@ -6115,6 +5357,11 @@ html .cambiar_nav nav ul .circulo_icon {
     top: 50vh;
     left: 43vw;
   }
+  body main .pages,
+  html main .pages {
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+  }
   body main #home .mancha1,
   html main #home .mancha1 {
     width: 90%;
@@ -6173,6 +5420,10 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 9vw;
     margin: 5%;
   }
+  body main #pag2 .cont-install-btn,
+  html main #pag2 .cont-install-btn {
+    width: 10vw;
+  }
   body main #pag2 .Logincont .Login-cont,
   html main #pag2 .Logincont .Login-cont {
     width: 70vw;
@@ -6216,6 +5467,10 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag3 {
     width: 100%;
     height: 100%;
+  }
+  body main #pag3 .orientation-message,
+  html main #pag3 .orientation-message {
+    display: flex;
   }
   body main #pag3 .settings,
   html main #pag3 .settings {
@@ -6706,6 +5961,11 @@ html .cambiar_nav nav ul .circulo_icon {
     border: 0.7rem solid #0f3061;
     font-size: 8vw;
   }
+  body main #pag4 .btn_admin2,
+  html main #pag4 .btn_admin2 {
+    width: 8vw;
+    left: 0;
+  }
   body main #pag5,
   html main #pag5 {
     width: 100%;
@@ -6721,16 +5981,20 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .settings .icons_settings .settings_info,
   html main #pag5 .settings .icons_settings .settings_info {
-    width: 15vw;
-    height: 9vh;
-    top: 5.5vh;
-    left: 1.5vw;
-    border-radius: 0 0 2vw 0;
+    width: 12vw;
+    height: 7vh;
+    top: 2.5vh;
+    left: 19vw;
+    border-radius: 3vw;
     background-color: #ec6223;
   }
   body main #pag5 .settings .icons_settings .settings_info .data_settings,
   html main #pag5 .settings .icons_settings .settings_info .data_settings {
     background-color: #ec6223;
+  }
+  body main #pag5 .settings .icons_settings .settings_info .data_settings button img,
+  html main #pag5 .settings .icons_settings .settings_info .data_settings button img {
+    height: 70%;
   }
   body main #pag5 .estatus_citas_manager,
   html main #pag5 .estatus_citas_manager {
@@ -6740,6 +6004,13 @@ html .cambiar_nav nav ul .circulo_icon {
     height: 12vw;
     padding: 2vw;
     border-radius: 7vw;
+  }
+  body main #pag5 .estatus_citas_manager .icons_status .status_info,
+  html main #pag5 .estatus_citas_manager .icons_status .status_info {
+    width: 95vw;
+    height: 85vh;
+    top: 11vh;
+    left: 1.7vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p {
@@ -6859,9 +6130,21 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .cont_manager,
   html main #pag5 .cont_manager {
+    width: 97vw;
+    height: calc(var(--vh, 1vh) * 97);
+    position: absolute;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column-reverse;
     -webkit-mask-size: 45vw, 20vw;
             mask-size: 45vw, 20vw;
     border-radius: 9vw;
+  }
+  body main #pag5 .cont_manager .cont_citas_manager,
+  html main #pag5 .cont_manager .cont_citas_manager {
+    height: 85%;
+    border-radius: 1.2vw;
+    margin-top: 10vh;
   }
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager {
@@ -6916,6 +6199,39 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #ap_tc div div {
     gap: 1%;
     border-radius: 3vw;
+  }
+  body main aside,
+  html main aside {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  body main aside article,
+  html main aside article {
+    width: 0;
+    height: 0;
+  }
+  body main aside article div,
+  html main aside article div {
+    width: 0;
+    height: 0;
+  }
+  body main aside article div img,
+  html main aside article div img {
+    width: 0;
+    height: 0;
+  }
+  body main aside article h2,
+  html main aside article h2 {
+    width: 0;
+    height: 0;
+    font-size: 0;
+  }
+  body main aside article p,
+  html main aside article p {
+    width: 0;
+    height: 0;
+    font-size: 0;
   }
   body .cambiar_nav,
   html .cambiar_nav {

@@ -1,56 +1,163 @@
 // Carga
-window.onload = () => {
-  const loader = document.getElementById("loader");
+document.addEventListener("DOMContentLoaded", function () {
+  var loader = document.getElementById("loader");
   if (loader) {
     loader.style.visibility = "hidden";
     loader.style.opacity = "0";
   }
 
   // Configuración inicial inmediata
-  elements.home?.classList.add("agregar_dis");
-  elements.chatbot?.classList.add("agregar_dis");
+  if (elements.home) elements.home.classList.add("agregar_dis");
+  if (elements.chatbot) elements.chatbot.classList.add("agregar_dis");
 
   // Inicializar la app
   initializeApp();
-};
 
-// Manejo del viewport y teclado (optimizado para tu SASS)
-function updateChatbotDimensions() {
-  const vh = (window.visualViewport?.height || window.innerHeight) * 0.01;
-  const totalHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-  document.documentElement.style.setProperty('--full-height', `${totalHeight}px`);
+  // Ajustar vista inicial según si es PWA instalada
+  adjustViewForPWA();
+});
+
+// Descargar PWA
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log("Service Worker registrado con éxito:", registration);
+      })
+      .catch((error) => {
+        console.log("Error al registrar el Service Worker:", error);
+      });
+  });
 }
 
-function adjustChatbotPosition() {
-  const chatbot = elements.chatbot;
-  const chatInput = document.getElementById("chat_input");
-  if (!chatbot || !chatInput) return;
+// Manejar la instalación de la PWA
+let deferredPrompt;
+const installButton = document.getElementById("installButton");
 
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const keyboardHeight = window.innerHeight - viewportHeight;
+// Ocultar el botón por defecto hasta que la instalación esté disponible
+if (installButton) {
+  installButton.style.display = "none";
 
-  if (chatbot.classList.contains("max_chat")) {
-    if (keyboardHeight > 0) {
-      const offset = 10;
-      chatbot.style.bottom = `${keyboardHeight}px`;
-      chatbot.style.height = `${viewportHeight - keyboardHeight}px`;
-      const inputRect = chatInput.getBoundingClientRect();
-      const chatBox = document.getElementById("chat_box");
-      if (inputRect.bottom > viewportHeight - keyboardHeight) {
-        chatBox.scrollTo({
-          top: chatBox.scrollHeight,
-          behavior: "smooth"
-        });
-        chatInput.scrollIntoView({ block: "end", behavior: "smooth" });
-      }
-    } else {
-      chatbot.style.bottom = "0";
-      chatbot.style.height = "var(--full-height)";
+  // Escuchar el evento beforeinstallprompt
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installButton.style.display = "flex";
+
+    installButton.addEventListener("click", () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("El usuario aceptó instalar la PWA");
+        } else {
+          console.log("El usuario rechazó instalar la PWA");
+        }
+        deferredPrompt = null;
+        installButton.style.display = "none";
+      });
+    });
+  });
+
+  // Detectar si la app ya está instalada y ajustar vista
+  window.addEventListener("appinstalled", () => {
+    console.log("La PWA fue instalada con éxito");
+    installButton.style.display = "none";
+    adjustViewForPWA(); // Ajustar vista inmediatamente después de la instalación
+  });
+}
+
+// Función para verificar si la app está en modo standalone (PWA instalada)
+export function isStandalone() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true
+  );
+}
+
+// Función para ajustar la vista según si es PWA instalada
+function adjustViewForPWA() {
+  if (isStandalone()) {
+    console.log("La app está instalada como PWA, ajustando vista a #pag2...");
+
+    // Usar toggleView para mostrar solo #pag2 y ocultar elementos no deseados
+    toggleView({
+      home: false,
+      header: false, 
+      form: false,
+      login: true,    
+      login_manager: false,
+      aside: false,   
+      admin: false,
+      admin_manager: false,
+    });
+
+    // Asegurar que los elementos específicos estén ocultos con estilo inline
+    if (elements.header) elements.header.style.display = "none";
+    if (elements.aside) elements.aside.style.display = "none";
+    if (elements.chatbot) elements.chatbot.style.display = "none";
+    if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
+
+    // Forzar que #pag2 sea visible
+    if (elements.login) {
+      elements.login.style.width = "100%";
+      elements.login_manager.style.width = "100%";
     }
+  } else {
+    console.log("Ejecutando como web normal, manteniendo vista por defecto...");
   }
 }
 
+// Manejo del viewport sin modificar estilos directamente
+function updateChatbotDimensions() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const vh = viewportHeight * 0.01;
+
+  // Actualizar variables CSS solo para referencia, sin tocar estilos del chatbot
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  document.documentElement.style.setProperty(
+    "--full-height",
+    `${viewportHeight}px`
+  );
+}
+
+// Ajustar posición solo cuando el teclado virtual está presente
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  const chatInput = document.getElementById("chat_input");
+  const chatBox = document.getElementById("chat_box");
+  if (!chatbot || !chatInput || !chatBox) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const fullHeight = window.innerHeight;
+  const keyboardHeight = fullHeight - viewportHeight;
+  const isMaximized = chatbot.classList.contains("max_chat");
+
+  if (isMaximized && keyboardHeight > 0) {
+    // Teclado visible: aplicar ajustes mínimos
+    const offset = 10; // Margen superior al teclado
+    chatbot.style.bottom = `${keyboardHeight}px`; // Ajustar posición sobre el teclado
+    chatbot.style.height = `${viewportHeight - offset}px`; // Ajustar altura al viewport visible
+
+    // Asegurar que el input sea visible
+    requestAnimationFrame(() => {
+      const inputRect = chatInput.getBoundingClientRect();
+      if (inputRect.bottom > viewportHeight) {
+        chatBox.scrollTo({
+          top: chatBox.scrollHeight,
+          behavior: "smooth",
+        });
+        chatInput.scrollIntoView({ block: "end", behavior: "smooth" });
+      }
+    });
+  } else {
+    // Teclado oculto o chat minimizado: no modificar estilos, dejar que CSS controle
+    chatbot.style.bottom = ""; // Restaurar a valor por defecto (CSS)
+    chatbot.style.height = ""; // Restaurar a valor por defecto (CSS)
+  }
+}
+
+// Scroll al final del chat
 function scrollChatToBottom() {
   const chatBox = document.getElementById("chat_box");
   if (!chatBox) return;
@@ -58,13 +165,13 @@ function scrollChatToBottom() {
   requestAnimationFrame(() => {
     chatBox.scrollTo({
       top: chatBox.scrollHeight,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 }
 
-// Debounce para evitar cálculos excesivos
-function debounce(func, wait = 100) {
+// Debounce para optimizar eventos
+function debounce(func, wait = 50) {
   let timeout;
   return (...args) => {
     clearTimeout(timeout);
@@ -81,31 +188,57 @@ const handleViewportChanges = debounce(() => {
   });
 }, 50);
 
-// Escuchar eventos relevantes
-["resize", "orientationchange"].forEach((event) =>
-  window.addEventListener(event, handleViewportChanges)
-);
+// Registro de eventos
+function setupViewportListeners() {
+  const events = ["resize", "orientationchange"];
+  events.forEach((event) => {
+    window.addEventListener(event, handleViewportChanges);
+  });
 
-// Usar visualViewport para detectar cambios en el teclado
-if (window.visualViewport) {
-  window.visualViewport.addEventListener("resize", handleViewportChanges);
-  window.visualViewport.addEventListener("scroll", handleViewportChanges);
-} else {
-  // Fallback para navegadores sin visualViewport
-  window.addEventListener("scroll", handleViewportChanges);
-}
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", handleViewportChanges);
+    window.visualViewport.addEventListener("scroll", handleViewportChanges);
+  } else {
+    window.addEventListener("scroll", handleViewportChanges);
+    window.addEventListener("resize", handleViewportChanges);
+  }
 
-// Manejo específico del teclado al enfocar el input
-document.addEventListener("DOMContentLoaded", () => {
   const chatInput = document.getElementById("chat_input");
   if (chatInput) {
-    chatInput.addEventListener("focus", handleViewportChanges);
+    chatInput.addEventListener("focus", () => {
+      setTimeout(handleViewportChanges, 100); // Retraso para esperar al teclado
+    });
     chatInput.addEventListener("blur", handleViewportChanges);
     chatInput.addEventListener("input", () => {
       setTimeout(scrollChatToBottom, 50);
     });
   }
+}
+
+// Inicialización
+document.addEventListener("DOMContentLoaded", () => {
+  setupViewportListeners();
+  updateChatbotDimensions(); // Establecer dimensiones iniciales
 });
+
+// Manejo de maximizar/minimizar sin tocar estilos
+function toggleChatbotMaximize() {
+  const chatbot = document.getElementById("chatbot");
+  if (!chatbot) return;
+
+  chatbot.classList.toggle("max_chat");
+  requestAnimationFrame(() => {
+    adjustChatbotPosition(); // Solo ajusta si el teclado está presente
+    scrollChatToBottom();
+  });
+}
+
+// Ejemplo de uso: botón para maximizar/minimizar
+const toggleButton = document.getElementById("toggle_chatbot");
+if (toggleButton) {
+  toggleButton.addEventListener("click", toggleChatbotMaximize);
+}
+
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||
@@ -221,7 +354,7 @@ export const elements = {
   login: document.getElementById("pag2"),
   admin: document.getElementById("pag3"),
   login_manager: document.getElementById("pag4"),
-  admin_manager: document.getElementById("pag5"), // Corregido
+  admin_manager: document.getElementById("pag5"),
   aside: document.getElementById("aside"),
   chatbot: document.getElementById("chatbot"),
   pavo_cont: document.getElementById("pavo_cont"),
@@ -265,6 +398,11 @@ function btn_admin() {
   console.log("Botón Admin clicado");
 }
 
+function btn_admin2() {
+  toggleView({ header: true, login: true, aside: true });
+  console.log("Botón Admin2 clicado");
+}
+
 function admin_manager() {
   toggleView({ header: true, login_manager: true, aside: true });
   console.log("Botón Admin Manager clicado");
@@ -304,18 +442,22 @@ function validateForm() {
   return true;
 }
 
-document.querySelectorAll('.input-field input[type="password"]').forEach((input) => {
-  const toggleButton = document.createElement("button");
-  toggleButton.type = "button";
-  toggleButton.textContent = "";
-  toggleButton.classList.add("toggle-password");
-  toggleButton.setAttribute("aria-label", "Toggle password visibility");
-  input.parentNode.appendChild(toggleButton);
+document
+  .querySelectorAll('.input-field input[type="password"]')
+  .forEach((input) => {
+    const toggleButton = document.createElement("button");
+    toggleButton.type = "button";
+    toggleButton.textContent = "";
+    toggleButton.classList.add("toggle-password");
+    toggleButton.setAttribute("aria-label", "Toggle password visibility");
+    input.parentNode.appendChild(toggleButton);
 
-  toggleButton.addEventListener("click", () =>
-    input.type === "password" ? (input.type = "text") : (input.type = "password")
-  );
-});
+    toggleButton.addEventListener("click", () =>
+      input.type === "password"
+        ? (input.type = "text")
+        : (input.type = "password")
+    );
+  });
 
 function initProgressBar() {
   const contForm = document.querySelector(".cont_form");
@@ -354,41 +496,43 @@ function showNextForm() {
   updateProgress();
 }
 
-const FORM_KEY = 'formVac';
+const FORM_KEY = "formVac";
 
 function enviar_fo() {
-  const isFormSubmitted = localStorage.getItem(FORM_KEY) === 'true';
-  console.log('¿Formulario ya enviado?', isFormSubmitted);
+  const isFormSubmitted = localStorage.getItem(FORM_KEY) === "true";
+  console.log("¿Formulario ya enviado?", isFormSubmitted);
 
   if (isFormSubmitted) {
-    console.log('Mostrando estado de formulario ya enviado');
+    console.log("Mostrando estado de formulario ya enviado");
     forms.forEach((form) => {
       form.style.display = "none";
-      console.log('Ocultando formulario:', form);
+      console.log("Ocultando formulario:", form);
     });
     if (label_btnEnviar) label_btnEnviar.style.display = "none";
-    if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+    if (document.getElementById("progreso"))
+      document.getElementById("progreso").style.display = "none";
     if (exito) {
       exito.style.display = "flex";
-      console.log('Mostrando mensaje de éxito');
+      console.log("Mostrando mensaje de éxito");
     }
     mostrarAlerta("alerta_2");
     return;
   }
 
   if (!validateForm()) {
-    console.log('Validación fallida');
+    console.log("Validación fallida");
     return;
   }
 
-  console.log('Formulario válido, procesando envío');
+  console.log("Formulario válido, procesando envío");
   forms.forEach((form) => (form.style.display = "none"));
   if (label_btnEnviar) label_btnEnviar.style.display = "none";
-  if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+  if (document.getElementById("progreso"))
+    document.getElementById("progreso").style.display = "none";
   if (exito) exito.style.display = "flex";
-  
-  localStorage.setItem(FORM_KEY, 'true');
-  console.log('Formulario guardado como enviado en localStorage');
+
+  localStorage.setItem(FORM_KEY, "true");
+  console.log("Formulario guardado como enviado en localStorage");
 }
 
 label_btnNext?.addEventListener("click", showNextForm);
@@ -397,7 +541,8 @@ label_btnEnviar?.addEventListener("click", enviar_fo);
 // Personalización de selects
 function personalizarSelect(select) {
   // ✅ 1. Eliminar cualquier personalización previa antes de aplicar una nueva
-  const existingCustomSelect = select.parentNode.querySelector(".custom-select");
+  const existingCustomSelect =
+    select.parentNode.querySelector(".custom-select");
   if (existingCustomSelect) {
     existingCustomSelect.remove();
   }
@@ -416,7 +561,8 @@ function personalizarSelect(select) {
   // ✅ 4. Crear el elemento visual que simula el select
   const selectedDiv = document.createElement("div");
   selectedDiv.classList.add("select-selected");
-  selectedDiv.textContent = select.options[select.selectedIndex]?.text || "Selecciona una opción";
+  selectedDiv.textContent =
+    select.options[select.selectedIndex]?.text || "Selecciona una opción";
   selectedDiv.setAttribute("tabindex", "0");
 
   // ✅ 5. Contenedor para las opciones
@@ -492,8 +638,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ...document.querySelectorAll('.disponibilidad_sucu input[type="checkbox"]'),
     ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
     ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
-    ...document.querySelectorAll('.estatus_citas_manager input[type="checkbox"]'),
-    ...document.querySelectorAll('.settings input[type="checkbox"]')
+    ...document.querySelectorAll(
+      '.estatus_citas_manager input[type="checkbox"]'
+    ),
+    ...document.querySelectorAll('.settings input[type="checkbox"]'),
   ];
 
   checkboxes.forEach((checkbox) => {
@@ -515,12 +663,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnHome = document.getElementById("btn_home");
   const btnForm = document.getElementById("btn_form");
   const btnAdmin = document.getElementById("btn_admin");
+  const btnAdmin2 = document.getElementById("btnAdmin2");
   const btnAdminManager = document.getElementById("btnAdminManager");
   const btnAptc = document.getElementById("btnAptc");
 
   if (btnHome) btnHome.addEventListener("click", btn_home);
   if (btnForm) btnForm.addEventListener("click", btn_form);
   if (btnAdmin) btnAdmin.addEventListener("click", btn_admin);
+  if (btnAdmin2) btnAdmin2.addEventListener("click", btn_admin2);
   if (btnAdminManager) btnAdminManager.addEventListener("click", admin_manager);
   if (btnAptc) btnAptc.addEventListener("click", btn_aptc);
 
@@ -528,6 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("btn_home:", btnHome);
   console.log("btn_form:", btnForm);
   console.log("btn_admin:", btnAdmin);
+  console.log("btn_admin:", btnAdmin2);
   console.log("btnAdminManager:", btnAdminManager);
   console.log("btnAptc:", btnAptc);
 });
@@ -602,30 +753,31 @@ function initializeCountryCode() {
 }
 
 function initializeApp() {
-  console.log('Inicializando la aplicación');
-  
+  console.log("Inicializando la aplicación");
+
   if (localStorage.getItem(FORM_KEY) === null) {
-    localStorage.setItem(FORM_KEY, 'false');
-    console.log('Estableciendo formVac como false por primera vez');
+    localStorage.setItem(FORM_KEY, "false");
+    console.log("Estableciendo formVac como false por primera vez");
   }
-  
+
   initForm();
   initProgressBar();
   updateProgress();
   initializeCountryCode();
-  
-  const isFormSubmitted = localStorage.getItem(FORM_KEY) === 'true';
-  console.log('Estado inicial del formulario:', isFormSubmitted);
-  
+
+  const isFormSubmitted = localStorage.getItem(FORM_KEY) === "true";
+  console.log("Estado inicial del formulario:", isFormSubmitted);
+
   if (isFormSubmitted) {
-    console.log('Configurando vista para formulario ya enviado');
+    console.log("Configurando vista para formulario ya enviado");
     forms.forEach((form) => (form.style.display = "none"));
     if (label_btnEnviar) label_btnEnviar.style.display = "none";
     if (label_btnNext) label_btnNext.style.display = "none";
-    if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+    if (document.getElementById("progreso"))
+      document.getElementById("progreso").style.display = "none";
     if (exito) {
       exito.style.display = "flex";
-      console.log('Mostrando mensaje de éxito en inicialización');
+      console.log("Mostrando mensaje de éxito en inicialización");
     }
   }
 }

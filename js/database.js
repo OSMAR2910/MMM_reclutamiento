@@ -14,7 +14,7 @@ import {
   app,
   get
 } from "./firebase.js";
-import { personalizarSelect, toggleView, elements } from "./main.js";
+import { personalizarSelect, toggleView, elements, isStandalone } from "./main.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -106,25 +106,20 @@ function verificarDisplay(idElemento, alertaSiOculto, alertaSiVisible) {
 }
 // Escribir datos
 function enviar_form() {
-  // Obtener la fecha actual en UTC
-  const fechaActual = new Date().toISOString().split("T")[0];
+  console.log("Iniciando envío del formulario...");
 
-  // Asignar la fecha al input oculto
+  const fechaActual = new Date().toISOString().split("T")[0];
   document.getElementById("fecha_r").value = fechaActual;
 
-  // Mostrar la fecha en la consola para verificar
-  console.log("Fecha actual (UTC):", fechaActual);
-  console.log("Valor de fecha_r:", document.getElementById("fecha_r").value);
-
-  // Obtiene los valores del formulario
-  const nombre = document.getElementById("nombre").value.trim(); // Eliminar espacios extras
+  // Obtener valores del formulario
+  const nombre = document.getElementById("nombre").value.trim();
   const puesto = document.getElementById("puesto").value;
   const horario = document.getElementById("horario").value;
-  const numero = document.getElementById("numero").value;
-  const fecha_r = document.getElementById("fecha_r").value; // Usamos el valor asignado
-  const edad = document.getElementById("edad").value;
-  const direccion = document.getElementById("direccion").value;
-  const ciudad = document.getElementById("ciudad").value;
+  const numero = document.getElementById("numero").value.trim();
+  const fecha_r = document.getElementById("fecha_r").value;
+  const edad = parseInt(document.getElementById("edad").value, 10);
+  const direccion = document.getElementById("direccion").value.trim();
+  const ciudad = document.getElementById("ciudad").value.trim();
   const cp = document.getElementById("cp").value;
   const docu = document.getElementById("docu").value;
   const casa_suc = document.getElementById("casa_suc").value;
@@ -137,72 +132,85 @@ function enviar_form() {
   const problema_t = document.getElementById("problema_t").value;
   const f_n = document.getElementById("f_n").value;
 
-  // Validación: Verificar que todos los campos estén llenos
-  if (
-    !nombre ||
-    !puesto ||
-    !numero ||
-    !edad ||
-    !direccion ||
-    !ciudad ||
-    !cp ||
-    !casa_suc ||
-    !transporte ||
-    !e_c ||
-    !docu ||
-    !empleo ||
-    !horario ||
-    !sexo ||
-    !nacion ||
-    !problema_t ||
-    !f_n ||
-    !sucursal
-  ) {
-    mostrarAlerta("alertas");
-    mostrarAlerta("alerta_1");
-    return; // Detiene la ejecución si algún campo está vacío
-  }
+  console.log("Valores obtenidos del formulario:", {
+    nombre, puesto, horario, numero, fecha_r, edad, direccion, ciudad, cp, docu,
+    casa_suc, transporte, empleo, sexo, nacion, e_c, sucursal, problema_t, f_n
+  });
 
-  // Crear el objeto con los datos del formulario
-  const formData = {
-    puesto,
-    numero,
-    fecha_r, // Usamos la fecha asignada
-    edad,
-    direccion,
-    ciudad,
-    cp,
-    e_c,
-    docu,
-    casa_suc,
-    transporte,
-    empleo,
-    horario,
-    sexo,
-    nacion,
-    problema_t,
-    f_n,
-    sucursal,
+  // Array para acumular errores
+  const errores = [];
+
+  // Función para validar y acumular errores
+  const validarCampo = (condicion, mensaje) => {
+    if (condicion) {
+      console.log(`Validación fallida: ${mensaje}`);
+      errores.push(mensaje);
+    }
   };
 
-  // Guardar en Firebase usando el nombre como clave
-  set(ref(database, `vacantes/${nombre}`), formData)
+  // Ejecutar todas las validaciones
+  validarCampo(!nombre, "El nombre está vacío");
+  validarCampo(!puesto, "El puesto está vacío");
+  validarCampo(!numero.match(/^\+?[0-9]{10,15}$/), "El número debe tener entre 10 y 15 dígitos, opcionalmente con + al inicio");
+  validarCampo(!fecha_r.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/), "Fecha inválida");
+  validarCampo(edad < 18 || edad > 100 || isNaN(edad), "Edad debe estar entre 18 y 100");
+  validarCampo(!cp.match(/^[0-9]{5}$/), "Código postal debe tener 5 dígitos");
+  validarCampo(!direccion, "La dirección está vacía");
+  validarCampo(!ciudad, "La ciudad está vacía");
+  validarCampo(!casa_suc, "Casa/Sucursal está vacío");
+  validarCampo(!transporte, "Transporte está vacío");
+  validarCampo(!e_c, "Estado civil está vacío");
+  validarCampo(!docu, "Documentación está vacía");
+  validarCampo(!empleo, "Empleo está vacío");
+  validarCampo(!horario, "Horario está vacío");
+  validarCampo(!sexo, "Sexo está vacío");
+  validarCampo(!nacion, "Nacionalidad está vacía");
+  validarCampo(!problema_t, "Problema/T está vacío");
+  validarCampo(!f_n, "Fecha de nacimiento está vacía");
+  validarCampo(!sucursal, "Sucursal está vacía");
+
+  // Verificar si hay errores
+  if (errores.length > 0) {
+    console.log("Errores encontrados:", errores);
+    mostrarAlerta("alertas");
+    mostrarAlerta("alerta_1"); // Mostrar alerta de campos incompletos
+    return; // Detener el envío
+  }
+
+  // Si no hay errores, preparar y enviar los datos
+  const formData = {
+    nombre, puesto, numero, fecha_r, edad, direccion, ciudad, cp, e_c, docu,
+    casa_suc, transporte, empleo, horario, sexo, nacion, problema_t, f_n, sucursal
+  };
+
+  console.log("Datos preparados para enviar a Firebase:", formData);
+
+  const timestamp = Date.now();
+  const uniqueKey = `${nombre}_${timestamp}`;
+
+  set(ref(database, `vacantes/${uniqueKey}`), formData)
     .then(() => {
-      console.log("Formulario enviado exitosamente!");
+      console.log(`Formulario enviado exitosamente con clave: ${uniqueKey}`);
       mostrarAlerta("alertas");
-      mostrarAlerta("alerta_2");
-      // Limpiar los campos del formulario (opcional)
+      mostrarAlerta("alerta_2"); // Éxito
       document.getElementById("myForm").reset();
     })
     .catch((error) => {
-      console.error("Hubo un error: ", error.message);
+      console.error("Error al enviar formulario:", error.message);
       mostrarAlerta("alertas");
-      mostrarAlerta("alerta_3");
+      mostrarAlerta("alerta_3"); // Error
     });
 }
+
 const label_btnEnviar = document.getElementById("label_enviar");
-label_btnEnviar.addEventListener("click", enviar_form);
-// Asigna la función al objeto global 'window'
+if (!label_btnEnviar) {
+  console.error("El elemento con ID 'label_enviar' no se encontró en el DOM.");
+} else {
+  label_btnEnviar.addEventListener("click", () => {
+    console.log("Botón clicado, ejecutando enviar_form...");
+    enviar_form();
+  });
+}
 window.enviar_form = enviar_form;
 function getContainer(id) {
   const container = document.getElementById(id);
@@ -211,6 +219,14 @@ function getContainer(id) {
 
 // Leer datos
 function mostrarDatos() {
+  const auth = getAuth(app);
+  if (!auth.currentUser) {
+    console.log("Usuario no autenticado, no se pueden mostrar datos.");
+    document.getElementById("data_green").innerHTML = "<p>Necesitas iniciar sesión para ver los datos.</p>";
+    document.getElementById("data_red").innerHTML = "<p>Necesitas iniciar sesión para ver los datos.</p>";
+    return;
+  }
+
   const dataGreen = document.getElementById("data_green");
   const dataRed = document.getElementById("data_red");
   const dataCitas = document.getElementById("data_citas");
@@ -220,6 +236,7 @@ function mostrarDatos() {
   const dataNosistieron = document.getElementById("data_no_asistieron");
   const dataAsistieron = document.getElementById("data_asistieron");
   const dataContratado = document.getElementById("data_contratado");
+
   const vacantesRef = ref(database, "vacantes/");
   const citasVacantesRef = ref(database, "citas_vacantes/");
   const asistieronRef = ref(database, "asistieron/");
@@ -287,9 +304,10 @@ function mostrarDatos() {
       const ulRed = document.createElement("ul");
   
       snapshot.forEach((childSnapshot) => {
-        const nombre = childSnapshot.key;
+        const uniqueKey = childSnapshot.key;
         const data = childSnapshot.val() || {};
-        data.aptoStatus = data.aptoStatus || "Pendiente"; // Default status
+        const nombre = data.nombre; 
+        data.aptoStatus = data.aptoStatus || "Pendiente";
   
         // Filtrar por sucursal solo si es manager y es un contenedor de citas
         const esContenedorCitas = [
@@ -363,8 +381,8 @@ function mostrarDatos() {
   
         const btnContainer2 = document.createElement("div");
         btnContainer2.classList.add("btn_container2");
-        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () => descargarPDF(nombre, data));
-        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () => abrirModalCita(nombre, data));
+        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () => descargarPDF(uniqueKey, data));
+        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () => abrirModalCita(uniqueKey, data));
         btnContainer2.append(btnDescargarPDF, btnAgendarCita);
   
         const btnContainer = document.createElement("div");
@@ -387,20 +405,20 @@ function mostrarDatos() {
             if (data.aptoStatus === opt.value) option.selected = true;
             aptoSelect.appendChild(option);
           });
-          aptoSelect.addEventListener("change", () => updateAptoStatus(nombre, aptoSelect.value, containerGreen.id));
+          aptoSelect.addEventListener("change", () => updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id));
           btnContainer.appendChild(aptoSelect);
           personalizarSelect(aptoSelect);
         } 
   
-        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () => moverVacante(nombre, data, "no_asistieron"));
-        const btnAsistieron = crearBoton("", "btn-asistieron", () => moverVacante(nombre, data, "asistieron"));
-        const btnContratado = crearBoton("", "btn-contratado", () => moverVacante(nombre, data, "contratado"));
+        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () => moverVacante(uniqueKey, data, "no_asistieron"));
+        const btnAsistieron = crearBoton("", "btn-asistieron", () => moverVacante(uniqueKey, data, "asistieron"));
+        const btnContratado = crearBoton("", "btn-contratado", () => moverVacante(uniqueKey, data, "contratado"));
         const btnEliminar = crearBoton("", "btn-eliminar", () => {
           let base = "vacantes";
           if (containerGreen.id === "data_no_asistieron") base = "no_asistieron";
           if (containerGreen.id === "data_asistieron") base = "asistieron";
           if (containerGreen.id === "data_contratado") base = "contratado";
-          eliminarVacante(nombre, base);
+          eliminarVacante(uniqueKey, base);
         });
   
         btnContainer.append(btnNoAsistieron, btnAsistieron, btnContratado, btnEliminar);
@@ -426,12 +444,12 @@ function mostrarDatos() {
   
     vacantesPrevias = vacantesActuales;
   }
-  function updateAptoStatus(nombre, nuevoEstado, containerId) {
+  function updateAptoStatus(uniqueKey, nuevoEstado, containerId) {
     let rutaDB;
     switch (containerId) {
-      case "data_citas_manager": rutaDB = `citas_vacantes/${nombre}`; break;
-      case "data_cita_no_asistieron": rutaDB = `no_asistieron/${nombre}`; break;
-      case "data_cita_asistieron": rutaDB = `asistieron/${nombre}`; break;
+      case "data_citas_manager": rutaDB = `citas_vacantes/${uniqueKey}`; break;
+      case "data_cita_no_asistieron": rutaDB = `no_asistieron/${uniqueKey}`; break;
+      case "data_cita_asistieron": rutaDB = `asistieron/${uniqueKey}`; break;
       default: return;
     }
   
@@ -441,7 +459,7 @@ function mostrarDatos() {
         const datosActuales = snapshot.val();
         set(vacanteRef, { ...datosActuales, aptoStatus: nuevoEstado })
           .then(() => {
-            console.log(`Estado apto actualizado a ${nuevoEstado} para ${nombre}`);
+            console.log(`Estado apto actualizado a ${nuevoEstado} para ${uniqueKey}`);
             mostrarAlerta("alertas");
             mostrarAlerta("alerta_22");
           })
@@ -453,21 +471,35 @@ function mostrarDatos() {
       }
     });
   }
-  function descargarPDF(nombre, data) {
+  function descargarPDF(uniqueKey, data) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+  
+    // Validar que 'data' sea un objeto válido
+    if (!data || typeof data !== "object") {
+      console.error("Datos inválidos para generar el PDF:", data);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_3"); // Error genérico
+      return;
+    }
+  
+    // Fondo y estilos
     doc.setFillColor(245, 245, 245);
     doc.rect(0, 0, 210, 297, "F");
     const colorTitulo = [23, 72, 145];
     const colorEtiquetas = [60, 60, 60];
     const colorValores = [0, 0, 0];
     const colorLinea = [0, 0, 0];
+  
+    // Título
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
     doc.setTextColor(...colorTitulo);
     doc.text("Información del Vacante", 20, 20);
     doc.setDrawColor(...colorLinea);
     doc.line(20, 22, 190, 22);
+  
+    // Contenido
     let yPosition = 30;
     doc.setFontSize(12);
     const campoStyle = { font: "helvetica", size: 12, weight: "normal", color: colorEtiquetas };
@@ -475,11 +507,11 @@ function mostrarDatos() {
   
     const content = [
       { label: "Fecha de llenado", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
-      { label: "Nombre", value: nombre, isName: true },
+      { label: "Nombre", value: data.nombre || "No disponible" }, // Corregido: usar data.nombre
       { label: "Puesto", value: data.puesto || "No disponible" },
       { label: "Sucursal", value: data.sucursal || "No disponible" },
       { label: "Número", value: data.numero || "No disponible" },
-      { label: "Edad", value: data.edad || "No disponible" },
+      { label: "Edad", value: data.edad ? String(data.edad) : "No disponible" }, // Convertir a cadena
       { label: "F.Nacimiento", value: data.f_n || "No disponible" },
       { label: "Sexo", value: data.sexo || "No disponible" },
       { label: "Nacionalidad", value: data.nacion || "No disponible" },
@@ -489,36 +521,47 @@ function mostrarDatos() {
       { label: "Empleo", value: data.empleo || "No disponible" },
       { label: "Ciudad", value: data.ciudad || "No disponible" },
       { label: "Dirección", value: data.direccion || "No disponible" },
-      { label: "CP", value: data.cp || "No disponible" },
+      { label: "CP", value: data.cp ? String(data.cp) : "No disponible" }, // Convertir a cadena
       { label: "Transporte", value: data.transporte || "No disponible" },
-      { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
+      { label: "Cas/Sucu", value: data.casa_suc ? String(data.casa_suc) : "No disponible" }, // Convertir a cadena
       { label: "Problema/T", value: data.problema_t || "No disponible" },
-      { label: "Estatus", value: data.aptoStatus, isApto: true }
+      { label: "Estatus", value: data.aptoStatus || "No disponible" },
     ];
   
     content.forEach((item) => {
+      // Asegurarse de que item.value sea una cadena
+      const valor = String(item.value || "No disponible"); // Convertir a cadena explícitamente
+  
       doc.setFont(campoStyle.font, campoStyle.weight);
       doc.setFontSize(campoStyle.size);
       doc.setTextColor(...campoStyle.color);
       doc.text(`${item.label}:`, 20, yPosition);
+  
       doc.setFont(valueStyle.font, valueStyle.weight);
       doc.setFontSize(valueStyle.size);
       doc.setTextColor(...valueStyle.color);
-      doc.text(item.value, 80, yPosition);
+      doc.text(valor, 80, yPosition);
+  
       yPosition += 12;
     });
   
+    // Línea y pie de página
     doc.setDrawColor(...colorLinea);
     doc.line(20, yPosition + 10, 190, yPosition + 10);
     yPosition += 20;
     doc.setFontSize(10);
     doc.setTextColor(...colorTitulo);
     doc.text("Generado por el reclutador Web de MMM.", 20, yPosition);
-    doc.save(`Vacante_${nombre}.pdf`);
+  
+    // Guardar el PDF
+    const fileName = `Vacante_${data.nombre || "SinNombre"}.pdf`;
+    doc.save(fileName);
+  
+    // Mostrar alertas de éxito
     mostrarAlerta("alertas");
     verificarDisplay("pag5", "alerta_13", "alerta_18");
   }
-  function abrirModalCita(nombre, data) {
+  function abrirModalCita(uniqueKey, data) {
     const modalContainer = document.getElementById("modal-container");
     const formAgendarCita = document.getElementById("form_agendar_cita");
 
@@ -546,7 +589,7 @@ function mostrarDatos() {
       }
 
       // Guardar los datos en la base de datos
-      const citasRef = ref(database, `citas_vacantes/${nombre}`);
+      const citasRef = ref(database, `citas_vacantes/${uniqueKey}`);
       const nuevaCita = {
         ...data,
         fecha_cita: fechaCita,
@@ -562,7 +605,7 @@ function mostrarDatos() {
         let antiguaRef = null;
 
         for (const base of bases) {
-          const refActual = ref(database, `${base}/${nombre}`);
+          const refActual = ref(database, `${base}/${uniqueKey}`);
           const snapshot = await get(refActual);
           if (snapshot.exists()) {
             antiguaRef = refActual;
@@ -574,13 +617,13 @@ function mostrarDatos() {
           await remove(antiguaRef);
         }
 
-        console.log(`✅ Vacante ${nombre} movida a citas_vacantes.`);
+        console.log(`✅ Vacante ${uniqueKey} movida a citas_vacantes.`);
 
         // Enviar mensaje de WhatsApp
         const numero = data.numero.replace(/\D/g, ""); // Formatear el número
         enviarMensajeWhatsApp(
           numero,
-          nombre,
+          data.nombre,
           fechaCita,
           horaCita,
           sucursalCita
@@ -615,6 +658,11 @@ function mostrarDatos() {
 }
 
 function mostrarMensajesUsuarios() {
+  const auth = getAuth(app);
+  if (!auth.currentUser) {
+    document.getElementById("data_mj_user").innerHTML = "<p>Necesitas iniciar sesión para ver los mensajes.</p>";
+    return;
+  }
   console.log("Ejecutando mostrarMensajesUsuarios...");
 
   const dataMjUser = document.getElementById("data_mj_user");
@@ -878,10 +926,10 @@ function crearBoton(texto, clase, onClick) {
   return btn;
 }
 
-function moverVacante(nombre, data, nuevaDB) {
-  console.log(`🔄 Moviendo vacante "${nombre}" a ${nuevaDB}...`);
+function moverVacante(uniqueKey, data, nuevaDB) {
+  console.log(`🔄 Moviendo vacante "${uniqueKey}" a ${nuevaDB}...`);
 
-  const nuevaRef = ref(database, `${nuevaDB}/${nombre}`);
+  const nuevaRef = ref(database, `${nuevaDB}/${uniqueKey}`);
   const bases = [
     "vacantes",
     "asistieron",
@@ -894,15 +942,15 @@ function moverVacante(nombre, data, nuevaDB) {
   // Buscar la referencia anterior en la base de datos
   Promise.all(
     bases.map((base) =>
-      get(ref(database, `${base}/${nombre}`)).then((snapshot) => {
+      get(ref(database, `${base}/${uniqueKey}`)).then((snapshot) => {
         if (snapshot.exists()) {
-          antiguaRef = ref(database, `${base}/${nombre}`);
+          antiguaRef = ref(database, `${base}/${uniqueKey}`);
         }
       })
     )
   ).then(() => {
     if (!antiguaRef) {
-      console.error(`❌ No se encontró la referencia anterior de "${nombre}".`);
+      console.error(`❌ No se encontró la referencia anterior de "${uniqueKey}".`);
       mostrarAlerta("alertas");
       verificarDisplay("pag5", "alerta_5", "alerta_16");
       return;
@@ -911,14 +959,14 @@ function moverVacante(nombre, data, nuevaDB) {
     // Mover el dato si no existe en el destino
     get(nuevaRef).then((snapshot) => {
       if (snapshot.exists()) {
-        console.warn(`⚠️ El vacante "${nombre}" ya está en ${nuevaDB}.`);
+        console.warn(`⚠️ El vacante "${uniqueKey}" ya está en ${nuevaDB}.`);
         mostrarAlerta("alertas");
         verificarDisplay("pag5", "alerta_9", "alerta_15");
       } else {
         set(nuevaRef, data)
           .then(() => remove(antiguaRef))
           .then(() => {
-            console.log(`✅ Vacante "${nombre}" movida a ${nuevaDB}`);
+            console.log(`✅ Vacante "${uniqueKey}" movida a ${nuevaDB}`);
             mostrarAlerta("alertas");
             verificarDisplay("pag5", "alerta_6", "alerta_15");
             mostrarDatos();
@@ -953,9 +1001,9 @@ function mostrarAlertaPersonalizada(mensaje, callback) {
 }
 
 // Función optimizada para eliminar vacantes
-function eliminarVacante(nombre, base) {
+function eliminarVacante(uniqueKey, base) {
   mostrarAlertaPersonalizada(
-    `¿Estás seguro de eliminar al vacante "${nombre}"? 🧐`,
+    `¿Estás seguro de eliminar al vacante "${uniqueKey}"? 🧐`,
     (confirmado) => {
       if (!confirmado) {
         mostrarAlerta("alertas");
@@ -965,12 +1013,12 @@ function eliminarVacante(nombre, base) {
 
       // Definir las rutas posibles
       const rutas = {
-        asistieron: `asistieron/${nombre}`,
-        no_asistieron: `no_asistieron/${nombre}`,
-        contratado: `contratado/${nombre}`,
-        data_citas: `data_citas/${nombre}`,
-        datamjUser: `chatMessages/${nombre}`,
-        default: `vacantes/${nombre}`,
+        asistieron: `asistieron/${uniqueKey}`,
+        no_asistieron: `no_asistieron/${uniqueKey}`,
+        contratado: `contratado/${uniqueKey}`,
+        data_citas: `data_citas/${uniqueKey}`,
+        datamjUser: `chatMessages/${uniqueKey}`,
+        default: `vacantes/${uniqueKey}`,
       };
 
       // Obtener la ruta correcta
@@ -1017,12 +1065,9 @@ let data_green = [];
 const dataGreenProxy = new Proxy(data_green, {
   set(target, prop, value) {
     target[prop] = value;
-
-    // Si es una nueva entrada en el array y tiene un nombre
-    if (!isNaN(prop) && value && value.nombre) {
+    if (!isNaN(prop) && value && value.nombre) { // Esto está bien porque usa data.nombre
       mostrarNotificacion(value.nombre);
     }
-
     return true;
   },
 });
@@ -1078,6 +1123,12 @@ function regresarAlLogin(tipo) {
   if (elements.chatbot) {
     elements.chatbot.style.display = "flex";
     console.log("Chatbot restaurado a display: flex");
+  }
+
+  if (isStandalone()) {
+    elements.header.style.display = "none"; 
+    elements.chatbot.style.display = "none";
+    elements.pavo_cont.style.display = "none";
   }
 
   // Forzar actualización del DOM con un pequeño retraso

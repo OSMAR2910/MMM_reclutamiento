@@ -131,20 +131,22 @@
       background-size: 75%;
       background-position: center;
       background-repeat: no-repeat;
+      position: relative;
       .status_green {
         width: 0.5vw;
         aspect-ratio: 2/2;
         background-color: $Green;
         border-radius: 100%;
-        margin-top: 3.5vh;
-        margin-left: 1.7vw;
+        bottom: 0;
+        right: 0;
         position: absolute;
       }
     }
     .chat_present {
       display: flex;
+      position: absolute;
+      left: 20%;
       flex-direction: column;
-      margin-right: 5vw;
       h3 {
         width: 100%;
         height: auto;
@@ -609,7 +611,7 @@
   }
   .max_chat {
     width: 100vw;
-    height: calc(var(--full-height, 100vh));
+    height: var(--full-height);
     margin: 0;
     border-radius: 0;
     position: fixed;
@@ -617,7 +619,7 @@
     bottom: 0;
     .chat_header {
       height: 8%;
-      min-height: 3.5rem;
+      min-height: 4rem;
       border-radius: 7vw;
       box-shadow: 0px 0px 10px 5px $Secundario;
       .chat_icon {
@@ -625,12 +627,10 @@
         margin-left: 3%;
         .status_green {
           width: 2.6vw;
-          margin-top: 4.5vh;
-          margin-left: 9vw;
         }
       }
       .chat_present {
-        margin-right: 30vw;
+        left: 25%;
         h3 {
           font-size: 3.5vw;
         }
@@ -648,10 +648,12 @@
       .name_id {
         border-radius: 3vw;
         font-size: 2.5vw;
+        min-height: 1rem;
       }
     }
     .chat_box {
       height: 79%;
+      max-height: calc(var(--full-height) - 60px);
       p {
         font-size: 3.5vw;
       }
@@ -687,6 +689,7 @@
     }
     .chat_form {
       height: 6%;
+      min-height: 2rem;
       .chat_input {
         width: 80%;
         height: 90%;
