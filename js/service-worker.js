@@ -43,8 +43,40 @@ self.addEventListener('fetch', event => {
         return response || fetch(event.request);
       })
       .catch(() => {
-        // Opcional: página offline personalizada
         return caches.match('/index.html');
       })
+  );
+});
+
+// Escuchar mensajes desde el cliente para mostrar notificaciones
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SHOW_NOTIFICATION') {
+    const { title, body, url } = event.data;
+    const options = {
+      body: body || 'Se ha registrado una nueva vacante.',
+      icon: '/icons/icon-192x192.png',
+      badge: '/icons/icon-192x192.png',
+      data: { url: url || '/' }
+    };
+    self.registration.showNotification(title, options);
+  }
+});
+
+// Manejar clics en las notificaciones
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const url = event.notification.data.url || '/';
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
+      for (let client of windowClients) {
+        if (client.url === url && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(url);
+      }
+    })
   );
 });

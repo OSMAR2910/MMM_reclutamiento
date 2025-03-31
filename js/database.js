@@ -47,6 +47,25 @@ const alertasConfig = {
   alerta_23: 2000,
   alerta_24: 2000,
   alerta_25: 2000,
+  alertapreguntaerror_1 : 2000,
+  alertapreguntaerror_2 : 2000,
+  alertapreguntaerror_3 : 2000,
+  alertapreguntaerror_4 : 2000,
+  alertapreguntaerror_5 : 2000,
+  alertapreguntaerror_6 : 2000,
+  alertapreguntaerror_7 : 2000,
+  alertapreguntaerror_8 : 2000,
+  alertapreguntaerror_9 : 2000,
+  alertapreguntaerror_10 : 2000,
+  alertapreguntaerror_11 : 2000,
+  alertapreguntaerror_12 : 2000,
+  alertapreguntaerror_13 : 2000,
+  alertapreguntaerror_14 : 2000,
+  alertapreguntaerror_15 : 2000,
+  alertapreguntaerror_16 : 2000,
+  alertapreguntaerror_17 : 2000,
+  alertapreguntaerror_18 : 2000,
+  alertapreguntaerror_19 : 2000
 };
 
 // Variable para almacenar el timeout actual
@@ -141,39 +160,41 @@ function enviar_form() {
   const errores = [];
 
   // Función para validar y acumular errores
-  const validarCampo = (condicion, mensaje) => {
+  const validarCampo = (condicion, mensaje, alertaId) => {
     if (condicion) {
       console.log(`Validación fallida: ${mensaje}`);
-      errores.push(mensaje);
+      errores.push({ mensaje, alertaId });
     }
   };
 
-  // Ejecutar todas las validaciones
-  validarCampo(!nombre, "El nombre está vacío");
-  validarCampo(!puesto, "El puesto está vacío");
-  validarCampo(!numero.match(/^\+?[0-9]{10,15}$/), "El número debe tener entre 10 y 15 dígitos, opcionalmente con + al inicio");
-  validarCampo(!fecha_r.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/), "Fecha inválida");
-  validarCampo(edad < 18 || edad > 100 || isNaN(edad), "Edad debe estar entre 18 y 100");
-  validarCampo(!cp.match(/^[0-9]{5}$/), "Código postal debe tener 5 dígitos");
-  validarCampo(!direccion, "La dirección está vacía");
-  validarCampo(!ciudad, "La ciudad está vacía");
-  validarCampo(!casa_suc, "Casa/Sucursal está vacío");
-  validarCampo(!transporte, "Transporte está vacío");
-  validarCampo(!e_c, "Estado civil está vacío");
-  validarCampo(!docu, "Documentación está vacía");
-  validarCampo(!empleo, "Empleo está vacío");
-  validarCampo(!horario, "Horario está vacío");
-  validarCampo(!sexo, "Sexo está vacío");
-  validarCampo(!nacion, "Nacionalidad está vacía");
-  validarCampo(!problema_t, "Problema/T está vacío");
-  validarCampo(!f_n, "Fecha de nacimiento está vacía");
-  validarCampo(!sucursal, "Sucursal está vacía");
+  // Ejecutar todas las validaciones con alertas específicas
+  validarCampo(!nombre, "El nombre está vacío", "alertapreguntaerror_1");
+  validarCampo(!puesto, "El puesto está vacío", "alertapreguntaerror_2");
+  validarCampo(!numero.match(/^\+?[0-9]{10,15}$/) || !numero, "El número debe tener entre 10 y 15 dígitos, opcionalmente con + al inicio", "alertapreguntaerror_3");
+  validarCampo(!fecha_r.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/) || !fecha_r, "Fecha inválida", "alertapreguntaerror_4");
+  validarCampo(edad < 18 || edad > 100 || isNaN(edad), "Edad debe estar entre 18 y 100", "alertapreguntaerror_5");
+  validarCampo(!cp.match(/^[0-9]{5}$/) || !cp, "Código postal debe tener exactamente 5 dígitos", "alertapreguntaerror_6");
+  validarCampo(!direccion, "La dirección está vacía", "alertapreguntaerror_7");
+  validarCampo(!ciudad, "La ciudad está vacía", "alertapreguntaerror_8");
+  validarCampo(!casa_suc, "Casa/Sucursal está vacío", "alertapreguntaerror_9");
+  validarCampo(!transporte, "Transporte está vacío", "alertapreguntaerror_10");
+  validarCampo(!e_c, "Estado civil está vacío", "alertapreguntaerror_11");
+  validarCampo(!docu, "Documentación está vacía", "alertapreguntaerror_12");
+  validarCampo(!empleo, "Empleo está vacío", "alertapreguntaerror_13");
+  validarCampo(!horario, "Horario está vacío", "alertapreguntaerror_14");
+  validarCampo(!sexo, "Sexo está vacío", "alertapreguntaerror_15");
+  validarCampo(!nacion, "Nacionalidad está vacía", "alertapreguntaerror_16");
+  validarCampo(!problema_t, "Problema/T está vacío", "alertapreguntaerror_17");
+  validarCampo(!f_n, "Fecha de nacimiento está vacía", "alertapreguntaerror_18");
+  validarCampo(!sucursal, "Sucursal está vacía", "alertapreguntaerror_19");
 
   // Verificar si hay errores
   if (errores.length > 0) {
     console.log("Errores encontrados:", errores);
-    mostrarAlerta("alertas");
-    mostrarAlerta("alerta_1"); // Mostrar alerta de campos incompletos
+    mostrarAlerta("alertas"); // Alerta genérica
+    errores.forEach((error) => {
+      mostrarAlerta(error.alertaId); // Mostrar alerta específica para cada error
+    });
     return; // Detener el envío
   }
 
@@ -194,6 +215,7 @@ function enviar_form() {
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_2"); // Éxito
       document.getElementById("myForm").reset();
+      localStorage.setItem("formVac", "true"); // Marcar como enviado en localStorage
     })
     .catch((error) => {
       console.error("Error al enviar formulario:", error.message);
@@ -242,10 +264,33 @@ function mostrarDatos() {
   const asistieronRef = ref(database, "asistieron/");
   const no_asistieronRef = ref(database, "no_asistieron/");
   const contratadoRef = ref(database, "contratado/");
-  let vacantesPrevias = new Set();
+  let previousVacantesCount = 0;
 
-  // Mostrar vacantes generales (Fijas y Temporales)
   onValue(vacantesRef, (snapshot) => {
+    const vacantes = snapshot.val() || {};
+    const currentVacantes = new Map(Object.entries(vacantes));
+
+    // Detectar nuevas vacantes solo para admins o managers
+    if ((isAdmin || isManager) && Notification.permission === 'granted' && 'serviceWorker' in navigator) {
+      currentVacantes.forEach((vacante, key) => {
+        if (!previousVacantes.has(key)) {
+          // Nueva vacante detectada
+          navigator.serviceWorker.ready.then(registration => {
+            registration.active.postMessage({
+              type: 'SHOW_NOTIFICATION',
+              title: 'Nueva Vacante Registrada',
+              body: `Se ha registrado una nueva vacante: ${vacante.nombre} para ${vacante.puesto}`,
+              url: '/#admin' // Redirige al panel de administración
+            });
+            console.log(`Notificación enviada para ${vacante.nombre}`);
+          }).catch(err => {
+            console.error('Error al enviar notificación:', err);
+          });
+        }
+      });
+    }
+
+    previousVacantes = new Map(currentVacantes); // Actualizar estado previo
     renderizarVacantes(snapshot, dataGreen, dataRed);
   });
 
@@ -1045,38 +1090,6 @@ function eliminarVacante(uniqueKey, base) {
   );
 }
 
-// Función para mostrar una notificación cuando hay un nuevo dato en data_green
-function mostrarNotificacion(nombre) {
-  if (Notification.permission === "granted") {
-    new Notification("Nuevo vacante", { body: nombre });
-  } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        new Notification("Nuevo vacante", { body: nombre });
-      }
-    });
-  }
-}
-
-// Objeto/array original de data_green
-let data_green = [];
-
-// Crear un Proxy para detectar cambios en data_green
-const dataGreenProxy = new Proxy(data_green, {
-  set(target, prop, value) {
-    target[prop] = value;
-    if (!isNaN(prop) && value && value.nombre) { // Esto está bien porque usa data.nombre
-      mostrarNotificacion(value.nombre);
-    }
-    return true;
-  },
-});
-
-// Pedir permiso de notificaciones al cargar la página
-if (Notification.permission !== "granted") {
-  Notification.requestPermission();
-}
-
 // Función modular para manejar Enter y Click
 const asignarEventos = (tipo) => {
   const isManager = tipo === "manager";
@@ -1126,16 +1139,23 @@ function regresarAlLogin(tipo) {
   }
 
   if (isStandalone()) {
-    elements.header.style.display = "none"; 
+    elements.header.style.display = "none";
     elements.chatbot.style.display = "none";
     elements.pavo_cont.style.display = "none";
   }
 
-  // Forzar actualización del DOM con un pequeño retraso
-  setTimeout(() => {
-    console.log("Llamando a mostrarBotonEntrar después de retraso...");
-    mostrarBotonEntrar(tipo);
-  }, 100);
+  // Forzar visibilidad del contenedor de login
+  const loginContainer = isManager
+    ? document.getElementById("Logincont_sucu")
+    : document.getElementById("Logincont");
+  if (loginContainer) {
+    loginContainer.style.display = "flex";
+    loginContainer.style.opacity = "1";
+    console.log(`Contenedor ${isManager ? "Logincont_sucu" : "Logincont"} restaurado a display: flex`);
+  }
+
+  console.log("Llamando a mostrarBotonEntrar...");
+  mostrarBotonEntrar(tipo);
 
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
 }
@@ -1280,75 +1300,92 @@ function mostrarBotonEntrar(tipo) {
     return;
   }
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log(`Usuario autenticado detectado: ${user.email}`);
-      const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
-      const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
-      const currentUserType = isAdminLoggedIn ? "admin" : isManagerLoggedIn ? "manager" : null;
+  // Función para actualizar la UI
+  const updateUI = (user, useLocalStorage = false) => {
+    const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
+    const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
+    const currentUserType = isAdminLoggedIn ? "admin" : isManagerLoggedIn ? "manager" : null;
 
-      if (currentUserType === tipo) {
-        if (form) form.style.display = "none";
+    // Determinar si se debe mostrar el botón "Entrar"
+    const shouldShowButton = useLocalStorage
+      ? currentUserType === tipo
+      : (user && currentUserType === tipo);
 
-        let entrarBtn = loginContainer.querySelector(".entrar-btn");
-        if (!entrarBtn) {
-          console.log(`Creando botón Entrar para ${tipo}...`);
-          entrarBtn = document.createElement("button");
-          entrarBtn.classList.add("entrar-btn");
-          entrarBtn.textContent = "Entrar";
-          entrarBtn.addEventListener("click", () => {
-            console.log(`Botón Entrar clicado para ${tipo}`);
-            toggleView({
-              home: false,
-              header: false,
-              form: false,
-              login: false,
-              login_manager: false,
-              aside: false,
-              admin: !isManager,
-              admin_manager: isManager,
-            });
-            if (elements.header) elements.header.style.display = "none";
-            if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
-            if (elements.chatbot) elements.chatbot.style.display = "none";
+    if (shouldShowButton) {
+      console.log(`Usuario autenticado detectado para ${tipo}: ${user ? user.email : "desde localStorage"}`);
+      form.style.display = "none";
+      loginContainer.style.display = "flex";
+      loginContainer.style.opacity = "1";
 
-            // Actualizar sucursal_activa desde localStorage al entrar
-            if (isManager) {
-              const sucursalActivaElement = document.getElementById("sucursal_activa");
-              const sucursalGuardada = localStorage.getItem("sucursal");
-              if (sucursalActivaElement && sucursalGuardada) {
-                const sucursalFormateada = sucursalGuardada.charAt(0).toUpperCase() + sucursalGuardada.slice(1).toLowerCase();
-                sucursalActivaElement.textContent = sucursalFormateada;
-              }
-            }
-
-            mostrarDatos();
-            mostrarMensajesUsuarios();
+      let entrarBtn = loginContainer.querySelector(".entrar-btn");
+      if (!entrarBtn) {
+        console.log(`Creando botón Entrar para ${tipo}...`);
+        entrarBtn = document.createElement("button");
+        entrarBtn.classList.add("entrar-btn");
+        entrarBtn.textContent = "Entrar";
+        entrarBtn.style.display = "block";
+        entrarBtn.style.opacity = "1";
+        entrarBtn.addEventListener("click", () => {
+          console.log(`Botón Entrar clicado para ${tipo}`);
+          toggleView({
+            home: false,
+            header: false,
+            form: false,
+            login: false,
+            login_manager: false,
+            aside: false,
+            admin: !isManager,
+            admin_manager: isManager,
           });
-          loginContainer.appendChild(entrarBtn);
-        }
-        if (entrarBtn) entrarBtn.style.display = "block";
+          if (elements.header) elements.header.style.display = "none";
+          if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
+          if (elements.chatbot) elements.chatbot.style.display = "none";
 
-        if (otherLoginContainer) {
-          const otherEntrarBtn = otherLoginContainer.querySelector(".entrar-btn");
-          if (otherEntrarBtn) otherEntrarBtn.style.display = "none";
-          const otherLoginCont = otherLoginContainer.querySelector(".login-cont");
-          if (otherLoginCont) otherLoginCont.style.display = "flex";
-        }
+          if (isManager) {
+            const sucursalActivaElement = document.getElementById("sucursal_activa");
+            const sucursalGuardada = localStorage.getItem("sucursal");
+            if (sucursalActivaElement && sucursalGuardada) {
+              const sucursalFormateada = sucursalGuardada.charAt(0).toUpperCase() + sucursalGuardada.slice(1).toLowerCase();
+              sucursalActivaElement.textContent = sucursalFormateada;
+            }
+          }
+
+          mostrarDatos();
+          mostrarMensajesUsuarios();
+        });
+        loginContainer.appendChild(entrarBtn);
       } else {
-        if (form) form.style.display = "flex";
-        const entrarBtn = loginContainer.querySelector(".entrar-btn");
-        if (entrarBtn) entrarBtn.style.display = "none";
+        entrarBtn.style.display = "block";
+        entrarBtn.style.opacity = "1";
+      }
+
+      requestAnimationFrame(() => {
+        console.log("Botón Entrar creado y visible:", entrarBtn, window.getComputedStyle(entrarBtn).display);
+      });
+
+      if (otherLoginContainer) {
+        const otherEntrarBtn = otherLoginContainer.querySelector(".entrar-btn");
+        if (otherEntrarBtn) otherEntrarBtn.style.display = "none";
+        const otherLoginCont = otherLoginContainer.querySelector(".login-cont");
+        if (otherLoginCont) otherLoginCont.style.display = "flex";
       }
     } else {
-      console.log("No hay usuario autenticado, mostrando formulario...");
-      if (form) form.style.display = "flex";
+      console.log(`No hay usuario autenticado o tipo no coincide para ${tipo}`);
+      form.style.display = "flex";
       const entrarBtn = loginContainer.querySelector(".entrar-btn");
       if (entrarBtn) entrarBtn.style.display = "none";
-      localStorage.removeItem("isAdminLoggedIn");
-      localStorage.removeItem("isManagerLoggedIn");
-      localStorage.removeItem("sucursal");
+      loginContainer.style.display = "flex";
     }
+  };
+
+  // 1. Mostrar inmediatamente usando localStorage
+  const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
+  const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
+  updateUI(null, true); // Renderizado inicial basado en localStorage
+
+  // 2. Actualizar con Firebase de manera asíncrona
+  onAuthStateChanged(auth, (user) => {
+    updateUI(user, false); // Actualizar con datos de Firebase cuando estén disponibles
   });
 }
 

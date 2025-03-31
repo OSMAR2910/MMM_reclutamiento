@@ -2401,6 +2401,7 @@ body main #pag2 .Logincont .entrar-btn,
 html main #pag2 .Logincont .entrar-btn {
   width: 10vw;
   aspect-ratio: 1/1;
+  display: flex;
   background-color: #174891;
   border-radius: 50%;
   color: #ffffff;
@@ -4331,6 +4332,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .error.activolog {
 body main #pag4 .Logincont .entrar-btn,
 html main #pag4 .Logincont .entrar-btn {
   width: 10vw;
+  display: flex;
   aspect-ratio: 1/1;
   background-color: #174891;
   border-radius: 50%;

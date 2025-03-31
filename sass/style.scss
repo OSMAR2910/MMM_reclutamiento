@@ -1226,6 +1226,7 @@ html {
         .entrar-btn {
           width: 10vw;
           aspect-ratio: 1/1;
+          display: flex;
           background-color: $Secundario;
           border-radius: 50%;
           color: $Texto;
@@ -3020,6 +3021,7 @@ html {
         }
         .entrar-btn {
           width: 10vw;
+          display: flex;
           aspect-ratio: 1/1;
           background-color: $Secundario;
           border-radius: 50%;

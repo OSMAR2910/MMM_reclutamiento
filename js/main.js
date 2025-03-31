@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/service-worker.js")
+      .register("../js/service-worker.js")
       .then((registration) => {
         console.log("Service Worker registrado con éxito:", registration);
       })
@@ -319,10 +319,45 @@ const alertasConfig = {
   alerta_6: 2000,
   alerta_7: 2000,
   alerta_8: 2000,
+  alerta_9: 2000,
+  alerta_10: 2000,
+  alerta_11: 2000,
+  alerta_12: 2000,
+  alerta_13: 2000,
+  alerta_14: 2000,
+  alerta_15: 2000,
+  alerta_16: 2000,
+  alerta_17: 2000,
+  alerta_18: 2000,
+  alerta_19: 2000,
+  alerta_20: 2000,
+  alerta_21: 2000,
+  alerta_22: 2000,
+  alerta_23: 2000,
+  alerta_24: 2000,
+  alerta_25: 2000,
+  alertapreguntaerror_1: 2000,
+  alertapreguntaerror_2: 2000,
+  alertapreguntaerror_3: 2000,
+  alertapreguntaerror_4: 2000,
+  alertapreguntaerror_5: 2000,
+  alertapreguntaerror_6: 2000,
+  alertapreguntaerror_7: 2000,
+  alertapreguntaerror_8: 2000,
+  alertapreguntaerror_9: 2000,
+  alertapreguntaerror_10: 2000,
+  alertapreguntaerror_11: 2000,
+  alertapreguntaerror_12: 2000,
+  alertapreguntaerror_13: 2000,
+  alertapreguntaerror_14: 2000,
+  alertapreguntaerror_15: 2000,
+  alertapreguntaerror_16: 2000,
+  alertapreguntaerror_17: 2000,
+  alertapreguntaerror_18: 2000,
+  alertapreguntaerror_19: 2000
 };
 
-let timeoutAlarma;
-
+// Función genérica para mostrar y ocultar alertas
 const mostrarAlerta = (alertaId) => {
   const alerta = document.getElementById(alertaId);
   if (!alerta) {
@@ -330,19 +365,34 @@ const mostrarAlerta = (alertaId) => {
     return;
   }
 
-  if (timeoutAlarma) clearTimeout(timeoutAlarma);
+  // Ocultar cualquier alerta visible antes de mostrar la nueva
+  const todasLasAlarmas = document.querySelectorAll("[id^='alerta_']");
+  todasLasAlarmas.forEach((alarma) => {
+    alarma.style.display = "none";
+    if (alarma.timeoutId) {
+      clearTimeout(alarma.timeoutId); // Limpiar cualquier timeout previo de esta alerta
+    }
+  });
 
-  document
-    .querySelectorAll("[id^='alerta_']")
-    .forEach((alarma) => (alarma.style.display = "none"));
-
+  // Mostrar la alerta actual
   alerta.style.display = "flex";
+
+  // Obtener el tiempo de visualización configurado o usar 3000ms por defecto
   const tiempo = alertasConfig[alertaId] || 3000;
 
-  timeoutAlarma = setTimeout(() => (alerta.style.display = "none"), tiempo);
+  // Asignar un timeout específico para esta alerta
+  alerta.timeoutId = setTimeout(() => {
+    alerta.style.display = "none";
+    delete alerta.timeoutId; // Limpiar la referencia al timeout
+  }, tiempo);
+
+  // Permitir ocultar la alerta al hacer clic
   alerta.onclick = () => {
     alerta.style.display = "none";
-    clearTimeout(timeoutAlarma);
+    if (alerta.timeoutId) {
+      clearTimeout(alerta.timeoutId);
+      delete alerta.timeoutId;
+    }
   };
 };
 
@@ -421,25 +471,69 @@ let currentFormIndex = 0;
 const label_btnNext = document.getElementById("label_next");
 const label_btnEnviar = document.getElementById("label_enviar");
 
+// Función para inicializar el formulario
 function initForm() {
   if (forms.length) {
     forms[currentFormIndex].style.display = "grid";
     label_btnNext.style.display = "flex";
+    label_btnEnviar.style.display = "none"; // Asegurar que el botón de enviar esté oculto al inicio
   }
 }
 
+// Función para validar el formulario actual
 function validateForm() {
-  const inputs = forms[currentFormIndex].querySelectorAll(
-    "input, select, textarea"
-  );
-  for (const input of inputs) {
-    if (!input.value.trim()) {
-      mostrarAlerta("alertas");
-      mostrarAlerta("alerta_1");
-      return false;
+  const inputs = forms[currentFormIndex].querySelectorAll("input, select, textarea");
+  const errores = [];
+
+  inputs.forEach((input) => {
+    const value = input.value.trim();
+    const id = input.id;
+
+    // Validaciones específicas por campo con alertas únicas
+    if (!value) {
+      switch (id) {
+        case "nombre": errores.push({ mensaje: "El nombre está vacío", alertaId: "alertapreguntaerror_1" }); break;
+        case "puesto": errores.push({ mensaje: "El puesto está vacío", alertaId: "alertapreguntaerror_2" }); break;
+        case "numero": errores.push({ mensaje: "El número está vacío", alertaId: "alertapreguntaerror_3" }); break;
+        case "fecha_r": errores.push({ mensaje: "La fecha está vacía", alertaId: "alertapreguntaerror_4" }); break;
+        case "edad": errores.push({ mensaje: "La edad está vacía", alertaId: "alertapreguntaerror_5" }); break;
+        case "cp": errores.push({ mensaje: "El código postal está vacío", alertaId: "alertapreguntaerror_6" }); break;
+        case "direccion": errores.push({ mensaje: "La dirección está vacía", alertaId: "alertapreguntaerror_7" }); break;
+        case "ciudad": errores.push({ mensaje: "La ciudad está vacía", alertaId: "alertapreguntaerror_8" }); break;
+        case "casa_suc": errores.push({ mensaje: "Casa/Sucursal está vacío", alertaId: "alertapreguntaerror_9" }); break;
+        case "transporte": errores.push({ mensaje: "Transporte está vacío", alertaId: "alertapreguntaerror_10" }); break;
+        case "e_c": errores.push({ mensaje: "Estado civil está vacío", alertaId: "alertapreguntaerror_11" }); break;
+        case "docu": errores.push({ mensaje: "Documentación está vacía", alertaId: "alertapreguntaerror_12" }); break;
+        case "empleo": errores.push({ mensaje: "Empleo está vacío", alertaId: "alertapreguntaerror_13" }); break;
+        case "horario": errores.push({ mensaje: "Horario está vacío", alertaId: "alertapreguntaerror_14" }); break;
+        case "sexo": errores.push({ mensaje: "Sexo está vacío", alertaId: "alertapreguntaerror_15" }); break;
+        case "nacion": errores.push({ mensaje: "Nacionalidad está vacía", alertaId: "alertapreguntaerror_16" }); break;
+        case "problema_t": errores.push({ mensaje: "Problema/T está vacío", alertaId: "alertapreguntaerror_17" }); break;
+        case "f_n": errores.push({ mensaje: "Fecha de nacimiento está vacía", alertaId: "alertapreguntaerror_18" }); break;
+        case "sucursal": errores.push({ mensaje: "Sucursal está vacía", alertaId: "alertapreguntaerror_19" }); break;
+        default: errores.push({ mensaje: `El campo ${id} está vacío`, alertaId: "alerta_1" }); // Fallback genérico
+      }
+    } else {
+      // Validaciones adicionales si el campo no está vacío
+      if (id === "numero" && !value.match(/^\+?[0-9]{10,15}$/)) {
+        errores.push({ mensaje: "El número debe tener entre 10 y 15 dígitos", alertaId: "alertapreguntaerror_3" });
+      } else if (id === "cp" && !value.match(/^[0-9]{5}$/)) {
+        errores.push({ mensaje: "Código postal debe tener exactamente 5 dígitos", alertaId: "alertapreguntaerror_6" });
+      } else if (id === "edad" && (isNaN(value) || value < 18 || value > 100)) {
+        errores.push({ mensaje: "Edad debe estar entre 18 y 100", alertaId: "alertapreguntaerror_5" });
+      } else if (id === "fecha_r" && !value.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/)) {
+        errores.push({ mensaje: "Fecha inválida", alertaId: "alertapreguntaerror_4" });
+      }
     }
+  });
+
+  if (errores.length > 0) {
+    console.log("Errores encontrados:", errores);
+    mostrarAlerta("alertas"); // Alerta genérica
+    errores.forEach((error) => mostrarAlerta(error.alertaId)); // Mostrar alertas específicas
+    return false; // Indicar que la validación falló
   }
-  return true;
+  return true; // Validación exitosa
 }
 
 document
@@ -481,15 +575,21 @@ function updateProgress() {
   }
 }
 
+// Función para avanzar al siguiente formulario
 function showNextForm() {
-  if (!validateForm()) return;
+  if (!validateForm()) {
+    console.log("Validación fallida, no se avanza al siguiente formulario");
+    return; // No avanzar si hay errores
+  }
 
   forms[currentFormIndex].style.display = "none";
   currentFormIndex++;
 
   if (currentFormIndex === forms.length - 1) {
     label_btnNext.style.display = "none";
-    label_btnEnviar.style.display = "flex";
+    label_btnEnviar.style.display = "flex"; // Mostrar botón de enviar solo en el último paso
+  } else {
+    label_btnNext.style.display = "flex";
   }
 
   forms[currentFormIndex].style.display = "grid";
@@ -504,42 +604,36 @@ function enviar_fo() {
 
   if (isFormSubmitted) {
     console.log("Mostrando estado de formulario ya enviado");
-    forms.forEach((form) => {
-      form.style.display = "none";
-      console.log("Ocultando formulario:", form);
-    });
+    forms.forEach((form) => (form.style.display = "none"));
     if (label_btnEnviar) label_btnEnviar.style.display = "none";
-    if (document.getElementById("progreso"))
-      document.getElementById("progreso").style.display = "none";
-    if (exito) {
-      exito.style.display = "flex";
-      console.log("Mostrando mensaje de éxito");
-    }
-    mostrarAlerta("alerta_2");
+    if (label_btnNext) label_btnNext.style.display = "none";
+    if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
+    if (exito) exito.style.display = "flex";
+    mostrarAlerta("alerta_2"); // Éxito (formulario ya enviado)
     return;
   }
 
   if (!validateForm()) {
-    console.log("Validación fallida");
-    return;
+    console.log("Validación fallida en el envío final");
+    return; // No enviar si hay errores
   }
 
-  console.log("Formulario válido, procesando envío");
+  console.log("Formulario válido, procesando envío final");
   forms.forEach((form) => (form.style.display = "none"));
   if (label_btnEnviar) label_btnEnviar.style.display = "none";
-  if (document.getElementById("progreso"))
-    document.getElementById("progreso").style.display = "none";
+  if (label_btnNext) label_btnNext.style.display = "none";
+  if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
   if (exito) exito.style.display = "flex";
 
-  localStorage.setItem(FORM_KEY, "true");
-  console.log("Formulario guardado como enviado en localStorage");
+  // Llamar a enviar_form de database.js
+  window.enviar_form();
 }
 
 label_btnNext?.addEventListener("click", showNextForm);
 label_btnEnviar?.addEventListener("click", enviar_fo);
 
 // Personalización de selects
-function personalizarSelect(select) {
+export function personalizarSelect(select) {
   // ✅ 1. Eliminar cualquier personalización previa antes de aplicar una nueva
   const existingCustomSelect =
     select.parentNode.querySelector(".custom-select");
@@ -773,14 +867,21 @@ function initializeApp() {
     forms.forEach((form) => (form.style.display = "none"));
     if (label_btnEnviar) label_btnEnviar.style.display = "none";
     if (label_btnNext) label_btnNext.style.display = "none";
-    if (document.getElementById("progreso"))
-      document.getElementById("progreso").style.display = "none";
+    if (document.getElementById("progreso")) document.getElementById("progreso").style.display = "none";
     if (exito) {
       exito.style.display = "flex";
       console.log("Mostrando mensaje de éxito en inicialización");
     }
   }
-}
 
-// Exportar la función personalizarSelect para que database.js la use
-export { personalizarSelect };
+  // Solicitar permiso para notificaciones
+  if ('Notification' in window && navigator.serviceWorker) {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        console.log('Permiso de notificaciones concedido');
+      } else {
+        console.log('Permiso de notificaciones denegado');
+      }
+    });
+  }
+}
