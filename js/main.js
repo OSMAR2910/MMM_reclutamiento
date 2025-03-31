@@ -108,70 +108,14 @@ function adjustViewForPWA() {
   }
 }
 
-// Manejo del viewport sin modificar estilos directamente
-function updateChatbotDimensions() {
+// Actualizar la variable CSS con el valor real del viewport
+function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const vh = viewportHeight * 0.01;
-
-  // Actualizar variables CSS solo para referencia, sin tocar estilos del chatbot
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
-  document.documentElement.style.setProperty(
-    "--full-height",
-    `${viewportHeight}px`
-  );
-}
-
-// Ajustar posición solo cuando el teclado virtual está presente
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  const chatInput = document.getElementById("chat_input");
-  const chatBox = document.getElementById("chat_box");
-  if (!chatbot || !chatInput || !chatBox) return;
-
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const fullHeight = window.innerHeight;
-  const keyboardHeight = fullHeight - viewportHeight;
-  const isMaximized = chatbot.classList.contains("max_chat");
-
-  if (isMaximized && keyboardHeight > 0) {
-    // Teclado visible: aplicar ajustes mínimos
-    const offset = 10; // Margen superior al teclado
-    chatbot.style.bottom = `${keyboardHeight}px`; // Ajustar posición sobre el teclado
-    chatbot.style.height = `${viewportHeight - offset}px`; // Ajustar altura al viewport visible
-
-    // Asegurar que el input sea visible
-    requestAnimationFrame(() => {
-      const inputRect = chatInput.getBoundingClientRect();
-      if (inputRect.bottom > viewportHeight) {
-        chatBox.scrollTo({
-          top: chatBox.scrollHeight,
-          behavior: "smooth",
-        });
-        chatInput.scrollIntoView({ block: "end", behavior: "smooth" });
-      }
-    });
-  } else {
-    // Teclado oculto o chat minimizado: no modificar estilos, dejar que CSS controle
-    chatbot.style.bottom = ""; // Restaurar a valor por defecto (CSS)
-    chatbot.style.height = ""; // Restaurar a valor por defecto (CSS)
-  }
-}
-
-// Scroll al final del chat
-function scrollChatToBottom() {
-  const chatBox = document.getElementById("chat_box");
-  if (!chatBox) return;
-
-  requestAnimationFrame(() => {
-    chatBox.scrollTo({
-      top: chatBox.scrollHeight,
-      behavior: "smooth",
-    });
-  });
+  document.documentElement.style.setProperty("--real-vh", `${viewportHeight}px`);
 }
 
 // Debounce para optimizar eventos
-function debounce(func, wait = 50) {
+function debounce(func, wait = 100) {
   let timeout;
   return (...args) => {
     clearTimeout(timeout);
@@ -179,46 +123,21 @@ function debounce(func, wait = 50) {
   };
 }
 
-// Manejo de eventos del viewport y teclado
-const handleViewportChanges = debounce(() => {
-  requestAnimationFrame(() => {
-    updateChatbotDimensions();
-    adjustChatbotPosition();
-    scrollChatToBottom();
-  });
-}, 50);
+// Manejo de eventos del viewport
+const handleViewportChanges = debounce(updateViewportHeight, 100);
 
 // Registro de eventos
 function setupViewportListeners() {
-  const events = ["resize", "orientationchange"];
-  events.forEach((event) => {
-    window.addEventListener(event, handleViewportChanges);
-  });
-
+  window.addEventListener("resize", handleViewportChanges);
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", handleViewportChanges);
-    window.visualViewport.addEventListener("scroll", handleViewportChanges);
-  } else {
-    window.addEventListener("scroll", handleViewportChanges);
-    window.addEventListener("resize", handleViewportChanges);
-  }
-
-  const chatInput = document.getElementById("chat_input");
-  if (chatInput) {
-    chatInput.addEventListener("focus", () => {
-      setTimeout(handleViewportChanges, 100); // Retraso para esperar al teclado
-    });
-    chatInput.addEventListener("blur", handleViewportChanges);
-    chatInput.addEventListener("input", () => {
-      setTimeout(scrollChatToBottom, 50);
-    });
   }
 }
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", () => {
   setupViewportListeners();
-  updateChatbotDimensions(); // Establecer dimensiones iniciales
+  updateViewportHeight(); // Establecer valor inicial
 });
 
 // Manejo de maximizar/minimizar sin tocar estilos
