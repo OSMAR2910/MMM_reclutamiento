@@ -134,10 +134,34 @@ function setupViewportListeners() {
   }
 }
 
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const keyboardHeight = window.innerHeight - viewportHeight; // Diferencia causada por el teclado
+
+  // Si el teclado está visible, ajusta la altura del chat
+  if (keyboardHeight > 0) {
+    chatbot.style.height = `calc(${viewportHeight}px - 2rem)`; // Deja un margen pequeño
+    chatbot.style.bottom = `${keyboardHeight}px`; // Sube el chat justo encima del teclado
+  } else {
+    chatbot.style.height = `calc(var(--real-vh, 1vh) * 80)`; // Vuelve a la altura normal
+    chatbot.style.bottom = "0"; // Pegado al fondo
+  }
+}
+
+function scrollChatToBottom() {
+  const chatContent = document.querySelector("#chatbot .chat_box");
+  if (chatContent) {
+    chatContent.scrollTop = chatContent.scrollHeight;
+  }
+}
+
 // Inicialización
 document.addEventListener("DOMContentLoaded", () => {
   setupViewportListeners();
-  updateViewportHeight(); // Establecer valor inicial
+  updateViewportHeight();
 });
 
 // Manejo de maximizar/minimizar sin tocar estilos
@@ -152,7 +176,7 @@ function toggleChatbotMaximize() {
   });
 }
 
-// Ejemplo de uso: botón para maximizar/minimizar
+//botón para maximizar/minimizar
 const toggleButton = document.getElementById("toggle_chatbot");
 if (toggleButton) {
   toggleButton.addEventListener("click", toggleChatbotMaximize);

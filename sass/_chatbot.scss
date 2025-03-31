@@ -612,13 +612,13 @@
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh); /* Altura basada en el viewport real */
-    max-height: var(--real-vh); /* Limita la altura máxima al viewport */
+    height: var(--real-vh);
+    max-height: var(--real-vh); 
     margin: 0;
     border-radius: 0;
-    position: fixed;
+    position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 0 !important;
     .chat_header {
       height: 8%;
       min-height: 4rem;
@@ -691,7 +691,7 @@
     }
     .chat_form {
       height: 6%;
-      min-height: 2rem;
+      min-height: 3rem;
       .chat_input {
         width: 80%;
         height: 90%;
