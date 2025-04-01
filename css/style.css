@@ -1717,7 +1717,8 @@ html header nav ul li .iconbutton:hover {
 body main,
 html main {
   width: 100vw;
-  height: var(--real-vh, 100vh);
+  height: var(--real-vh);
+  max-height: var(--real-vh);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1728,7 +1729,7 @@ html main {
 body main .pages,
 html main .pages {
   width: 50%;
-  height: 100vh;
+  height: 100%;
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -5362,10 +5363,6 @@ html .cambiar_nav nav ul .circulo_icon {
     height: 3.3vw;
     top: 50vh;
     left: 43vw;
-  }
-  body main,
-  html main {
-    height: 100vh;
   }
   body main .pages,
   html main .pages {

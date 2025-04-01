@@ -563,7 +563,8 @@ html {
 
   main {
     width: 100vw;
-    height: var(--real-vh, 100vh);
+    height: var(--real-vh);
+    max-height: var(--real-vh); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -573,7 +574,7 @@ html {
 
     .pages {
       width: 50%;
-      height: 100vh;
+      height: 100%;
       justify-items: center;
       justify-content: center;
       align-items: center;
@@ -3991,7 +3992,6 @@ html {
     }
 
     main {
-      height: 100vh;
       .pages {
         width: 100%;
         height: 100%;
