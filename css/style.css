@@ -1657,6 +1657,7 @@ html header nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 body header nav ul,
 html header nav ul {
@@ -1675,9 +1676,9 @@ html header nav ul .circulo_icon {
   height: 1vw;
   background-color: #ffffff;
   border-radius: 100%;
-  position: fixed;
-  top: 50vh;
-  left: 47.8vw;
+  position: absolute;
+  top: 50%;
+  left: 39%;
   animation: moverpuntolog 3s ease-in-out infinite;
 }
 body header nav ul li,
@@ -5366,8 +5367,6 @@ html .cambiar_nav nav ul .circulo_icon {
   html header nav ul .circulo_icon {
     width: 3.3vw;
     height: 3.3vw;
-    top: 50vh;
-    left: 43vw;
   }
   body main .pages,
   html main .pages {

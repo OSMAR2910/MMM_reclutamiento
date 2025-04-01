@@ -502,6 +502,7 @@ html {
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       ul {
         width: 100%;
@@ -518,9 +519,9 @@ html {
           height: 1vw;
           background-color: $Texto;
           border-radius: 100%;
-          position: fixed;
-          top: 50vh;
-          left: 47.8vw;
+          position: absolute;
+          top: 50%;
+          left: 39%;
           animation: moverpuntolog 3s ease-in-out infinite;
         }
 
@@ -3988,8 +3989,6 @@ html {
           .circulo_icon {
             width: 3.3vw;
             height: 3.3vw;
-            top: 50vh;
-            left: 43vw;
           }
         }
       }
