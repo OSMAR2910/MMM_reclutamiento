@@ -136,14 +136,28 @@ if (window.visualViewport) {
 function setupViewportListeners() {
   window.addEventListener("resize", () => {
     handleViewportChanges();
-    scrollChatToBottom(); // Ajustar scroll cuando cambie el tamaño
+    adjustChatbotPosition();
+    scrollChatToBottom();
   });
+
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", () => {
       handleViewportChanges();
-      scrollChatToBottom(); // Ajustar scroll cuando el teclado aparezca/desaparezca
+      adjustChatbotPosition();
+      scrollChatToBottom();
     });
     window.visualViewport.addEventListener("scroll", handleViewportChanges);
+  }
+}
+
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  if (chatbot && chatbot.classList.contains("max_chat")) {
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    const keyboardHeight = window.innerHeight - viewportHeight;
+    const offsetTop = keyboardHeight > 0 ? keyboardHeight : 0;
+
+    chatbot.style.top = `${offsetTop}px`;
   }
 }
 
@@ -160,7 +174,25 @@ function toggleChatbotMaximize() {
   const chatbot = document.getElementById("chatbot");
   if (!chatbot) return;
 
-  chatbot.classList.toggle("max_chat");
+  const isMaximized = chatbot.classList.toggle("max_chat");
+
+  if (isMaximized) {
+    // Cuando se maximiza, ajustar la posición considerando el teclado
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    const keyboardHeight = window.innerHeight - viewportHeight; // Altura aproximada del teclado
+    const offsetTop = keyboardHeight > 0 ? keyboardHeight : 0; // Si hay teclado, usarlo; si no, 0
+
+    chatbot.style.position = "absolute"; // Usar posición fija para controlarlo
+    chatbot.style.top = `${offsetTop}px`; // Ajustar top según la altura del teclado
+    chatbot.style.bottom = "auto"; // Evitar conflictos con bottom
+  } else {
+    // Cuando se minimiza, restaurar la posición original
+    chatbot.style.position = "absolute"; // Restaurar posición por defecto (estática o como esté en CSS)
+    chatbot.style.top = "auto"; // Eliminar top personalizado
+    chatbot.style.bottom = "0"; // Restaurar bottom si aplica
+  }
+
+  // Ajustar el scroll después de cambiar el estado
   requestAnimationFrame(() => {
     scrollChatToBottom();
   });
