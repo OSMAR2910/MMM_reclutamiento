@@ -563,7 +563,7 @@ html {
 
   main {
     width: 100vw;
-    height: calc(var(--vh, 1vh) * 100);
+    height: var(--real-vh, 100vh);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -573,7 +573,7 @@ html {
 
     .pages {
       width: 50%;
-      height: var(--real-vh);
+      height: 100vh;
       justify-items: center;
       justify-content: center;
       align-items: center;
@@ -1156,15 +1156,16 @@ html {
                   display: none;
                 }
               }
+
               .label_btn_log_manager {
                 color: $Texto;
-                bottom: 9%;
+                bottom: 2em;
                 border-radius: 3vw;
                 background-color: $Fondo;
-                padding: .3rem .6rem;
+                padding: .3rem .7rem;
                 position: absolute;
                 font-family: $Letra2;
-                font-size: .9em;
+                font-size: .7em;
               }
             }
 
@@ -2829,6 +2830,7 @@ html {
                 justify-content: center;
                 text-align: center;
 
+
                 h3 {
                   width: 100%;
                   color: $Texto;
@@ -2950,13 +2952,13 @@ html {
               }
               .label_btn_log_manager {
                 color: $Texto;
-                bottom: 9%;
+                bottom: 2em;
                 border-radius: 3vw;
                 background-color: $Fondo;
-                padding: .3rem .6rem;
+                padding: .3rem .7rem;
                 position: absolute;
                 font-family: $Letra2;
-                font-size: .9em;
+                font-size: .7em;
               }
             }
 
@@ -4080,10 +4082,13 @@ html {
             border-radius: 8vw;
 
             .Login-son {
-              .formuariolog {
+              .form-login {
                 .wel {
                   h3 {
-                    font-size: 5vw;
+                    font-size: 1.2em;
+                  }
+                  p {
+                    font-size: .6em;
                   }
                 }
 
@@ -4103,6 +4108,7 @@ html {
                     font-size: 3.5vw;
                   }
                 }
+                
               }
             }
           }
@@ -4566,10 +4572,13 @@ html {
             border-radius: 8vw;
 
             .Login-son {
-              .formuariolog {
+              .form-login {
                 .wel {
                   h3 {
-                    font-size: 5vw;
+                    font-size: 1.2em;
+                  }
+                  p {
+                    font-size: .6em;
                   }
                 }
 

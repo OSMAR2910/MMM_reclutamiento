@@ -110,8 +110,9 @@ function adjustViewForPWA() {
 
 // Actualizar la variable CSS con el valor real del viewport
 function updateViewportHeight() {
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const viewportHeight = window.innerHeight; // Simplifica y usa innerHeight directamente
   document.documentElement.style.setProperty("--real-vh", `${viewportHeight}px`);
+  console.log("Viewport height actualizado a:", viewportHeight); // Para depuración
 }
 
 // Debounce para optimizar eventos
@@ -134,35 +135,13 @@ function setupViewportListeners() {
   }
 }
 
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
-
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const keyboardHeight = window.innerHeight - viewportHeight; // Diferencia causada por el teclado
-
-  // Si el teclado está visible, ajusta la altura del chat
-  if (keyboardHeight > 0) {
-    chatbot.style.height = `calc(${viewportHeight}px - 2rem)`; // Deja un margen pequeño
-    chatbot.style.bottom = `${keyboardHeight}px`; // Sube el chat justo encima del teclado
-  } else {
-    chatbot.style.height = `calc(var(--real-vh, 1vh) * 80)`; // Vuelve a la altura normal
-    chatbot.style.bottom = "0"; // Pegado al fondo
-  }
-}
-
 function scrollChatToBottom() {
-  const chatContent = document.querySelector("#chatbot .chat_box");
+  const chatContent = document.querySelector("#chatbot .chat_box #body");
   if (chatContent) {
     chatContent.scrollTop = chatContent.scrollHeight;
+    chatContent.parentElement.scrollIntoView({ behavior: "smooth" }); // Lleva el contenedor a la vista
   }
 }
-
-// Inicialización
-document.addEventListener("DOMContentLoaded", () => {
-  setupViewportListeners();
-  updateViewportHeight();
-});
 
 // Manejo de maximizar/minimizar sin tocar estilos
 function toggleChatbotMaximize() {
@@ -171,7 +150,6 @@ function toggleChatbotMaximize() {
 
   chatbot.classList.toggle("max_chat");
   requestAnimationFrame(() => {
-    adjustChatbotPosition(); // Solo ajusta si el teclado está presente
     scrollChatToBottom();
   });
 }
@@ -251,7 +229,6 @@ if (!isTouchDevice()) {
   document.body.classList.remove("has-custom-cursor");
 }
 
-// Mapa de alertas con su ID y tiempo de visualización
 const alertasConfig = {
   alertas: 2000,
   alerta_1: 2000,
@@ -479,9 +456,8 @@ function validateForm() {
   return true; // Validación exitosa
 }
 
-document
-  .querySelectorAll('.input-field input[type="password"]')
-  .forEach((input) => {
+document.querySelectorAll('.input-field input[type="password"]')
+.forEach((input) => {
     const toggleButton = document.createElement("button");
     toggleButton.type = "button";
     toggleButton.textContent = "";
@@ -494,7 +470,7 @@ document
         ? (input.type = "text")
         : (input.type = "password")
     );
-  });
+});
 
 function initProgressBar() {
   const contForm = document.querySelector(".cont_form");
@@ -518,7 +494,6 @@ function updateProgress() {
   }
 }
 
-// Función para avanzar al siguiente formulario
 function showNextForm() {
   if (!validateForm()) {
     console.log("Validación fallida, no se avanza al siguiente formulario");
@@ -801,6 +776,8 @@ function initializeApp() {
   initProgressBar();
   updateProgress();
   initializeCountryCode();
+  setupViewportListeners();
+  updateViewportHeight();
 
   const isFormSubmitted = localStorage.getItem(FORM_KEY) === "true";
   console.log("Estado inicial del formulario:", isFormSubmitted);

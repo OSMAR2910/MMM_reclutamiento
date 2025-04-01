@@ -561,6 +561,7 @@ body canvas {
   align-items: center;
   border-radius: 1.5vw;
   overflow-y: scroll;
+  behavior: smooth;
   background-color: #ffffff;
   border: 2px solid #1b3c59;
   box-shadow: 0px 0px 15px 2px #1b3c59;
@@ -1066,8 +1067,8 @@ body canvas {
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh);
-    max-height: var(--real-vh);
+    height: var(--real-vh, 100vh);
+    max-height: var(--real-vh, 100vh);
     margin: 0;
     border-radius: 0;
     position: absolute;
@@ -1716,7 +1717,7 @@ html header nav ul li .iconbutton:hover {
 body main,
 html main {
   width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  height: var(--real-vh, 100vh);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1727,7 +1728,7 @@ html main {
 body main .pages,
 html main .pages {
   width: 50%;
-  height: var(--real-vh);
+  height: 100vh;
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -2337,13 +2338,13 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
   color: #ffffff;
-  bottom: 9%;
+  bottom: 2em;
   border-radius: 3vw;
   background-color: #ec6223;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   position: absolute;
   font-family: "Nunito";
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login.activolog,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login.activolog {
@@ -4265,13 +4266,13 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
   color: #ffffff;
-  bottom: 9%;
+  bottom: 2em;
   border-radius: 3vw;
   background-color: #ec6223;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   position: absolute;
   font-family: "Nunito";
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login.activolog,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login.activolog {
@@ -5434,26 +5435,30 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 70vw;
     border-radius: 8vw;
   }
-  body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3,
-  html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .wel h3 {
-    font-size: 5vw;
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 {
+    font-size: 1.2em;
   }
-  body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field,
-  html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field {
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p {
+    font-size: 0.6em;
+  }
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field {
     height: 13vw;
   }
-  body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input,
-  html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input {
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input {
     font-size: 3.5vw;
   }
-  body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
-  body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label,
-  html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
-  html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label {
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label {
     font-size: 3vw;
   }
-  body main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label,
-  html main #pag2 .Logincont .Login-cont .Login-son .formuariolog .input-field label {
+  body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field label,
+  html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field label {
     font-size: 3.5vw;
   }
   body main #pag2 .Logincont .entrar-btn,
@@ -5937,26 +5942,30 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 70vw;
     border-radius: 8vw;
   }
-  body main #pag4 .Logincont .Login-cont .Login-son .formuariolog .wel h3,
-  html main #pag4 .Logincont .Login-cont .Login-son .formuariolog .wel h3 {
-    font-size: 5vw;
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 {
+    font-size: 1.2em;
   }
-  body main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field,
-  html main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field {
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p {
+    font-size: 0.6em;
+  }
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field {
     height: 13vw;
   }
-  body main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field input,
-  html main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field input {
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input {
     font-size: 3.5vw;
   }
-  body main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
-  body main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label,
-  html main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field input:focus ~ label,
-  html main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field input:valid ~ label {
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label {
     font-size: 3vw;
   }
-  body main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field label,
-  html main #pag4 .Logincont .Login-cont .Login-son .formuariolog .input-field label {
+  body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field label,
+  html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field label {
     font-size: 3.5vw;
   }
   body main #pag4 .Logincont .entrar-btn,

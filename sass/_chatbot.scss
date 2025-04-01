@@ -102,6 +102,7 @@
   align-items: center;
   border-radius: 1.5vw;
   overflow-y: scroll;
+  behavior: smooth;
   background-color: $Blanco;
   border: 2px solid $Box_admin;
   box-shadow: 0px 0px 15px 2px $Box_admin;
@@ -612,8 +613,8 @@
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh);
-    max-height: var(--real-vh); 
+    height: var(--real-vh, 100vh);
+    max-height: var(--real-vh, 100vh);
     margin: 0;
     border-radius: 0;
     position: absolute;
