@@ -107,103 +107,12 @@ function adjustViewForPWA() {
     console.log("Ejecutando como web normal, manteniendo vista por defecto...");
   }
 }
-/*
+
 function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
 }
 
-// Debounce para evitar actualizaciones excesivas
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-const handleViewportChanges = debounce(updateViewportHeight, 100);
-
-window.addEventListener('resize', handleViewportChanges);
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', handleViewportChanges);
-}
-
-function setupViewportListeners() {
-  window.addEventListener("resize", () => {
-    handleViewportChanges();
-    adjustChatbotPosition();
-    scrollChatToBottom();
-  });
-
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", () => {
-      handleViewportChanges();
-      adjustChatbotPosition();
-      scrollChatToBottom();
-    });
-    window.visualViewport.addEventListener("scroll", handleViewportChanges);
-  }
-}
-
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  if (chatbot && chatbot.classList.contains("max_chat")) {
-    const viewportHeight = window.visualViewport?.height || window.innerHeight;
-    const keyboardHeight = window.innerHeight - viewportHeight;
-    const offsetTop = keyboardHeight > 0 ? keyboardHeight : 0;
-
-    chatbot.style.top = `${offsetTop}px`;
-  }
-}
-
-function scrollChatToBottom() {
-  const chatContent = document.querySelector("#chatbot .chat_box #body");
-  if (chatContent) {
-    chatContent.scrollTop = chatContent.scrollHeight;
-    chatContent.scrollIntoView({ behavior: "smooth", block: "end" });
-  }
-}
-
-// Manejo de maximizar/minimizar sin tocar estilos
-function toggleChatbotMaximize() {
-  const chatbot = document.getElementById("chatbot");
-  if (!chatbot) return;
-
-  const isMaximized = chatbot.classList.toggle("max_chat");
-
-  if (isMaximized) {
-    // Cuando se maximiza, ajustar la posición considerando el teclado
-    const viewportHeight = window.visualViewport?.height || window.innerHeight;
-    const keyboardHeight = window.innerHeight - viewportHeight; // Altura aproximada del teclado
-    const offsetTop = keyboardHeight > 0 ? keyboardHeight : 0; // Si hay teclado, usarlo; si no, 0
-
-    chatbot.style.position = "absolute"; // Usar posición fija para controlarlo
-    chatbot.style.top = `${offsetTop}px`; // Ajustar top según la altura del teclado
-    chatbot.style.bottom = "auto"; // Evitar conflictos con bottom
-  } else {
-    // Cuando se minimiza, restaurar la posición original
-    chatbot.style.position = "absolute"; // Restaurar posición por defecto (estática o como esté en CSS)
-    chatbot.style.top = "auto"; // Eliminar top personalizado
-    chatbot.style.bottom = "0"; // Restaurar bottom si aplica
-  }
-
-  // Ajustar el scroll después de cambiar el estado
-  requestAnimationFrame(() => {
-    scrollChatToBottom();
-  });
-}
-
-//botón para maximizar/minimizar
-const toggleButton = document.getElementById("toggle_chatbot");
-if (toggleButton) {
-  toggleButton.addEventListener("click", toggleChatbotMaximize);
-}
-*/
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||
@@ -820,7 +729,6 @@ function initializeApp() {
   initProgressBar();
   updateProgress();
   initializeCountryCode();
-  setupViewportListeners();
   updateViewportHeight();
 
   const isFormSubmitted = localStorage.getItem(FORM_KEY) === "true";
