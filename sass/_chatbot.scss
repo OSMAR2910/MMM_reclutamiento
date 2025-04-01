@@ -101,6 +101,7 @@
   justify-content: start;
   align-items: center;
   border-radius: 1.5vw;
+  overflow-x: hidden;
   overflow-y: scroll;
   behavior: smooth;
   background-color: $Blanco;
@@ -613,13 +614,12 @@
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh);
-    max-height: var(--real-vh);
+    height: var(--real-vh, 100vh);
     margin: 0;
     border-radius: 0;
     position: absolute;
     top: 0;
-    bottom: 0 !important;
+    bottom: auto;
     .chat_header {
       height: 8%;
       min-height: 4rem;

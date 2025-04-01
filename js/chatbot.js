@@ -269,21 +269,85 @@ document.addEventListener("DOMContentLoaded", async () => {
       saveMessagesToFirebase();
     }
   });
+
+  // Minimizar/maximizar chat con ajuste dinámico
+  document.getElementById("chat_min").addEventListener("click", toggleChatbotMaximize);
 });
 
-// Minimizar/maximizar chat
-document.getElementById("chat_min").addEventListener("click", () => {
-  const chatBox = document.getElementById("chatbot");
+// Debounce para evitar actualizaciones excesivas
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+
+// Actualizar altura del viewport y definir --real-vh
+function updateViewportHeight() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
+  adjustChatbotPosition();
+}
+
+// Ajustar posición y altura del chatbot según el teclado
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const windowHeight = window.innerHeight;
+  const keyboardHeight = windowHeight - viewportHeight;
+
+  if (keyboardHeight > 0) {
+    chatbot.style.top = `${keyboardHeight}px`;
+    chatbot.style.height = `${viewportHeight}px`;
+    chatbot.style.bottom = "auto";
+  } else {
+    chatbot.style.top = "0";
+    chatbot.style.height = "var(--real-vh)";
+    chatbot.style.bottom = "auto";
+  }
+
+  scrollToBottom(); // Reutiliza tu función existente
+}
+
+// Alternar maximizar/minimizar con ajuste dinámico
+function toggleChatbotMaximize() {
+  const chatbot = document.getElementById("chatbot");
   const pavo = document.getElementById("pavo_cont");
 
-  chatBox.classList.toggle("max_chat");
-  void chatBox.offsetHeight;
+  if (!chatbot) return;
 
-  if (chatBox.classList.contains("max_chat")) {
-    pavo.style.display = 'none';
-    sendWelcomeMessage();
-    setTimeout(scrollToBottom, 0);
+  const isMaximized = chatbot.classList.toggle("max_chat");
+
+  if (isMaximized) {
+    chatbot.style.display = "flex";
+    pavo.style.display = "none";
+    adjustChatbotPosition();
+    sendWelcomeMessage(); // Tu función existente
   } else {
-    pavo.style.display = 'flex';
+    chatbot.style.position = "fixed";
+    chatbot.style.top = "";
+    chatbot.style.bottom = "0";
+    chatbot.style.height = "auto";
+    chatbot.style.width = "";
+    pavo.style.display = "flex";
   }
-});
+
+  setTimeout(scrollToBottom, 0); // Tu función existente
+}
+
+// Configurar eventos de viewport
+function setupViewportListeners() {
+  const handleViewportChanges = debounce(updateViewportHeight, 100);
+  window.addEventListener("resize", handleViewportChanges);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", handleViewportChanges);
+    window.visualViewport.addEventListener("scroll", handleViewportChanges);
+  }
+}
+
+// Inicializar listeners y ajuste inicial
+setupViewportListeners();
+updateViewportHeight();

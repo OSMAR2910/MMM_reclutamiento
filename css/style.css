@@ -561,6 +561,7 @@ body canvas {
   justify-content: start;
   align-items: center;
   border-radius: 1.5vw;
+  overflow-x: hidden;
   overflow-y: scroll;
   behavior: smooth;
   background-color: #ffffff;
@@ -1068,13 +1069,12 @@ body canvas {
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh);
-    max-height: var(--real-vh);
+    height: var(--real-vh, 100vh);
     margin: 0;
     border-radius: 0;
     position: absolute;
     top: 0;
-    bottom: 0 !important;
+    bottom: auto;
   }
   .max_chat .chat_header {
     height: 8%;
@@ -5264,8 +5264,8 @@ body .cambiar_nav nav ul .circulo_icon,
 html .cambiar_nav nav ul .circulo_icon {
   width: 0.8vw;
   height: 0.8vw;
-  top: 9.3vh;
-  left: 23.3vw;
+  top: 50%;
+  left: 38%;
 }
 @media screen and (max-width: 500px) {
   body .alertas .alerta,
@@ -6263,7 +6263,5 @@ html .cambiar_nav nav ul .circulo_icon {
   html .cambiar_nav nav ul .circulo_icon {
     width: 2.8vw;
     height: 2.8vw;
-    top: 8.5vh;
-    left: 44vw;
   }
 }/*# sourceMappingURL=style.css.map */

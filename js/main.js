@@ -107,7 +107,7 @@ function adjustViewForPWA() {
     console.log("Ejecutando como web normal, manteniendo vista por defecto...");
   }
 }
-
+/*
 function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
@@ -203,7 +203,7 @@ const toggleButton = document.getElementById("toggle_chatbot");
 if (toggleButton) {
   toggleButton.addEventListener("click", toggleChatbotMaximize);
 }
-
+*/
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||
