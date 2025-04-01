@@ -1067,8 +1067,8 @@ body canvas {
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh, 100vh);
-    max-height: var(--real-vh, 100vh);
+    height: var(--real-vh);
+    max-height: var(--real-vh);
     margin: 0;
     border-radius: 0;
     position: absolute;
