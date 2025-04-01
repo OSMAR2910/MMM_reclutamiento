@@ -5363,6 +5363,10 @@ html .cambiar_nav nav ul .circulo_icon {
     top: 50vh;
     left: 43vw;
   }
+  body main,
+  html main {
+    height: 100vh;
+  }
   body main .pages,
   html main .pages {
     width: 100%;
