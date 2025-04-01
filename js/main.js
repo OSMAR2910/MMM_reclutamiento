@@ -108,30 +108,42 @@ function adjustViewForPWA() {
   }
 }
 
-// Actualizar la variable CSS con el valor real del viewport
 function updateViewportHeight() {
-  const viewportHeight = window.innerHeight; // Simplifica y usa innerHeight directamente
-  document.documentElement.style.setProperty("--real-vh", `${viewportHeight}px`);
-  console.log("Viewport height actualizado a:", viewportHeight); // Para depuración
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
 }
 
-// Debounce para optimizar eventos
-function debounce(func, wait = 100) {
+// Debounce para evitar actualizaciones excesivas
+function debounce(func, wait) {
   let timeout;
-  return (...args) => {
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
     clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
+    timeout = setTimeout(later, wait);
   };
 }
 
-// Manejo de eventos del viewport
 const handleViewportChanges = debounce(updateViewportHeight, 100);
 
-// Registro de eventos
+window.addEventListener('resize', handleViewportChanges);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', handleViewportChanges);
+}
+
 function setupViewportListeners() {
-  window.addEventListener("resize", handleViewportChanges);
+  window.addEventListener("resize", () => {
+    handleViewportChanges();
+    scrollChatToBottom(); // Ajustar scroll cuando cambie el tamaño
+  });
   if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", handleViewportChanges);
+    window.visualViewport.addEventListener("resize", () => {
+      handleViewportChanges();
+      scrollChatToBottom(); // Ajustar scroll cuando el teclado aparezca/desaparezca
+    });
+    window.visualViewport.addEventListener("scroll", handleViewportChanges);
   }
 }
 
@@ -139,7 +151,7 @@ function scrollChatToBottom() {
   const chatContent = document.querySelector("#chatbot .chat_box #body");
   if (chatContent) {
     chatContent.scrollTop = chatContent.scrollHeight;
-    chatContent.parentElement.scrollIntoView({ behavior: "smooth" }); // Lleva el contenedor a la vista
+    chatContent.scrollIntoView({ behavior: "smooth", block: "end" });
   }
 }
 

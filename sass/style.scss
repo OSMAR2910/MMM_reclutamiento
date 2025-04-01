@@ -27,6 +27,10 @@
   scale: 0.9;
 }
 
+:root {
+  --real-vh: 100vh; /* Valor inicial, será sobrescrito por JS */
+}
+
 body,
 html {
   margin: 0;
@@ -564,7 +568,7 @@ html {
   main {
     width: 100vw;
     height: var(--real-vh);
-    max-height: var(--real-vh); 
+    max-height: var(--real-vh);
     display: flex;
     justify-content: center;
     align-items: center;
