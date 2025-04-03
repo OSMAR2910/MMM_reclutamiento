@@ -335,7 +335,8 @@ function toggleChatbotMaximize() {
     chatbot.style.top = "auto";
     chatbot.style.bottom = "0";
     chatbot.style.height = "auto";
-    chatbot.style.width = "auto";
+    chatbot.style.width = "";
+    chatbot.style.display = "flex";
     pavo.style.display = "flex";
   }
 
@@ -346,7 +347,7 @@ function toggleChatbotMaximize() {
 function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-  adjustChatbotPosition(); // Ajustar dinámicamente al cambiar el tamaño
+  setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
 }
  
 // Configurar eventos de viewport
