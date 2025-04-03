@@ -5284,6 +5284,10 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 3.3vw;
     height: 3.3vw;
   }
+  body main,
+  html main {
+    height: var(--real-vh);
+  }
   body main .pages,
   html main .pages {
     width: 100%;
