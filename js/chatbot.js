@@ -332,10 +332,10 @@ function toggleChatbotMaximize() {
     sendWelcomeMessage();
   } else {
     chatbot.style.position = "fixed";
-    chatbot.style.top = "";
+    chatbot.style.top = "auto";
     chatbot.style.bottom = "0";
     chatbot.style.height = "auto";
-    chatbot.style.width = "";
+    chatbot.style.width = "auto";
     pavo.style.display = "flex";
   }
 
