@@ -353,6 +353,7 @@ function adjustChatbotPosition() {
       chatbot.style.top = `${keyboardHeight}px`;
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.bottom = "auto";
+      scrollToBottom();
     } else {
       chatbot.style.top = "0";
       chatbot.style.height = "var(--real-vh)";
@@ -366,8 +367,6 @@ function adjustChatbotPosition() {
       chatbot.style.height = "70vh"; // Fallback si no hay CSS
     }
   }
-
-  scrollToBottom();
 }
 
 // Actualizar altura del viewport y definir --real-vh
