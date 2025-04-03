@@ -284,16 +284,24 @@ function debounce(func, wait) {
 }
 
 function updateViewportHeight() {
+  const isDesktop = window.matchMedia("(min-width: 501px)").matches;
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-  adjustChatbotPosition();
+  
+  // Actualizar --real-vh solo para móviles
+  if (!isDesktop) {
+    document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
+    adjustChatbotPosition();
+  }
 }
 
-// Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
-  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
+  const isDesktop = window.matchMedia("(min-width: 501px)").matches;
 
+  // No ajustar en PC, respetar el CSS original
+  if (isDesktop || !chatbot || !chatbot.classList.contains("max_chat")) return;
+
+  // Solo para móviles
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   const windowHeight = window.innerHeight;
   const keyboardHeight = windowHeight - viewportHeight;
@@ -308,13 +316,13 @@ function adjustChatbotPosition() {
     chatbot.style.bottom = "auto";
   }
 
-  scrollToBottom(); // Reutiliza tu función existente
+  scrollToBottom();
 }
-
 // Alternar maximizar/minimizar con ajuste dinámico
 function toggleChatbotMaximize() {
   const chatbot = document.getElementById("chatbot");
   const pavo = document.getElementById("pavo_cont");
+  const isDesktop = window.matchMedia("(min-width: 501px)").matches; // Más de 500px es PC según tu media query
 
   if (!chatbot) return;
 
@@ -323,8 +331,16 @@ function toggleChatbotMaximize() {
   if (isMaximized) {
     chatbot.style.display = "flex";
     pavo.style.display = "none";
-    adjustChatbotPosition();
-    sendWelcomeMessage(); // Tu función existente
+    
+    if (isDesktop) {
+      // En PC, no tocamos la altura, dejamos que CSS maneje el 70vh
+      chatbot.style.height = ""; // Eliminar cualquier altura inline
+      chatbot.style.top = ""; // Respetar posición de CSS
+      chatbot.style.bottom = "0";
+    } else {
+      adjustChatbotPosition(); // Solo ajustar en móviles
+    }
+    sendWelcomeMessage();
   } else {
     chatbot.style.position = "fixed";
     chatbot.style.top = "";
@@ -334,12 +350,21 @@ function toggleChatbotMaximize() {
     pavo.style.display = "flex";
   }
 
-  setTimeout(scrollToBottom, 0); // Tu función existente
+  setTimeout(scrollToBottom, 0);
 }
 
 // Configurar eventos de viewport
 function setupViewportListeners() {
-  const handleViewportChanges = debounce(updateViewportHeight, 100);
+  const handleViewportChanges = debounce(() => {
+    updateViewportHeight();
+    const main = document.querySelector('main');
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    
+    if (main) {
+      main.style.height = isDesktop ? '100vh' : 'var(--real-vh)';
+    }
+  }, 100);
+
   window.addEventListener("resize", handleViewportChanges);
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", handleViewportChanges);
