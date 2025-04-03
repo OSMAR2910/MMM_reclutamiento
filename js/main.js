@@ -108,11 +108,6 @@ function adjustViewForPWA() {
   }
 }
 
-function updateViewportHeight() {
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-}
-
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||
