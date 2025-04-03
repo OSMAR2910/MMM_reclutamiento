@@ -283,46 +283,43 @@ function debounce(func, wait) {
   };
 }
 
-function updateViewportHeight() {
-  const isDesktop = window.matchMedia("(min-width: 501px)").matches;
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  
-  // Actualizar --real-vh solo para móviles
-  if (!isDesktop) {
-    document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-    adjustChatbotPosition();
-  }
-}
-
+// Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
-  const isDesktop = window.matchMedia("(min-width: 501px)").matches;
+  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
 
-  // No ajustar en PC, respetar el CSS original
-  if (isDesktop || !chatbot || !chatbot.classList.contains("max_chat")) return;
-
-  // Solo para móviles
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const windowHeight = window.innerHeight;
-  const keyboardHeight = windowHeight - viewportHeight;
+  const windowWidth = window.innerWidth; // Ancho de la ventana
+  const keyboardHeight = window.innerHeight - viewportHeight;
 
-  if (keyboardHeight > 0) {
-    chatbot.style.top = `${keyboardHeight}px`;
-    chatbot.style.height = `${viewportHeight}px`;
-    chatbot.style.bottom = "auto";
+  // Detectar si es un dispositivo móvil (ancho <= 500px)
+  const isMobile = windowWidth <= 500;
+
+  if (isMobile) {
+    // En móviles, usar 100vh real ajustado por el teclado
+    if (keyboardHeight > 0) {
+      chatbot.style.top = `${keyboardHeight}px`;
+      chatbot.style.height = `${viewportHeight}px`;
+      chatbot.style.bottom = "auto";
+    } else {
+      chatbot.style.top = "0";
+      chatbot.style.height = "var(--real-vh)"; // 100vh real
+      chatbot.style.bottom = "auto";
+    }
   } else {
-    chatbot.style.top = "0";
-    chatbot.style.height = "var(--real-vh)";
-    chatbot.style.bottom = "auto";
+    // En PC (ancho > 500px), usar 70vh
+    chatbot.style.top = "auto";
+    chatbot.style.bottom = "0";
+    chatbot.style.height = "70vh"; // Altura fija para PC
   }
 
-  scrollToBottom();
+  scrollToBottom(); // Mantener el scroll al final
 }
+
 // Alternar maximizar/minimizar con ajuste dinámico
 function toggleChatbotMaximize() {
   const chatbot = document.getElementById("chatbot");
   const pavo = document.getElementById("pavo_cont");
-  const isDesktop = window.matchMedia("(min-width: 501px)").matches; // Más de 500px es PC según tu media query
 
   if (!chatbot) return;
 
@@ -331,15 +328,7 @@ function toggleChatbotMaximize() {
   if (isMaximized) {
     chatbot.style.display = "flex";
     pavo.style.display = "none";
-    
-    if (isDesktop) {
-      // En PC, no tocamos la altura, dejamos que CSS maneje el 70vh
-      chatbot.style.height = ""; // Eliminar cualquier altura inline
-      chatbot.style.top = ""; // Respetar posición de CSS
-      chatbot.style.bottom = "0";
-    } else {
-      adjustChatbotPosition(); // Solo ajustar en móviles
-    }
+    adjustChatbotPosition(); // Ajustar altura según dispositivo
     sendWelcomeMessage();
   } else {
     chatbot.style.position = "fixed";
@@ -353,6 +342,13 @@ function toggleChatbotMaximize() {
   setTimeout(scrollToBottom, 0);
 }
 
+// Actualizar altura del viewport y ajustar posición
+function updateViewportHeight() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
+  adjustChatbotPosition(); // Ajustar dinámicamente al cambiar el tamaño
+}
+ 
 // Configurar eventos de viewport
 function setupViewportListeners() {
   const handleViewportChanges = debounce(updateViewportHeight, 100);

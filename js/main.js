@@ -642,7 +642,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("btnAdminManager:", btnAdminManager);
   console.log("btnAptc:", btnAptc);
 });
-
+ 
 function initializeCountryCode() {
   const numeroInput = document.getElementById("numero");
   if (!numeroInput) return;

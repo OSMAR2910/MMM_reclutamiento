@@ -1057,6 +1057,7 @@ body canvas {
   .max_chat .user_info_container form .start_chat_button {
     padding: 2vw;
     border-radius: 1.5vw;
+    font-size: 3vw;
   }
   .max_chat .chat_form {
     height: 6%;

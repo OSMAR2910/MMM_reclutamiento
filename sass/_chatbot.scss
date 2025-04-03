@@ -425,7 +425,8 @@
       .start_chat_button {
         border: 0;
         display: flex;
-        padding: 0.8vw;
+        font-size: 0.7vw;
+        padding: 0.5vw;
         color: $Blanco;
         border-radius: 1vw;
         background-color: $Fondo;
@@ -596,6 +597,7 @@
         .start_chat_button {
           padding: 2vw;
           border-radius: 1.5vw;
+          font-size: 3vw;
         }
       }
     }

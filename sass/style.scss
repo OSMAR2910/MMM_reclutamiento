@@ -3913,7 +3913,7 @@ html {
         }
       }
     }
-
+ 
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
@@ -3994,6 +3994,7 @@ html {
     }
 
     main {
+      height: var(--real-vh);
       .pages {
         width: 100%;
         height: 100%;
