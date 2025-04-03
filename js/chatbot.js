@@ -283,11 +283,50 @@ function debounce(func, wait) {
   };
 }
 
-// Actualizar altura del viewport y definir --real-vh
-function updateViewportHeight() {
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-  adjustChatbotPosition();
+function toggleChatbotMaximize() {
+  const chatbot = document.getElementById("chatbot");
+  const pavo = document.getElementById("pavo_cont");
+
+  if (!chatbot) return;
+
+  // Forzar actualización de la altura del viewport antes de cualquier cambio
+  updateViewportHeight();
+
+  const isMaximized = chatbot.classList.toggle("max_chat");
+
+  if (isMaximized) {
+    console.log("Maximizando chatbot...");
+    chatbot.style.display = "flex";
+    pavo.style.display = "none";
+
+    // Aplicar estilos inmediatamente
+    chatbot.style.position = "fixed";
+    chatbot.style.top = "0";
+    chatbot.style.bottom = "auto";
+    chatbot.style.height = "var(--real-vh)"; // Usar la variable ya calculada
+    chatbot.style.width = "100%"; // Asegurar ancho completo
+
+    // Ajustar posición explícitamente
+    adjustChatbotPosition();
+    sendWelcomeMessage();
+
+    console.log("Altura aplicada:", chatbot.style.height);
+    console.log("Posición top:", chatbot.style.top);
+  } else {
+    console.log("Minimizando chatbot...");
+    chatbot.style.position = "fixed";
+    chatbot.style.top = "";
+    chatbot.style.bottom = "0";
+    chatbot.style.height = "auto";
+    chatbot.style.width = "";
+    pavo.style.display = "flex";
+  }
+
+  // Forzar un reflow para asegurar que los estilos se apliquen
+  chatbot.offsetHeight; // Esto fuerza un reflow en el navegador
+
+  // Scroll al final después de aplicar los estilos
+  scrollToBottom();
 }
 
 // Ajustar posición y altura del chatbot según el teclado
@@ -300,42 +339,25 @@ function adjustChatbotPosition() {
   const keyboardHeight = windowHeight - viewportHeight;
 
   if (keyboardHeight > 0) {
+    console.log("Teclado detectado, ajustando posición...");
     chatbot.style.top = `${keyboardHeight}px`;
     chatbot.style.height = `${viewportHeight}px`;
     chatbot.style.bottom = "auto";
   } else {
+    console.log("Sin teclado, usando altura completa...");
     chatbot.style.top = "0";
     chatbot.style.height = "var(--real-vh)";
     chatbot.style.bottom = "auto";
   }
 
-  scrollToBottom(); // Reutiliza tu función existente
+  scrollToBottom();
 }
 
-// Alternar maximizar/minimizar con ajuste dinámico
-function toggleChatbotMaximize() {
-  const chatbot = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-
-  if (!chatbot) return;
-
-  const isMaximized = chatbot.classList.toggle("max_chat");
-
-  if (isMaximized) {
-    chatbot.style.display = "flex";
-    pavo.style.display = "none";
-    adjustChatbotPosition();
-    sendWelcomeMessage(); // Tu función existente
-  } else {
-    chatbot.style.position = "fixed";
-    chatbot.style.top = "";
-    chatbot.style.bottom = "0";
-    chatbot.style.height = "auto";
-    chatbot.style.width = "";
-    pavo.style.display = "flex";
-  }
-
-  setTimeout(scrollToBottom, 0); // Tu función existente
+// Actualizar altura del viewport y definir --real-vh
+function updateViewportHeight() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
+  console.log("Viewport height actualizado:", viewportHeight);
 }
 
 // Configurar eventos de viewport
