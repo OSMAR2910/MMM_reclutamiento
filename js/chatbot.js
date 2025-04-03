@@ -340,7 +340,6 @@ function toggleChatbotMaximize() {
     pavo.style.display = "flex";
   }
 
-  setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
   setTimeout(scrollToBottom, 0);
 }
 
@@ -348,6 +347,7 @@ function toggleChatbotMaximize() {
 function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
+  setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
 }
  
 // Configurar eventos de viewport
