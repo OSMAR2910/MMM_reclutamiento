@@ -724,7 +724,6 @@ function initializeApp() {
   initProgressBar();
   updateProgress();
   initializeCountryCode();
-  updateViewportHeight();
 
   const isFormSubmitted = localStorage.getItem(FORM_KEY) === "true";
   console.log("Estado inicial del formulario:", isFormSubmitted);
