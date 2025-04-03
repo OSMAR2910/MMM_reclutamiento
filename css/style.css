@@ -1651,7 +1651,7 @@ html main {
 body main .pages,
 html main .pages {
   width: 50%;
-  height: 100%;
+  height: var(--real-vh);
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -5283,10 +5283,6 @@ html .cambiar_nav nav ul .circulo_icon {
   html header nav ul .circulo_icon {
     width: 3.3vw;
     height: 3.3vw;
-  }
-  body main,
-  html main {
-    height: 100vh;
   }
   body main .pages,
   html main .pages {
