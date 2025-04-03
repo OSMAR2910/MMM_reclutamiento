@@ -473,7 +473,7 @@ body canvas {
   bottom: 0;
   right: 0;
   margin: 2%;
-  display: flex;
+  display: none;
   z-index: 9999;
   width: 4vw;
   aspect-ratio: 2/2;
@@ -979,89 +979,6 @@ body canvas {
   display: flex;
 }
 
-@media screen and (max-width: 900px) {
-  .chatbot {
-    width: 10vw;
-  }
-  .max_chat {
-    width: 70vw;
-    height: 80vh;
-    border-radius: 5vw;
-    background-color: #ffffff;
-    box-shadow: none;
-    border: none;
-  }
-  .max_chat .chat_header {
-    border-radius: 4vw;
-    box-shadow: 0px 0px 9px 5px #1b3c59;
-  }
-  .max_chat .chat_header .chat_icon {
-    background-color: #1b3c59;
-  }
-  .max_chat .chat_header .chat_icon .status_green {
-    width: 2vw;
-    margin-top: 4vh;
-    margin-left: 6vw;
-  }
-  .max_chat .chat_header .chat_present {
-    margin-right: 16vw;
-  }
-  .max_chat .chat_header .chat_present h3 {
-    font-size: 3vw;
-  }
-  .max_chat .chat_header .chat_present p {
-    font-size: 2vw;
-  }
-  .max_chat .chat_header .chat_min {
-    width: 5%;
-  }
-  .max_chat .chat_header .chat_min:hover {
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: none;
-  }
-  .max_chat .chat_header .name_id {
-    border-radius: 2vw;
-    font-size: 1.8vw;
-  }
-  .max_chat .chat_box p {
-    font-size: 2.3vw;
-  }
-  .max_chat .chat_box .bot_message span {
-    font-size: 1.7vw;
-  }
-  .max_chat .chat_box .bot_message p {
-    font-size: 2.3vw;
-    border-radius: 3vw;
-  }
-  .max_chat .chat_box .user_message p {
-    font-size: 2.3vw;
-    border-radius: 3vw;
-  }
-  .max_chat .user_info_container {
-    box-shadow: 0px 0px 9px 5px #1b3c59;
-    border-radius: 6vw 6vw 0 0;
-  }
-  .max_chat .user_info_container form .what_name {
-    font-size: 2.5vw;
-  }
-  .max_chat .user_info_container form .start_chat_button {
-    padding: 2vw;
-    border-radius: 1.5vw;
-  }
-  .pavo_cont {
-    width: 8vw;
-    height: 7vh;
-    right: 38vw;
-  }
-  .pavo_cont .pavo_msj {
-    width: 25vw;
-    padding: 0.8rem;
-    left: -8vw;
-    bottom: 9vh;
-    border-radius: 3vw;
-    font-size: 1.6vw;
-  }
-}
 @media screen and (max-width: 500px) {
   .chatbot {
     width: 15vw;
@@ -1069,7 +986,7 @@ body canvas {
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh, 100vh);
+    height: var(--real-vh);
     margin: 0;
     border-radius: 0;
     position: absolute;
@@ -1723,8 +1640,7 @@ html header nav ul li .iconbutton:hover {
 body main,
 html main {
   width: 100vw;
-  height: var(--real-vh);
-  max-height: var(--real-vh);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5367,6 +5283,10 @@ html .cambiar_nav nav ul .circulo_icon {
   html header nav ul .circulo_icon {
     width: 3.3vw;
     height: 3.3vw;
+  }
+  body main,
+  html main {
+    height: var(--real-vh);
   }
   body main .pages,
   html main .pages {
