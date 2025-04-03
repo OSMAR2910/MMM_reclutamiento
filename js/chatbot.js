@@ -283,6 +283,34 @@ function debounce(func, wait) {
   };
 }
 
+function updateViewportHeight() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
+  adjustChatbotPosition();
+}
+
+// Ajustar posición y altura del chatbot según el teclado
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const windowHeight = window.innerHeight;
+  const keyboardHeight = windowHeight - viewportHeight;
+
+  if (keyboardHeight > 0) {
+    chatbot.style.top = `${keyboardHeight}px`;
+    chatbot.style.height = `${viewportHeight}px`;
+    chatbot.style.bottom = "auto";
+  } else {
+    chatbot.style.top = "0";
+    chatbot.style.height = "var(--real-vh)";
+    chatbot.style.bottom = "auto";
+  }
+
+  scrollToBottom(); // Reutiliza tu función existente
+}
+
 // Alternar maximizar/minimizar con ajuste dinámico
 function toggleChatbotMaximize() {
   const chatbot = document.getElementById("chatbot");
@@ -292,118 +320,32 @@ function toggleChatbotMaximize() {
 
   const isMaximized = chatbot.classList.toggle("max_chat");
 
-  // Variable para rastrear si es la primera maximización en móviles
-  const isFirstMobileMaximize = !localStorage.getItem("chatbotFirstMaximized") && isMobileDevice();
-
   if (isMaximized) {
     chatbot.style.display = "flex";
     pavo.style.display = "none";
     adjustChatbotPosition();
-
-    // Ajuste específico para móviles en la primera maximización
-    if (isFirstMobileMaximize) {
-      forceMobileInitialAdjust(chatbot);
-      localStorage.setItem("chatbotFirstMaximized", "true");
-    }
-
-    sendWelcomeMessage();
+    sendWelcomeMessage(); // Tu función existente
   } else {
     chatbot.style.position = "fixed";
     chatbot.style.top = "";
     chatbot.style.bottom = "0";
-    chatbot.style.height = "auto"; // Respetar CSS original al minimizar
+    chatbot.style.height = "auto";
     chatbot.style.width = "";
     pavo.style.display = "flex";
   }
 
-  setTimeout(scrollToBottom, 0);
-}
-
-// Detectar dispositivos móviles
-function isMobileDevice() {
-  const userAgent = navigator.userAgent.toLowerCase();
-  const mobileKeywords = /android|iphone|ipad|ipod|blackberry|windows phone/;
-  const isSmallScreen = window.innerWidth <= 500; // Umbral para móviles
-  return mobileKeywords.test(userAgent) && isSmallScreen;
-}
-
-// Forzar ajuste inicial en móviles
-function forceMobileInitialAdjust(chatbot) {
-  console.log("Forzando ajuste inicial para móviles...");
-  
-  // Actualizar --real-vh inmediatamente
-  updateViewportHeight();
-  
-  // Aplicar estilos iniciales
-  chatbot.style.position = "fixed";
-  chatbot.style.top = "0";
-  chatbot.style.bottom = "auto";
-  chatbot.style.height = "var(--real-vh)";
-  chatbot.style.width = "100%";
-  
-  // Forzar reflow para asegurar que los estilos se apliquen
-  chatbot.offsetHeight;
-  
-  // Ajustar posición inmediatamente después del reflow
-  adjustChatbotPosition();
-  console.log("Ajuste inicial completado. Altura:", chatbot.style.height);
-}
-
-// Ajustar posición y altura del chatbot según el teclado
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
-
-  if (isMobileDevice()) {
-    const viewportHeight = window.visualViewport?.height || window.innerHeight;
-    const windowHeight = window.innerHeight;
-    const keyboardHeight = windowHeight - viewportHeight;
-
-    if (keyboardHeight > 0) {
-      chatbot.style.top = `${keyboardHeight}px`;
-      chatbot.style.height = `${viewportHeight}px`;
-      chatbot.style.bottom = "auto";
-    } else {
-      chatbot.style.top = "0";
-      chatbot.style.height = "var(--real-vh)";
-      chatbot.style.bottom = "auto";
-    }
-  } else {
-    // En PC, respetar CSS original
-    chatbot.style.top = "auto";
-    chatbot.style.bottom = "0";
-    chatbot.style.height = ""; // No aplicar height inline, dejar que CSS lo controle
-  }
-
-  scrollToBottom();
-}
-
-// Actualizar altura del viewport y definir --real-vh
-function updateViewportHeight() {
-  if (isMobileDevice()) {
-    // En móviles, usar visualViewport para altura real (excluye barras)
-    const viewportHeight = window.visualViewport?.height || window.innerHeight;
-    document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-    console.log("Viewport height actualizado en móvil:", viewportHeight);
-  } else {
-    // En PC, establecer --real-vh solo si no está definido, pero no forzarlo
-    const currentVh = getComputedStyle(document.documentElement).getPropertyValue('--real-vh');
-    if (!currentVh || currentVh === "0px") {
-      document.documentElement.style.setProperty('--real-vh', `${window.innerHeight}px`);
-    }
-  }
+  setTimeout(scrollToBottom, 0); // Tu función existente
 }
 
 // Configurar eventos de viewport
 function setupViewportListeners() {
   const handleViewportChanges = debounce(updateViewportHeight, 100);
   window.addEventListener("resize", handleViewportChanges);
-  if (window.visualViewport && isMobileDevice()) {
+  if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", handleViewportChanges);
     window.visualViewport.addEventListener("scroll", handleViewportChanges);
   }
 }
 
-// Inicializar listeners y ajuste inicial
 setupViewportListeners();
 updateViewportHeight();
