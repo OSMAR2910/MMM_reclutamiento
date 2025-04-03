@@ -232,6 +232,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   updatePavoMsj();
   handleNameForm();
 
+  const chatbot = document.getElementById("chatbot");
+  const pavo = document.getElementById("pavo_cont");
+
+  // Verificar si el chatbot debe estar maximizado al inicio (por ejemplo, desde localStorage)
+  const isMaximized = localStorage.getItem("chatMaximized") === "true"; // Ejemplo, ajusta según tu lógica
+  if (isMaximized) {
+    chatbot.classList.add("max_chat");
+    chatbot.style.display = "flex";
+    pavo.style.display = "none";
+    adjustChatbotPosition(); // Ajustar posición inmediatamente
+  }
+
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
   const sendButton = document.getElementById("chat_submit");
@@ -312,7 +324,7 @@ function adjustChatbotPosition() {
     chatbot.style.bottom = "0";
     chatbot.style.height = "70vh"; // Altura fija para PC
   }
-
+  chatbot.style.display = "flex";
   scrollToBottom(); // Mantener el scroll al final
 }
 
@@ -328,8 +340,9 @@ function toggleChatbotMaximize() {
   if (isMaximized) {
     chatbot.style.display = "flex";
     pavo.style.display = "none";
-    adjustChatbotPosition(); // Ajustar altura según dispositivo
+    adjustChatbotPosition(); // Ajustar posición al maximizar
     sendWelcomeMessage();
+    localStorage.setItem("chatMaximized", "true"); // Guardar estado (opcional)
   } else {
     chatbot.style.position = "fixed";
     chatbot.style.top = "auto";
@@ -338,6 +351,7 @@ function toggleChatbotMaximize() {
     chatbot.style.width = "";
     chatbot.style.display = "flex";
     pavo.style.display = "flex";
+    localStorage.setItem("chatMaximized", "false"); // Guardar estado (opcional)
   }
 
   setTimeout(scrollToBottom, 0);

@@ -472,7 +472,7 @@ body canvas {
   bottom: 0;
   right: 0;
   margin: 2%;
-  display: none;
+  display: flex;
   z-index: 9999;
   width: 4vw;
   aspect-ratio: 2/2;
