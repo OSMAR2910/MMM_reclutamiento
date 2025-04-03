@@ -231,6 +231,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
   updatePavoMsj();
   handleNameForm();
+  updateViewportHeight(); 
+
+  const chatbot = document.getElementById("chatbot");
+  if (chatbot && chatbot.classList.contains("max_chat")) {
+    adjustChatbotPosition();
+    setTimeout(scrollToBottom, 100);
+  }
 
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
@@ -288,32 +295,41 @@ function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
   if (!chatbot || !chatbot.classList.contains("max_chat")) return;
 
+  // Actualizar el valor de --real-vh antes de calcular
+  updateViewportHeight();
+
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const windowWidth = window.innerWidth; // Ancho de la ventana
+  const windowWidth = window.innerWidth;
   const keyboardHeight = window.innerHeight - viewportHeight;
 
-  // Detectar si es un dispositivo móvil (ancho <= 500px)
   const isMobile = windowWidth <= 500;
 
   if (isMobile) {
-    // En móviles, usar 100vh real ajustado por el teclado
     if (keyboardHeight > 0) {
       chatbot.style.top = `${keyboardHeight}px`;
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.bottom = "auto";
     } else {
       chatbot.style.top = "0";
-      chatbot.style.height = "var(--real-vh)"; // 100vh real
+      chatbot.style.height = "var(--real-vh)"; // Usar la variable CSS actualizada
       chatbot.style.bottom = "auto";
     }
+    chatbot.style.width = "100vw"; // Asegurar ancho completo en móviles
+    chatbot.style.margin = "0"; // Eliminar márgenes en móviles
+    chatbot.style.borderRadius = "0"; // Según el CSS para móviles
   } else {
-    // En PC (ancho > 500px), usar 70vh
     chatbot.style.top = "auto";
     chatbot.style.bottom = "0";
-    chatbot.style.height = "70vh"; // Altura fija para PC
+    chatbot.style.height = "70vh"; // Altura fija para escritorio
+    chatbot.style.width = "20vw"; // Ancho fijo para escritorio
+    chatbot.style.margin = "2%"; // Restaurar márgenes en escritorio
+    chatbot.style.borderRadius = "1.5vw"; // Restaurar border-radius en escritorio
   }
 
-  scrollToBottom(); // Mantener el scroll al final
+  // Forzar recalculo del layout
+  chatbot.style.display = "none";
+  chatbot.offsetHeight; // Forzar reflow
+  chatbot.style.display = "flex";
 }
 
 // Alternar maximizar/minimizar con ajuste dinámico
@@ -326,28 +342,29 @@ function toggleChatbotMaximize() {
   const isMaximized = chatbot.classList.toggle("max_chat");
 
   if (isMaximized) {
-    chatbot.style.display = "flex";
+    chatbot.style.display = "flex"; // Mostrar el chat
     pavo.style.display = "none";
-    adjustChatbotPosition(); // Ajustar altura según dispositivo
+    // Forzar un reflow para asegurar que las dimensiones se calculen después de mostrar el elemento
+    chatbot.offsetHeight;
+    adjustChatbotPosition(); // Ajustar inmediatamente después de mostrar
     sendWelcomeMessage();
   } else {
     chatbot.style.position = "fixed";
     chatbot.style.top = "auto";
     chatbot.style.bottom = "0";
     chatbot.style.height = "auto";
-    chatbot.style.width = "";
-    chatbot.style.display = "flex";
+    chatbot.style.width = ""; 
     pavo.style.display = "flex";
   }
 
-  setTimeout(scrollToBottom, 0);
+  setTimeout(scrollToBottom, 100); // Asegurar que el scroll ocurra después del ajuste
 }
 
 // Actualizar altura del viewport y ajustar posición
 function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-  setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
+  // No llamamos a adjustChatbotPosition aquí para evitar ajustes innecesarios cuando está minimizado
 }
  
 // Configurar eventos de viewport
