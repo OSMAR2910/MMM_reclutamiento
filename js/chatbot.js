@@ -286,11 +286,10 @@ function debounce(func, wait) {
 function updateViewportHeight() {
   const isDesktop = window.matchMedia("(min-width: 501px)").matches;
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  
+
   // Actualizar --real-vh solo para móviles
   if (!isDesktop) {
-    document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-    adjustChatbotPosition();
+    document.documentElement.style.setProperty("--real-vh", `${viewportHeight}px`);
   }
 }
 
@@ -356,12 +355,18 @@ function toggleChatbotMaximize() {
 // Configurar eventos de viewport
 function setupViewportListeners() {
   const handleViewportChanges = debounce(() => {
-    updateViewportHeight();
-    const main = document.querySelector('main');
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    
+    updateViewportHeight(); // Sigue actualizando --real-vh para móviles
+    const main = document.querySelector("main");
+    const isDesktop = window.matchMedia("(min-width: 501px)").matches; // Ajustamos a tu media query
+
     if (main) {
-      main.style.height = isDesktop ? '100vh' : 'var(--real-vh)';
+      if (!isDesktop) {
+        // Solo en móviles: ajustar dinámicamente con --real-vh
+        main.style.height = "var(--real-vh)";
+      } else {
+        // En PC: no aplicar estilo inline, dejar que CSS controle
+        main.style.height = ""; // Elimina cualquier sobrescritura inline
+      }
     }
   }, 100);
 
