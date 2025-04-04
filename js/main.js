@@ -128,9 +128,9 @@ function setRealViewportHeight() {
     maxViewportHeight = realHeight;
   }
 
-  // Solo actualiza --main-vh si no hay teclado activo y la altura es mayor o no está establecida
-  if (!isKeyboardLikelyOpen && (!currentHeightNum || realHeight > currentHeightNum)) {
-    document.documentElement.style.setProperty('--main-vh', `${realHeight}px`);
+  // Establecer --main-vh al valor máximo siempre, ignorando el teclado
+  if (!currentHeightNum || maxViewportHeight !== currentHeightNum) {
+    document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
   }
 
   // Maneja el espacio superior seguro
@@ -149,11 +149,7 @@ let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    const isInputFocused = document.activeElement.tagName === 'INPUT' || 
-                          document.activeElement.tagName === 'TEXTAREA';
-    if (!isInputFocused) {
-      setRealViewportHeight();
-    }
+    setRealViewportHeight(); // Siempre actualizar, pero usando maxViewportHeight
   }, 100); // 100ms de retraso
 });
 
@@ -165,13 +161,9 @@ window.addEventListener('orientationchange', () => {
 // Sincronizar con visualViewport si está disponible
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', () => {
-    const isInputFocused = document.activeElement.tagName === 'INPUT' || 
-                          document.activeElement.tagName === 'TEXTAREA';
-    if (!isInputFocused) {
-      setRealViewportHeight();
-    }
+    setRealViewportHeight(); // Siempre actualizar, pero usando maxViewportHeight
   });
-}
+} 
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>

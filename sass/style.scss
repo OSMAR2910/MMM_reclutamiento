@@ -4008,11 +4008,13 @@ html {
     }
 
     main {
+      position: absolute;
+      top: 0;
       .pages {
         width: 100%;
         height: var(--main-vh);
       }
-      #home {
+      #home { 
         .mancha1 {
           width: 90%;
           top: -8vh;
