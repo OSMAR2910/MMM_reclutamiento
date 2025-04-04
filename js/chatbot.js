@@ -229,6 +229,8 @@ function scrollToBottom() {
 // Evento DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
+  const initialViewportHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--main-vh', `${initialViewportHeight}px`);
   updatePavoMsj();
   handleNameForm();
 

@@ -5289,7 +5289,7 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main,
   html main {
-    height: var(--real-vh);
+    height: var(--main-vh);
   }
   body main .pages,
   html main .pages {
