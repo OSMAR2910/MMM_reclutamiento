@@ -108,6 +108,21 @@ function adjustViewForPWA() {
   }
 }
 
+// Función para calcular y actualizar la altura real del viewport
+function setViewportHeight() {
+  // Obtiene la altura real del viewport
+  let vh = window.innerHeight * 0.01;
+  // Establece la variable CSS personalizada
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Ejecuta la función al cargar la página
+window.addEventListener('load', setViewportHeight);
+// Actualiza la altura cuando cambia el tamaño de la ventana
+window.addEventListener('resize', setViewportHeight);
+// Actualiza la altura al cambiar la orientación
+window.addEventListener('orientationchange', setViewportHeight);
+
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||

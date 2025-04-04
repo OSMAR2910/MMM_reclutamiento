@@ -319,26 +319,6 @@ function debounce(func, wait) {
   };
 }
 
-function updateMainVH() {
-  // 1. Obtener el viewport height real
-  const realVH = window.innerHeight * 0.01;
-  
-  // 2. Calcular safe areas (para iOS y navegadores modernos)
-  const safeAreaTop = parseIntgetComputedStyle(document.documentElement).getPropertyValue('--safe-area-top') || 0;
-  const safeAreaBottom = parseIntgetComputedStyle(document.documentElement).getPropertyValue('--safe-area-bottom') || 0;
-  
-  // 3. Calcular el espacio disponible (opcional, si necesitas considerar safe areas)
-  const availableVH = (window.innerHeight - safeAreaTop - safeAreaBottom) * 0.01;
-  
-  // 4. Aplicar los valores al root
-  document.documentElement.style.setProperty('--vh', `${realVH}px`);
-  document.documentElement.style.setProperty('--real-vh', `${window.innerHeight}px`);
-  
-  // 5. Debug (opcional)
-  console.log(`VH Actualizado - Real: ${window.innerHeight}px, Calculado: ${realVH}px`);
-}
-
-
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
@@ -410,17 +390,13 @@ function updateViewportHeight() {
  
 // Configurar eventos de viewport
 function setupViewportListeners() {
-  window.addEventListener('resize', updateMainVH);
-  window.addEventListener('orientationchange', updateMainVH);
   const handleViewportChanges = debounce(updateViewportHeight, 100);
   window.addEventListener("resize", handleViewportChanges);
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", handleViewportChanges);
     window.visualViewport.addEventListener("scroll", handleViewportChanges);
-    window.visualViewport.addEventListener('resize', updateMainVH);
   }
 }
 
 setupViewportListeners();
 updateViewportHeight();
-updateMainVH();
