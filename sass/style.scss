@@ -27,6 +27,10 @@
   scale: 0.9;
 }
 
+:root {
+  --vh: 1vh; /* fallback */
+}
+
 body,
 html {
   width: 100vw;
@@ -3992,7 +3996,6 @@ html {
     }
 
     main {
-      position: relative;
       height: calc(var(--vh, 1vh) * 100);
       .pages {
         width: 100%;
