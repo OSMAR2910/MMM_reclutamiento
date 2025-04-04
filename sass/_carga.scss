@@ -2,44 +2,38 @@
 @import "animaciones";
 
 #loader {
-  width: 100%;
-  height: 100%;
-  background-color: var(--tema-Fondo);
+  width: 100vw;
+  height: 100vh;
+  background-color: $Fondo;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  position: fixed;
   top: 0;
+  position: fixed;
   z-index: 10000;
-  #box {
-    width: 50px;
-    height: 50px;
-    background: var(--tema-Resalte);
-    animation: animate .5s linear infinite;
-    border-radius: 3px;
+  #pizza_loader {
+    width: 5vw;
+    aspect-ratio: 2/2;
+    animation: reolad 2s infinite ease-in-out;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
-  #shadow { 
-    width: 50px;
-    height: 5px;
-    background: var(--tema-Blanco);
-    opacity: 0.1;
-    margin-top: 15px;
-    border-radius: 50%;
-    animation: shadow .5s linear infinite;
+}
+@media screen and (max-width: 900px) {
+  #loader {
+    #pizza_loader {
+      width: 10vw;
+    }
   }
 }
 @media screen and (max-width: 500px) {
   #loader {
-    #box {
-      width: 40px;
-      height: 40px;
-      border-radius: 3px;
-    }
-    #shadow { 
-      width: 40px;
-      height: 4px;
-      margin-top: 15px;
+    #pizza_loader {
+      width: 15vw;
     }
   }
 }
+
