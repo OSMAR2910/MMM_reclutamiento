@@ -337,12 +337,6 @@ function updateMainVH() {
   main.style.height = `${height}px`;
 }
 
-// Configurar eventos con debounce mejorado
-const handleResize = debounce(() => {
-  updateMainVH();
-  adjustChatbotPosition(); // Asegurar que el chatbot también se ajuste
-}, 100);
-
 // Configurar listeners mejorados
 function setupViewportListeners() {
   window.addEventListener('resize', handleResize);
