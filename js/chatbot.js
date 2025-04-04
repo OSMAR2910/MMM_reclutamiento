@@ -321,16 +321,24 @@ function debounce(func, wait) {
 }
 
 function updateMainVH() {
-  const height = window.visualViewport 
-    ? window.visualViewport.height 
-    : window.innerHeight;
+  const main = document.querySelector('main');
+  if (!main) return;
+
+  const height = Math.min(
+    window.innerHeight,
+    document.documentElement.clientHeight,
+    window.visualViewport?.height || Infinity
+  );
 
   document.documentElement.style.setProperty('--main-vh', `${height}px`);
-  const main = document.querySelector('main');
-  if (main) main.style.height = 'var(--main-vh)';
+  main.style.height = 'var(--main-vh)';
 }
 
 window.addEventListener("resize", debounce(updateMainVH, 100));
+window.addEventListener('orientationchange', debounce(updateMainVH, 100));
+window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
+window.addEventListener('scroll', debounce(updateMainVH, 100));
+
 
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
