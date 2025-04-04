@@ -229,9 +229,7 @@ function scrollToBottom() {
 // Evento DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
-  const realHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--main-vh', `${realHeight}px`);
-  document.querySelector('main').style.height = 'var(--main-vh)'; // Aplicar al main directamente
+  updateMainVH();
   updatePavoMsj();
   handleNameForm();
 
@@ -295,6 +293,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         setTimeout(() => {
           chatbot.style.opacity = "1";
           chatbot.style.visibility = "visible";
+          chatbot.style.animation = "backInRight 1.5s ease-in-out forwards";
         }, 100); // Pequeño retraso para asegurar que el ajuste se complete
       }, 100); // Retraso entre clics
     }, 100); // Retraso inicial para que el DOM esté listo
@@ -315,6 +314,13 @@ function debounce(func, wait) {
     timeout = setTimeout(() => func(...args), wait);
   };
 }
+
+function updateMainVH() {
+  const mainHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--main-vh', `${mainHeight}px`);
+  document.querySelector('main').style.height = 'var(--main-vh)';
+}
+window.addEventListener("resize", debounce(updateMainVH, 100));
 
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
