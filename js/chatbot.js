@@ -232,18 +232,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   updatePavoMsj();
   handleNameForm();
 
-  const chatbot = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-
-  // Verificar si el chatbot debe estar maximizado al inicio (por ejemplo, desde localStorage)
-  const isMaximized = localStorage.getItem("chatMaximized") === "true"; // Ejemplo, ajusta según tu lógica
-  if (isMaximized) {
-    chatbot.classList.add("max_chat");
-    chatbot.style.display = "flex";
-    pavo.style.display = "none";
-    adjustChatbotPosition(); // Ajustar posición inmediatamente
-  }
-
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
   const sendButton = document.getElementById("chat_submit");
@@ -284,6 +272,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Minimizar/maximizar chat con ajuste dinámico
   document.getElementById("chat_min").addEventListener("click", toggleChatbotMaximize);
+
+  // Ajuste inicial después de cargar todo
+  const chatbot = document.getElementById("chatbot");
+  if (chatbot.classList.contains("max_chat")) {
+    setTimeout(() => {
+      adjustChatbotPosition(); // Forzar ajuste inicial si está maximizado
+    }, 100); // Pequeño retraso para asegurar que el DOM esté listo
+  }
 });
 
 // Debounce para evitar actualizaciones excesivas
@@ -313,7 +309,6 @@ function adjustChatbotPosition() {
       chatbot.style.top = `${keyboardHeight}px`;
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.bottom = "auto";
-      setTimeout(adjustChatbotPosition, 100);
     } else {
       chatbot.style.top = "0";
       chatbot.style.height = "var(--real-vh)"; // 100vh real
@@ -362,7 +357,7 @@ function toggleChatbotMaximize() {
 function updateViewportHeight() {
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
   document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-  //setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
+  setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
 }
  
 // Configurar eventos de viewport
