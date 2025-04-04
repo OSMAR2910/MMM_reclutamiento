@@ -323,15 +323,21 @@ function updateMainVH() {
   const main = document.querySelector('main');
   if (!main) return;
 
-  const height =
-    window.visualViewport?.height ||
-    document.documentElement.clientHeight ||
-    window.innerHeight;
+  const viewport = window.visualViewport;
 
-  document.documentElement.style.setProperty('--main-vh', `${height}px`);
-  main.style.height = 'var(--main-vh)';
+  const height = viewport
+    ? viewport.height // Más preciso en móviles
+    : window.innerHeight;
+
+  // Calculamos vh personalizado: 1% del alto visible real
+  const vhUnit = height * 0.01;
+
+  // Guardamos --vh (como unidad de 1%)
+  document.documentElement.style.setProperty('--vh', `${vhUnit}px`);
+
+  // Aplicamos el alto real directamente como respaldo
+  main.style.height = `${vhUnit * 100}px`; // equivalente a 100vh reales
 }
-
 
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
