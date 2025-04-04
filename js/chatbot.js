@@ -320,23 +320,33 @@ function debounce(func, wait) {
 }
 
 function updateMainVH() {
-  const main = document.querySelector('main');
-  if (!main) return;
+  const probe = document.createElement('div');
+  probe.style.position = 'fixed';
+  probe.style.top = '0';
+  probe.style.left = '0';
+  probe.style.height = '100vh';
+  probe.style.width = '0';
+  probe.style.visibility = 'hidden';
+  probe.style.pointerEvents = 'none';
+  document.body.appendChild(probe);
 
-  const viewport = window.visualViewport;
+  // Medimos su altura real
+  const realHeight = probe.getBoundingClientRect().height;
 
-  const height = viewport
-    ? viewport.height // Más preciso en móviles
-    : window.innerHeight;
+  // Eliminamos el div temporal
+  document.body.removeChild(probe);
 
-  // Calculamos vh personalizado: 1% del alto visible real
-  const vhUnit = height * 0.01;
-
-  // Guardamos --vh (como unidad de 1%)
+  // Asignamos la unidad real
+  const vhUnit = realHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vhUnit}px`);
 
-  // Aplicamos el alto real directamente como respaldo
-  main.style.height = `${vhUnit * 100}px`; // equivalente a 100vh reales
+  // Aplica la altura real al main
+  const main = document.querySelector('main');
+  if (main) {
+    main.style.height = `calc(var(--vh, 1vh) * 100)`;
+  }
+
+  console.log('Real viewport height:', realHeight);
 }
 
 // Ajustar posición y altura del chatbot según el teclado
@@ -420,7 +430,10 @@ function setupViewportListeners() {
 
 setupViewportListeners();
 updateViewportHeight();
-window.addEventListener("resize", debounce(updateMainVH, 100));
-window.addEventListener('orientationchange', debounce(updateMainVH, 100));
-window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
-window.addEventListener('scroll', debounce(updateMainVH, 100));
+window.addEventListener('DOMContentLoaded', updateMainVH);
+window.addEventListener('resize', updateMainVH);
+window.addEventListener('orientationchange', updateMainVH);
+
+// Para móviles, muy importante:
+window.visualViewport?.addEventListener('resize', updateMainVH);
+window.addEventListener('scroll', () => setTimeout(updateMainVH, 100)); 
