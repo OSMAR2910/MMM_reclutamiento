@@ -229,7 +229,6 @@ function scrollToBottom() {
 // Evento DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
-  updateMainVH();
   updatePavoMsj();
   handleNameForm();
 
@@ -334,12 +333,6 @@ function updateMainVH() {
   main.style.height = 'var(--main-vh)';
 }
 
-window.addEventListener("resize", debounce(updateMainVH, 100));
-window.addEventListener('orientationchange', debounce(updateMainVH, 100));
-window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
-window.addEventListener('scroll', debounce(updateMainVH, 100));
-
-
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
@@ -421,3 +414,7 @@ function setupViewportListeners() {
 
 setupViewportListeners();
 updateViewportHeight();
+window.addEventListener("resize", debounce(updateMainVH, 100));
+window.addEventListener('orientationchange', debounce(updateMainVH, 100));
+window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
+window.addEventListener('scroll', debounce(updateMainVH, 100));
