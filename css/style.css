@@ -5986,7 +5986,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio {
-    border-radius: 2vw;
+    border-radius: 4vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2,

@@ -111,26 +111,31 @@ function adjustViewForPWA() {
 function setRealViewportHeight() {
   // Obtiene la altura real del viewport
   const realHeight = window.innerHeight;
-  // Asegura que el contenido comience después de la barra superior
-  document.documentElement.style.setProperty('--real-vh', `${realHeight}px`);
-  // Calcula el espacio seguro superior si está disponible (iOS Safe Area)
+  // Solo actualiza si no se ha establecido antes o si es mayor (evita teclado)
+  const currentHeight = getComputedStyle(document.documentElement).getPropertyValue('--real-vh') || '0px';
+  const currentHeightNum = parseFloat(currentHeight);
+  
+  if (!currentHeightNum || realHeight > currentHeightNum) {
+      document.documentElement.style.setProperty('--real-vh', `${realHeight}px`);
+  }
+  
+  // Maneja el espacio superior seguro
   const safeTop = window.getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
   document.documentElement.style.setProperty('--safe-top', safeTop);
 }
 
-// Actualiza en los eventos necesarios
+// Inicializa al cargar
 window.addEventListener('load', setRealViewportHeight);
-window.addEventListener('resize', setRealViewportHeight);
-window.addEventListener('orientationchange', setRealViewportHeight);
-
-// Maneja el teclado virtual
+// Actualiza solo si la ventana crece (no con teclado)
 window.addEventListener('resize', () => {
-  if (document.activeElement.tagName === 'INPUT' || 
-      document.activeElement.tagName === 'TEXTAREA') {
-      return;
+  const isInputFocused = document.activeElement.tagName === 'INPUT' || 
+                       document.activeElement.tagName === 'TEXTAREA';
+  
+  if (!isInputFocused) {
+      setRealViewportHeight();
   }
-  setRealViewportHeight();
 });
+window.addEventListener('orientationchange', setRealViewportHeight);
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
