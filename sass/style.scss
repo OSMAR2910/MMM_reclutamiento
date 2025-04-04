@@ -3992,10 +3992,11 @@ html {
     }
 
     main {
-    height: var(--main-vh);
+      position: relative;
+      height: var(--main-vh);
       .pages {
         width: 100%;
-        height: var(--main-vh);
+        height: 100;
       }
       #home {
         .mancha1 {

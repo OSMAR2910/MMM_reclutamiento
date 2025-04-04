@@ -5302,12 +5302,13 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main,
   html main {
+    position: relative;
     height: var(--main-vh);
   }
   body main .pages,
   html main .pages {
     width: 100%;
-    height: var(--main-vh);
+    height: 100;
   }
   body main #home .mancha1,
   html main #home .mancha1 {
