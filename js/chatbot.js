@@ -321,13 +321,13 @@ function debounce(func, wait) {
 }
 
 function updateMainVH() {
-  const mainElement = document.querySelector('main');
-  const windowHeight = window.innerHeight;
-  const mainRect = mainElement.getBoundingClientRect();
-  const availableHeight = windowHeight - (windowHeight - mainRect.bottom);
+  const height = window.visualViewport 
+    ? window.visualViewport.height 
+    : window.innerHeight;
 
-  document.documentElement.style.setProperty('--main-vh', `${availableHeight}px`);
-  mainElement.style.height = 'var(--main-vh)';
+  document.documentElement.style.setProperty('--main-vh', `${height}px`);
+  const main = document.querySelector('main');
+  if (main) main.style.height = 'var(--main-vh)';
 }
 
 window.addEventListener("resize", debounce(updateMainVH, 100));
