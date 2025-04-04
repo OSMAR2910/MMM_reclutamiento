@@ -484,6 +484,8 @@ body canvas {
   gap: 0;
   background-color: #ec6223;
   box-shadow: 0 0 10px 5px #ec6223;
+  opacity: 0;
+  visibility: hidden;
 }
 .chatbot .chat_header {
   width: 100%;
@@ -566,6 +568,8 @@ body canvas {
   background-color: #ffffff;
   border: 2px solid #1b3c59;
   box-shadow: 0px 0px 15px 2px #1b3c59;
+  opacity: 0;
+  visibility: hidden;
 }
 .max_chat .chat_header {
   width: 90%;

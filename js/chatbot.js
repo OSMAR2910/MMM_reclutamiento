@@ -273,8 +273,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Minimizar/maximizar chat con ajuste dinámico
   document.getElementById("chat_min").addEventListener("click", toggleChatbotMaximize);
 
-  // Ajuste inicial después de cargar todo
+  // Simulación de doble clic al cargar
   const chatbot = document.getElementById("chatbot");
+  const chatMinButton = document.getElementById("chat_min");
+
+  if (chatbot && chatMinButton) {
+    // Ocultar el chatbot durante la simulación
+    chatbot.style.opacity = "0";
+    chatbot.style.visibility = "hidden";
+
+    // Simular primer clic (maximizar)
+    setTimeout(() => {
+      chatMinButton.click();
+      // Simular segundo clic (minimizar)
+      setTimeout(() => {
+        chatMinButton.click();
+        // Mostrar el chatbot después de la simulación
+        setTimeout(() => {
+          chatbot.style.opacity = "1";
+          chatbot.style.visibility = "visible";
+        }, 100); // Pequeño retraso para asegurar que el ajuste se complete
+      }, 100); // Retraso entre clics
+    }, 100); // Retraso inicial para que el DOM esté listo
+  }
+
   if (chatbot.classList.contains("max_chat")) {
     setTimeout(() => {
       adjustChatbotPosition(); // Forzar ajuste inicial si está maximizado

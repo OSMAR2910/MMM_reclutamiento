@@ -28,6 +28,8 @@
   gap: 0;
   background-color: $Principal;
   box-shadow: 0 0 10px 5px $Principal;
+  opacity: 0;
+  visibility: hidden;
   .chat_header {
     @include cover;
     justify-content: center;
@@ -107,6 +109,8 @@
   background-color: $Blanco;
   border: 2px solid $Box_admin;
   box-shadow: 0px 0px 15px 2px $Box_admin;
+  opacity: 0;
+  visibility: hidden;
   .chat_header {
     width: 90%;
     height: 10%;
