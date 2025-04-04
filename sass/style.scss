@@ -28,8 +28,14 @@
 }
 
 :root {
-  --vh: 1vh; /* fallback */
+  --vh: 1vh;       // Valor dinámico que actualiza JS
+  --real-vh: 100vh; // Altura completa del viewport
+  
+  // Safe areas (opcional para iOS)
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
 }
+
 
 body,
 html {

@@ -320,22 +320,24 @@ function debounce(func, wait) {
 }
 
 function updateMainVH() {
-  const main = document.querySelector('main');
-  if (!main) return;
-
-  // Usar window.innerHeight en lugar de visualViewport para mayor compatibilidad
-  const height = window.innerHeight;
-
-  // Calculamos vh personalizado: 1% del alto visible real
-  const vhUnit = height * 0.01;
-
-  // Aplicamos el alto real directamente
-  document.documentElement.style.setProperty('--vh', `${vhUnit}px`);
-  document.documentElement.style.setProperty('--real-vh', `${height}px`);
+  // 1. Obtener el viewport height real
+  const realVH = window.innerHeight * 0.01;
   
-  // Aplicar altura al main
-  main.style.height = `${height}px`;
+  // 2. Calcular safe areas (para iOS y navegadores modernos)
+  const safeAreaTop = parseIntgetComputedStyle(document.documentElement).getPropertyValue('--safe-area-top') || 0;
+  const safeAreaBottom = parseIntgetComputedStyle(document.documentElement).getPropertyValue('--safe-area-bottom') || 0;
+  
+  // 3. Calcular el espacio disponible (opcional, si necesitas considerar safe areas)
+  const availableVH = (window.innerHeight - safeAreaTop - safeAreaBottom) * 0.01;
+  
+  // 4. Aplicar los valores al root
+  document.documentElement.style.setProperty('--vh', `${realVH}px`);
+  document.documentElement.style.setProperty('--real-vh', `${window.innerHeight}px`);
+  
+  // 5. Debug (opcional)
+  console.log(`VH Actualizado - Real: ${window.innerHeight}px, Calculado: ${realVH}px`);
 }
+
 
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
@@ -408,18 +410,17 @@ function updateViewportHeight() {
  
 // Configurar eventos de viewport
 function setupViewportListeners() {
+  window.addEventListener('resize', updateMainVH);
+  window.addEventListener('orientationchange', updateMainVH);
   const handleViewportChanges = debounce(updateViewportHeight, 100);
   window.addEventListener("resize", handleViewportChanges);
   if (window.visualViewport) {
     window.visualViewport.addEventListener("resize", handleViewportChanges);
     window.visualViewport.addEventListener("scroll", handleViewportChanges);
+    window.visualViewport.addEventListener('resize', updateMainVH);
   }
 }
 
 setupViewportListeners();
 updateViewportHeight();
 updateMainVH();
-window.addEventListener("resize", debounce(updateMainVH, 100));
-window.addEventListener('orientationchange', debounce(updateMainVH, 100));
-window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
-window.addEventListener('scroll', debounce(updateMainVH, 100));

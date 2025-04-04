@@ -1109,7 +1109,10 @@ body canvas {
 }
 
 :root {
-  --vh: 1vh; /* fallback */
+  --vh: 1vh;
+  --real-vh: 100vh;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 body,
