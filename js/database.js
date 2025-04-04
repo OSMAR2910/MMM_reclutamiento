@@ -68,6 +68,10 @@ const alertasConfig = {
   alertapreguntaerror_19 : 2000
 };
 
+let vacantesPrevias = new Set();
+let previousVacantes = new Map();
+let isAdmin = localStorage.getItem("isAdminLoggedIn") === "true";
+let isManager = localStorage.getItem("isManagerLoggedIn") === "true";
 // Variable para almacenar el timeout actual
 let timeoutAlarma;
 
@@ -123,8 +127,47 @@ function verificarDisplay(idElemento, alertaSiOculto, alertaSiVisible) {
     mostrarAlerta(alertaSiVisible);
   }
 }
-// Escribir datos
+
+
+const label_btnEnviar = document.getElementById("label_enviar");
+const formElement = document.getElementById("myForm"); // Asegúrate de que este ID coincida con tu HTML
+
+if (!label_btnEnviar) {
+  console.error("El elemento con ID 'label_enviar' no se encontró en el DOM.");
+} else {
+  // Remover cualquier listener previo para evitar duplicados
+  label_btnEnviar.removeEventListener("click", enviar_form_handler);
+
+  // Definir la función handler por separado para poder removerla
+  function enviar_form_handler(event) {
+    event.preventDefault(); // Prevenir cualquier comportamiento por defecto (como submit)
+    console.log("Botón clicado, ejecutando enviar_form...");
+    enviar_form();
+  }
+
+  // Añadir el listener una sola vez
+  label_btnEnviar.addEventListener("click", enviar_form_handler);
+}
+
+// Si el botón está dentro de un <form>, prevenir el submit por defecto
+if (formElement) {
+  formElement.addEventListener("submit", (event) => {
+    event.preventDefault(); // Evitar que el formulario dispare un submit adicional
+    console.log("Evento submit prevenido, ejecutando enviar_form manualmente...");
+    enviar_form();
+  });
+}
+
+// Modificar enviar_form con una bandera para evitar envíos duplicados
+let isSubmitting = false;
+
 function enviar_form() {
+  if (isSubmitting) {
+    console.log("Envío ya en progreso, evitando duplicado...");
+    return;
+  }
+
+  isSubmitting = true;
   console.log("Iniciando envío del formulario...");
 
   const fechaActual = new Date().toISOString().split("T")[0];
@@ -191,11 +234,10 @@ function enviar_form() {
   // Verificar si hay errores
   if (errores.length > 0) {
     console.log("Errores encontrados:", errores);
-    mostrarAlerta("alertas"); // Alerta genérica
-    errores.forEach((error) => {
-      mostrarAlerta(error.alertaId); // Mostrar alerta específica para cada error
-    });
-    return; // Detener el envío
+    mostrarAlerta("alertas");
+    errores.forEach((error) => mostrarAlerta(error.alertaId));
+    isSubmitting = false; // Resetear si hay errores
+    return;
   }
 
   // Si no hay errores, preparar y enviar los datos
@@ -210,35 +252,27 @@ function enviar_form() {
   const uniqueKey = `${nombre}_${timestamp}`;
 
   set(ref(database, `vacantes/${uniqueKey}`), formData)
-    .then(() => {
-      console.log(`Formulario enviado exitosamente con clave: ${uniqueKey}`);
-      mostrarAlerta("alertas");
-      mostrarAlerta("alerta_2"); // Éxito
-      document.getElementById("myForm").reset();
-      localStorage.setItem("formVac", "true"); // Marcar como enviado en localStorage
-    })
-    .catch((error) => {
-      console.error("Error al enviar formulario:", error.message);
-      mostrarAlerta("alertas");
-      mostrarAlerta("alerta_3"); // Error
-    });
-}
-
-const label_btnEnviar = document.getElementById("label_enviar");
-if (!label_btnEnviar) {
-  console.error("El elemento con ID 'label_enviar' no se encontró en el DOM.");
-} else {
-  label_btnEnviar.addEventListener("click", () => {
-    console.log("Botón clicado, ejecutando enviar_form...");
-    enviar_form();
+  .then(() => {
+    console.log(`Formulario enviado exitosamente con clave: ${uniqueKey}`);
+    mostrarAlerta("alertas");
+    mostrarAlerta("alerta_2"); // Éxito
+    document.getElementById("myForm").reset();
+    localStorage.setItem("formVac", "true");
+    isSubmitting = false; // Resetear después de éxito
+  })
+  .catch((error) => {
+    console.error("Error al enviar formulario:", error.message);
+    mostrarAlerta("alertas");
+    mostrarAlerta("alerta_3"); // Error
+    isSubmitting = false; // Resetear después de error
   });
 }
 window.enviar_form = enviar_form;
+
 function getContainer(id) {
   const container = document.getElementById(id);
   return container ? container : null;
 }
-
 // Leer datos
 function mostrarDatos() {
   const auth = getAuth(app);
@@ -264,7 +298,6 @@ function mostrarDatos() {
   const asistieronRef = ref(database, "asistieron/");
   const no_asistieronRef = ref(database, "no_asistieron/");
   const contratadoRef = ref(database, "contratado/");
-  let previousVacantesCount = 0;
 
   onValue(vacantesRef, (snapshot) => {
     const vacantes = snapshot.val() || {};
@@ -274,13 +307,12 @@ function mostrarDatos() {
     if ((isAdmin || isManager) && Notification.permission === 'granted' && 'serviceWorker' in navigator) {
       currentVacantes.forEach((vacante, key) => {
         if (!previousVacantes.has(key)) {
-          // Nueva vacante detectada
           navigator.serviceWorker.ready.then(registration => {
             registration.active.postMessage({
               type: 'SHOW_NOTIFICATION',
               title: 'Nueva Vacante Registrada',
               body: `Se ha registrado una nueva vacante: ${vacante.nombre} para ${vacante.puesto}`,
-              url: '/#admin' // Redirige al panel de administración
+              url: '/#admin'
             });
             console.log(`Notificación enviada para ${vacante.nombre}`);
           }).catch(err => {
@@ -290,7 +322,7 @@ function mostrarDatos() {
       });
     }
 
-    previousVacantes = new Map(currentVacantes); // Actualizar estado previo
+    previousVacantes = new Map(currentVacantes);
     renderizarVacantes(snapshot, dataGreen, dataRed);
   });
 
@@ -1048,7 +1080,7 @@ function mostrarAlertaPersonalizada(mensaje, callback) {
 // Función optimizada para eliminar vacantes
 function eliminarVacante(uniqueKey, base) {
   mostrarAlertaPersonalizada(
-    `¿Estás seguro de eliminar al vacante "${uniqueKey}"? 🧐`,
+    `¿Estás seguro de eliminar al vacante "${data.nombre}"? 🧐`,
     (confirmado) => {
       if (!confirmado) {
         mostrarAlerta("alertas");
@@ -1160,7 +1192,7 @@ function regresarAlLogin(tipo) {
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
 }
 
-// Modificación de iniciarSesion para guardar la sesión
+// Modificación de iniciarSesion
 const iniciarSesion = (tipo) => {
   const isManager = tipo === "manager";
   const login = isManager
@@ -1186,25 +1218,34 @@ const iniciarSesion = (tipo) => {
     ? document.getElementById("errorall_sucu")
     : document.getElementById("errorall");
 
-  const mostrarError = (errorElement) => {
-    setTimeout(() => {
-      form.classList.remove("activolog");
-      errorElement.classList.add("activolog");
-    }, 200);
+  const mostrarError = (errorElement, mensaje) => {
+    console.log(`Mostrando error: ${mensaje}`);
+    form.classList.remove("activolog");
+    errorElement.classList.add("activolog");
     form.classList.add("animacionform");
+
+    setTimeout(() => {
+      errorElement.classList.remove("activolog");
+      form.classList.remove("animacionform");
+      form.classList.add("activolog");
+    }, 3000);
   };
 
   if (!userInput || !passInput) {
+    console.log("Campos vacíos detectados");
     mostrarAlerta("alertas");
     mostrarAlerta("alerta_1");
     return;
   }
+
+  console.log(`Intentando iniciar sesión con email: ${email}, contraseña: ${passInput}`);
 
   signInWithEmailAndPassword(auth, email, passInput)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Inicio de sesión exitoso:", user.email);
 
+      // Configurar almacenamiento local según el tipo de usuario
       if (isManager) {
         localStorage.removeItem("isAdminLoggedIn");
         const sucursalesValidas = [
@@ -1213,19 +1254,14 @@ const iniciarSesion = (tipo) => {
           "florido", "tecate", "sanysidro"
         ];
         if (!sucursalesValidas.includes(userInput)) {
+          console.log(`Usuario ${userInput} no válido para manager`);
           localStorage.removeItem("sucursal");
-          mostrarError(erroru);
+          mostrarError(erroru, "Usuario no válido para manager");
           return;
         }
         localStorage.setItem("sucursal", userInput);
         localStorage.setItem("isManagerLoggedIn", "true");
-
-        // Actualizar el elemento sucursal_activa desde localStorage
-        const sucursalActivaElement = document.getElementById("sucursal_activa");
-        if (sucursalActivaElement) {
-          const sucursalFormateada = userInput.charAt(0).toUpperCase() + userInput.slice(1).toLowerCase();
-          sucursalActivaElement.textContent = sucursalFormateada;
-        }
+        localStorage.setItem("redirectAfterLogin", "manager"); // Guardar intención de redirección
       } else {
         localStorage.removeItem("isManagerLoggedIn");
         localStorage.removeItem("sucursal");
@@ -1235,54 +1271,41 @@ const iniciarSesion = (tipo) => {
           "florido", "tecate", "sanysidro"
         ];
         if (sucursalesInvalidas.includes(userInput)) {
-          mostrarError(erroru);
+          console.log(`Usuario ${userInput} no válido para admin`);
+          mostrarError(erroru, "Usuario no válido para admin");
           return;
         }
         localStorage.setItem("isAdminLoggedIn", "true");
+        localStorage.setItem("redirectAfterLogin", "admin"); // Guardar intención de redirección
       }
+
+      // Mostrar animación y recargar la página
+      login.classList.add("animacionlog");
+      mostrarAlerta("alertas");
+      mostrarAlerta(isManager ? "alerta_25" : "alerta_25");
+      console.log("Animación iniciada, preparando recarga...");
 
       setTimeout(() => {
-        toggleView({
-          home: false,
-          header: false,
-          form: false,
-          login: false,
-          login_manager: false,
-          aside: false,
-          admin: !isManager,
-          admin_manager: isManager,
-        });
-        if (elements.header) elements.header.style.display = "none";
-        if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
-        if (elements.chatbot) elements.chatbot.style.display = "none";
-
-        mostrarAlerta("alertas");
-        mostrarAlerta(isManager ? "alerta_14" : "alerta_4");
+        console.log("Recargando página...");
+        window.location.reload();
       }, 1000);
-
-      login.classList.add("animacionlog");
-      mostrarDatos();
-      mostrarMensajesUsuarios();
     })
     .catch((error) => {
-      console.log("Código de error:", error.code);
-      if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/invalid-email"
-      ) {
-        mostrarError(erroru);
-      } else if (
-        error.code === "auth/wrong-password" ||
-        error.code === "auth/invalid-credential"
-      ) {
-        mostrarError(errorp);
+      console.error("Error en inicio de sesión:", error.code, error.message);
+      if (error.code === "auth/user-not-found" || error.code === "auth/invalid-email") {
+        mostrarError(erroru, "Usuario no encontrado o email inválido");
+      } else if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
+        mostrarError(errorp, "Contraseña incorrecta");
       } else {
-        mostrarError(errorall);
+        mostrarError(errorall, `Error desconocido: ${error.message}`);
       }
+    })
+    .finally(() => {
+      console.log("Proceso de inicio de sesión finalizado");
     });
 };
 
-// Función para mostrar el botón "Entrar" si ya hay sesión
+// Actualizar mostrarBotonEntrar para mostrar el botón y redirigir sin recargar
 function mostrarBotonEntrar(tipo) {
   const isManager = tipo === "manager";
   const loginContainer = isManager
@@ -1300,13 +1323,11 @@ function mostrarBotonEntrar(tipo) {
     return;
   }
 
-  // Función para actualizar la UI
   const updateUI = (user, useLocalStorage = false) => {
     const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
     const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
     const currentUserType = isAdminLoggedIn ? "admin" : isManagerLoggedIn ? "manager" : null;
 
-    // Determinar si se debe mostrar el botón "Entrar"
     const shouldShowButton = useLocalStorage
       ? currentUserType === tipo
       : (user && currentUserType === tipo);
@@ -1327,6 +1348,7 @@ function mostrarBotonEntrar(tipo) {
         entrarBtn.style.opacity = "1";
         entrarBtn.addEventListener("click", () => {
           console.log(`Botón Entrar clicado para ${tipo}`);
+          // Redirigir sin recargar la página
           toggleView({
             home: false,
             header: false,
@@ -1359,10 +1381,6 @@ function mostrarBotonEntrar(tipo) {
         entrarBtn.style.opacity = "1";
       }
 
-      requestAnimationFrame(() => {
-        console.log("Botón Entrar creado y visible:", entrarBtn, window.getComputedStyle(entrarBtn).display);
-      });
-
       if (otherLoginContainer) {
         const otherEntrarBtn = otherLoginContainer.querySelector(".entrar-btn");
         if (otherEntrarBtn) otherEntrarBtn.style.display = "none";
@@ -1378,14 +1396,14 @@ function mostrarBotonEntrar(tipo) {
     }
   };
 
-  // 1. Mostrar inmediatamente usando localStorage
+  // Renderizado inicial con localStorage
   const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
   const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
-  updateUI(null, true); // Renderizado inicial basado en localStorage
+  updateUI(null, true);
 
-  // 2. Actualizar con Firebase de manera asíncrona
+  // Actualizar con Firebase
   onAuthStateChanged(auth, (user) => {
-    updateUI(user, false); // Actualizar con datos de Firebase cuando estén disponibles
+    updateUI(user, false);
   });
 }
 
@@ -1400,6 +1418,8 @@ logoutButtons.forEach((button) => {
       localStorage.removeItem("isAdminLoggedIn");
       localStorage.removeItem("isManagerLoggedIn");
       localStorage.removeItem("sucursal");
+      isAdmin = false;  // Resetear variable global
+      isManager = false; // Resetear variable global
       console.log("Sesión cerrada con éxito.");
       window.location.reload();
     } catch (error) {
@@ -1409,6 +1429,7 @@ logoutButtons.forEach((button) => {
   });
 });
 
+// Asegurar que después de la recarga se muestre el botón y no se redirija automáticamente
 document.addEventListener("DOMContentLoaded", () => {
   asignarEventos("admin");
   asignarEventos("manager");
@@ -1423,4 +1444,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (regreso1) regreso1.addEventListener("click", () => regresarAlLogin("admin"));
   if (regreso2) regreso2.addEventListener("click", () => regresarAlLogin("manager"));
+
+  // Esperar a que Firebase autentique al usuario
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("Usuario autenticado detectado:", user.email);
+      const redirectAfterLogin = localStorage.getItem("redirectAfterLogin");
+      if (redirectAfterLogin) {
+        console.log(`Redirigiendo automáticamente a ${redirectAfterLogin}...`);
+        const isManager = redirectAfterLogin === "manager";
+
+        // Cambiar la vista al panel correspondiente
+        toggleView({
+          home: false,
+          header: false,
+          form: false,
+          login: false,
+          login_manager: false,
+          aside: false,
+          admin: !isManager,
+          admin_manager: isManager,
+        });
+
+        // Actualizar la URL con el hash correspondiente
+        window.location.hash = isManager ? "#pag4" : "#pag3"; // Ajusta según tus hashes reales
+
+        if (elements.header) elements.header.style.display = "none";
+        if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
+        if (elements.chatbot) elements.chatbot.style.display = "none";
+
+        if (isManager) {
+          const sucursalActivaElement = document.getElementById("sucursal_activa");
+          const sucursalGuardada = localStorage.getItem("sucursal");
+          if (sucursalActivaElement && sucursalGuardada) {
+            const sucursalFormateada = sucursalGuardada.charAt(0).toUpperCase() + sucursalGuardada.slice(1).toLowerCase();
+            sucursalActivaElement.textContent = sucursalFormateada;
+          }
+        }
+
+        // Mostrar datos y mensajes solo cuando el usuario esté autenticado
+        mostrarDatos();
+        mostrarMensajesUsuarios();
+
+        // Limpiar la intención de redirección
+        localStorage.removeItem("redirectAfterLogin");
+      }
+    } else {
+      console.log("No hay usuario autenticado al cargar la página.");
+    }
+  });
 });

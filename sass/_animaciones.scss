@@ -72,3 +72,12 @@
     opacity: 100;
   }
 }
+@keyframes btndescarga {
+  0% {
+    transform: translatey(-300%);
+  }
+  100% {
+    transform: translatey(0);
+    opacity: 100;
+  }
+}

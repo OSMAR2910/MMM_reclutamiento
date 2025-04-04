@@ -155,7 +155,7 @@ window.addEventListener('resize', () => {
 
 // Actualiza en cambio de orientación
 window.addEventListener('orientationchange', () => {
-  setTimeout(setRealViewportHeight, 100); // Retraso para estabilizar la orientación
+  setTimeout(setRealViewportHeight, 200); // Retraso para estabilizar la orientación
 });
 
 // Sincronizar con visualViewport si está disponible
