@@ -310,10 +310,10 @@ function adjustChatbotPosition() {
   if (isMobile) {
     // En móviles, usar 100vh real ajustado por el teclado
     if (keyboardHeight > 0) {
-      setTimeout(adjustChatbotPosition, 100);
       chatbot.style.top = `${keyboardHeight}px`;
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.bottom = "auto";
+      setTimeout(adjustChatbotPosition, 100);
     } else {
       chatbot.style.top = "0";
       chatbot.style.height = "var(--real-vh)"; // 100vh real
