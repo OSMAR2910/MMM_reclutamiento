@@ -338,7 +338,6 @@ function toggleChatbotMaximize() {
     pavo.style.display = "none";
     adjustChatbotPosition(); // Ajustar posición al maximizar
     sendWelcomeMessage();
-    localStorage.setItem("chatMaximized", "true"); // Guardar estado (opcional)
   } else {
     chatbot.style.position = "fixed";
     chatbot.style.top = "auto";
