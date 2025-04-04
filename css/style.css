@@ -1109,6 +1109,16 @@ body canvas {
   width: 0px;
 }
 
+:root {
+  --real-vh: 100vh; /* Fallback */
+}
+
+.real-height {
+  height: var(--real-vh);
+  min-height: var(--real-vh);
+  max-height: var(--real-vh);
+}
+
 body,
 html {
   width: 100vw;
@@ -1657,7 +1667,7 @@ html header nav ul li .iconbutton:hover {
 body main,
 html main {
   width: 100vw;
-  height: calc(var(--vh) * 100);
+  height: var(--real-vh);
   max-height: 100vh;
   display: flex;
   justify-content: center;
@@ -5305,7 +5315,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main .pages,
   html main .pages {
     width: 100%;
-    height: calc(var(--vh) * 100);
+    height: var(--real-vh);
   }
   body main #home .mancha1,
   html main #home .mancha1 {
@@ -5961,7 +5971,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info,
   html main #pag5 .estatus_citas_manager .icons_status .status_info {
     width: 95vw;
-    height: calc(var(--vh) * 85);
+    height: 85%;
     top: 11vh;
     left: 1.7vw;
   }
@@ -6084,7 +6094,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .cont_manager,
   html main #pag5 .cont_manager {
     width: 97vw;
-    height: calc(var(--vh) * 97);
+    height: 97%;
     position: absolute;
     justify-content: start;
     align-items: center;

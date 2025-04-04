@@ -108,20 +108,26 @@ function adjustViewForPWA() {
   }
 }
 
-// Función para calcular y actualizar la altura real del viewport
-function setViewportHeight() {
-  // Obtiene la altura real del viewport
-  let vh = window.innerHeight * 0.01;
-  // Establece la variable CSS personalizada
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+function setRealViewportHeight() {
+  // Obtiene la altura real y la establece
+  const realHeight = window.innerHeight;
+  document.documentElement.style.setProperty('--real-vh', `${realHeight}px`);
 }
 
-// Ejecuta la función al cargar la página
-window.addEventListener('load', setViewportHeight);
-// Actualiza la altura cuando cambia el tamaño de la ventana
-window.addEventListener('resize', setViewportHeight);
-// Actualiza la altura al cambiar la orientación
-window.addEventListener('orientationchange', setViewportHeight);
+// Actualiza al cargar, redimensionar y cambiar orientación
+window.addEventListener('load', setRealViewportHeight);
+window.addEventListener('resize', setRealViewportHeight);
+window.addEventListener('orientationchange', setRealViewportHeight);
+
+// Evita que el teclado virtual afecte el tamaño
+window.addEventListener('resize', () => {
+  if (document.activeElement.tagName === 'INPUT' || 
+      document.activeElement.tagName === 'TEXTAREA') {
+      // Mantiene el valor anterior cuando aparece el teclado
+      return;
+  }
+  setRealViewportHeight();
+});
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
@@ -329,12 +335,12 @@ function btn_form() {
 }
 
 function btn_admin() {
-  toggleView({ header: true, login: true, aside: true, chatbotcolor: true  });
+  toggleView({ header: true, login: true, aside: true, chatbotcolor: true });
   console.log("Botón Admin clicado");
 }
 
 function btn_admin2() {
-  toggleView({ header: true, login: true, aside: true, chatbotcolor: true  });
+  toggleView({ header: true, login: true, aside: true, chatbotcolor: true });
   console.log("Botón Admin2 clicado");
 }
 
@@ -344,7 +350,7 @@ function admin_manager() {
 }
 
 function btn_aptc() {
-  toggleView({ header: true, ap_tc: true, aside: true, chatbotcolor: true  });
+  toggleView({ header: true, ap_tc: true, aside: true });
   console.log("Botón APTC clicado");
 }
 

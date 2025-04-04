@@ -27,6 +27,16 @@
   scale: 0.9;
 }
 
+:root {
+  --real-vh: 100vh; /* Fallback */
+}
+
+.real-height {
+  height: var(--real-vh);
+  min-height: var(--real-vh);
+  max-height: var(--real-vh);
+}
+
 body,
 html {
   width: 100vw;
@@ -566,7 +576,7 @@ html {
 
   main {
     width: 100vw;
-    height: calc(var(--vh) * 100);
+    height: var(--real-vh);
     max-height: 100vh;
     display: flex;
     justify-content: center;
@@ -3995,7 +4005,7 @@ html {
     main {
       .pages {
         width: 100%;
-        height: calc(var(--vh) * 100);
+        height: var(--real-vh);
       }
       #home {
         .mancha1 {
@@ -4657,7 +4667,7 @@ html {
           .icons_status {
             .status_info {
               width: 95vw;
-              height: calc(var(--vh) * 85);
+              height: 85%;
               top: 11vh;
               left: 1.7vw;
               .box_status {
@@ -4752,7 +4762,7 @@ html {
 
         .cont_manager {
           width: 97vw;
-          height: calc(var(--vh) * 97);
+          height: 97%;
           position: absolute;
           justify-content: start;
           align-items: center;

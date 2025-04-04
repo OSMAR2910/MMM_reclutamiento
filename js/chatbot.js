@@ -369,17 +369,23 @@ function toggleChatbotMaximize() {
     adjustChatbotPosition(); // Ajustar posición al maximizar
     sendWelcomeMessage();
   } else {
-    chatbot.style.position = "fixed";
-    chatbot.style.top = "auto";
-    chatbot.style.bottom = "0";
-    chatbot.style.height = "auto";
-    chatbot.style.width = "";
     if (isStandalone()) {
+      chatbot.style.position = "fixed";
+      chatbot.style.top = "0";
+      chatbot.style.bottom = "0";
+      chatbot.style.height = "0";
+      chatbot.style.width = "0";
       chatbot.style.display = "none";
       pavo.style.display = "none";
+    } else {
+      chatbot.style.position = "fixed";
+      chatbot.style.top = "auto";
+      chatbot.style.bottom = "0";
+      chatbot.style.height = "auto";
+      chatbot.style.width = "";
+      chatbot.style.display = "flex";
+      pavo.style.display = "flex";
     }
-    chatbot.style.display = "flex";
-    pavo.style.display = "flex";
   }
 
   setTimeout(scrollToBottom, 0);
