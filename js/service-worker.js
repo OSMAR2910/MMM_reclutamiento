@@ -1,82 +1,128 @@
-// service-worker.js
+importScripts("/js/firebase.js");
 
-const CACHE_NAME = 'vacantes-app-v1';
+const CACHE_NAME = "juego-cache-v2";
+
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/main.js',
-  '/database.js',
-  '/styles.css',
-  '/manifest.json',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  "/",
+  "/index.html",
+  "/css/normalize.css",
+  "/css/style.css",
+  "/js/firebase.js",
+  "/js/database.js",
+  "/js/main.js",
+  "/js/singlePlayer.js",
+  "/json/P&R.json",
+  "/json/P&R_single.json",
+  "/json/avatars.json",
+  "/manifest.json",
+  "/img/Logos/interfaces/icons/logo.jpg",
+  "/img/avatars/default.png",
 ];
 
-// Instalación del Service Worker y almacenamiento en caché
-self.addEventListener('install', event => {
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Archivos en caché');
-        return cache.addAll(urlsToCache);
-      })
-  );
-});
-
-// Activación del Service Worker y limpieza de cachés antiguas
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
-      );
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log("Cacheando recursos esenciales");
+      return cache.addAll(urlsToCache).catch((error) => {
+        console.error("Error al cachear:", error);
+      });
     })
   );
 });
 
-// Interceptar solicitudes y servir desde el caché
-self.addEventListener('fetch', event => {
+self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request);
-      })
-      .catch(() => {
-        return caches.match('/index.html');
-      })
-  );
-});
-
-// Escuchar mensajes desde el cliente para mostrar notificaciones
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SHOW_NOTIFICATION') {
-    const { title, body, url } = event.data;
-    const options = {
-      body: body || 'Se ha registrado una nueva vacante.',
-      icon: '/icons/icon-192x192.png',
-      badge: '/icons/icon-192x192.png',
-      data: { url: url || '/' }
-    };
-    self.registration.showNotification(title, options);
-  }
-});
-
-// Manejar clics en las notificaciones
-self.addEventListener('notificationclick', event => {
-  event.notification.close();
-  const url = event.notification.data.url || '/';
-
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
-      for (let client of windowClients) {
-        if (client.url === url && 'focus' in client) {
-          return client.focus();
-        }
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        console.log(`Sirviendo desde caché: ${event.request.url}`);
+        return cachedResponse;
       }
-      if (clients.openWindow) {
-        return clients.openWindow(url);
-      }
+      return fetch(event.request).then((networkResponse) => {
+        return caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        });
+      }).catch(() => {
+        console.log(`Modo offline, intentando fallback para: ${event.request.url}`);
+        return caches.match("/index.html").then((fallback) => {
+          if (fallback) {
+            self.clients.matchAll().then((clients) => {
+              clients.forEach((client) =>
+                client.postMessage({
+                  type: "OFFLINE",
+                  message: "Estás offline. Funcionalidad limitada.",
+                })
+              );
+            });
+            return fallback;
+          }
+          return new Response(
+            "<h1>Modo Offline</h1><p>Estás sin conexión. Por favor, recarga cuando tengas internet.</p>",
+            {
+              headers: { "Content-Type": "text/html" },
+              status: 503,
+            }
+          );
+        });
+      });
     })
   );
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          })
+        )
+      )
+      .then(() => self.clients.claim())
+  );
+
+  const showHourlyNotification = async () => {
+    const userData = await getUserData();
+    const name = userData?.name || "Jugador";
+    const message = `¡Hola ${name}! Han pasado 60 minutos, ¿listo para jugar otra vez?`;
+
+    self.registration.showNotification("¿Qué digo?", {
+      body: message,
+      icon: "/img/Logos/interfaces/icons/logo.jpg",
+      badge: "/img/Logos/interfaces/icons/logo.jpg",
+    });
+
+    setTimeout(showHourlyNotification, 60 * 60 * 1000); // 1 hora
+  };
+
+  showHourlyNotification();
+});
+
+const getUserData = async () => {
+  const clients = await self.clients.matchAll();
+  for (const client of clients) {
+    const message = await new Promise((resolve) => {
+      client.postMessage({ type: "GET_USER_DATA" });
+      self.addEventListener("message", (event) => {
+        if (event.data.type === "USER_DATA_RESPONSE") resolve(event.data);
+      }, { once: true });
+    });
+    if (message) return message;
+  }
+  return { name: "Jugador" };
+};
+
+self.addEventListener("message", (event) => {
+  if (event.data.type === "GET_USER_DATA") {
+    event.source.postMessage({
+      type: "USER_DATA_RESPONSE",
+      uid: event.data.uid || null,
+      name: event.data.name || "Jugador",
+      points: event.data.points || {},
+    });
+  }
 });
