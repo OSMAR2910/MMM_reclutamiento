@@ -229,9 +229,19 @@ function scrollToBottom() {
 // Evento DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
-  const realHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--main-vh', `${realHeight}px`);
-  document.querySelector('main').style.height = 'var(--main-vh)'; // Aplicar al main directamente
+// Calcular la altura base del viewport
+const fullHeight = window.innerHeight; // Altura total incluyendo barras al inicio
+const usableHeight = window.visualViewport?.height || document.documentElement.clientHeight; // Altura sin barra inferior dinámica
+const bottomBarHeight = fullHeight - usableHeight; // Estimación de la barra inferior
+
+// Establecer variables CSS
+document.documentElement.style.setProperty('--main-vh', `${fullHeight}px`);
+document.documentElement.style.setProperty('--bottom-bar-height', `${bottomBarHeight}px`);
+
+// Aplicar ajuste al main
+const mainElement = document.querySelector('main');
+mainElement.style.height = `calc(var(--main-vh) - var(--bottom-bar-height))`;
+mainElement.style.paddingBottom = `var(--bottom-bar-height)`; // Espacio para el contenido
   updatePavoMsj();
   handleNameForm();
 
