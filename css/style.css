@@ -5302,7 +5302,6 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main,
   html main {
-    position: relative;
     height: calc(var(--vh, 1vh) * 100);
   }
   body main .pages,
