@@ -323,20 +323,37 @@ function updateMainVH() {
   const main = document.querySelector('main');
   if (!main) return;
 
-  const viewport = window.visualViewport;
-
-  const height = viewport
-    ? viewport.height // Más preciso en móviles
-    : window.innerHeight;
+  // Usar window.innerHeight en lugar de visualViewport para mayor compatibilidad
+  const height = window.innerHeight;
 
   // Calculamos vh personalizado: 1% del alto visible real
   const vhUnit = height * 0.01;
 
-  // Guardamos --vh (como unidad de 1%)
+  // Aplicamos el alto real directamente
   document.documentElement.style.setProperty('--vh', `${vhUnit}px`);
+  document.documentElement.style.setProperty('--real-vh', `${height}px`);
+  
+  // Aplicar altura al main
+  main.style.height = `${height}px`;
+}
 
-  // Aplicamos el alto real directamente como respaldo
-  main.style.height = `${vhUnit * 100}px`; // equivalente a 100vh reales
+// Configurar eventos con debounce mejorado
+const handleResize = debounce(() => {
+  updateMainVH();
+  adjustChatbotPosition(); // Asegurar que el chatbot también se ajuste
+}, 100);
+
+// Configurar listeners mejorados
+function setupViewportListeners() {
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('orientationchange', handleResize);
+  window.addEventListener('DOMContentLoaded', handleResize);
+  
+  // Dispositivos móviles necesitan un enfoque especial
+  if ('visualViewport' in window) {
+    window.visualViewport.addEventListener('resize', handleResize);
+    window.visualViewport.addEventListener('scroll', handleResize);
+  }
 }
 
 // Ajustar posición y altura del chatbot según el teclado
@@ -419,6 +436,7 @@ function setupViewportListeners() {
 }
 
 setupViewportListeners();
+updateMainVH();
 updateViewportHeight();
 window.addEventListener("resize", debounce(updateMainVH, 100));
 window.addEventListener('orientationchange', debounce(updateMainVH, 100));
