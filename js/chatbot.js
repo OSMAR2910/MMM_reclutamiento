@@ -1,5 +1,6 @@
 // Importar Firebase
 import { app, database, ref, push, set } from "./firebase.js";
+import { isStandalone } from "./main.js";
 
 let intents = [];
 let isWelcomeMessageSent = false;
@@ -350,7 +351,6 @@ function adjustChatbotPosition() {
     chatbot.style.bottom = "0";
     chatbot.style.height = "70vh"; // Altura fija para PC
   }
-  chatbot.style.display = "flex";
   scrollToBottom(); // Mantener el scroll al final
 }
 
@@ -374,6 +374,10 @@ function toggleChatbotMaximize() {
     chatbot.style.bottom = "0";
     chatbot.style.height = "auto";
     chatbot.style.width = "";
+    if (isStandalone()) {
+      chatbot.style.display = "none";
+      pavo.style.display = "none";
+    }
     chatbot.style.display = "flex";
     pavo.style.display = "flex";
   }

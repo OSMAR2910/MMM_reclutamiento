@@ -3995,7 +3995,7 @@ html {
     main {
       .pages {
         width: 100%;
-        height: 100%;
+        height: calc(var(--vh) * 100);
       }
       #home {
         .mancha1 {
@@ -4752,7 +4752,7 @@ html {
 
         .cont_manager {
           width: 97vw;
-          height: 97%;
+          height: calc(var(--vh) * 97);
           position: absolute;
           justify-content: start;
           align-items: center;

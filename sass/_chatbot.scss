@@ -486,6 +486,7 @@
 .pavo_cont {
   width: 4vw;
   height: 8vh;
+  display: flex;
   position: fixed;
   animation: pavo_moving 5s ease-in-out infinite;
   right: 19vw;
