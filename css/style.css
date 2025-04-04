@@ -1117,6 +1117,7 @@ body canvas {
 .real-height {
   height: var(--real-vh);
   height: calc(var(--real-vh) - var(--safe-top));
+  position: relative;
   min-height: var(--real-vh);
   max-height: var(--real-vh);
 }

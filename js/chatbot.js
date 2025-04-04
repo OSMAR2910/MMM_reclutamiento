@@ -233,6 +233,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   updatePavoMsj();
   handleNameForm();
 
+  const chatMinButton = document.getElementById("chat_min");
+  if (isStandalone() && chatMinButton) {
+    chatMinButton.style.display = "none";
+  }
+
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
   const sendButton = document.getElementById("chat_submit");
@@ -276,7 +281,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Simulación de doble clic al cargar
   const chatbot = document.getElementById("chatbot");
-  const chatMinButton = document.getElementById("chat_min");
   const pavo = document.getElementById("pavo_cont");
 
   if (chatbot && chatMinButton) {
@@ -361,31 +365,27 @@ function toggleChatbotMaximize() {
 
   if (!chatbot) return;
 
+  if (isStandalone()) {
+    chatbot.style.display = "none";
+    pavo.style.display = "none";
+    return;
+  }
+
   const isMaximized = chatbot.classList.toggle("max_chat");
 
   if (isMaximized) {
     chatbot.style.display = "flex";
     pavo.style.display = "none";
-    adjustChatbotPosition(); // Ajustar posición al maximizar
+    adjustChatbotPosition();
     sendWelcomeMessage();
   } else {
-    if (isStandalone()) {
-      chatbot.style.position = "fixed";
-      chatbot.style.top = "0";
-      chatbot.style.bottom = "0";
-      chatbot.style.height = "0";
-      chatbot.style.width = "0";
-      chatbot.style.display = "none";
-      pavo.style.display = "none";
-    } else {
-      chatbot.style.position = "fixed";
-      chatbot.style.top = "auto";
-      chatbot.style.bottom = "0";
-      chatbot.style.height = "auto";
-      chatbot.style.width = "";
-      chatbot.style.display = "flex";
-      pavo.style.display = "flex";
-    }
+    chatbot.style.position = "fixed";
+    chatbot.style.top = "auto";
+    chatbot.style.bottom = "0";
+    chatbot.style.height = "auto";
+    chatbot.style.width = "";
+    chatbot.style.display = "flex";
+    pavo.style.display = "flex";
   }
 
   setTimeout(scrollToBottom, 0);
