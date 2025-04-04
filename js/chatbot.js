@@ -319,34 +319,24 @@ function debounce(func, wait) {
   };
 }
 
-let realVH = null;
+function updateMainVH() {
+  const main = document.querySelector('main');
+  if (!main) return;
 
-function updateMainVHOnce() {
-  if (realVH !== null) return; // Ya está definido
+  const viewport = window.visualViewport;
 
-  const probe = document.createElement('div');
-  probe.style.position = 'fixed';
-  probe.style.top = '0';
-  probe.style.left = '0';
-  probe.style.height = '100vh';
-  probe.style.width = '0';
-  probe.style.visibility = 'hidden';
-  probe.style.pointerEvents = 'none';
-  document.body.appendChild(probe);
+  const height = viewport
+    ? viewport.height // Más preciso en móviles
+    : window.innerHeight;
 
-  // Altura visual sin teclado
-  realVH = probe.getBoundingClientRect().height;
-  document.body.removeChild(probe);
+  // Calculamos vh personalizado: 1% del alto visible real
+  const vhUnit = height * 0.01;
 
-  const vhUnit = realVH / 100;
+  // Guardamos --vh (como unidad de 1%)
   document.documentElement.style.setProperty('--vh', `${vhUnit}px`);
 
-  const main = document.querySelector('main');
-  if (main) {
-    main.style.height = `calc(var(--vh) * 100)`;
-  }
-
-  console.log('VH fijo sin teclado:', realVH);
+  // Aplicamos el alto real directamente como respaldo
+  main.style.height = `${vhUnit * 100}px`; // equivalente a 100vh reales
 }
 
 // Ajustar posición y altura del chatbot según el teclado
@@ -430,10 +420,7 @@ function setupViewportListeners() {
 
 setupViewportListeners();
 updateViewportHeight();
-window.addEventListener('DOMContentLoaded', updateMainVHOnce);
-window.addEventListener('load', updateMainVHOnce);
-
-// Opcional: puedes forzarlo si lo necesitas más tarde
-setTimeout(updateMainVHOnce, 500);
-
-
+window.addEventListener("resize", debounce(updateMainVH, 100));
+window.addEventListener('orientationchange', debounce(updateMainVH, 100));
+window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
+window.addEventListener('scroll', debounce(updateMainVH, 100));
