@@ -1110,23 +1110,23 @@ body canvas {
 }
 
 :root {
-  --real-vh: 100vh;
+  --main-vh: 100vh;
   --safe-top: 0px;
 }
 
-.real-height {
-  height: var(--real-vh);
-  height: calc(var(--real-vh) - var(--safe-top));
+.main-height {
+  height: var(--main-vh);
+  height: calc(var(--main-vh) - var(--safe-top));
   position: relative;
-  min-height: var(--real-vh);
-  max-height: var(--real-vh);
+  min-height: var(--main-vh);
+  max-height: var(--main-vh);
 }
 
 body,
 html {
   width: 100vw;
   padding-top: var(--safe-top);
-  height: var(--real-vh);
+  height: var(--main-vh);
   margin: 0;
   padding: 0;
   background-color: #ec6223;
@@ -1671,7 +1671,8 @@ html header nav ul li .iconbutton:hover {
 body main,
 html main {
   width: 100vw;
-  height: var(--real-vh);
+  height: var(--main-vh);
+  position: relative;
   max-height: 100vh;
   display: flex;
   justify-content: center;
@@ -5319,7 +5320,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main .pages,
   html main .pages {
     width: 100%;
-    height: var(--real-vh);
+    height: var(--main-vh);
   }
   body main #home .mancha1,
   html main #home .mancha1 {
@@ -5987,7 +5988,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio {
-    border-radius: 4vw;
+    border-radius: 10vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2,

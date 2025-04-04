@@ -28,23 +28,23 @@
 }
 
 :root {
-  --real-vh: 100vh;
+  --main-vh: 100vh;
   --safe-top: 0px;
 }
 
-.real-height {
-  height: var(--real-vh);
-  height: calc(var(--real-vh) - var(--safe-top));
+.main-height {
+  height: var(--main-vh);
+  height: calc(var(--main-vh) - var(--safe-top));
   position: relative;
-  min-height: var(--real-vh);
-  max-height: var(--real-vh);
+  min-height: var(--main-vh);
+  max-height: var(--main-vh);
 }
 
 body,
 html {
   width: 100vw;
   padding-top: var(--safe-top);
-  height: var(--real-vh);
+  height: var(--main-vh);
   margin: 0;
   padding: 0;
   background-color: $Fondo;
@@ -580,7 +580,8 @@ html {
 
   main {
     width: 100vw;
-    height: var(--real-vh);
+    height: var(--main-vh);
+    position: relative;
     max-height: 100vh;
     display: flex;
     justify-content: center;
@@ -4009,7 +4010,7 @@ html {
     main {
       .pages {
         width: 100%;
-        height: var(--real-vh);
+        height: var(--main-vh);
       }
       #home {
         .mancha1 {
@@ -4684,7 +4685,7 @@ html {
                 ul {
                   .vacante_item_citasManagerNoasistio,
                   .vacante_item_citasManagerAsistio {
-                    border-radius: 4vw;
+                    border-radius: 10vw;
 
                     .btn_container2 {
                       width: 3%;
