@@ -111,14 +111,22 @@ function adjustViewForPWA() {
 function setRealViewportHeight() {
   // Obtiene la altura real del viewport
   const realHeight = window.innerHeight;
-  // Solo actualiza si no se ha establecido antes o si es mayor (evita teclado)
+  // Obtiene la altura actual establecida en --real-vh
   const currentHeight = getComputedStyle(document.documentElement).getPropertyValue('--real-vh') || '0px';
   const currentHeightNum = parseFloat(currentHeight);
-  
-  if (!currentHeightNum || realHeight > currentHeightNum) {
-      document.documentElement.style.setProperty('--real-vh', `${realHeight}px`);
+
+  // Detectar si el teclado virtual podría estar activo
+  const isInputFocused = document.activeElement.tagName === 'INPUT' || 
+                        document.activeElement.tagName === 'TEXTAREA';
+  const isKeyboardLikelyOpen = realHeight < currentHeightNum && isInputFocused;
+
+  // Solo actualiza si:
+  // 1. No hay un campo de entrada con foco y el teclado no parece estar abierto
+  // 2. La nueva altura es mayor que la actual (evita ajustes por teclado)
+  if (!isKeyboardLikelyOpen && (!currentHeightNum || realHeight > currentHeightNum)) {
+    document.documentElement.style.setProperty('--real-vh', `${realHeight}px`);
   }
-  
+
   // Maneja el espacio superior seguro
   const safeTop = window.getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
   document.documentElement.style.setProperty('--safe-top', safeTop);
@@ -126,15 +134,21 @@ function setRealViewportHeight() {
 
 // Inicializa al cargar
 window.addEventListener('load', setRealViewportHeight);
-// Actualiza solo si la ventana crece (no con teclado)
+
+// Actualiza solo si la ventana crece o no hay teclado virtual involucrado
+let resizeTimeout;
 window.addEventListener('resize', () => {
-  const isInputFocused = document.activeElement.tagName === 'INPUT' || 
-                       document.activeElement.tagName === 'TEXTAREA';
-  
-  if (!isInputFocused) {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    const isInputFocused = document.activeElement.tagName === 'INPUT' || 
+                          document.activeElement.tagName === 'TEXTAREA';
+    if (!isInputFocused) {
       setRealViewportHeight();
-  }
+    }
+  }, 100); // 100ms de retraso
 });
+
+// Actualiza en cambio de orientación
 window.addEventListener('orientationchange', setRealViewportHeight);
 
 // Verificar si es un dispositivo táctil
