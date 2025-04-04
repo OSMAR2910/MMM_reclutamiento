@@ -323,15 +323,15 @@ function updateMainVH() {
   const main = document.querySelector('main');
   if (!main) return;
 
-  const height = Math.min(
-    window.innerHeight,
-    document.documentElement.clientHeight,
-    window.visualViewport?.height || Infinity
-  );
+  const height =
+    window.visualViewport?.height ||
+    document.documentElement.clientHeight ||
+    window.innerHeight;
 
   document.documentElement.style.setProperty('--main-vh', `${height}px`);
   main.style.height = 'var(--main-vh)';
 }
+
 
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
