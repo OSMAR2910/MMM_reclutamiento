@@ -28,11 +28,13 @@
 }
 
 :root {
-  --real-vh: 100vh; /* Fallback */
+  --real-vh: 100vh;
+  --safe-top: 0px;
 }
 
 .real-height {
   height: var(--real-vh);
+  height: calc(var(--real-vh) - var(--safe-top));
   min-height: var(--real-vh);
   max-height: var(--real-vh);
 }
@@ -40,7 +42,8 @@
 body,
 html {
   width: 100vw;
-  height: 100vh;
+  padding-top: var(--safe-top);
+  height: var(--real-vh);
   margin: 0;
   padding: 0;
   background-color: $Fondo;

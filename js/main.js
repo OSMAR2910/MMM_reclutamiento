@@ -109,21 +109,24 @@ function adjustViewForPWA() {
 }
 
 function setRealViewportHeight() {
-  // Obtiene la altura real y la establece
+  // Obtiene la altura real del viewport
   const realHeight = window.innerHeight;
+  // Asegura que el contenido comience después de la barra superior
   document.documentElement.style.setProperty('--real-vh', `${realHeight}px`);
+  // Calcula el espacio seguro superior si está disponible (iOS Safe Area)
+  const safeTop = window.getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
+  document.documentElement.style.setProperty('--safe-top', safeTop);
 }
 
-// Actualiza al cargar, redimensionar y cambiar orientación
+// Actualiza en los eventos necesarios
 window.addEventListener('load', setRealViewportHeight);
 window.addEventListener('resize', setRealViewportHeight);
 window.addEventListener('orientationchange', setRealViewportHeight);
 
-// Evita que el teclado virtual afecte el tamaño
+// Maneja el teclado virtual
 window.addEventListener('resize', () => {
   if (document.activeElement.tagName === 'INPUT' || 
       document.activeElement.tagName === 'TEXTAREA') {
-      // Mantiene el valor anterior cuando aparece el teclado
       return;
   }
   setRealViewportHeight();
