@@ -299,7 +299,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           chatbot.style.animation = "backInRight 1.5s ease-in-out forwards";
           pavo.style.opacity = "1";
           pavo.style.visibility = "visible";
-          pavo.style.animation = "fadeInLeft .5s ease-in-out forwards";
         }, 100); // Pequeño retraso para asegurar que el ajuste se complete
       }, 100); // Retraso entre clics
     }, 100); // Retraso inicial para que el DOM esté listo
@@ -346,10 +345,12 @@ function adjustChatbotPosition() {
       chatbot.style.top = `${keyboardHeight}px`;
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.bottom = "auto";
+      chatbot.classList.remove("chatbot_color");
     } else {
       chatbot.style.top = "0";
       chatbot.style.height = "var(--real-vh)"; // 100vh real
       chatbot.style.bottom = "auto";
+      chatbot.classList.remove("chatbot_color");
     }
   } else {
     // En PC (ancho > 500px), usar 70vh
@@ -383,7 +384,6 @@ function toggleChatbotMaximize() {
     chatbot.style.width = "";
     chatbot.style.display = "flex";
     pavo.style.display = "flex";
-    localStorage.setItem("chatMaximized", "false"); // Guardar estado (opcional)
   }
 
   setTimeout(scrollToBottom, 0);

@@ -1085,6 +1085,16 @@ body canvas {
     border-radius: 5vw;
     font-size: 2.3vw;
   }
+  .chatbot_color {
+    background-color: #174891;
+    box-shadow: 0px 0px 10px 5px #174891;
+  }
+  .chatbot_color .chat_header {
+    background-color: #174891;
+  }
+  .chatbot_color .chat_header .chat_min {
+    background-color: #174891;
+  }
 }
 * {
   scroll-behavior: smooth;

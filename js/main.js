@@ -288,6 +288,7 @@ export function toggleView({
   admin = false,
   admin_manager = false,
   ap_tc = false,
+  chatbotcolor = false
 }) {
   elements.home?.classList.toggle("agregar_dis", home);
   elements.header?.classList.toggle("cambiar_nav", header);
@@ -298,6 +299,7 @@ export function toggleView({
   elements.ap_tc?.classList.toggle("agregar_dis", ap_tc);
   elements.admin_manager?.classList.toggle("agregar_dis", admin_manager);
   elements.login_manager?.classList.toggle("agregar_dis", login_manager);
+  elements.chatbot?.classList.toggle("chatbot_color", chatbotcolor);
 }
 
 // Funciones para cada botón
@@ -307,17 +309,17 @@ function btn_home() {
 }
 
 function btn_form() {
-  toggleView({ header: true, form: true, aside: true });
+  toggleView({ header: true, form: true, aside: true, chatbotcolor: true });
   console.log("Botón Form clicado");
 }
 
 function btn_admin() {
-  toggleView({ header: true, login: true, aside: true });
+  toggleView({ header: true, login: true, aside: true, chatbotcolor: true  });
   console.log("Botón Admin clicado");
 }
 
 function btn_admin2() {
-  toggleView({ header: true, login: true, aside: true });
+  toggleView({ header: true, login: true, aside: true, chatbotcolor: true  });
   console.log("Botón Admin2 clicado");
 }
 
@@ -327,7 +329,7 @@ function admin_manager() {
 }
 
 function btn_aptc() {
-  toggleView({ header: true, ap_tc: true, aside: true });
+  toggleView({ header: true, ap_tc: true, aside: true, chatbotcolor: true  });
   console.log("Botón APTC clicado");
 }
 
