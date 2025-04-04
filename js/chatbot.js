@@ -277,11 +277,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Simulación de doble clic al cargar
   const chatbot = document.getElementById("chatbot");
   const chatMinButton = document.getElementById("chat_min");
+  const pavo = document.getElementById("pavo_cont");
 
   if (chatbot && chatMinButton) {
     // Ocultar el chatbot durante la simulación
     chatbot.style.opacity = "0";
     chatbot.style.visibility = "hidden";
+    pavo.style.opacity = "0";
+    pavo.style.visibility = "hidden";
 
     // Simular primer clic (maximizar)
     setTimeout(() => {
@@ -294,6 +297,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           chatbot.style.opacity = "1";
           chatbot.style.visibility = "visible";
           chatbot.style.animation = "backInRight 1.5s ease-in-out forwards";
+          pavo.style.opacity = "1";
+          pavo.style.visibility = "visible";
+          pavo.style.animation = "fadeInLeft .5s ease-in-out forwards";
         }, 100); // Pequeño retraso para asegurar que el ajuste se complete
       }, 100); // Retraso entre clics
     }, 100); // Retraso inicial para que el DOM esté listo

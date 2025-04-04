@@ -950,6 +950,8 @@ body canvas {
   right: 19vw;
   bottom: 0;
   z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
 }
 .pavo_cont .pavo_msj {
   width: 10vw;
@@ -6074,7 +6076,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .cont_manager,
   html main #pag5 .cont_manager {
     width: 97vw;
-    height: calc(var(--vh, 1vh) * 97);
+    height: 97%;
     position: absolute;
     justify-content: start;
     align-items: center;
