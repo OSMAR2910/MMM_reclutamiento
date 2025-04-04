@@ -4657,7 +4657,7 @@ html {
           .icons_status {
             .status_info {
               width: 95vw;
-              height: 85vh;
+              height: calc(var(--vh) * 85);
               top: 11vh;
               left: 1.7vw;
               .box_status {

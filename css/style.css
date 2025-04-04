@@ -5961,7 +5961,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info,
   html main #pag5 .estatus_citas_manager .icons_status .status_info {
     width: 95vw;
-    height: 85vh;
+    height: calc(var(--vh) * 85);
     top: 11vh;
     left: 1.7vw;
   }
