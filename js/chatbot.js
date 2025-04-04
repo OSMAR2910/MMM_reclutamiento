@@ -337,19 +337,6 @@ function updateMainVH() {
   main.style.height = `${height}px`;
 }
 
-// Configurar listeners mejorados
-function setupViewportListeners() {
-  window.addEventListener('resize', handleResize);
-  window.addEventListener('orientationchange', handleResize);
-  window.addEventListener('DOMContentLoaded', handleResize);
-  
-  // Dispositivos móviles necesitan un enfoque especial
-  if ('visualViewport' in window) {
-    window.visualViewport.addEventListener('resize', handleResize);
-    window.visualViewport.addEventListener('scroll', handleResize);
-  }
-}
-
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
@@ -430,8 +417,8 @@ function setupViewportListeners() {
 }
 
 setupViewportListeners();
-updateMainVH();
 updateViewportHeight();
+updateMainVH();
 window.addEventListener("resize", debounce(updateMainVH, 100));
 window.addEventListener('orientationchange', debounce(updateMainVH, 100));
 window.addEventListener('DOMContentLoaded', debounce(updateMainVH, 100));
