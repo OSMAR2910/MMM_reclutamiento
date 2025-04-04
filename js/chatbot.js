@@ -319,35 +319,35 @@ function debounce(func, wait) {
   };
 }
 
-function updateMainVH() {
-  const main = document.querySelector('main');
-  if (!main) return;
+let realVH = null;
 
-  // Creamos un div temporal con height: 100vh real
+function updateMainVHOnce() {
+  if (realVH !== null) return; // Ya está definido
+
   const probe = document.createElement('div');
   probe.style.position = 'fixed';
   probe.style.top = '0';
   probe.style.left = '0';
-  probe.style.width = '0';
   probe.style.height = '100vh';
+  probe.style.width = '0';
+  probe.style.visibility = 'hidden';
   probe.style.pointerEvents = 'none';
-  probe.style.zIndex = '-1';
   document.body.appendChild(probe);
 
-  // Obtenemos su altura real en px
-  const realHeight = probe.getBoundingClientRect().height;
-
-  // Calculamos y asignamos --vh real
-  const vh = realHeight / 100;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-  // Aplicamos al main
-  main.style.height = `calc(var(--vh) * 100)`;
-
-  // Eliminamos el div
+  // Altura visual sin teclado
+  realVH = probe.getBoundingClientRect().height;
   document.body.removeChild(probe);
-}
 
+  const vhUnit = realVH / 100;
+  document.documentElement.style.setProperty('--vh', `${vhUnit}px`);
+
+  const main = document.querySelector('main');
+  if (main) {
+    main.style.height = `calc(var(--vh) * 100)`;
+  }
+
+  console.log('VH fijo sin teclado:', realVH);
+}
 
 // Ajustar posición y altura del chatbot según el teclado
 function adjustChatbotPosition() {
@@ -430,16 +430,10 @@ function setupViewportListeners() {
 
 setupViewportListeners();
 updateViewportHeight();
-window.addEventListener('DOMContentLoaded', updateMainVH);
-window.addEventListener('resize', updateMainVH);
-window.addEventListener('orientationchange', updateMainVH);
+window.addEventListener('DOMContentLoaded', updateMainVHOnce);
+window.addEventListener('load', updateMainVHOnce);
 
-// También por si las barras flotantes cambian (móviles)
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', updateMainVH);
-  window.visualViewport.addEventListener('scroll', updateMainVH);
-}
+// Opcional: puedes forzarlo si lo necesitas más tarde
+setTimeout(updateMainVHOnce, 500);
 
-// Repetimos en scroll por si oculta barra inferior (Android)
-window.addEventListener('scroll', () => setTimeout(updateMainVH, 50));
 
