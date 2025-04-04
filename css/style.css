@@ -5291,12 +5291,12 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main,
   html main {
-    height: var(--main-vh);
+    height: calc(var(--main-vh) - env(safe-area-inset-bottom));
   }
   body main .pages,
   html main .pages {
     width: 100%;
-    height: var(--main-vh);
+    height: calc(var(--main-vh) - env(safe-area-inset-bottom));
   }
   body main #home .mancha1,
   html main #home .mancha1 {

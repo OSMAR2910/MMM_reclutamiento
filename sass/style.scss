@@ -3977,7 +3977,7 @@ html {
       }
     }
 
-    header {
+    header { 
       width: 65vw;
       height: 20vw;
 
@@ -3992,10 +3992,10 @@ html {
     }
 
     main {
-      height: var(--main-vh);
+      height: calc(var(--main-vh) - env(safe-area-inset-bottom));
       .pages {
         width: 100%;
-        height: var(--main-vh);
+        height: calc(var(--main-vh) - env(safe-area-inset-bottom));
       }
       #home {
         .mancha1 {
