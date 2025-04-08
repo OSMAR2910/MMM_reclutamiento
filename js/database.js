@@ -1217,7 +1217,7 @@ function mostrarMensajesUsuarios() {
 // Función para mostrar sucursales disponibles en data_sucu_user con checkboxes
 function mostrarSucursalesDisponibles() {
   const dataSucuUser = document.getElementById("data_sucu_user");
-  const filterInput = document.getElementById("sucu_filter"); // Referencia al input de filtro
+  const filterInput = document.getElementById("sucu_filter");
 
   if (!dataSucuUser) {
     console.error("Elemento 'data_sucu_user' no encontrado en el DOM.");
@@ -1233,13 +1233,16 @@ function mostrarSucursalesDisponibles() {
 
   const disSucuRef = ref(database, "disSucu");
 
+  // Variable para almacenar los datos más recientes de Firebase
+  let sucursalesData = null;
+
   // Función para renderizar las sucursales con filtro
   function renderizarSucursales(sucursales, filtro = "") {
     dataSucuUser.innerHTML = "";
 
     if (!sucursales) {
       dataSucuUser.innerHTML =
-        "<div class='no_data'>No hay sucursales disponibles</div>";
+        "<div class='no_data'></div>";
       return;
     }
 
@@ -1268,6 +1271,7 @@ function mostrarSucursalesDisponibles() {
         label.htmlFor = checkboxId;
         label.classList.add("sucursal_label");
 
+        // Evento para actualizar el estado en Firebase
         checkbox.addEventListener("change", () => {
           const nuevoEstado = checkbox.checked;
           const sucursalRef = ref(database, `disSucu/${nombre}`);
@@ -1299,22 +1303,28 @@ function mostrarSucursalesDisponibles() {
     dataSucuUser.appendChild(fragment);
   }
 
-  // Cargar datos iniciales y agregar el filtro en tiempo real
-  get(disSucuRef)
-    .then((snapshot) => {
-      const sucursales = snapshot.val();
-      renderizarSucursales(sucursales); // Renderizado inicial
-
-      // Escuchar cambios en el input de filtro
-      filterInput.addEventListener("input", (e) => {
-        renderizarSucursales(sucursales, e.target.value);
-      });
-    })
-    .catch((error) => {
+  // Escuchar cambios en tiempo real desde Firebase
+  onValue(
+    disSucuRef,
+    (snapshot) => {
+      sucursalesData = snapshot.val();
+      const currentFilter = filterInput.value.trim();
+      renderizarSucursales(sucursalesData, currentFilter); // Renderizar con el filtro actual
+    },
+    (error) => {
       console.error("Error al leer de Firebase:", error);
       dataSucuUser.innerHTML =
         "<div class='error'>Error al cargar sucursales</div>";
-    });
+    }
+  );
+
+  // Actualizar el filtro en tiempo real
+  filterInput.addEventListener("input", (e) => {
+    const filtro = e.target.value.trim();
+    if (sucursalesData) {
+      renderizarSucursales(sucursalesData, filtro); // Renderizar con los datos actuales y el nuevo filtro
+    }
+  });
 }
 
 // Función para cargar y personalizar sucursales disponibles desde Firebase
