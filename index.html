@@ -8,11 +8,9 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="manifest" href="/manifest.json">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport"7670-- content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#ec6223">
   <meta name="msapplication-navbutton-color" content="#ec6223" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="#ec6223">
   <!--Descargar pdf-->
@@ -725,7 +723,7 @@
           <label id="label_status1" for="status1"></label>
           <div class="status_info">
             <div class="box_status box_status1">
-              <p>No asistio</p>
+              <input type="text" id="filtro-no-asistieron" class="filtro-vacantes" placeholder="Buscar no asistieron..." />
             </div>
             <div class="data_status" id="data_no_asistieron"></div>
           </div>
@@ -735,7 +733,7 @@
           <label id="label_status2" for="status2"></label>
           <div class="status_info">
             <div class="box_status box_status2">
-              <p>Asistio</p>
+              <input type="text" id="filtro-asistieron" class="filtro-vacantes" placeholder="Buscar asistieron..." />
             </div>
             <div class="data_status" id="data_asistieron"></div>
           </div>
@@ -745,7 +743,7 @@
           <label id="label_status3" for="status3"></label>
           <div class="status_info">
             <div class="box_status box_status3">
-              <p>Contratado</p>
+              <input type="text" id="filtro-contratado" class="filtro-vacantes" placeholder="Buscar contratados..." />
             </div>
             <div class="data_status" id="data_contratado"></div>
           </div>
@@ -753,15 +751,21 @@
       </div>
       <div class="admin_cont">
         <div class="cont_rechazados">
-          <div class="box_red"></div>
+          <div class="box_red">
+            <input type="text" id="filtro-red" class="filtro-vacantes" placeholder="Buscar rechazados..." />
+          </div>
           <div class="const_data" id="data_red"></div>
         </div>
         <div class="cont_citas">
-          <div class="box_gray"></div>
+          <div class="box_gray">
+            <input type="text" id="filtro-citas" class="filtro-vacantes" placeholder="Buscar citas..." />
+          </div>
           <div class="const_data" id="data_citas"></div>
         </div>
         <div class="cont_aceptados">
-          <div class="box_green"></div>
+          <div class="box_green">
+            <input type="text" id="filtro-green" class="filtro-vacantes" placeholder="Buscar aceptados..." />
+          </div>
           <div class="const_data" id="data_green"></div>
         </div>
       </div>

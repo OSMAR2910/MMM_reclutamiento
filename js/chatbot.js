@@ -3,17 +3,14 @@ import { app, database, ref, push, set } from "./firebase.js";
 import { isStandalone } from "./main.js";
 
 let intents = [];
-let isWelcomeMessageSent = false;
 let messageBuffer = [];
-let userName = localStorage.getItem("userName") || "Humano"; // Valor por defecto "Humano"
+let userName = localStorage.getItem("userName") || "Humano";
 let userIdName = localStorage.getItem("userIdName");
 
-// Generar un ID aleatorio simple
 function generateRandomId() {
   return Math.random().toString(36).substring(2, 8);
 }
 
-// Cargar intents desde Netlify
 async function loadIntents() {
   try {
     const response = await fetch("https://mmm-rh.netlify.app/json/intents.json", {
@@ -33,12 +30,10 @@ async function loadIntents() {
   }
 }
 
-// Normalizar texto
 function normalizeText(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-// Obtener la mejor intención
 function getBestIntent(message) {
   message = normalizeText(message);
   let bestMatch = null;
@@ -60,7 +55,6 @@ function getBestIntent(message) {
   return bestScore > 0 ? bestMatch : null;
 }
 
-// Obtener la respuesta
 function getResponse(message) {
   if (!intents.length) {
     console.error("⚠️ Intents no están cargados.");
@@ -70,7 +64,6 @@ function getResponse(message) {
   const bestIntent = getBestIntent(message);
   if (bestIntent) {
     let response = bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
-    // Reemplazar ${userName} con el valor actual de userName
     return response.replace("${userName}", userName);
   } else {
     console.log("🚫 No encontré una respuesta adecuada para:", message);
@@ -79,7 +72,6 @@ function getResponse(message) {
   }
 }
 
-// Guardar mensajes en Firebase cada 10 mensajes
 async function saveMessagesToFirebase() {
   if (!userIdName || messageBuffer.length === 0) {
     console.log("🚫 No se guardan mensajes: userIdName o buffer vacío", { userIdName, bufferLength: messageBuffer.length });
@@ -96,7 +88,6 @@ async function saveMessagesToFirebase() {
   }
 }
 
-// Enviar mensajes al chat
 function sendMessage(sender, message, isBot = false) {
   const chatBox = document.getElementById("chat_box");
   const messageElement = document.createElement("div");
@@ -120,16 +111,14 @@ function sendMessage(sender, message, isBot = false) {
   scrollToBottom();
 }
 
-// Actualizar el nombre con ID en el chat
 function updateUserIdDisplay() {
   const userIdElement = document.getElementById("user_id_display");
   if (userIdElement) {
-    userIdElement.innerHTML = ""; // Limpiar el contenedor
+    userIdElement.innerHTML = "";
     userIdElement.textContent = userIdName ? `${userIdName}` : "Usuario no identificado";
   }
 }
 
-// Función para guardar mensajes sin respuesta de chatbot
 async function saveUnansweredMessage(message) {
   try {
     const messagesRef = ref(database, "mensajes_error");
@@ -144,7 +133,6 @@ async function saveUnansweredMessage(message) {
   }
 }
 
-// Mostrar indicador de escritura
 function showTypingIndicator() {
   const chatBox = document.getElementById("chat_box");
   const typingIndicator = document.createElement("p");
@@ -155,15 +143,13 @@ function showTypingIndicator() {
   return typingIndicator;
 }
 
-// Enviar mensaje de bienvenida
 function sendWelcomeMessage() {
-  if (isWelcomeMessageSent || !userIdName) return;
-  isWelcomeMessageSent = true;
+  if (!userIdName) return;
 
   const saludosIntent = intents.find(intent => intent.tag === "Saludos");
   if (saludosIntent && saludosIntent.responses && saludosIntent.responses.length > 0) {
     let randomSaludo = saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)];
-    randomSaludo = randomSaludo.replace("${userName}", userName); // Reemplazar en el mensaje de bienvenida
+    randomSaludo = randomSaludo.replace("${userName}", userName);
     showTypingIndicator();
     setTimeout(() => {
       document.querySelector(".typing")?.remove();
@@ -174,14 +160,12 @@ function sendWelcomeMessage() {
   }
 }
 
-// Obtener respuesta aleatoria para 'tienes_preguntas'
 function getRandomTienesPreguntasResponse() {
   const tienesPreguntasIntent = intents.find(intent => intent.tag === "tienes_preguntas");
   let response = tienesPreguntasIntent?.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)] || "¿En qué puedo ayudarte?";
-  return response.replace("${userName}", userName); // Reemplazar aquí también
+  return response.replace("${userName}", userName);
 }
 
-// Actualizar mensaje en 'pavo_msj'
 function updatePavoMsj() {
   const pavoMsjElement = document.getElementById("pavo_msj");
   if (pavoMsjElement) {
@@ -189,7 +173,6 @@ function updatePavoMsj() {
   }
 }
 
-// Manejar el formulario de nombre y asignar ID
 function handleNameForm() {
   const nameForm = document.getElementById("name_form");
   const userInfoContainer = document.getElementById("user_info_container");
@@ -200,26 +183,23 @@ function handleNameForm() {
     chatForm.style.display = "none";
     nameForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      userName = document.getElementById("user_name").value.trim() || "Humano"; // "Humano" si no hay entrada
-      const randomId = generateRandomId();
-      userIdName = `${randomId}-${userName}`;
+      userName = document.getElementById("user_name").value.trim() || "Humano";
+      userIdName = `${generateRandomId()}-${userName}`;
       localStorage.setItem("userIdName", userIdName);
-      localStorage.setItem("userName", userName); // Guardar el nombre
+      localStorage.setItem("userName", userName);
       userInfoContainer.style.display = "none";
       chatForm.style.display = "flex";
       updateUserIdDisplay();
       sendWelcomeMessage();
+      maximizeChatbot();
     });
   } else {
-    userName = localStorage.getItem("userName") || "Humano"; // Recuperar o usar "Humano"
     userInfoContainer.style.display = "none";
     chatForm.style.display = "flex";
     updateUserIdDisplay();
-    sendWelcomeMessage();
   }
 }
 
-// Scroll al final del chat
 function scrollToBottom() {
   const chatBox = document.getElementById("chat_box");
   setTimeout(() => {
@@ -227,7 +207,95 @@ function scrollToBottom() {
   }, 100);
 }
 
-// Evento DOMContentLoaded
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  const width = window.innerWidth;
+
+  if (width > 500) {
+    chatbot.style.bottom = "20px";
+    chatbot.style.top = "auto";
+  } else {
+    if (chatbot.classList.contains("max_chat")) {
+      chatbot.style.top = "0";
+      chatbot.style.bottom = "auto";
+    } else {
+      chatbot.style.bottom = "10px";
+      chatbot.style.top = "auto";
+    }
+  }
+}
+
+function maximizeChatbot() {
+  const chatbot = document.getElementById("chatbot");
+  const pavo = document.getElementById("pavo_cont");
+  const chatForm = document.getElementById("chat_form");
+  if (!chatbot.classList.contains("max_chat")) {
+    chatbot.classList.add("max_chat");
+    chatForm.style.display = "flex";
+    pavo.style.display = "none";
+    chatbot.classList.remove("chatbot_color");
+    adjustChatbotHeight();
+    adjustChatbotPosition();
+    sendWelcomeMessage();
+  }
+}
+
+function minimizeChatbot() {
+  const chatbot = document.getElementById("chatbot");
+  const pavo = document.getElementById("pavo_cont");
+  const chatForm = document.getElementById("chat_form");
+  if (chatbot.classList.contains("max_chat")) {
+    chatbot.classList.remove("max_chat");
+    chatbot.classList.add("chatbot_color");
+    chatbot.style.height = "auto";
+    chatForm.style.display = "none";
+    pavo.style.display = "flex";
+    adjustChatbotPosition();
+  }
+}
+
+function toggleChatbot() {
+  const chatbot = document.getElementById("chatbot");
+  if (chatbot.classList.contains("max_chat")) {
+    minimizeChatbot();
+  } else {
+    maximizeChatbot();
+  }
+}
+
+function adjustChatbotHeight() {
+  const chatbot = document.getElementById("chatbot");
+  const chatForm = document.getElementById("chat_form");
+  if (!chatbot.classList.contains("max_chat")) return;
+
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const width = window.innerWidth;
+
+  // Usar altura directa de visualViewport en móviles
+  if (width <= 500) {
+    chatbot.style.height = `${viewportHeight}px`; // Altura exacta del área visible
+    document.documentElement.style.setProperty("--keyboard-height", "0px"); // Resetear variable
+    console.log("Mobile Height:", viewportHeight); // Depuración
+  } else {
+    chatbot.style.height = "70vh"; // PC mantiene altura original
+    document.documentElement.style.setProperty("--keyboard-height", "0px");
+    console.log("PC Height:", chatbot.style.height);
+  }
+
+  chatForm.style.display = "flex";
+  chatForm.style.position = "sticky";
+  chatForm.style.bottom = "0";
+  scrollToBottom();
+}
+
+function initializeChatbot() {
+  const chatbot = document.getElementById("chatbot");
+  chatbot.style.opacity = "1";
+  chatbot.style.visibility = "visible";
+  chatbot.classList.remove("max_chat");
+  adjustChatbotPosition();
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
   updatePavoMsj();
@@ -237,6 +305,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (isStandalone() && chatMinButton) {
     chatMinButton.style.display = "none";
   }
+ 
+  initializeChatbot();
+  chatMinButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleChatbot();
+  });
+
+  window.visualViewport?.addEventListener("resize", () => {
+    adjustChatbotHeight();
+    adjustChatbotPosition();
+  });
+  window.addEventListener("resize", () => {
+    adjustChatbotHeight();
+    adjustChatbotPosition();
+  });
 
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
@@ -275,138 +358,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       saveMessagesToFirebase();
     }
   });
-
-  // Minimizar/maximizar chat con ajuste dinámico
-  document.getElementById("chat_min").addEventListener("click", toggleChatbotMaximize);
-
-  // Simulación de doble clic al cargar
-  const chatbot = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-
-  if (chatbot && chatMinButton) {
-    // Ocultar el chatbot durante la simulación
-    chatbot.style.opacity = "0";
-    chatbot.style.visibility = "hidden";
-    pavo.style.opacity = "0";
-    pavo.style.visibility = "hidden";
-
-    // Simular primer clic (maximizar)
-    setTimeout(() => {
-      chatMinButton.click();
-      // Simular segundo clic (minimizar)
-      setTimeout(() => {
-        chatMinButton.click();
-        // Mostrar el chatbot después de la simulación
-        setTimeout(() => {
-          chatbot.style.opacity = "1";
-          chatbot.style.visibility = "visible";
-          chatbot.style.animation = "backInRight 1.5s ease-in-out forwards";
-          pavo.style.opacity = "1";
-          pavo.style.visibility = "visible";
-        }, 100); // Pequeño retraso para asegurar que el ajuste se complete
-      }, 100); // Retraso entre clics
-    }, 100); // Retraso inicial para que el DOM esté listo
-  }
-
-  if (chatbot.classList.contains("max_chat")) {
-    setTimeout(() => {
-      adjustChatbotPosition(); // Forzar ajuste inicial si está maximizado
-    }, 100); // Pequeño retraso para asegurar que el DOM esté listo
-  }
 });
-
-// Debounce para evitar actualizaciones excesivas
-function debounce(func, wait) {
-  let timeout;
-  return function (...args) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
-
-// Ajustar posición y altura del chatbot según el teclado
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  if (!chatbot || !chatbot.classList.contains("max_chat")) return;
-
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const windowWidth = window.innerWidth; // Ancho de la ventana
-  const keyboardHeight = window.innerHeight - viewportHeight;
-
-  // Detectar si es un dispositivo móvil (ancho <= 500px)
-  const isMobile = windowWidth <= 500;
-
-  if (isMobile) {
-    // En móviles, usar 100vh real ajustado por el teclado
-    if (keyboardHeight > 0) {
-      chatbot.style.top = `${keyboardHeight}px`;
-      chatbot.style.height = `${viewportHeight}px`;
-      chatbot.style.bottom = "auto";
-      chatbot.classList.remove("chatbot_color");
-    } else {
-      chatbot.style.top = "0";
-      chatbot.style.height = "var(--real-vh)"; // 100vh real
-      chatbot.style.bottom = "auto";
-      chatbot.classList.remove("chatbot_color");
-    }
-  } else {
-    // En PC (ancho > 500px), usar 70vh
-    chatbot.style.top = "auto";
-    chatbot.style.bottom = "0";
-    chatbot.style.height = "70vh"; // Altura fija para PC
-  }
-  scrollToBottom(); // Mantener el scroll al final
-}
-
-// Alternar maximizar/minimizar con ajuste dinámico
-function toggleChatbotMaximize() {
-  const chatbot = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-
-  if (!chatbot) return;
-
-  if (isStandalone()) {
-    chatbot.style.display = "none";
-    pavo.style.display = "none";
-    return;
-  }
-
-  const isMaximized = chatbot.classList.toggle("max_chat");
-
-  if (isMaximized) {
-    chatbot.style.display = "flex";
-    pavo.style.display = "none";
-    adjustChatbotPosition();
-    sendWelcomeMessage();
-  } else {
-    chatbot.style.position = "fixed";
-    chatbot.style.top = "auto";
-    chatbot.style.bottom = "0";
-    chatbot.style.height = "auto";
-    chatbot.style.width = "";
-    chatbot.style.display = "flex";
-    pavo.style.display = "flex";
-  }
-
-  setTimeout(scrollToBottom, 0);
-}
-
-// Actualizar altura del viewport y ajustar posición
-function updateViewportHeight() {
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  document.documentElement.style.setProperty('--real-vh', `${viewportHeight}px`);
-  setTimeout(adjustChatbotPosition, 100); // Ajustar dinámicamente al cambiar el tamaño
-}
- 
-// Configurar eventos de viewport
-function setupViewportListeners() {
-  const handleViewportChanges = debounce(updateViewportHeight, 100);
-  window.addEventListener("resize", handleViewportChanges);
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", handleViewportChanges);
-    window.visualViewport.addEventListener("scroll", handleViewportChanges);
-  }
-}
-
-setupViewportListeners();
-updateViewportHeight();

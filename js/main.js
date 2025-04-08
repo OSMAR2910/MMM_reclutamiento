@@ -1,9 +1,11 @@
 // Carga
 document.addEventListener("DOMContentLoaded", function () {
   var loader = document.getElementById("loader");
+  var chatbot = document.getElementById("chatbot");
   if (loader) {
     loader.style.visibility = "hidden";
     loader.style.opacity = "0";
+    chatbot.style.animation = "backInRight 1.5s ease-in-out forwards";
   }
 
   // Configuración inicial inmediata
@@ -381,12 +383,12 @@ function btn_admin2() {
 }
 
 function admin_manager() {
-  toggleView({ header: true, login_manager: true, aside: true });
+  toggleView({ header: true, login_manager: true, aside: true, chatbotcolor: true  });
   console.log("Botón Admin Manager clicado");
 }
 
 function btn_aptc() {
-  toggleView({ header: true, ap_tc: true, aside: true });
+  toggleView({ header: true, ap_tc: true, aside: true, chatbotcolor: true  });
   console.log("Botón APTC clicado");
 }
 

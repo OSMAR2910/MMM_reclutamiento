@@ -283,15 +283,26 @@ function mostrarDatos() {
     return;
   }
 
-  const dataGreen = document.getElementById("data_green");
-  const dataRed = document.getElementById("data_red");
-  const dataCitas = document.getElementById("data_citas");
-  const dataCitasManager = document.getElementById("data_citas_manager");
-  const dataCitasnoAsistieron = document.getElementById("data_cita_no_asistieron");
-  const dataCitasAsistieron = document.getElementById("data_cita_asistieron");
-  const dataNosistieron = document.getElementById("data_no_asistieron");
-  const dataAsistieron = document.getElementById("data_asistieron");
-  const dataContratado = document.getElementById("data_contratado");
+  const contenedores = {
+    dataGreen: document.getElementById("data_green"),
+    dataRed: document.getElementById("data_red"),
+    dataCitas: document.getElementById("data_citas"),
+    dataCitasManager: document.getElementById("data_citas_manager"),
+    dataCitasnoAsistieron: document.getElementById("data_cita_no_asistieron"),
+    dataCitasAsistieron: document.getElementById("data_cita_asistieron"),
+    dataNosistieron: document.getElementById("data_no_asistieron"),
+    dataAsistieron: document.getElementById("data_asistieron"),
+    dataContratado: document.getElementById("data_contratado"),
+  };
+
+  const filtros = {
+    filtroGreen: document.getElementById("filtro-green"),
+    filtroRed: document.getElementById("filtro-red"),
+    filtroCitas: document.getElementById("filtro-citas"),
+    filtroNoAsistieron: document.getElementById("filtro-no-asistieron"),
+    filtroAsistieron: document.getElementById("filtro-asistieron"),
+    filtroContratado: document.getElementById("filtro-contratado"),
+  };
 
   const vacantesRef = ref(database, "vacantes/");
   const citasVacantesRef = ref(database, "citas_vacantes/");
@@ -299,108 +310,111 @@ function mostrarDatos() {
   const no_asistieronRef = ref(database, "no_asistieron/");
   const contratadoRef = ref(database, "contratado/");
 
-  onValue(vacantesRef, (snapshot) => {
-    const vacantes = snapshot.val() || {};
-    const currentVacantes = new Map(Object.entries(vacantes));
-
-    // Detectar nuevas vacantes solo para admins o managers
-    if ((isAdmin || isManager) && Notification.permission === 'granted' && 'serviceWorker' in navigator) {
-      currentVacantes.forEach((vacante, key) => {
-        if (!previousVacantes.has(key)) {
-          navigator.serviceWorker.ready.then(registration => {
-            registration.active.postMessage({
-              type: 'SHOW_NOTIFICATION',
-              title: 'Nueva Vacante Registrada',
-              body: `Se ha registrado una nueva vacante: ${vacante.nombre} para ${vacante.puesto}`,
-              url: '/#admin'
-            });
-            console.log(`Notificación enviada para ${vacante.nombre}`);
-          }).catch(err => {
-            console.error('Error al enviar notificación:', err);
-          });
-        }
+  // Función para manejar el filtrado
+  function agregarFiltro(input, callbackRender) {
+    if (input) {
+      input.addEventListener("input", (e) => {
+        const filtro = e.target.value.trim().toLowerCase();
+        callbackRender(filtro);
       });
     }
+  }
 
-    previousVacantes = new Map(currentVacantes);
-    renderizarVacantes(snapshot, dataGreen, dataRed);
+  // Vacantes (green y red) - Con filtro
+  onValue(vacantesRef, (snapshot) => {
+    const renderGreenRed = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataGreen, contenedores.dataRed, false, filtro);
+    renderGreenRed();
+    agregarFiltro(filtros.filtroGreen, renderGreenRed);
+    agregarFiltro(filtros.filtroRed, renderGreenRed);
   });
 
-  // Mostrar vacantes en "Vacantes_citas_manager"
+  // Citas (admin) - Con filtro
   onValue(citasVacantesRef, (snapshot) => {
-      renderizarVacantes(snapshot, dataCitas, null, true);
-    });
+    const renderCitas = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataCitas, null, true, filtro);
+    renderCitas();
+    agregarFiltro(filtros.filtroCitas, renderCitas);
+  });
 
-  // Mostrar vacantes en "Vacantes_citas_manager"
+  // Citas Manager - Sin filtro
   onValue(citasVacantesRef, (snapshot) => {
-    renderizarVacantes(snapshot, dataCitasManager, null, true);
+    renderizarVacantes(snapshot, contenedores.dataCitasManager, null, true, "");
   });
 
-  // Mostrar vacantes en "Asistieron"
+  // Asistieron (admin) - Con filtro
   onValue(asistieronRef, (snapshot) => {
-    renderizarVacantes(snapshot, dataAsistieron, null, true);
+    const renderAsistieron = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataAsistieron, null, true, filtro);
+    renderAsistieron();
+    agregarFiltro(filtros.filtroAsistieron, renderAsistieron);
   });
 
-  // Mostrar vacantes en "Manager_Asistieron"
+  // Asistieron Manager - Sin filtro
   onValue(asistieronRef, (snapshot) => {
-    renderizarVacantes(snapshot, dataCitasAsistieron, null, true);
+    renderizarVacantes(snapshot, contenedores.dataCitasAsistieron, null, true, "");
   });
 
-  // Mostrar vacantes en "Nosistieron"
+  // No asistieron (admin) - Con filtro
   onValue(no_asistieronRef, (snapshot) => {
-    renderizarVacantes(snapshot, dataCitasnoAsistieron, null, true);
+    const renderNoAsistieron = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataNosistieron, null, true, filtro);
+    renderNoAsistieron();
+    agregarFiltro(filtros.filtroNoAsistieron, renderNoAsistieron);
   });
 
-  // Mostrar vacantes en "Manager_Nosistieron"
+  // No asistieron Manager - Sin filtro
   onValue(no_asistieronRef, (snapshot) => {
-    renderizarVacantes(snapshot, dataNosistieron, null, true);
+    renderizarVacantes(snapshot, contenedores.dataCitasnoAsistieron, null, true, "");
   });
 
-  // Mostrar vacantes en "Contratado"
+  // Contratados (admin) - Con filtro
   onValue(contratadoRef, (snapshot) => {
-    renderizarVacantes(snapshot, dataContratado, null, true);
+    const renderContratado = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataContratado, null, true, filtro);
+    renderContratado();
+    agregarFiltro(filtros.filtroContratado, renderContratado);
   });
 
-  function renderizarVacantes(snapshot, containerGreen, containerRed, esAsistieron = false) {
+  // El resto de renderizarVacantes permanece igual
+  function renderizarVacantes(snapshot, containerGreen, containerRed, esAsistieron = false, filtro = "") {
     const fragmentGreen = document.createDocumentFragment();
     const fragmentRed = document.createDocumentFragment();
-    const sucursalActual = localStorage.getItem("sucursal"); // Cambiado a localStorage
+    const sucursalActual = localStorage.getItem("sucursal");
     const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
-  
-    console.log("Sucursal actual:", sucursalActual); // Depuración
-    console.log("Es manager:", isManagerLoggedIn); // Depuración
-    console.log("Contenedor:", containerGreen.id); // Depuración
-  
+
     containerGreen.innerHTML = "";
     if (containerRed) containerRed.innerHTML = "";
-  
+
     let vacantesActuales = new Set();
-  
+
     if (snapshot.exists()) {
       const ulGreen = document.createElement("ul");
       const ulRed = document.createElement("ul");
-  
+
       snapshot.forEach((childSnapshot) => {
         const uniqueKey = childSnapshot.key;
         const data = childSnapshot.val() || {};
-        const nombre = data.nombre; 
+        const nombre = data.nombre || "";
         data.aptoStatus = data.aptoStatus || "Pendiente";
-  
-        // Filtrar por sucursal solo si es manager y es un contenedor de citas
+
+        // Aplicar filtro solo si se proporciona
+        if (filtro) {
+          const textoVacante = JSON.stringify(data).toLowerCase();
+          if (!textoVacante.includes(filtro)) {
+            return; // Saltar si no coincide con el filtro
+          }
+        }
+
+        // Filtrar por sucursal para managers
         const esContenedorCitas = [
           "data_citas",
           "data_citas_manager",
           "data_cita_no_asistieron",
           "data_cita_asistieron",
         ].includes(containerGreen.id);
-  
+
         if (isManagerLoggedIn && esContenedorCitas && sucursalActual && data.sucursal_cita !== sucursalActual) {
-          console.log(`Omitiendo ${nombre} - Sucursal cita: ${data.sucursal_cita} no coincide con ${sucursalActual}`);
-          return; // Saltar si la sucursal no coincide
+          return;
         }
-  
+
         vacantesActuales.add(nombre);
-  
+
         const listItem = document.createElement("button");
         let claseItem = "vacante_item";
         if (containerGreen.id === "data_citas") claseItem += "_citas";
@@ -411,11 +425,11 @@ function mostrarDatos() {
         else if (containerGreen.id === "data_no_asistieron") claseItem += "_noasistieron";
         else if (containerGreen.id === "data_contratado") claseItem += "_contratado";
         else claseItem += esAsistieron ? "_status" : (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No") ? "_green" : "_red";
-  
+
         listItem.classList.add(claseItem);
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("vacante_info");
-  
+
         const campos = (containerGreen.id === "data_citas" || containerGreen.id === "data_citas_manager" || containerGreen.id === "data_cita_no_asistieron" || containerGreen.id === "data_cita_asistieron") ?
           [
             { label: "Nombre", value: nombre, isName: true },
@@ -448,24 +462,23 @@ function mostrarDatos() {
             { label: "Problema/T", value: data.problema_t || "No disponible" },
             { label: "Estatus", value: data.aptoStatus, isApto: true }
           ];
-  
+
         campos.forEach((campo) => {
           const span = document.createElement("span");
           if (campo.isName) span.classList.add("dbname");
           span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
           infoContainer.appendChild(span);
         });
-  
+
         const btnContainer2 = document.createElement("div");
         btnContainer2.classList.add("btn_container2");
         const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () => descargarPDF(uniqueKey, data));
         const btnAgendarCita = crearBoton("", "btn-agendar-cita", () => abrirModalCita(uniqueKey, data));
         btnContainer2.append(btnDescargarPDF, btnAgendarCita);
-  
+
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-container");
-  
-        // Add apto select/status
+
         if (containerGreen.id === "data_citas_manager" || containerGreen.id === "data_cita_no_asistieron" || containerGreen.id === "data_cita_asistieron") {
           const aptoSelect = document.createElement("select");
           aptoSelect.classList.add("apto-select");
@@ -485,8 +498,8 @@ function mostrarDatos() {
           aptoSelect.addEventListener("change", () => updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id));
           btnContainer.appendChild(aptoSelect);
           personalizarSelect(aptoSelect);
-        } 
-  
+        }
+
         const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () => moverVacante(uniqueKey, data, "no_asistieron"));
         const btnAsistieron = crearBoton("", "btn-asistieron", () => moverVacante(uniqueKey, data, "asistieron"));
         const btnContratado = crearBoton("", "btn-contratado", () => moverVacante(uniqueKey, data, "contratado"));
@@ -497,19 +510,19 @@ function mostrarDatos() {
           if (containerGreen.id === "data_contratado") base = "contratado";
           eliminarVacante(uniqueKey, base);
         });
-  
+
         btnContainer.append(btnNoAsistieron, btnAsistieron, btnContratado, btnEliminar);
-  
+
         listItem.appendChild(btnContainer2);
         listItem.appendChild(infoContainer);
         listItem.appendChild(btnContainer);
-  
+
         if (esAsistieron) ulGreen.appendChild(listItem);
-        else (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No") 
-          ? ulGreen.appendChild(listItem) 
+        else (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No")
+          ? ulGreen.appendChild(listItem)
           : ulRed.appendChild(listItem);
       });
-  
+
       fragmentGreen.appendChild(ulGreen);
       if (containerRed) fragmentRed.appendChild(ulRed);
       containerGreen.appendChild(fragmentGreen);
@@ -518,7 +531,7 @@ function mostrarDatos() {
       containerGreen.innerHTML = "<div class='no_data'></div>";
       if (containerRed) containerRed.innerHTML = "<div class='no_data'></div>";
     }
-  
+
     vacantesPrevias = vacantesActuales;
   }
   function updateAptoStatus(uniqueKey, nuevoEstado, containerId) {
@@ -726,7 +739,7 @@ function mostrarDatos() {
     };
   }
   function enviarMensajeWhatsApp(numero, nombre, fecha, hora, sucursal) {
-    const mensaje = `Hola, ${nombre}. Tu cita ha sido agendada para el ${fecha} a las ${hora} en la sucursal ${sucursal}.`;
+    const mensaje = `Hola, ${nombre}. Tu cita para la entrevista a sido agendada para el dia ${fecha} a las ${hora} en la sucursal ${sucursal}, recuerda asistir con tus papeles en regla.`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   }
@@ -1192,6 +1205,23 @@ function regresarAlLogin(tipo) {
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
 }
 
+// Variable global para almacenar las sucursales
+let sucursalesData = null;
+
+// Función para cargar el JSON
+async function cargarSucursalesJSON() {
+  try {
+    const response = await fetch('../json/sucursales.json'); // Ajusta la ruta según tu estructura
+    if (!response.ok) {
+      throw new Error('No se pudo cargar el archivo sucursales.json');
+    }
+    sucursalesData = await response.json();
+    console.log('Sucursales cargadas desde JSON:', sucursalesData);
+  } catch (error) {
+    console.error('Error al cargar sucursales.json:', error);
+  }
+}
+
 // Modificación de iniciarSesion
 const iniciarSesion = (tipo) => {
   const isManager = tipo === "manager";
@@ -1245,15 +1275,17 @@ const iniciarSesion = (tipo) => {
       const user = userCredential.user;
       console.log("Inicio de sesión exitoso:", user.email);
 
+      // Asegurarse de que sucursalesData esté cargado
+      if (!sucursalesData) {
+        console.error("Datos de sucursales no cargados aún");
+        mostrarError(errorall, "Error interno: Sucursales no cargadas");
+        return;
+      }
+
       // Configurar almacenamiento local según el tipo de usuario
       if (isManager) {
         localStorage.removeItem("isAdminLoggedIn");
-        const sucursalesValidas = [
-          "playas", "altamira", "libertad", "sierra", "cacho", "hipodromo",
-          "santafe", "villafontana", "huertas", "monarca", "otay", "rosarito",
-          "florido", "tecate", "sanysidro"
-        ];
-        if (!sucursalesValidas.includes(userInput)) {
+        if (!sucursalesData.sucursalesValidas.includes(userInput)) {
           console.log(`Usuario ${userInput} no válido para manager`);
           localStorage.removeItem("sucursal");
           mostrarError(erroru, "Usuario no válido para manager");
@@ -1261,22 +1293,17 @@ const iniciarSesion = (tipo) => {
         }
         localStorage.setItem("sucursal", userInput);
         localStorage.setItem("isManagerLoggedIn", "true");
-        localStorage.setItem("redirectAfterLogin", "manager"); // Guardar intención de redirección
+        localStorage.setItem("redirectAfterLogin", "manager");
       } else {
         localStorage.removeItem("isManagerLoggedIn");
         localStorage.removeItem("sucursal");
-        const sucursalesInvalidas = [
-          "playas", "altamira", "libertad", "sierra", "cacho", "hipodromo",
-          "santafe", "villafontana", "huertas", "monarca", "otay", "rosarito",
-          "florido", "tecate", "sanysidro"
-        ];
-        if (sucursalesInvalidas.includes(userInput)) {
+        if (sucursalesData.sucursalesInvalidas.includes(userInput)) {
           console.log(`Usuario ${userInput} no válido para admin`);
           mostrarError(erroru, "Usuario no válido para admin");
           return;
         }
         localStorage.setItem("isAdminLoggedIn", "true");
-        localStorage.setItem("redirectAfterLogin", "admin"); // Guardar intención de redirección
+        localStorage.setItem("redirectAfterLogin", "admin");
       }
 
       // Mostrar animación y recargar la página
@@ -1348,6 +1375,7 @@ function mostrarBotonEntrar(tipo) {
         entrarBtn.style.opacity = "1";
         entrarBtn.addEventListener("click", () => {
           console.log(`Botón Entrar clicado para ${tipo}`);
+
           // Redirigir sin recargar la página
           toggleView({
             home: false,
@@ -1363,6 +1391,9 @@ function mostrarBotonEntrar(tipo) {
           if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
           if (elements.chatbot) elements.chatbot.style.display = "none";
 
+          mostrarAlerta("alertas"); 
+          mostrarAlerta(isManager ? "alerta_14" : "alerta_4");
+
           if (isManager) {
             const sucursalActivaElement = document.getElementById("sucursal_activa");
             const sucursalGuardada = localStorage.getItem("sucursal");
@@ -1371,7 +1402,7 @@ function mostrarBotonEntrar(tipo) {
               sucursalActivaElement.textContent = sucursalFormateada;
             }
           }
-
+          
           mostrarDatos();
           mostrarMensajesUsuarios();
         });
@@ -1434,6 +1465,7 @@ document.addEventListener("DOMContentLoaded", () => {
   asignarEventos("admin");
   asignarEventos("manager");
   cargarSucursalesDisponibles();
+  cargarSucursalesJSON();
 
   // Llamar a mostrarBotonEntrar para ambos tipos al cargar la página
   mostrarBotonEntrar("admin");

@@ -13,8 +13,9 @@
 .chatbot {
   position: fixed;
   bottom: 0;
-  right: 0;
-  margin: 2%;
+  right: 0; 
+  margin-right: 2%;
+  margin-bottom: 1.2%;
   display: flex;
   z-index: 9999;
   width: 4vw;
@@ -27,8 +28,7 @@
   gap: 0;
   background-color: $Principal;
   box-shadow: 0 0 10px 5px $Principal;
-  opacity: 0;
-  visibility: hidden;
+  overflow: hidden;
   .chat_header {
     @include cover;
     justify-content: center;
@@ -93,6 +93,7 @@
   position: fixed;
   width: 20vw;
   height: 70vh;
+  max-height: 700px;
   bottom: 0;
   right: 0;
   margin: 2%;
@@ -106,10 +107,9 @@
   overflow-y: scroll;
   behavior: smooth;
   background-color: $Blanco;
-  border: 2px solid $Box_admin;
-  box-shadow: 0px 0px 15px 2px $Box_admin;
-  opacity: 0;
-  visibility: hidden;
+  box-shadow: 0px 0px 15px 2px $Blanco;
+  opacity: 1;
+  visibility: visible;
   .chat_header {
     width: 90%;
     height: 10%;
@@ -212,6 +212,7 @@
   .chat_box {
     width: 95%;
     height: 75%;
+    flex-grow: 1;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
@@ -295,6 +296,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
     form {
       @include cover;
       border: 0;
@@ -448,6 +450,8 @@
     display: none;
     justify-content: center;
     align-items: center;
+    position: sticky;
+    margin-bottom: 0;
     .chat_input {
       width: 80%;
       height: 90%;
@@ -492,8 +496,6 @@
   right: 19vw;
   bottom: 0;
   z-index: 9998;
-  opacity: 0;
-  visibility: hidden;
   .pavo_msj {
     width: 10vw;
     height: 1.5vh;
@@ -532,10 +534,11 @@
   }
   .max_chat {
     width: 100vw;
-    height: var(--real-vh);
+    height: 100%;
+    max-height: 100%;
     margin: 0;
     border-radius: 0;
-    position: absolute;
+    position: absolute; 
     top: 0;
     bottom: auto;
     .chat_header {
