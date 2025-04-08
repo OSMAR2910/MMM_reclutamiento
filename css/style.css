@@ -2741,7 +2741,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   overflow-y: hidden;
   align-items: center;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
@@ -3090,7 +3090,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red {
   outline: none;
   overflow: hidden;
   gap: 5%;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 {
@@ -3332,7 +3332,7 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas {
   outline: none;
   overflow: hidden;
   gap: 5%;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 {
@@ -3512,7 +3512,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green {
   border: none;
   cursor: pointer;
   outline: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   overflow: hidden;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2,
@@ -4658,7 +4658,6 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info {
   font-size: 0.7vw;
   padding: 0.5vw;
   background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
   gap: 1.5vh;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status,
@@ -4731,6 +4730,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   border: none;
   overflow-y: hidden;
   align-items: center;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2,
@@ -5073,6 +5073,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   cursor: pointer;
   outline: none;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
   gap: 5%;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2,
@@ -5235,7 +5236,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus {
-  height: 15vh;
+  height: 20vh;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .vacante_info,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .vacante_info {
@@ -6134,7 +6135,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio {
-    border-radius: 10vw;
+    border-radius: 3vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2,
@@ -6195,7 +6196,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus {
-    height: 15vh;
+    height: 20vh;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .btn-container,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .btn-container,
@@ -6215,13 +6216,13 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .vacante_info span,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .vacante_info span,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .vacante_info span {
-    font-size: 2vw;
+    font-size: 3vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .vacante_info span strong,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .vacante_info span strong,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .vacante_info span strong,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .vacante_info span strong {
-    font-size: 2.5vw;
+    font-size: 3.5vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .btn_container2,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .btn_container2,
@@ -6270,8 +6271,8 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info {
-    width: 67%;
-    grid-template-columns: repeat(3, 1fr);
+    width: 62%;
+    grid-template-columns: repeat(2, 1fr);
   }
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span {
@@ -6283,13 +6284,14 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container {
-    width: 30%;
+    width: 35%;
   }
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button,
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select {
     width: 8vw;
+    height: 8vw;
     font-size: 4vw;
   }
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button .select-items,

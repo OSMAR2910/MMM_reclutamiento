@@ -1580,7 +1580,7 @@ html {
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
-                  transition: all 0.2s ease-in-out;
+                  transition: all 0.3s ease-in-out;
 
                   .btn_container2 {
                     width: 4%;
@@ -1838,7 +1838,7 @@ html {
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
-                transition: all 0.2s ease-in-out;
+                transition: all 0.3s ease-in-out;
 
                 .btn_container2 {
                   width: 5%;
@@ -2071,7 +2071,7 @@ html {
                 outline: none;
                 overflow: hidden;
                 gap: 5%;
-                transition: all 0.2s ease-in-out;
+                transition: all 0.3s ease-in-out;
 
                 .btn_container2 {
                   width: 5%;
@@ -2244,7 +2244,7 @@ html {
                 border: none;
                 cursor: pointer;
                 outline: none;
-                transition: all 0.2s ease-in-out;
+                transition: all 0.3s ease-in-out;
                 overflow: hidden;
 
                 .btn_container2 {
@@ -3349,7 +3349,6 @@ html {
             font-size: 0.7vw;
             padding: 0.5vw;
             background-color: $Box_admin;
-            box-shadow: 0px 0px 10px 0px $Box_admin;
             gap: 1.5vh;
 
             .box_status {
@@ -3418,6 +3417,7 @@ html {
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
+                  transition: all 0.3s ease-in-out;
 
                   .btn_container2 {
                     width: 3%;
@@ -3690,6 +3690,7 @@ html {
                 cursor: pointer;
                 outline: none;
                 overflow: hidden;
+                transition: all 0.3s ease-in-out;
                 gap: 5%;
 
                 .btn_container2 {
@@ -3837,7 +3838,7 @@ html {
                 }
 
                 &:focus {
-                  height: 15vh;
+                  height: 20vh;
 
                   .vacante_info {
                     width: 77%;
@@ -4773,7 +4774,7 @@ html {
                 ul {
                   .vacante_item_citasManagerNoasistio,
                   .vacante_item_citasManagerAsistio {
-                    border-radius: 10vw;
+                    border-radius: 3vw;
 
                     .btn_container2 {
                       width: 3%;
@@ -4810,7 +4811,7 @@ html {
                     }
 
                     &:focus {
-                      height: 15vh;
+                      height: 20vh;
 
                       .btn-container {
                         display: none;
@@ -4822,10 +4823,10 @@ html {
                         grid-template-columns: repeat(3, 1fr);
 
                         span {
-                          font-size: 2vw;
+                          font-size: 3vw;
 
                           strong {
-                            font-size: 2.5vw;
+                            font-size: 3.5vw;
                           }
                         }
                       }
@@ -4877,8 +4878,8 @@ html {
                   }
 
                   .vacante_info {
-                    width: 67%;
-                    grid-template-columns: repeat(3, 1fr);
+                    width: 62%;
+                    grid-template-columns: repeat(2, 1fr);
 
                     span {
                       font-size: 3vw;
@@ -4890,11 +4891,12 @@ html {
                   }
 
                   .btn-container {
-                    width: 30%;
+                    width: 35%;
 
                     button,
                     .custom-select {
                       width: 8vw;
+                      height: 8vw;
                       font-size: 4vw;
                       
                   .select-items {
