@@ -281,45 +281,46 @@ const alertasConfig = {
   alertapreguntaerror_16: 2000,
   alertapreguntaerror_17: 2000,
   alertapreguntaerror_18: 2000,
-  alertapreguntaerror_19: 2000
+  alertapreguntaerror_19: 2000,
 };
 
 // Función genérica para mostrar y ocultar alertas
-const mostrarAlerta = (alertaId) => {
-  const alerta = document.getElementById(alertaId);
+const alertasCache = new Map();
+
+export const mostrarAlerta = (alertaId, tiempoDefault = 3000) => {
+  let alerta = alertasCache.get(alertaId);
   if (!alerta) {
-    console.error(`No se encontró ninguna alerta con el ID: ${alertaId}`);
-    return;
+    alerta = document.getElementById(alertaId);
+    if (!alerta) {
+      console.error(`No se encontró alerta con ID: ${alertaId}`);
+      return;
+    }
+    alertasCache.set(alertaId, alerta);
   }
 
-  // Ocultar cualquier alerta visible antes de mostrar la nueva
-  const todasLasAlarmas = document.querySelectorAll("[id^='alerta_']");
-  todasLasAlarmas.forEach((alarma) => {
-    alarma.style.display = "none";
-    if (alarma.timeoutId) {
-      clearTimeout(alarma.timeoutId); // Limpiar cualquier timeout previo de esta alerta
-    }
-  });
+  // Cancelar timeout previo
+  if (alerta.timeoutId) clearTimeout(alerta.timeoutId);
 
-  // Mostrar la alerta actual
+  // Ocultar todas las alertas solo si es necesario
+  if (alerta.style.display !== "flex") {
+    document.querySelectorAll("[id^='alerta_']").forEach((a) => {
+      if (a !== alerta && a.style.display !== "none") a.style.display = "none";
+    });
+  }
+
   alerta.style.display = "flex";
+  const tiempo = alertasConfig[alertaId] || tiempoDefault;
 
-  // Obtener el tiempo de visualización configurado o usar 3000ms por defecto
-  const tiempo = alertasConfig[alertaId] || 3000;
-
-  // Asignar un timeout específico para esta alerta
   alerta.timeoutId = setTimeout(() => {
     alerta.style.display = "none";
-    delete alerta.timeoutId; // Limpiar la referencia al timeout
+    delete alerta.timeoutId;
   }, tiempo);
 
-  // Permitir ocultar la alerta al hacer clic
+  // Evento de clic para cerrar
   alerta.onclick = () => {
     alerta.style.display = "none";
-    if (alerta.timeoutId) {
-      clearTimeout(alerta.timeoutId);
-      delete alerta.timeoutId;
-    }
+    clearTimeout(alerta.timeoutId);
+    delete alerta.timeoutId;
   };
 };
 
@@ -332,6 +333,7 @@ export const elements = {
   admin: document.getElementById("pag3"),
   login_manager: document.getElementById("pag4"),
   admin_manager: document.getElementById("pag5"),
+  ap_tc: document.getElementById("ap_tc"),
   aside: document.getElementById("aside"),
   chatbot: document.getElementById("chatbot"),
   pavo_cont: document.getElementById("pavo_cont"),

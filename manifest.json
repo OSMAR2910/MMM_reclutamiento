@@ -1,6 +1,6 @@
 {
     "name": "MMM",
-    "short_name": "MMM-RH",
+    "short_name": "MMM RH",
     "description": "Reclutador automatico de MMM",
     "start_url": "/index.html#pag2",
     "display": "standalone",

@@ -2,7 +2,6 @@
 
 const CACHE_NAME = 'vacantes-app-v1';
 const urlsToCache = [
-  '/',
   '/index.html',
   '/main.js',
   '/database.js',
@@ -12,45 +11,63 @@ const urlsToCache = [
   '/icons/icon-512x512.png'
 ];
 
-// Instalación del Service Worker y almacenamiento en caché
+// Instalación del Service Worker y precarga en caché
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Archivos en caché');
-        return cache.addAll(urlsToCache);
+        return cache.addAll(urlsToCache)
+          .then(() => self.skipWaiting()); // Forzar activación inmediata
+      })
+      .catch(error => {
+        console.error('Error al cachear:', error);
       })
   );
 });
 
-// Activación del Service Worker y limpieza de cachés antiguas
+// Activación y limpieza de cachés antiguas
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
-      );
-    })
+    caches.keys()
+      .then(cacheNames => {
+        return Promise.all(
+          cacheNames
+            .filter(name => name !== CACHE_NAME)
+            .map(name => caches.delete(name))
+        );
+      })
+      .then(() => self.clients.claim()) // Tomar control inmediato
+      .catch(error => console.error('Error al activar:', error))
   );
 });
 
-// Interceptar solicitudes y servir desde el caché
+// Interceptar solicitudes: Usar red primero, caché como respaldo solo si está online
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request);
+    fetch(event.request)
+      .then(networkResponse => {
+        // Si la petición es exitosa, actualizar el caché
+        if (networkResponse && networkResponse.status === 200) {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        }
+        return networkResponse;
       })
       .catch(() => {
-        return caches.match('/index.html');
+        // Si no hay conexión, no usar caché como fallback
+        return new Response('No hay conexión a internet', {
+          status: 503,
+          statusText: 'Service Unavailable'
+        });
       })
   );
 });
 
-// Escuchar mensajes desde el cliente para mostrar notificaciones
+// Manejo de notificaciones
 self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SHOW_NOTIFICATION') {
+  if (event.data?.type === 'SHOW_NOTIFICATION') {
     const { title, body, url } = event.data;
     const options = {
       body: body || 'Se ha registrado una nueva vacante.',
@@ -62,21 +79,25 @@ self.addEventListener('message', event => {
   }
 });
 
-// Manejar clics en las notificaciones
+// Manejo de clics en notificaciones
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   const url = event.notification.data.url || '/';
 
   event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
-      for (let client of windowClients) {
-        if (client.url === url && 'focus' in client) {
-          return client.focus();
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then(windowClients => {
+        const matchingClient = windowClients.find(client => 
+          client.url === url && 'focus' in client
+        );
+        
+        if (matchingClient) {
+          return matchingClient.focus();
         }
-      }
-      if (clients.openWindow) {
-        return clients.openWindow(url);
-      }
-    })
+        if (clients.openWindow) {
+          return clients.openWindow(url);
+        }
+      })
+      .catch(error => console.error('Error al manejar clic:', error))
   );
 });

@@ -11,104 +11,17 @@ import {
   toggleView,
   elements,
   isStandalone,
+  mostrarAlerta
 } from "./main.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
 
-// Mapa de alertas con su ID y tiempo de visualización
-const alertasConfig = {
-  alertas: 2000,
-  alerta_1: 2000,
-  alerta_2: 2000,
-  alerta_3: 2000,
-  alerta_4: 2000,
-  alerta_5: 2000,
-  alerta_6: 2000,
-  alerta_7: 2000,
-  alerta_8: 2000,
-  alerta_9: 2000,
-  alerta_10: 2000,
-  alerta_11: 2000,
-  alerta_12: 2000,
-  alerta_13: 2000,
-  alerta_14: 2000,
-  alerta_15: 2000,
-  alerta_16: 2000,
-  alerta_17: 2000,
-  alerta_18: 2000,
-  alerta_19: 2000,
-  alerta_20: 2000,
-  alerta_21: 2000,
-  alerta_22: 2000,
-  alerta_23: 2000,
-  alerta_24: 2000,
-  alerta_25: 2000,
-  alertapreguntaerror_1: 2000,
-  alertapreguntaerror_2: 2000,
-  alertapreguntaerror_3: 2000,
-  alertapreguntaerror_4: 2000,
-  alertapreguntaerror_5: 2000,
-  alertapreguntaerror_6: 2000,
-  alertapreguntaerror_7: 2000,
-  alertapreguntaerror_8: 2000,
-  alertapreguntaerror_9: 2000,
-  alertapreguntaerror_10: 2000,
-  alertapreguntaerror_11: 2000,
-  alertapreguntaerror_12: 2000,
-  alertapreguntaerror_13: 2000,
-  alertapreguntaerror_14: 2000,
-  alertapreguntaerror_15: 2000,
-  alertapreguntaerror_16: 2000,
-  alertapreguntaerror_17: 2000,
-  alertapreguntaerror_18: 2000,
-  alertapreguntaerror_19: 2000,
-};
-
 let vacantesPrevias = new Set();
 let previousVacantes = new Map();
 let isAdmin = localStorage.getItem("isAdminLoggedIn") === "true";
 let isManager = localStorage.getItem("isManagerLoggedIn") === "true";
-// Variable para almacenar el timeout actual
-let timeoutAlarma;
 
-// Función genérica para mostrar y ocultar alertas
-const mostrarAlerta = (alertaId) => {
-  // Obtener la alerta específica por su ID
-  const alerta = document.getElementById(alertaId);
-  if (!alerta) {
-    console.error(`No se encontró ninguna alerta con el ID: ${alertaId}`);
-    return;
-  }
-
-  // Cancelar el timeout de la alarma anterior (si existe)
-  if (timeoutAlarma) {
-    clearTimeout(timeoutAlarma);
-  }
-
-  // Ocultar cualquier alarma visible
-  const todasLasAlarmas = document.querySelectorAll("[id^='alerta_']");
-  todasLasAlarmas.forEach((alarma) => {
-    alarma.style.display = "none";
-  });
-
-  // Mostrar la alerta actual
-  alerta.style.display = "flex";
-
-  // Obtener el tiempo de visualización configurado o usar 3000ms por defecto
-  const tiempo = alertasConfig[alertaId] || 3000;
-
-  // Programar la ocultación de la alerta después del tiempo especificado
-  timeoutAlarma = setTimeout(() => {
-    alerta.style.display = "none";
-  }, tiempo);
-
-  // Agregar un evento de clic para ocultar la alarma al hacer clic en ella
-  alerta.onclick = () => {
-    alerta.style.display = "none";
-    clearTimeout(timeoutAlarma); // Cancelar el timeout al hacer clic
-  };
-};
 function verificarDisplay(idElemento, alertaSiOculto, alertaSiVisible) {
   const elemento = document.getElementById(idElemento);
 
@@ -466,7 +379,6 @@ function mostrarDatos() {
     agregarFiltro(filtros.filtroContratado, renderContratado);
   });
 
-  // El resto de renderizarVacantes permanece igual
   function renderizarVacantes(
     snapshot,
     containerGreen,
@@ -1099,7 +1011,6 @@ function mostrarDatos() {
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   }
-  // Mostrar sucursales disponibles con checkboxes
   mostrarSucursalesDisponibles();
 }
 
