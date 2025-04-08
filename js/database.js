@@ -5,16 +5,13 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+import { database, ref, set, onValue, remove, app, get } from "./firebase.js";
 import {
-  database,
-  ref,
-  set,
-  onValue,
-  remove,
-  app,
-  get
-} from "./firebase.js";
-import { personalizarSelect, toggleView, elements, isStandalone } from "./main.js";
+  personalizarSelect,
+  toggleView,
+  elements,
+  isStandalone,
+} from "./main.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -47,25 +44,25 @@ const alertasConfig = {
   alerta_23: 2000,
   alerta_24: 2000,
   alerta_25: 2000,
-  alertapreguntaerror_1 : 2000,
-  alertapreguntaerror_2 : 2000,
-  alertapreguntaerror_3 : 2000,
-  alertapreguntaerror_4 : 2000,
-  alertapreguntaerror_5 : 2000,
-  alertapreguntaerror_6 : 2000,
-  alertapreguntaerror_7 : 2000,
-  alertapreguntaerror_8 : 2000,
-  alertapreguntaerror_9 : 2000,
-  alertapreguntaerror_10 : 2000,
-  alertapreguntaerror_11 : 2000,
-  alertapreguntaerror_12 : 2000,
-  alertapreguntaerror_13 : 2000,
-  alertapreguntaerror_14 : 2000,
-  alertapreguntaerror_15 : 2000,
-  alertapreguntaerror_16 : 2000,
-  alertapreguntaerror_17 : 2000,
-  alertapreguntaerror_18 : 2000,
-  alertapreguntaerror_19 : 2000
+  alertapreguntaerror_1: 2000,
+  alertapreguntaerror_2: 2000,
+  alertapreguntaerror_3: 2000,
+  alertapreguntaerror_4: 2000,
+  alertapreguntaerror_5: 2000,
+  alertapreguntaerror_6: 2000,
+  alertapreguntaerror_7: 2000,
+  alertapreguntaerror_8: 2000,
+  alertapreguntaerror_9: 2000,
+  alertapreguntaerror_10: 2000,
+  alertapreguntaerror_11: 2000,
+  alertapreguntaerror_12: 2000,
+  alertapreguntaerror_13: 2000,
+  alertapreguntaerror_14: 2000,
+  alertapreguntaerror_15: 2000,
+  alertapreguntaerror_16: 2000,
+  alertapreguntaerror_17: 2000,
+  alertapreguntaerror_18: 2000,
+  alertapreguntaerror_19: 2000,
 };
 
 let vacantesPrevias = new Set();
@@ -128,7 +125,6 @@ function verificarDisplay(idElemento, alertaSiOculto, alertaSiVisible) {
   }
 }
 
-
 const label_btnEnviar = document.getElementById("label_enviar");
 const formElement = document.getElementById("myForm"); // Asegúrate de que este ID coincida con tu HTML
 
@@ -153,7 +149,9 @@ if (!label_btnEnviar) {
 if (formElement) {
   formElement.addEventListener("submit", (event) => {
     event.preventDefault(); // Evitar que el formulario dispare un submit adicional
-    console.log("Evento submit prevenido, ejecutando enviar_form manualmente...");
+    console.log(
+      "Evento submit prevenido, ejecutando enviar_form manualmente..."
+    );
     enviar_form();
   });
 }
@@ -195,8 +193,25 @@ function enviar_form() {
   const f_n = document.getElementById("f_n").value;
 
   console.log("Valores obtenidos del formulario:", {
-    nombre, puesto, horario, numero, fecha_r, edad, direccion, ciudad, cp, docu,
-    casa_suc, transporte, empleo, sexo, nacion, e_c, sucursal, problema_t, f_n
+    nombre,
+    puesto,
+    horario,
+    numero,
+    fecha_r,
+    edad,
+    direccion,
+    ciudad,
+    cp,
+    docu,
+    casa_suc,
+    transporte,
+    empleo,
+    sexo,
+    nacion,
+    e_c,
+    sucursal,
+    problema_t,
+    f_n,
   });
 
   // Array para acumular errores
@@ -213,10 +228,26 @@ function enviar_form() {
   // Ejecutar todas las validaciones con alertas específicas
   validarCampo(!nombre, "El nombre está vacío", "alertapreguntaerror_1");
   validarCampo(!puesto, "El puesto está vacío", "alertapreguntaerror_2");
-  validarCampo(!numero.match(/^\+?[0-9]{10,15}$/) || !numero, "El número debe tener entre 10 y 15 dígitos, opcionalmente con + al inicio", "alertapreguntaerror_3");
-  validarCampo(!fecha_r.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/) || !fecha_r, "Fecha inválida", "alertapreguntaerror_4");
-  validarCampo(edad < 18 || edad > 100 || isNaN(edad), "Edad debe estar entre 18 y 100", "alertapreguntaerror_5");
-  validarCampo(!cp.match(/^[0-9]{5}$/) || !cp, "Código postal debe tener exactamente 5 dígitos", "alertapreguntaerror_6");
+  validarCampo(
+    !numero.match(/^\+?[0-9]{10,15}$/) || !numero,
+    "El número debe tener entre 10 y 15 dígitos, opcionalmente con + al inicio",
+    "alertapreguntaerror_3"
+  );
+  validarCampo(
+    !fecha_r.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/) || !fecha_r,
+    "Fecha inválida",
+    "alertapreguntaerror_4"
+  );
+  validarCampo(
+    edad < 18 || edad > 100 || isNaN(edad),
+    "Edad debe estar entre 18 y 100",
+    "alertapreguntaerror_5"
+  );
+  validarCampo(
+    !cp.match(/^[0-9]{5}$/) || !cp,
+    "Código postal debe tener exactamente 5 dígitos",
+    "alertapreguntaerror_6"
+  );
   validarCampo(!direccion, "La dirección está vacía", "alertapreguntaerror_7");
   validarCampo(!ciudad, "La ciudad está vacía", "alertapreguntaerror_8");
   validarCampo(!casa_suc, "Casa/Sucursal está vacío", "alertapreguntaerror_9");
@@ -228,7 +259,11 @@ function enviar_form() {
   validarCampo(!sexo, "Sexo está vacío", "alertapreguntaerror_15");
   validarCampo(!nacion, "Nacionalidad está vacía", "alertapreguntaerror_16");
   validarCampo(!problema_t, "Problema/T está vacío", "alertapreguntaerror_17");
-  validarCampo(!f_n, "Fecha de nacimiento está vacía", "alertapreguntaerror_18");
+  validarCampo(
+    !f_n,
+    "Fecha de nacimiento está vacía",
+    "alertapreguntaerror_18"
+  );
   validarCampo(!sucursal, "Sucursal está vacía", "alertapreguntaerror_19");
 
   // Verificar si hay errores
@@ -242,8 +277,25 @@ function enviar_form() {
 
   // Si no hay errores, preparar y enviar los datos
   const formData = {
-    nombre, puesto, numero, fecha_r, edad, direccion, ciudad, cp, e_c, docu,
-    casa_suc, transporte, empleo, horario, sexo, nacion, problema_t, f_n, sucursal
+    nombre,
+    puesto,
+    numero,
+    fecha_r,
+    edad,
+    direccion,
+    ciudad,
+    cp,
+    e_c,
+    docu,
+    casa_suc,
+    transporte,
+    empleo,
+    horario,
+    sexo,
+    nacion,
+    problema_t,
+    f_n,
+    sucursal,
   };
 
   console.log("Datos preparados para enviar a Firebase:", formData);
@@ -252,20 +304,20 @@ function enviar_form() {
   const uniqueKey = `${nombre}_${timestamp}`;
 
   set(ref(database, `vacantes/${uniqueKey}`), formData)
-  .then(() => {
-    console.log(`Formulario enviado exitosamente con clave: ${uniqueKey}`);
-    mostrarAlerta("alertas");
-    mostrarAlerta("alerta_2"); // Éxito
-    document.getElementById("myForm").reset();
-    localStorage.setItem("formVac", "true");
-    isSubmitting = false; // Resetear después de éxito
-  })
-  .catch((error) => {
-    console.error("Error al enviar formulario:", error.message);
-    mostrarAlerta("alertas");
-    mostrarAlerta("alerta_3"); // Error
-    isSubmitting = false; // Resetear después de error
-  });
+    .then(() => {
+      console.log(`Formulario enviado exitosamente con clave: ${uniqueKey}`);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_2"); // Éxito
+      document.getElementById("myForm").reset();
+      localStorage.setItem("formVac", "true");
+      isSubmitting = false; // Resetear después de éxito
+    })
+    .catch((error) => {
+      console.error("Error al enviar formulario:", error.message);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_3"); // Error
+      isSubmitting = false; // Resetear después de error
+    });
 }
 window.enviar_form = enviar_form;
 
@@ -278,8 +330,10 @@ function mostrarDatos() {
   const auth = getAuth(app);
   if (!auth.currentUser) {
     console.log("Usuario no autenticado, no se pueden mostrar datos.");
-    document.getElementById("data_green").innerHTML = "<p>Necesitas iniciar sesión para ver los datos.</p>";
-    document.getElementById("data_red").innerHTML = "<p>Necesitas iniciar sesión para ver los datos.</p>";
+    document.getElementById("data_green").innerHTML =
+      "<p>Necesitas iniciar sesión para ver los datos.</p>";
+    document.getElementById("data_red").innerHTML =
+      "<p>Necesitas iniciar sesión para ver los datos.</p>";
     return;
   }
 
@@ -322,7 +376,14 @@ function mostrarDatos() {
 
   // Vacantes (green y red) - Con filtro
   onValue(vacantesRef, (snapshot) => {
-    const renderGreenRed = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataGreen, contenedores.dataRed, false, filtro);
+    const renderGreenRed = (filtro = "") =>
+      renderizarVacantes(
+        snapshot,
+        contenedores.dataGreen,
+        contenedores.dataRed,
+        false,
+        filtro
+      );
     renderGreenRed();
     agregarFiltro(filtros.filtroGreen, renderGreenRed);
     agregarFiltro(filtros.filtroRed, renderGreenRed);
@@ -330,7 +391,8 @@ function mostrarDatos() {
 
   // Citas (admin) - Con filtro
   onValue(citasVacantesRef, (snapshot) => {
-    const renderCitas = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataCitas, null, true, filtro);
+    const renderCitas = (filtro = "") =>
+      renderizarVacantes(snapshot, contenedores.dataCitas, null, true, filtro);
     renderCitas();
     agregarFiltro(filtros.filtroCitas, renderCitas);
   });
@@ -342,41 +404,81 @@ function mostrarDatos() {
 
   // Asistieron (admin) - Con filtro
   onValue(asistieronRef, (snapshot) => {
-    const renderAsistieron = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataAsistieron, null, true, filtro);
+    const renderAsistieron = (filtro = "") =>
+      renderizarVacantes(
+        snapshot,
+        contenedores.dataAsistieron,
+        null,
+        true,
+        filtro
+      );
     renderAsistieron();
     agregarFiltro(filtros.filtroAsistieron, renderAsistieron);
   });
 
   // Asistieron Manager - Sin filtro
   onValue(asistieronRef, (snapshot) => {
-    renderizarVacantes(snapshot, contenedores.dataCitasAsistieron, null, true, "");
+    renderizarVacantes(
+      snapshot,
+      contenedores.dataCitasAsistieron,
+      null,
+      true,
+      ""
+    );
   });
 
   // No asistieron (admin) - Con filtro
   onValue(no_asistieronRef, (snapshot) => {
-    const renderNoAsistieron = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataNosistieron, null, true, filtro);
+    const renderNoAsistieron = (filtro = "") =>
+      renderizarVacantes(
+        snapshot,
+        contenedores.dataNosistieron,
+        null,
+        true,
+        filtro
+      );
     renderNoAsistieron();
     agregarFiltro(filtros.filtroNoAsistieron, renderNoAsistieron);
   });
 
   // No asistieron Manager - Sin filtro
   onValue(no_asistieronRef, (snapshot) => {
-    renderizarVacantes(snapshot, contenedores.dataCitasnoAsistieron, null, true, "");
+    renderizarVacantes(
+      snapshot,
+      contenedores.dataCitasnoAsistieron,
+      null,
+      true,
+      ""
+    );
   });
 
   // Contratados (admin) - Con filtro
   onValue(contratadoRef, (snapshot) => {
-    const renderContratado = (filtro = "") => renderizarVacantes(snapshot, contenedores.dataContratado, null, true, filtro);
+    const renderContratado = (filtro = "") =>
+      renderizarVacantes(
+        snapshot,
+        contenedores.dataContratado,
+        null,
+        true,
+        filtro
+      );
     renderContratado();
     agregarFiltro(filtros.filtroContratado, renderContratado);
   });
 
   // El resto de renderizarVacantes permanece igual
-  function renderizarVacantes(snapshot, containerGreen, containerRed, esAsistieron = false, filtro = "") {
+  function renderizarVacantes(
+    snapshot,
+    containerGreen,
+    containerRed,
+    esAsistieron = false,
+    filtro = ""
+  ) {
     const fragmentGreen = document.createDocumentFragment();
     const fragmentRed = document.createDocumentFragment();
     const sucursalActual = localStorage.getItem("sucursal");
-    const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
+    const isManagerLoggedIn =
+      localStorage.getItem("isManagerLoggedIn") === "true";
 
     containerGreen.innerHTML = "";
     if (containerRed) containerRed.innerHTML = "";
@@ -393,15 +495,167 @@ function mostrarDatos() {
         const nombre = data.nombre || "";
         data.aptoStatus = data.aptoStatus || "Pendiente";
 
-        // Aplicar filtro solo si se proporciona
+        // Normalizar filtro y analizar si tiene formato "campo:valor"
+        const filtroNormalizado = filtro.trim().toLowerCase();
+        let campoFiltro = null;
+        let valorFiltro = filtroNormalizado;
+
+        if (filtroNormalizado.includes(":")) {
+          [campoFiltro, valorFiltro] = filtroNormalizado.split(":", 2);
+          valorFiltro = valorFiltro.trim();
+        }
+
+        // Función para verificar coincidencia con fechas
+        const coincideFecha = (fechaStr, filtroFecha) => {
+          if (!fechaStr) return false;
+          const fecha = new Date(fechaStr);
+          const [dia, mes, anio] = filtroFecha.split("/").map(Number);
+          const anioCompleto = anio < 100 ? 2000 + anio : anio; // Soporte para "25" -> 2025
+          return (
+            fecha.getDate() === dia &&
+            fecha.getMonth() + 1 === mes &&
+            fecha.getFullYear() === anioCompleto
+          );
+        };
+
+        // Aplicar filtro
+        let coincide = true;
         if (filtro) {
-          const textoVacante = JSON.stringify(data).toLowerCase();
-          if (!textoVacante.includes(filtro)) {
-            return; // Saltar si no coincide con el filtro
+          if (campoFiltro) {
+            switch (campoFiltro) {
+              case "nombre":
+                coincide = nombre.toLowerCase().includes(valorFiltro);
+                break;
+              case "edad":
+                coincide = String(data.edad) === valorFiltro; // Comparación exacta para números
+                break;
+              case "puesto":
+                coincide = (data.puesto || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "horario":
+                coincide = (data.horario || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "numero":
+                coincide = (data.numero || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "fecha": // Para fecha_r o fecha_cita
+                coincide =
+                  coincideFecha(data.fecha_r, valorFiltro) ||
+                  coincideFecha(data.fecha_cita, valorFiltro);
+                break;
+              case "direccion":
+                coincide = (data.direccion || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "ciudad":
+                coincide = (data.ciudad || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "cp":
+                coincide = (data.cp || "").toLowerCase().includes(valorFiltro);
+                break;
+              case "docu":
+                coincide = (data.docu || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "casa_suc":
+                coincide = (data.casa_suc || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "transporte":
+                coincide = (data.transporte || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "empleo":
+                coincide = (data.empleo || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "sexo":
+                coincide = (data.sexo || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "nacion":
+                coincide = (data.nacion || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "e_c": // Estado civil
+                coincide = (data.e_c || "").toLowerCase().includes(valorFiltro);
+                break;
+              case "sucursal":
+                coincide = (data.sucursal || data.sucursal_cita || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "problema_t":
+                coincide = (data.problema_t || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "f_n": // Fecha de nacimiento
+                coincide = coincideFecha(data.f_n, valorFiltro);
+                break;
+              case "estatus": // aptoStatus
+                coincide = (data.aptoStatus || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              default:
+                coincide = JSON.stringify(data)
+                  .toLowerCase()
+                  .includes(filtroNormalizado); // Fallback
+            }
+          } else {
+            // Filtrado general: buscar en todos los campos
+            coincide =
+              nombre.toLowerCase().includes(filtroNormalizado) ||
+              String(data.edad).includes(filtroNormalizado) ||
+              (data.puesto || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.horario || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.numero || "").toLowerCase().includes(filtroNormalizado) ||
+              coincideFecha(data.fecha_r, filtroNormalizado) ||
+              coincideFecha(data.fecha_cita, filtroNormalizado) ||
+              (data.direccion || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              (data.ciudad || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.cp || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.docu || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.casa_suc || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.transporte || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              (data.empleo || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.sexo || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.nacion || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.e_c || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.sucursal || data.sucursal_cita || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              (data.problema_t || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              coincideFecha(data.f_n, filtroNormalizado) ||
+              (data.aptoStatus || "").toLowerCase().includes(filtroNormalizado);
           }
         }
 
-        // Filtrar por sucursal para managers
+        if (!coincide) return; // Saltar si no coincide con el filtro
+
+        // Filtrar por sucursal para managers (sin cambios)
         const esContenedorCitas = [
           "data_citas",
           "data_citas_manager",
@@ -409,7 +663,12 @@ function mostrarDatos() {
           "data_cita_asistieron",
         ].includes(containerGreen.id);
 
-        if (isManagerLoggedIn && esContenedorCitas && sucursalActual && data.sucursal_cita !== sucursalActual) {
+        if (
+          isManagerLoggedIn &&
+          esContenedorCitas &&
+          sucursalActual &&
+          data.sucursal_cita !== sucursalActual
+        ) {
           return;
         }
 
@@ -418,50 +677,94 @@ function mostrarDatos() {
         const listItem = document.createElement("button");
         let claseItem = "vacante_item";
         if (containerGreen.id === "data_citas") claseItem += "_citas";
-        else if (containerGreen.id === "data_citas_manager") claseItem += "_citasManager";
-        else if (containerGreen.id === "data_cita_no_asistieron") claseItem += "_citasManagerNoasistio";
-        else if (containerGreen.id === "data_cita_asistieron") claseItem += "_citasManagerAsistio";
-        else if (containerGreen.id === "data_asistieron") claseItem += "_asistieron";
-        else if (containerGreen.id === "data_no_asistieron") claseItem += "_noasistieron";
-        else if (containerGreen.id === "data_contratado") claseItem += "_contratado";
-        else claseItem += esAsistieron ? "_status" : (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No") ? "_green" : "_red";
+        else if (containerGreen.id === "data_citas_manager")
+          claseItem += "_citasManager";
+        else if (containerGreen.id === "data_cita_no_asistieron")
+          claseItem += "_citasManagerNoasistio";
+        else if (containerGreen.id === "data_cita_asistieron")
+          claseItem += "_citasManagerAsistio";
+        else if (containerGreen.id === "data_asistieron")
+          claseItem += "_asistieron";
+        else if (containerGreen.id === "data_no_asistieron")
+          claseItem += "_noasistieron";
+        else if (containerGreen.id === "data_contratado")
+          claseItem += "_contratado";
+        else
+          claseItem += esAsistieron
+            ? "_status"
+            : data.empleo === "Fijo" &&
+              data.horario === "Rotativo" &&
+              data.docu === "Si" &&
+              data.problema_t === "No"
+            ? "_green"
+            : "_red";
 
         listItem.classList.add(claseItem);
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("vacante_info");
 
-        const campos = (containerGreen.id === "data_citas" || containerGreen.id === "data_citas_manager" || containerGreen.id === "data_cita_no_asistieron" || containerGreen.id === "data_cita_asistieron") ?
-          [
-            { label: "Nombre", value: nombre, isName: true },
-            { label: "Fecha Cita", value: data.fecha_cita || "No disponible" },
-            { label: "Hora Cita", value: data.hora_cita || "No disponible" },
-            { label: "Sucursal Cita", value: data.sucursal_cita || "No disponible" },
-            { label: "Puesto", value: data.puesto || "No disponible" },
-            { label: "Número", value: data.numero || "No disponible" },
-            { label: "Estatus", value: data.aptoStatus, isApto: true }
-          ] :
-          [
-            { label: "Fecha", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
-            { label: "Nombre", value: nombre, isName: true },
-            { label: "Puesto", value: data.puesto || "No disponible" },
-            { label: "Sucursal", value: data.sucursal || "No disponible" },
-            { label: "Número", value: data.numero || "No disponible" },
-            { label: "Edad", value: data.edad || "No disponible" },
-            { label: "F.Nacimiento", value: data.f_n || "No disponible" },
-            { label: "Sexo", value: data.sexo || "No disponible" },
-            { label: "Nacionalidad", value: data.nacion || "No disponible" },
-            { label: "Estado Civil", value: data.e_c || "No disponible" },
-            { label: "Documentacion", value: data.docu || "No disponible" },
-            { label: "Horario", value: data.horario || "No disponible" },
-            { label: "Empleo", value: data.empleo || "No disponible" },
-            { label: "Ciudad", value: data.ciudad || "No disponible" },
-            { label: "Dirección", value: data.direccion || "No disponible" },
-            { label: "CP", value: data.cp || "No disponible" },
-            { label: "Transporte", value: data.transporte || "No disponible" },
-            { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
-            { label: "Problema/T", value: data.problema_t || "No disponible" },
-            { label: "Estatus", value: data.aptoStatus, isApto: true }
-          ];
+        const campos =
+          containerGreen.id === "data_citas" ||
+          containerGreen.id === "data_citas_manager" ||
+          containerGreen.id === "data_cita_no_asistieron" ||
+          containerGreen.id === "data_cita_asistieron"
+            ? [
+                { label: "Nombre", value: nombre, isName: true },
+                {
+                  label: "Fecha Cita",
+                  value: data.fecha_cita || "No disponible",
+                },
+                {
+                  label: "Hora Cita",
+                  value: data.hora_cita || "No disponible",
+                },
+                {
+                  label: "Sucursal Cita",
+                  value: data.sucursal_cita || "No disponible",
+                },
+                { label: "Puesto", value: data.puesto || "No disponible" },
+                { label: "Número", value: data.numero || "No disponible" },
+                { label: "Estatus", value: data.aptoStatus, isApto: true },
+              ]
+            : [
+                {
+                  label: "Fecha",
+                  value: data.fecha_r
+                    ? new Date(data.fecha_r).toLocaleDateString()
+                    : "No disponible",
+                },
+                { label: "Nombre", value: nombre, isName: true },
+                { label: "Puesto", value: data.puesto || "No disponible" },
+                { label: "Sucursal", value: data.sucursal || "No disponible" },
+                { label: "Número", value: data.numero || "No disponible" },
+                { label: "Edad", value: data.edad || "No disponible" },
+                { label: "F.Nacimiento", value: data.f_n || "No disponible" },
+                { label: "Sexo", value: data.sexo || "No disponible" },
+                {
+                  label: "Nacionalidad",
+                  value: data.nacion || "No disponible",
+                },
+                { label: "Estado Civil", value: data.e_c || "No disponible" },
+                { label: "Documentacion", value: data.docu || "No disponible" },
+                { label: "Horario", value: data.horario || "No disponible" },
+                { label: "Empleo", value: data.empleo || "No disponible" },
+                { label: "Ciudad", value: data.ciudad || "No disponible" },
+                {
+                  label: "Dirección",
+                  value: data.direccion || "No disponible",
+                },
+                { label: "CP", value: data.cp || "No disponible" },
+                {
+                  label: "Transporte",
+                  value: data.transporte || "No disponible",
+                },
+                { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
+                {
+                  label: "Problema/T",
+                  value: data.problema_t || "No disponible",
+                },
+                { label: "Estatus", value: data.aptoStatus, isApto: true },
+              ];
 
         campos.forEach((campo) => {
           const span = document.createElement("span");
@@ -472,55 +775,81 @@ function mostrarDatos() {
 
         const btnContainer2 = document.createElement("div");
         btnContainer2.classList.add("btn_container2");
-        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () => descargarPDF(uniqueKey, data));
-        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () => abrirModalCita(uniqueKey, data));
+        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
+          descargarPDF(uniqueKey, data)
+        );
+        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () =>
+          abrirModalCita(uniqueKey, data)
+        );
         btnContainer2.append(btnDescargarPDF, btnAgendarCita);
 
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-container");
 
-        if (containerGreen.id === "data_citas_manager" || containerGreen.id === "data_cita_no_asistieron" || containerGreen.id === "data_cita_asistieron") {
+        if (
+          containerGreen.id === "data_citas_manager" ||
+          containerGreen.id === "data_cita_no_asistieron" ||
+          containerGreen.id === "data_cita_asistieron"
+        ) {
           const aptoSelect = document.createElement("select");
           aptoSelect.classList.add("apto-select");
           aptoSelect.id = `apto-select-${nombre}`;
           const options = [
             { value: "Pendiente", text: "🤷" },
             { value: "Apto", text: "👍" },
-            { value: "No apto", text: "👎" }
+            { value: "No apto", text: "👎" },
           ];
-          options.forEach(opt => {
+          options.forEach((opt) => {
             const option = document.createElement("option");
             option.value = opt.value;
             option.textContent = opt.text;
             if (data.aptoStatus === opt.value) option.selected = true;
             aptoSelect.appendChild(option);
           });
-          aptoSelect.addEventListener("change", () => updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id));
+          aptoSelect.addEventListener("change", () =>
+            updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id)
+          );
           btnContainer.appendChild(aptoSelect);
           personalizarSelect(aptoSelect);
         }
 
-        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () => moverVacante(uniqueKey, data, "no_asistieron"));
-        const btnAsistieron = crearBoton("", "btn-asistieron", () => moverVacante(uniqueKey, data, "asistieron"));
-        const btnContratado = crearBoton("", "btn-contratado", () => moverVacante(uniqueKey, data, "contratado"));
+        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
+          moverVacante(uniqueKey, data, "no_asistieron")
+        );
+        const btnAsistieron = crearBoton("", "btn-asistieron", () =>
+          moverVacante(uniqueKey, data, "asistieron")
+        );
+        const btnContratado = crearBoton("", "btn-contratado", () =>
+          moverVacante(uniqueKey, data, "contratado")
+        );
         const btnEliminar = crearBoton("", "btn-eliminar", () => {
           let base = "vacantes";
-          if (containerGreen.id === "data_no_asistieron") base = "no_asistieron";
+          if (containerGreen.id === "data_no_asistieron")
+            base = "no_asistieron";
           if (containerGreen.id === "data_asistieron") base = "asistieron";
           if (containerGreen.id === "data_contratado") base = "contratado";
-          eliminarVacante(uniqueKey, base);
+          eliminarVacante(uniqueKey, base, data);
         });
 
-        btnContainer.append(btnNoAsistieron, btnAsistieron, btnContratado, btnEliminar);
+        btnContainer.append(
+          btnNoAsistieron,
+          btnAsistieron,
+          btnContratado,
+          btnEliminar
+        );
 
         listItem.appendChild(btnContainer2);
         listItem.appendChild(infoContainer);
         listItem.appendChild(btnContainer);
 
         if (esAsistieron) ulGreen.appendChild(listItem);
-        else (data.empleo === "Fijo" && data.horario === "Rotativo" && data.docu === "Si" && data.problema_t === "No")
-          ? ulGreen.appendChild(listItem)
-          : ulRed.appendChild(listItem);
+        else
+          data.empleo === "Fijo" &&
+          data.horario === "Rotativo" &&
+          data.docu === "Si" &&
+          data.problema_t === "No"
+            ? ulGreen.appendChild(listItem)
+            : ulRed.appendChild(listItem);
       });
 
       fragmentGreen.appendChild(ulGreen);
@@ -537,19 +866,28 @@ function mostrarDatos() {
   function updateAptoStatus(uniqueKey, nuevoEstado, containerId) {
     let rutaDB;
     switch (containerId) {
-      case "data_citas_manager": rutaDB = `citas_vacantes/${uniqueKey}`; break;
-      case "data_cita_no_asistieron": rutaDB = `no_asistieron/${uniqueKey}`; break;
-      case "data_cita_asistieron": rutaDB = `asistieron/${uniqueKey}`; break;
-      default: return;
+      case "data_citas_manager":
+        rutaDB = `citas_vacantes/${uniqueKey}`;
+        break;
+      case "data_cita_no_asistieron":
+        rutaDB = `no_asistieron/${uniqueKey}`;
+        break;
+      case "data_cita_asistieron":
+        rutaDB = `asistieron/${uniqueKey}`;
+        break;
+      default:
+        return;
     }
-  
+
     const vacanteRef = ref(database, rutaDB);
     get(vacanteRef).then((snapshot) => {
       if (snapshot.exists()) {
         const datosActuales = snapshot.val();
         set(vacanteRef, { ...datosActuales, aptoStatus: nuevoEstado })
           .then(() => {
-            console.log(`Estado apto actualizado a ${nuevoEstado} para ${uniqueKey}`);
+            console.log(
+              `Estado apto actualizado a ${nuevoEstado} para ${uniqueKey}`
+            );
             mostrarAlerta("alertas");
             mostrarAlerta("alerta_22");
           })
@@ -564,7 +902,7 @@ function mostrarDatos() {
   function descargarPDF(uniqueKey, data) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-  
+
     // Validar que 'data' sea un objeto válido
     if (!data || typeof data !== "object") {
       console.error("Datos inválidos para generar el PDF:", data);
@@ -572,7 +910,7 @@ function mostrarDatos() {
       mostrarAlerta("alerta_3"); // Error genérico
       return;
     }
-  
+
     // Fondo y estilos
     doc.setFillColor(245, 245, 245);
     doc.rect(0, 0, 210, 297, "F");
@@ -580,7 +918,7 @@ function mostrarDatos() {
     const colorEtiquetas = [60, 60, 60];
     const colorValores = [0, 0, 0];
     const colorLinea = [0, 0, 0];
-  
+
     // Título
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
@@ -588,15 +926,30 @@ function mostrarDatos() {
     doc.text("Información del Vacante", 20, 20);
     doc.setDrawColor(...colorLinea);
     doc.line(20, 22, 190, 22);
-  
+
     // Contenido
     let yPosition = 30;
     doc.setFontSize(12);
-    const campoStyle = { font: "helvetica", size: 12, weight: "normal", color: colorEtiquetas };
-    const valueStyle = { font: "helvetica", size: 12, weight: "normal", color: colorValores };
-  
+    const campoStyle = {
+      font: "helvetica",
+      size: 12,
+      weight: "normal",
+      color: colorEtiquetas,
+    };
+    const valueStyle = {
+      font: "helvetica",
+      size: 12,
+      weight: "normal",
+      color: colorValores,
+    };
+
     const content = [
-      { label: "Fecha de llenado", value: data.fecha_r ? new Date(data.fecha_r).toLocaleDateString() : "No disponible" },
+      {
+        label: "Fecha de llenado",
+        value: data.fecha_r
+          ? new Date(data.fecha_r).toLocaleDateString()
+          : "No disponible",
+      },
       { label: "Nombre", value: data.nombre || "No disponible" }, // Corregido: usar data.nombre
       { label: "Puesto", value: data.puesto || "No disponible" },
       { label: "Sucursal", value: data.sucursal || "No disponible" },
@@ -613,28 +966,31 @@ function mostrarDatos() {
       { label: "Dirección", value: data.direccion || "No disponible" },
       { label: "CP", value: data.cp ? String(data.cp) : "No disponible" }, // Convertir a cadena
       { label: "Transporte", value: data.transporte || "No disponible" },
-      { label: "Cas/Sucu", value: data.casa_suc ? String(data.casa_suc) : "No disponible" }, // Convertir a cadena
+      {
+        label: "Cas/Sucu",
+        value: data.casa_suc ? String(data.casa_suc) : "No disponible",
+      }, // Convertir a cadena
       { label: "Problema/T", value: data.problema_t || "No disponible" },
       { label: "Estatus", value: data.aptoStatus || "No disponible" },
     ];
-  
+
     content.forEach((item) => {
       // Asegurarse de que item.value sea una cadena
       const valor = String(item.value || "No disponible"); // Convertir a cadena explícitamente
-  
+
       doc.setFont(campoStyle.font, campoStyle.weight);
       doc.setFontSize(campoStyle.size);
       doc.setTextColor(...campoStyle.color);
       doc.text(`${item.label}:`, 20, yPosition);
-  
+
       doc.setFont(valueStyle.font, valueStyle.weight);
       doc.setFontSize(valueStyle.size);
       doc.setTextColor(...valueStyle.color);
       doc.text(valor, 80, yPosition);
-  
+
       yPosition += 12;
     });
-  
+
     // Línea y pie de página
     doc.setDrawColor(...colorLinea);
     doc.line(20, yPosition + 10, 190, yPosition + 10);
@@ -642,11 +998,11 @@ function mostrarDatos() {
     doc.setFontSize(10);
     doc.setTextColor(...colorTitulo);
     doc.text("Generado por el reclutador Web de MMM.", 20, yPosition);
-  
+
     // Guardar el PDF
     const fileName = `Vacante_${data.nombre || "SinNombre"}.pdf`;
     doc.save(fileName);
-  
+
     // Mostrar alertas de éxito
     mostrarAlerta("alertas");
     verificarDisplay("pag5", "alerta_13", "alerta_18");
@@ -750,7 +1106,8 @@ function mostrarDatos() {
 function mostrarMensajesUsuarios() {
   const auth = getAuth(app);
   if (!auth.currentUser) {
-    document.getElementById("data_mj_user").innerHTML = "<p>Necesitas iniciar sesión para ver los mensajes.</p>";
+    document.getElementById("data_mj_user").innerHTML =
+      "<p>Necesitas iniciar sesión para ver los mensajes.</p>";
     return;
   }
   console.log("Ejecutando mostrarMensajesUsuarios...");
@@ -836,13 +1193,18 @@ function mostrarMensajesUsuarios() {
   }
 
   // Cargar mensajes iniciales
-  onValue(chatMessagesRef, (snapshot) => {
-    console.log("Datos recibidos desde Firebase:", snapshot.val());
-    renderMessages(snapshot);
-  }, (error) => {
-    console.error("Error al leer de Firebase:", error);
-    dataMjUser.innerHTML = "<div class='error'>Error al cargar mensajes</div>";
-  });
+  onValue(
+    chatMessagesRef,
+    (snapshot) => {
+      console.log("Datos recibidos desde Firebase:", snapshot.val());
+      renderMessages(snapshot);
+    },
+    (error) => {
+      console.error("Error al leer de Firebase:", error);
+      dataMjUser.innerHTML =
+        "<div class='error'>Error al cargar mensajes</div>";
+    }
+  );
 
   // Filtrar mensajes en tiempo real
   filterInput.addEventListener("input", (e) => {
@@ -872,11 +1234,12 @@ function mostrarSucursalesDisponibles() {
   const disSucuRef = ref(database, "disSucu");
 
   // Función para renderizar las sucursales con filtro
-  function renderizarSucursales(sucursales, filtro = '') {
+  function renderizarSucursales(sucursales, filtro = "") {
     dataSucuUser.innerHTML = "";
-    
+
     if (!sucursales) {
-      dataSucuUser.innerHTML = "<div class='no_data'>No hay sucursales disponibles</div>";
+      dataSucuUser.innerHTML =
+        "<div class='no_data'>No hay sucursales disponibles</div>";
       return;
     }
 
@@ -943,13 +1306,14 @@ function mostrarSucursalesDisponibles() {
       renderizarSucursales(sucursales); // Renderizado inicial
 
       // Escuchar cambios en el input de filtro
-      filterInput.addEventListener('input', (e) => {
+      filterInput.addEventListener("input", (e) => {
         renderizarSucursales(sucursales, e.target.value);
       });
     })
     .catch((error) => {
       console.error("Error al leer de Firebase:", error);
-      dataSucuUser.innerHTML = "<div class='error'>Error al cargar sucursales</div>";
+      dataSucuUser.innerHTML =
+        "<div class='error'>Error al cargar sucursales</div>";
     });
 }
 
@@ -964,7 +1328,8 @@ function cargarSucursalesDisponibles() {
   const disSucuRef = ref(database, "disSucu");
 
   // ✅ 1. Eliminar cualquier personalización previa para evitar duplicados
-  const existingCustomSelect = sucursalSelect.parentNode.querySelector(".custom-select");
+  const existingCustomSelect =
+    sucursalSelect.parentNode.querySelector(".custom-select");
   if (existingCustomSelect) {
     existingCustomSelect.remove();
   }
@@ -977,7 +1342,8 @@ function cargarSucursalesDisponibles() {
       console.log("🔹 Sucursales obtenidas de Firebase:", sucursales);
 
       // ✅ 2. Limpiar opciones dinámicas y agregar un placeholder
-      sucursalSelect.innerHTML = '<option value="" disabled selected>Sucursal</option>';
+      sucursalSelect.innerHTML =
+        '<option value="" disabled selected>Sucursal</option>';
 
       // ✅ 3. Agregar las sucursales disponibles
       Object.entries(sucursales).forEach(([nombre, disponible]) => {
@@ -995,7 +1361,8 @@ function cargarSucursalesDisponibles() {
       }, 50);
     } else {
       console.warn("⚠️ No se encontraron sucursales en Firebase.");
-      sucursalSelect.innerHTML = '<option value="" disabled selected>No hay sucursales disponibles</option>';
+      sucursalSelect.innerHTML =
+        '<option value="" disabled selected>No hay sucursales disponibles</option>';
     }
   });
 
@@ -1040,7 +1407,9 @@ function moverVacante(uniqueKey, data, nuevaDB) {
     )
   ).then(() => {
     if (!antiguaRef) {
-      console.error(`❌ No se encontró la referencia anterior de "${uniqueKey}".`);
+      console.error(
+        `❌ No se encontró la referencia anterior de "${uniqueKey}".`
+      );
       mostrarAlerta("alertas");
       verificarDisplay("pag5", "alerta_5", "alerta_16");
       return;
@@ -1091,45 +1460,41 @@ function mostrarAlertaPersonalizada(mensaje, callback) {
 }
 
 // Función optimizada para eliminar vacantes
-function eliminarVacante(uniqueKey, base) {
+function eliminarVacante(uniqueKey, base, data) {
   mostrarAlertaPersonalizada(
-    `¿Estás seguro de eliminar al vacante "${data.nombre}"? 🧐`,
+    `¿Estás seguro de eliminar al vacante "${data?.nombre || uniqueKey}"? 🧐`,
     (confirmado) => {
       if (!confirmado) {
         mostrarAlerta("alertas");
-        mostrarAlerta("alerta_8"); // Mostrar alerta de éxito
+        mostrarAlerta("alerta_8"); // Cancelado
         return;
       }
 
-      // Definir las rutas posibles
+      // Mapa de rutas según la base
       const rutas = {
+        vacantes: `vacantes/${uniqueKey}`,
         asistieron: `asistieron/${uniqueKey}`,
         no_asistieron: `no_asistieron/${uniqueKey}`,
         contratado: `contratado/${uniqueKey}`,
-        data_citas: `data_citas/${uniqueKey}`,
-        datamjUser: `chatMessages/${uniqueKey}`,
-        default: `vacantes/${uniqueKey}`,
+        citas_vacantes: `citas_vacantes/${uniqueKey}`, // Agregar citas_vacantes
       };
 
-      // Obtener la ruta correcta
-      const ruta = rutas[base] || rutas.default;
-
+      const ruta = rutas[base] || `vacantes/${uniqueKey}`; // Default a vacantes
       console.log(`Intentando eliminar: ${ruta}`);
 
-      // Referencia a la base de datos
       const refVacante = ref(database, ruta);
 
-      // Eliminar la vacante
       remove(refVacante)
         .then(() => {
           console.log(`Vacante eliminada de ${ruta}`);
           mostrarAlerta("alertas");
-          mostrarAlerta("alerta_7"); // Mostrar alerta de éxito
+          mostrarAlerta("alerta_7"); // Éxito
+          mostrarDatos(); // Actualizar la interfaz después de eliminar
         })
         .catch((error) => {
           console.error("Error al eliminar vacante:", error);
           mostrarAlerta("alertas");
-          mostrarAlerta("alerta_5"); // Mostrar alerta de error (debes definirla)
+          mostrarAlerta("alerta_5"); // Error
         });
     }
   );
@@ -1157,7 +1522,9 @@ const asignarEventos = (tipo) => {
 
 function regresarAlLogin(tipo) {
   const isManager = tipo === "manager";
-  console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Inicio`);
+  console.log(
+    `Regresando al login ${isManager ? "manager" : "admin"} - Inicio`
+  );
 
   toggleView({
     home: false,
@@ -1196,7 +1563,11 @@ function regresarAlLogin(tipo) {
   if (loginContainer) {
     loginContainer.style.display = "flex";
     loginContainer.style.opacity = "1";
-    console.log(`Contenedor ${isManager ? "Logincont_sucu" : "Logincont"} restaurado a display: flex`);
+    console.log(
+      `Contenedor ${
+        isManager ? "Logincont_sucu" : "Logincont"
+      } restaurado a display: flex`
+    );
   }
 
   console.log("Llamando a mostrarBotonEntrar...");
@@ -1211,14 +1582,14 @@ let sucursalesData = null;
 // Función para cargar el JSON
 async function cargarSucursalesJSON() {
   try {
-    const response = await fetch('../json/sucursales.json'); // Ajusta la ruta según tu estructura
+    const response = await fetch("../json/sucursales.json"); // Ajusta la ruta según tu estructura
     if (!response.ok) {
-      throw new Error('No se pudo cargar el archivo sucursales.json');
+      throw new Error("No se pudo cargar el archivo sucursales.json");
     }
     sucursalesData = await response.json();
-    console.log('Sucursales cargadas desde JSON:', sucursalesData);
+    console.log("Sucursales cargadas desde JSON:", sucursalesData);
   } catch (error) {
-    console.error('Error al cargar sucursales.json:', error);
+    console.error("Error al cargar sucursales.json:", error);
   }
 }
 
@@ -1268,7 +1639,9 @@ const iniciarSesion = (tipo) => {
     return;
   }
 
-  console.log(`Intentando iniciar sesión con email: ${email}, contraseña: ${passInput}`);
+  console.log(
+    `Intentando iniciar sesión con email: ${email}, contraseña: ${passInput}`
+  );
 
   signInWithEmailAndPassword(auth, email, passInput)
     .then((userCredential) => {
@@ -1319,9 +1692,15 @@ const iniciarSesion = (tipo) => {
     })
     .catch((error) => {
       console.error("Error en inicio de sesión:", error.code, error.message);
-      if (error.code === "auth/user-not-found" || error.code === "auth/invalid-email") {
+      if (
+        error.code === "auth/user-not-found" ||
+        error.code === "auth/invalid-email"
+      ) {
         mostrarError(erroru, "Usuario no encontrado o email inválido");
-      } else if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
+      } else if (
+        error.code === "auth/wrong-password" ||
+        error.code === "auth/invalid-credential"
+      ) {
         mostrarError(errorp, "Contraseña incorrecta");
       } else {
         mostrarError(errorall, `Error desconocido: ${error.message}`);
@@ -1352,15 +1731,24 @@ function mostrarBotonEntrar(tipo) {
 
   const updateUI = (user, useLocalStorage = false) => {
     const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
-    const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
-    const currentUserType = isAdminLoggedIn ? "admin" : isManagerLoggedIn ? "manager" : null;
+    const isManagerLoggedIn =
+      localStorage.getItem("isManagerLoggedIn") === "true";
+    const currentUserType = isAdminLoggedIn
+      ? "admin"
+      : isManagerLoggedIn
+      ? "manager"
+      : null;
 
     const shouldShowButton = useLocalStorage
       ? currentUserType === tipo
-      : (user && currentUserType === tipo);
+      : user && currentUserType === tipo;
 
     if (shouldShowButton) {
-      console.log(`Usuario autenticado detectado para ${tipo}: ${user ? user.email : "desde localStorage"}`);
+      console.log(
+        `Usuario autenticado detectado para ${tipo}: ${
+          user ? user.email : "desde localStorage"
+        }`
+      );
       form.style.display = "none";
       loginContainer.style.display = "flex";
       loginContainer.style.opacity = "1";
@@ -1391,18 +1779,21 @@ function mostrarBotonEntrar(tipo) {
           if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
           if (elements.chatbot) elements.chatbot.style.display = "none";
 
-          mostrarAlerta("alertas"); 
+          mostrarAlerta("alertas");
           mostrarAlerta(isManager ? "alerta_14" : "alerta_4");
 
           if (isManager) {
-            const sucursalActivaElement = document.getElementById("sucursal_activa");
+            const sucursalActivaElement =
+              document.getElementById("sucursal_activa");
             const sucursalGuardada = localStorage.getItem("sucursal");
             if (sucursalActivaElement && sucursalGuardada) {
-              const sucursalFormateada = sucursalGuardada.charAt(0).toUpperCase() + sucursalGuardada.slice(1).toLowerCase();
+              const sucursalFormateada =
+                sucursalGuardada.charAt(0).toUpperCase() +
+                sucursalGuardada.slice(1).toLowerCase();
               sucursalActivaElement.textContent = sucursalFormateada;
             }
           }
-          
+
           mostrarDatos();
           mostrarMensajesUsuarios();
         });
@@ -1429,7 +1820,8 @@ function mostrarBotonEntrar(tipo) {
 
   // Renderizado inicial con localStorage
   const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
-  const isManagerLoggedIn = localStorage.getItem("isManagerLoggedIn") === "true";
+  const isManagerLoggedIn =
+    localStorage.getItem("isManagerLoggedIn") === "true";
   updateUI(null, true);
 
   // Actualizar con Firebase
@@ -1449,7 +1841,7 @@ logoutButtons.forEach((button) => {
       localStorage.removeItem("isAdminLoggedIn");
       localStorage.removeItem("isManagerLoggedIn");
       localStorage.removeItem("sucursal");
-      isAdmin = false;  // Resetear variable global
+      isAdmin = false; // Resetear variable global
       isManager = false; // Resetear variable global
       console.log("Sesión cerrada con éxito.");
       window.location.reload();
@@ -1474,8 +1866,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const regreso1 = document.getElementById("regreso1");
   const regreso2 = document.getElementById("regreso2");
 
-  if (regreso1) regreso1.addEventListener("click", () => regresarAlLogin("admin"));
-  if (regreso2) regreso2.addEventListener("click", () => regresarAlLogin("manager"));
+  if (regreso1)
+    regreso1.addEventListener("click", () => regresarAlLogin("admin"));
+  if (regreso2)
+    regreso2.addEventListener("click", () => regresarAlLogin("manager"));
 
   // Esperar a que Firebase autentique al usuario
   onAuthStateChanged(auth, (user) => {
@@ -1506,10 +1900,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (elements.chatbot) elements.chatbot.style.display = "none";
 
         if (isManager) {
-          const sucursalActivaElement = document.getElementById("sucursal_activa");
+          const sucursalActivaElement =
+            document.getElementById("sucursal_activa");
           const sucursalGuardada = localStorage.getItem("sucursal");
           if (sucursalActivaElement && sucursalGuardada) {
-            const sucursalFormateada = sucursalGuardada.charAt(0).toUpperCase() + sucursalGuardada.slice(1).toLowerCase();
+            const sucursalFormateada =
+              sucursalGuardada.charAt(0).toUpperCase() +
+              sucursalGuardada.slice(1).toLowerCase();
             sucursalActivaElement.textContent = sucursalFormateada;
           }
         }
