@@ -135,38 +135,6 @@ html {
       }
     }
 
-    .alerta_admin {
-      top: 4.2vh;
-      left: 19.4vw;
-      width: 13vw;
-      height: 4.5vw;
-      position: fixed;
-      z-index: 1010;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      background-color: $Resalte2;
-      border: 2px solid $Resalte2;
-      box-shadow: 0px 0px 10px 0px $Resalte2;
-      border-radius: 5rem;
-      animation: fadeInDown 0.2s ease-in-out forwards;
-
-      span {
-        width: 90%;
-        height: 90%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        p {
-          font-size: 0.9vw;
-          color: $Texto;
-          font-family: $Letra2;
-          text-align: center;
-        }
-      }
-    }
-
     .alerta_manager {
       top: 3.2vh;
       left: 45.4vw;
@@ -292,8 +260,9 @@ html {
         align-items: center;
         flex-direction: column;
         padding: 1vw;
-        border-radius: 2vw;
+        border-radius: 1.5vw;
         text-align: center;
+        position: relative;
 
         h2 {
           width: 100%;
@@ -484,14 +453,189 @@ html {
               }
 
               &#cancelar_cita {
+                width: 10%;
+                top: 2%;
+                border-radius: 50%;
+                left: 2%;
+                aspect-ratio: 1/1;
+                background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
+                background-size: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
                 background-color: $Resalte2;
-                color: white;
+                position: absolute;
               }
 
               &#enviar_cita {
                 background-color: $Box_admin;
                 color: white;
               }
+            }
+          }
+        }
+      }
+    }
+
+    #modal-user-info {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+
+      .modal-content {
+        background-color: $Blanco;
+        padding: 20px;
+        width: 20vw;
+        height: 20vh;
+        position: relative;
+        border-radius: 1.5vw;
+
+        .user-info-content {
+          width: 80%;
+          height: 80%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          .user-info-item {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 2rem;
+            .user-name-display-cont,
+            .employee-number-display-cont {           
+              width: 100%;
+              height: 1.7em;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+             span {
+              width: auto;
+              color: $Box_admin;
+            }
+            
+            .edit-btn {
+              height: 100%;
+              aspect-ratio: 1/1;
+              background-image: url("../img/Logos/interfaces/icons/editar.svg");
+              background-size: 50%;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-color: $Secundario;
+              border: none;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: background-color 0.3s;
+
+              &:hover {
+                background-color: $Resalte;
+              }
+            }
+          }
+
+            strong {
+              width: 100%;
+              font-weight: bold;
+              color: $Box_admin;
+              margin-bottom: 1rem;
+            }
+            
+            #edit-name-container {
+              display: none; /* Asegura que esté oculto por defecto */
+            }
+            
+            #edit-name-container[style*="display: flex"] {
+              display: flex !important; /* Prioriza la visibilidad cuando se activa */
+            }
+
+            #edit-name-container,
+            #edit-employee-container {
+              width: 100%;
+              height: 1.7em;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .save-btn,
+              .cancel-btn {
+                height: 100%;
+                aspect-ratio: 1/1;
+                border: none;
+                cursor: pointer;
+                font-size: 0.9rem;
+                transition: background-color 0.3s;
+                border-radius: 1rem;
+                margin: .2rem;
+              }
+  
+              .save-btn {
+                background-image: url("../img/Logos/interfaces/icons/exito2.svg");
+                background-size: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: $Green;
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                  opacity: .5;
+                }
+              }
+  
+              .cancel-btn {
+                background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
+                background-size: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: $Red;
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                  opacity: .5;
+                }
+              }
+
+              #edit-name-input,
+              #edit-employee-input {
+                font-size: 0.9rem;
+                color: $Box_admin;
+                outline: none;
+                border: none;
+              } 
+  
+              #edit-name-input:focus,
+              #edit-employee-input:focus {
+                outline: none;
+                border: none;
+              }
+            }
+          }
+        }
+        .modal_buttons {
+          position: absolute;
+          width: 10%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          aspect-ratio: 1/1;
+          left: 1%;
+          top: 1%;
+          .close_btn {
+            border: none;
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: $Resalte2;
+            &:hover {
+              background-color: $Principal;
             }
           }
         }
@@ -984,7 +1128,7 @@ html {
       animation: fadeInRightBig 0.5s ease-in-out forwards;
 
       .cont-install-btn {
-        width: 2.5vw;
+        width: 3.5em;
         aspect-ratio: 1/1;
         opacity: 0;
         display: flex;
@@ -997,6 +1141,7 @@ html {
         animation: btndescarga 0.5s ease-in-out forwards;
         animation-delay: 0.5s;
         cursor: pointer;
+
         .install-btn {
           width: 100%;
           height: 100%;
@@ -1006,8 +1151,9 @@ html {
           cursor: pointer;
           background-color: $Secundario;
           border: none;
-          border: .3rem solid $Box_admin;
+          border: 0.3rem solid $Box_admin;
           border-radius: 50%;
+
           img {
             width: 100%;
             height: 100%;
@@ -1063,7 +1209,7 @@ html {
                 h3 {
                   width: 100%;
                   color: $Texto;
-                  font-size: 2vh;
+                  font-size: 1.3em;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -1076,10 +1222,11 @@ html {
                     letter-spacing: 0.1rem;
                   }
                 }
+
                 p {
                   width: 100%;
                   color: $Texto;
-                  font-size: 1vh;
+                  font-size: .7em;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -1182,13 +1329,13 @@ html {
 
               .label_btn_log_manager {
                 color: $Texto;
-                bottom: 2em;
+                bottom: 3.5em;
                 border-radius: 3vw;
                 background-color: $Fondo;
-                padding: .3rem .7rem;
+                padding: 0.3rem 0.7rem;
                 position: absolute;
                 font-family: $Letra2;
-                font-size: .7em;
+                font-size: 0.7em;
               }
             }
 
@@ -1248,6 +1395,7 @@ html {
             }
           }
         }
+
         .entrar-btn {
           width: 10vw;
           aspect-ratio: 1/1;
@@ -1259,6 +1407,7 @@ html {
           font-family: $Letra1;
           font-size: 1.5vw;
           transition: all 0.2s ease-in-out;
+
           &:hover {
             scale: 1.3;
           }
@@ -1275,7 +1424,7 @@ html {
         position: fixed;
         display: flex;
         opacity: 0;
-        width: 2vw;
+        width: 3em;
         aspect-ratio: 1/1;
         bottom: 0;
         right: 0;
@@ -1298,6 +1447,7 @@ html {
 
     #pag3 {
       @include cover;
+      align-items: end;
 
       .orientation-message {
         position: fixed;
@@ -1316,99 +1466,652 @@ html {
         z-index: 10000;
       }
 
-      .settings {
-        top: 2.5vh;
-        left: 1.5vw;
-        width: 4vw;
-        height: 4.8vh;
-        display: flex;
-        border-radius: 10%;
-        justify-content: space-evenly;
-        align-items: center;
+      .nav_admin {
+        width: 100vw;
+        height: 6vh;
+        top: 0;
+        left: 0;
         position: fixed;
-        z-index: 10000;
-        gap: 5%;
-      
-        .icons_settings {
-          width: 90%;
-          height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $Box_admin;
+        z-index: 10020;
+
+        .nav_cont {
+          width: 100%;
+          height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
-          position: relative; // Añadido para mejor control de posicionamiento
-      
-          input {
-            display: none; // Correcto, lo mantienes oculto porque usas el label
-      
-            &:checked ~ .settings_info {
-              display: flex;
-              animation: fadeIn 0.2s ease-in-out forwards;
-            }
-          }
-      
-          label {
-            width: 100%;
+          position: relative;
+
+          .settings {
+            width: 4%;
             height: 100%;
-            border: none;
-            outline: none;
+            position: absolute;
+            left: 1%;
+            top: 0;
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
-            border-radius: 10rem;
-            transition: all 0.2s ease-in-out;
-            background-color: $Box_admin;
-            z-index: 10000;
-            cursor: pointer; // Indica que es clickable
-      
-            img {
-              height: 60%;
-            }
-          }
-      
-          .settings_info {
-            position: fixed;
-            display: none;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            top: 8.5vh;
-            left: 2vw;
-            width: 3vw;
-            height: 7vh;
-            text-align: center;
-            border-radius: .7vw;
-            color: $Texto;
-            font-family: $Letra2;
-            padding: 0.3vw;
-            background-color: $Fondo;
-            gap: 1.5vh;
-      
-            .data_settings {
-              width: 100%;
-              height: 100%;
-              overflow-x: hidden;
-              overflow-y: scroll;
+
+            .icons_settings {
+              width: 90%;
+              height: 90%;
               display: flex;
-              flex-direction: column;
-              justify-content: end;
-              background-color: $Fondo;
+              justify-content: center;
               align-items: center;
-              gap: 5%;
-      
-              button {
+              position: relative;
+
+              input {
+                display: none;
+
+                &:checked ~ .settings_info {
+                  left: 110%;
+                  width: 200%;
+                  visibility: visible;
+                  transition: all 0.2s ease-in-out;
+                }
+              }
+
+              label {
                 width: 100%;
-                border-radius: 2vw;
-                height: 50%;
+                height: 100%;
+                border: none;
+                outline: none;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-direction: column;
-                background-color: $Transparente;
-                border: none;
+                border-radius: 10rem;
                 transition: all 0.2s ease-in-out;
-      
+                background-color: $Box_admin;
+                z-index: 10000;
+                cursor: pointer; 
+
                 img {
-                  height: 70%;
+                  height: 60%;
+                }
+              }
+
+              .settings_info {
+                position: absolute;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                visibility: hidden;
+                text-align: center;
+                color: $Texto;
+                font-family: $Letra2;
+                gap: 1.5vh;
+                transition: all 0.2s ease-in-out;
+
+                .data_settings {
+                  width: 100%;
+                  height: 100%;
+                  overflow-x: hidden;
+                  overflow-y: scroll;
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: end;
+                  align-items: center;
+                  gap: 5%;
+
+                  button {
+                    width: 100%;
+                    height: 70%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color: $Transparente;
+                    border: none;
+                    transition: all 0.2s ease-in-out;
+
+                    img {
+                      height: 80%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .cont_welcome_admin {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem;
+
+            .icon_welcome_admin {
+              height: 75%;
+              aspect-ratio: 1/1;
+              background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
+              background-size: 80%;
+              background-position: center;
+              background-repeat: no-repeat;
+              border-radius: 50%;
+              background-color: $Box_admin2;
+            }
+
+            .text_welcome_admin {
+              background-color: $Blanco;
+              width: auto;
+              height: 40%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 1rem;
+              padding: .2rem .7rem;
+
+              p {
+                display: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                font-size: .9em;
+                font-family: $Letra2;
+              }
+            }
+          }
+
+          .mensajes_usuarios {
+            width: 4%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            right: 1%;
+            top: 0;
+
+            .icons_mj {
+              width: 90%;
+              height: 90%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              input {
+                display: none;
+
+                &:checked ~ label {
+                  @include opacity;
+                  display: flex;
+                }
+
+                &:checked ~ .mj_user_info {
+                  display: flex;
+                  animation: fadeIn 0.2s ease-in-out forwards;
+                }
+              }
+
+              label {
+                width: 100%;
+                height: 100%;
+                border: none;
+                outline: none;
+                border-radius: 10rem;
+                transition: all 0.2s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                  height: 60%;
+                }
+              }
+
+              .mj_user_info {
+                position: fixed;
+                display: none;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                width: 15vw;
+                height: 73.5vh;
+                top: 22vh;
+                left: 17.5vw;
+                text-align: center;
+                color: $Texto;
+                font-family: $Letra2;
+                font-size: 0.7vw;
+                padding: 0.5vw;
+                background-color: $Box_admin;
+                gap: 1.5vh;
+
+                .filter-container {
+                  width: 100%;
+                  height: 3.5vh;
+                  border-radius: 1vw;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  transition: all 0.1s ease-in-out;
+
+                  .input-field {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: end;
+                    width: 100%;
+                    height: 100%;
+                    font-family: $Letra2;
+
+                    input::-webkit-inner-spin-button,
+                    input::-webkit-outer-spin-button {
+                      -webkit-appearance: none;
+                    }
+
+                    input[type="text"] {
+                      -moz-appearance: textfield;
+                    }
+
+                    input {
+                      @include cover;
+                      border-radius: 5rem;
+                      font-size: 0.7vw;
+                      display: flex;
+                      background-color: $Secundario;
+                      color: $Texto;
+                      outline: none;
+                      text-align: center;
+                      border: 0;
+
+                      &:focus {
+                        box-shadow: 0px 0px 10px 0px $Resalte;
+                        background: $Resalte;
+                      }
+                    }
+
+                    input:focus ~ label,
+                    input:not(:placeholder-shown) ~ label {
+                      top: -1%;
+                      font-size: 0.5vw;
+                      background: $Principal;
+                      color: $Texto;
+                      border-radius: 1rem;
+                      padding: 0 3%;
+                    }
+
+                    label {
+                      width: auto;
+                      height: auto;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0;
+                      position: absolute;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      color: $Texto;
+                      font-size: 0.7vw;
+                      pointer-events: none;
+                      transition: 0.3s;
+
+                      span {
+                        margin-left: 3px;
+                      }
+                    }
+                  }
+                }
+
+                .data_mj_user {
+                  width: 100%;
+                  height: 100%;
+                  overflow-x: hidden;
+                  overflow-y: scroll;
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  flex-direction: column;
+
+                  .no_data {
+                    margin-top: 30%;
+                    width: 40%;
+                    aspect-ratio: 2/2;
+                    background-image: url("../img//Utilidades/no_data.png");
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                  }
+
+                  ul {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    padding: 0;
+                    margin: 0;
+                    border: none;
+                    margin-bottom: 1.5vh;
+                    justify-content: start;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 1.5vh;
+
+                    button {
+                      width: 95%;
+                      height: 5vh;
+                      display: flex;
+                      background-color: $Texto;
+                      border-radius: 0.5vw;
+                      justify-content: center;
+                      border: none;
+                      overflow-y: hidden;
+                      align-items: center;
+                      font-family: $Letra2;
+                      transition: all 0.2s ease-in-out;
+
+                      .user-div {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 1vw;
+                        color: $Box_admin;
+                      }
+
+                      .user-messages {
+                        display: none;
+                      }
+
+                      &:focus {
+                        overflow: hidden;
+                        height: 25vh;
+
+                        .user-div {
+                          display: none;
+                        }
+
+                        .user-messages {
+                          width: 90%;
+                          height: 90%;
+                          overflow-x: hidden;
+                          overflow-y: scroll;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 1.5vh;
+
+                          .message {
+                            width: 100%;
+                            height: auto;
+
+                            span {
+                              width: 100%;
+                              height: auto;
+                              display: flex;
+                              flex-direction: column;
+                              justify-content: center;
+                              align-items: start;
+                              text-align: start;
+                              color: $Box_admin;
+
+                              strong {
+                                width: auto;
+                                font-size: 0.5vw;
+                                margin: 2%;
+                              }
+
+                              p {
+                                width: auto;
+                                height: auto;
+                                margin: 0;
+                                font-size: 0.6vw;
+                                padding: 0.5vw;
+                                border: 1.5px solid $Box_admin;
+                                padding: 3%;
+                                font-weight: 170;
+                                font-size: 0.7vw;
+                                border-radius: 1vw;
+                              }
+
+                              time {
+                                width: 100%;
+                                font-size: 0.4vw;
+                                margin: 2%;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .disponibilidad_sucu {
+            width: 3%;
+            height: 100%;
+            display: flex;
+            background-color: $Box_admin;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            right: 6%;
+            top: 0;
+
+            .icons_sucu {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              input {
+                display: none;
+
+                &:checked ~ label {
+                  @include opacity;
+                  display: flex;
+                }
+
+                &:checked ~ .sucu_user_info {
+                  display: flex;
+                  animation: fadeIn 0.2s ease-in-out forwards;
+                }
+              }
+
+              label {
+                width: 100%;
+                height: 100%;
+                border: none;
+                outline: none;
+                border-radius: 10rem;
+                transition: all 0.2s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                  height: 80%;
+                }
+              }
+
+              .sucu_user_info {
+                position: fixed;
+                display: none;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                width: 15vw;
+                height: 73.5vh;
+                top: 22vh;
+                left: 17.5vw;
+                text-align: center;
+                color: $Texto;
+                font-family: $Letra2;
+                font-size: 0.7vw;
+                padding: 0.5vw;
+                background-color: $Box_admin;
+                gap: 1.5vh;
+
+                .filter-container {
+                  width: 100%;
+                  height: 3.5vh;
+                  border-radius: 1vw;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  transition: all 0.1s ease-in-out;
+
+                  .input-field {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: end;
+                    width: 100%;
+                    height: 100%;
+                    font-family: $Letra2;
+
+                    input::-webkit-inner-spin-button,
+                    input::-webkit-outer-spin-button {
+                      -webkit-appearance: none;
+                    }
+
+                    input[type="text"] {
+                      -moz-appearance: textfield;
+                    }
+
+                    input {
+                      @include cover;
+                      border-radius: 5rem;
+                      font-size: 0.7vw;
+                      display: flex;
+                      background-color: $Secundario;
+                      color: $Texto;
+                      outline: none;
+                      text-align: center;
+                      border: 0;
+
+                      &:focus {
+                        box-shadow: 0px 0px 10px 0px $Resalte;
+                        background: $Resalte;
+                      }
+                    }
+
+                    input:focus ~ label,
+                    input:not(:placeholder-shown) ~ label {
+                      top: -1%;
+                      font-size: 0.5vw;
+                      background: $Principal;
+                      color: $Texto;
+                      border-radius: 1rem;
+                      padding: 0 3%;
+                    }
+
+                    label {
+                      width: auto;
+                      height: auto;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0;
+                      position: absolute;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      color: $Texto;
+                      font-size: 0.7vw;
+                      pointer-events: none;
+                      transition: 0.3s;
+
+                      span {
+                        margin-left: 3px;
+                      }
+                    }
+                  }
+                }
+
+                .data_sucu_user {
+                  width: 100%;
+                  height: 100%;
+                  overflow-x: hidden;
+                  overflow-y: scroll;
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  flex-direction: column;
+
+                  .sucursal_list {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    flex-direction: column;
+                    padding: 0;
+                    margin: 0;
+                    border: none;
+                    gap: 1.5vh;
+
+                    .sucursal_item {
+                      width: 90%;
+                      height: 4vh;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      list-style: none;
+                      padding: 0.3vw;
+                      border-radius: 2vw;
+                      background-color: $Blanco;
+
+                      .sucursal_info {
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        strong {
+                          color: $Box_admin;
+                          font-size: 1vw;
+                        }
+                      }
+
+                      .checkbox_container {
+                        width: 20%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        input[type="checkbox"] {
+                          & ~ .sucursal_label {
+                            width: 20px;
+                            height: 20px;
+                            background-color: $Red;
+                            border-radius: 50%;
+                            display: inline-block;
+                          }
+
+                          // Estado chequeado - círculo rojo
+                          &:checked ~ .sucursal_label {
+                            background-color: $Green;
+                          }
+                        }
+
+                        .sucursal_label {
+                          height: 100%;
+                          aspect-ratio: 2/2;
+                          transition: all 0.2s ease-in-out;
+
+                          &:hover {
+                            @include opacity;
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -1417,8 +2120,8 @@ html {
       }
 
       .estatus_vacantes {
-        top: 3.5vh;
-        left: 19vw;
+        top: 9vh;
+        left: 18.5vw;
         width: 12vw;
         height: 3.5vw;
         display: flex;
@@ -1481,16 +2184,15 @@ html {
             transition: none;
             flex-direction: column;
             width: 15vw;
-            height: 75vh;
-            top: 18vh;
-            left: 18vw;
+            height: 73.5vh;
+            top: 22vh;
+            left: 17.5vw;
             text-align: center;
             color: $Texto;
             font-family: $Letra2;
             font-size: 0.7vw;
             padding: 0.5vw;
             background-color: $Box_admin;
-            box-shadow: 0px 0px 10px 0px $Box_admin;
             gap: 1.5vh;
 
             .box_status {
@@ -1501,6 +2203,7 @@ html {
               justify-content: center;
               align-items: center;
               position: relative;
+
               .filtro-vacantes {
                 width: 100%;
                 height: 100%;
@@ -1511,14 +2214,15 @@ html {
                 align-items: center;
                 font-family: $Letra2;
                 color: $Texto;
-                font-size: .6vw;
+                font-size: 0.6vw;
                 top: 0;
                 background-color: $Transparente;
                 position: absolute;
                 text-align: center;
+
                 &::placeholder {
                   color: $Texto;
-                  text-align: center; 
+                  text-align: center;
                 }
               }
             }
@@ -1725,43 +2429,41 @@ html {
       }
 
       .admin_cont {
-        width: 97vw;
-        height: 95vh;
+        width: 98vw;
+        height: 90vh;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: start;
         font-family: $Letra2;
         position: relative;
         border: none;
-        margin: 0;
+        margin-bottom: 2vh;
         padding: 0;
-        gap: 2%;
+        gap: 1%;
         background-color: $Box_admin;
         -webkit-mask: url("../img/Utilidades/top-center.png") center / contain
             no-repeat,
-          url("../img/Utilidades/top-left.png") center / contain no-repeat,
-          url("../img/Utilidades/top-right.png") center / contain no-repeat,
           linear-gradient(#000000 0 0);
-        mask-size: 20vw, 5vw, 10vw;
-        mask-position: 14.5vw 0vh, left top, right top;
+        mask-size: 20vw;
+        mask-position: 14.5vw 0vh;
         mask-composite: exclude;
-        border-radius: 0vw 3vw 3vw 3vw;
+        border-radius: 2vw;
 
         .cont_rechazados {
-          width: 15.7%;
-          height: 95%;
+          width: 15%;
+          height: 97%;
           display: flex;
+          position: absolute;
+          top: 1%;
+          left: 1%;
           border-radius: 1.2vw;
           justify-content: start;
-          align-items: end;
+          align-items: center;
           flex-direction: column;
-          background-color: $Box_admin;
-          box-shadow: 0px 0px 10px 0px $Box_admin;
-          margin: 1vw;
           gap: 1.5vh;
 
           .box_red {
-            width: 70%;
+            width: 100%;
             height: 3vh;
             margin-top: 1vh;
             background-color: $Red;
@@ -1769,6 +2471,7 @@ html {
             display: flex;
             overflow: hidden;
             position: relative;
+
             .filtro-vacantes {
               width: 100%;
               height: 100%;
@@ -1779,11 +2482,12 @@ html {
               align-items: center;
               font-family: $Letra2;
               color: $Texto;
-              font-size: .6vw;
+              font-size: 0.6vw;
               top: 0;
               background-color: $Transparente;
               position: absolute;
               text-align: center;
+
               &::placeholder {
                 color: $Texto;
                 text-align: center;
@@ -1982,15 +2686,16 @@ html {
 
         .cont_citas {
           width: 15%;
-          height: 80%;
+          height: 82%;
           display: flex;
+          position: absolute;
+          top: 16%;
+          left: 17.5%;
           border-radius: 1.2vw;
           justify-content: start;
           align-items: end;
           flex-direction: column;
           background-color: $Box_admin;
-          box-shadow: 0px 0px 10px 0px $Box_admin;
-          margin-top: 15vh;
           gap: 1.5vh;
 
           .box_gray {
@@ -2002,6 +2707,7 @@ html {
             display: flex;
             overflow: hidden;
             position: relative;
+
             .filtro-vacantes {
               width: 100%;
               height: 100%;
@@ -2012,11 +2718,12 @@ html {
               align-items: center;
               font-family: $Letra2;
               color: $Texto;
-              font-size: .6vw;
+              font-size: 0.6vw;
               top: 0;
               background-color: $Transparente;
               position: absolute;
               text-align: center;
+
               &::placeholder {
                 color: $Texto;
                 text-align: center;
@@ -2153,20 +2860,21 @@ html {
         }
 
         .cont_aceptados {
-          width: 70%;
-          height: 95%;
+          width: 65%;
+          height: 97%;
           display: flex;
+          position: absolute;
+          top: 1%;
+          right: 1%;
           border-radius: 1.2vw;
           justify-content: start;
           align-items: start;
           flex-direction: column;
           background-color: $Box_admin;
-          box-shadow: 0px 0px 10px 0px $Box_admin;
-          margin: 1vw;
           gap: 1.5vh;
 
           .box_green {
-            width: 85%;
+            width: 100%;
             height: 3vh;
             margin-top: 1vh;
             background-color: $Green;
@@ -2177,6 +2885,7 @@ html {
             flex-direction: column;
             overflow: hidden;
             position: relative;
+
             .filtro-vacantes {
               width: 100%;
               height: 100%;
@@ -2187,11 +2896,12 @@ html {
               align-items: center;
               font-family: $Letra2;
               color: $Texto;
-              font-size: .6vw;
+              font-size: 0.6vw;
               top: 0;
               background-color: $Transparente;
               position: absolute;
               text-align: center;
+
               &::placeholder {
                 color: $Texto;
                 text-align: center;
@@ -2381,511 +3091,6 @@ html {
           }
         }
       }
-
-      .mensajes_usuarios {
-        top: -0.2vh;
-        right: 0vw;
-        margin: 1%;
-        width: 4vw;
-        height: 4vh;
-        display: flex;
-        background-color: $Box_admin;
-        padding: 0.5vw;
-        border-radius: 1vw;
-        justify-content: space-evenly;
-        align-items: center;
-        position: fixed;
-        z-index: 1000;
-        gap: 5%;
-
-        .icons_mj {
-          width: 90%;
-          height: 90%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          input {
-            display: none;
-
-            &:checked ~ label {
-              @include opacity;
-              display: flex;
-            }
-
-            &:checked ~ .mj_user_info {
-              display: flex;
-              animation: fadeIn 0.2s ease-in-out forwards;
-            }
-          }
-
-          label {
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            border-radius: 10rem;
-            transition: all 0.2s ease-in-out;
-          }
-
-          #label_mj_user {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            img {
-              height: 70%;
-            }
-          }
-
-          .mj_user_info {
-            position: fixed;
-            display: none;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            width: 15vw;
-            height: 75vh;
-            top: 17vh;
-            left: 18vw;
-            text-align: center;
-            color: $Texto;
-            font-family: $Letra2;
-            font-size: 0.7vw;
-            padding: 0.5vw;
-            background-color: $Box_admin;
-            box-shadow: 0px 0px 10px 0px $Box_admin;
-            gap: 1.5vh;
-
-            .filter-container {
-              width: 100%;
-              height: 3.5vh;
-              border-radius: 1vw;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
-              transition: all 0.1s ease-in-out;
-
-              .input-field {
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: end;
-                width: 100%;
-                height: 100%;
-                font-family: $Letra2;
-
-                input::-webkit-inner-spin-button,
-                input::-webkit-outer-spin-button {
-                  -webkit-appearance: none;
-                }
-
-                input[type="text"] {
-                  -moz-appearance: textfield;
-                }
-
-                input {
-                  @include cover;
-                  border-radius: 5rem;
-                  font-size: 0.7vw;
-                  display: flex;
-                  background-color: $Secundario;
-                  color: $Texto;
-                  outline: none;
-                  text-align: center;
-                  border: 0;
-
-                  &:focus {
-                    box-shadow: 0px 0px 10px 0px $Resalte;
-                    background: $Resalte;
-                  }
-                }
-
-                input:focus ~ label,
-                input:not(:placeholder-shown) ~ label {
-                  top: -1%;
-                  font-size: 0.5vw;
-                  background: $Principal;
-                  color: $Texto;
-                  border-radius: 1rem;
-                  padding: 0 3%;
-                }
-
-                label {
-                  width: auto;
-                  height: auto;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  padding: 0;
-                  position: absolute;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  color: $Texto;
-                  font-size: 0.7vw;
-                  pointer-events: none;
-                  transition: 0.3s;
-
-                  span {
-                    margin-left: 3px;
-                  }
-                }
-              }
-            }
-
-            .data_mj_user {
-              width: 100%;
-              height: 100%;
-              overflow-x: hidden;
-              overflow-y: scroll;
-              display: flex;
-              justify-content: start;
-              align-items: center;
-              flex-direction: column;
-
-              .no_data {
-                margin-top: 30%;
-                width: 40%;
-                aspect-ratio: 2/2;
-                background-image: url("../img//Utilidades/no_data.png");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-              }
-
-              ul {
-                width: 100%;
-                height: auto;
-                display: flex;
-                padding: 0;
-                margin: 0;
-                border: none;
-                margin-bottom: 1.5vh;
-                justify-content: start;
-                align-items: center;
-                flex-direction: column;
-                gap: 1.5vh;
-
-                button {
-                  width: 95%;
-                  height: 5vh;
-                  display: flex;
-                  background-color: $Texto;
-                  border-radius: 0.5vw;
-                  justify-content: center;
-                  border: none;
-                  overflow-y: hidden;
-                  align-items: center;
-                  font-family: $Letra2;
-                  transition: all 0.2s ease-in-out;
-
-                  .user-div {
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 1vw;
-                    color: $Box_admin;
-                  }
-
-                  .user-messages {
-                    display: none;
-                  }
-
-                  &:focus {
-                    overflow: hidden;
-                    height: 25vh;
-
-                    .user-div {
-                      display: none;
-                    }
-
-                    .user-messages {
-                      width: 90%;
-                      height: 90%;
-                      overflow-x: hidden;
-                      overflow-y: scroll;
-                      display: flex;
-                      flex-direction: column;
-                      gap: 1.5vh;
-
-                      .message {
-                        width: 100%;
-                        height: auto;
-
-                        span {
-                          width: 100%;
-                          height: auto;
-                          display: flex;
-                          flex-direction: column;
-                          justify-content: center;
-                          align-items: start;
-                          text-align: start;
-                          color: $Box_admin;
-
-                          strong {
-                            width: auto;
-                            font-size: 0.5vw;
-                            margin: 2%;
-                          }
-
-                          p {
-                            width: auto;
-                            height: auto;
-                            margin: 0;
-                            font-size: 0.6vw;
-                            padding: 0.5vw;
-                            border: 1.5px solid $Box_admin;
-                            padding: 3%;
-                            font-weight: 170;
-                            font-size: 0.7vw;
-                            border-radius: 1vw;
-                          }
-
-                          time {
-                            width: 100%;
-                            font-size: 0.4vw;
-                            margin: 2%;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      .disponibilidad_sucu {
-        top: -0.2vh;
-        right: 5.4vw;
-        margin: 1%;
-        width: 3vw;
-        height: 5vh;
-        display: flex;
-        background-color: $Box_admin;
-        padding: 0.3vw;
-        border-radius: 1vw;
-        justify-content: space-evenly;
-        align-items: center;
-        position: fixed;
-        z-index: 1000;
-        gap: 5%;
-
-        .icons_sucu {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          input {
-            display: none;
-
-            &:checked ~ label {
-              @include opacity;
-              display: flex;
-            }
-
-            &:checked ~ .sucu_user_info {
-              display: flex;
-              animation: fadeIn 0.2s ease-in-out forwards;
-            }
-          }
-
-          label {
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            border-radius: 10rem;
-            transition: all 0.2s ease-in-out;
-          }
-
-          #label_sucu_user {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            img {
-              height: 100%;
-            }
-          }
-
-          .sucu_user_info {
-            position: fixed;
-            display: none;
-            justify-content: start;
-            align-items: center;
-            flex-direction: column;
-            width: 15vw;
-            height: 75vh;
-            top: 17vh;
-            left: 18vw;
-            text-align: center;
-            color: $Texto;
-            font-family: $Letra2;
-            font-size: 0.7vw;
-            padding: 0.5vw;
-            background-color: $Box_admin;
-            box-shadow: 0px 0px 10px 0px $Box_admin;
-            gap: 1.5vh;
-            .filter-container {
-              width: 100%;
-              height: 3.5vh;
-              border-radius: 1vw;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
-              transition: all 0.1s ease-in-out;
-
-              .input-field {
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: end;
-                width: 100%;
-                height: 100%;
-                font-family: $Letra2;
-
-                input::-webkit-inner-spin-button,
-                input::-webkit-outer-spin-button {
-                  -webkit-appearance: none;
-                }
-
-                input[type="text"] {
-                  -moz-appearance: textfield;
-                }
-
-                input {
-                  @include cover;
-                  border-radius: 5rem;
-                  font-size: 0.7vw;
-                  display: flex;
-                  background-color: $Secundario;
-                  color: $Texto;
-                  outline: none;
-                  text-align: center;
-                  border: 0;
-
-                  &:focus {
-                    box-shadow: 0px 0px 10px 0px $Resalte;
-                    background: $Resalte;
-                  }
-                }
-
-                input:focus ~ label,
-                input:not(:placeholder-shown) ~ label {
-                  top: -1%;
-                  font-size: 0.5vw;
-                  background: $Principal;
-                  color: $Texto;
-                  border-radius: 1rem;
-                  padding: 0 3%;
-                }
-
-                label {
-                  width: auto;
-                  height: auto;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  padding: 0;
-                  position: absolute;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  color: $Texto;
-                  font-size: 0.7vw;
-                  pointer-events: none;
-                  transition: 0.3s;
-
-                  span {
-                    margin-left: 3px;
-                  }
-                }
-              }
-            }
-            .data_sucu_user {
-              width: 100%;
-              height: 100%;
-              overflow-x: hidden;
-              overflow-y: scroll;
-              display: flex;
-              justify-content: start;
-              align-items: center;
-              flex-direction: column;
-              .sucursal_list {
-                width: 100%;
-                height: auto;
-                display: flex;
-                justify-content: start;
-                align-items: center;
-                flex-direction: column;
-                padding: 0;
-                margin: 0;
-                border: none;
-                gap: 1.5vh;
-                .sucursal_item {
-                  width: 90%;
-                  height: 4vh;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  list-style: none;
-                  padding: 0.3vw;
-                  border-radius: 2vw;
-                  background-color: $Blanco;
-                  .sucursal_info {
-                    width: 50%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    strong {
-                      color: $Box_admin;
-                      font-size: 1vw;
-                    }
-                  }
-                  .checkbox_container {
-                    width: 20%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    input[type="checkbox"] {
-                      & ~ .sucursal_label {
-                        width: 20px;
-                        height: 20px;
-                        background-color: $Red;
-                        border-radius: 50%;
-                        display: inline-block;
-                      }
-
-                      // Estado chequeado - círculo rojo
-                      &:checked ~ .sucursal_label {
-                        background-color: $Green;
-                      }
-                    }
-                    .sucursal_label {
-                      height: 100%;
-                      aspect-ratio: 2/2;
-                      transition: all 0.2s ease-in-out;
-                      &:hover {
-                        @include opacity;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
 
     #pag4 {
@@ -2935,11 +3140,10 @@ html {
                 justify-content: center;
                 text-align: center;
 
-
                 h3 {
                   width: 100%;
                   color: $Texto;
-                  font-size: 2vh;
+                  font-size: 1.3em;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -2952,10 +3156,11 @@ html {
                     letter-spacing: 0.1rem;
                   }
                 }
+
                 p {
                   width: 100%;
                   color: $Texto;
-                  font-size: 1vh;
+                  font-size: .7em;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -3055,15 +3260,16 @@ html {
                   display: none;
                 }
               }
+
               .label_btn_log_manager {
                 color: $Texto;
-                bottom: 2em;
+                bottom: 3.5em;
                 border-radius: 3vw;
                 background-color: $Fondo;
-                padding: .3rem .7rem;
+                padding: 0.3rem 0.7rem;
                 position: absolute;
                 font-family: $Letra2;
-                font-size: .7em;
+                font-size: 0.7em;
               }
             }
 
@@ -3127,6 +3333,7 @@ html {
             }
           }
         }
+
         .entrar-btn {
           width: 10vw;
           display: flex;
@@ -3138,17 +3345,18 @@ html {
           font-family: $Letra1;
           font-size: 1.5vw;
           transition: all 0.2s ease-in-out;
+
           &:hover {
             scale: 1.3;
           }
         }
       }
-      
+
       .btn_admin2 {
         position: fixed;
         display: flex;
         opacity: 0;
-        width: 2vw;
+        width: 3em;
         aspect-ratio: 1/1;
         bottom: 0;
         right: 0;
@@ -3190,7 +3398,7 @@ html {
         position: fixed;
         z-index: 10000;
         gap: 5%;
-      
+
         .icons_settings {
           width: 90%;
           height: 90%;
@@ -3198,16 +3406,16 @@ html {
           justify-content: center;
           align-items: center;
           position: relative; // Añadido para mejor control de posicionamiento
-      
+
           input {
             display: none; // Correcto, lo mantienes oculto porque usas el label
-      
+
             &:checked ~ .settings_info {
               display: flex;
               animation: fadeIn 0.2s ease-in-out forwards;
             }
           }
-      
+
           label {
             width: 100%;
             height: 100%;
@@ -3221,12 +3429,12 @@ html {
             background-color: $Box_admin;
             z-index: 10000;
             cursor: pointer; // Indica que es clickable
-      
+
             img {
               height: 60%;
             }
           }
-      
+
           .settings_info {
             position: fixed;
             display: none; // Oculto por defecto
@@ -3245,7 +3453,7 @@ html {
             background-color: $Box_admin;
             overflow: hidden;
             gap: 1.5vh;
-      
+
             .data_settings {
               width: 100%;
               height: 100%;
@@ -3256,7 +3464,7 @@ html {
               justify-content: space-between;
               background-color: $Box_admin;
               align-items: center;
-      
+
               button {
                 width: 100%;
                 border-radius: 2vw;
@@ -3269,7 +3477,7 @@ html {
                 background-color: $Transparente;
                 border: none;
                 transition: all 0.2s ease-in-out;
-      
+
                 img {
                   height: 50%;
                 }
@@ -3495,6 +3703,7 @@ html {
                       position: relative;
                       display: inline-block;
                       font-size: 1vw;
+
                       .select-selected {
                         cursor: pointer;
                         position: relative;
@@ -3516,6 +3725,7 @@ html {
                           color: $Texto;
                         }
                       }
+
                       .select-items {
                         position: absolute;
                         width: 5vw;
@@ -3540,7 +3750,7 @@ html {
                         div {
                           flex-direction: row;
                           cursor: pointer;
-                          padding: .5rem;
+                          padding: 0.5rem;
                         }
                       }
                     }
@@ -3599,6 +3809,7 @@ html {
         align-items: center;
         position: fixed;
         z-index: 1000;
+
         .sucursal {
           width: 90%;
           height: auto;
@@ -3771,6 +3982,7 @@ html {
                     position: relative;
                     display: inline-block;
                     font-size: 1vw;
+
                     .select-selected {
                       cursor: pointer;
                       position: relative;
@@ -3791,6 +4003,7 @@ html {
                         color: $Texto;
                       }
                     }
+
                     .select-items {
                       position: absolute;
                       width: 5vw;
@@ -3815,7 +4028,7 @@ html {
                       div {
                         flex-direction: row;
                         cursor: pointer;
-                        padding: .5rem;
+                        padding: 0.5rem;
                       }
                     }
                   }
@@ -4014,7 +4227,7 @@ html {
         }
       }
     }
- 
+
     .alertas_modal {
       .alert_eliminacion_vacante {
         .alert_box {
@@ -4080,7 +4293,7 @@ html {
       }
     }
 
-    header { 
+    header {
       width: 65vw;
       height: 20vw;
 
@@ -4097,11 +4310,13 @@ html {
     main {
       position: absolute;
       top: 0;
+
       .pages {
         width: 100%;
         height: var(--main-vh);
       }
-      #home { 
+
+      #home {
         .mancha1 {
           width: 90%;
           top: -8vh;
@@ -4182,6 +4397,7 @@ html {
         .cont-install-btn {
           width: 10vw;
         }
+
         .Logincont {
           .Login-cont {
             width: 70vw;
@@ -4193,8 +4409,9 @@ html {
                   h3 {
                     font-size: 1.2em;
                   }
+
                   p {
-                    font-size: .6em;
+                    font-size: 0.6em;
                   }
                 }
 
@@ -4214,10 +4431,10 @@ html {
                     font-size: 3.5vw;
                   }
                 }
-                
               }
             }
           }
+
           .entrar-btn {
             width: 60vw;
             border-radius: 50%;
@@ -4225,6 +4442,7 @@ html {
             font-size: 8vw;
           }
         }
+
         .btn_cita {
           width: 8vw;
           left: 0;
@@ -4244,6 +4462,7 @@ html {
           width: 15vw;
           height: 4.5vh;
           border-radius: 1vw;
+
           .icons_settings {
             .settings_info {
               width: 15vw;
@@ -4252,6 +4471,7 @@ html {
               left: 1.5vw;
               border-radius: 0 0 2vw 0;
               background-color: $Fondo;
+
               .data_settings {
                 background-color: $Fondo;
               }
@@ -4683,8 +4903,9 @@ html {
                   h3 {
                     font-size: 1.2em;
                   }
+
                   p {
-                    font-size: .6em;
+                    font-size: 0.6em;
                   }
                 }
 
@@ -4707,6 +4928,7 @@ html {
               }
             }
           }
+
           .entrar-btn {
             width: 60vw;
             border-radius: 50%;
@@ -4714,7 +4936,7 @@ html {
             font-size: 8vw;
           }
         }
-        
+
         .btn_admin2 {
           width: 8vw;
           left: 0;
@@ -4730,6 +4952,7 @@ html {
           width: 15vw;
           height: 4.5vh;
           border-radius: 1vw;
+
           .icons_settings {
             .settings_info {
               width: 12vw;
@@ -4738,8 +4961,10 @@ html {
               left: 19vw;
               border-radius: 3vw;
               background-color: $Fondo;
+
               .data_settings {
                 background-color: $Fondo;
+
                 button {
                   img {
                     height: 70%;
@@ -4764,6 +4989,7 @@ html {
               height: 85%;
               top: 11vh;
               left: 1.7vw;
+
               .box_status {
                 p {
                   font-size: 3vw;
@@ -4800,13 +5026,13 @@ html {
                       .custom-select {
                         width: 8vw;
                         font-size: 4vw;
-                        
-                    .select-items {
-                      width: 26vw;
-                      height: 4vh;
-                      top: 0;
-                      left: 0;
-                    }
+
+                        .select-items {
+                          width: 26vw;
+                          height: 4vh;
+                          top: 0;
+                          left: 0;
+                        }
                       }
                     }
 
@@ -4849,6 +5075,7 @@ html {
           height: 4vh;
           padding: 1vw;
           border-radius: 5vw;
+
           .sucursal {
             font-size: 0.7em;
           }
@@ -4868,6 +5095,7 @@ html {
             height: 85%;
             border-radius: 1.2vw;
             margin-top: 10vh;
+
             .const_data {
               ul {
                 .vacante_item_citasManager {
@@ -4898,13 +5126,13 @@ html {
                       width: 8vw;
                       height: 8vw;
                       font-size: 4vw;
-                      
-                  .select-items {
-                    width: 26vw;
-                    height: 4vh;
-                    top: 0;
-                    left: 0;
-                  }
+
+                      .select-items {
+                        width: 27vw;
+                        height: 4vh;
+                        top: 0;
+                        left: 0;
+                      }
                     }
                   }
                 }

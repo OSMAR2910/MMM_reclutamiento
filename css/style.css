@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "NIMBUS";
   src: url(/fonts/TAN-NIMBUS.ttf);
@@ -1249,38 +1250,6 @@ html .alertas .alerta span p {
   color: #ffffff;
   text-align: center;
 }
-body .alertas .alerta_admin,
-html .alertas .alerta_admin {
-  top: 4.2vh;
-  left: 19.4vw;
-  width: 13vw;
-  height: 4.5vw;
-  position: fixed;
-  z-index: 1010;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background-color: #f18f62;
-  border: 2px solid #f18f62;
-  box-shadow: 0px 0px 10px 0px #f18f62;
-  border-radius: 5rem;
-  animation: fadeInDown 0.2s ease-in-out forwards;
-}
-body .alertas .alerta_admin span,
-html .alertas .alerta_admin span {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body .alertas .alerta_admin span p,
-html .alertas .alerta_admin span p {
-  font-size: 0.9vw;
-  color: #ffffff;
-  font-family: "Nunito";
-  text-align: center;
-}
 body .alertas .alerta_manager,
 html .alertas .alerta_manager {
   top: 3.2vh;
@@ -1407,8 +1376,9 @@ html .alertas_modal .modal-container .modal-content {
   align-items: center;
   flex-direction: column;
   padding: 1vw;
-  border-radius: 2vw;
+  border-radius: 1.5vw;
   text-align: center;
+  position: relative;
 }
 body .alertas_modal .modal-container .modal-content h2,
 html .alertas_modal .modal-container .modal-content h2 {
@@ -1611,13 +1581,226 @@ html .alertas_modal .modal-container .modal-content form .modal-buttons button:f
 }
 body .alertas_modal .modal-container .modal-content form .modal-buttons button#cancelar_cita,
 html .alertas_modal .modal-container .modal-content form .modal-buttons button#cancelar_cita {
+  width: 10%;
+  top: 2%;
+  border-radius: 50%;
+  left: 2%;
+  aspect-ratio: 1/1;
+  background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: #f18f62;
-  color: white;
+  position: absolute;
 }
 body .alertas_modal .modal-container .modal-content form .modal-buttons button#enviar_cita,
 html .alertas_modal .modal-container .modal-content form .modal-buttons button#enviar_cita {
   background-color: #1b3c59;
   color: white;
+}
+body .alertas_modal #modal-user-info,
+html .alertas_modal #modal-user-info {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+body .alertas_modal #modal-user-info .modal-content,
+html .alertas_modal #modal-user-info .modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  width: 20vw;
+  height: 20vh;
+  position: relative;
+  border-radius: 1.5vw;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content,
+html .alertas_modal #modal-user-info .modal-content .user-info-content {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont {
+  width: 100%;
+  height: 1.7em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont span,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont span,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont span,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont span {
+  width: auto;
+  color: #1b3c59;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont .edit-btn,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont .edit-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn {
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-image: url("../img/Logos/interfaces/icons/editar.svg");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #174891;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont .edit-btn:hover,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn:hover,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont .edit-btn:hover,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn:hover {
+  background-color: #0f3061;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item strong,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item strong {
+  width: 100%;
+  font-weight: bold;
+  color: #1b3c59;
+  margin-bottom: 1rem;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container {
+  display: none; /* Asegura que esté oculto por defecto */
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container[style*="display: flex"],
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container[style*="display: flex"] {
+  display: flex !important; /* Prioriza la visibilidad cuando se activa */
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container {
+  width: 100%;
+  height: 1.7em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .save-btn,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .cancel-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .save-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .cancel-btn {
+  height: 100%;
+  aspect-ratio: 1/1;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  border-radius: 1rem;
+  margin: 0.2rem;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .save-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .save-btn {
+  background-image: url("../img/Logos/interfaces/icons/exito2.svg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #00bf63;
+  transition: all 0.3s ease-in-out;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn:hover,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .save-btn:hover,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn:hover,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .save-btn:hover {
+  opacity: 0.5;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .cancel-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .cancel-btn {
+  background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ff3131;
+  transition: all 0.3s ease-in-out;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn:hover,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .cancel-btn:hover,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn:hover,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container .cancel-btn:hover {
+  opacity: 0.5;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-name-input,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-employee-input,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-name-input,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-employee-input,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-name-input,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-employee-input,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-name-input,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-employee-input {
+  font-size: 0.9rem;
+  color: #1b3c59;
+  outline: none;
+  border: none;
+}
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-name-input:focus,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-employee-input:focus,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-name-input:focus,
+body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-employee-input:focus,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-name-input:focus,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container #edit-employee-input:focus,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-name-input:focus,
+html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-employee-input:focus {
+  outline: none;
+  border: none;
+}
+body .alertas_modal #modal-user-info .modal-content .modal_buttons,
+html .alertas_modal #modal-user-info .modal-content .modal_buttons {
+  position: absolute;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  left: 1%;
+  top: 1%;
+}
+body .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn,
+html .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn {
+  border: none;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f18f62;
+}
+body .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn:hover,
+html .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn:hover {
+  background-color: #ec6223;
 }
 body header,
 html header {
@@ -2121,7 +2304,7 @@ html main #pag2 {
 }
 body main #pag2 .cont-install-btn,
 html main #pag2 .cont-install-btn {
-  width: 2.5vw;
+  width: 3.5em;
   aspect-ratio: 1/1;
   opacity: 0;
   display: flex;
@@ -2208,7 +2391,7 @@ body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 {
   width: 100%;
   color: #ffffff;
-  font-size: 2vh;
+  font-size: 1.3em;
   padding: 0;
   margin: 0;
   display: flex;
@@ -2225,7 +2408,7 @@ body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p {
   width: 100%;
   color: #ffffff;
-  font-size: 1vh;
+  font-size: 0.7em;
   padding: 0;
   margin: 0;
   display: flex;
@@ -2329,7 +2512,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
   color: #ffffff;
-  bottom: 2em;
+  bottom: 3.5em;
   border-radius: 3vw;
   background-color: #ec6223;
   padding: 0.3rem 0.7rem;
@@ -2420,7 +2603,7 @@ html main #pag2 .btn_cita {
   position: fixed;
   display: flex;
   opacity: 0;
-  width: 2vw;
+  width: 3em;
   aspect-ratio: 1/1;
   bottom: 0;
   right: 0;
@@ -2444,6 +2627,7 @@ body main #pag3,
 html main #pag3 {
   width: 100%;
   height: 100%;
+  align-items: end;
 }
 body main #pag3 .orientation-message,
 html main #pag3 .orientation-message {
@@ -2462,22 +2646,41 @@ html main #pag3 .orientation-message {
   text-align: center;
   z-index: 10000;
 }
-body main #pag3 .settings,
-html main #pag3 .settings {
-  top: 2.5vh;
-  left: 1.5vw;
-  width: 4vw;
-  height: 4.8vh;
+body main #pag3 .nav_admin,
+html main #pag3 .nav_admin {
+  width: 100vw;
+  height: 6vh;
+  top: 0;
+  left: 0;
+  position: fixed;
   display: flex;
-  border-radius: 10%;
+  justify-content: center;
+  align-items: center;
+  background-color: #1b3c59;
+  z-index: 10020;
+}
+body main #pag3 .nav_admin .nav_cont,
+html main #pag3 .nav_admin .nav_cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body main #pag3 .nav_admin .nav_cont .settings,
+html main #pag3 .nav_admin .nav_cont .settings {
+  width: 4%;
+  height: 100%;
+  position: absolute;
+  left: 1%;
+  top: 0;
+  display: flex;
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
-  z-index: 10000;
-  gap: 5%;
 }
-body main #pag3 .settings .icons_settings,
-html main #pag3 .settings .icons_settings {
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings {
   width: 90%;
   height: 90%;
   display: flex;
@@ -2485,17 +2688,19 @@ html main #pag3 .settings .icons_settings {
   align-items: center;
   position: relative;
 }
-body main #pag3 .settings .icons_settings input,
-html main #pag3 .settings .icons_settings input {
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings input,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings input {
   display: none;
 }
-body main #pag3 .settings .icons_settings input:checked ~ .settings_info,
-html main #pag3 .settings .icons_settings input:checked ~ .settings_info {
-  display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .settings_info,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .settings_info {
+  left: 110%;
+  width: 200%;
+  visibility: visible;
+  transition: all 0.2s ease-in-out;
 }
-body main #pag3 .settings .icons_settings label,
-html main #pag3 .settings .icons_settings label {
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings label,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings label {
   width: 100%;
   height: 100%;
   border: none;
@@ -2509,47 +2714,44 @@ html main #pag3 .settings .icons_settings label {
   z-index: 10000;
   cursor: pointer;
 }
-body main #pag3 .settings .icons_settings label img,
-html main #pag3 .settings .icons_settings label img {
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings label img,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings label img {
   height: 60%;
 }
-body main #pag3 .settings .icons_settings .settings_info,
-html main #pag3 .settings .icons_settings .settings_info {
-  position: fixed;
-  display: none;
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info {
+  position: absolute;
+  display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  top: 8.5vh;
-  left: 2vw;
-  width: 3vw;
-  height: 7vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
   text-align: center;
-  border-radius: 0.7vw;
   color: #ffffff;
   font-family: "Nunito";
-  padding: 0.3vw;
-  background-color: #ec6223;
   gap: 1.5vh;
+  transition: all 0.2s ease-in-out;
 }
-body main #pag3 .settings .icons_settings .settings_info .data_settings,
-html main #pag3 .settings .icons_settings .settings_info .data_settings {
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: end;
-  background-color: #ec6223;
   align-items: center;
   gap: 5%;
 }
-body main #pag3 .settings .icons_settings .settings_info .data_settings button,
-html main #pag3 .settings .icons_settings .settings_info .data_settings button {
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button {
   width: 100%;
-  border-radius: 2vw;
-  height: 50%;
+  height: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2558,14 +2760,571 @@ html main #pag3 .settings .icons_settings .settings_info .data_settings button {
   border: none;
   transition: all 0.2s ease-in-out;
 }
-body main #pag3 .settings .icons_settings .settings_info .data_settings button img,
-html main #pag3 .settings .icons_settings .settings_info .data_settings button img {
-  height: 70%;
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img {
+  height: 80%;
+}
+body main #pag3 .nav_admin .nav_cont .cont_welcome_admin,
+html main #pag3 .nav_admin .nav_cont .cont_welcome_admin {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin,
+html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin {
+  height: 75%;
+  aspect-ratio: 1/1;
+  background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: #122435;
+}
+body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin,
+html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
+  background-color: #ffffff;
+  width: auto;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 0.2rem 0.7rem;
+}
+body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p,
+html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
+  display: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9em;
+  font-family: "Nunito";
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios {
+  width: 4%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 1%;
+  top: 0;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ label,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ label {
+  opacity: 50%;
+  scale: 0.9;
+  display: flex;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info {
+  display: flex;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 10rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label img,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label img {
+  height: 60%;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info {
+  position: fixed;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 15vw;
+  height: 73.5vh;
+  top: 22vh;
+  left: 17.5vw;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+  padding: 0.5vw;
+  background-color: #1b3c59;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container {
+  width: 100%;
+  height: 3.5vh;
+  border-radius: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.1s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+  font-family: "Nunito";
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-inner-spin-button,
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-outer-spin-button,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-inner-spin-button,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input[type=text],
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input[type=text] {
+  -moz-appearance: textfield;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5rem;
+  font-size: 0.7vw;
+  display: flex;
+  background-color: #174891;
+  color: #ffffff;
+  outline: none;
+  text-align: center;
+  border: 0;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus {
+  box-shadow: 0px 0px 10px 0px #0f3061;
+  background: #0f3061;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
+  top: -1%;
+  font-size: 0.5vw;
+  background: #ec6223;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 0 3%;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
+  top: -1%;
+  font-size: 0.5vw;
+  background: #ec6223;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 0 3%;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 0.7vw;
+  pointer-events: none;
+  transition: 0.3s;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label span,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label span {
+  margin-left: 3px;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user .no_data,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user .no_data {
+  margin-top: 30%;
+  width: 40%;
+  aspect-ratio: 2/2;
+  background-image: url("../img//Utilidades/no_data.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border: none;
+  margin-bottom: 1.5vh;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button {
+  width: 95%;
+  height: 5vh;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 0.5vw;
+  justify-content: center;
+  border: none;
+  overflow-y: hidden;
+  align-items: center;
+  font-family: "Nunito";
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-messages,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-messages {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus {
+  overflow: hidden;
+  height: 25vh;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-div,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-div {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages {
+  width: 90%;
+  height: 90%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message {
+  width: 100%;
+  height: auto;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  text-align: start;
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong {
+  width: auto;
+  font-size: 0.5vw;
+  margin: 2%;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p {
+  width: auto;
+  height: auto;
+  margin: 0;
+  font-size: 0.6vw;
+  padding: 0.5vw;
+  border: 1.5px solid #1b3c59;
+  padding: 3%;
+  font-weight: 170;
+  font-size: 0.7vw;
+  border-radius: 1vw;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time {
+  width: 100%;
+  font-size: 0.4vw;
+  margin: 2%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu {
+  width: 3%;
+  height: 100%;
+  display: flex;
+  background-color: #1b3c59;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 6%;
+  top: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ label {
+  opacity: 50%;
+  scale: 0.9;
+  display: flex;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info {
+  display: flex;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 10rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label img {
+  height: 80%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info {
+  position: fixed;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 15vw;
+  height: 73.5vh;
+  top: 22vh;
+  left: 17.5vw;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+  padding: 0.5vw;
+  background-color: #1b3c59;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container {
+  width: 100%;
+  height: 3.5vh;
+  border-radius: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.1s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+  font-family: "Nunito";
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-inner-spin-button,
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-outer-spin-button,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-inner-spin-button,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input[type=text],
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input[type=text] {
+  -moz-appearance: textfield;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5rem;
+  font-size: 0.7vw;
+  display: flex;
+  background-color: #174891;
+  color: #ffffff;
+  outline: none;
+  text-align: center;
+  border: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus {
+  box-shadow: 0px 0px 10px 0px #0f3061;
+  background: #0f3061;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
+  top: -1%;
+  font-size: 0.5vw;
+  background: #ec6223;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 0 3%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus ~ label,
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
+  top: -1%;
+  font-size: 0.5vw;
+  background: #ec6223;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 0 3%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 0.7vw;
+  pointer-events: none;
+  transition: 0.3s;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label span {
+  margin-left: 3px;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border: none;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item {
+  width: 90%;
+  height: 4vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0.3vw;
+  border-radius: 2vw;
+  background-color: #ffffff;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info strong,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info strong {
+  color: #1b3c59;
+  font-size: 1vw;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label {
+  width: 20px;
+  height: 20px;
+  background-color: #ff3131;
+  border-radius: 50%;
+  display: inline-block;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox]:checked ~ .sucursal_label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox]:checked ~ .sucursal_label {
+  background-color: #00bf63;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label {
+  height: 100%;
+  aspect-ratio: 2/2;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label:hover {
+  opacity: 50%;
+  scale: 0.9;
 }
 body main #pag3 .estatus_vacantes,
 html main #pag3 .estatus_vacantes {
-  top: 3.5vh;
-  left: 19vw;
+  top: 9vh;
+  left: 18.5vw;
   width: 12vw;
   height: 3.5vw;
   display: flex;
@@ -2631,16 +3390,15 @@ html main #pag3 .estatus_vacantes .icons_status .status_info {
   transition: none;
   flex-direction: column;
   width: 15vw;
-  height: 75vh;
-  top: 18vh;
-  left: 18vw;
+  height: 73.5vh;
+  top: 22vh;
+  left: 17.5vw;
   text-align: center;
   color: #ffffff;
   font-family: "Nunito";
   font-size: 0.7vw;
   padding: 0.5vw;
   background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
   gap: 1.5vh;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status,
@@ -2968,44 +3726,44 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 }
 body main #pag3 .admin_cont,
 html main #pag3 .admin_cont {
-  width: 97vw;
-  height: 95vh;
+  width: 98vw;
+  height: 90vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: start;
   font-family: "Nunito";
   position: relative;
   border: none;
-  margin: 0;
+  margin-bottom: 2vh;
   padding: 0;
-  gap: 2%;
+  gap: 1%;
   background-color: #1b3c59;
-  -webkit-mask: url("../img/Utilidades/top-center.png") center/contain no-repeat, url("../img/Utilidades/top-left.png") center/contain no-repeat, url("../img/Utilidades/top-right.png") center/contain no-repeat, linear-gradient(#000000 0 0);
-  -webkit-mask-size: 20vw, 5vw, 10vw;
-          mask-size: 20vw, 5vw, 10vw;
-  -webkit-mask-position: 14.5vw 0vh, left top, right top;
-          mask-position: 14.5vw 0vh, left top, right top;
+  -webkit-mask: url("../img/Utilidades/top-center.png") center/contain no-repeat, linear-gradient(#000000 0 0);
+  -webkit-mask-size: 20vw;
+          mask-size: 20vw;
+  -webkit-mask-position: 14.5vw 0vh;
+          mask-position: 14.5vw 0vh;
   -webkit-mask-composite: xor;
           mask-composite: exclude;
-  border-radius: 0vw 3vw 3vw 3vw;
+  border-radius: 2vw;
 }
 body main #pag3 .admin_cont .cont_rechazados,
 html main #pag3 .admin_cont .cont_rechazados {
-  width: 15.7%;
-  height: 95%;
+  width: 15%;
+  height: 97%;
   display: flex;
+  position: absolute;
+  top: 1%;
+  left: 1%;
   border-radius: 1.2vw;
   justify-content: start;
-  align-items: end;
+  align-items: center;
   flex-direction: column;
-  background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  margin: 1vw;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_rechazados .box_red,
 html main #pag3 .admin_cont .cont_rechazados .box_red {
-  width: 70%;
+  width: 100%;
   height: 3vh;
   margin-top: 1vh;
   background-color: #ff3131;
@@ -3234,15 +3992,16 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:fo
 body main #pag3 .admin_cont .cont_citas,
 html main #pag3 .admin_cont .cont_citas {
   width: 15%;
-  height: 80%;
+  height: 82%;
   display: flex;
+  position: absolute;
+  top: 16%;
+  left: 17.5%;
   border-radius: 1.2vw;
   justify-content: start;
   align-items: end;
   flex-direction: column;
   background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  margin-top: 15vh;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_citas .box_gray,
@@ -3412,21 +4171,22 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus
 }
 body main #pag3 .admin_cont .cont_aceptados,
 html main #pag3 .admin_cont .cont_aceptados {
-  width: 70%;
-  height: 95%;
+  width: 65%;
+  height: 97%;
   display: flex;
+  position: absolute;
+  top: 1%;
+  right: 1%;
   border-radius: 1.2vw;
   justify-content: start;
   align-items: start;
   flex-direction: column;
   background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  margin: 1vw;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_aceptados .box_green,
 html main #pag3 .admin_cont .cont_aceptados .box_green {
-  width: 85%;
+  width: 100%;
   height: 3vh;
   margin-top: 1vh;
   background-color: #00bf63;
@@ -3648,543 +4408,6 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:f
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container {
   display: none;
 }
-body main #pag3 .mensajes_usuarios,
-html main #pag3 .mensajes_usuarios {
-  top: -0.2vh;
-  right: 0vw;
-  margin: 1%;
-  width: 4vw;
-  height: 4vh;
-  display: flex;
-  background-color: #1b3c59;
-  padding: 0.5vw;
-  border-radius: 1vw;
-  justify-content: space-evenly;
-  align-items: center;
-  position: fixed;
-  z-index: 1000;
-  gap: 5%;
-}
-body main #pag3 .mensajes_usuarios .icons_mj,
-html main #pag3 .mensajes_usuarios .icons_mj {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main #pag3 .mensajes_usuarios .icons_mj input,
-html main #pag3 .mensajes_usuarios .icons_mj input {
-  display: none;
-}
-body main #pag3 .mensajes_usuarios .icons_mj input:checked ~ label,
-html main #pag3 .mensajes_usuarios .icons_mj input:checked ~ label {
-  opacity: 50%;
-  scale: 0.9;
-  display: flex;
-}
-body main #pag3 .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info,
-html main #pag3 .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info {
-  display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
-}
-body main #pag3 .mensajes_usuarios .icons_mj label,
-html main #pag3 .mensajes_usuarios .icons_mj label {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  border-radius: 10rem;
-  transition: all 0.2s ease-in-out;
-}
-body main #pag3 .mensajes_usuarios .icons_mj #label_mj_user,
-html main #pag3 .mensajes_usuarios .icons_mj #label_mj_user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main #pag3 .mensajes_usuarios .icons_mj #label_mj_user img,
-html main #pag3 .mensajes_usuarios .icons_mj #label_mj_user img {
-  height: 70%;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info {
-  position: fixed;
-  display: none;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  width: 15vw;
-  height: 75vh;
-  top: 17vh;
-  left: 18vw;
-  text-align: center;
-  color: #ffffff;
-  font-family: "Nunito";
-  font-size: 0.7vw;
-  padding: 0.5vw;
-  background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  gap: 1.5vh;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container {
-  width: 100%;
-  height: 3.5vh;
-  border-radius: 1vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: all 0.1s ease-in-out;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  width: 100%;
-  height: 100%;
-  font-family: "Nunito";
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-inner-spin-button,
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-outer-spin-button,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-inner-spin-button,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input[type=text],
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input[type=text] {
-  -moz-appearance: textfield;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input {
-  width: 100%;
-  height: 100%;
-  border-radius: 5rem;
-  font-size: 0.7vw;
-  display: flex;
-  background-color: #174891;
-  color: #ffffff;
-  outline: none;
-  text-align: center;
-  border: 0;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus {
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
-  top: -1%;
-  font-size: 0.5vw;
-  background: #ec6223;
-  color: #ffffff;
-  border-radius: 1rem;
-  padding: 0 3%;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
-  top: -1%;
-  font-size: 0.5vw;
-  background: #ec6223;
-  color: #ffffff;
-  border-radius: 1rem;
-  padding: 0 3%;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label {
-  width: auto;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ffffff;
-  font-size: 0.7vw;
-  pointer-events: none;
-  transition: 0.3s;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label span,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label span {
-  margin-left: 3px;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user .no_data,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user .no_data {
-  margin-top: 30%;
-  width: 40%;
-  aspect-ratio: 2/2;
-  background-image: url("../img//Utilidades/no_data.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul {
-  width: 100%;
-  height: auto;
-  display: flex;
-  padding: 0;
-  margin: 0;
-  border: none;
-  margin-bottom: 1.5vh;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  gap: 1.5vh;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button {
-  width: 95%;
-  height: 5vh;
-  display: flex;
-  background-color: #ffffff;
-  border-radius: 0.5vw;
-  justify-content: center;
-  border: none;
-  overflow-y: hidden;
-  align-items: center;
-  font-family: "Nunito";
-  transition: all 0.2s ease-in-out;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1vw;
-  color: #1b3c59;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-messages,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-messages {
-  display: none;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus {
-  overflow: hidden;
-  height: 25vh;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-div,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-div {
-  display: none;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages {
-  width: 90%;
-  height: 90%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5vh;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message {
-  width: 100%;
-  height: auto;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  text-align: start;
-  color: #1b3c59;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong {
-  width: auto;
-  font-size: 0.5vw;
-  margin: 2%;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p {
-  width: auto;
-  height: auto;
-  margin: 0;
-  font-size: 0.6vw;
-  padding: 0.5vw;
-  border: 1.5px solid #1b3c59;
-  padding: 3%;
-  font-weight: 170;
-  font-size: 0.7vw;
-  border-radius: 1vw;
-}
-body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time,
-html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time {
-  width: 100%;
-  font-size: 0.4vw;
-  margin: 2%;
-}
-body main #pag3 .disponibilidad_sucu,
-html main #pag3 .disponibilidad_sucu {
-  top: -0.2vh;
-  right: 5.4vw;
-  margin: 1%;
-  width: 3vw;
-  height: 5vh;
-  display: flex;
-  background-color: #1b3c59;
-  padding: 0.3vw;
-  border-radius: 1vw;
-  justify-content: space-evenly;
-  align-items: center;
-  position: fixed;
-  z-index: 1000;
-  gap: 5%;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu,
-html main #pag3 .disponibilidad_sucu .icons_sucu {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu input,
-html main #pag3 .disponibilidad_sucu .icons_sucu input {
-  display: none;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ label,
-html main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ label {
-  opacity: 50%;
-  scale: 0.9;
-  display: flex;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info,
-html main #pag3 .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info {
-  display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu label,
-html main #pag3 .disponibilidad_sucu .icons_sucu label {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  border-radius: 10rem;
-  transition: all 0.2s ease-in-out;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu #label_sucu_user,
-html main #pag3 .disponibilidad_sucu .icons_sucu #label_sucu_user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu #label_sucu_user img,
-html main #pag3 .disponibilidad_sucu .icons_sucu #label_sucu_user img {
-  height: 100%;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info {
-  position: fixed;
-  display: none;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  width: 15vw;
-  height: 75vh;
-  top: 17vh;
-  left: 18vw;
-  text-align: center;
-  color: #ffffff;
-  font-family: "Nunito";
-  font-size: 0.7vw;
-  padding: 0.5vw;
-  background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  gap: 1.5vh;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container {
-  width: 100%;
-  height: 3.5vh;
-  border-radius: 1vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: all 0.1s ease-in-out;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  width: 100%;
-  height: 100%;
-  font-family: "Nunito";
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-inner-spin-button,
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-outer-spin-button,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-inner-spin-button,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input[type=text],
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input[type=text] {
-  -moz-appearance: textfield;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input {
-  width: 100%;
-  height: 100%;
-  border-radius: 5rem;
-  font-size: 0.7vw;
-  display: flex;
-  background-color: #174891;
-  color: #ffffff;
-  outline: none;
-  text-align: center;
-  border: 0;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus {
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
-  top: -1%;
-  font-size: 0.5vw;
-  background: #ec6223;
-  color: #ffffff;
-  border-radius: 1rem;
-  padding: 0 3%;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus ~ label,
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus ~ label,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
-  top: -1%;
-  font-size: 0.5vw;
-  background: #ec6223;
-  color: #ffffff;
-  border-radius: 1rem;
-  padding: 0 3%;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label {
-  width: auto;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ffffff;
-  font-size: 0.7vw;
-  pointer-events: none;
-  transition: 0.3s;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label span,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field label span {
-  margin-left: 3px;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list {
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  border: none;
-  gap: 1.5vh;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item {
-  width: 90%;
-  height: 4vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  padding: 0.3vw;
-  border-radius: 2vw;
-  background-color: #ffffff;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info strong,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info strong {
-  color: #1b3c59;
-  font-size: 1vw;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container {
-  width: 20%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label {
-  width: 20px;
-  height: 20px;
-  background-color: #ff3131;
-  border-radius: 50%;
-  display: inline-block;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox]:checked ~ .sucursal_label,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox]:checked ~ .sucursal_label {
-  background-color: #00bf63;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label {
-  height: 100%;
-  aspect-ratio: 2/2;
-  transition: all 0.2s ease-in-out;
-}
-body main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label:hover,
-html main #pag3 .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label:hover {
-  opacity: 50%;
-  scale: 0.9;
-}
 body main #pag4,
 html main #pag4 {
   animation: fadeInUpBig 0.5s ease-in-out forwards;
@@ -4242,7 +4465,7 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 {
   width: 100%;
   color: #ffffff;
-  font-size: 2vh;
+  font-size: 1.3em;
   padding: 0;
   margin: 0;
   display: flex;
@@ -4259,7 +4482,7 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p {
   width: 100%;
   color: #ffffff;
-  font-size: 1vh;
+  font-size: 0.7em;
   padding: 0;
   margin: 0;
   display: flex;
@@ -4363,7 +4586,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
   color: #ffffff;
-  bottom: 2em;
+  bottom: 3.5em;
   border-radius: 3vw;
   background-color: #ec6223;
   padding: 0.3rem 0.7rem;
@@ -4452,7 +4675,7 @@ html main #pag4 .btn_admin2 {
   position: fixed;
   display: flex;
   opacity: 0;
-  width: 2vw;
+  width: 3em;
   aspect-ratio: 1/1;
   bottom: 0;
   right: 0;
@@ -6298,7 +6521,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select .select-items,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button .select-items,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select .select-items {
-    width: 26vw;
+    width: 27vw;
     height: 4vh;
     top: 0;
     left: 0;

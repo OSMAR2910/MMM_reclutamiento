@@ -110,10 +110,9 @@ function adjustViewForPWA() {
   }
 }
 
-// Variable para almacenar la altura máxima del viewport sin teclado
 let maxViewportHeight = window.innerHeight;
 
-function setRealViewportHeight() {
+function setRealViewportHeight(forceUpdate = false) {
   // Obtiene la altura real del viewport
   const realHeight = window.visualViewport?.height || window.innerHeight;
   // Obtiene la altura actual establecida en --main-vh
@@ -123,14 +122,14 @@ function setRealViewportHeight() {
   // Detectar si el teclado virtual podría estar activo
   const isInputFocused = document.activeElement.tagName === 'INPUT' || 
                         document.activeElement.tagName === 'TEXTAREA';
-  const isKeyboardLikelyOpen = realHeight < maxViewportHeight && isInputFocused;
+  const isKeyboardLikelyOpen = realHeight < maxViewportHeight * 0.9 && isInputFocused; // Umbral del 90% para mayor sensibilidad
 
-  // Actualizar maxViewportHeight solo si no hay teclado y la nueva altura es mayor
-  if (!isKeyboardLikelyOpen && realHeight > maxViewportHeight) {
-    maxViewportHeight = realHeight;
+  // Si forceUpdate es verdadero (para cambios de resolución/orientación), o si no hay teclado, actualiza maxViewportHeight
+  if (forceUpdate || !isKeyboardLikelyOpen) {
+    maxViewportHeight = realHeight; // Recalcular siempre en estos casos
   }
 
-  // Establecer --main-vh al valor máximo siempre, ignorando el teclado
+  // Establecer --main-vh al valor calculado
   if (!currentHeightNum || maxViewportHeight !== currentHeightNum) {
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
   }
@@ -151,21 +150,23 @@ let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    setRealViewportHeight(); // Siempre actualizar, pero usando maxViewportHeight
+    setRealViewportHeight(true); // Forzar actualización en resize
   }, 100); // 100ms de retraso
 });
 
 // Actualiza en cambio de orientación
 window.addEventListener('orientationchange', () => {
-  setTimeout(setRealViewportHeight, 200); // Retraso para estabilizar la orientación
+  setTimeout(() => {
+    setRealViewportHeight(true); // Forzar actualización en cambio de orientación
+  }, 200); // Retraso para estabilizar la orientación
 });
 
 // Sincronizar con visualViewport si está disponible
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', () => {
-    setRealViewportHeight(); // Siempre actualizar, pero usando maxViewportHeight
+    setRealViewportHeight(true); // Forzar actualización en visualViewport resize
   });
-} 
+}
 
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
@@ -338,6 +339,22 @@ export const elements = {
   chatbot: document.getElementById("chatbot"),
   pavo_cont: document.getElementById("pavo_cont"),
 };
+
+export function setThemeColor(color) {
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', color);
+  }
+  // Opcional: Actualizar otras metas relacionadas para consistencia
+  const msNavButtonColor = document.querySelector('meta[name="msapplication-navbutton-color"]');
+  const appleStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+  if (msNavButtonColor) {
+      msNavButtonColor.setAttribute('content', color);
+  }
+  if (appleStatusBar) {
+      appleStatusBar.setAttribute('content', color);
+  }
+}
 
 export function toggleView({
   home = false,

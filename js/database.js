@@ -11,7 +11,8 @@ import {
   toggleView,
   elements,
   isStandalone,
-  mostrarAlerta
+  mostrarAlerta,
+  setThemeColor
 } from "./main.js";
 
 // Inicializar Firebase Auth
@@ -243,6 +244,7 @@ function mostrarDatos() {
   const auth = getAuth(app);
   if (!auth.currentUser) {
     console.log("Usuario no autenticado, no se pueden mostrar datos.");
+    mostrarAlertaAdmin("alerta_1");
     document.getElementById("data_green").innerHTML =
       "<p>Necesitas iniciar sesión para ver los datos.</p>";
     document.getElementById("data_red").innerHTML =
@@ -364,7 +366,6 @@ function mostrarDatos() {
       ""
     );
   });
-
   // Contratados (admin) - Con filtro
   onValue(contratadoRef, (snapshot) => {
     const renderContratado = (filtro = "") =>
@@ -818,8 +819,6 @@ function mostrarDatos() {
     // Validar que 'data' sea un objeto válido
     if (!data || typeof data !== "object") {
       console.error("Datos inválidos para generar el PDF:", data);
-      mostrarAlerta("alertas");
-      mostrarAlerta("alerta_3"); // Error genérico
       return;
     }
 
@@ -917,7 +916,8 @@ function mostrarDatos() {
 
     // Mostrar alertas de éxito
     mostrarAlerta("alertas");
-    verificarDisplay("pag5", "alerta_13", "alerta_18");
+    verificarDisplay("pag5", "", "alerta_18");
+    mostrarAlertaAdmin("alerta_16");
   }
   function abrirModalCita(uniqueKey, data) {
     const modalContainer = document.getElementById("modal-container");
@@ -941,8 +941,7 @@ function mostrarDatos() {
       const sucursalCita = document.getElementById("sucursal_cita").value;
 
       if (!fechaCita || !horaCita || !sucursalCita) {
-        mostrarAlerta("alertas");
-        mostrarAlerta("alerta_10"); // Mensaje de "Llena los campos"
+        mostrarAlertaAdmin("alerta_10");
         return;
       }
 
@@ -987,12 +986,10 @@ function mostrarDatos() {
           sucursalCita
         );
 
-        mostrarAlerta("alertas");
-        mostrarAlerta("alerta_12"); // Éxito
+        mostrarAlertaAdmin("alerta_12"); // Éxito
       } catch (error) {
         console.error("❌ Error al guardar la cita:", error);
-        mostrarAlerta("alertas");
-        mostrarAlerta("alerta_11"); // Error
+        mostrarAlertaAdmin("alerta_11"); // Error
       }
 
       // Cerrar el modal
@@ -1002,8 +999,7 @@ function mostrarDatos() {
     // Botón de cancelar
     document.getElementById("cancelar_cita").onclick = () => {
       modalContainer.style.display = "none";
-      mostrarAlerta("alertas");
-      mostrarAlerta("alerta_24"); // Cancelado
+      mostrarAlertaAdmin("alerta_15"); 
     };
   }
   function enviarMensajeWhatsApp(numero, nombre, fecha, hora, sucursal) {
@@ -1190,13 +1186,11 @@ function mostrarSucursalesDisponibles() {
           set(sucursalRef, nuevoEstado)
             .then(() => {
               console.log(`Estado de ${nombre} actualizado a ${nuevoEstado}`);
-              mostrarAlerta("alertas");
-              mostrarAlerta("alerta_20");
+              mostrarAlertaAdmin("alerta_13");
             })
             .catch((error) => {
               console.error("Error al actualizar estado:", error);
-              mostrarAlerta("alertas");
-              mostrarAlerta("alerta_21");
+              mostrarAlertaAdmin("alerta_14");
             });
         });
 
@@ -1333,6 +1327,7 @@ function moverVacante(uniqueKey, data, nuevaDB) {
       );
       mostrarAlerta("alertas");
       verificarDisplay("pag5", "alerta_5", "alerta_16");
+      mostrarAlertaAdmin("alerta_5");
       return;
     }
 
@@ -1342,6 +1337,7 @@ function moverVacante(uniqueKey, data, nuevaDB) {
         console.warn(`⚠️ El vacante "${uniqueKey}" ya está en ${nuevaDB}.`);
         mostrarAlerta("alertas");
         verificarDisplay("pag5", "alerta_9", "alerta_15");
+        mostrarAlertaAdmin("alerta_9");
       } else {
         set(nuevaRef, data)
           .then(() => remove(antiguaRef))
@@ -1349,6 +1345,7 @@ function moverVacante(uniqueKey, data, nuevaDB) {
             console.log(`✅ Vacante "${uniqueKey}" movida a ${nuevaDB}`);
             mostrarAlerta("alertas");
             verificarDisplay("pag5", "alerta_6", "alerta_15");
+            mostrarAlertaAdmin("alerta_6");
             mostrarDatos();
           })
           .catch((error) => console.error("❌ Error al mover vacante:", error));
@@ -1386,8 +1383,7 @@ function eliminarVacante(uniqueKey, base, data) {
     `¿Estás seguro de eliminar al vacante "${data?.nombre || uniqueKey}"? 🧐`,
     (confirmado) => {
       if (!confirmado) {
-        mostrarAlerta("alertas");
-        mostrarAlerta("alerta_8"); // Cancelado
+        mostrarAlertaAdmin("alerta_8");
         return;
       }
 
@@ -1408,14 +1404,12 @@ function eliminarVacante(uniqueKey, base, data) {
       remove(refVacante)
         .then(() => {
           console.log(`Vacante eliminada de ${ruta}`);
-          mostrarAlerta("alertas");
-          mostrarAlerta("alerta_7"); // Éxito
+          mostrarAlertaAdmin("alerta_7");
           mostrarDatos(); // Actualizar la interfaz después de eliminar
         })
         .catch((error) => {
           console.error("Error al eliminar vacante:", error);
-          mostrarAlerta("alertas");
-          mostrarAlerta("alerta_5"); // Error
+          mostrarAlertaAdmin("alerta_5");
         });
     }
   );
@@ -1493,9 +1487,324 @@ function regresarAlLogin(tipo) {
 
   console.log("Llamando a mostrarBotonEntrar...");
   mostrarBotonEntrar(tipo);
+  setThemeColor('#ec6223');
 
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
 }
+
+function manejarVisibilidadModales() {
+  const modales = [
+    document.getElementById("alert_eliminacion_vacante"),
+    document.getElementById("modal-container"),
+    document.getElementById("modal-user-info"),
+  ];
+  const elementosOcultar = [
+    document.querySelector(".settings"),
+    document.querySelector(".mensajes_usuarios"),
+    document.querySelector(".disponibilidad_sucu"),
+  ];
+
+  // Crear un MutationObserver para observar cambios en el atributo style de los modales
+  const observer = new MutationObserver((mutations) => {
+    let algunModalVisible = false;
+
+    // Verificar si algún modal está visible
+    modales.forEach((modal) => {
+      if (modal && window.getComputedStyle(modal).display === "flex") {
+        algunModalVisible = true;
+      }
+    });
+
+    // Actualizar la visibilidad de los elementos
+    elementosOcultar.forEach((elemento) => {
+      if (elemento) {
+        elemento.style.display = algunModalVisible ? "none" : "flex";
+      }
+    });
+  });
+
+  // Observar cada modal
+  modales.forEach((modal) => {
+    if (modal) {
+      observer.observe(modal, {
+        attributes: true,
+        attributeFilter: ["style"],
+      });
+    }
+  });
+}
+
+async function mostrarTextoPavoPorDefecto() {
+  const textWelcomeAdmin = document.getElementById("text_welcome_admin");
+  if (!textWelcomeAdmin) {
+    console.error("Elemento #text_welcome_admin no encontrado.");
+    return;
+  }
+
+  const alertasData = await cargarAlertasJSON();
+  if (!alertasData || !alertasData.intents) {
+    console.error("No se pudieron cargar los intents del JSON.");
+    return;
+  }
+
+  const pavoIntent = alertasData.intents.find(i => i.tag === "palabras_pavo_admin");
+  if (!pavoIntent) {
+    console.warn("Intent con tag palabras_pavo_admin no encontrado en el JSON.");
+    return;
+  }
+
+  const userName = localStorage.getItem("userName") || "Humano";
+  const pavoResponses = pavoIntent.responses;
+  const randomPavo = pavoResponses[Math.floor(Math.random() * pavoResponses.length)];
+  const mensajePavo = randomPavo.replace("${userName}", userName);
+  textWelcomeAdmin.textContent = mensajePavo;
+  textWelcomeAdmin.style.display = "block";
+}
+
+async function mostrarAlertaAdmin(alertaId) {
+  const textWelcomeAdmin = document.getElementById("text_welcome_admin");
+  if (!textWelcomeAdmin) {
+    console.error("Elemento #text_welcome_admin no encontrado.");
+    return;
+  }
+
+  const alertasData = await cargarAlertasJSON();
+  if (!alertasData || !alertasData.intents) {
+    console.error("No se pudieron cargar los intents del JSON.");
+    return;
+  }
+
+  // Mostrar mensaje específico si alertaId existe
+  if (alertaId) {
+    const intent = alertasData.intents.find(i => i.tag === alertaId);
+    if (intent) {
+      const userName = localStorage.getItem("userName") || "Humano";
+      const responses = intent.responses;
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      const mensaje = randomResponse.replace("${userName}", userName);
+      textWelcomeAdmin.textContent = mensaje;
+      textWelcomeAdmin.style.display = "block";
+
+      // Volver a texto por defecto después de 3 segundos
+      setTimeout(() => {
+        mostrarTextoPavoPorDefecto();
+      }, 3000);
+    } else {
+      console.warn(`Intent con tag ${alertaId} no encontrado en el JSON.`);
+      mostrarTextoPavoPorDefecto();
+    }
+  } else {
+    // Si no hay alertaId, mostrar texto por defecto
+    mostrarTextoPavoPorDefecto();
+  }
+}
+
+async function cargarAlertasJSON() {
+  try {
+    const response = await fetch("../json/pavoAdmin.json"); 
+    if (!response.ok) {
+      throw new Error("No se pudo cargar el archivo alertas.json");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al cargar alertas.json:", error);
+    return null;
+  }
+}
+
+function abrirModalUserInfo() {
+  const modalUserInfo = document.getElementById("modal-user-info");
+  const userNameDisplay = document.getElementById("user-name-display");
+  const userNameDisplayCont = document.getElementById("user-name-display-cont");
+  const employeeNumberDisplay = document.getElementById("employee-number-display");
+  const employeeNumberDisplayCont = document.getElementById("employee-number-display-cont");
+  const editNameBtn = document.getElementById("edit-name-btn");
+  const editNameContainer = document.getElementById("edit-name-container");
+  const editNameInput = document.getElementById("edit-name-input");
+  const saveNameBtn = document.getElementById("save-name-btn");
+  const cancelEditNameBtn = document.getElementById("cancel-edit-name-btn");
+  const editEmployeeBtn = document.getElementById("edit-employee-btn");
+  const editEmployeeContainer = document.getElementById("edit-employee-container");
+  const editEmployeeInput = document.getElementById("edit-employee-input");
+  const saveEmployeeBtn = document.getElementById("save-employee-btn");
+  const cancelEditEmployeeBtn = document.getElementById("cancel-edit-employee-btn");
+  const closeModalBtn = document.getElementById("close-user-modal");
+
+  if (!modalUserInfo || !userNameDisplay || !employeeNumberDisplay) {
+    console.error("❌ Elementos del modal de usuario no encontrados.");
+    return;
+  }
+
+  const user = auth.currentUser;
+  if (!user) {
+    console.log("Usuario no autenticado, no se puede mostrar información.");
+    mostrarAlerta("alertas");
+    mostrarAlerta("alerta_1");
+    return;
+  }
+
+    // Inicializar estados por defecto    
+  userNameDisplayCont.style.display = "flex";
+  userNameDisplay.style.display = "flex";
+  editNameBtn.style.display = "flex";
+  editNameContainer.style.display = "none";
+  employeeNumberDisplay.style.display = "flex";
+  editEmployeeBtn.style.display = "flex";
+  editEmployeeContainer.style.display = "none";
+
+  // Cargar datos desde Firebase
+  const userRef = ref(database, `users/${user.uid}`);
+  get(userRef)
+    .then((snapshot) => {
+      const data = snapshot.val() || {};
+      userNameDisplay.textContent = data.displayName || "No especificado";
+      employeeNumberDisplay.textContent = data.employeeNumber || "No especificado";
+      // Cargar nombre desde localStorage si existe, de lo contrario usar el de Firebase
+      const storedName = localStorage.getItem("userName") || data.displayName || "No especificado";
+      userNameDisplay.textContent = storedName;
+      modalUserInfo.style.display = "flex";
+    })
+    .catch((error) => {
+      console.error("Error al cargar datos del usuario:", error);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_3");
+    });
+
+  // Manejar edición del nombre
+  editNameBtn.onclick = () => {
+    userNameDisplayCont.style.display = "none";
+    userNameDisplay.style.display = "none";
+    editNameBtn.style.display = "none";
+    editNameContainer.style.display = "flex";
+    editNameInput.value =
+      userNameDisplay.textContent === "No especificado"
+        ? ""
+        : userNameDisplay.textContent;
+    editNameInput.focus();
+  };
+
+  cancelEditNameBtn.onclick = () => {
+    userNameDisplayCont.style.display = "flex";
+    userNameDisplay.style.display = "flex";
+    editNameBtn.style.display = "flex";
+    editNameContainer.style.display = "none";
+    editNameInput.value = "";
+  };
+
+  saveNameBtn.onclick = () => {
+    const newName = editNameInput.value.trim();
+    if (!newName) {
+      return;
+    }
+
+    get(userRef)
+      .then((snapshot) => {
+        const currentData = snapshot.val() || {};
+        return set(userRef, { ...currentData, displayName: newName });
+      })
+      .then(() => {
+        console.log(`Nombre actualizado a ${newName}`);
+        userNameDisplay.textContent = newName;
+        localStorage.setItem("userName", newName);
+        userNameDisplayCont.style.display = "flex";
+        userNameDisplay.style.display = "flex";
+        editNameBtn.style.display = "flex";
+        editNameContainer.style.display = "none";
+        editNameInput.value = "";
+        mostrarAlertaAdmin("alerta_2");
+      })
+      .catch((error) => {
+        console.error("Error al actualizar el nombre:", error);
+      });
+  };
+
+  // Manejar edición del número de empleado (sin cambios, asumiendo que funciona)
+  editEmployeeBtn.onclick = () => {
+    employeeNumberDisplayCont.style.display = "none";
+    employeeNumberDisplay.style.display = "none";
+    editEmployeeBtn.style.display = "none";
+    editEmployeeContainer.style.display = "flex";
+    editEmployeeInput.value =
+      employeeNumberDisplay.textContent === "No especificado"
+        ? ""
+        : employeeNumberDisplay.textContent;
+    editEmployeeInput.focus();
+  };
+
+  cancelEditEmployeeBtn.onclick = () => {
+    employeeNumberDisplayCont.style.display = "flex";
+    employeeNumberDisplay.style.display = "flex";
+    editEmployeeBtn.style.display = "flex";
+    editEmployeeContainer.style.display = "none";
+    editEmployeeInput.value = "";
+  };
+
+  saveEmployeeBtn.onclick = () => {
+    const newEmployeeNumber = editEmployeeInput.value.trim();
+    if (!newEmployeeNumber) {
+      mostrarAlerta("alertas");
+      mostrarAlerta("alertapreguntaerror_1");
+      return;
+    }
+
+    get(userRef)
+      .then((snapshot) => {
+        const currentData = snapshot.val() || {};
+        return set(userRef, { ...currentData, employeeNumber: newEmployeeNumber });
+      })
+      .then(() => {
+        console.log(`Número de empleado actualizado a ${newEmployeeNumber}`);
+        employeeNumberDisplay.textContent = newEmployeeNumber;
+        employeeNumberDisplayCont.style.display = "flex";
+        employeeNumberDisplay.style.display = "flex";
+        editEmployeeBtn.style.display = "flex";
+        editEmployeeContainer.style.display = "none";
+        editEmployeeInput.value = "";
+        mostrarAlertaAdmin("alerta_17");
+      })
+      .catch((error) => {
+        console.error("Error al actualizar пришлось el número de empleado:", error);
+      });
+  };
+
+  // Cerrar el modal
+  closeModalBtn.onclick = () => {
+    modalUserInfo.style.display = "none";
+    userNameDisplay.style.display = "inline";
+    editNameBtn.style.display = "inline";
+    editNameContainer.style.display = "none";
+    editNameInput.value = "";
+    employeeNumberDisplay.style.display = "inline";
+    editEmployeeBtn.style.display = "inline";
+    editEmployeeContainer.style.display = "none";
+    editEmployeeInput.value = "";
+  };
+}
+
+// Asignar evento al botón infouserAdmin
+document.addEventListener("DOMContentLoaded", () => {
+  const infoUserAdminBtn = document.getElementById("infouserAdmin");
+  if (infoUserAdminBtn) {
+    infoUserAdminBtn.addEventListener("click", abrirModalUserInfo);
+  } else {
+    console.error("❌ Botón infouserAdmin no encontrado.");
+  }
+});
+
+// Cargar nombre personalizado al iniciar sesión
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const userRef = ref(database, `users/${user.uid}`);
+    onValue(userRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data && data.displayName) {
+        console.log(`Nombre personalizado cargado: ${data.displayName}`);
+        // Podrías actualizar otros elementos de la UI si es necesario
+      }
+    });
+  }
+});
 
 // Variable global para almacenar las sucursales
 let sucursalesData = null;
@@ -1602,14 +1911,12 @@ const iniciarSesion = (tipo) => {
 
       // Mostrar animación y recargar la página
       login.classList.add("animacionlog");
-      mostrarAlerta("alertas");
-      mostrarAlerta(isManager ? "alerta_25" : "alerta_25");
       console.log("Animación iniciada, preparando recarga...");
 
       setTimeout(() => {
         console.log("Recargando página...");
         window.location.reload();
-      }, 1000);
+      }, 2000);
     })
     .catch((error) => {
       console.error("Error en inicio de sesión:", error.code, error.message);
@@ -1701,7 +2008,9 @@ function mostrarBotonEntrar(tipo) {
           if (elements.chatbot) elements.chatbot.style.display = "none";
 
           mostrarAlerta("alertas");
-          mostrarAlerta(isManager ? "alerta_14" : "alerta_4");
+          mostrarAlerta(isManager ? "alerta_14" : "");
+          mostrarAlertaAdmin("alerta_4");
+          setThemeColor('#1b3c59');
 
           if (isManager) {
             const sucursalActivaElement =
@@ -1773,7 +2082,7 @@ logoutButtons.forEach((button) => {
   });
 });
 
-// Asegurar que después de la recarga se muestre el botón y no se redirija automáticamente
+
 document.addEventListener("DOMContentLoaded", () => {
   asignarEventos("admin");
   asignarEventos("manager");
@@ -1791,6 +2100,10 @@ document.addEventListener("DOMContentLoaded", () => {
     regreso1.addEventListener("click", () => regresarAlLogin("admin"));
   if (regreso2)
     regreso2.addEventListener("click", () => regresarAlLogin("manager"));
+
+  
+  manejarVisibilidadModales();
+  mostrarTextoPavoPorDefecto();
 
   // Esperar a que Firebase autentique al usuario
   onAuthStateChanged(auth, (user) => {
@@ -1844,3 +2157,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
