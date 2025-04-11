@@ -1545,7 +1545,7 @@ async function mostrarTextoPavoPorDefecto() {
     return;
   }
 
-  const userName = localStorage.getItem("userName") || "Humano";
+  const userName = localStorage.getItem("userNameAdmin") || "Humano";
   const pavoResponses = pavoIntent.responses;
   const randomPavo = pavoResponses[Math.floor(Math.random() * pavoResponses.length)];
   const mensajePavo = randomPavo.replace("${userName}", userName);
@@ -1573,7 +1573,7 @@ async function mostrarAlertaAdmin(alertaId) {
   if (alertaId) {
     const intent = alertasData.intents.find(i => i.tag === alertaId);
     if (intent) {
-      const userName = localStorage.getItem("userName") || "Humano";
+      const userName = localStorage.getItem("userNameAdmin") || "Humano";
       const responses = intent.responses;
       const randomResponse = responses[Math.floor(Math.random() * responses.length)];
       const mensaje = randomResponse.replace("${userName}", userName);
@@ -1656,7 +1656,7 @@ function abrirModalUserInfo() {
       userNameDisplay.textContent = data.displayName || "No especificado";
       employeeNumberDisplay.textContent = data.employeeNumber || "No especificado";
       // Cargar nombre desde localStorage si existe, de lo contrario usar el de Firebase
-      const storedName = localStorage.getItem("userName") || data.displayName || "No especificado";
+      const storedName = localStorage.getItem("userNameAdmin") || data.displayName || "No especificado";
       userNameDisplay.textContent = storedName;
       modalUserInfo.style.display = "flex";
     })
@@ -1699,7 +1699,7 @@ function abrirModalUserInfo() {
       .then(() => {
         console.log(`Nombre actualizado a ${newName}`);
         userNameDisplay.textContent = newName;
-        localStorage.setItem("userName", newName);
+        localStorage.setItem("userNameAdmin", newName);
         userNameDisplayCont.style.display = "flex";
         userNameDisplay.style.display = "flex";
         editNameBtn.style.display = "flex";
