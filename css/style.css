@@ -1250,38 +1250,6 @@ html .alertas .alerta span p {
   color: #ffffff;
   text-align: center;
 }
-body .alertas .alerta_manager,
-html .alertas .alerta_manager {
-  top: 3.2vh;
-  left: 45.4vw;
-  width: 9vw;
-  height: 5vw;
-  position: fixed;
-  z-index: 1011;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background-color: #f18f62;
-  border: 2px solid #f18f62;
-  box-shadow: 0px 0px 10px 0px #f18f62;
-  border-radius: 5rem;
-  animation: fadeInDown 0.2s ease-in-out forwards;
-}
-body .alertas .alerta_manager span,
-html .alertas .alerta_manager span {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body .alertas .alerta_manager span p,
-html .alertas .alerta_manager span p {
-  font-size: 0.9vw;
-  color: #ffffff;
-  font-family: "Nunito";
-  text-align: center;
-}
 body .alertas_modal .alert_eliminacion_vacante,
 html .alertas_modal .alert_eliminacion_vacante {
   position: fixed;
@@ -4705,10 +4673,72 @@ body main #pag5,
 html main #pag5 {
   width: 100%;
   height: 100%;
+  align-items: end;
+}
+body main #pag5 .nav_admin,
+html main #pag5 .nav_admin {
+  width: 100vw;
+  height: 6vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1b3c59;
+  z-index: 10020;
+}
+body main #pag5 .nav_admin .nav_cont,
+html main #pag5 .nav_admin .nav_cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body main #pag5 .nav_admin .nav_cont .cont_welcome_admin,
+html main #pag5 .nav_admin .nav_cont .cont_welcome_admin {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin,
+html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin {
+  height: 75%;
+  aspect-ratio: 1/1;
+  background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: #122435;
+}
+body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin,
+html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
+  background-color: #ffffff;
+  width: auto;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 0.2rem 0.7rem;
+}
+body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p,
+html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
+  display: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9em;
+  font-family: "Nunito";
 }
 body main #pag5 .settings,
 html main #pag5 .settings {
-  top: 1vh;
+  top: 8vh;
   left: 1vw;
   width: 3vw;
   aspect-ratio: 1/1;
@@ -4766,7 +4796,7 @@ html main #pag5 .settings .icons_settings .settings_info {
   flex-direction: column;
   width: 2vw;
   height: 10vh;
-  top: 8vh;
+  top: 15vh;
   left: 1vw;
   text-align: center;
   border-radius: 2vw;
@@ -4809,7 +4839,7 @@ html main #pag5 .settings .icons_settings .settings_info .data_settings button i
 }
 body main #pag5 .estatus_citas_manager,
 html main #pag5 .estatus_citas_manager {
-  top: 2.5vh;
+  top: 8vh;
   left: 45vw;
   width: 8vw;
   height: 4vw;
@@ -4871,8 +4901,8 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info {
   align-items: center;
   flex-direction: column;
   width: 28vw;
-  height: 80vh;
-  top: 15vh;
+  height: 75vh;
+  top: 21vh;
   left: 35.5vw;
   text-align: center;
   color: #ffffff;
@@ -5188,7 +5218,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
 }
 body main #pag5 .sucursal_cont,
 html main #pag5 .sucursal_cont {
-  top: 5vh;
+  top: 11vh;
   left: 57vw;
   width: 4vw;
   height: 2vh;
@@ -5213,14 +5243,14 @@ html main #pag5 .sucursal_cont .sucursal {
 body main #pag5 .cont_manager,
 html main #pag5 .cont_manager {
   width: 30vw;
-  height: 95vh;
+  height: 90vh;
   display: flex;
   justify-content: space-between;
   align-items: start;
   font-family: "Nunito";
   position: relative;
   border: none;
-  margin: 0;
+  margin-bottom: 2vh;
   padding: 0;
   gap: 2%;
   background-color: #1b3c59;
@@ -5593,30 +5623,6 @@ html .cambiar_nav nav ul .circulo_icon {
   html .alertas .alerta span p {
     font-size: 2.6vw;
   }
-  body .alertas .alerta_admin,
-  html .alertas .alerta_admin {
-    top: 1.9vh;
-    left: 36.5vw;
-    width: 26vw;
-    height: 9.5vw;
-    border-radius: 4vw;
-  }
-  body .alertas .alerta_admin span p,
-  html .alertas .alerta_admin span p {
-    font-size: 2.6vw;
-  }
-  body .alertas .alerta_manager,
-  html .alertas .alerta_manager {
-    top: 2.7vh;
-    left: 36vw;
-    width: 27vw;
-    height: 13vw;
-    border-radius: 6vw;
-  }
-  body .alertas .alerta_manager span p,
-  html .alertas .alerta_manager span p {
-    font-size: 2.6vw;
-  }
   body .alertas_modal .alert_eliminacion_vacante .alert_box,
   html .alertas_modal .alert_eliminacion_vacante .alert_box {
     width: 55vw;
@@ -5690,7 +5696,6 @@ html .cambiar_nav nav ul .circulo_icon {
   body main .pages,
   html main .pages {
     width: 100%;
-    height: var(--main-vh);
   }
   body main #home .mancha1,
   html main #home .mancha1 {
@@ -6309,9 +6314,17 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 100%;
     height: 100%;
   }
+  body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin,
+  html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
+    max-width: 60%;
+  }
+  body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p,
+  html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
+    font-size: 0.6em;
+  }
   body main #pag5 .settings,
   html main #pag5 .settings {
-    top: 1.3vh;
+    top: 7vh;
     left: 2vw;
     width: 15vw;
     height: 4.5vh;
@@ -6321,7 +6334,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag5 .settings .icons_settings .settings_info {
     width: 12vw;
     height: 7vh;
-    top: 2.5vh;
+    top: 8vh;
     left: 19vw;
     border-radius: 3vw;
     background-color: #ec6223;
@@ -6336,7 +6349,7 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .estatus_citas_manager,
   html main #pag5 .estatus_citas_manager {
-    top: 2.2vh;
+    top: 8vh;
     left: 35vw;
     width: 26vw;
     height: 12vw;
@@ -6346,8 +6359,8 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info,
   html main #pag5 .estatus_citas_manager .icons_status .status_info {
     width: 95vw;
-    height: 85%;
-    top: 11vh;
+    height: 80%;
+    top: 16vh;
     left: 1.7vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p,
@@ -6455,7 +6468,7 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .sucursal_cont,
   html main #pag5 .sucursal_cont {
-    top: 3.5vh;
+    top: 9vh;
     left: 71vw;
     width: 20vw;
     height: 4vh;
@@ -6469,7 +6482,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .cont_manager,
   html main #pag5 .cont_manager {
     width: 97vw;
-    height: 97%;
+    height: 91%;
     position: absolute;
     justify-content: start;
     align-items: center;

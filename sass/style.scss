@@ -134,38 +134,6 @@ html {
         }
       }
     }
-
-    .alerta_manager {
-      top: 3.2vh;
-      left: 45.4vw;
-      width: 9vw;
-      height: 5vw;
-      position: fixed;
-      z-index: 1011;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      background-color: $Resalte2;
-      border: 2px solid $Resalte2;
-      box-shadow: 0px 0px 10px 0px $Resalte2;
-      border-radius: 5rem;
-      animation: fadeInDown 0.2s ease-in-out forwards;
-
-      span {
-        width: 90%;
-        height: 90%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        p {
-          font-size: 0.9vw;
-          color: $Texto;
-          font-family: $Letra2;
-          text-align: center;
-        }
-      }
-    }
   }
 
   .alertas_modal {
@@ -3385,9 +3353,71 @@ html {
 
     #pag5 {
       @include cover;
+      align-items: end;
+
+      .nav_admin {
+        width: 100vw;
+        height: 6vh;
+        top: 0;
+        left: 0;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $Box_admin;
+        z-index: 10020;
+
+        .nav_cont {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          .cont_welcome_admin {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem;
+
+            .icon_welcome_admin {
+              height: 75%;
+              aspect-ratio: 1/1;
+              background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
+              background-size: 80%;
+              background-position: center;
+              background-repeat: no-repeat;
+              border-radius: 50%;
+              background-color: $Box_admin2;
+            }
+
+            .text_welcome_admin {
+              background-color: $Blanco;
+              width: auto;
+              height: 40%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 1rem;
+              padding: .2rem .7rem;
+
+              p {
+                display: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                font-size: .9em;
+                font-family: $Letra2;
+              }
+            }
+          }
+        }
+      }
 
       .settings {
-        top: 1vh;
+        top: 8vh;
         left: 1vw;
         width: 3vw;
         aspect-ratio: 1/1;
@@ -3443,7 +3473,7 @@ html {
             flex-direction: column;
             width: 2vw;
             height: 10vh;
-            top: 8vh;
+            top: 15vh;
             left: 1vw;
             text-align: center;
             border-radius: 2vw;
@@ -3488,7 +3518,7 @@ html {
       }
 
       .estatus_citas_manager {
-        top: 2.5vh;
+        top: 8vh;
         left: 45vw;
         width: 8vw;
         height: 4vw;
@@ -3547,8 +3577,8 @@ html {
             align-items: center;
             flex-direction: column;
             width: 28vw;
-            height: 80vh;
-            top: 15vh;
+            height: 75vh;
+            top: 21vh;
             left: 35.5vw;
             text-align: center;
             color: $Texto;
@@ -3797,7 +3827,7 @@ html {
       }
 
       .sucursal_cont {
-        top: 5vh;
+        top: 11vh;
         left: 57vw;
         width: 4vw;
         height: 2vh;
@@ -3822,14 +3852,14 @@ html {
 
       .cont_manager {
         width: 30vw;
-        height: 95vh;
+        height: 90vh;
         display: flex;
         justify-content: space-between;
         align-items: start;
         font-family: $Letra2;
         position: relative;
         border: none;
-        margin: 0;
+        margin-bottom: 2vh;
         padding: 0;
         gap: 2%;
         background-color: $Box_admin;
@@ -4198,34 +4228,6 @@ html {
           }
         }
       }
-
-      .alerta_admin {
-        top: 1.9vh;
-        left: 36.5vw;
-        width: 26vw;
-        height: 9.5vw;
-        border-radius: 4vw;
-
-        span {
-          p {
-            font-size: 2.6vw;
-          }
-        }
-      }
-
-      .alerta_manager {
-        top: 2.7vh;
-        left: 36vw;
-        width: 27vw;
-        height: 13vw;
-        border-radius: 6vw;
-
-        span {
-          p {
-            font-size: 2.6vw;
-          }
-        }
-      }
     }
 
     .alertas_modal {
@@ -4313,7 +4315,6 @@ html {
 
       .pages {
         width: 100%;
-        height: var(--main-vh);
       }
 
       #home {
@@ -4946,8 +4947,21 @@ html {
       #pag5 {
         @include cover;
 
+        .nav_admin {
+          .nav_cont {
+            .cont_welcome_admin {
+              .text_welcome_admin {
+                max-width: 60%;
+                p {
+                  font-size: .6em;
+                }
+              }
+            }
+          }
+        }
+        
         .settings {
-          top: 1.3vh;
+          top: 7vh;
           left: 2vw;
           width: 15vw;
           height: 4.5vh;
@@ -4957,7 +4971,7 @@ html {
             .settings_info {
               width: 12vw;
               height: 7vh;
-              top: 2.5vh;
+              top: 8vh;
               left: 19vw;
               border-radius: 3vw;
               background-color: $Fondo;
@@ -4976,7 +4990,7 @@ html {
         }
 
         .estatus_citas_manager {
-          top: 2.2vh;
+          top: 8vh;
           left: 35vw;
           width: 26vw;
           height: 12vw;
@@ -4986,8 +5000,8 @@ html {
           .icons_status {
             .status_info {
               width: 95vw;
-              height: 85%;
-              top: 11vh;
+              height: 80%;
+              top: 16vh;
               left: 1.7vw;
 
               .box_status {
@@ -5069,7 +5083,7 @@ html {
         }
 
         .sucursal_cont {
-          top: 3.5vh;
+          top: 9vh;
           left: 71vw;
           width: 20vw;
           height: 4vh;
@@ -5083,7 +5097,7 @@ html {
 
         .cont_manager {
           width: 97vw;
-          height: 97%;
+          height: 91%;
           position: absolute;
           justify-content: start;
           align-items: center;

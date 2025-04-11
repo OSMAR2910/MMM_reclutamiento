@@ -118,6 +118,18 @@
             "responses": [
                 "¡Genial, ${userName}! Número de Empleado actualizado. 🎉🦃"
             ]
+        },
+        {
+            "tag": "alerta_18",
+            "responses": [
+                "¡Hecho, ${userName}! Se cambió el estado de la vacante. ✅💼🦃"
+            ]
+        },
+        {
+            "tag": "alerta_19",
+            "responses": [
+                "¡Error, ${userName}! No se pudo cambiar el estado de la vacante. ❌📝🦃"
+            ]
         }
     ]
 }

@@ -801,13 +801,11 @@ function mostrarDatos() {
             console.log(
               `Estado apto actualizado a ${nuevoEstado} para ${uniqueKey}`
             );
-            mostrarAlerta("alertas");
-            mostrarAlerta("alerta_22");
+            mostrarAlertaAdmin("alerta_18");
           })
           .catch((error) => {
             console.error("Error al actualizar el estado apto:", error);
-            mostrarAlerta("alertas");
-            mostrarAlerta("alerta_23");
+            mostrarAlertaAdmin("alerta_19");
           });
       }
     });
@@ -915,8 +913,6 @@ function mostrarDatos() {
     doc.save(fileName);
 
     // Mostrar alertas de éxito
-    mostrarAlerta("alertas");
-    verificarDisplay("pag5", "", "alerta_18");
     mostrarAlertaAdmin("alerta_16");
   }
   function abrirModalCita(uniqueKey, data) {
@@ -1121,7 +1117,7 @@ function mostrarMensajesUsuarios() {
     });
   });
 }
-// Función para mostrar sucursales disponibles en data_sucu_user con checkboxes
+
 function mostrarSucursalesDisponibles() {
   const dataSucuUser = document.getElementById("data_sucu_user");
   const filterInput = document.getElementById("sucu_filter");
@@ -1325,8 +1321,7 @@ function moverVacante(uniqueKey, data, nuevaDB) {
       console.error(
         `❌ No se encontró la referencia anterior de "${uniqueKey}".`
       );
-      mostrarAlerta("alertas");
-      verificarDisplay("pag5", "alerta_5", "alerta_16");
+      mostrarAlertaAdmin("alertaMan_18");
       mostrarAlertaAdmin("alerta_5");
       return;
     }
@@ -1335,16 +1330,12 @@ function moverVacante(uniqueKey, data, nuevaDB) {
     get(nuevaRef).then((snapshot) => {
       if (snapshot.exists()) {
         console.warn(`⚠️ El vacante "${uniqueKey}" ya está en ${nuevaDB}.`);
-        mostrarAlerta("alertas");
-        verificarDisplay("pag5", "alerta_9", "alerta_15");
         mostrarAlertaAdmin("alerta_9");
       } else {
         set(nuevaRef, data)
           .then(() => remove(antiguaRef))
           .then(() => {
             console.log(`✅ Vacante "${uniqueKey}" movida a ${nuevaDB}`);
-            mostrarAlerta("alertas");
-            verificarDisplay("pag5", "alerta_6", "alerta_15");
             mostrarAlertaAdmin("alerta_6");
             mostrarDatos();
           })
@@ -1536,6 +1527,7 @@ function manejarVisibilidadModales() {
 
 async function mostrarTextoPavoPorDefecto() {
   const textWelcomeAdmin = document.getElementById("text_welcome_admin");
+  const textWelcomeAdmin2 = document.getElementById("text_welcome_admin2");
   if (!textWelcomeAdmin) {
     console.error("Elemento #text_welcome_admin no encontrado.");
     return;
@@ -1558,11 +1550,14 @@ async function mostrarTextoPavoPorDefecto() {
   const randomPavo = pavoResponses[Math.floor(Math.random() * pavoResponses.length)];
   const mensajePavo = randomPavo.replace("${userName}", userName);
   textWelcomeAdmin.textContent = mensajePavo;
+  textWelcomeAdmin2.textContent = mensajePavo;
   textWelcomeAdmin.style.display = "block";
+  textWelcomeAdmin2.style.display = "block";
 }
 
 async function mostrarAlertaAdmin(alertaId) {
   const textWelcomeAdmin = document.getElementById("text_welcome_admin");
+  const textWelcomeAdmin2 = document.getElementById("text_welcome_admin2");
   if (!textWelcomeAdmin) {
     console.error("Elemento #text_welcome_admin no encontrado.");
     return;
@@ -1584,6 +1579,8 @@ async function mostrarAlertaAdmin(alertaId) {
       const mensaje = randomResponse.replace("${userName}", userName);
       textWelcomeAdmin.textContent = mensaje;
       textWelcomeAdmin.style.display = "block";
+      textWelcomeAdmin2.textContent = mensaje;
+      textWelcomeAdmin2.style.display = "block";
 
       // Volver a texto por defecto después de 3 segundos
       setTimeout(() => {
@@ -1639,8 +1636,6 @@ function abrirModalUserInfo() {
   const user = auth.currentUser;
   if (!user) {
     console.log("Usuario no autenticado, no se puede mostrar información.");
-    mostrarAlerta("alertas");
-    mostrarAlerta("alerta_1");
     return;
   }
 
@@ -1667,8 +1662,6 @@ function abrirModalUserInfo() {
     })
     .catch((error) => {
       console.error("Error al cargar datos del usuario:", error);
-      mostrarAlerta("alertas");
-      mostrarAlerta("alerta_3");
     });
 
   // Manejar edición del nombre
@@ -2007,8 +2000,6 @@ function mostrarBotonEntrar(tipo) {
           if (elements.pavo_cont) elements.pavo_cont.style.display = "none";
           if (elements.chatbot) elements.chatbot.style.display = "none";
 
-          mostrarAlerta("alertas");
-          mostrarAlerta(isManager ? "alerta_14" : "");
           mostrarAlertaAdmin("alerta_4");
           setThemeColor('#1b3c59');
 
