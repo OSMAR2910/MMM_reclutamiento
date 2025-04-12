@@ -184,7 +184,6 @@
             "keywords": [
                 "hola",
                 "buenos dias",
-                "que tal",
                 "buenas noches",
                 "buenas tardes",
                 "que tal",
@@ -282,19 +281,25 @@
             ]
         },
         {
-            "tag": "informacion_general",
+            "tag": "sucursales_disponibles",    
             "keywords": [
-                "información",
-                "detalles",
-                "info",
-                "informacion",
-                "detalle",
-                "ayuda",
-                "consulta",
-                "trabajar"
+                "vacantes",
+                "sucursales/disponibles",
+                "sedes contratando",
+                "trabajo por sucursal",
+                "ciudades contratando",
+                "ofertas por sucursal",
+                "dónde hay vacantes",
+                "sucursales activas",
+                "disponibilidad de sedes"
             ],
             "responses": [
-                "¡Claro, ${userName}! ¿Qué información necesitas? 🦃✨ ¿Puestos de trabajo? ¿Horarios? ¿Sucursales? Dímelo, que yo soy el pavo más informado del gallinero 🏠📚. Bueno, después del pavo real, pero ese es otro nivel... 😎."
+                "¡Glu-glu, ${userName}! Las sucursales disponibles para contratación están en el formulario. ¡Échale un vistazo y elige la que más te guste! 🦃📋",
+                "¿Buscando sucursales, ${userName}? ¡No te preocupes! Todas las opciones disponibles están en el formulario. ¡El pavo te guía! 🗺️🦃",
+                "¡Hola, ${userName}! Las sucursales disponibles para contratación están listadas en el formulario. ¡Revisa y encuentra la ideal para ti! ✨🗳️",
+                "¡Oiga, oiga, ${userName}! Si quieres saber las sucursales disponibles, ¡mira el formulario! Ahí encontrarás todo lo que necesitas. 🦿📄",
+                "¡Atención, ${userName}! Las sucursales disponibles para contratación están en el formulario. ¡Un pavo organizado siempre encuentra lo que busca! 🦃🔍",
+                "¿Dónde están las sucursales disponibles, ${userName}? ¡Fácil! Solo abre el formulario y ahí están todas. ¡El pavo siempre tiene las respuestas! 💡🗳️"
             ]
         },
         {
@@ -339,6 +344,7 @@
             "keywords": [
                 "mostrador",
                 "cajero",
+                "cajas",
                 "atención al cliente",
                 "cliente",
                 "pedido",
