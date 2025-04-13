@@ -5696,6 +5696,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main .pages,
   html main .pages {
     width: 100%;
+    height: var(--main-vh);
   }
   body main #home .mancha1,
   html main #home .mancha1 {
