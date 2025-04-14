@@ -1135,13 +1135,16 @@ body canvas {
 :root {
   --main-vh: 100vh;
   --safe-top: 0px;
+  --safe-bottom: 0px;
 }
 
 .main-height {
+  width: 100vw;
   height: var(--main-vh);
-  position: relative;
   min-height: var(--main-vh);
   max-height: var(--main-vh);
+  position: relative;
+  overflow: hidden;
 }
 
 body,
@@ -1153,6 +1156,9 @@ html {
   padding: 0;
   background-color: #ec6223;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
   -webkit-overflow-scrolling: touch;
   display: flex;
   justify-content: center;
