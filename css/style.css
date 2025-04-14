@@ -1024,6 +1024,7 @@ body canvas {
     border-radius: 0;
     position: absolute;
     top: 0;
+    left: 0;
     bottom: auto;
   }
   .max_chat .chat_header {
@@ -1137,7 +1138,7 @@ body canvas {
 }
 
 .main-height {
-  height: calc(100 * var(--main-vh) - var(--safe-top));
+  height: var(--main-vh);
   position: relative;
   min-height: var(--main-vh);
   max-height: var(--main-vh);
@@ -1157,6 +1158,7 @@ html {
   justify-content: center;
   align-items: center;
   position: relative;
+  -webkit-text-size-adjust: 100%;
 }
 body .desactivacion,
 html .desactivacion {
@@ -1785,8 +1787,9 @@ html header nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 17%;
 }
 body header nav ul .circulo_icon,
 html header nav ul .circulo_icon {
@@ -6117,13 +6120,14 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main,
   html main {
+    height: var(--main-vh);
     position: absolute;
     top: 0;
   }
   body main .pages,
   html main .pages {
     width: 100%;
-    height: calc(100 * var(--main-vh));
+    height: 100%;
   }
   body main #home .mancha1,
   html main #home .mancha1 {

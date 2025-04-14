@@ -28,12 +28,12 @@
 }
 
 :root {
-  --main-vh: 100vh;
+  --main-vh: 100vh; 
   --safe-top: 0px;
 }
 
 .main-height {
-  height: calc(100 * var(--main-vh) - var(--safe-top));
+  height: var(--main-vh);
   position: relative;
   min-height: var(--main-vh);
   max-height: var(--main-vh);
@@ -53,6 +53,7 @@ html {
   justify-content: center;
   align-items: center;
   position: relative;
+  -webkit-text-size-adjust: 100%;
 
   .desactivacion {
     width: 100vw;
@@ -633,8 +634,9 @@ html {
         padding: 0;
         margin: 0;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
+        gap: 17%;
 
         .circulo_icon {
           width: 1vw;
@@ -4717,12 +4719,13 @@ html {
     }
 
     main {
+      height: var(--main-vh);
       position: absolute;
       top: 0;
 
       .pages {
         width: 100%;
-        height: calc(100 * var(--main-vh));
+        height: 100%;
       }
 
       #home {

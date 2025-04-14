@@ -110,64 +110,73 @@ function adjustViewForPWA() {
   }
 }
 
-let maxViewportHeight = window.innerHeight;
+let maxViewportHeight = window.innerHeight; // Altura inicial del viewport
 
 function setRealViewportHeight(forceUpdate = false) {
-  // Obtener la altura real del viewport
+  // Obtener la altura del viewport, priorizando visualViewport si está disponible
   const realHeight = window.visualViewport?.height || window.innerHeight;
-  const currentHeight = getComputedStyle(document.documentElement).getPropertyValue('--main-vh') || '0px';
-  const currentHeightNum = parseFloat(currentHeight);
 
-  // Detectar si el teclado virtual está probablemente abierto
-  const isInputFocused = document.activeElement.tagName === 'INPUT' || 
-                        document.activeElement.tagName === 'TEXTAREA';
-  const isKeyboardLikelyOpen = realHeight < maxViewportHeight * 0.9 && isInputFocused;
-
-  // Solo actualizar maxViewportHeight si es un evento forzado (resize/orientación) y NO hay teclado
-  if (forceUpdate && !isKeyboardLikelyOpen) {
+  // Solo actualizamos maxViewportHeight si forceUpdate es verdadero (cambio de orientación/resolución)
+  // o si la nueva altura es mayor que la actual (evita cambios por teclado)
+  if (forceUpdate || realHeight > maxViewportHeight) {
     maxViewportHeight = realHeight;
   }
 
-  // Establecer --main-vh solo si es necesario (y no hay teclado)
-  if (!isKeyboardLikelyOpen && (!currentHeightNum || maxViewportHeight !== currentHeightNum)) {
+  // Establecer --main-vh solo si cambia significativamente
+  const currentHeight = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--main-vh')
+  ) || 0;
+  if (Math.abs(maxViewportHeight - currentHeight) > 1) {
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
   }
 
-  // Manejar el espacio superior seguro
-  const safeTop = window.visualViewport?.offsetTop || 0;
-  document.documentElement.style.setProperty('--safe-top', `${safeTop}px`);
+  // Manejar el espacio superior seguro (safe-area-inset-top)
+  const safeTop = getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
+  document.documentElement.style.setProperty('--safe-top', safeTop);
 }
+
+document.querySelectorAll('input, textarea').forEach((input) => {
+  input.addEventListener('focus', () => {
+    // Forzar que el contenedor principal permanezca visible
+    document.body.style.position = 'fixed';
+    document.body.style.top = '0';
+  });
+
+  input.addEventListener('blur', () => {
+    // Restaurar posición
+    document.body.style.position = '';
+    document.body.style.top = '';
+  });
+});
 
 // Inicializar al cargar
 window.addEventListener('load', () => {
-  maxViewportHeight = window.innerHeight; // Establecer altura inicial
+  maxViewportHeight = window.visualViewport?.height || window.innerHeight;
   setRealViewportHeight();
 });
 
-// Debounce para el evento resize
+// Manejar cambios de orientación
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => {
+    setRealViewportHeight(true); // Forzar actualización
+  }, 200);
+});
+
+// Manejar resize con debounce
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    setRealViewportHeight(true); // Forzar actualización en resize
+    setRealViewportHeight(true); // Forzar actualización
   }, 100);
 });
 
-// Actualizar en cambio de orientación
-window.addEventListener('orientationchange', () => {
-  setTimeout(() => {
-    setRealViewportHeight(true); // Forzar actualización en cambio de orientación
-  }, 200);
-});
-
-// Sincronizar con visualViewport si está disponible
+// Escuchar cambios en visualViewport si está disponible
 if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', () => {
-    // Evitar actualizaciones si el teclado está probablemente abierto
-    const isInputFocused = document.activeElement.tagName === 'INPUT' || 
-                          document.activeElement.tagName === 'TEXTAREA';
-    const realHeight = window.visualViewport.height;
-    if (!isInputFocused || realHeight >= maxViewportHeight * 0.9) {
+    // Solo actualizamos si el cambio no parece relacionado con el teclado
+    const newHeight = window.visualViewport.height;
+    if (newHeight > maxViewportHeight * 0.5) { // Umbral para ignorar teclado
       setRealViewportHeight(true);
     }
   });
@@ -585,119 +594,94 @@ label_btnEnviar?.addEventListener("click", enviar_fo);
 
 // Personalización de selects
 export function personalizarSelect(select) {
-  // 1. Eliminar cualquier personalización previa
-  const existingCustomSelect = select.parentNode.querySelector(".custom-select");
+  // ✅ 1. Eliminar cualquier personalización previa antes de aplicar una nueva
+  const existingCustomSelect =
+    select.parentNode.querySelector(".custom-select");
   if (existingCustomSelect) {
     existingCustomSelect.remove();
   }
 
-  // 2. Obtener el label asociado
+  // ✅ 2. Obtener el label correcto
   const label = document.querySelector(`label[for='${select.id}']`);
   if (label) {
     label.classList.add("custom-label");
-    label.style.display = "none"; // Ocultar por defecto
+    label.style.display = "none"; // 🔥 Ocultar por defecto
   }
 
-  // 3. Crear el contenedor personalizado
+  // ✅ 3. Crear el contenedor personalizado para el select
   const customSelect = document.createElement("div");
-  customSelect.classList.add("custom-select", "input"); // Mantener clase 'input' para compatibilidad con CSS
+  customSelect.classList.add("custom-select", "input");
 
-  // 4. Crear el elemento que simula el select
+  // ✅ 4. Crear el elemento visual que simula el select
   const selectedDiv = document.createElement("div");
   selectedDiv.classList.add("select-selected");
   selectedDiv.textContent =
     select.options[select.selectedIndex]?.text || "Selecciona una opción";
-  selectedDiv.setAttribute("tabindex", "0"); // Hacerlo enfocable
+  selectedDiv.setAttribute("tabindex", "0");
 
-  // 5. Contenedor para las opciones
+  // ✅ 5. Contenedor para las opciones
   const optionsDiv = document.createElement("div");
   optionsDiv.classList.add("select-items");
-  optionsDiv.style.display = "none"; // Asegurar que esté oculto por defecto
 
-  let isClickInside = false; // Previene cierres prematuros
+  let isClickInside = false; // Previene que el blur cierre el menú antes de seleccionar
 
-  // 6. Crear opciones dinámicamente
+  // ✅ 6. Crear opciones dentro del select personalizado
   Array.from(select.options).forEach((option, index) => {
     const optionDiv = document.createElement("div");
     optionDiv.textContent = option.text;
-    optionDiv.dataset.value = option.value;
 
     if (option.disabled) {
       optionDiv.classList.add("disabled");
     } else {
       optionDiv.addEventListener("mousedown", (event) => {
-        isClickInside = true;
-        event.preventDefault(); // Evitar comportamiento no deseado
+        isClickInside = true; // 🚀 Evita el cierre prematuro del menú
+        event.preventDefault();
 
         select.selectedIndex = index;
-        select.value = option.value;
         selectedDiv.textContent = option.text;
+        select.dispatchEvent(new Event("change"));
         optionsDiv.style.display = "none";
-        select.dispatchEvent(new Event("change", { bubbles: true }));
-        if (label) label.style.display = "none"; // Ocultar label tras selección
+
+        if (label) label.style.display = "none"; // 🔥 Ocultar label tras selección
       });
     }
     optionsDiv.appendChild(optionDiv);
   });
 
-  // 7. Manejar focus para mostrar el label y las opciones
+  // ✅ 7. Mostrar el label cuando el select tiene foco
   selectedDiv.addEventListener("focus", () => {
     optionsDiv.style.display = "block";
-    if (label) {
-      label.style.display = "flex";
-      label.classList.add("active"); // Clase para animaciones
-    }
-    // Disparar focus en el select nativo para compatibilidad
-    select.dispatchEvent(new Event("focus", { bubbles: true }));
+    if (label) label.style.display = "flex"; // 🔥 Mostrar el label correctamente
   });
 
-  // 8. Manejar clic para alternar opciones
-  selectedDiv.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const isVisible = optionsDiv.style.display === "block";
-    optionsDiv.style.display = isVisible ? "none" : "block";
-    if (label) {
-      label.style.display = isVisible ? "none" : "flex";
-      label.classList.toggle("active", !isVisible);
-    }
+  selectedDiv.addEventListener("click", () => {
+    optionsDiv.style.display = "block";
+    if (label) label.style.display = "flex"; // 🔥 Mostrar el label al hacer clic
   });
 
-  // 9. Manejar blur para cerrar opciones y ocultar label
+  // ✅ 8. Cerrar el menú solo si no se está seleccionando una opción
   selectedDiv.addEventListener("blur", () => {
     setTimeout(() => {
       if (!isClickInside) {
         optionsDiv.style.display = "none";
-        if (label) {
-          label.style.display = "none";
-          label.classList.remove("active");
-        }
+        if (label) label.style.display = "none";
       }
       isClickInside = false;
-    }, 150); // Aumentado ligeramente para dar tiempo a mousedown
+    }, 100);
   });
 
-  // 10. Cerrar opciones al hacer clic fuera
   document.addEventListener("click", (event) => {
     if (!customSelect.contains(event.target)) {
       optionsDiv.style.display = "none";
-      if (label) {
-        label.style.display = "none";
-        label.classList.remove("active");
-      }
+      if (label) label.style.display = "none";
     }
   });
 
-  // 11. Actualizar texto al cambiar el select nativo
-  select.addEventListener("change", () => {
-    const selectedOption = select.options[select.selectedIndex];
-    selectedDiv.textContent = selectedOption ? selectedOption.text : "Selecciona una opción";
-  });
-
-  // 12. Agregar al DOM
+  // ✅ 9. Agregar todo al DOM
   customSelect.appendChild(selectedDiv);
   customSelect.appendChild(optionsDiv);
   select.parentNode.insertBefore(customSelect, select);
-  select.style.display = "none"; // Ocultar select nativo
+  select.style.display = "none"; // Ocultar el select nativo
 }
 
 // Función de checkboxes
