@@ -4725,9 +4725,8 @@ html {
     }
 
     main {
+      width: 100vw;
       height: var(--main-vh);
-      position: absolute;
-      top: 0;
 
       .pages {
         width: 100%;
