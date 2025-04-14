@@ -700,7 +700,7 @@ html {
 
   main {
     width: 100vw;
-    height: var(--main-vh);
+    height: var(--main-vh, 100vh);
     max-height: 100vh;
     position: fixed;
     display: flex;
@@ -4729,7 +4729,7 @@ html {
 
     main {
       width: 100vw;
-      height: var(--main-vh);
+      height: var(--main-vh, 100vh);
       max-height: 100vh;
       position: relative;
       display: flex;
@@ -4742,7 +4742,7 @@ html {
 
       .pages {
         width: 100%;
-        height: var(--main-vh);
+        height: var(--main-vh, 100vh);
         position: absolute;
         top: 0;
         left: 0; 
