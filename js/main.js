@@ -113,11 +113,11 @@ function adjustViewForPWA() {
 let maxViewportHeight = window.innerHeight; // Altura inicial del viewport
 
 function setRealViewportHeight(forceUpdate = false) {
-  // Obtener la altura del viewport, priorizando visualViewport si está disponible
   const realHeight = window.visualViewport?.height || window.innerHeight;
 
-  // Solo actualizamos maxViewportHeight si forceUpdate es verdadero o si la altura aumenta significativamente
-  if (forceUpdate || realHeight > maxViewportHeight) {
+  // Solo actualizamos maxViewportHeight si es un cambio significativo
+  // y no una reducción causada por el teclado
+  if (forceUpdate || realHeight >= maxViewportHeight * 0.9) { // Umbral del 90%
     maxViewportHeight = realHeight;
   }
 
@@ -125,11 +125,11 @@ function setRealViewportHeight(forceUpdate = false) {
   const currentHeight = parseFloat(
     getComputedStyle(document.documentElement).getPropertyValue('--main-vh')
   ) || maxViewportHeight;
-  if (Math.abs(maxViewportHeight - currentHeight) > 2) { // Aumentar umbral para evitar pequeños cambios
+  if (Math.abs(maxViewportHeight - currentHeight) > 2) {
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
   }
 
-  // Manejar safe areas (top y bottom)
+  // Manejar safe areas
   const safeTop = getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top, 0px)') || '0px';
   const safeBottom = getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-bottom, 0px)') || '0px';
   document.documentElement.style.setProperty('--safe-top', safeTop);
@@ -139,13 +139,17 @@ function setRealViewportHeight(forceUpdate = false) {
 // Manejar foco en inputs para evitar desplazamientos
 document.querySelectorAll('input, textarea').forEach((input) => {
   input.addEventListener('focus', () => {
-    // Evitar que el teclado desplace el contenido
-    document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`); // Forzar altura fija
-    document.body.style.overflow = 'hidden'; // Bloquear scroll
+    // Forzar altura fija
+    document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
+    // Bloquear scroll del body y main
+    document.body.style.overflow = 'hidden';
+    document.querySelector('main').style.overflow = 'hidden';
   });
 
   input.addEventListener('blur', () => {
-    document.body.style.overflow = ''; // Restaurar scroll
+    // Restaurar comportamiento normal
+    document.body.style.overflow = '';
+    document.querySelector('main').style.overflow = '';
   });
 });
 

@@ -701,14 +701,17 @@ html {
   main {
     width: 100vw;
     height: var(--main-vh);
-    position: relative;
     max-height: 100vh;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    top: 0;
+    left: 0; 
+    overflow: hidden; 
+    overscroll-behavior: none;
 
     .pages {
       width: 50%;
@@ -4727,6 +4730,17 @@ html {
     main {
       width: 100vw;
       height: var(--main-vh);
+      max-height: 100vh;
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      top: 0;
+      left: 0; 
+      overflow: hidden; 
+      overscroll-behavior: none;
 
       .pages {
         width: 100%;
