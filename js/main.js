@@ -110,14 +110,13 @@ function adjustViewForPWA() {
   }
 }
 
-let maxViewportHeight = window.innerHeight; // Altura inicial del viewport
+let maxViewportHeight = window.innerHeight; // Capturar altura inicial
 
 function setRealViewportHeight(forceUpdate = false) {
   const realHeight = window.visualViewport?.height || window.innerHeight;
 
-  // Solo actualizar maxViewportHeight si no es una reducción significativa
-  // (por ejemplo, causada por el teclado)
-  if (forceUpdate || realHeight > maxViewportHeight * 0.95) {
+  // Actualizar maxViewportHeight solo si es un cambio significativo (no teclado)
+  if (forceUpdate || realHeight >= maxViewportHeight * 0.95) {
     maxViewportHeight = realHeight;
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
   }
@@ -129,76 +128,56 @@ function setRealViewportHeight(forceUpdate = false) {
   document.documentElement.style.setProperty('--safe-bottom', safeBottom);
 }
 
-function isKeyboardOpen() {
-  return window.innerHeight < maxViewportHeight * 0.9;
-}
+// Inicializar al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  setRealViewportHeight(true);
+});
 
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    if (isKeyboardOpen()) {
-      console.log('Teclado virtual abierto, manteniendo --main-vh');
-      document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
-    } else {
-      setRealViewportHeight(true);
-    }
-  });
-}
+// Manejar cambios de orientación o resize
+window.addEventListener('resize', () => {
+  setTimeout(() => {
+    setRealViewportHeight();
+  }, 200); // Debounce para evitar cambios rápidos por el teclado
+});
 
-// Manejar foco en inputs para evitar desplazamientos
+// Manejar focus y blur en inputs
 document.querySelectorAll('input, textarea').forEach((input) => {
   input.addEventListener('focus', () => {
-    // Forzar altura fija
+    // Mantener altura fija
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
-    // Bloquear scroll del body y main
+    // Prevenir scroll del navegador
+    window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
     document.querySelector('main').style.overflow = 'hidden';
-    // Evitar que el navegador desplace automáticamente
-    window.scrollTo(0, 0);
+    
+    // Asegurar que el input sea visible
+    setTimeout(() => {
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300); // Esperar a que el teclado aparezca
   });
 
   input.addEventListener('blur', () => {
-    // Restaurar comportamiento normal
+    // Restaurar comportamiento
     document.body.style.overflow = '';
-    document.querySelector('main').style.overflow = '';
-    // Asegurar que --main-vh no cambie
+    document.querySelector('main').style.overflow = 'hidden';
+    // Mantener altura
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
+    window.scrollTo(0, 0); // Volver al inicio
   });
 });
 
-// Inicializar al cargar
-window.addEventListener('load', () => {
-  maxViewportHeight = window.visualViewport?.height || window.innerHeight;
-  setRealViewportHeight();
-});
-
-// Manejar cambios de orientación
-window.addEventListener('orientationchange', () => {
-  setTimeout(() => {
-    setRealViewportHeight(true); // Forzar actualización
-  }, 300); // Aumentar delay para estabilidad
-});
-
-// Manejar resize con debounce
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    setRealViewportHeight(true);
-  }, 150); // Aumentar debounce para evitar falsos positivos
-});
-
-// Manejar visualViewport resize
+// Manejar visualViewport para mayor precisión
 if (window.visualViewport) {
   let viewportTimeout;
   window.visualViewport.addEventListener('resize', () => {
     clearTimeout(viewportTimeout);
     viewportTimeout = setTimeout(() => {
       const newHeight = window.visualViewport.height;
-      // Solo actualizar si el cambio es significativo (no teclado)
-      if (newHeight > maxViewportHeight * 0.95) {
+      // No actualizar si el teclado está abierto
+      if (newHeight >= maxViewportHeight * 0.95) {
         setRealViewportHeight(true);
       }
-    }, 200); // Debounce de 200ms
+    }, 200);
   });
 }
 

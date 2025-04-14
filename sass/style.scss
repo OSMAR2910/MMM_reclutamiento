@@ -28,7 +28,7 @@
 }
 
 :root {
-  --main-vh: 100vh;
+  --main-vh: 100vh; /* Valor inicial, se actualizará con JS */
   --safe-top: 0px;
   --safe-bottom: 0px;
 }
@@ -46,14 +46,12 @@ body,
 html {
   width: 100vw;
   padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
   height: var(--main-vh);
   margin: 0;
   padding: 0;
   background-color: $Fondo;
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
   -webkit-overflow-scrolling: touch;
   display: flex;
   justify-content: center;
@@ -700,7 +698,7 @@ html {
 
   main {
     width: 100vw;
-    height: var(--main-vh, 100vh);
+    height: var(--main-vh);
     max-height: 100vh;
     position: fixed;
     display: flex;
@@ -715,7 +713,7 @@ html {
 
     .pages {
       width: 50%;
-      height: 100%;
+      height: var(--main-vh);
       justify-items: center;
       justify-content: center;
       align-items: center;
@@ -4729,7 +4727,7 @@ html {
 
     main {
       width: 100vw;
-      height: var(--main-vh, 100vh);
+      height: var(--main-vh);
       max-height: 100vh;
       position: relative;
       display: flex;
@@ -4742,7 +4740,7 @@ html {
 
       .pages {
         width: 100%;
-        height: var(--main-vh, 100vh);
+        height: var(--main-vh);
         position: absolute;
         top: 0;
         left: 0; 
