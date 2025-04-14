@@ -6132,21 +6132,22 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 100vw;
     height: var(--main-vh);
     max-height: 100vh;
-    position: fixed;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
     margin: 0;
-    top: 0;
-    left: 0;
     overflow: hidden;
     overscroll-behavior: none;
   }
   body main .pages,
   html main .pages {
     width: 100%;
-    height: 100%;
+    height: var(--main-vh);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   body main #home .mancha1,
   html main #home .mancha1 {
