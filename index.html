@@ -299,7 +299,7 @@
         <div class="circulo_icon"></div>
         <li>
           <button id="btn_form">
-            <img src="img/Logos/interfaces/icons/usuario2.svg" alt="Usuario" />
+            <img src="img/Logos/interfaces/icons/formulario-de-usuario.svg" alt="Usuario" />
           </button>
         </li>
         <li>
@@ -309,7 +309,7 @@
         </li>
         <li>
           <button id="btn_admin">
-            <img src="img/Logos/interfaces/icons/usuarios.svg" alt="Usuarios" />
+            <img src="img/Logos/interfaces/icons/escudo-de-usuario.svg" alt="Usuarios" />
           </button>
         </li>
       </ul>
@@ -426,26 +426,21 @@
                   </span></label>
               </div>
             </div>
-            <!--Puesto, Sucursal, Ciudad-->
-            <div class="cont_inputform" id="inputform3">
-              <div class="input-form">
-                <select name="puesto" class="input" id="puesto" required>
-                  <option value="" disabled selected>Puesto</option>
-                  <option value="Cocina">Cocina</option>
-                  <option value="Mostrador">Mostrador</option>
-                  <option value="Repartidor">Repartidor</option>
-                  <option value="Subgerente">Subgerente</option>
-                  <option value="Gerente">Gerente</option>
-                </select>
-                <label for="puesto"><span>
-                    <p>¿En qué puesto te gustaría desempeñarte? 💼.</p>
-                  </span></label>
-              </div>
+            <!--Sucursal, Puesto, Ciudad-->
+            <div class="cont_inputform" id="inputform3"> 
               <div class="input-form">
                 <select name="sucursal" class="input" id="sucursal" required>
                 </select>
                 <label for="sucursal"><span>
                     <p>Elige la sucursal que actualmente ocupa vacantes 🏬.</p>
+                  </span></label>
+              </div>
+              <div class="input-form">
+                <select name="puesto" class="input" id="puesto" required>
+                  <option value="" disabled selected>Puesto</option>
+                </select>
+                <label for="puesto"><span>
+                    <p>¿En qué puesto te gustaría desempeñarte? 💼.</p>
                   </span></label>
               </div>
               <div class="input-form">
@@ -544,10 +539,10 @@
           </form>
         </div>
         <label id="label_enviar" for="btn_enviar_form">
-          <img src="img/Logos/interfaces/icons/enviar.svg" alt="Enviar" />
+          <img src="img/Logos/interfaces/icons/avion-de-papel.svg" alt="Enviar" />
         </label>
         <label id="label_next" for="btn_next_form">
-          <img src="img/Logos/interfaces/icons/flecha-correcta.svg" alt="Next" />
+          <img src="img/Logos/interfaces/icons/angulo-derecho.svg" alt="Next" />
         </label>
       </article>
     </section>
@@ -601,7 +596,7 @@
         </div>
       </div>
       <button class="btn_cita" id="btnAdminManager">
-        <img src="img/Logos/interfaces/icons/rama.svg" alt="cita">
+        <img src="img/Logos/interfaces/icons/tienda.svg" alt="cita">
       </button>
     </section>
     <section class="pages" id="pag3">
@@ -614,18 +609,22 @@
             <div class="icons_settings">
               <input type="checkbox" id="settings1" />
               <label id="label_settings" for="settings1">
-                <img src="img/Logos/interfaces/icons/ajuste.svg" alt="settings">
+                <img src="img/Logos/interfaces/icons/ajustes.svg" alt="settings">
+                <span>Ajustes</span>
               </label>
               <div class="settings_info" id="settings_info">
                 <div class="data_settings">
                   <button id="regreso1">
-                    <img src="img/Logos/interfaces/icons/atras.svg" alt="atras" />
+                    <img src="img/Logos/interfaces/icons/paso-atras.svg" alt="atras" />
+                    <span>Atrás</span>
                   </button>
                   <button id="infouserAdmin">
-                    <img src="img/Logos/interfaces/icons/usuario.svg" alt="usuario" />
+                    <img src="img/Logos/interfaces/icons/usuario-de-la-casa.svg" alt="usuario" />
+                    <span>Usuario</span>
                   </button>
                   <button id="logoutButton1">
-                    <img src="img/Logos/interfaces/icons/cerrar-sesion.png" alt="cerrar-sesion">
+                    <img src="img/Logos/interfaces/icons/salida.svg" alt="cerrar-sesion">
+                    <span>Cerrar</span>
                   </button>
                 </div>
               </div>
@@ -641,8 +640,9 @@
           <div class="mensajes_usuarios">
             <div class="icons_mj">
               <input type="checkbox" id="mj_user" />
-              <label id="label_mj_user" for="mj_user">
-                <img src="img/Logos/interfaces/icons/charla.svg" alt="mj">
+              <label class="label_icon" id="label_mj_user" for="mj_user">
+                <img src="img/Logos/interfaces/icons/mensajes.svg" alt="mj">
+                <span>Mensajes</span>
               </label>
               <div class="mj_user_info">
                 <div class="filter-container">
@@ -658,8 +658,9 @@
           <div class="disponibilidad_sucu">
             <div class="icons_sucu">
               <input type="checkbox" id="sucu_user" />
-              <label id="label_sucu_user" for="sucu_user">
-                <img src="img/Logos/interfaces/icons/rama.svg" alt="sucu">
+              <label class="label_icon"  id="label_sucu_user" for="sucu_user">
+                <img src="img/Logos/interfaces/icons/bloqueo-de-tienda.svg" alt="sucu">
+                <span>Tiendas</span>
               </label>
               <div class="sucu_user_info">
                 <div class="filter-container">
@@ -669,6 +670,24 @@
                   </div>
                 </div>
                 <div class="data_sucu_user" id="data_sucu_user"></div>
+              </div>
+            </div>
+          </div>
+          <div class="disponibilidad_puestos">
+            <div class="icons_puestos">
+              <input type="checkbox" id="puestos_user" />
+              <label class="label_icon" id="label_puestos_user" for="puestos_user">
+                <img src="img/Logos/interfaces/icons/maletin.svg" alt="puestos">
+                <span>Puestos</span>
+              </label>
+              <div class="puestos_user_info">
+                <div class="filter-container">
+                  <div class="input-field">
+                    <input type="text" id="puestos_filter" class="filter_puestos" placeholder=" " spellcheck="false">
+                    <label for="puestos_filter"><span>Buscar puestos..</span></label>
+                  </div>
+                </div>
+                <div class="data_puestos_user" id="data_puestos_user"></div>
               </div>
             </div>
           </div>
@@ -772,7 +791,7 @@
         </div>
       </div>
       <button class="btn_admin2" id="btnAdmin2">
-        <img src="img/Logos/interfaces/icons/usuarios.svg" alt="cita">
+        <img src="img/Logos/interfaces/icons/escudo-de-usuario.svg" alt="cita">
       </button>
     </section>
     <section class="pages" id="pag5">
@@ -791,15 +810,15 @@
         <div class="icons_settings">
           <input type="checkbox" id="settings2" />
           <label id="label_settings" for="settings2">
-            <img src="img/Logos/interfaces/icons/ajuste.svg" alt="settings">
+            <img src="img/Logos/interfaces/icons/ajustes.svg" alt="settings">
           </label>
           <div class="settings_info" id="settings_info">
             <div class="data_settings">
               <button id="regreso2">
-                <img src="img/Logos/interfaces/icons/atras.svg" alt="atras" />
+                <img src="img/Logos/interfaces/icons/paso-atras.svg" alt="atras" />
               </button>
               <button id="logoutButton2">
-                <img src="img/Logos/interfaces/icons/cerrar-sesion.png" alt="cerrar-sesion">
+                <img src="img/Logos/interfaces/icons/salida.svg" alt="cerrar-sesion">
               </button>
             </div>
           </div>

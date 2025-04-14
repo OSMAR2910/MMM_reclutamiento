@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
-import { database, ref, set, onValue, remove, app, get } from "./firebase.js";
+import { database, ref, set, onValue, remove, app, get, update } from "./firebase.js";
 import {
   personalizarSelect,
   toggleView,
@@ -23,21 +23,6 @@ let previousVacantes = new Map();
 let isAdmin = localStorage.getItem("isAdminLoggedIn") === "true";
 let isManager = localStorage.getItem("isManagerLoggedIn") === "true";
 
-function verificarDisplay(idElemento, alertaSiOculto, alertaSiVisible) {
-  const elemento = document.getElementById(idElemento);
-
-  if (!elemento) {
-    console.error(`❌ No se encontró el elemento con ID: ${idElemento}`);
-    return;
-  }
-
-  const estilo = window.getComputedStyle(elemento);
-  if (estilo.display === "none") {
-    mostrarAlerta(alertaSiOculto);
-  } else {
-    mostrarAlerta(alertaSiVisible);
-  }
-}
 
 const label_btnEnviar = document.getElementById("label_enviar");
 const formElement = document.getElementById("myForm"); // Asegúrate de que este ID coincida con tu HTML
@@ -1228,7 +1213,187 @@ function mostrarSucursalesDisponibles() {
   });
 }
 
-// Función para cargar y personalizar sucursales disponibles desde Firebase
+function mostrarPuestosDisponibles() {
+  const dataPuestosUser = document.getElementById("data_puestos_user");
+  const filterInput = document.getElementById("puestos_filter");
+
+  if (!dataPuestosUser) {
+    console.error("Elemento 'data_puestos_user' no encontrado en el DOM.");
+    return;
+  }
+
+  if (!filterInput) {
+    console.error("Elemento 'puestos_filter' no encontrado en el DOM.");
+    return;
+  }
+
+  dataPuestosUser.innerHTML = "<p>Cargando puestos...</p>";
+
+  const disSucuRef = ref(database, "disSucu");
+  const disPuestosRef = ref(database, "disPuestos");
+
+  let puestosData = null;
+
+  async function cargarPuestosJSON() {
+    try {
+      const response = await fetch("../json/puestos.json");
+      if (!response.ok) {
+        throw new Error("No se pudo cargar el archivo puestos.json");
+      }
+      puestosData = await response.json();
+      console.log("Puestos cargados desde JSON:", puestosData);
+    } catch (error) {
+      console.error("Error al cargar puestos.json:", error);
+      dataPuestosUser.innerHTML =
+        "<div class='error'>Error al cargar puestos</div>";
+    }
+  }
+
+  // Función para renderizar sucursales y puestos con filtro
+  function renderizarPuestos(sucursales, puestosFirebase, filtro = "") {
+    dataPuestosUser.innerHTML = "";
+
+    if (!sucursales || !puestosData) {
+      dataPuestosUser.innerHTML = "<div class='no_data'></div>";
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    const ul = document.createElement("ul");
+    ul.classList.add("puestos_admin_list");
+
+    // Filtrar y ordenar sucursales
+    const sucursalesFiltradas = Object.entries(sucursales)
+      .filter(([nombre, disponible]) => disponible && nombre.toLowerCase().includes(filtro.toLowerCase()))
+      .sort((a, b) => a[0].localeCompare(b[0]));
+
+    if (sucursalesFiltradas.length === 0) {
+      dataPuestosUser.innerHTML = "<div class='no_data'></div>";
+      return;
+    }
+
+    sucursalesFiltradas.forEach(([nombre]) => {
+      const li = document.createElement("button");
+      li.classList.add("puesto_admin_item");
+
+      // Encabezado con el nombre de la sucursal
+      const sucursalHeader = document.createElement("h3");
+      sucursalHeader.classList.add("puesto_admin_sucursal");
+      sucursalHeader.textContent = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
+
+      // Contenedor para los puestos
+      const puestosList = document.createElement("ul");
+      puestosList.classList.add("puestos_admin_items");
+
+      // Crear un elemento por cada puesto
+      puestosData.puestos.forEach((puesto) => {
+        const puestoLi = document.createElement("li");
+        puestoLi.classList.add("puesto_admin_puesto");
+
+        const checkboxId = `checkbox-${nombre}-${puesto.id}`;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = checkboxId;
+        checkbox.classList.add("puesto_admin_checkbox");
+
+        // Obtener estado desde Firebase, default a false si no existe
+        const puestoEstado = puestosFirebase?.[nombre]?.[puesto.id] ?? false;
+        checkbox.checked = puestoEstado;
+
+        // Nombre del puesto
+        const puestoNombre = document.createElement("span");
+        puestoNombre.classList.add("puesto_admin_nombre");
+        puestoNombre.textContent = puesto.nombre;
+
+        // Círculo clickeable (label vacío)
+        const label = document.createElement("label");
+        label.htmlFor = checkboxId;
+        label.classList.add("puesto_admin_circle");
+        label.classList.toggle("disponible", puestoEstado);
+        label.classList.toggle("no_disponible", !puestoEstado);
+
+        // Evento para actualizar el estado en Firebase
+        checkbox.addEventListener("change", (e) => {
+          const nuevoEstado = e.target.checked;
+          const puestoRef = ref(database, `disPuestos/${nombre}/${puesto.id}`);
+
+          set(puestoRef, nuevoEstado)
+            .then(() => {
+              console.log(`Estado de ${puesto.nombre} en ${nombre} actualizado a ${nuevoEstado}`);
+              label.classList.toggle("disponible", nuevoEstado);
+              label.classList.toggle("no_disponible", !nuevoEstado);
+              mostrarAlertaAdmin("alerta_20");
+            })
+            .catch((error) => {
+              console.error("Error al actualizar estado:", error);
+              checkbox.checked = !nuevoEstado; // Revertir cambio en UI
+              label.classList.toggle("disponible", !nuevoEstado);
+              label.classList.toggle("no_disponible", nuevoEstado);
+              mostrarAlertaAdmin("alerta_21");
+            });
+        });
+
+        const puestoDiv = document.createElement("div");
+        puestoDiv.classList.add("puesto_admin_container");
+        puestoDiv.appendChild(checkbox);
+        puestoDiv.appendChild(puestoNombre);
+        puestoDiv.appendChild(label);
+
+        puestoLi.appendChild(puestoDiv);
+        puestosList.appendChild(puestoLi);
+      });
+
+      li.appendChild(sucursalHeader);
+      li.appendChild(puestosList);
+      ul.appendChild(li);
+    });
+
+    fragment.appendChild(ul);
+    dataPuestosUser.appendChild(fragment);
+  }
+
+  // Cargar JSON y configurar listeners
+  cargarPuestosJSON().then(() => {
+    let currentSucursales = null;
+    let currentPuestosFirebase = null;
+    let currentFilter = filterInput.value.trim();
+
+    // Escuchar cambios en disSucu
+    onValue(
+      disSucuRef,
+      (snapshotSucu) => {
+        currentSucursales = snapshotSucu.val();
+        renderizarPuestos(currentSucursales, currentPuestosFirebase, currentFilter);
+      },
+      (error) => {
+        console.error("Error al leer disSucu de Firebase:", error);
+        dataPuestosUser.innerHTML =
+          "<div class='error'>Error al cargar sucursales</div>";
+      }
+    );
+
+    // Escuchar cambios en disPuestos
+    onValue(
+      disPuestosRef,
+      (snapshotPuestos) => {
+        currentPuestosFirebase = snapshotPuestos.val() || {};
+        renderizarPuestos(currentSucursales, currentPuestosFirebase, currentFilter);
+      },
+      (error) => {
+        console.error("Error al leer disPuestos de Firebase:", error);
+        dataPuestosUser.innerHTML =
+          "<div class='error'>Error al cargar puestos</div>";
+      }
+    );
+
+    // Actualizar el filtro en tiempo real
+    filterInput.addEventListener("input", (e) => {
+      currentFilter = e.target.value.trim();
+      renderizarPuestos(currentSucursales, currentPuestosFirebase, currentFilter);
+    });
+  });
+}
+
 function cargarSucursalesDisponibles() {
   const sucursalSelect = document.getElementById("sucursal");
   if (!sucursalSelect) {
@@ -1236,27 +1401,25 @@ function cargarSucursalesDisponibles() {
     return;
   }
 
-  const disSucuRef = ref(database, "disSucu");
-
-  // ✅ 1. Eliminar cualquier personalización previa para evitar duplicados
-  const existingCustomSelect =
-    sucursalSelect.parentNode.querySelector(".custom-select");
+  // Eliminar cualquier personalización previa
+  const existingCustomSelect = sucursalSelect.parentNode.querySelector(".custom-select");
   if (existingCustomSelect) {
     existingCustomSelect.remove();
   }
 
-  sucursalSelect.style.display = ""; // Asegurar visibilidad antes de personalizar
+  sucursalSelect.style.display = "";
+
+  const disSucuRef = ref(database, "disSucu");
 
   onValue(disSucuRef, (snapshot) => {
     if (snapshot.exists()) {
       const sucursales = snapshot.val();
       console.log("🔹 Sucursales obtenidas de Firebase:", sucursales);
 
-      // ✅ 2. Limpiar opciones dinámicas y agregar un placeholder
-      sucursalSelect.innerHTML =
-        '<option value="" disabled selected>Sucursal</option>';
+      // Limpiar opciones y agregar placeholder
+      sucursalSelect.innerHTML = '<option value="" disabled selected>Sucursal</option>';
 
-      // ✅ 3. Agregar las sucursales disponibles
+      // Agregar sucursales disponibles
       Object.entries(sucursales).forEach(([nombre, disponible]) => {
         if (disponible) {
           const option = document.createElement("option");
@@ -1266,23 +1429,103 @@ function cargarSucursalesDisponibles() {
         }
       });
 
-      // ✅ 4. Aplicar personalización después de que el select tenga opciones
+      // Personalizar el select después de cargar las opciones
       setTimeout(() => {
         personalizarSelect(sucursalSelect);
       }, 50);
+
+      // Restaurar sucursal guardada en localStorage si existe
+      const sucursalGuardada = localStorage.getItem("sucursalSeleccionada");
+      if (sucursalGuardada && sucursales[sucursalGuardada]) {
+        sucursalSelect.value = sucursalGuardada;
+        actualizarPuestosDisponibles(sucursalGuardada);
+      }
     } else {
       console.warn("⚠️ No se encontraron sucursales en Firebase.");
-      sucursalSelect.innerHTML =
-        '<option value="" disabled selected>No hay sucursales disponibles</option>';
+      sucursalSelect.innerHTML = '<option value="" disabled selected>No hay sucursales disponibles</option>';
     }
   });
 
-  // ✅ 5. Observar cambios en las opciones del select
+  // Evento para guardar la sucursal en localStorage y actualizar puestos
+  sucursalSelect.addEventListener("change", () => {
+    const sucursalSeleccionada = sucursalSelect.value;
+    if (sucursalSeleccionada) {
+      localStorage.setItem("sucursalSeleccionada", sucursalSeleccionada);
+      console.log(`Sucursal seleccionada guardada: ${sucursalSeleccionada}`);
+      actualizarPuestosDisponibles(sucursalSeleccionada);
+    } else {
+      localStorage.removeItem("sucursalSeleccionada");
+      actualizarPuestosDisponibles(null);
+    }
+  });
+
+  // Observar cambios en las opciones del select
   const observer = new MutationObserver(() => {
     personalizarSelect(sucursalSelect);
   });
 
   observer.observe(sucursalSelect, { childList: true });
+}
+
+function actualizarPuestosDisponibles(sucursal) {
+  const puestoSelect = document.getElementById("puesto");
+  if (!puestoSelect) {
+    console.error("❌ No se encontró el select de puestos.");
+    return;
+  }
+
+  // Limpiar personalización previa
+  const existingCustomSelect = puestoSelect.parentNode.querySelector(".custom-select");
+  if (existingCustomSelect) {
+    existingCustomSelect.remove();
+  }
+
+  puestoSelect.style.display = "";
+
+  // Limpiar opciones y agregar placeholder
+  puestoSelect.innerHTML = '<option value="" disabled selected>Puesto</option>';
+
+  if (!sucursal) {
+    console.log("No hay sucursal seleccionada, limpiando puestos.");
+    setTimeout(() => personalizarSelect(puestoSelect), 50);
+    return;
+  }
+
+  const disPuestosRef = ref(database, `disPuestos/${sucursal}`);
+  get(disPuestosRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const puestos = snapshot.val();
+      console.log(`Puestos obtenidos para ${sucursal}:`, puestos);
+
+      // Mapear los IDs de puestos a nombres (basado en puestos.json)
+      fetch("../json/puestos.json")
+        .then((response) => response.json())
+        .then((puestosData) => {
+          const puestosDisponibles = puestosData.puestos.filter((puesto) => puestos[puesto.id] === true);
+          puestosDisponibles.forEach((puesto) => {
+            const option = document.createElement("option");
+            option.value = puesto.nombre;
+            option.textContent = puesto.nombre;
+            puestoSelect.appendChild(option);
+          });
+
+          // Personalizar el select después de cargar las opciones
+          setTimeout(() => personalizarSelect(puestoSelect), 50);
+        })
+        .catch((error) => {
+          console.error("Error al cargar puestos.json:", error);
+          puestoSelect.innerHTML = '<option value="" disabled selected>Error al cargar puestos</option>';
+        });
+    } else {
+      console.warn(`No se encontraron puestos para la sucursal ${sucursal}.`);
+      puestoSelect.innerHTML = '<option value="" disabled selected>No hay puestos disponibles</option>';
+      setTimeout(() => personalizarSelect(puestoSelect), 50);
+    }
+  }).catch((error) => {
+    console.error("Error al leer disPuestos de Firebase:", error);
+    puestoSelect.innerHTML = '<option value="" disabled selected>Error al cargar puestos</option>';
+    setTimeout(() => personalizarSelect(puestoSelect), 50);
+  });
 }
 
 //Función para crear botones dinámicamente
@@ -1493,6 +1736,8 @@ function manejarVisibilidadModales() {
     document.querySelector(".settings"),
     document.querySelector(".mensajes_usuarios"),
     document.querySelector(".disponibilidad_sucu"),
+    document.querySelector(".disponibilidad_puestos")
+
   ];
 
   // Crear un MutationObserver para observar cambios en el atributo style de los modales
@@ -2079,6 +2324,7 @@ document.addEventListener("DOMContentLoaded", () => {
   asignarEventos("manager");
   cargarSucursalesDisponibles();
   cargarSucursalesJSON();
+  mostrarPuestosDisponibles();
 
   // Llamar a mostrarBotonEntrar para ambos tipos al cargar la página
   mostrarBotonEntrar("admin");
@@ -2139,6 +2385,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar datos y mensajes solo cuando el usuario esté autenticado
         mostrarDatos();
         mostrarMensajesUsuarios();
+        mostrarPuestosDisponibles();
 
         // Limpiar la intención de redirección
         localStorage.removeItem("redirectAfterLogin");

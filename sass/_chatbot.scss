@@ -12,13 +12,11 @@
 }
 .chatbot {
   position: fixed;
-  bottom: 0;
-  right: 0; 
-  margin-right: 2%;
-  margin-bottom: 1.2%;
+  bottom: 3vh;
+  right: 3vh; 
   display: flex;
   z-index: 9999;
-  width: 4vw;
+  width: 3.7vw;
   aspect-ratio: 2/2;
   height: auto;
   border-radius: 100%;
@@ -48,11 +46,12 @@
       margin: none;
       background-color: $Principal;
       aspect-ratio: 2/2;
-      background-image: url("../img/Logos/interfaces/icons/charla.svg");
-      background-size: 45%;
+      background-image: url("../img/Logos/interfaces/icons/mensajes.svg");
+      background-size: 55%;
       background-position: center;
       border: none;
       background-repeat: no-repeat;
+      padding: 5%;
     }
     .name_id {
       display: none;
@@ -94,9 +93,6 @@
   width: 20vw;
   height: 70vh;
   max-height: 700px;
-  bottom: 0;
-  right: 0;
-  margin: 2%;
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -138,8 +134,9 @@
       background-repeat: no-repeat;
       position: relative;
       .status_green {
-        width: 0.5vw;
+        width: .6em;
         aspect-ratio: 2/2;
+        border: 2px solid  $Secundario;
         background-color: $Green;
         border-radius: 100%;
         bottom: 0;
@@ -181,16 +178,12 @@
       aspect-ratio: 2/2;
       background-color: $Transparente;
       border: none;
-      background-image: url("../img/Logos/interfaces/icons/flecha-min.svg");
-      background-size: 80%;
+      background-image: url("../img/Logos/interfaces/icons/angulo-hacia-abajo.svg");
+      background-size: 55%;
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 100%;
       padding: 5%;
-      &:hover {
-        background-color: $Transparente;
-        box-shadow: none;
-      }
     }
     .name_id {
       width: 30%;
@@ -527,7 +520,7 @@
 
 @media screen and (max-width: 500px) {
   .chatbot {
-    width: 15vw;
+    width: 13vw;
     margin: 5%;
     top: auto;
     bottom: 0;
@@ -549,9 +542,6 @@
       .chat_icon {
         width: 14%;
         margin-left: 3%;
-        .status_green {
-          width: 2.6vw;
-        }
       }
       .chat_present {
         left: 25%;

@@ -1,0 +1,24 @@
+{
+  "puestos": [
+    {
+      "nombre": "Cocina",
+      "id": "cocina"
+    },
+    {
+      "nombre": "Mostrador",
+      "id": "mostrador"
+    },
+    {
+      "nombre": "Repartidor",
+      "id": "repartidor"
+    },
+    {
+      "nombre": "Subgerente",
+      "id": "subgerente"
+    },
+    {
+      "nombre": "Gerente",
+      "id": "gerente"
+    }
+  ]
+}

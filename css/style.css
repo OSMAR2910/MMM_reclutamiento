@@ -497,13 +497,11 @@ body canvas {
 }
 .chatbot {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  margin-right: 2%;
-  margin-bottom: 1.2%;
+  bottom: 3vh;
+  right: 3vh;
   display: flex;
   z-index: 9999;
-  width: 4vw;
+  width: 3.7vw;
   aspect-ratio: 2/2;
   height: auto;
   border-radius: 100%;
@@ -537,11 +535,12 @@ body canvas {
   margin: none;
   background-color: #ec6223;
   aspect-ratio: 2/2;
-  background-image: url("../img/Logos/interfaces/icons/charla.svg");
-  background-size: 45%;
+  background-image: url("../img/Logos/interfaces/icons/mensajes.svg");
+  background-size: 55%;
   background-position: center;
   border: none;
   background-repeat: no-repeat;
+  padding: 5%;
 }
 .chatbot .chat_header .name_id {
   display: none;
@@ -582,9 +581,6 @@ body canvas {
   width: 20vw;
   height: 70vh;
   max-height: 700px;
-  bottom: 0;
-  right: 0;
-  margin: 2%;
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -629,8 +625,9 @@ body canvas {
   position: relative;
 }
 .max_chat .chat_header .chat_icon .status_green {
-  width: 0.5vw;
+  width: 0.6em;
   aspect-ratio: 2/2;
+  border: 2px solid #174891;
   background-color: #00bf63;
   border-radius: 100%;
   bottom: 0;
@@ -671,16 +668,12 @@ body canvas {
   aspect-ratio: 2/2;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  background-image: url("../img/Logos/interfaces/icons/flecha-min.svg");
-  background-size: 80%;
+  background-image: url("../img/Logos/interfaces/icons/angulo-hacia-abajo.svg");
+  background-size: 55%;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 100%;
   padding: 5%;
-}
-.max_chat .chat_header .chat_min:hover {
-  background-color: rgba(0, 0, 0, 0);
-  box-shadow: none;
 }
 .max_chat .chat_header .name_id {
   width: 30%;
@@ -1018,7 +1011,7 @@ body canvas {
 
 @media screen and (max-width: 500px) {
   .chatbot {
-    width: 15vw;
+    width: 13vw;
     margin: 5%;
     top: auto;
     bottom: 0;
@@ -1042,9 +1035,6 @@ body canvas {
   .max_chat .chat_header .chat_icon {
     width: 14%;
     margin-left: 3%;
-  }
-  .max_chat .chat_header .chat_icon .status_green {
-    width: 2.6vw;
   }
   .max_chat .chat_header .chat_present {
     left: 25%;
@@ -1147,8 +1137,7 @@ body canvas {
 }
 
 .main-height {
-  height: var(--main-vh);
-  height: calc(var(--main-vh) - var(--safe-top));
+  height: calc(100 * var(--main-vh) - var(--safe-top));
   position: relative;
   min-height: var(--main-vh);
   max-height: var(--main-vh);
@@ -1796,9 +1785,8 @@ html header nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 5%;
 }
 body header nav ul .circulo_icon,
 html header nav ul .circulo_icon {
@@ -1829,12 +1817,12 @@ html header nav ul li button {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   z-index: 1002;
 }
 body header nav ul li button img,
 html header nav ul li button img {
-  height: 100%;
+  height: 80%;
 }
 body header nav ul li button:hover,
 html header nav ul li button:hover {
@@ -1843,7 +1831,9 @@ html header nav ul li button:hover {
 }
 body header nav ul li .iconbutton,
 html header nav ul li .iconbutton {
-  height: 85%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 body header nav ul li .iconbutton:hover,
 html header nav ul li .iconbutton:hover {
@@ -2170,14 +2160,14 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus ~ label,
 html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus ~ label {
-  display: flex;
+  display: flex !important;
   transition: all 0.2s ease-in-out;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form label,
 html main #pag1 article .cont_form form .cont_inputform .input-form label {
   animation: fadeIn 0.3s ease-in-out forwards;
   top: 20vh;
-  left: 14vw;
+  left: 14.5vw;
   width: 20vw;
   height: 4vw;
   position: fixed;
@@ -2255,11 +2245,15 @@ html main #pag1 article label {
   justify-content: center;
   align-items: center;
   transition: all 0.1s ease-in-out;
+  position: relative;
 }
 body main #pag1 article label img,
 html main #pag1 article label img {
-  width: 100%;
-  height: 100%;
+  height: 80%;
+  aspect-ratio: 2/2;
+  top: 0;
+  left: 0;
+  position: absolute;
 }
 body main #pag1 article label:hover,
 html main #pag1 article label:hover {
@@ -2662,29 +2656,59 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings input {
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .settings_info,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .settings_info {
-  left: 110%;
-  width: 200%;
+  left: 100%;
+  width: 190%;
   visibility: visible;
+  opacity: 1;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings label,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings label {
+  position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
-  border: none;
-  outline: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10rem;
-  transition: all 0.2s ease-in-out;
-  background-color: #1b3c59;
   z-index: 10000;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings label img,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings label img {
-  height: 60%;
+  height: 50%;
+  transition: all 0.2s ease-in-out;
+  transform: rotate(0deg);
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings label span,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings label span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings label:hover img,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings label:hover img {
+  transform: rotate(190deg);
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings label:hover span,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings label:hover span {
+  visibility: visible;
+  opacity: 1;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info {
@@ -2698,11 +2722,12 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info {
   width: 100%;
   height: 100%;
   visibility: hidden;
+  opacity: 0;
   text-align: center;
   color: #ffffff;
   font-family: "Nunito";
   gap: 1.5vh;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings {
@@ -2730,7 +2755,38 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .d
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img {
-  height: 80%;
+  height: 70%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button span,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button:hover img,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button:hover span,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button:hover span {
+  visibility: visible;
+  opacity: 1;
 }
 body main #pag3 .nav_admin .nav_cont .cont_welcome_admin,
 html main #pag3 .nav_admin .nav_cont .cont_welcome_admin {
@@ -2805,21 +2861,49 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked 
   display: flex;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label,
-html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label {
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon {
   width: 100%;
   height: 100%;
-  border: none;
-  outline: none;
-  border-radius: 10rem;
-  transition: all 0.2s ease-in-out;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label img,
-html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj label img {
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon img,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon img {
   height: 60%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon span,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon:hover img,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon:hover span,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon:hover span {
+  visibility: visible;
+  opacity: 1;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info {
@@ -3086,21 +3170,51 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:chec
   display: flex;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
-body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label,
-html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label {
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon {
   width: 100%;
   height: 100%;
-  border: none;
-  outline: none;
   border-radius: 10rem;
   transition: all 0.2s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
-body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label img,
-html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu label img {
-  height: 80%;
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon img {
+  height: 50%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon:hover img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon:hover span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon:hover span {
+  visibility: visible;
+  opacity: 1;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info {
@@ -3286,6 +3400,319 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label:hover,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos {
+  width: 3%;
+  height: 100%;
+  display: flex;
+  background-color: #1b3c59;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 11%;
+  top: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ label {
+  opacity: 50%;
+  scale: 0.9;
+  display: flex;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .puestos_user_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .puestos_user_info {
+  display: flex;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon img {
+  height: 50%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon:hover img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon:hover span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info {
+  position: fixed;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 15vw;
+  height: 73.5vh;
+  top: 22vh;
+  left: 17.5vw;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+  padding: 0.5vw;
+  background-color: #1b3c59;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container {
+  width: 100%;
+  height: 3.5vh;
+  border-radius: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.1s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+  font-family: "Nunito";
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input::-webkit-inner-spin-button,
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input::-webkit-outer-spin-button,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input::-webkit-inner-spin-button,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input[type=text],
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input[type=text] {
+  -moz-appearance: textfield;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5rem;
+  font-size: 0.7vw;
+  display: flex;
+  background-color: #174891;
+  color: #ffffff;
+  outline: none;
+  text-align: center;
+  border: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:focus,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:focus {
+  box-shadow: 0px 0px 10px 0px #0f3061;
+  background: #0f3061;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
+  top: -1%;
+  font-size: 0.5vw;
+  background: #ec6223;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 0 3%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:focus ~ label,
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:focus ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
+  top: -1%;
+  font-size: 0.5vw;
+  background: #ec6223;
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 0 3%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field label {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 0.7vw;
+  pointer-events: none;
+  transition: 0.3s;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field label span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field label span {
+  margin-left: 3px;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user .no_data,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user .no_data {
+  margin-top: 30%;
+  width: 40%;
+  aspect-ratio: 2/2;
+  background-image: url("../img//Utilidades/no_data.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border: none;
+  margin-bottom: 1.5vh;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button {
+  width: 95%;
+  height: 5vh;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 0.5vw;
+  justify-content: center;
+  border: none;
+  overflow-y: hidden;
+  align-items: center;
+  font-family: "Nunito";
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button h3,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button h3 {
+  display: flex;
+  font-size: 1.3em;
+  font-family: "Nunito";
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button .puestos_admin_items,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button .puestos_admin_items {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 20vh;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus h3,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus h3 {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container {
+  width: 80%;
+  height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container input,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container input {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_nombre,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_nombre {
+  font-size: 1.5em;
+  font-family: "Nunito";
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 100%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.no_disponible,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.no_disponible {
+  background-color: #ff3131;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.disponible,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.disponible {
+  background-color: #00bf63;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle:hover {
   opacity: 50%;
   scale: 0.9;
 }
@@ -5696,7 +6123,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main .pages,
   html main .pages {
     width: 100%;
-    height: var(--main-vh);
+    height: calc(100 * var(--main-vh));
   }
   body main #home .mancha1,
   html main #home .mancha1 {

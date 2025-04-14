@@ -1,0 +1,147 @@
+{
+    "intents": [
+        {
+            "tag": "palabras_pavo_admin",
+            "responses": [
+                "¡Hola, ${userName}! ¿Ya revisaste tus notificaciones? ¡Podrías tener novedades! 📩🦃",
+                "¡Glu-glu, ${userName}! Mantén tus datos actualizados. ¡Un pavo listo siempre brilla! ✨🦃",
+                "¡Cuidado, ${userName}! Si algo falla, avísanos. ¡El pavo está alerta! 🔍🦃",
+                "¿Organizado, ${userName}? Un pavo ordenado es un pavo feliz. 🙌🦃",
+                "¿Sabías, ${userName}, que puedes cambiar tu nombre en ajustes? ¡Como un pavo renovando su plumaje! 🦃✨",
+                "¡Recuerda, ${userName}! Tener todo organizado es clave. 📊🦃",
+                "¿Listo para avanzar, ${userName}? ¡Revisa antes de seguir! ⚡🦃",
+                "¡Hola, ${userName}! ¿Todo en orden? ¡Un pavo precavido vale por dos! 🦃💪",
+                "¡Cuidado, ${userName}! Si ves algo raro, avísanos. 👀🦃",
+                "¿Algo pendiente, ${userName}? ¡Termina antes de volar! ✈️🦃",
+                "¡Hola, ${userName}! No olvides mantener tus archivos organizados. 📂🦃",
+                "¡Recuerda, ${userName}! Revisar tus tareas pendientes es como limpiar plumas. ✨🦃"
+            ]
+        },
+        {
+            "tag": "alerta_1",
+            "responses": [
+                "¡Glu-glu, ${userName}! Inicia sesión para pavonearte. 🔐🦃"
+            ]
+        },
+        {
+            "tag": "alerta_2",
+            "responses": [
+                "¡Genial, ${userName}! Nombre actualizado. 🎉🦃"
+            ]
+        },
+        {
+            "tag": "alerta_3",
+            "responses": [
+                "¡Ups, ${userName}! Error al cargar datos. 😓🦃"
+            ]
+        },
+        {
+            "tag": "alerta_4",
+            "responses": [
+                "¡Hola, ${userName}! Aquí están los vacantes. 🗃️🦃"
+            ]
+        },
+        {
+            "tag": "alerta_5",
+            "responses": [
+                "¡Error, ${userName}! No se pudo eliminar el vacante. 🤡🦃"
+            ]
+        },
+        {
+            "tag": "alerta_6",
+            "responses": [
+                "¡Bien, ${userName}! Vacante movido correctamente. 🫨🦃"
+            ]
+        },
+        {
+            "tag": "alerta_7",
+            "responses": [
+                "¡Listo, ${userName}! Vacante eliminado. 🫣🦃"
+            ]
+        },
+        {
+            "tag": "alerta_8",
+            "responses": [
+                "¡Casi lo logras, ${userName}! Casi eliminaste el vacante. 😬🦃"
+            ]
+        },
+        {
+            "tag": "alerta_9",
+            "responses": [
+                "¡Ya está ahí, ${userName}! Ese vacante no se mueve. 😅🦃"
+            ]
+        },
+        {
+            "tag": "alerta_10",
+            "responses": [
+                "¡Completa todos los campos, ${userName}! 🤗🦃"
+            ]
+        },
+        {
+            "tag": "alerta_11",
+            "responses": [
+                "¡Error, ${userName}! No se pudo agendar la cita. 🤡🦃"
+            ]
+        },
+        {
+            "tag": "alerta_12",
+            "responses": [
+                "¡Bien hecho, ${userName}! Cita agendada. 🤠🦃"
+            ]
+        },
+        {
+            "tag": "alerta_13",
+            "responses": [
+                "¡Listo, ${userName}! Estado de sucursal actualizado. 🔁🦃"
+            ]
+        },
+        {
+            "tag": "alerta_14",
+            "responses": [
+                "¡Oops, ${userName}! Problema al actualizar sucursal. 😕🦃"
+            ]
+        },
+        {
+            "tag": "alerta_15",
+            "responses": [
+                "¡Casi lo logras, ${userName}! Cita casi enviada. 😬🦃"
+            ]
+        },
+        {
+            "tag": "alerta_16",
+            "responses": [
+                "¡Felicidades, ${userName}! Información descargada. 🎉🦃"
+            ]
+        },
+        {
+            "tag": "alerta_17",
+            "responses": [
+                "¡Genial, ${userName}! Número de Empleado actualizado. 🎉🦃"
+            ]
+        },
+        {
+            "tag": "alerta_18",
+            "responses": [
+                "¡Hecho, ${userName}! Se cambió el estado de la vacante. ✅💼🦃"
+            ]
+        },
+        {
+            "tag": "alerta_19",
+            "responses": [
+                "¡Error, ${userName}! No se pudo cambiar el estado de la vacante. ❌📝🦃"
+            ]
+        },
+        {
+            "tag": "alerta_20",
+            "responses": [
+                "¡Listo, ${userName}! Estado de puesto actualizado. 🔁🦃"
+            ]
+        },
+        {
+            "tag": "alerta_21",
+            "responses": [
+                "¡Oops, ${userName}! Problema al actualizar puesto. 😕🦃"
+            ]
+        }
+    ]
+}

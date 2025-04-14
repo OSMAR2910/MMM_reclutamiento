@@ -33,8 +33,7 @@
 }
 
 .main-height {
-  height: var(--main-vh);
-  height: calc(var(--main-vh) - var(--safe-top));
+  height: calc(100 * var(--main-vh) - var(--safe-top));
   position: relative;
   min-height: var(--main-vh);
   max-height: var(--main-vh);
@@ -478,35 +477,35 @@ html {
             flex-direction: column;
             margin-bottom: 2rem;
             .user-name-display-cont,
-            .employee-number-display-cont {           
+            .employee-number-display-cont {
               width: 100%;
               height: 1.7em;
               display: flex;
               justify-content: space-between;
               align-items: center;
-             span {
-              width: auto;
-              color: $Box_admin;
-            }
-            
-            .edit-btn {
-              height: 100%;
-              aspect-ratio: 1/1;
-              background-image: url("../img/Logos/interfaces/icons/editar.svg");
-              background-size: 50%;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-color: $Secundario;
-              border: none;
-              border-radius: 50%;
-              cursor: pointer;
-              transition: background-color 0.3s;
+              span {
+                width: auto;
+                color: $Box_admin;
+              }
 
-              &:hover {
-                background-color: $Resalte;
+              .edit-btn {
+                height: 100%;
+                aspect-ratio: 1/1;
+                background-image: url("../img/Logos/interfaces/icons/editar.svg");
+                background-size: 50%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: $Secundario;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                &:hover {
+                  background-color: $Resalte;
+                }
               }
             }
-          }
 
             strong {
               width: 100%;
@@ -514,11 +513,11 @@ html {
               color: $Box_admin;
               margin-bottom: 1rem;
             }
-            
+
             #edit-name-container {
               display: none; /* Asegura que esté oculto por defecto */
             }
-            
+
             #edit-name-container[style*="display: flex"] {
               display: flex !important; /* Prioriza la visibilidad cuando se activa */
             }
@@ -540,9 +539,9 @@ html {
                 font-size: 0.9rem;
                 transition: background-color 0.3s;
                 border-radius: 1rem;
-                margin: .2rem;
+                margin: 0.2rem;
               }
-  
+
               .save-btn {
                 background-image: url("../img/Logos/interfaces/icons/exito2.svg");
                 background-size: 100%;
@@ -551,10 +550,10 @@ html {
                 background-color: $Green;
                 transition: all 0.3s ease-in-out;
                 &:hover {
-                  opacity: .5;
+                  opacity: 0.5;
                 }
               }
-  
+
               .cancel-btn {
                 background-image: url("../img/Logos/interfaces/icons/cerrar2.svg");
                 background-size: 100%;
@@ -563,7 +562,7 @@ html {
                 background-color: $Red;
                 transition: all 0.3s ease-in-out;
                 &:hover {
-                  opacity: .5;
+                  opacity: 0.5;
                 }
               }
 
@@ -573,8 +572,8 @@ html {
                 color: $Box_admin;
                 outline: none;
                 border: none;
-              } 
-  
+              }
+
               #edit-name-input:focus,
               #edit-employee-input:focus {
                 outline: none;
@@ -634,9 +633,8 @@ html {
         padding: 0;
         margin: 0;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
-        gap: 5%;
 
         .circulo_icon {
           width: 1vw;
@@ -665,11 +663,11 @@ html {
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: all 0.1s ease-in-out;
+            transition: all 0.2s ease-in-out;
             z-index: 1002;
 
             img {
-              height: 100%;
+              height: 80%;
             }
 
             &:hover {
@@ -678,7 +676,9 @@ html {
           }
 
           .iconbutton {
-            height: 85%;
+            height: 100%;
+            position: absolute;
+            top: 0;
 
             &:hover {
               opacity: 100%;
@@ -992,14 +992,14 @@ html {
                 }
 
                 .input:focus ~ label {
-                  display: flex;
+                  display: flex !important;
                   transition: all 0.2s ease-in-out;
                 }
 
                 label {
                   animation: fadeIn 0.3s ease-in-out forwards;
                   top: 20vh;
-                  left: 14vw;
+                  left: 14.5vw;
                   width: 20vw;
                   height: 4vw;
                   position: fixed;
@@ -1080,9 +1080,14 @@ html {
           justify-content: center;
           align-items: center;
           transition: all 0.1s ease-in-out;
+          position: relative;
 
           img {
-            @include cover;
+            height: 80%;
+            aspect-ratio: 2/2;
+            top: 0;
+            left: 0;
+            position: absolute;
           }
 
           &:hover {
@@ -1194,7 +1199,7 @@ html {
                 p {
                   width: 100%;
                   color: $Texto;
-                  font-size: .7em;
+                  font-size: 0.7em;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -1476,29 +1481,57 @@ html {
                 display: none;
 
                 &:checked ~ .settings_info {
-                  left: 110%;
-                  width: 200%;
+                  left: 100%;
+                  width: 190%;
                   visibility: visible;
+                  opacity: 1;
                   transition: all 0.2s ease-in-out;
                 }
               }
 
               label {
+                position: absolute;
+                top: 0;
                 width: 100%;
                 height: 100%;
-                border: none;
-                outline: none;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-radius: 10rem;
-                transition: all 0.2s ease-in-out;
-                background-color: $Box_admin;
                 z-index: 10000;
-                cursor: pointer; 
-
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
                 img {
-                  height: 60%;
+                  height: 50%;
+                  transition: all .2s ease-in-out;
+                  transform: rotate(0deg);
+                }
+                span {
+                  width: 100%;
+                  position: absolute;
+                  visibility: hidden;
+                  opacity: 0;
+                  top: 85%;
+                  border-radius: 0 0 1rem 1rem;
+                  padding: .2rem;
+                  color: $Blanco;
+                  display: flex;
+                  font-family: $Letra2;
+                  font-size: .7em;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background-color: $Box_admin;
+                  transition: all .2s ease-in-out;
+                }
+                &:hover {
+                  img {
+                    transform: rotate(190deg);
+                  }
+                  span {
+                    visibility: visible;
+                    opacity: 1;
+                  }
                 }
               }
 
@@ -1513,11 +1546,12 @@ html {
                 width: 100%;
                 height: 100%;
                 visibility: hidden;
+                opacity: 0;
                 text-align: center;
                 color: $Texto;
                 font-family: $Letra2;
                 gap: 1.5vh;
-                transition: all 0.2s ease-in-out;
+                transition: all 0.3s ease-in-out;
 
                 .data_settings {
                   width: 100%;
@@ -1542,7 +1576,37 @@ html {
                     transition: all 0.2s ease-in-out;
 
                     img {
-                      height: 80%;
+                      height: 70%;
+                      transform: scale(1);
+                      transition: all .2s ease-in-out;
+                    }
+                    span {
+                      width: 100%;
+                      position: absolute;
+                      visibility: hidden;
+                      opacity: 0;
+                      top: 85%;
+                      border-radius: 0 0 1rem 1rem;
+                      padding: .2rem;
+                      color: $Blanco;
+                      display: flex;
+                      font-family: $Letra2;
+                      font-size: .7em;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      text-align: center;
+                      background-color: $Box_admin;
+                      transition: all .2s ease-in-out;
+                    }
+                    &:hover {
+                      img {
+                        transform: scale(1.1);
+                      }
+                      span {
+                        visibility: visible;
+                        opacity: 1;
+                      }
                     }
                   }
                 }
@@ -1576,14 +1640,14 @@ html {
               justify-content: center;
               align-items: center;
               border-radius: 1rem;
-              padding: .2rem .7rem;
+              padding: 0.2rem 0.7rem;
 
               p {
                 display: none;
                 padding: 0;
                 margin: 0;
                 text-align: center;
-                font-size: .9em;
+                font-size: 0.9em;
                 font-family: $Letra2;
               }
             }
@@ -1616,23 +1680,49 @@ html {
 
                 &:checked ~ .mj_user_info {
                   display: flex;
-                  animation: fadeIn 0.2s ease-in-out forwards;
+                  animation: fadeIn .2s ease-in-out forwards;
                 }
               }
 
-              label {
+              .label_icon  {
                 width: 100%;
                 height: 100%;
-                border: none;
-                outline: none;
-                border-radius: 10rem;
-                transition: all 0.2s ease-in-out;
+                position: relative;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
                 img {
                   height: 60%;
+                  transform: scale(1);
+                  transition: all .2s ease-in-out;
+                }
+                span {
+                  width: 100%;
+                  position: absolute;
+                  visibility: hidden;
+                  opacity: 0;
+                  top: 85%;
+                  border-radius: 0 0 1rem 1rem;
+                  padding: .2rem;
+                  color: $Blanco;
+                  display: flex;
+                  font-family: $Letra2;
+                  font-size: .7em;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background-color: $Box_admin;
+                  transition: all .2s ease-in-out;
+                }
+                &:hover {
+                  img {
+                    transform: scale(1.1);
+                  }
+                  span {
+                    visibility: visible;
+                    opacity: 1;
+                  }
                 }
               }
 
@@ -1889,19 +1979,48 @@ html {
                 }
               }
 
-              label {
+              .label_icon {
                 width: 100%;
                 height: 100%;
-                border: none;
-                outline: none;
                 border-radius: 10rem;
                 transition: all 0.2s ease-in-out;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
 
                 img {
-                  height: 80%;
+                  height: 50%;
+                  transform: scale(1);
+                  transition: all .2s ease-in-out;
+                }
+                span {
+                  width: 100%;
+                  position: absolute;
+                  visibility: hidden;
+                  opacity: 0;
+                  top: 85%;
+                  border-radius: 0 0 1rem 1rem;
+                  padding: .2rem;
+                  color: $Blanco;
+                  display: flex;
+                  font-family: $Letra2;
+                  font-size: .7em;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background-color: $Box_admin;
+                  transition: all .2s ease-in-out;
+                }
+                &:hover {
+                  img {
+                    transform: scale(1.1);
+                  }
+                  span {
+                    visibility: visible;
+                    opacity: 1;
+                  }
                 }
               }
 
@@ -2075,6 +2194,294 @@ html {
 
                           &:hover {
                             @include opacity;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .disponibilidad_puestos {
+            width: 3%;
+            height: 100%;
+            display: flex;
+            background-color: $Box_admin;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            right: 11%;
+            top: 0;
+
+            .icons_puestos {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              input {
+                display: none;
+
+                &:checked ~ label {
+                  @include opacity;
+                  display: flex;
+                }
+
+                &:checked ~ .puestos_user_info {
+                  display: flex;
+                  animation: fadeIn 0.2s ease-in-out forwards;
+                }
+              }
+
+              .label_icon {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                transition: all 0.2s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                  height: 50%;
+                  transform: scale(1);
+                  transition: all .2s ease-in-out;
+                }
+                span {
+                  width: 100%;
+                  position: absolute;
+                  visibility: hidden;
+                  opacity: 0;
+                  top: 85%;
+                  border-radius: 0 0 1rem 1rem;
+                  padding: .2rem;
+                  color: $Blanco;
+                  display: flex;
+                  font-family: $Letra2;
+                  font-size: .7em;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background-color: $Box_admin;
+                  transition: all .2s ease-in-out;
+                }
+                &:hover {
+                  img {
+                    transform: scale(1.1);
+                  }
+                  span {
+                    visibility: visible;
+                    opacity: 1;
+                  }
+                }
+              }
+
+              .puestos_user_info {
+                position: fixed;
+                display: none;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                width: 15vw;
+                height: 73.5vh;
+                top: 22vh;
+                left: 17.5vw;
+                text-align: center;
+                color: $Texto;
+                font-family: $Letra2;
+                font-size: 0.7vw;
+                padding: 0.5vw;
+                background-color: $Box_admin;
+                gap: 1.5vh;
+
+                .filter-container {
+                  width: 100%;
+                  height: 3.5vh;
+                  border-radius: 1vw;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  transition: all 0.1s ease-in-out;
+
+                  .input-field {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: end;
+                    width: 100%;
+                    height: 100%;
+                    font-family: $Letra2;
+
+                    input::-webkit-inner-spin-button,
+                    input::-webkit-outer-spin-button {
+                      -webkit-appearance: none;
+                    }
+
+                    input[type="text"] {
+                      -moz-appearance: textfield;
+                    }
+
+                    input {
+                      @include cover;
+                      border-radius: 5rem;
+                      font-size: 0.7vw;
+                      display: flex;
+                      background-color: $Secundario;
+                      color: $Texto;
+                      outline: none;
+                      text-align: center;
+                      border: 0;
+
+                      &:focus {
+                        box-shadow: 0px 0px 10px 0px $Resalte;
+                        background: $Resalte;
+                      }
+                    }
+
+                    input:focus ~ label,
+                    input:not(:placeholder-shown) ~ label {
+                      top: -1%;
+                      font-size: 0.5vw;
+                      background: $Principal;
+                      color: $Texto;
+                      border-radius: 1rem;
+                      padding: 0 3%;
+                    }
+
+                    label {
+                      width: auto;
+                      height: auto;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0;
+                      position: absolute;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      color: $Texto;
+                      font-size: 0.7vw;
+                      pointer-events: none;
+                      transition: 0.3s;
+
+                      span {
+                        margin-left: 3px;
+                      }
+                    }
+                  }
+                }
+
+                .data_puestos_user {
+                  width: 100%;
+                  height: 100%;
+                  overflow-x: hidden;
+                  overflow-y: scroll;
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  flex-direction: column;
+                  .no_data {
+                    margin-top: 30%;
+                    width: 40%;
+                    aspect-ratio: 2/2;
+                    background-image: url("../img//Utilidades/no_data.png");
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                  }
+
+                  ul {
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    padding: 0;
+                    margin: 0;
+                    border: none;
+                    margin-bottom: 1.5vh;
+                    justify-content: start;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 1.5vh;
+                    button {
+                      width: 95%;
+                      height: 5vh;
+                      display: flex;
+                      background-color: $Texto;
+                      border-radius: 0.5vw;
+                      justify-content: center;
+                      border: none;
+                      overflow-y: hidden;
+                      align-items: center;
+                      font-family: $Letra2;
+                      transition: all 0.2s ease-in-out;
+                      position: relative;
+
+                      h3 {
+                        display: flex;
+                        font-size: 1.3em;
+                        font-family: $Letra2;
+                        color: $Box_admin;
+                      }
+
+                      .puestos_admin_items {
+                        display: none;
+                      }
+
+                      &:focus {
+                        overflow-x: hidden;
+                        overflow-y: scroll;
+                        height: 20vh;
+
+                        h3 {
+                          display: none;
+                        }
+  
+                        .puestos_admin_items {
+                          padding-top: 1rem;
+                          padding-bottom: 1rem;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          position: absolute;
+                          top: 0;
+                          .puesto_admin_puesto {
+                            @include cover;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .puesto_admin_container {
+                              width: 80%;
+                              height: 2rem;
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: center;
+                              input {
+                                display: none;
+                              }
+                              .puesto_admin_nombre {
+                                font-size: 1.5em;
+                                font-family: $Letra2;
+                                color: $Box_admin;
+                              }
+                              .puesto_admin_circle {
+                                width: 1.3rem;
+                                height: 1.3rem;
+                                border-radius: 100%;
+                                &.no_disponible {
+                                  background-color: $Red;
+                                }
+                                &.disponible {
+                                  background-color: $Green;
+                                }
+                                &:hover {
+                                  @include opacity;
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -3128,7 +3535,7 @@ html {
                 p {
                   width: 100%;
                   color: $Texto;
-                  font-size: .7em;
+                  font-size: 0.7em;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -3401,14 +3808,14 @@ html {
               justify-content: center;
               align-items: center;
               border-radius: 1rem;
-              padding: .2rem .7rem;
+              padding: 0.2rem 0.7rem;
 
               p {
                 display: none;
                 padding: 0;
                 margin: 0;
                 text-align: center;
-                font-size: .9em;
+                font-size: 0.9em;
                 font-family: $Letra2;
               }
             }
@@ -4315,7 +4722,7 @@ html {
 
       .pages {
         width: 100%;
-        height: var(--main-vh);
+        height: calc(100 * var(--main-vh));
       }
 
       #home {
@@ -4954,13 +5361,13 @@ html {
               .text_welcome_admin {
                 max-width: 60%;
                 p {
-                  font-size: .6em;
+                  font-size: 0.6em;
                 }
               }
             }
           }
         }
-        
+
         .settings {
           top: 7vh;
           left: 2vw;

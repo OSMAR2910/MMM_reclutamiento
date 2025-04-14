@@ -1,6 +1,6 @@
 // Importar Firebase
 import { app, database, ref, push, set } from "./firebase.js";
-import { isStandalone } from "./main.js";
+import { isStandalone, setThemeColor } from "./main.js";
 
 let intents = [];
 let messageBuffer = [];
@@ -237,6 +237,7 @@ function maximizeChatbot() {
     adjustChatbotHeight();
     adjustChatbotPosition();
     sendWelcomeMessage();
+    setThemeColor('#ffffff');
   }
 }
 
@@ -251,6 +252,7 @@ function minimizeChatbot() {
     chatForm.style.display = "none";
     pavo.style.display = "flex";
     adjustChatbotPosition();
+    setThemeColor('#ec6223');
   }
 }
 

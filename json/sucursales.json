@@ -1,0 +1,36 @@
+{
+    "sucursalesValidas": [
+      "playas",
+      "altamira",
+      "libertad",
+      "sierra",
+      "cacho",
+      "hipodromo",
+      "santafe",
+      "villafontana",
+      "huertas",
+      "monarca",
+      "otay",
+      "rosarito",
+      "florido",
+      "tecate",
+      "sanysidro"
+    ],
+    "sucursalesInvalidas": [
+      "playas",
+      "altamira",
+      "libertad",
+      "sierra",
+      "cacho",
+      "hipodromo",
+      "santafe",
+      "villafontana",
+      "huertas",
+      "monarca",
+      "otay",
+      "rosarito",
+      "florido",
+      "tecate",
+      "sanysidro"
+    ]
+  }
