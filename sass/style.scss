@@ -28,9 +28,9 @@
 }
 
 :root {
-  --main-vh: 100vh; /* Valor inicial, se actualizará con JS */
-  --safe-top: 0px;
-  --safe-bottom: 0px;
+  --main-vh: 100dvh;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .main-height {
@@ -45,18 +45,21 @@
 body,
 html {
   width: 100vw;
-  padding-top: var(--safe-top);
-  padding-bottom: var(--safe-bottom);
-  height: var(--main-vh);
+  min-height: var(--main-vh); 
+  max-height: none;
+  height: auto; 
   margin: 0;
   padding: 0;
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
   background-color: $Fondo;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden; 
+  overscroll-behavior: none; 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; 
   -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
 
   .desactivacion {
     width: 100vw;
@@ -622,6 +625,7 @@ html {
     border-radius: 5rem;
     position: fixed;
     z-index: 1000;
+    top: 45vh;
 
     nav {
       width: 100%;
@@ -698,7 +702,7 @@ html {
   main {
     width: 100vw;
     height: var(--main-vh);
-    max-height: 100vh;
+    min-height: var(--main-vh);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -710,11 +714,13 @@ html {
     .pages {
       width: 50%;
       height: var(--main-vh);
+      min-height: var(--main-vh);
       justify-items: center;
       justify-content: center;
       align-items: center;
       align-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       display: none;
     }
 
