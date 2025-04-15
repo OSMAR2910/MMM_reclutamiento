@@ -4736,6 +4736,8 @@ html {
       .pages {
         width: 100%;
         height: var(--main-vh);
+        min-height: var(--main-vh);
+        max-height: var(--main-vh);
       }
 
       #home {
@@ -5682,6 +5684,10 @@ html {
       #pag1 {
         article {
           margin-top: 20vh;
+          
+          .texto_form {
+            display: none;
+          }
           .cont_form {
             height: 14rem;
             width: 90%;
@@ -5721,10 +5727,6 @@ html {
       #pag1 {
         article {
           margin-top: 20vh;
-          
-          .texto_form {
-            display: none;
-          }
 
           .cont_form {
             height: 13rem;

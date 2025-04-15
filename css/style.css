@@ -6150,6 +6150,8 @@ html .cambiar_nav nav ul .circulo_icon {
   html main .pages {
     width: 100%;
     height: var(--main-vh);
+    min-height: var(--main-vh);
+    max-height: var(--main-vh);
   }
   body main #home .mancha1,
   html main #home .mancha1 {
@@ -7081,6 +7083,10 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag1 article {
     margin-top: 20vh;
   }
+  body main #pag1 article .texto_form,
+  html main #pag1 article .texto_form {
+    display: none;
+  }
   body main #pag1 article .cont_form,
   html main #pag1 article .cont_form {
     height: 14rem;
@@ -7107,10 +7113,6 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag1 article,
   html main #pag1 article {
     margin-top: 20vh;
-  }
-  body main #pag1 article .texto_form,
-  html main #pag1 article .texto_form {
-    display: none;
   }
   body main #pag1 article .cont_form,
   html main #pag1 article .cont_form {
