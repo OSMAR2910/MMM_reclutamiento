@@ -1120,6 +1120,18 @@ body canvas {
     background-color: #174891;
   }
 }
+@media screen and (max-height: 580px) {
+  .pavo_cont {
+    display: none;
+    animation: none;
+  }
+  .pavo_cont .pavo_msj {
+    display: none;
+  }
+  .pavo_cont .pavo {
+    display: none;
+  }
+}
 * {
   scroll-behavior: smooth;
   -webkit-scroll-behavior: smooth;
@@ -1161,7 +1173,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   -webkit-text-size-adjust: 100%;
 }
 body .desactivacion,
@@ -1852,14 +1863,11 @@ html main {
   width: 100vw;
   height: var(--main-vh);
   max-height: 100vh;
-  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
   margin: 0;
-  top: 0;
-  left: 0;
   overflow: hidden;
   overscroll-behavior: none;
 }
@@ -2009,7 +2017,7 @@ html main #pag1 article .cont_form form .cont_inputform {
 body main #pag1 article .cont_form form .cont_inputform .input-form,
 html main #pag1 article .cont_form form .cont_inputform .input-form {
   width: 100%;
-  height: 7.3vh;
+  height: 80%;
   display: flex;
   position: relative;
   justify-content: center;
@@ -6130,7 +6138,6 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 100vw;
     height: var(--main-vh);
     max-height: 100vh;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6143,9 +6150,6 @@ html .cambiar_nav nav ul .circulo_icon {
   html main .pages {
     width: 100%;
     height: var(--main-vh);
-    position: absolute;
-    top: 0;
-    left: 0;
   }
   body main #home .mancha1,
   html main #home .mancha1 {
@@ -7046,5 +7050,88 @@ html .cambiar_nav nav ul .circulo_icon {
   html .cambiar_nav nav ul .circulo_icon {
     width: 2.8vw;
     height: 2.8vw;
+  }
+}
+@media screen and (max-height: 580px) {
+  body main #pag1 article,
+  html main #pag1 article {
+    margin-top: 12vh;
+  }
+  body main #pag1 article .cont_form,
+  html main #pag1 article .cont_form {
+    height: 17rem;
+    width: 90%;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label {
+    top: 15vh;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
+    font-size: 3vw;
+  }
+  body main #pag1 article label,
+  html main #pag1 article label {
+    width: 9vw;
+    margin: 5%;
+  }
+}
+@media screen and (max-height: 500px) {
+  body main #pag1 article,
+  html main #pag1 article {
+    margin-top: 20vh;
+  }
+  body main #pag1 article .cont_form,
+  html main #pag1 article .cont_form {
+    height: 14rem;
+    width: 90%;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label {
+    top: 14vh;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
+    font-size: 3vw;
+  }
+  body main #pag2 .Logincont,
+  html main #pag2 .Logincont {
+    margin-top: 10vh;
+  }
+  body main #pag4 .Logincont,
+  html main #pag4 .Logincont {
+    margin-top: 10vh;
+  }
+}
+@media screen and (max-height: 400px) {
+  body main #pag1 article,
+  html main #pag1 article {
+    margin-top: 20vh;
+  }
+  body main #pag1 article .texto_form,
+  html main #pag1 article .texto_form {
+    display: none;
+  }
+  body main #pag1 article .cont_form,
+  html main #pag1 article .cont_form {
+    height: 13rem;
+    width: 90%;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label {
+    top: auto;
+    bottom: 2vh;
+    left: 20vw;
+    width: 60vw;
+    height: 15vw;
+    z-index: 100;
+  }
+  body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
+  html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
+    font-size: 3vw;
+  }
+  body main #pag1 article label,
+  html main #pag1 article label {
+    margin: 0;
   }
 }/*# sourceMappingURL=style.css.map */

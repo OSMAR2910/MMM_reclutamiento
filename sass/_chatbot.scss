@@ -635,3 +635,16 @@
     }
   }
 }
+
+@media screen and (max-height: 580px) {
+  .pavo_cont {
+    display: none;
+    animation: none;
+    .pavo_msj {
+      display: none;
+    }
+    .pavo {
+      display: none;
+    }
+  }
+}

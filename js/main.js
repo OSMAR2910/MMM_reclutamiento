@@ -110,74 +110,62 @@ function adjustViewForPWA() {
   }
 }
 
-let maxViewportHeight = window.innerHeight; // Capturar altura inicial
+// Variable para almacenar la altura máxima del viewport sin teclado
+let maxViewportHeight = window.innerHeight;
 
 function setRealViewportHeight(forceUpdate = false) {
+  // Obtiene la altura real del viewport
   const realHeight = window.visualViewport?.height || window.innerHeight;
+  // Obtiene la altura actual establecida en --main-vh
+  const currentHeight = getComputedStyle(document.documentElement).getPropertyValue('--main-vh') || '0px';
+  const currentHeightNum = parseFloat(currentHeight);
 
-  // Actualizar maxViewportHeight solo si es un cambio significativo (no teclado)
-  if (forceUpdate || realHeight >= maxViewportHeight * 0.95) {
-    maxViewportHeight = realHeight;
+  // Detectar si el teclado virtual podría estar activo
+  const isInputFocused = document.activeElement.tagName === 'INPUT' || 
+                        document.activeElement.tagName === 'TEXTAREA';
+  const isKeyboardLikelyOpen = realHeight < maxViewportHeight * 0.9 && isInputFocused; // Umbral del 90% para mayor sensibilidad
+
+  // Si forceUpdate es verdadero (para cambios de resolución/orientación), o si no hay teclado, actualiza maxViewportHeight
+  if (forceUpdate || !isKeyboardLikelyOpen) {
+    maxViewportHeight = realHeight; // Recalcular siempre en estos casos
+  }
+
+  // Establecer --main-vh al valor calculado
+  if (!currentHeightNum || maxViewportHeight !== currentHeightNum) {
     document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
   }
 
-  // Manejar safe areas
-  const safeTop = getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top, 0px)') || '0px';
-  const safeBottom = getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-bottom, 0px)') || '0px';
+  // Maneja el espacio superior seguro
+  const safeTop = window.getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
   document.documentElement.style.setProperty('--safe-top', safeTop);
-  document.documentElement.style.setProperty('--safe-bottom', safeBottom);
 }
 
-// Inicializar al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  setRealViewportHeight(true);
+// Inicializa al cargar
+window.addEventListener('load', () => {
+  maxViewportHeight = window.innerHeight; // Establecer altura inicial
+  setRealViewportHeight();
 });
 
-// Manejar cambios de orientación o resize
+// Debounce para el evento resize
+let resizeTimeout;
 window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    setRealViewportHeight(true); // Forzar actualización en resize
+  }, 100); // 100ms de retraso
+});
+
+// Actualiza en cambio de orientación
+window.addEventListener('orientationchange', () => {
   setTimeout(() => {
-    setRealViewportHeight();
-  }, 200); // Debounce para evitar cambios rápidos por el teclado
+    setRealViewportHeight(true); // Forzar actualización en cambio de orientación
+  }, 200); // Retraso para estabilizar la orientación
 });
 
-// Manejar focus y blur en inputs
-document.querySelectorAll('input, textarea').forEach((input) => {
-  input.addEventListener('focus', () => {
-    // Mantener altura fija
-    document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
-    // Prevenir scroll del navegador
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
-    document.querySelector('main').style.overflow = 'hidden';
-    
-    // Asegurar que el input sea visible
-    setTimeout(() => {
-      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 300); // Esperar a que el teclado aparezca
-  });
-
-  input.addEventListener('blur', () => {
-    // Restaurar comportamiento
-    document.body.style.overflow = '';
-    document.querySelector('main').style.overflow = 'hidden';
-    // Mantener altura
-    document.documentElement.style.setProperty('--main-vh', `${maxViewportHeight}px`);
-    window.scrollTo(0, 0); // Volver al inicio
-  });
-});
-
-// Manejar visualViewport para mayor precisión
+// Sincronizar con visualViewport si está disponible
 if (window.visualViewport) {
-  let viewportTimeout;
   window.visualViewport.addEventListener('resize', () => {
-    clearTimeout(viewportTimeout);
-    viewportTimeout = setTimeout(() => {
-      const newHeight = window.visualViewport.height;
-      // No actualizar si el teclado está abierto
-      if (newHeight >= maxViewportHeight * 0.95) {
-        setRealViewportHeight(true);
-      }
-    }, 200);
+    setRealViewportHeight(true); // Forzar actualización en visualViewport resize
   });
 }
 

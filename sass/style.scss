@@ -56,7 +56,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   -webkit-text-size-adjust: 100%;
 
   .desactivacion {
@@ -700,14 +699,11 @@ html {
     width: 100vw;
     height: var(--main-vh);
     max-height: 100vh;
-    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
     margin: 0;
-    top: 0;
-    left: 0; 
     overflow: hidden; 
     overscroll-behavior: none;
 
@@ -848,7 +844,7 @@ html {
 
               .input-form {
                 width: 100%;
-                height: 7.3vh;
+                height: 80%;
                 display: flex;
                 position: relative;
                 justify-content: center;
@@ -4729,7 +4725,6 @@ html {
       width: 100vw;
       height: var(--main-vh);
       max-height: 100vh;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -4741,9 +4736,6 @@ html {
       .pages {
         width: 100%;
         height: var(--main-vh);
-        position: absolute;
-        top: 0;
-        left: 0; 
       }
 
       #home {
@@ -5650,4 +5642,120 @@ html {
       }
     }
   }
+  @media screen and (max-height: 580px) {
+    main {
+      #pag1 {
+        article {
+          margin-top: 12vh;
+          .cont_form {
+            height: 17rem;
+            width: 90%;
+  
+            form {
+              .cont_inputform {
+                .input-form {
+                  
+                  label {
+                    top: 15vh;
+  
+                    span {
+                      p {
+                        font-size: 3vw;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+  
+          label {
+            width: 9vw;
+            margin: 5%;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-height: 500px) {
+    main {
+      #pag1 {
+        article {
+          margin-top: 20vh;
+          .cont_form {
+            height: 14rem;
+            width: 90%;
+            form {
+              .cont_inputform {
+                .input-form {
+                  label {
+                    top: 14vh;
+                    span {
+                      p {
+                        font-size: 3vw;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      #pag2 {
+        .Logincont {
+          margin-top: 10vh;
+          }
+      }
+
+      #pag4 {
+        .Logincont {
+          margin-top: 10vh;
+          }
+      }
+    }
+  }
+  @media screen and (max-height: 400px) {
+    main {
+      #pag1 {
+        article {
+          margin-top: 20vh;
+          
+          .texto_form {
+            display: none;
+          }
+
+          .cont_form {
+            height: 13rem;
+            width: 90%;
+            form {
+              .cont_inputform {
+                .input-form {
+                  label {
+                    top: auto;
+                    bottom: 2vh;
+                    left: 20vw;
+                    width: 60vw;
+                    height: 15vw;
+                    z-index: 100;
+                    span {
+                      p {
+                        font-size: 3vw;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+          label {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
 }
+
