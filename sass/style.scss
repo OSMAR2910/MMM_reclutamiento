@@ -712,7 +712,7 @@ html {
     overscroll-behavior: none;
 
     .pages {
-      width: 50%;
+      width: 50%; 
       height: var(--main-vh);
       min-height: var(--main-vh);
       justify-items: center;
@@ -722,12 +722,6 @@ html {
       overflow-x: hidden;
       overflow-y: auto;
       display: none;
-      position: fixed;
-      top: 0;
-    }
-    .posicion_fixed {
-      position: fixed;
-      top: 0;
     }
 
     #home {
