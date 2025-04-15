@@ -1890,6 +1890,11 @@ html main .pages {
   position: fixed;
   top: 0;
 }
+body main .posicion_fixed,
+html main .posicion_fixed {
+  position: fixed;
+  top: 0;
+}
 body main #home,
 html main #home {
   width: 100%;

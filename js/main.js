@@ -138,6 +138,12 @@ function setRealViewportHeight(forceUpdate = false) {
   // Maneja el espacio superior seguro
   const safeTop = window.getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
   document.documentElement.style.setProperty('--safe-top', safeTop);
+  
+  const pages = document.querySelectorAll(".pages");
+  pages.forEach(page => {
+    page.classList.add("posicion_fixed");
+    console.log("posisionado en fixed todas las paginas");
+  });
 }
 
 // Inicializa al cargar
