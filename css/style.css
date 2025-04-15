@@ -1887,6 +1887,8 @@ html main .pages {
   overflow-x: hidden;
   overflow-y: auto;
   display: none;
+  position: fixed;
+  top: 0;
 }
 body main #home,
 html main #home {
