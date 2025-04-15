@@ -7089,16 +7089,21 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag1 article .cont_form,
   html main #pag1 article .cont_form {
-    height: 14rem;
+    height: 13rem;
     width: 90%;
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label,
   html main #pag1 article .cont_form form .cont_inputform .input-form label {
-    top: 14vh;
+    top: 19vh;
+    left: 15vw;
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
   html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
     font-size: 3vw;
+  }
+  body main #pag1 article label,
+  html main #pag1 article label {
+    margin: 0;
   }
   body main #pag2 .Logincont,
   html main #pag2 .Logincont {
@@ -7131,9 +7136,5 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
   html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
     font-size: 3vw;
-  }
-  body main #pag1 article label,
-  html main #pag1 article label {
-    margin: 0;
   }
 }/*# sourceMappingURL=style.css.map */
