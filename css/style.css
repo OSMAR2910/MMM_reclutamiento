@@ -2266,7 +2266,7 @@ html main #pag1 article .cont_form form .exito_form .exito_compartir button {
   border: none;
   color: #ffffff;
   font-family: "Nunito";
-  font-size: 1em;
+  font-size: 0.7em;
   padding: 0.5em;
   transition: all 0.2s ease-in-out;
 }

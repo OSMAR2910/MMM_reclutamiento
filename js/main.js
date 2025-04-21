@@ -205,24 +205,47 @@ document.addEventListener('focusout', () => {
 });
 
 const shareButton = document.getElementById('shareButton');
+shareButton.addEventListener('click', () => {
+  gtag('event', 'share_click', {
+    event_category: 'engagement',
+    event_label: 'job_offer_share',
+  });
+});
 
 // Agregar un evento de clic al botón
 shareButton.addEventListener('click', async () => {
-  // Verificar si la API de Web Share está disponible
   if (navigator.share) {
     try {
-      // Definir el contenido que se va a compartir
       await navigator.share({
-        title: 'Quieres trabajar en MMM Pizza?',
-        text: 'LLena el formulario, envialo y te contanctamos.',
-        url: 'https://mmm-rh.netlify.app', // Reemplaza con tu enlace
+        title: '¡Únete al equipo de MMM Pizza! 🍕',
+        text: '¿Quieres trabajar en MMM Pizza? Aplica ahora y forma parte de nuestro equipo. ¡Haz clic para comenzar!',
+        url: 'https://mmm-rh.netlify.app?utm_source=share&utm_medium=web&utm_campaign=job_offer',
+        files: [
+          new File(
+            [await (await fetch('https://mmm-rh.netlify.app/flyer.jpg')).blob()],
+            'mmm-pizza-flyer.jpg',
+            { type: 'img/Utilidades/RERTO MMM.png' }
+          )
+        ]
       });
+      console.log('Contenido compartido exitosamente');
     } catch (error) {
       console.error('Error al compartir:', error);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_4");
     }
   } else {
-    mostrarAlerta("alertas"); 
-    mostrarAlerta("alerta_4"); 
+    // Fallback: Copiar enlace al portapapeles con texto personalizado
+    const shareText = '¡Únete a MMM Pizza! 🍕 Aplica ahora para trabajar con nosotros: https://mmm-rh.netlify.app';
+    try {
+      await navigator.clipboard.writeText(shareText);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_5");
+    } catch (error) {
+      console.error('Error al copiar al portapapeles:', error);
+      mostrarAlerta("alertas");
+      mostrarAlerta("alerta_6");
+    }
   }
 });
 
