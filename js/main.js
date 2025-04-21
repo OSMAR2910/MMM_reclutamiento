@@ -1,3 +1,5 @@
+import { analytics } from "./firebase.js";
+import { logEvent } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
 // Carga
 document.addEventListener("DOMContentLoaded", function () {
   var loader = document.getElementById("loader");
@@ -205,44 +207,36 @@ document.addEventListener('focusout', () => {
 });
 
 const shareButton = document.getElementById('shareButton');
-shareButton.addEventListener('click', () => {
-  gtag('event', 'share_click', {
+
+shareButton.addEventListener('click', async () => {
+  // Registrar evento en Firebase Analytics
+  logEvent(analytics, 'share_click', {
     event_category: 'engagement',
     event_label: 'job_offer_share',
   });
-});
 
-// Agregar un evento de clic al botón
-shareButton.addEventListener('click', async () => {
   if (navigator.share) {
     try {
       await navigator.share({
         title: '¡Únete al equipo de MMM Pizza! 🍕',
         text: '¿Quieres trabajar en MMM Pizza? Aplica ahora y forma parte de nuestro equipo. ¡Haz clic para comenzar!',
-        url: 'https://mmm-rh.netlify.app?utm_source=share&utm_medium=web&utm_campaign=job_offer',
-        files: [
-          new File(
-            [await (await fetch('https://mmm-rh.netlify.app/img/Utilidades/RERTO-MMM.png')).blob()],
-            'mmm-pizza-flyer.jpg',
-            { type: 'img/Utilidades/RERTO-MMM.png' }
-          )
-        ]
+        url: 'https://mmm-rh.netlify.app?utm_source=share&utm_medium=web&utm_campaign=job_offer'
       });
       console.log('Contenido compartido exitosamente');
     } catch (error) {
-      console.error('Error al compartir:', error);
+      console.error('Error al compartir:', error.message, error.stack);
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_4");
     }
   } else {
-    // Fallback: Copiar enlace al portapapeles con texto personalizado
+    // Fallback: Copiar enlace al portapapeles
     const shareText = '¡Únete a MMM Pizza! 🍕 Aplica ahora para trabajar con nosotros: https://mmm-rh.netlify.app';
     try {
       await navigator.clipboard.writeText(shareText);
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_5");
     } catch (error) {
-      console.error('Error al copiar al portapapeles:', error);
+      console.error('Error al copiar al portapapeles:', error.message, error.stack);
       mostrarAlerta("alertas");
       mostrarAlerta("alerta_6");
     }

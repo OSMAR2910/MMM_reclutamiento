@@ -2256,7 +2256,7 @@ html main #pag1 article .cont_form form .exito_form .exito_compartir img {
 }
 body main #pag1 article .cont_form form .exito_form .exito_compartir button,
 html main #pag1 article .cont_form form .exito_form .exito_compartir button {
-  width: 100%;
+  width: 65%;
   height: 20%;
   display: flex;
   justify-content: center;
@@ -2266,7 +2266,7 @@ html main #pag1 article .cont_form form .exito_form .exito_compartir button {
   border: none;
   color: #ffffff;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 1em;
   padding: 0.5em;
   transition: all 0.2s ease-in-out;
 }
@@ -5623,7 +5623,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info {
   flex-direction: column;
   width: 28vw;
   height: 75vh;
-  top: 22vh;
+  top: 21vh;
   left: 35.5vw;
   text-align: center;
   color: #ffffff;
@@ -7172,7 +7172,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag5 .estatus_citas_manager .icons_status .status_info {
     width: 95vw;
     height: 80%;
-    top: 16vh;
+    top: 17vh;
     left: 1.7vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p,

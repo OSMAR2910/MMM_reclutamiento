@@ -1066,7 +1066,7 @@ html {
                   height: 60%;
                 }
                 button {
-                  width: 100%;
+                  width: 65%;
                   height: 20%;
                   display: flex;
                   justify-content: center;
@@ -1076,7 +1076,7 @@ html {
                   border: none;
                   color: $Texto;
                   font-family: $Letra2;
-                  font-size: .7em;
+                  font-size: 1em;
                   padding: .5em;
                   transition: all 0.2s ease-in-out;
 
@@ -4222,7 +4222,7 @@ html {
             flex-direction: column;
             width: 28vw;
             height: 75vh;
-            top: 22vh;
+            top: 21vh;
             left: 35.5vw;
             text-align: center;
             color: $Texto;
@@ -5726,7 +5726,7 @@ html {
             .status_info {
               width: 95vw;
               height: 80%;
-              top: 16vh;
+              top: 17vh;
               left: 1.7vw;
 
               .box_status {
