@@ -222,9 +222,9 @@ shareButton.addEventListener('click', async () => {
         url: 'https://mmm-rh.netlify.app?utm_source=share&utm_medium=web&utm_campaign=job_offer',
         files: [
           new File(
-            [await (await fetch('https://mmm-rh.netlify.app/flyer.jpg')).blob()],
+            [await (await fetch('https://mmm-rh.netlify.app/img/Utilidades/RERTO-MMM.png')).blob()],
             'mmm-pizza-flyer.jpg',
-            { type: 'img/Utilidades/RERTO MMM.png' }
+            { type: 'img/Utilidades/RERTO-MMM.png' }
           )
         ]
       });
