@@ -661,15 +661,17 @@ body canvas {
   font-family: "Nunito";
 }
 .max_chat .chat_header .chat_min {
-  width: 6%;
+  width: 5%;
   height: auto;
   z-index: 9999;
   margin-right: 6%;
   aspect-ratio: 2/2;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  background-image: url("../img/Logos/interfaces/icons/angulo-hacia-abajo.svg");
-  background-size: 55%;
+  background-image: url("../img/Logos/interfaces/icons/flecha.svg");
+  transform: rotate(90deg);
+  background-size: 105%;
+  border: 2px solid #ffffff;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 100%;
@@ -1014,7 +1016,13 @@ body canvas {
     width: 13vw;
     margin: 5%;
     top: auto;
-    bottom: 0;
+    bottom: 3vw;
+    right: 3vw;
+    transform: scale(1);
+  }
+  .chatbot .chat_header .chat_min {
+    background-size: 55%;
+    transform: scale(1);
   }
   .max_chat {
     width: 100vw;
@@ -1024,8 +1032,9 @@ body canvas {
     border-radius: 0;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     bottom: auto;
+    transform: none;
   }
   .max_chat .chat_header {
     height: 8%;
@@ -1047,11 +1056,8 @@ body canvas {
     font-size: 2.5vw;
   }
   .max_chat .chat_header .chat_min {
-    margin-right: 4%;
-  }
-  .max_chat .chat_header .chat_min:hover {
-    background-color: rgba(0, 0, 0, 0);
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0);
+    transform: rotate(90deg);
+    background-size: 105%;
   }
   .max_chat .chat_header .name_id {
     border-radius: 3vw;
@@ -2233,9 +2239,41 @@ html main #pag1 article .cont_form form .exito_form {
   justify-content: center;
   align-items: center;
 }
-body main #pag1 article .cont_form form .exito_form img,
-html main #pag1 article .cont_form form .exito_form img {
-  width: 40%;
+body main #pag1 article .cont_form form .exito_form .exito_compartir,
+html main #pag1 article .cont_form form .exito_form .exito_compartir {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2em;
+}
+body main #pag1 article .cont_form form .exito_form .exito_compartir img,
+html main #pag1 article .cont_form form .exito_form .exito_compartir img {
+  transform: translateX(17%);
+  height: 60%;
+}
+body main #pag1 article .cont_form form .exito_form .exito_compartir button,
+html main #pag1 article .cont_form form .exito_form .exito_compartir button {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #174891;
+  border-radius: 5rem;
+  border: none;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 1em;
+  padding: 0.5em;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag1 article .cont_form form .exito_form .exito_compartir button:hover,
+html main #pag1 article .cont_form form .exito_form .exito_compartir button:hover {
+  opacity: 50%;
+  scale: 0.9;
 }
 body main #pag1 article .cont_form form .input-nex,
 html main #pag1 article .cont_form form .input-nex {
@@ -2262,9 +2300,9 @@ html main #pag1 article .cont_form::-webkit-scrollbar-thumb {
 }
 body main #pag1 article label,
 html main #pag1 article label {
-  width: 2vw;
+  width: 2.5vw;
   aspect-ratio: 2/2;
-  margin: 1%;
+  margin: 0%;
   display: none;
   justify-content: center;
   align-items: center;
@@ -2273,7 +2311,7 @@ html main #pag1 article label {
 }
 body main #pag1 article label img,
 html main #pag1 article label img {
-  height: 80%;
+  height: 100%;
   aspect-ratio: 2/2;
   top: 0;
   left: 0;
@@ -3918,6 +3956,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   overflow-y: hidden;
   align-items: center;
+  gap: 1em;
   transition: all 0.3s ease-in-out;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
@@ -3926,7 +3965,7 @@ body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 {
-  width: 4%;
+  width: 6%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -3982,15 +4021,42 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   opacity: 50%;
   scale: 0.9;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre span,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre span,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: #0f3061;
+}
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info {
-  width: 81%;
   height: 100%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-evenly;
   align-items: center;
@@ -4019,6 +4085,44 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong {
   font-size: 1.4vh;
   color: #0f3061;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .criterios_container,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .criterios_container,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .criterios_container {
+  display: none;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus span,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus span,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus span {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  border: 0.2em solid #1b3c59;
+  font-size: 1em;
+  font-family: "Nunito";
+  color: #1b3c59;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
@@ -4109,6 +4213,14 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container {
   display: none;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemnombre,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemnombre,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemnombre {
+  display: none;
+}
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info,
@@ -4118,6 +4230,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   width: 95%;
   height: 95%;
   grid-template-columns: repeat(3, 1fr);
+  display: grid;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
@@ -4134,6 +4247,22 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong {
   font-size: 0.6vw;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .criterios_container,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .criterios_container,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .criterios_container {
+  display: none;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemstatus,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemstatus,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemstatus {
+  display: none;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
@@ -4271,7 +4400,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red {
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 {
-  width: 5%;
+  width: 7%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -4311,12 +4440,32 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .b
   opacity: 50%;
   scale: 0.9;
 }
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemnombre,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemnombre {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemnombre span,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemnombre span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  color: #0f3061;
+}
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info {
   width: 85%;
   text-align: center;
   height: 100%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
@@ -4339,6 +4488,31 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .v
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong {
   font-size: 0.7vw;
   color: #0f3061;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  border: 0.2em solid #1b3c59;
+  font-size: 1em;
+  font-family: "Nunito";
+  color: #1b3c59;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemstatus,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemstatus {
+  display: none;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container {
@@ -4390,11 +4564,16 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:fo
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn_container2 {
   display: none;
 }
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .Itemnombre,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .Itemnombre {
+  display: none;
+}
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info {
   width: 95%;
   height: 95%;
   grid-template-columns: repeat(3, 1fr);
+  display: grid;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span {
@@ -4403,6 +4582,10 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:fo
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span strong,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info span strong {
   font-size: 0.6vw;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .criterios_container,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .criterios_container {
+  display: none;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container {
@@ -4514,7 +4697,7 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas {
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 {
-  width: 5%;
+  width: 4%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -4542,12 +4725,32 @@ body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-agendar-cita {
   display: none;
 }
+body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Itemnombre,
+html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Itemnombre {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Itemnombre span,
+html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Itemnombre span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  color: #0f3061;
+}
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info {
   width: 95%;
   text-align: center;
   height: 100%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
@@ -4571,6 +4774,14 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vaca
   font-size: 0.7vw;
   color: #0f3061;
 }
+body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .criterios_container,
+html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .criterios_container {
+  display: none;
+}
+body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Itemstatus,
+html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Itemstatus {
+  display: none;
+}
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container {
   display: none;
@@ -4583,10 +4794,15 @@ body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn_container2 {
   display: none;
 }
+body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .Itemnombre,
+html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .Itemnombre {
+  display: none;
+}
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info {
   height: 95%;
   grid-template-columns: repeat(2, 1fr);
+  display: grid;
 }
 body main #pag3 .admin_cont .cont_aceptados,
 html main #pag3 .admin_cont .cont_aceptados {
@@ -4736,11 +4952,31 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   opacity: 50%;
   scale: 0.9;
 }
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemnombre,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemnombre {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemnombre span,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemnombre span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: #0f3061;
+}
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info {
-  width: 95.5%;
+  width: 90%;
   height: 100%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(10, 1fr);
   justify-content: space-evenly;
   align-items: center;
@@ -4760,6 +4996,31 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong {
   font-size: 0.7vw;
   color: #0f3061;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container {
+  width: 6%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  border: 0.2em solid #1b3c59;
+  font-size: 1em;
+  font-family: "Nunito";
+  color: #1b3c59;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemstatus,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemstatus {
+  display: none;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container {
@@ -4811,9 +5072,14 @@ body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:f
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2 {
   display: none;
 }
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .Itemnombre,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .Itemnombre {
+  display: none;
+}
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info {
   width: 100%;
+  display: grid;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span {
@@ -4822,6 +5088,10 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:f
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span strong,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span strong {
   font-size: 0.7vw;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .criterios_container,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .criterios_container {
+  display: none;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container {
@@ -5435,6 +5705,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   overflow-y: hidden;
   align-items: center;
   transition: all 0.3s ease-in-out;
+  gap: 0.5em;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2,
@@ -5474,13 +5745,49 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2 .btn-agendar-cita {
   display: none;
 }
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .Itemnombre,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .Itemnombre,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .Itemnombre,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .Itemnombre {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .Itemnombre span,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .Itemnombre span,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .Itemnombre span,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .Itemnombre span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 5em;
+  color: #0f3061;
+}
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .criterios_container,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .criterios_container,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .criterios_container,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .criterios_container {
+  display: none;
+}
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .Itemstatus,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .Itemstatus,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .Itemstatus,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .Itemstatus {
+  display: none;
+}
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .vacante_info,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .vacante_info {
   width: 67%;
   height: 100%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-evenly;
   align-items: center;
@@ -5517,7 +5824,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   justify-items: center;
   align-content: center;
   flex-direction: column;
-  gap: 0.1vw;
+  gap: 2em;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container button,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .custom-select,
@@ -5654,6 +5961,13 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .vacante_info {
   width: 95%;
   grid-template-columns: repeat(4, 1fr);
+  display: grid;
+}
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .Itemnombre,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .Itemnombre,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .Itemnombre,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .Itemnombre {
+  display: none;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus .btn-container,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio:focus .btn-container,
@@ -5778,11 +6092,11 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   outline: none;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  gap: 5%;
+  gap: 0.5em;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2 {
-  width: 3%;
+  width: 5%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -5810,12 +6124,31 @@ body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2 .btn-agendar-cita {
   display: none;
 }
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .Itemnombre,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .Itemnombre {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .Itemnombre span,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .Itemnombre span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: #0f3061;
+}
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info {
-  width: 67%;
   text-align: center;
   height: 100%;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
@@ -5838,6 +6171,14 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   font-size: 0.7vw;
   color: #0f3061;
 }
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .criterios_container,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .criterios_container {
+  display: none;
+}
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .Itemstatus,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .Itemstatus {
+  display: none;
+}
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container {
   width: 30%;
@@ -5846,7 +6187,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-content: center;
-  gap: 0.1vw;
+  gap: 0.5em;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button,
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select,
@@ -5947,9 +6288,18 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   width: 77%;
   height: 90%;
   grid-template-columns: repeat(3, 1fr);
+  display: grid;
+}
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .Itemnombre,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .Itemnombre {
+  display: none;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .btn_container2,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .btn_container2 {
+  display: none;
+}
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .criterios_container,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .criterios_container {
   display: none;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .btn-container,
@@ -6214,7 +6564,7 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag1 article label,
   html main #pag1 article label {
-    width: 9vw;
+    width: 10vw;
     margin: 5%;
   }
   body main #pag2 .cont-install-btn,
@@ -6328,7 +6678,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
   html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 {
-    width: 2.5%;
+    width: 3%;
   }
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
   body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
@@ -6839,13 +7189,12 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn_container2 {
-    width: 3%;
+    width: 5%;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info,
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .vacante_info,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .vacante_info {
-    width: 67%;
     grid-template-columns: repeat(2, 1fr);
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info span,
@@ -6885,7 +7234,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .custom-select .select-items,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container button .select-items,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .custom-select .select-items {
-    width: 26vw;
+    width: 27vw;
     height: 4vh;
     top: 0;
     left: 0;
@@ -6996,7 +7345,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select .select-items,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button .select-items,
   html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select .select-items {
-    width: 27vw;
+    width: 28vw;
     height: 4vh;
     top: 0;
     left: 0;

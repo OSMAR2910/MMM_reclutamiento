@@ -1,0 +1,16 @@
+export default {
+  birdUp: { h: 105, w: 90, x: 772, y: 40 },
+  birdDown: { h: 105, w: 90, x: 856, y: 40 },
+  cactus: { h: 92, w: 46, x: 70, y: 31 },
+  cactusDouble: { h: 66, w: 64, x: 118, y: 31 },
+  cactusDoubleB: { h: 92, w: 80, x: 184, y: 31 },
+  cactusTriple: { h: 66, w: 82, x: 266, y: 31 },
+  cloud: { h: 38, w: 100, x: 970, y: 31 },
+  dino: { h: 110, w: 128, x: 355, y: 30 },
+  dinoDuckLeftLeg: { h: 100, w: 130, x: 480, y: 30 },
+  dinoDuckRightLeg: { h: 100, w: 130, x: 610, y: 30 },
+  dinoLeftLeg: { h: 100, w: 130, x: 480, y: 30 },
+  dinoRightLeg: { h: 100, w: 130, x: 610, y: 30 },
+  ground: { h: 30 , w: 2400, x: 0, y: 0 },
+  replayIcon: { h: 60, w: 68, x: 0, y: 31 }, 
+}

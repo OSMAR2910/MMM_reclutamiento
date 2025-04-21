@@ -45,19 +45,19 @@
 body,
 html {
   width: 100vw;
-  min-height: var(--main-vh); 
+  min-height: var(--main-vh);
   max-height: none;
-  height: auto; 
+  height: auto;
   margin: 0;
   padding: 0;
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
   background-color: $Fondo;
-  overflow-x: hidden; 
-  overscroll-behavior: none; 
+  overflow-x: hidden;
+  overscroll-behavior: none;
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
+  align-items: flex-start;
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
 
@@ -708,11 +708,11 @@ html {
     align-items: center;
     padding: 0;
     margin: 0;
-    overflow: hidden; 
+    overflow: hidden;
     overscroll-behavior: none;
 
     .pages {
-      width: 50%; 
+      width: 50%;
       height: var(--main-vh);
       min-height: var(--main-vh);
       justify-items: center;
@@ -1053,8 +1053,37 @@ html {
               justify-content: center;
               align-items: center;
 
-              img {
-                width: 40%;
+              .exito_compartir {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 2em;
+                img {
+                  transform: translateX(17%);
+                  height: 60%;
+                }
+                button {
+                  width: 100%;
+                  height: 20%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  background-color: $Secundario;
+                  border-radius: 5rem;
+                  border: none;
+                  color: $Texto;
+                  font-family: $Letra2;
+                  font-size: 1em;
+                  padding: .5em;
+                  transition: all 0.2s ease-in-out;
+
+                  &:hover {
+                    @include opacity;
+                  }
+                }
               }
             }
 
@@ -1084,9 +1113,9 @@ html {
         }
 
         label {
-          width: 2vw;
+          width: 2.5vw;
           aspect-ratio: 2/2;
-          margin: 1%;
+          margin: 0%;
           display: none;
           justify-content: center;
           align-items: center;
@@ -1094,7 +1123,7 @@ html {
           position: relative;
 
           img {
-            height: 80%;
+            height: 100%;
             aspect-ratio: 2/2;
             top: 0;
             left: 0;
@@ -1513,7 +1542,7 @@ html {
                 transition: all 0.3s ease-in-out;
                 img {
                   height: 50%;
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                   transform: rotate(0deg);
                 }
                 span {
@@ -1523,17 +1552,17 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem;
+                  padding: 0.2rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: .7em;
+                  font-size: 0.7em;
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   text-align: center;
                   background-color: $Box_admin;
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 &:hover {
                   img {
@@ -1589,7 +1618,7 @@ html {
                     img {
                       height: 70%;
                       transform: scale(1);
-                      transition: all .2s ease-in-out;
+                      transition: all 0.2s ease-in-out;
                     }
                     span {
                       width: 100%;
@@ -1598,17 +1627,17 @@ html {
                       opacity: 0;
                       top: 85%;
                       border-radius: 0 0 1rem 1rem;
-                      padding: .2rem;
+                      padding: 0.2rem;
                       color: $Blanco;
                       display: flex;
                       font-family: $Letra2;
-                      font-size: .7em;
+                      font-size: 0.7em;
                       display: flex;
                       justify-content: center;
                       align-items: center;
                       text-align: center;
                       background-color: $Box_admin;
-                      transition: all .2s ease-in-out;
+                      transition: all 0.2s ease-in-out;
                     }
                     &:hover {
                       img {
@@ -1691,11 +1720,11 @@ html {
 
                 &:checked ~ .mj_user_info {
                   display: flex;
-                  animation: fadeIn .2s ease-in-out forwards;
+                  animation: fadeIn 0.2s ease-in-out forwards;
                 }
               }
 
-              .label_icon  {
+              .label_icon {
                 width: 100%;
                 height: 100%;
                 position: relative;
@@ -1705,7 +1734,7 @@ html {
                 img {
                   height: 60%;
                   transform: scale(1);
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 span {
                   width: 100%;
@@ -1714,17 +1743,17 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem;
+                  padding: 0.2rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: .7em;
+                  font-size: 0.7em;
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   text-align: center;
                   background-color: $Box_admin;
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 &:hover {
                   img {
@@ -2003,7 +2032,7 @@ html {
                 img {
                   height: 50%;
                   transform: scale(1);
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 span {
                   width: 100%;
@@ -2012,17 +2041,17 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem;
+                  padding: 0.2rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: .7em;
+                  font-size: 0.7em;
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   text-align: center;
                   background-color: $Box_admin;
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 &:hover {
                   img {
@@ -2259,7 +2288,7 @@ html {
                 img {
                   height: 50%;
                   transform: scale(1);
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 span {
                   width: 100%;
@@ -2268,17 +2297,17 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem;
+                  padding: 0.2rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: .7em;
+                  font-size: 0.7em;
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   text-align: center;
                   background-color: $Box_admin;
-                  transition: all .2s ease-in-out;
+                  transition: all 0.2s ease-in-out;
                 }
                 &:hover {
                   img {
@@ -2450,7 +2479,7 @@ html {
                         h3 {
                           display: none;
                         }
-  
+
                         .puestos_admin_items {
                           padding-top: 1rem;
                           padding-bottom: 1rem;
@@ -2670,10 +2699,11 @@ html {
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
+                  gap: 1em;
                   transition: all 0.3s ease-in-out;
 
                   .btn_container2 {
-                    width: 4%;
+                    width: 6%;
                     height: 90%;
                     display: flex;
                     justify-content: space-between;
@@ -2712,10 +2742,29 @@ html {
                     }
                   }
 
-                  .vacante_info {
-                    width: 81%;
+                  .Itemnombre {
+                    width: 100%;
                     height: 100%;
-                    display: grid;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: all 0.2s ease-in-out;
+
+                    span {
+                      width: 100%;
+                      height: 100%;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      font-size: 1em;
+                      color: $Resalte;
+                    }
+                  }
+
+                  .vacante_info {
+                    height: 100%;
+                    display: none;
                     grid-template-columns: repeat(2, 1fr);
                     justify-content: space-evenly;
                     align-items: center;
@@ -2735,6 +2784,31 @@ html {
                         font-size: 1.4vh;
                         color: $Resalte;
                       }
+                    }
+                  }
+
+                  .criterios_container {
+                    display: none;
+                  }
+
+                  .Itemstatus {
+                    width: 15%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: .5rem;
+                    span {
+                      height: 80%;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      aspect-ratio: 1/1;
+                      border-radius: 100%;
+                      border: 0.2em solid $Box_admin;
+                      font-size: 1em;
+                      font-family: $Letra2;
+                      color: $Box_admin;
                     }
                   }
 
@@ -2789,10 +2863,15 @@ html {
                       display: none;
                     }
 
+                    .Itemnombre {
+                      display: none; 
+                    }
+
                     .vacante_info {
                       width: 95%;
                       height: 95%;
                       grid-template-columns: repeat(3, 1fr);
+                      display: grid;
 
                       span {
                         font-size: 0.5vw;
@@ -2801,6 +2880,14 @@ html {
                           font-size: 0.6vw;
                         }
                       }
+                    }
+
+                    .criterios_container {
+                      display: none; 
+                    }
+
+                    .Itemstatus {
+                      display: none; 
                     }
 
                     .btn_container2 {
@@ -2931,7 +3018,7 @@ html {
                 transition: all 0.3s ease-in-out;
 
                 .btn_container2 {
-                  width: 5%;
+                  width: 7%;
                   height: 90%;
                   display: flex;
                   justify-content: space-between;
@@ -2970,11 +3057,31 @@ html {
                   }
                 }
 
+                .Itemnombre {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  transition: all 0.2s ease-in-out;
+
+                  span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: .8em;
+                    color: $Resalte;
+                  }
+                }
+
                 .vacante_info {
                   width: 85%;
                   text-align: center;
                   height: 100%;
-                  display: grid;
+                  display: none;
                   grid-template-columns: repeat(2, 1fr);
                   justify-content: center;
                   align-items: center;
@@ -2997,6 +3104,30 @@ html {
                       color: $Resalte;
                     }
                   }
+                }
+
+                .criterios_container {
+                  width: 15%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  span {
+                    height: 80%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    aspect-ratio: 1/1;
+                    border-radius: 100%;
+                    border: 0.2em solid $Box_admin;
+                    font-size: 1em;
+                    font-family: $Letra2;
+                    color: $Box_admin;
+                  }
+                }
+
+                .Itemstatus {
+                  display: none; 
                 }
 
                 .btn-container {
@@ -3047,10 +3178,15 @@ html {
                     display: none;
                   }
 
+                  .Itemnombre {
+                    display: none;
+                  }
+
                   .vacante_info {
                     width: 95%;
                     height: 95%;
                     grid-template-columns: repeat(3, 1fr);
+                    display: grid;
 
                     span {
                       font-size: 0.5vw;
@@ -3059,6 +3195,10 @@ html {
                         font-size: 0.6vw;
                       }
                     }
+                  }
+
+                  .criterios_container {
+                    display: none;
                   }
 
                   .btn-container {
@@ -3167,7 +3307,7 @@ html {
                 transition: all 0.3s ease-in-out;
 
                 .btn_container2 {
-                  width: 5%;
+                  width: 4%;
                   height: 90%;
                   display: flex;
                   justify-content: space-between;
@@ -3195,11 +3335,31 @@ html {
                   }
                 }
 
+                .Itemnombre {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  transition: all 0.2s ease-in-out;
+
+                  span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: .8em;
+                    color: $Resalte;
+                  }
+                }
+
                 .vacante_info {
                   width: 95%;
                   text-align: center;
                   height: 100%;
-                  display: grid;
+                  display: none;
                   grid-template-columns: repeat(2, 1fr);
                   justify-content: center;
                   align-items: center;
@@ -3224,6 +3384,14 @@ html {
                   }
                 }
 
+                .criterios_container {
+                  display: none;
+                }
+
+                .Itemstatus {
+                  display: none; 
+                }
+
                 .btn-container {
                   display: none;
                 }
@@ -3235,9 +3403,14 @@ html {
                     display: none;
                   }
 
+                  .Itemnombre {
+                    display: none;
+                  }
+
                   .vacante_info {
                     height: 95%;
                     grid-template-columns: repeat(2, 1fr);
+                    display: grid;
                   }
                 }
               }
@@ -3383,10 +3556,30 @@ html {
                   }
                 }
 
-                .vacante_info {
-                  width: 95.5%;
+                .Itemnombre {
+                  width: 100%;
                   height: 100%;
-                  display: grid;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  transition: all 0.2s ease-in-out;
+
+                  span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1em;
+                    color: $Resalte;
+                  }
+                }
+
+                .vacante_info {
+                  width: 90%;
+                  height: 100%;
+                  display: none;
                   grid-template-columns: repeat(10, 1fr);
                   justify-content: space-evenly;
                   align-items: center;
@@ -3406,6 +3599,30 @@ html {
                       color: $Resalte;
                     }
                   }
+                }
+
+                .criterios_container {
+                  width: 6%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  span {
+                    height: 80%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    aspect-ratio: 1/1;
+                    border-radius: 100%;
+                    border: 0.2em solid $Box_admin;
+                    font-size: 1em;
+                    font-family: $Letra2;
+                    color: $Box_admin;
+                  }
+                }
+
+                .Itemstatus {
+                  display: none; 
                 }
 
                 .btn-container {
@@ -3456,8 +3673,13 @@ html {
                     display: none;
                   }
 
+                  .Itemnombre {
+                    display: none;
+                  }
+
                   .vacante_info {
                     width: 100%;
+                    display: grid;
 
                     span {
                       font-size: 0.6vw;
@@ -3466,6 +3688,10 @@ html {
                         font-size: 0.7vw;
                       }
                     }
+                  }
+
+                  .criterios_container {
+                    display: none;
                   }
 
                   .btn-container {
@@ -4074,6 +4300,7 @@ html {
                   overflow-y: hidden;
                   align-items: center;
                   transition: all 0.3s ease-in-out;
+                  gap: .5em;
 
                   .btn_container2 {
                     width: 3%;
@@ -4104,10 +4331,38 @@ html {
                     }
                   }
 
+                  .Itemnombre {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: all 0.2s ease-in-out;
+  
+                    span {
+                      width: 100%;
+                      height: 100%;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                      font-size: 5em;
+                      color: $Resalte;
+                    }
+                  }
+                  
+                  .criterios_container {
+                    display: none;
+                  }
+
+                  .Itemstatus {
+                    display: none; 
+                  }
+
                   .vacante_info {
                     width: 67%;
                     height: 100%;
-                    display: grid;
+                    display: none;
                     grid-template-columns: repeat(2, 1fr);
                     justify-content: space-evenly;
                     align-items: center;
@@ -4138,7 +4393,7 @@ html {
                     justify-items: center;
                     align-content: center;
                     flex-direction: column;
-                    gap: 0.1vw;
+                    gap: 2em;
 
                     button,
                     .custom-select {
@@ -4227,6 +4482,11 @@ html {
                     .vacante_info {
                       width: 95%;
                       grid-template-columns: repeat(4, 1fr);
+                      display: grid;
+                    }
+
+                    .Itemnombre {
+                      display: none;
                     }
 
                     .btn-container {
@@ -4350,10 +4610,10 @@ html {
                 outline: none;
                 overflow: hidden;
                 transition: all 0.3s ease-in-out;
-                gap: 5%;
+                gap: .5em;
 
                 .btn_container2 {
-                  width: 3%;
+                  width: 5%;
                   height: 90%;
                   display: flex;
                   justify-content: space-between;
@@ -4381,11 +4641,30 @@ html {
                   }
                 }
 
+                .Itemnombre {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  transition: all 0.2s ease-in-out;
+
+                  span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1em;
+                    color: $Resalte;
+                  }
+                }
+
                 .vacante_info {
-                  width: 67%;
                   text-align: center;
                   height: 100%;
-                  display: grid;
+                  display: none;
                   grid-template-columns: repeat(2, 1fr);
                   justify-content: center;
                   align-items: center;
@@ -4408,6 +4687,14 @@ html {
                     }
                   }
                 }
+                
+                .criterios_container {
+                  display: none;
+                }
+
+                .Itemstatus {
+                  display: none; 
+                }
 
                 .btn-container {
                   width: 30%;
@@ -4416,7 +4703,7 @@ html {
                   grid-template-columns: repeat(3, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: 0.1vw;
+                  gap: .5em;
 
                   button,
                   .custom-select {
@@ -4505,9 +4792,18 @@ html {
                     width: 77%;
                     height: 90%;
                     grid-template-columns: repeat(3, 1fr);
+                    display: grid;
+                  }
+
+                  .Itemnombre {
+                    display: none;
                   }
 
                   .btn_container2 {
+                    display: none;
+                  }
+
+                  .criterios_container {
                     display: none;
                   }
 
@@ -4736,7 +5032,7 @@ html {
       align-items: center;
       padding: 0;
       margin: 0;
-      overflow: hidden; 
+      overflow: hidden;
       overscroll-behavior: none;
 
       .pages {
@@ -4817,7 +5113,7 @@ html {
           }
 
           label {
-            width: 9vw;
+            width: 10vw;
             margin: 5%;
           }
         }
@@ -4938,7 +5234,7 @@ html {
                     border-radius: 2vw;
 
                     .btn_container2 {
-                      width: 2.5%;
+                      width: 3%;
                     }
 
                     .vacante_info {
@@ -5446,11 +5742,10 @@ html {
                     border-radius: 3vw;
 
                     .btn_container2 {
-                      width: 3%;
+                      width: 5%;
                     }
 
                     .vacante_info {
-                      width: 67%;
                       grid-template-columns: repeat(2, 1fr);
 
                       span {
@@ -5471,7 +5766,7 @@ html {
                         font-size: 4vw;
 
                         .select-items {
-                          width: 26vw;
+                          width: 27vw;
                           height: 4vh;
                           top: 0;
                           left: 0;
@@ -5571,7 +5866,7 @@ html {
                       font-size: 4vw;
 
                       .select-items {
-                        width: 27vw;
+                        width: 28vw;
                         height: 4vh;
                         top: 0;
                         left: 0;
@@ -5658,14 +5953,13 @@ html {
           .cont_form {
             height: 17rem;
             width: 90%;
-  
+
             form {
               .cont_inputform {
                 .input-form {
-                  
                   label {
                     top: 15vh;
-  
+
                     span {
                       p {
                         font-size: 3vw;
@@ -5676,7 +5970,7 @@ html {
               }
             }
           }
-  
+
           label {
             width: 9vw;
             margin: 5%;
@@ -5690,7 +5984,7 @@ html {
       #pag1 {
         article {
           margin-top: 20vh;
-          
+
           .texto_form {
             display: none;
           }
@@ -5718,17 +6012,17 @@ html {
           }
         }
       }
-  
+
       #pag2 {
         .Logincont {
           margin-top: 10vh;
-          }
+        }
       }
 
       #pag4 {
         .Logincont {
           margin-top: 10vh;
-          }
+        }
       }
     }
   }
@@ -5766,4 +6060,3 @@ html {
     }
   }
 }
-

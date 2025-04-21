@@ -5,14 +5,23 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
-import { database, ref, set, onValue, remove, app, get, update } from "./firebase.js";
+import {
+  database,
+  ref,
+  set,
+  onValue,
+  remove,
+  app,
+  get,
+  update,
+} from "./firebase.js";
 import {
   personalizarSelect,
   toggleView,
   elements,
   isStandalone,
   mostrarAlerta,
-  setThemeColor
+  setThemeColor,
 } from "./main.js";
 
 // Inicializar Firebase Auth
@@ -22,7 +31,6 @@ let vacantesPrevias = new Set();
 let previousVacantes = new Map();
 let isAdmin = localStorage.getItem("isAdminLoggedIn") === "true";
 let isManager = localStorage.getItem("isManagerLoggedIn") === "true";
-
 
 const label_btnEnviar = document.getElementById("label_enviar");
 const formElement = document.getElementById("myForm"); // Asegúrate de que este ID coincida con tu HTML
@@ -598,6 +606,38 @@ function mostrarDatos() {
             : "_red";
 
         listItem.classList.add(claseItem);
+
+        const Itemnombre = document.createElement("div");
+        Itemnombre.classList.add("Itemnombre");
+        const Itemnombrespan = document.createElement("span");
+        Itemnombrespan.innerHTML = `${data.nombre}`;
+        Itemnombre.appendChild(Itemnombrespan);
+
+        const Itemstatus = document.createElement("div");
+        Itemstatus.classList.add("Itemstatus");
+        const Itemstatusspan = document.createElement("span");
+        Itemstatusspan.innerHTML = `${data.aptoStatus}`;
+        Itemstatus.appendChild(Itemstatusspan);
+
+        const criteriosContainer = document.createElement("div");
+        criteriosContainer.classList.add("criterios_container");
+
+        const criteriosSpan = document.createElement("span");
+        criteriosSpan.classList.add("criterios_count");
+
+        let cumplenCount = 0;
+        const criterios = [
+          data.empleo === "Fijo",
+          data.horario === "Rotativo",
+          data.docu === "Si",
+          data.problema_t === "No",
+        ];
+        cumplenCount = criterios.filter(Boolean).length;
+        const totalPreguntas = 4; 
+
+        criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
+        criteriosContainer.appendChild(criteriosSpan);
+
         const infoContainer = document.createElement("div");
         infoContainer.classList.add("vacante_info");
 
@@ -735,9 +775,12 @@ function mostrarDatos() {
           btnContratado,
           btnEliminar
         );
-
+        
         listItem.appendChild(btnContainer2);
+        listItem.appendChild(Itemnombre);
         listItem.appendChild(infoContainer);
+        listItem.appendChild(criteriosContainer);
+        listItem.appendChild(Itemstatus);
         listItem.appendChild(btnContainer);
 
         if (esAsistieron) ulGreen.appendChild(listItem);
@@ -980,7 +1023,7 @@ function mostrarDatos() {
     // Botón de cancelar
     document.getElementById("cancelar_cita").onclick = () => {
       modalContainer.style.display = "none";
-      mostrarAlertaAdmin("alerta_15"); 
+      mostrarAlertaAdmin("alerta_15");
     };
   }
   function enviarMensajeWhatsApp(numero, nombre, fecha, hora, sucursal) {
@@ -1129,8 +1172,7 @@ function mostrarSucursalesDisponibles() {
     dataSucuUser.innerHTML = "";
 
     if (!sucursales) {
-      dataSucuUser.innerHTML =
-        "<div class='no_data'></div>";
+      dataSucuUser.innerHTML = "<div class='no_data'></div>";
       return;
     }
 
@@ -1264,7 +1306,10 @@ function mostrarPuestosDisponibles() {
 
     // Filtrar y ordenar sucursales
     const sucursalesFiltradas = Object.entries(sucursales)
-      .filter(([nombre, disponible]) => disponible && nombre.toLowerCase().includes(filtro.toLowerCase()))
+      .filter(
+        ([nombre, disponible]) =>
+          disponible && nombre.toLowerCase().includes(filtro.toLowerCase())
+      )
       .sort((a, b) => a[0].localeCompare(b[0]));
 
     if (sucursalesFiltradas.length === 0) {
@@ -1279,7 +1324,8 @@ function mostrarPuestosDisponibles() {
       // Encabezado con el nombre de la sucursal
       const sucursalHeader = document.createElement("h3");
       sucursalHeader.classList.add("puesto_admin_sucursal");
-      sucursalHeader.textContent = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
+      sucursalHeader.textContent =
+        nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
 
       // Contenedor para los puestos
       const puestosList = document.createElement("ul");
@@ -1319,7 +1365,9 @@ function mostrarPuestosDisponibles() {
 
           set(puestoRef, nuevoEstado)
             .then(() => {
-              console.log(`Estado de ${puesto.nombre} en ${nombre} actualizado a ${nuevoEstado}`);
+              console.log(
+                `Estado de ${puesto.nombre} en ${nombre} actualizado a ${nuevoEstado}`
+              );
               label.classList.toggle("disponible", nuevoEstado);
               label.classList.toggle("no_disponible", !nuevoEstado);
               mostrarAlertaAdmin("alerta_20");
@@ -1363,7 +1411,11 @@ function mostrarPuestosDisponibles() {
       disSucuRef,
       (snapshotSucu) => {
         currentSucursales = snapshotSucu.val();
-        renderizarPuestos(currentSucursales, currentPuestosFirebase, currentFilter);
+        renderizarPuestos(
+          currentSucursales,
+          currentPuestosFirebase,
+          currentFilter
+        );
       },
       (error) => {
         console.error("Error al leer disSucu de Firebase:", error);
@@ -1377,7 +1429,11 @@ function mostrarPuestosDisponibles() {
       disPuestosRef,
       (snapshotPuestos) => {
         currentPuestosFirebase = snapshotPuestos.val() || {};
-        renderizarPuestos(currentSucursales, currentPuestosFirebase, currentFilter);
+        renderizarPuestos(
+          currentSucursales,
+          currentPuestosFirebase,
+          currentFilter
+        );
       },
       (error) => {
         console.error("Error al leer disPuestos de Firebase:", error);
@@ -1389,7 +1445,11 @@ function mostrarPuestosDisponibles() {
     // Actualizar el filtro en tiempo real
     filterInput.addEventListener("input", (e) => {
       currentFilter = e.target.value.trim();
-      renderizarPuestos(currentSucursales, currentPuestosFirebase, currentFilter);
+      renderizarPuestos(
+        currentSucursales,
+        currentPuestosFirebase,
+        currentFilter
+      );
     });
   });
 }
@@ -1402,7 +1462,8 @@ function cargarSucursalesDisponibles() {
   }
 
   // Eliminar cualquier personalización previa
-  const existingCustomSelect = sucursalSelect.parentNode.querySelector(".custom-select");
+  const existingCustomSelect =
+    sucursalSelect.parentNode.querySelector(".custom-select");
   if (existingCustomSelect) {
     existingCustomSelect.remove();
   }
@@ -1417,7 +1478,8 @@ function cargarSucursalesDisponibles() {
       console.log("🔹 Sucursales obtenidas de Firebase:", sucursales);
 
       // Limpiar opciones y agregar placeholder
-      sucursalSelect.innerHTML = '<option value="" disabled selected>Sucursal</option>';
+      sucursalSelect.innerHTML =
+        '<option value="" disabled selected>Sucursal</option>';
 
       // Agregar sucursales disponibles
       Object.entries(sucursales).forEach(([nombre, disponible]) => {
@@ -1442,7 +1504,8 @@ function cargarSucursalesDisponibles() {
       }
     } else {
       console.warn("⚠️ No se encontraron sucursales en Firebase.");
-      sucursalSelect.innerHTML = '<option value="" disabled selected>No hay sucursales disponibles</option>';
+      sucursalSelect.innerHTML =
+        '<option value="" disabled selected>No hay sucursales disponibles</option>';
     }
   });
 
@@ -1475,7 +1538,8 @@ function actualizarPuestosDisponibles(sucursal) {
   }
 
   // Limpiar personalización previa
-  const existingCustomSelect = puestoSelect.parentNode.querySelector(".custom-select");
+  const existingCustomSelect =
+    puestoSelect.parentNode.querySelector(".custom-select");
   if (existingCustomSelect) {
     existingCustomSelect.remove();
   }
@@ -1492,40 +1556,47 @@ function actualizarPuestosDisponibles(sucursal) {
   }
 
   const disPuestosRef = ref(database, `disPuestos/${sucursal}`);
-  get(disPuestosRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const puestos = snapshot.val();
-      console.log(`Puestos obtenidos para ${sucursal}:`, puestos);
+  get(disPuestosRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const puestos = snapshot.val();
+        console.log(`Puestos obtenidos para ${sucursal}:`, puestos);
 
-      // Mapear los IDs de puestos a nombres (basado en puestos.json)
-      fetch("../json/puestos.json")
-        .then((response) => response.json())
-        .then((puestosData) => {
-          const puestosDisponibles = puestosData.puestos.filter((puesto) => puestos[puesto.id] === true);
-          puestosDisponibles.forEach((puesto) => {
-            const option = document.createElement("option");
-            option.value = puesto.nombre;
-            option.textContent = puesto.nombre;
-            puestoSelect.appendChild(option);
+        // Mapear los IDs de puestos a nombres (basado en puestos.json)
+        fetch("../json/puestos.json")
+          .then((response) => response.json())
+          .then((puestosData) => {
+            const puestosDisponibles = puestosData.puestos.filter(
+              (puesto) => puestos[puesto.id] === true
+            );
+            puestosDisponibles.forEach((puesto) => {
+              const option = document.createElement("option");
+              option.value = puesto.nombre;
+              option.textContent = puesto.nombre;
+              puestoSelect.appendChild(option);
+            });
+
+            // Personalizar el select después de cargar las opciones
+            setTimeout(() => personalizarSelect(puestoSelect), 50);
+          })
+          .catch((error) => {
+            console.error("Error al cargar puestos.json:", error);
+            puestoSelect.innerHTML =
+              '<option value="" disabled selected>Error al cargar puestos</option>';
           });
-
-          // Personalizar el select después de cargar las opciones
-          setTimeout(() => personalizarSelect(puestoSelect), 50);
-        })
-        .catch((error) => {
-          console.error("Error al cargar puestos.json:", error);
-          puestoSelect.innerHTML = '<option value="" disabled selected>Error al cargar puestos</option>';
-        });
-    } else {
-      console.warn(`No se encontraron puestos para la sucursal ${sucursal}.`);
-      puestoSelect.innerHTML = '<option value="" disabled selected>No hay puestos disponibles</option>';
+      } else {
+        console.warn(`No se encontraron puestos para la sucursal ${sucursal}.`);
+        puestoSelect.innerHTML =
+          '<option value="" disabled selected>No hay puestos disponibles</option>';
+        setTimeout(() => personalizarSelect(puestoSelect), 50);
+      }
+    })
+    .catch((error) => {
+      console.error("Error al leer disPuestos de Firebase:", error);
+      puestoSelect.innerHTML =
+        '<option value="" disabled selected>Error al cargar puestos</option>';
       setTimeout(() => personalizarSelect(puestoSelect), 50);
-    }
-  }).catch((error) => {
-    console.error("Error al leer disPuestos de Firebase:", error);
-    puestoSelect.innerHTML = '<option value="" disabled selected>Error al cargar puestos</option>';
-    setTimeout(() => personalizarSelect(puestoSelect), 50);
-  });
+    });
 }
 
 //Función para crear botones dinámicamente
@@ -1721,7 +1792,7 @@ function regresarAlLogin(tipo) {
 
   console.log("Llamando a mostrarBotonEntrar...");
   mostrarBotonEntrar(tipo);
-  setThemeColor('#ec6223');
+  setThemeColor("#ec6223");
 
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
 }
@@ -1736,8 +1807,7 @@ function manejarVisibilidadModales() {
     document.querySelector(".settings"),
     document.querySelector(".mensajes_usuarios"),
     document.querySelector(".disponibilidad_sucu"),
-    document.querySelector(".disponibilidad_puestos")
-
+    document.querySelector(".disponibilidad_puestos"),
   ];
 
   // Crear un MutationObserver para observar cambios en el atributo style de los modales
@@ -1784,15 +1854,20 @@ async function mostrarTextoPavoPorDefecto() {
     return;
   }
 
-  const pavoIntent = alertasData.intents.find(i => i.tag === "palabras_pavo_admin");
+  const pavoIntent = alertasData.intents.find(
+    (i) => i.tag === "palabras_pavo_admin"
+  );
   if (!pavoIntent) {
-    console.warn("Intent con tag palabras_pavo_admin no encontrado en el JSON.");
+    console.warn(
+      "Intent con tag palabras_pavo_admin no encontrado en el JSON."
+    );
     return;
   }
 
   const userName = localStorage.getItem("userNameAdmin") || "Humano";
   const pavoResponses = pavoIntent.responses;
-  const randomPavo = pavoResponses[Math.floor(Math.random() * pavoResponses.length)];
+  const randomPavo =
+    pavoResponses[Math.floor(Math.random() * pavoResponses.length)];
   const mensajePavo = randomPavo.replace("${userName}", userName);
   textWelcomeAdmin.textContent = mensajePavo;
   textWelcomeAdmin2.textContent = mensajePavo;
@@ -1816,11 +1891,12 @@ async function mostrarAlertaAdmin(alertaId) {
 
   // Mostrar mensaje específico si alertaId existe
   if (alertaId) {
-    const intent = alertasData.intents.find(i => i.tag === alertaId);
+    const intent = alertasData.intents.find((i) => i.tag === alertaId);
     if (intent) {
       const userName = localStorage.getItem("userNameAdmin") || "Humano";
       const responses = intent.responses;
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      const randomResponse =
+        responses[Math.floor(Math.random() * responses.length)];
       const mensaje = randomResponse.replace("${userName}", userName);
       textWelcomeAdmin.textContent = mensaje;
       textWelcomeAdmin.style.display = "block";
@@ -1843,7 +1919,7 @@ async function mostrarAlertaAdmin(alertaId) {
 
 async function cargarAlertasJSON() {
   try {
-    const response = await fetch("../json/pavoAdmin.json"); 
+    const response = await fetch("../json/pavoAdmin.json");
     if (!response.ok) {
       throw new Error("No se pudo cargar el archivo alertas.json");
     }
@@ -1859,18 +1935,26 @@ function abrirModalUserInfo() {
   const modalUserInfo = document.getElementById("modal-user-info");
   const userNameDisplay = document.getElementById("user-name-display");
   const userNameDisplayCont = document.getElementById("user-name-display-cont");
-  const employeeNumberDisplay = document.getElementById("employee-number-display");
-  const employeeNumberDisplayCont = document.getElementById("employee-number-display-cont");
+  const employeeNumberDisplay = document.getElementById(
+    "employee-number-display"
+  );
+  const employeeNumberDisplayCont = document.getElementById(
+    "employee-number-display-cont"
+  );
   const editNameBtn = document.getElementById("edit-name-btn");
   const editNameContainer = document.getElementById("edit-name-container");
   const editNameInput = document.getElementById("edit-name-input");
   const saveNameBtn = document.getElementById("save-name-btn");
   const cancelEditNameBtn = document.getElementById("cancel-edit-name-btn");
   const editEmployeeBtn = document.getElementById("edit-employee-btn");
-  const editEmployeeContainer = document.getElementById("edit-employee-container");
+  const editEmployeeContainer = document.getElementById(
+    "edit-employee-container"
+  );
   const editEmployeeInput = document.getElementById("edit-employee-input");
   const saveEmployeeBtn = document.getElementById("save-employee-btn");
-  const cancelEditEmployeeBtn = document.getElementById("cancel-edit-employee-btn");
+  const cancelEditEmployeeBtn = document.getElementById(
+    "cancel-edit-employee-btn"
+  );
   const closeModalBtn = document.getElementById("close-user-modal");
 
   if (!modalUserInfo || !userNameDisplay || !employeeNumberDisplay) {
@@ -1884,7 +1968,7 @@ function abrirModalUserInfo() {
     return;
   }
 
-    // Inicializar estados por defecto    
+  // Inicializar estados por defecto
   userNameDisplayCont.style.display = "flex";
   userNameDisplay.style.display = "flex";
   editNameBtn.style.display = "flex";
@@ -1899,9 +1983,13 @@ function abrirModalUserInfo() {
     .then((snapshot) => {
       const data = snapshot.val() || {};
       userNameDisplay.textContent = data.displayName || "No especificado";
-      employeeNumberDisplay.textContent = data.employeeNumber || "No especificado";
+      employeeNumberDisplay.textContent =
+        data.employeeNumber || "No especificado";
       // Cargar nombre desde localStorage si existe, de lo contrario usar el de Firebase
-      const storedName = localStorage.getItem("userNameAdmin") || data.displayName || "No especificado";
+      const storedName =
+        localStorage.getItem("userNameAdmin") ||
+        data.displayName ||
+        "No especificado";
       userNameDisplay.textContent = storedName;
       modalUserInfo.style.display = "flex";
     })
@@ -1989,7 +2077,10 @@ function abrirModalUserInfo() {
     get(userRef)
       .then((snapshot) => {
         const currentData = snapshot.val() || {};
-        return set(userRef, { ...currentData, employeeNumber: newEmployeeNumber });
+        return set(userRef, {
+          ...currentData,
+          employeeNumber: newEmployeeNumber,
+        });
       })
       .then(() => {
         console.log(`Número de empleado actualizado a ${newEmployeeNumber}`);
@@ -2002,7 +2093,10 @@ function abrirModalUserInfo() {
         mostrarAlertaAdmin("alerta_17");
       })
       .catch((error) => {
-        console.error("Error al actualizar пришлось el número de empleado:", error);
+        console.error(
+          "Error al actualizar пришлось el número de empleado:",
+          error
+        );
       });
   };
 
@@ -2246,7 +2340,7 @@ function mostrarBotonEntrar(tipo) {
           if (elements.chatbot) elements.chatbot.style.display = "none";
 
           mostrarAlertaAdmin("alerta_4");
-          setThemeColor('#1b3c59');
+          setThemeColor("#1b3c59");
 
           if (isManager) {
             const sucursalActivaElement =
@@ -2318,7 +2412,6 @@ logoutButtons.forEach((button) => {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   asignarEventos("admin");
   asignarEventos("manager");
@@ -2338,7 +2431,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (regreso2)
     regreso2.addEventListener("click", () => regresarAlLogin("manager"));
 
-  
   manejarVisibilidadModales();
   mostrarTextoPavoPorDefecto();
 
@@ -2395,4 +2487,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-

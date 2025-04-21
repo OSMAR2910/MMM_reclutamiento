@@ -204,6 +204,28 @@ document.addEventListener('focusout', () => {
   }, 300);
 });
 
+const shareButton = document.getElementById('shareButton');
+
+// Agregar un evento de clic al botón
+shareButton.addEventListener('click', async () => {
+  // Verificar si la API de Web Share está disponible
+  if (navigator.share) {
+    try {
+      // Definir el contenido que se va a compartir
+      await navigator.share({
+        title: 'Quieres trabajar en MMM Pizza?',
+        text: 'LLena el formulario, envialo y te contanctamos.',
+        url: 'https://mmm-rh.netlify.app', // Reemplaza con tu enlace
+      });
+    } catch (error) {
+      console.error('Error al compartir:', error);
+    }
+  } else {
+    mostrarAlerta("alertas"); 
+    mostrarAlerta("alerta_4"); 
+  }
+});
+
 // Verificar si es un dispositivo táctil
 const isTouchDevice = () =>
   "ontouchstart" in window ||
@@ -279,27 +301,6 @@ const alertasConfig = {
   alerta_2: 2000,
   alerta_3: 2000,
   alerta_4: 2000,
-  alerta_5: 2000,
-  alerta_6: 2000,
-  alerta_7: 2000,
-  alerta_8: 2000,
-  alerta_9: 2000,
-  alerta_10: 2000,
-  alerta_11: 2000,
-  alerta_12: 2000,
-  alerta_13: 2000,
-  alerta_14: 2000,
-  alerta_15: 2000,
-  alerta_16: 2000,
-  alerta_17: 2000,
-  alerta_18: 2000,
-  alerta_19: 2000,
-  alerta_20: 2000,
-  alerta_21: 2000,
-  alerta_22: 2000,
-  alerta_23: 2000,
-  alerta_24: 2000,
-  alerta_25: 2000,
   alertapreguntaerror_1: 2000,
   alertapreguntaerror_2: 2000,
   alertapreguntaerror_3: 2000,
