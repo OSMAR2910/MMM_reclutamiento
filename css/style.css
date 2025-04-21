@@ -2256,7 +2256,7 @@ html main #pag1 article .cont_form form .exito_form .exito_compartir img {
 }
 body main #pag1 article .cont_form form .exito_form .exito_compartir button,
 html main #pag1 article .cont_form form .exito_form .exito_compartir button {
-  width: 65%;
+  width: 70%;
   height: 20%;
   display: flex;
   justify-content: center;
@@ -7174,6 +7174,7 @@ html .cambiar_nav nav ul .circulo_icon {
     height: 80%;
     top: 17vh;
     left: 1.7vw;
+    border-radius: 10vw;
   }
   body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p,
   html main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p {
