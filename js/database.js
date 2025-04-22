@@ -733,7 +733,7 @@ function mostrarDatos() {
           aptoSelect.classList.add("apto-select");
           aptoSelect.id = `apto-select-${nombre}`;
           const options = [
-            { value: "Pendiente", text: "🤷" },
+            { value: "Pendiente", text: "⏳" },
             { value: "Apto", text: "👍" },
             { value: "No apto", text: "👎" },
           ];

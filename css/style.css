@@ -1609,22 +1609,23 @@ html .alertas_modal #modal-user-info .modal-content .user-info-content {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 1rem;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 2rem;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont,
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont {
   width: 100%;
-  height: 1.7em;
+  height: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2328,7 +2329,7 @@ html main #pag2 {
 }
 body main #pag2 .cont-install-btn,
 html main #pag2 .cont-install-btn {
-  width: 3.5em;
+  width: 2.5vw;
   aspect-ratio: 1/1;
   opacity: 0;
   display: flex;
@@ -2373,9 +2374,9 @@ html main #pag2 .Logincont {
 }
 body main #pag2 .Logincont .Login-cont,
 html main #pag2 .Logincont .Login-cont {
-  width: 20rem;
+  width: 17vw;
   aspect-ratio: 2/2;
-  border-radius: 2rem;
+  border-radius: 2vw;
   background-color: #174891;
   display: flex;
   justify-content: center;
@@ -2415,7 +2416,7 @@ body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 {
   width: 100%;
   color: #ffffff;
-  font-size: 1.3em;
+  font-size: 1.3vw;
   padding: 0;
   margin: 0;
   display: flex;
@@ -2426,13 +2427,13 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 {
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 span,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel h3 span {
   color: #ffffff;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.1em;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p {
   width: 100%;
   color: #ffffff;
-  font-size: 0.7em;
+  font-size: 0.7vw;
   padding: 0;
   margin: 0;
   display: flex;
@@ -2440,7 +2441,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .wel p {
   align-items: center;
   font-family: "Nunito";
   color: #ffffff;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.1em;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field {
@@ -2449,7 +2450,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field {
   justify-content: center;
   align-items: center;
   width: 80%;
-  height: 3.5rem;
+  height: 18%;
   font-family: "Nunito";
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input::-webkit-inner-spin-button,
@@ -2466,8 +2467,8 @@ body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input {
   width: 100%;
   height: 100%;
-  border-radius: 5rem;
-  font-size: 17px;
+  border-radius: 5em;
+  font-size: 1vw;
   padding: 0px 10px;
   background-color: rgba(0, 0, 0, 0);
   color: #ffffff;
@@ -2486,7 +2487,7 @@ body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label {
   top: 0;
-  font-size: 15px;
+  font-size: 0.7vw;
   padding: 0 6px;
   background: #ec6223;
   color: #ffffff;
@@ -2517,7 +2518,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field label
   top: 50%;
   transform: translateY(-50%);
   color: #ffffff;
-  font-size: 17px;
+  font-size: 0.8vw;
   pointer-events: none;
   transition: 0.3s;
 }
@@ -2533,10 +2534,10 @@ body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-submit input {
   display: none;
 }
-body main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
-html main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
+body main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log,
+html main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log {
   color: #ffffff;
-  bottom: 3.5em;
+  bottom: 10%;
   border-radius: 3vw;
   background-color: #ec6223;
   padding: 0.3rem 0.7rem;
@@ -2571,8 +2572,8 @@ html main #pag2 .Logincont .Login-cont .Login-son .error {
 }
 body main #pag2 .Logincont .Login-cont .Login-son .error #icon,
 html main #pag2 .Logincont .Login-cont .Login-son .error #icon {
-  width: 7rem;
-  height: 7rem;
+  width: 60%;
+  aspect-ratio: 1/1;
   margin-bottom: 15%;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .error #icon img,
@@ -2627,7 +2628,7 @@ html main #pag2 .btn_cita {
   position: fixed;
   display: flex;
   opacity: 0;
-  width: 3em;
+  width: 2.5vw;
   aspect-ratio: 1/1;
   bottom: 0;
   right: 0;
@@ -4046,7 +4047,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
+  font-size: 0.8vw;
   color: #0f3061;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
@@ -4120,7 +4121,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   aspect-ratio: 1/1;
   border-radius: 100%;
   border: 0.2em solid #1b3c59;
-  font-size: 1em;
+  font-size: 0.7vw;
   font-family: "Nunito";
   color: #1b3c59;
 }
@@ -4457,7 +4458,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .I
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 0.7vw;
   color: #0f3061;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info,
@@ -4505,8 +4506,8 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .c
   align-items: center;
   aspect-ratio: 1/1;
   border-radius: 100%;
-  border: 0.2em solid #1b3c59;
-  font-size: 1em;
+  border: 0.2vw solid #1b3c59;
+  font-size: 0.7vw;
   font-family: "Nunito";
   color: #1b3c59;
 }
@@ -4742,7 +4743,7 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Item
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 0.8vw;
   color: #0f3061;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info,
@@ -4969,7 +4970,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
+  font-size: 1vw;
   color: #0f3061;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info,
@@ -5013,8 +5014,8 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   align-items: center;
   aspect-ratio: 1/1;
   border-radius: 100%;
-  border: 0.2em solid #1b3c59;
-  font-size: 1em;
+  border: 0.2vw solid #1b3c59;
+  font-size: 0.7vw;
   font-family: "Nunito";
   color: #1b3c59;
 }

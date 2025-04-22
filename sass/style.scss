@@ -475,18 +475,19 @@ html {
           justify-content: center;
           align-items: center;
           flex-direction: column;
+          gap: 1rem;
 
           .user-info-item {
             width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            margin-bottom: 2rem;
             .user-name-display-cont,
             .employee-number-display-cont {
               width: 100%;
-              height: 1.7em;
+              height: 50%;
               display: flex;
               justify-content: space-between;
               align-items: center;
@@ -1141,7 +1142,7 @@ html {
       animation: fadeInRightBig 0.5s ease-in-out forwards;
 
       .cont-install-btn {
-        width: 3.5em;
+        width: 2.5vw;
         aspect-ratio: 1/1;
         opacity: 0;
         display: flex;
@@ -1184,9 +1185,9 @@ html {
         align-items: center;
 
         .Login-cont {
-          width: 20rem;
+          width: 17vw;
           aspect-ratio: 2/2;
-          border-radius: 2rem;
+          border-radius: 2vw;
           background-color: $Secundario;
           display: flex;
           justify-content: center;
@@ -1222,7 +1223,7 @@ html {
                 h3 {
                   width: 100%;
                   color: $Texto;
-                  font-size: 1.3em;
+                  font-size: 1.3vw;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -1232,14 +1233,14 @@ html {
 
                   span {
                     color: $Texto;
-                    letter-spacing: 0.1rem;
+                    letter-spacing: 0.1em;
                   }
                 }
 
                 p {
                   width: 100%;
                   color: $Texto;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -1247,7 +1248,7 @@ html {
                   align-items: center;
                   font-family: $Letra2;
                   color: $Texto;
-                  letter-spacing: 0.1rem;
+                  letter-spacing: 0.1em;
                 }
               }
 
@@ -1257,7 +1258,7 @@ html {
                 justify-content: center;
                 align-items: center;
                 width: 80%;
-                height: 3.5rem;
+                height: 18%;
                 font-family: $Letra2;
 
                 input::-webkit-inner-spin-button,
@@ -1272,8 +1273,8 @@ html {
                 input {
                   width: 100%;
                   height: 100%;
-                  border-radius: 5rem;
-                  font-size: 17px;
+                  border-radius: 5em;
+                  font-size: 1vw;
                   padding: 0px 10px;
                   background-color: $Transparente;
                   color: $Texto;
@@ -1291,7 +1292,7 @@ html {
                 input:focus ~ label,
                 input:valid ~ label {
                   top: 0;
-                  font-size: 15px;
+                  font-size: .7vw;
                   padding: 0 6px;
                   background: $Principal;
                   color: $Texto;
@@ -1322,7 +1323,7 @@ html {
                   top: 50%;
                   transform: translateY(-50%);
                   color: $Texto;
-                  font-size: 17px;
+                  font-size: .8vw;
                   pointer-events: none;
                   transition: 0.3s;
 
@@ -1340,9 +1341,9 @@ html {
                 }
               }
 
-              .label_btn_log_manager {
+              .label_btn_log {
                 color: $Texto;
-                bottom: 3.5em;
+                bottom: 10%;
                 border-radius: 3vw;
                 background-color: $Fondo;
                 padding: 0.3rem 0.7rem;
@@ -1377,8 +1378,8 @@ html {
               animation-fill-mode: forwards;
 
               #icon {
-                width: 7rem;
-                height: 7rem;
+                width: 60%;
+                aspect-ratio: 1/1;
                 margin-bottom: 15%;
 
                 img {
@@ -1437,7 +1438,7 @@ html {
         position: fixed;
         display: flex;
         opacity: 0;
-        width: 3em;
+        width: 2.5vw;
         aspect-ratio: 1/1;
         bottom: 0;
         right: 0;
@@ -2757,7 +2758,7 @@ html {
                       flex-direction: column;
                       justify-content: center;
                       align-items: center;
-                      font-size: 1em;
+                      font-size: .8vw;
                       color: $Resalte;
                     }
                   }
@@ -2806,7 +2807,7 @@ html {
                       aspect-ratio: 1/1;
                       border-radius: 100%;
                       border: 0.2em solid $Box_admin;
-                      font-size: 1em;
+                      font-size: .7vw;
                       font-family: $Letra2;
                       color: $Box_admin;
                     }
@@ -3072,7 +3073,7 @@ html {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: .8em;
+                    font-size: .7vw;
                     color: $Resalte;
                   }
                 }
@@ -3119,8 +3120,8 @@ html {
                     align-items: center;
                     aspect-ratio: 1/1;
                     border-radius: 100%;
-                    border: 0.2em solid $Box_admin;
-                    font-size: 1em;
+                    border: 0.2vw solid $Box_admin;
+                    font-size: .7vw;
                     font-family: $Letra2;
                     color: $Box_admin;
                   }
@@ -3350,7 +3351,7 @@ html {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: .8em;
+                    font-size: .8vw;
                     color: $Resalte;
                   }
                 }
@@ -3571,7 +3572,7 @@ html {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1em;
+                    font-size: 1vw;
                     color: $Resalte;
                   }
                 }
@@ -3614,8 +3615,8 @@ html {
                     align-items: center;
                     aspect-ratio: 1/1;
                     border-radius: 100%;
-                    border: 0.2em solid $Box_admin;
-                    font-size: 1em;
+                    border: 0.2vw solid $Box_admin;
+                    font-size: .7vw;
                     font-family: $Letra2;
                     color: $Box_admin;
                   }
