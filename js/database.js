@@ -1599,6 +1599,154 @@ function actualizarPuestosDisponibles(sucursal) {
     });
 }
 
+function descargarResumenExcel() {
+  const auth = getAuth(app);
+  if (!auth.currentUser) {
+    console.log("Usuario no autenticado, no se pueden descargar datos.");
+    mostrarAlertaAdmin("alerta_1");
+    return;
+  }
+
+  // Definir referencias a los nodos de Firebase
+  const refs = {
+    vacantes: ref(database, "vacantes/"),
+    citas_vacantes: ref(database, "citas_vacantes/"),
+    asistieron: ref(database, "asistieron/"),
+    no_asistieron: ref(database, "no_asistieron/"),
+    contratado: ref(database, "contratado/"),
+  };
+
+  // Fecha límite (hace 30 días)
+  const fechaLimite = new Date();
+  fechaLimite.setDate(fechaLimite.getDate() - 30);
+  console.log("Filtrando vacantes desde:", fechaLimite.toISOString());
+
+  // Array para almacenar todas las vacantes
+  let todasLasVacantes = [];
+
+  // Función para procesar un snapshot y agregar datos con categoría
+  function procesarSnapshot(snapshot, categoria) {
+    if (snapshot.exists()) {
+      snapshot.forEach((childSnapshot) => {
+        const uniqueKey = childSnapshot.key;
+        const data = childSnapshot.val() || {};
+        const fechaStr = data.fecha_r || data.fecha_cita || "";
+        let fecha;
+
+        // Validar y parsear la fecha
+        try {
+          fecha = new Date(fechaStr);
+          if (isNaN(fecha.getTime())) {
+            console.warn(`Fecha inválida en ${uniqueKey}: ${fechaStr}`);
+            return;
+          }
+        } catch (error) {
+          console.warn(`Error al parsear fecha en ${uniqueKey}: ${error.message}`);
+          return;
+        }
+
+        // Filtrar por fecha (último mes)
+        if (fecha >= fechaLimite) {
+          todasLasVacantes.push({
+            Fecha_Registro: data.fecha_r
+              ? new Date(data.fecha_r).toLocaleDateString()
+              : "No disponible",
+              Fecha_Cita: data.fecha_cita
+                ? new Date(data.fecha_cita).toLocaleDateString()
+                : "No disponible",
+                Hora_Cita: data.hora_cita || "No disponible",
+            Nombre: data.nombre || "No disponible",
+            Sexo: data.sexo || "No disponible",
+            Puesto: data.puesto || "No disponible",
+            Sucursal: data.sucursal || data.sucursal_cita || "No disponible",
+            Edad: data.edad || "No disponible",
+            Número: data.numero || "No disponible",
+            Empleo: data.empleo || "No disponible",
+            Ciudad: data.ciudad || "No disponible",
+            Categoría: categoria,
+            Estatus: data.aptoStatus || "Pendiente",
+          });
+        }
+      });
+    }
+  }
+
+  // Promesas para obtener datos de todos los nodos
+  const promesas = [
+    get(refs.vacantes).then((snapshot) =>
+      procesarSnapshot(snapshot, "Vacantes")
+    ),
+    get(refs.citas_vacantes).then((snapshot) =>
+      procesarSnapshot(snapshot, "Citas Vacantes")
+    ),
+    get(refs.asistieron).then((snapshot) =>
+      procesarSnapshot(snapshot, "Asistieron")
+    ),
+    get(refs.no_asistieron).then((snapshot) =>
+      procesarSnapshot(snapshot, "No Asistieron")
+    ),
+    get(refs.contratado).then((snapshot) =>
+      procesarSnapshot(snapshot, "Contratado")
+    ),
+  ];
+
+  // Ejecutar todas las promesas y generar el Excel
+  Promise.all(promesas)
+    .then(() => {
+      if (todasLasVacantes.length === 0) {
+        console.log("No hay vacantes en el último mes.");
+        mostrarAlertaAdmin("alerta_22"); // Mostrar alerta de error o "sin datos"
+        return;
+      }
+
+      // Crear una hoja de trabajo
+      const worksheet = XLSX.utils.json_to_sheet(todasLasVacantes, {
+        header: [
+          "Fecha_Registro",
+          "Fecha_Cita",
+          "Hora_Cita",
+          "Nombre",
+          "Sexo",
+          "Puesto",
+          "Sucursal",
+          "Edad",
+          "Número",
+          "Empleo",
+          "Ciudad",
+          "Categoría",
+          "Estatus",
+        ],
+      });
+
+      // Ajustar el ancho de las columnas automáticamente
+      const colWidths = Object.keys(todasLasVacantes[0]).map((key, i) => ({
+        wch: Math.max(
+          key.length,
+          ...todasLasVacantes.map((row) =>
+            String(row[key]).length > 100 ? 100 : String(row[key]).length
+          )
+        ),
+      }));
+      worksheet["!cols"] = colWidths;
+
+      // Crear un libro de trabajo
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Vacantes Último Mes");
+
+      // Generar y descargar el archivo
+      const mesActual = new Date().toLocaleString('es-ES', { month: 'long' });
+      const mesFormateado = mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
+      XLSX.writeFile(workbook, `Resumen_${mesFormateado}.xlsx`);
+
+      console.log("Archivo Excel generado y descargado exitosamente.");
+      mostrarAlertaAdmin("alerta_23"); // Mostrar alerta de éxito
+    })
+    .catch((error) => {
+      console.error("Error al obtener datos:", error);
+      mostrarAlertaAdmin("alerta_24"); // Mostrar alerta de error
+    });
+}
+
 //Función para crear botones dinámicamente
 function crearBoton(texto, clase, onClick) {
   const btn = document.createElement("button");
@@ -1607,6 +1755,15 @@ function crearBoton(texto, clase, onClick) {
   btn.onclick = onClick;
   return btn;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const infoResumenBtn = document.getElementById("inforesumen");
+  if (infoResumenBtn) {
+    infoResumenBtn.addEventListener("click", descargarResumenExcel);
+  } else {
+    console.error("Elemento #inforesumen no encontrado en el DOM.");
+  }
+});
 
 function moverVacante(uniqueKey, data, nuevaDB) {
   console.log(`🔄 Moviendo vacante "${uniqueKey}" a ${nuevaDB}...`);
@@ -1808,6 +1965,7 @@ function manejarVisibilidadModales() {
     document.querySelector(".mensajes_usuarios"),
     document.querySelector(".disponibilidad_sucu"),
     document.querySelector(".disponibilidad_puestos"),
+    document.querySelector(".disponibilidad_resultados"),
   ];
 
   // Crear un MutationObserver para observar cambios en el atributo style de los modales

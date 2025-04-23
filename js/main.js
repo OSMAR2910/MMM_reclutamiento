@@ -731,6 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkboxes = [
     ...document.querySelectorAll('.disponibilidad_sucu input[type="checkbox"]'),
     ...document.querySelectorAll('.disponibilidad_puestos input[type="checkbox"]'),
+    ...document.querySelectorAll('.disponibilidad_resultados input[type="checkbox"]'),
     ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
     ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
     ...document.querySelectorAll(

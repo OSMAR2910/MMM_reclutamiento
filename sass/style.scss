@@ -1504,7 +1504,7 @@ html {
             width: 4%;
             height: 100%;
             position: absolute;
-            left: 1%;
+            left: .5%;
             top: 0;
             display: flex;
             justify-content: space-evenly;
@@ -1553,7 +1553,7 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: 0.2rem;
+                  padding: .2rem .5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
@@ -1597,8 +1597,6 @@ html {
                 .data_settings {
                   width: 100%;
                   height: 100%;
-                  overflow-x: hidden;
-                  overflow-y: scroll;
                   display: flex;
                   flex-direction: row;
                   justify-content: end;
@@ -1615,6 +1613,7 @@ html {
                     background-color: $Transparente;
                     border: none;
                     transition: all 0.2s ease-in-out;
+                    position: relative;
 
                     img {
                       height: 70%;
@@ -1626,9 +1625,9 @@ html {
                       position: absolute;
                       visibility: hidden;
                       opacity: 0;
-                      top: 85%;
+                      top: 100%;
                       border-radius: 0 0 1rem 1rem;
-                      padding: 0.2rem;
+                      padding: .2rem .5rem;
                       color: $Blanco;
                       display: flex;
                       font-family: $Letra2;
@@ -1744,7 +1743,7 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: 0.2rem;
+                  padding: .2rem .5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
@@ -2042,7 +2041,7 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: 0.2rem;
+                  padding: .2rem .5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
@@ -2298,7 +2297,7 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: 0.2rem;
+                  padding: .2rem .5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
@@ -2525,6 +2524,176 @@ html {
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .disponibilidad_resultados {
+            width: 3%;
+            height: 100%;
+            display: flex;
+            background-color: $Box_admin;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            right: 16%;
+            top: 0;
+
+            .icons_resultados {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+
+              input {
+                display: none;
+
+                &:checked ~ label {
+                  @include opacity;
+                  display: flex;
+                }
+
+                &:checked ~ .resultados_user_info {
+                  display: flex;
+                  animation: fadeIn 0.2s ease-in-out forwards;
+                }
+              }
+
+              .label_icon {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                transition: all 0.2s ease-in-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                  height: 50%;
+                  transform: scale(1);
+                  transition: all 0.2s ease-in-out;
+                }
+                span {
+                  width: 100%;
+                  position: absolute;
+                  visibility: hidden;
+                  opacity: 0;
+                  top: 85%;
+                  border-radius: 0 0 1rem 1rem;
+                  padding: .2rem .5rem;
+                  color: $Blanco;
+                  display: flex;
+                  font-family: $Letra2;
+                  font-size: 0.7em;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background-color: $Box_admin;
+                  transition: all 0.2s ease-in-out;
+                }
+                &:hover {
+                  img {
+                    transform: scale(1.1);
+                  }
+                  span {
+                    visibility: visible;
+                    opacity: 1;
+                  }
+                }
+              }
+
+              .resultados_user_info {
+                position: absolute;
+                display: none;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                width: 6vw;
+                height: 3vh;
+                top: 100%;
+                text-align: center;
+                color: $Texto;
+                font-family: $Letra2;
+                font-size: 0.7vw;
+                padding: 0.5vw;
+                border-radius: 0 0 1vw 1vw;
+                background-color: $Box_admin;
+                gap: 1.5vh;
+                
+
+                .data_resultados_user {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: end;
+                  align-items: center;
+                  gap: 5%;
+
+                  #infoestadisticas {
+                    @include opacity;
+                    &:hover {
+                      @include opacity;
+                      img {
+                        transform: none;
+                      }
+                      span {
+                        visibility: hidden;
+                        opacity: 0;
+                      }
+                    }
+                  }
+
+                  button {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color: $Transparente;
+                    border: none;
+                    transition: all 0.2s ease-in-out;
+                    position: relative;
+
+                    img {
+                      height: 80%;
+                      transform: scale(1);
+                      transition: all 0.2s ease-in-out;
+                    }
+                    span {
+                      width: 80%;
+                      position: absolute;
+                      visibility: hidden;
+                      opacity: 0;
+                      top: 100%;
+                      border-radius: 0 0 1rem 1rem;
+                      padding: .2rem .5rem;
+                      color: $Blanco;
+                      display: flex;
+                      font-family: $Letra2;
+                      font-size: 0.6em;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      text-align: center;
+                      background-color: $Box_admin;
+                      transition: all 0.2s ease-in-out;
+                    }
+                    &:hover {
+                      img {
+                        transform: scale(1.1);
+                      }
+                      span {
+                        visibility: visible;
+                        opacity: 1;
                       }
                     }
                   }
@@ -3718,9 +3887,9 @@ html {
         align-items: center;
 
         .Login-cont {
-          width: 20rem;
+          width: 17vw;
           aspect-ratio: 2/2;
-          border-radius: 2rem;
+          border-radius: 2vw;
           background-color: $Secundario;
           display: flex;
           justify-content: center;
@@ -3756,7 +3925,7 @@ html {
                 h3 {
                   width: 100%;
                   color: $Texto;
-                  font-size: 1.3em;
+                  font-size: 1.3vw;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -3766,14 +3935,14 @@ html {
 
                   span {
                     color: $Texto;
-                    letter-spacing: 0.1rem;
+                    letter-spacing: 0.1em;
                   }
                 }
 
                 p {
                   width: 100%;
                   color: $Texto;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   padding: 0;
                   margin: 0;
                   display: flex;
@@ -3781,7 +3950,7 @@ html {
                   align-items: center;
                   font-family: $Letra2;
                   color: $Texto;
-                  letter-spacing: 0.1rem;
+                  letter-spacing: 0.1em;
                 }
               }
 
@@ -3791,7 +3960,7 @@ html {
                 justify-content: center;
                 align-items: center;
                 width: 80%;
-                height: 3.5rem;
+                height: 18%;
                 font-family: $Letra2;
 
                 input::-webkit-inner-spin-button,
@@ -3806,8 +3975,8 @@ html {
                 input {
                   width: 100%;
                   height: 100%;
-                  border-radius: 5rem;
-                  font-size: 17px;
+                  border-radius: 5em;
+                  font-size: 1vw;
                   padding: 0px 10px;
                   background-color: $Transparente;
                   color: $Texto;
@@ -3825,7 +3994,7 @@ html {
                 input:focus ~ label,
                 input:valid ~ label {
                   top: 0;
-                  font-size: 15px;
+                  font-size: .7vw;
                   padding: 0 6px;
                   background: $Principal;
                   color: $Texto;
@@ -3856,7 +4025,7 @@ html {
                   top: 50%;
                   transform: translateY(-50%);
                   color: $Texto;
-                  font-size: 17px;
+                  font-size: .8vw;
                   pointer-events: none;
                   transition: 0.3s;
 
@@ -3874,9 +4043,9 @@ html {
                 }
               }
 
-              .label_btn_log_manager {
+              .label_btn_log {
                 color: $Texto;
-                bottom: 3.5em;
+                bottom: 10%;
                 border-radius: 3vw;
                 background-color: $Fondo;
                 padding: 0.3rem 0.7rem;
@@ -3896,10 +4065,6 @@ html {
               animation-fill-mode: forwards;
             }
 
-            .form-login.activolog {
-              display: flex;
-            }
-
             .error {
               width: 65%;
               height: 100%;
@@ -3915,8 +4080,8 @@ html {
               animation-fill-mode: forwards;
 
               #icon {
-                width: 7rem;
-                height: 7rem;
+                width: 60%;
+                aspect-ratio: 1/1;
                 margin-bottom: 15%;
 
                 img {
@@ -3949,8 +4114,8 @@ html {
 
         .entrar-btn {
           width: 10vw;
-          display: flex;
           aspect-ratio: 1/1;
+          display: flex;
           background-color: $Secundario;
           border-radius: 50%;
           color: $Texto;
@@ -3969,7 +4134,7 @@ html {
         position: fixed;
         display: flex;
         opacity: 0;
-        width: 3em;
+        width: 2.5vw;
         aspect-ratio: 1/1;
         bottom: 0;
         right: 0;

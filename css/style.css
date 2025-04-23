@@ -2698,7 +2698,7 @@ html main #pag3 .nav_admin .nav_cont .settings {
   width: 4%;
   height: 100%;
   position: absolute;
-  left: 1%;
+  left: 0.5%;
   top: 0;
   display: flex;
   justify-content: space-evenly;
@@ -2752,7 +2752,7 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings label span {
   opacity: 0;
   top: 85%;
   border-radius: 0 0 1rem 1rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
@@ -2796,8 +2796,6 @@ body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .d
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
   display: flex;
   flex-direction: row;
   justify-content: end;
@@ -2815,6 +2813,7 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .d
   background-color: rgba(0, 0, 0, 0);
   border: none;
   transition: all 0.2s ease-in-out;
+  position: relative;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img {
@@ -2828,9 +2827,9 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .d
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  top: 85%;
+  top: 100%;
   border-radius: 0 0 1rem 1rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
@@ -2947,7 +2946,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon sp
   opacity: 0;
   top: 85%;
   border-radius: 0 0 1rem 1rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
@@ -3258,7 +3257,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_ico
   opacity: 0;
   top: 85%;
   border-radius: 0 0 1rem 1rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
@@ -3525,7 +3524,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .lab
   opacity: 0;
   top: 85%;
   border-radius: 0 0 1rem 1rem;
-  padding: 0.2rem;
+  padding: 0.2rem 0.5rem;
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
@@ -3778,6 +3777,183 @@ body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle:hover {
   opacity: 50%;
   scale: 0.9;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados {
+  width: 3%;
+  height: 100%;
+  display: flex;
+  background-color: #1b3c59;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 16%;
+  top: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ label,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ label {
+  opacity: 50%;
+  scale: 0.9;
+  display: flex;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .resultados_user_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .resultados_user_info {
+  display: flex;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon img {
+  height: 50%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem 0.5rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon:hover img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon:hover span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info {
+  position: absolute;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 6vw;
+  height: 3vh;
+  top: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+  padding: 0.5vw;
+  border-radius: 0 0 1vw 1vw;
+  background-color: #1b3c59;
+  gap: 1.5vh;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 5%;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas {
+  opacity: 50%;
+  scale: 0.9;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover img {
+  transform: none;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button img {
+  height: 80%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button span {
+  width: 80%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 100%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem 0.5rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button:hover img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button:hover span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button:hover span {
+  visibility: visible;
+  opacity: 1;
 }
 body main #pag3 .estatus_vacantes,
 html main #pag3 .estatus_vacantes {
@@ -5113,9 +5289,9 @@ html main #pag4 .Logincont {
 }
 body main #pag4 .Logincont .Login-cont,
 html main #pag4 .Logincont .Login-cont {
-  width: 20rem;
+  width: 17vw;
   aspect-ratio: 2/2;
-  border-radius: 2rem;
+  border-radius: 2vw;
   background-color: #174891;
   display: flex;
   justify-content: center;
@@ -5155,7 +5331,7 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 {
   width: 100%;
   color: #ffffff;
-  font-size: 1.3em;
+  font-size: 1.3vw;
   padding: 0;
   margin: 0;
   display: flex;
@@ -5166,13 +5342,13 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 {
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 span,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel h3 span {
   color: #ffffff;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.1em;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p {
   width: 100%;
   color: #ffffff;
-  font-size: 0.7em;
+  font-size: 0.7vw;
   padding: 0;
   margin: 0;
   display: flex;
@@ -5180,7 +5356,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .wel p {
   align-items: center;
   font-family: "Nunito";
   color: #ffffff;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.1em;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field {
@@ -5189,7 +5365,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field {
   justify-content: center;
   align-items: center;
   width: 80%;
-  height: 3.5rem;
+  height: 18%;
   font-family: "Nunito";
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input::-webkit-inner-spin-button,
@@ -5206,8 +5382,8 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input {
   width: 100%;
   height: 100%;
-  border-radius: 5rem;
-  font-size: 17px;
+  border-radius: 5em;
+  font-size: 1vw;
   padding: 0px 10px;
   background-color: rgba(0, 0, 0, 0);
   color: #ffffff;
@@ -5226,7 +5402,7 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label {
   top: 0;
-  font-size: 15px;
+  font-size: 0.7vw;
   padding: 0 6px;
   background: #ec6223;
   color: #ffffff;
@@ -5257,7 +5433,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field label
   top: 50%;
   transform: translateY(-50%);
   color: #ffffff;
-  font-size: 17px;
+  font-size: 0.8vw;
   pointer-events: none;
   transition: 0.3s;
 }
@@ -5273,10 +5449,10 @@ body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-submit inpu
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-submit input {
   display: none;
 }
-body main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager,
-html main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log_manager {
+body main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log,
+html main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log {
   color: #ffffff;
-  bottom: 3.5em;
+  bottom: 10%;
   border-radius: 3vw;
   background-color: #ec6223;
   padding: 0.3rem 0.7rem;
@@ -5293,10 +5469,6 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login.animacionform {
   animation: bounceOutRight;
   animation-duration: 0.7s;
   animation-fill-mode: forwards;
-}
-body main #pag4 .Logincont .Login-cont .Login-son .form-login.activolog,
-html main #pag4 .Logincont .Login-cont .Login-son .form-login.activolog {
-  display: flex;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .error,
 html main #pag4 .Logincont .Login-cont .Login-son .error {
@@ -5315,8 +5487,8 @@ html main #pag4 .Logincont .Login-cont .Login-son .error {
 }
 body main #pag4 .Logincont .Login-cont .Login-son .error #icon,
 html main #pag4 .Logincont .Login-cont .Login-son .error #icon {
-  width: 7rem;
-  height: 7rem;
+  width: 60%;
+  aspect-ratio: 1/1;
   margin-bottom: 15%;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .error #icon img,
@@ -5346,8 +5518,8 @@ html main #pag4 .Logincont .Login-cont .Login-son .error.activolog {
 body main #pag4 .Logincont .entrar-btn,
 html main #pag4 .Logincont .entrar-btn {
   width: 10vw;
-  display: flex;
   aspect-ratio: 1/1;
+  display: flex;
   background-color: #174891;
   border-radius: 50%;
   color: #ffffff;
@@ -5365,7 +5537,7 @@ html main #pag4 .btn_admin2 {
   position: fixed;
   display: flex;
   opacity: 0;
-  width: 3em;
+  width: 2.5vw;
   aspect-ratio: 1/1;
   bottom: 0;
   right: 0;

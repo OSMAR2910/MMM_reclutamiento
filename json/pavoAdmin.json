@@ -142,6 +142,24 @@
             "responses": [
                 "¡Oops, ${userName}! Problema al actualizar puesto. 😕🦃"
             ]
+        },
+        {
+            "tag": "alerta_22",
+            "responses": [
+                "¡Glu-glu, ${userName}! No hubo vacantes en el último mes. ¡Pero el pavo te avisará cuando haya novedades! 🦃🔍"
+            ]
+        },
+        {
+            "tag": "alerta_23",
+            "responses": [
+                "¡Glu-glu! Archivo Excel generado y descargado exitosamente, ${userName}. ¡El pavo ha hecho su magia! 🦃📊"
+            ]
+        },
+        {
+            "tag": "alerta_24",
+            "responses": [
+                "¡Glu-glu, ${userName}! Hubo un error al obtener los datos. ¡Pero no te preocupes, el pavo investigará! 🦃🔧"
+            ]
         }
     ]
 }
