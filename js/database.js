@@ -1651,10 +1651,10 @@ function descargarResumenExcel() {
             Fecha_Registro: data.fecha_r
               ? new Date(data.fecha_r).toLocaleDateString()
               : "No disponible",
-              Fecha_Cita: data.fecha_cita
-                ? new Date(data.fecha_cita).toLocaleDateString()
-                : "No disponible",
-                Hora_Cita: data.hora_cita || "No disponible",
+            Fecha_Cita: data.fecha_cita
+              ? new Date(data.fecha_cita).toLocaleDateString()
+              : "No disponible",
+            Hora_Cita: data.hora_cita || "No disponible",
             Nombre: data.nombre || "No disponible",
             Sexo: data.sexo || "No disponible",
             Puesto: data.puesto || "No disponible",
@@ -1729,12 +1729,69 @@ function descargarResumenExcel() {
       }));
       worksheet["!cols"] = colWidths;
 
+      // Definir estilos
+      const headerStyle = {
+        fill: {
+          fgColor: { rgb: "FF4CAF50" }, // Verde oscuro para el encabezado
+        },
+        font: {
+          bold: true,
+          color: { rgb: "FFFFFFFF" }, // Texto blanco
+        },
+        alignment: {
+          horizontal: "center",
+          vertical: "center",
+        },
+      };
+
+      const categoryStyles = {
+        "Vacantes": { fill: { fgColor: { rgb: "FFFFE0B2" } } }, // Amarillo claro
+        "Citas Vacantes": { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Azul claro
+        "Asistieron": { fill: { fgColor: { rgb: "FFB2DFDB" } } }, // Verde claro
+        "No Asistieron": { fill: { fgColor: { rgb: "FFFFCDD2" } } }, // Rojo claro
+        "Contratado": { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Púrpura claro
+      };
+
+      // Aplicar estilo al encabezado
+      const headers = [
+        "Fecha_Registro",
+        "Fecha_Cita",
+        "Hora_Cita",
+        "Nombre",
+        "Sexo",
+        "Puesto",
+        "Sucursal",
+        "Edad",
+        "Número",
+        "Empleo",
+        "Ciudad",
+        "Categoría",
+        "Estatus",
+      ];
+      headers.forEach((header, index) => {
+        const cellRef = XLSX.utils.encode_cell({ r: 0, c: index });
+        worksheet[cellRef].s = headerStyle;
+      });
+
+      // Aplicar estilos a las filas según la categoría
+      todasLasVacantes.forEach((row, rowIndex) => {
+        const categoria = row["Categoría"];
+        const style = categoryStyles[categoria] || {};
+
+        headers.forEach((_, colIndex) => {
+          const cellRef = XLSX.utils.encode_cell({ r: rowIndex + 1, c: colIndex });
+          if (worksheet[cellRef]) {
+            worksheet[cellRef].s = style;
+          }
+        });
+      });
+
       // Crear un libro de trabajo
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Vacantes Último Mes");
 
       // Generar y descargar el archivo
-      const mesActual = new Date().toLocaleString('es-ES', { month: 'long' });
+      const mesActual = new Date().toLocaleString("es-ES", { month: "long" });
       const mesFormateado = mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
       XLSX.writeFile(workbook, `Resumen_${mesFormateado}.xlsx`);
 
@@ -1747,6 +1804,357 @@ function descargarResumenExcel() {
     });
 }
 
+async function generarEstadisticasPDF() {
+  const auth = getAuth(app);
+  if (!auth.currentUser) {
+    console.log("Usuario no autenticado, no se pueden generar estadísticas.");
+    mostrarAlertaAdmin("alerta_1");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Estilos
+  const colorTitulo = [23, 72, 145];
+  const colorTexto = [60, 60, 60];
+  const colorLinea = [200, 200, 200];
+  const colorFondo = [245, 245, 245];
+
+  // Fecha límite (últimos 30 días)
+  const fechaLimite = new Date();
+  fechaLimite.setDate(fechaLimite.getDate() - 30);
+
+  // Obtener datos de Firebase
+  const refs = {
+    vacantes: ref(database, "vacantes/"),
+    citas_vacantes: ref(database, "citas_vacantes/"),
+    asistieron: ref(database, "asistieron/"),
+    no_asistieron: ref(database, "no_asistieron/"),
+    contratado: ref(database, "contratado/"),
+  };
+
+  let estadisticasPorSucursal = {};
+  let estadisticasTotales = {
+    contratados: 0,
+    asistieron: 0,
+    no_asistieron: 0,
+    citas: 0,
+    vacantes: 0,
+  };
+
+  function procesarSnapshot(snapshot, categoria) {
+    if (snapshot.exists()) {
+      snapshot.forEach((childSnapshot) => {
+        const data = childSnapshot.val() || {};
+        const fechaStr = data.fecha_r || data.fecha_cita || "";
+        let fecha;
+
+        try {
+          fecha = new Date(fechaStr);
+          if (isNaN(fecha.getTime())) return;
+        } catch (error) {
+          console.warn(`Error al parsear fecha: ${error.message}`);
+          return;
+        }
+
+        if (fecha >= fechaLimite) {
+          const sucursal = data.sucursal || data.sucursal_cita || "Sin Sucursal";
+          if (!estadisticasPorSucursal[sucursal]) {
+            estadisticasPorSucursal[sucursal] = {
+              contratados: 0,
+              asistieron: 0,
+              no_asistieron: 0,
+              citas: 0,
+              vacantes: 0,
+            };
+          }
+
+          switch (categoria) {
+            case "Contratado":
+              estadisticasPorSucursal[sucursal].contratados++;
+              estadisticasTotales.contratados++;
+              break;
+            case "Asistieron":
+              estadisticasPorSucursal[sucursal].asistieron++;
+              estadisticasTotales.asistieron++;
+              break;
+            case "No Asistieron":
+              estadisticasPorSucursal[sucursal].no_asistieron++;
+              estadisticasTotales.no_asistieron++;
+              break;
+            case "Citas Vacantes":
+              estadisticasPorSucursal[sucursal].citas++;
+              estadisticasTotales.citas++;
+              break;
+            case "Vacantes":
+              estadisticasPorSucursal[sucursal].vacantes++;
+              estadisticasTotales.vacantes++;
+              break;
+          }
+        }
+      });
+    }
+  }
+
+  try {
+    await Promise.all([
+      get(refs.vacantes).then((snapshot) => procesarSnapshot(snapshot, "Vacantes")),
+      get(refs.citas_vacantes).then((snapshot) => procesarSnapshot(snapshot, "Citas Vacantes")),
+      get(refs.asistieron).then((snapshot) => procesarSnapshot(snapshot, "Asistieron")),
+      get(refs.no_asistieron).then((snapshot) => procesarSnapshot(snapshot, "No Asistieron")),
+      get(refs.contratado).then((snapshot) => procesarSnapshot(snapshot, "Contratado")),
+    ]);
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    mostrarAlertaAdmin("alerta_24");
+    return;
+  }
+
+  if (Object.keys(estadisticasPorSucursal).length === 0) {
+    console.log("No hay datos para el último mes.");
+    mostrarAlertaAdmin("alerta_22");
+    return;
+  }
+
+  // Crear canvas oculto para gráficos
+  let canvas = document.getElementById("chartCanvas");
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    canvas.id = "chartCanvas";
+    canvas.style.display = "none";
+    document.body.appendChild(canvas);
+  }
+  const ctx = canvas.getContext("2d");
+
+  // Función para limpiar el canvas
+  function limpiarCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+  }
+
+  // Función para generar gráfico de barras
+  async function generarGraficoBarras(data, labels, title) {
+    limpiarCanvas();
+    canvas.width = 600;
+    canvas.height = 400;
+
+    return new Promise((resolve) => {
+      const chart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Contratados",
+              data: data.contratados,
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+            },
+            {
+              label: "Asistieron",
+              data: data.asistieron,
+              backgroundColor: "rgba(54, 162, 235, 0.6)",
+            },
+            {
+              label: "No Asistieron",
+              data: data.no_asistieron,
+              backgroundColor: "rgba(255, 99, 132, 0.6)",
+            },
+            {
+              label: "Citas",
+              data: data.citas,
+              backgroundColor: "rgba(255, 206, 86, 0.6)",
+            },
+            {
+              label: "Pendientes",
+              data: data.vacantes,
+              backgroundColor: "rgba(153, 102, 255, 0.6)",
+            },
+          ],
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              font: { size: 16 },
+            },
+            legend: { position: "top" },
+          },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: "Cantidad" } },
+            x: { title: { display: true, text: "Categoría" } },
+          },
+        },
+      });
+
+      setTimeout(() => {
+        const image = canvas.toDataURL("image/png");
+        chart.destroy();
+        resolve(image);
+      }, 500); // Retraso para asegurar el renderizado
+    });
+  }
+
+  // Función para generar gráfico de pastel
+  async function generarGraficoPastel(data, title) {
+    limpiarCanvas();
+    canvas.width = 400;
+    canvas.height = 400;
+
+    return new Promise((resolve) => {
+      const chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: ["Contratados", "Asistieron", "No Asistieron", "Citas", "Pendientes"],
+          datasets: [
+            {
+              data: [
+                data.contratados,
+                data.asistieron,
+                data.no_asistieron,
+                data.citas,
+                data.vacantes,
+              ],
+              backgroundColor: [
+                "rgba(75, 192, 192, 0.6)",
+                "rgba(54, 162, 235, 0.6)",
+                "rgba(255, 99, 132, 0.6)",
+                "rgba(255, 206, 86, 0.6)",
+                "rgba(153, 102, 255, 0.6)",
+              ],
+            },
+          ],
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            title: {
+              display: true,
+              text: title,
+              font: { size: 16 },
+            },
+          },
+        },
+      });
+
+      setTimeout(() => {
+        const image = canvas.toDataURL("image/png");
+        chart.destroy();
+        resolve(image);
+      }, 500); // Retraso para asegurar el renderizado
+    });
+  }
+
+  // Portada
+  doc.setFillColor(...colorFondo);
+  doc.rect(0, 0, 210, 297, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(30);
+  doc.setTextColor(...colorTitulo);
+  const mesActual = new Date().toLocaleString("es-ES", { month: "long" });
+  const mesFormateado = mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
+  doc.text(`Estadísticas de Vacantes - ${mesFormateado}`, 25, 150);
+  doc.setFontSize(16);
+  doc.setTextColor(...colorTexto);
+  doc.text("Generado por Reclutador Web MMM", 55, 170);
+  doc.setFontSize(12);
+
+  // Diapositiva 1: Resumen General
+  doc.addPage();
+  doc.setFillColor(...colorFondo);
+  doc.rect(0, 0, 210, 297, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.setTextColor(...colorTitulo);
+  doc.text("Resumen General", 20, 20);
+  doc.setDrawColor(...colorLinea);
+  doc.line(20, 22, 190, 22);
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(12);
+  doc.setTextColor(...colorTexto);
+  doc.text(`Total Pendientes: ${estadisticasTotales.vacantes}`, 20, 40);
+  doc.text(`Total Citas: ${estadisticasTotales.citas}`, 20, 50);
+  doc.text(`Total Asistieron: ${estadisticasTotales.asistieron}`, 20, 60);
+  doc.text(`Total No Asistieron: ${estadisticasTotales.no_asistieron}`, 20, 70);
+  doc.text(`Total Contratados: ${estadisticasTotales.contratados}`, 20, 80);
+  doc.setTextColor(...colorTitulo);
+  doc.text("Generado por Reclutador Web MMM", 8, 290);
+
+  try {
+    const pastelGeneral = await generarGraficoPastel(estadisticasTotales, "Distribución General");
+    if (pastelGeneral.includes("data:image/png")) {
+      doc.addImage(pastelGeneral, "PNG", 40, 110, 130, 130);
+    } else {
+      console.warn("Gráfico de pastel no generado correctamente.");
+      doc.text("No se pudo generar el gráfico de pastel.", 50, 100);
+    }
+  } catch (error) {
+    console.error("Error al generar gráfico de pastel:", error);
+    doc.text("Error al generar el gráfico de pastel.", 50, 100);
+  }
+
+  // Diapositivas por Sucursal
+  const sucursales = Object.keys(estadisticasPorSucursal).sort();
+  for (const sucursal of sucursales) {
+    doc.addPage();
+    doc.setFillColor(...colorFondo);
+    doc.rect(0, 0, 210, 297, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.setTextColor(...colorTitulo);
+    doc.text(`Estadísticas - ${sucursal}`, 20, 20);
+    doc.setDrawColor(...colorLinea);
+    doc.line(20, 22, 190, 22);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.setTextColor(...colorTexto);
+    const stats = estadisticasPorSucursal[sucursal];
+    doc.text(`Pendientes: ${stats.vacantes}`, 20, 40);
+    doc.text(`Citas: ${stats.citas}`, 20, 50);
+    doc.text(`Asistieron: ${stats.asistieron}`, 20, 60);
+    doc.text(`No Asistieron: ${stats.no_asistieron}`, 20, 70);
+    doc.text(`Contratados: ${stats.contratados}`, 20, 80);
+    doc.setTextColor(...colorTitulo);
+    doc.text("Generado por Reclutador Web MMM", 8, 290);
+
+    try {
+      const barrasSucursal = await generarGraficoBarras(
+        {
+          contratados: [stats.contratados],
+          asistieron: [stats.asistieron],
+          no_asistieron: [stats.no_asistieron],
+          citas: [stats.citas],
+          vacantes: [stats.vacantes],
+        },
+        ["Estadísticas"],
+        `Estadísticas de ${sucursal}`
+      );
+      if (barrasSucursal.includes("data:image/png")) {
+        doc.addImage(barrasSucursal, "PNG", 20, 110, 170, 130);
+      } else {
+        console.warn(`Gráfico de barras para ${sucursal} no generado correctamente.`);
+        doc.text(`No se pudo generar el gráfico de barras para ${sucursal}.`, 20, 100);
+      }
+    } catch (error) {
+      console.error(`Error al generar gráfico de barras para ${sucursal}:`, error);
+      doc.text(`Error al generar el gráfico de barras para ${sucursal}.`, 20, 100);
+    }
+  }
+
+  // Guardar PDF
+  try {
+    doc.save(`Grafica_${mesFormateado}.pdf`);
+    mostrarAlertaAdmin("alerta_25");
+  } catch (error) {
+    console.error("Error al guardar el PDF:", error);
+    mostrarAlertaAdmin("alerta_24");
+  }
+}
+
 //Función para crear botones dinámicamente
 function crearBoton(texto, clase, onClick) {
   const btn = document.createElement("button");
@@ -1755,15 +2163,6 @@ function crearBoton(texto, clase, onClick) {
   btn.onclick = onClick;
   return btn;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const infoResumenBtn = document.getElementById("inforesumen");
-  if (infoResumenBtn) {
-    infoResumenBtn.addEventListener("click", descargarResumenExcel);
-  } else {
-    console.error("Elemento #inforesumen no encontrado en el DOM.");
-  }
-});
 
 function moverVacante(uniqueKey, data, nuevaDB) {
   console.log(`🔄 Moviendo vacante "${uniqueKey}" a ${nuevaDB}...`);
@@ -2272,16 +2671,6 @@ function abrirModalUserInfo() {
   };
 }
 
-// Asignar evento al botón infouserAdmin
-document.addEventListener("DOMContentLoaded", () => {
-  const infoUserAdminBtn = document.getElementById("infouserAdmin");
-  if (infoUserAdminBtn) {
-    infoUserAdminBtn.addEventListener("click", abrirModalUserInfo);
-  } else {
-    console.error("❌ Botón infouserAdmin no encontrado.");
-  }
-});
-
 // Cargar nombre personalizado al iniciar sesión
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -2570,6 +2959,27 @@ logoutButtons.forEach((button) => {
   });
 });
 
+// Asignar eventos
+document.addEventListener("DOMContentLoaded", () => {
+  const infoResumenBtn = document.getElementById("inforesumen");
+  if (infoResumenBtn) {
+    infoResumenBtn.addEventListener("click", descargarResumenExcel);
+  } else {
+    console.error("Elemento #inforesumen no encontrado en el DOM.");
+  }
+  const infoEstadisticasBtn = document.getElementById("infoestadisticas");
+  if (infoEstadisticasBtn) {
+    infoEstadisticasBtn.addEventListener("click", generarEstadisticasPDF);
+  } else {
+    console.error("Elemento #infoestadisticas no encontrado en el DOM.");
+  }
+  const infoUserAdminBtn = document.getElementById("infouserAdmin");
+  if (infoUserAdminBtn) {
+    infoUserAdminBtn.addEventListener("click", abrirModalUserInfo);
+  } else {
+    console.error("❌ Botón infouserAdmin no encontrado.");
+  }
+});
 document.addEventListener("DOMContentLoaded", () => {
   asignarEventos("admin");
   asignarEventos("manager");

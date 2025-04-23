@@ -2637,20 +2637,6 @@ html {
                   align-items: center;
                   gap: 5%;
 
-                  #infoestadisticas {
-                    @include opacity;
-                    &:hover {
-                      @include opacity;
-                      img {
-                        transform: none;
-                      }
-                      span {
-                        visibility: hidden;
-                        opacity: 0;
-                      }
-                    }
-                  }
-
                   button {
                     width: 100%;
                     height: 100%;

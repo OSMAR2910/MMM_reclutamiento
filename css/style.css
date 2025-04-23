@@ -3888,25 +3888,6 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   align-items: center;
   gap: 5%;
 }
-body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas,
-html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas {
-  opacity: 50%;
-  scale: 0.9;
-}
-body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover,
-html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover {
-  opacity: 50%;
-  scale: 0.9;
-}
-body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover img,
-html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover img {
-  transform: none;
-}
-body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover span,
-html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user #infoestadisticas:hover span {
-  visibility: hidden;
-  opacity: 0;
-}
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button {
   width: 100%;

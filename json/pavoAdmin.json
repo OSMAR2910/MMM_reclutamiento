@@ -160,6 +160,12 @@
             "responses": [
                 "¡Glu-glu, ${userName}! Hubo un error al obtener los datos. ¡Pero no te preocupes, el pavo investigará! 🦃🔧"
             ]
+        },
+        {
+            "tag": "alerta_25",
+            "responses": [
+                "¡Glu-glu! Descargaste el PDF de las gráficas del mes correctamente, ${userName}. ¡El pavo aprueba este éxito! 🦃📊✨"
+            ]
         }
     ]
 }
