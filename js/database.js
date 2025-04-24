@@ -255,6 +255,7 @@ function mostrarDatos() {
     dataNosistieron: document.getElementById("data_no_asistieron"),
     dataAsistieron: document.getElementById("data_asistieron"),
     dataContratado: document.getElementById("data_contratado"),
+    dataBaja: document.getElementById("data_baja"),
   };
 
   const filtros = {
@@ -264,6 +265,7 @@ function mostrarDatos() {
     filtroNoAsistieron: document.getElementById("filtro-no-asistieron"),
     filtroAsistieron: document.getElementById("filtro-asistieron"),
     filtroContratado: document.getElementById("filtro-contratado"),
+    filtroBaja: document.getElementById("filtro-baja"),
   };
 
   const vacantesRef = ref(database, "vacantes/");
@@ -271,6 +273,7 @@ function mostrarDatos() {
   const asistieronRef = ref(database, "asistieron/");
   const no_asistieronRef = ref(database, "no_asistieron/");
   const contratadoRef = ref(database, "contratado/");
+  const bajaRef = ref(database, "baja/");
 
   // Función para manejar el filtrado
   function agregarFiltro(input, callbackRender) {
@@ -371,6 +374,19 @@ function mostrarDatos() {
       );
     renderContratado();
     agregarFiltro(filtros.filtroContratado, renderContratado);
+  });
+  // Baja (admin) - Con filtro
+  onValue(bajaRef, (snapshot) => {
+    const renderBaja = (filtro = "") =>
+      renderizarVacantes(
+        snapshot,
+        contenedores.dataBaja,
+        null,
+        true,
+        filtro
+      );
+    renderBaja();
+    agregarFiltro(filtros.filtroBaja, renderBaja);
   });
 
   function renderizarVacantes(
@@ -595,6 +611,8 @@ function mostrarDatos() {
           claseItem += "_noasistieron";
         else if (containerGreen.id === "data_contratado")
           claseItem += "_contratado";
+        else if (containerGreen.id === "data_baja") 
+          claseItem += "_baja";
         else
           claseItem += esAsistieron
             ? "_status"
@@ -760,6 +778,13 @@ function mostrarDatos() {
         const btnContratado = crearBoton("", "btn-contratado", () =>
           moverVacante(uniqueKey, data, "contratado")
         );
+        const btnBaja = crearBoton("", "btn-baja", () =>
+          moverVacante(uniqueKey, data, "baja")
+        );
+
+        const containerEliminar = document.createElement("div");
+        containerEliminar.classList.add("containerEliminar");
+
         const btnEliminar = crearBoton("", "btn-eliminar", () => {
           let base = "vacantes";
           if (containerGreen.id === "data_no_asistieron")
@@ -773,8 +798,10 @@ function mostrarDatos() {
           btnNoAsistieron,
           btnAsistieron,
           btnContratado,
-          btnEliminar
+          btnBaja,
         );
+
+        containerEliminar.append(btnEliminar);
         
         listItem.appendChild(btnContainer2);
         listItem.appendChild(Itemnombre);
@@ -782,6 +809,7 @@ function mostrarDatos() {
         listItem.appendChild(criteriosContainer);
         listItem.appendChild(Itemstatus);
         listItem.appendChild(btnContainer);
+        listItem.appendChild(containerEliminar);
 
         if (esAsistieron) ulGreen.appendChild(listItem);
         else
@@ -1027,7 +1055,18 @@ function mostrarDatos() {
     };
   }
   function enviarMensajeWhatsApp(numero, nombre, fecha, hora, sucursal) {
-    const mensaje = `Hola, ${nombre}. Tu cita para la entrevista a sido agendada para el dia ${fecha} a las ${hora} en la sucursal ${sucursal}, recuerda asistir con tus papeles en regla.`;
+    const mensaje = `Hola, ${nombre}:
+
+    Queremos confirmarte que tu cita para la entrevista ha sido agendada para el ${fecha}, a las ${hora}, en nuestra sucursal de ${sucursal}.
+    
+    Te pedimos amablemente que asistas puntualmente y que traigas contigo toda la documentación requerida en regla. Si necesitas más información o tienes alguna duda, no dudes en contactarnos.
+    
+    Estamos muy contentos de conocerte y esperamos contar con tu valiosa participación en este proceso.
+    
+    ¡Nos vemos pronto!
+    
+    Saludos cordiales,
+    RH MMM Pizza`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   }
@@ -1614,6 +1653,7 @@ function descargarResumenExcel() {
     asistieron: ref(database, "asistieron/"),
     no_asistieron: ref(database, "no_asistieron/"),
     contratado: ref(database, "contratado/"),
+    baja: ref(database, "baja/"),
   };
 
   // Fecha límite (hace 30 días)
@@ -1674,7 +1714,7 @@ function descargarResumenExcel() {
   // Promesas para obtener datos de todos los nodos
   const promesas = [
     get(refs.vacantes).then((snapshot) =>
-      procesarSnapshot(snapshot, "Vacantes")
+      procesarSnapshot(snapshot, "Pendientes")
     ),
     get(refs.citas_vacantes).then((snapshot) =>
       procesarSnapshot(snapshot, "Citas Vacantes")
@@ -1687,6 +1727,9 @@ function descargarResumenExcel() {
     ),
     get(refs.contratado).then((snapshot) =>
       procesarSnapshot(snapshot, "Contratado")
+    ),
+    get(refs.baja).then((snapshot) =>
+      procesarSnapshot(snapshot, "Baja")
     ),
   ];
 
@@ -1832,6 +1875,7 @@ async function generarEstadisticasPDF() {
     asistieron: ref(database, "asistieron/"),
     no_asistieron: ref(database, "no_asistieron/"),
     contratado: ref(database, "contratado/"),
+    baja: ref(database, "baja/"),
   };
 
   let estadisticasPorSucursal = {};
@@ -1841,6 +1885,7 @@ async function generarEstadisticasPDF() {
     no_asistieron: 0,
     citas: 0,
     vacantes: 0,
+    baja: 0,
   };
 
   function procesarSnapshot(snapshot, categoria) {
@@ -1867,6 +1912,7 @@ async function generarEstadisticasPDF() {
               no_asistieron: 0,
               citas: 0,
               vacantes: 0,
+              baja: 0,
             };
           }
 
@@ -1891,6 +1937,10 @@ async function generarEstadisticasPDF() {
               estadisticasPorSucursal[sucursal].vacantes++;
               estadisticasTotales.vacantes++;
               break;
+              case "Baja":
+                estadisticasPorSucursal[sucursal].baja++;
+                estadisticasTotales.baja++;
+                break;
           }
         }
       });
@@ -1904,6 +1954,7 @@ async function generarEstadisticasPDF() {
       get(refs.asistieron).then((snapshot) => procesarSnapshot(snapshot, "Asistieron")),
       get(refs.no_asistieron).then((snapshot) => procesarSnapshot(snapshot, "No Asistieron")),
       get(refs.contratado).then((snapshot) => procesarSnapshot(snapshot, "Contratado")),
+      get(refs.baja).then((snapshot) => procesarSnapshot(snapshot, "Baja")),
     ]);
   } catch (error) {
     console.error("Error al obtener datos:", error);
@@ -1951,14 +2002,19 @@ async function generarEstadisticasPDF() {
               backgroundColor: "rgb(0, 191, 99)",
             },
             {
+              label: "Baja",
+              data: data.baja,
+              backgroundColor: "rgb(255, 49, 49)",
+            },
+            {
               label: "Asistieron",
               data: data.asistieron,
-              backgroundColor: "rgb(255, 215, 0)",
+              backgroundColor: "rgb(23, 162, 184)",
             },
             {
               label: "No Asistieron",
               data: data.no_asistieron,
-              backgroundColor: "rgb(255, 49, 49)",
+              backgroundColor: "rgb(255, 215, 0)",
             },
             {
               label: "Citas",
@@ -2007,11 +2063,12 @@ async function generarEstadisticasPDF() {
       const chart = new Chart(ctx, {
         type: "pie",
         data: {
-          labels: ["Contratados", "Asistieron", "No Asistieron", "Citas", "Pendientes"],
+          labels: ["Contratados", "Baja", "Asistieron", "No Asistieron", "Citas", "Pendientes"],
           datasets: [
             {
               data: [
                 data.contratados,
+                data.baja,
                 data.asistieron,
                 data.no_asistieron,
                 data.citas,
@@ -2019,8 +2076,9 @@ async function generarEstadisticasPDF() {
               ],
               backgroundColor: [
                 "rgb(0, 191, 99)",
-                "rgb(255, 215, 0)",
                 "rgb(255, 49, 49)",
+                "rgb(23, 162, 184)",
+                "rgb(255, 215, 0)",
                 "rgb(166, 166, 166)",
                 "rgb(27, 60, 89)",
               ],
@@ -2075,18 +2133,19 @@ async function generarEstadisticasPDF() {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(12);
   doc.setTextColor(...colorTexto);
-  doc.text(`Total Pendientes: ${estadisticasTotales.vacantes}`, 20, 40);
-  doc.text(`Total Citas: ${estadisticasTotales.citas}`, 20, 50);
+  doc.text(`Total Contratados: ${estadisticasTotales.contratados}`, 20, 40);
+  doc.text(`Total Baja: ${estadisticasTotales.baja}`, 20, 50);
   doc.text(`Total Asistieron: ${estadisticasTotales.asistieron}`, 20, 60);
   doc.text(`Total No Asistieron: ${estadisticasTotales.no_asistieron}`, 20, 70);
-  doc.text(`Total Contratados: ${estadisticasTotales.contratados}`, 20, 80);
+  doc.text(`Total Citas: ${estadisticasTotales.citas}`, 20, 80);
+  doc.text(`Total Pendientes: ${estadisticasTotales.vacantes}`, 20, 90);
   doc.setTextColor(...colorTitulo);
   doc.text("Generado por Reclutador Web MMM", 8, 290);
 
   try {
     const pastelGeneral = await generarGraficoPastel(estadisticasTotales, "Distribución General");
     if (pastelGeneral.includes("data:image/png")) {
-      doc.addImage(pastelGeneral, "PNG", 40, 110, 130, 130);
+      doc.addImage(pastelGeneral, "PNG", 40, 120, 130, 130);
     } else {
       console.warn("Gráfico de pastel no generado correctamente.");
       doc.text("No se pudo generar el gráfico de pastel.", 50, 100);
@@ -2113,11 +2172,12 @@ async function generarEstadisticasPDF() {
     doc.setFontSize(12);
     doc.setTextColor(...colorTexto);
     const stats = estadisticasPorSucursal[sucursal];
-    doc.text(`Pendientes: ${stats.vacantes}`, 20, 40);
-    doc.text(`Citas: ${stats.citas}`, 20, 50);
+    doc.text(`Contratados: ${stats.contratados}`, 20, 40);
+    doc.text(`Baja: ${stats.baja}`, 20, 50);
     doc.text(`Asistieron: ${stats.asistieron}`, 20, 60);
     doc.text(`No Asistieron: ${stats.no_asistieron}`, 20, 70);
-    doc.text(`Contratados: ${stats.contratados}`, 20, 80);
+    doc.text(`Citas: ${stats.citas}`, 20, 80);
+    doc.text(`Pendientes: ${stats.vacantes}`, 20, 90);
     doc.setTextColor(...colorTitulo);
     doc.text("Generado por Reclutador Web MMM", 8, 290);
 
@@ -2125,6 +2185,7 @@ async function generarEstadisticasPDF() {
       const barrasSucursal = await generarGraficoBarras(
         {
           contratados: [stats.contratados],
+          baja: [stats.baja],
           asistieron: [stats.asistieron],
           no_asistieron: [stats.no_asistieron],
           citas: [stats.citas],
@@ -2134,7 +2195,7 @@ async function generarEstadisticasPDF() {
         `Estadísticas de ${sucursal}`
       );
       if (barrasSucursal.includes("data:image/png")) {
-        doc.addImage(barrasSucursal, "PNG", 20, 110, 170, 130);
+        doc.addImage(barrasSucursal, "PNG", 20, 120, 170, 130);
       } else {
         console.warn(`Gráfico de barras para ${sucursal} no generado correctamente.`);
         doc.text(`No se pudo generar el gráfico de barras para ${sucursal}.`, 20, 100);
@@ -2173,6 +2234,7 @@ function moverVacante(uniqueKey, data, nuevaDB) {
     "asistieron",
     "no_asistieron",
     "contratado",
+    "baja",
     "citas_vacantes",
   ]; // Agregamos citas_vacantes
   let antiguaRef = null;
@@ -2254,7 +2316,8 @@ function eliminarVacante(uniqueKey, base, data) {
         asistieron: `asistieron/${uniqueKey}`,
         no_asistieron: `no_asistieron/${uniqueKey}`,
         contratado: `contratado/${uniqueKey}`,
-        citas_vacantes: `citas_vacantes/${uniqueKey}`, // Agregar citas_vacantes
+        baja: `baja/${uniqueKey}`,
+        citas_vacantes: `citas_vacantes/${uniqueKey}`, 
       };
 
       const ruta = rutas[base] || `vacantes/${uniqueKey}`; // Default a vacantes

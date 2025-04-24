@@ -2725,6 +2725,24 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .
   opacity: 1;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label img,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label img {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label img:hover,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label img:hover {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label span,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label span:hover,
+html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ label span:hover {
+  visibility: hidden;
+  opacity: 0;
+}
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings label,
 html main #pag3 .nav_admin .nav_cont .settings .icons_settings label {
   position: absolute;
@@ -2922,6 +2940,24 @@ body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked 
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info {
   display: flex;
   animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon img,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon img {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon img:hover,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon img:hover {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon span,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon span:hover,
+html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon span:hover {
+  visibility: hidden;
+  opacity: 0;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon {
@@ -3232,6 +3268,24 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:chec
   display: flex;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon img {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon img:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon img:hover {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon span:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon span:hover {
+  visibility: hidden;
+  opacity: 0;
+}
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon {
   width: 100%;
@@ -3499,6 +3553,24 @@ body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos inpu
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .puestos_user_info {
   display: flex;
   animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon img {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon img:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon img:hover {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon span:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon span:hover {
+  visibility: hidden;
+  opacity: 0;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon {
@@ -3814,6 +3886,24 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   display: flex;
   animation: fadeIn 0.2s ease-in-out forwards;
 }
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon img,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon img {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon img:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon img:hover {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon span,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon span:hover,
+html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon span:hover {
+  visibility: hidden;
+  opacity: 0;
+}
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon {
   width: 100%;
@@ -3909,7 +3999,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button span,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button span {
-  width: 80%;
+  width: 85%;
   position: absolute;
   visibility: hidden;
   opacity: 0;
@@ -3938,15 +4028,15 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
 }
 body main #pag3 .estatus_vacantes,
 html main #pag3 .estatus_vacantes {
-  top: 9vh;
+  top: 8.5vh;
   left: 18.5vw;
   width: 12vw;
-  height: 3.5vw;
+  height: 2.5vw;
   display: flex;
   background-color: #1b3c59;
   padding: 1vw;
   border-radius: 5vw;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   position: fixed;
   z-index: 1000;
@@ -3954,8 +4044,8 @@ html main #pag3 .estatus_vacantes {
 }
 body main #pag3 .estatus_vacantes .icons_status,
 html main #pag3 .estatus_vacantes .icons_status {
-  width: 90%;
-  height: 90%;
+  height: 100%;
+  aspect-ratio: 2/2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3983,6 +4073,13 @@ html main #pag3 .estatus_vacantes .icons_status label {
   outline: none;
   border-radius: 10rem;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .estatus_vacantes .icons_status label img,
+html main #pag3 .estatus_vacantes .icons_status label img {
+  height: 50%;
 }
 body main #pag3 .estatus_vacantes .icons_status #label_status1,
 html main #pag3 .estatus_vacantes .icons_status #label_status1 {
@@ -3994,6 +4091,10 @@ html main #pag3 .estatus_vacantes .icons_status #label_status2 {
 }
 body main #pag3 .estatus_vacantes .icons_status #label_status3,
 html main #pag3 .estatus_vacantes .icons_status #label_status3 {
+  background-color: #17a2b8;
+}
+body main #pag3 .estatus_vacantes .icons_status #label_status4,
+html main #pag3 .estatus_vacantes .icons_status #label_status4 {
   background-color: #00bf63;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info,
@@ -4006,7 +4107,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info {
   flex-direction: column;
   width: 15vw;
   height: 73.5vh;
-  top: 22vh;
+  top: 19.5vh;
   left: 17.5vw;
   text-align: center;
   color: #ffffff;
@@ -4062,6 +4163,10 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .box_status2 {
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status3,
 html main #pag3 .estatus_vacantes .icons_status .status_info .box_status3 {
+  background-color: #17a2b8;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .box_status4,
+html main #pag3 .estatus_vacantes .icons_status .status_info .box_status4 {
   background-color: #00bf63;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status,
@@ -4099,9 +4204,11 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul {
   flex-direction: column-reverse;
   gap: 1.5vh;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado {
@@ -4114,16 +4221,18 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   overflow-y: hidden;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
   transition: all 0.3s ease-in-out;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 {
-  width: 6%;
+  width: 10%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -4131,9 +4240,11 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   flex-direction: column;
   gap: 0;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-descargar-pdf,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-descargar-pdf,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-descargar-pdf,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-descargar-pdf,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-descargar-pdf,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-descargar-pdf,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-descargar-pdf,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-descargar-pdf {
@@ -4146,18 +4257,22 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   background-color: #ec6223;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-descargar-pdf:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-descargar-pdf:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-descargar-pdf:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-descargar-pdf:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-descargar-pdf:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-descargar-pdf:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-descargar-pdf:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-descargar-pdf:hover {
   opacity: 50%;
   scale: 0.9;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-agendar-cita,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-agendar-cita,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-agendar-cita,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-agendar-cita,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-agendar-cita,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-agendar-cita,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-agendar-cita,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-agendar-cita {
@@ -4170,18 +4285,22 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   background-color: #0f3061;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-agendar-cita:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-agendar-cita:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-agendar-cita:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-agendar-cita:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-agendar-cita:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2 .btn-agendar-cita:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2 .btn-agendar-cita:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 .btn-agendar-cita:hover {
   opacity: 50%;
   scale: 0.9;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemnombre,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemnombre,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre {
@@ -4192,9 +4311,11 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   align-items: center;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemnombre span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemnombre span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemnombre span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemnombre span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemnombre span {
@@ -4207,9 +4328,11 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   font-size: 0.8vw;
   color: #0f3061;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info {
@@ -4221,9 +4344,11 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   flex-direction: column;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span {
@@ -4235,56 +4360,65 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   font-size: 1.2vh;
   color: #0f3061;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong {
   font-size: 1.4vh;
   color: #0f3061;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .criterios_container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .criterios_container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .criterios_container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .criterios_container {
   display: none;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus {
-  width: 15%;
-  height: 100%;
+  height: 90%;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 0.5rem;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus span {
+  width: 80%;
   height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1/1;
   border-radius: 100%;
   border: 0.2em solid #1b3c59;
-  font-size: 0.7vw;
+  font-size: 0.5vw;
   font-family: "Nunito";
   color: #1b3c59;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container {
@@ -4298,9 +4432,11 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   flex-direction: column;
   gap: 0.1vw;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container button,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container button,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button {
@@ -4310,42 +4446,62 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container button:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button:hover,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container button:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button:hover,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button:hover {
   opacity: 50%;
   scale: 0.9;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-noAsistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-noAsistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-noAsistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-noAsistieron,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-noAsistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-noAsistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-noAsistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-noAsistieron {
-  background-color: #ff3131;
+  background-color: #FFD700;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-asistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-asistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-asistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-asistieron,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-asistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-asistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-asistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-asistieron {
-  background-color: #FFD700;
+  background-color: #17a2b8;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-contratado,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-contratado,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-contratado,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-contratado,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-contratado,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-contratado,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-contratado,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-contratado {
   background-color: #00bf63;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-baja,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-baja,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-baja,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-baja,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-baja,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-baja,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-baja,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-baja {
+  background-color: #ff3131;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-eliminar,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-eliminar,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-eliminar,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-eliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-eliminar,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-eliminar,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-eliminar,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-eliminar {
@@ -4354,34 +4510,89 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   background-size: cover;
   background-position: center;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .containerEliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .containerEliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .containerEliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .containerEliminar {
+  width: 13%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .containerEliminar .btn-eliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .containerEliminar .btn-eliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .containerEliminar .btn-eliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .containerEliminar .btn-eliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .containerEliminar .btn-eliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .containerEliminar .btn-eliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .containerEliminar .btn-eliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .containerEliminar .btn-eliminar {
+  border-radius: 1vw;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: #ec6223;
+  background-image: url("../../img/Logos/interfaces/icons/cerrar.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .containerEliminar .btn-eliminar:hover,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .containerEliminar .btn-eliminar:hover,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .containerEliminar .btn-eliminar:hover,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .containerEliminar .btn-eliminar:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .containerEliminar .btn-eliminar:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .containerEliminar .btn-eliminar:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .containerEliminar .btn-eliminar:hover,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .containerEliminar .btn-eliminar:hover {
+  opacity: 50%;
+  scale: 0.9;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus {
   overflow-y: scroll;
   height: 25vh;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .btn-container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container {
   display: none;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .Itemnombre,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemnombre,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemnombre,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemnombre,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .Itemnombre,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemnombre,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemnombre,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemnombre {
   display: none;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info {
@@ -4390,44 +4601,64 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   grid-template-columns: repeat(3, 1fr);
   display: grid;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .vacante_info span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span {
   font-size: 0.5vw;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong {
   font-size: 0.6vw;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .criterios_container,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .criterios_container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .criterios_container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .criterios_container,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .criterios_container {
   display: none;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .Itemstatus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemstatus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemstatus,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemstatus,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .Itemstatus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .Itemstatus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .Itemstatus,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .Itemstatus {
   display: none;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2 {
+  display: none;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .containerEliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .containerEliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .containerEliminar,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja:focus .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .containerEliminar,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .containerEliminar {
   display: none;
 }
 body main #pag3 .admin_cont,
@@ -4553,12 +4784,12 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red {
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  gap: 5%;
+  gap: 0.5rem;
   transition: all 0.3s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 {
-  width: 7%;
+  width: 8%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -4649,19 +4880,19 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .v
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container {
-  width: 15%;
-  height: 100%;
+  height: 90%;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span {
+  width: 80%;
   height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1/1;
   border-radius: 100%;
   border: 0.2vw solid #1b3c59;
   font-size: 0.7vw;
@@ -4697,22 +4928,48 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .b
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-noAsistieron,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-noAsistieron {
-  background-color: #ff3131;
+  background-color: #FFD700;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-asistieron,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-asistieron {
-  background-color: #FFD700;
+  background-color: #17a2b8;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-contratado,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-contratado {
   background-color: #00bf63;
 }
-body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-eliminar,
-html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-eliminar {
-  background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-baja,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-baja {
+  background-color: #ff3131;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar {
+  width: 9%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar .btn-eliminar,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar .btn-eliminar {
+  border-radius: 1vw;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: #ec6223;
+  background-image: url("../../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   background-position: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar .btn-eliminar:hover,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar .btn-eliminar:hover {
+  opacity: 50%;
+  scale: 0.9;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus {
@@ -4749,13 +5006,17 @@ body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:fo
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container {
   display: none;
 }
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .containerEliminar,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .containerEliminar {
+  display: none;
+}
 body main #pag3 .admin_cont .cont_citas,
 html main #pag3 .admin_cont .cont_citas {
   width: 15%;
-  height: 82%;
+  height: 87%;
   display: flex;
   position: absolute;
-  top: 16%;
+  top: 13%;
   left: 17.5%;
   border-radius: 1.2vw;
   justify-content: start;
@@ -4944,6 +5205,10 @@ body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container {
   display: none;
 }
+body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .containerEliminar,
+html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .containerEliminar {
+  display: none;
+}
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus {
   height: 20vh;
@@ -5067,6 +5332,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green {
   outline: none;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
+  gap: 0.5rem;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2 {
@@ -5157,19 +5423,19 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container {
-  width: 6%;
-  height: 100%;
+  height: 90%;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span {
+  width: 80%;
   height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 1/1;
   border-radius: 100%;
   border: 0.2vw solid #1b3c59;
   font-size: 0.7vw;
@@ -5205,15 +5471,19 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-noAsistieron,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-noAsistieron {
-  background-color: #ff3131;
+  background-color: #FFD700;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-asistieron,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-asistieron {
-  background-color: #FFD700;
+  background-color: #17a2b8;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-contratado,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-contratado {
   background-color: #00bf63;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-baja,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-baja {
+  background-color: #ff3131;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-eliminar,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-eliminar {
@@ -5221,6 +5491,35 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .containerEliminar,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .containerEliminar {
+  width: 2%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .containerEliminar .btn-eliminar,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .containerEliminar .btn-eliminar {
+  border-radius: 1vw;
+  width: 100%;
+  height: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: #ec6223;
+  background-image: url("../../img/Logos/interfaces/icons/cerrar.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .containerEliminar .btn-eliminar:hover,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .containerEliminar .btn-eliminar:hover {
+  opacity: 50%;
+  scale: 0.9;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus {
@@ -5253,6 +5552,10 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:f
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container {
+  display: none;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .containerEliminar,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .containerEliminar {
   display: none;
 }
 body main #pag4,

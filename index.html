@@ -747,9 +747,24 @@
       <div class="estatus_vacantes">
         <div class="icons_status">
           <input type="checkbox" id="status1" />
-          <label id="label_status1" for="status1"></label>
+          <label id="label_status1" for="status1">
+            <img src="img/Logos/interfaces/icons/usuario-no-verificado.svg" alt="bajas">
+          </label>
           <div class="status_info">
             <div class="box_status box_status1">
+              <input type="text" id="filtro-baja" class="filtro-vacantes"
+                placeholder="Buscar bajas..." />
+            </div>
+            <div class="data_status" id="data_baja"></div>
+          </div>
+        </div>
+        <div class="icons_status">
+          <input type="checkbox" id="status2" />
+          <label id="label_status2" for="status2">
+            <img src="img/Logos/interfaces/icons/marca-de-calendario.svg" alt="no asistieron">
+          </label>
+          <div class="status_info">
+            <div class="box_status box_status2">
               <input type="text" id="filtro-no-asistieron" class="filtro-vacantes"
                 placeholder="Buscar no asistieron..." />
             </div>
@@ -757,20 +772,24 @@
           </div>
         </div>
         <div class="icons_status">
-          <input type="checkbox" id="status2" />
-          <label id="label_status2" for="status2"></label>
+          <input type="checkbox" id="status3" />
+          <label id="label_status3" for="status3">
+            <img src="img/Logos/interfaces/icons/consultar-calendario.svg" alt="asistieron">
+          </label>
           <div class="status_info">
-            <div class="box_status box_status2">
+            <div class="box_status box_status3">
               <input type="text" id="filtro-asistieron" class="filtro-vacantes" placeholder="Buscar asistieron..." />
             </div>
             <div class="data_status" id="data_asistieron"></div>
           </div>
         </div>
         <div class="icons_status">
-          <input type="checkbox" id="status3" />
-          <label id="label_status3" for="status3"></label>
+          <input type="checkbox" id="status4" />
+          <label id="label_status4" for="status4">
+            <img src="img/Logos/interfaces/icons/usuario-verificado.svg" alt="contratados">
+          </label>
           <div class="status_info">
-            <div class="box_status box_status3">
+            <div class="box_status box_status4">
               <input type="text" id="filtro-contratado" class="filtro-vacantes" placeholder="Buscar contratados..." />
             </div>
             <div class="data_status" id="data_contratado"></div>
