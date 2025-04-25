@@ -77,6 +77,7 @@ function enviar_form() {
 
   const fechaActual = new Date().toISOString().split("T")[0];
   document.getElementById("fecha_r").value = fechaActual;
+  document.getElementById("modDate").value = fechaActual;
 
   // Obtener valores del formulario
   const nombre = document.getElementById("nombre").value.trim();
@@ -84,6 +85,7 @@ function enviar_form() {
   const horario = document.getElementById("horario").value;
   const numero = document.getElementById("numero").value.trim();
   const fecha_r = document.getElementById("fecha_r").value;
+  const modDate = document.getElementById("modDate").value;
   const edad = parseInt(document.getElementById("edad").value, 10);
   const direccion = document.getElementById("direccion").value.trim();
   const ciudad = document.getElementById("ciudad").value.trim();
@@ -105,6 +107,7 @@ function enviar_form() {
     horario,
     numero,
     fecha_r,
+    modDate,
     edad,
     direccion,
     ciudad,
@@ -188,6 +191,7 @@ function enviar_form() {
     puesto,
     numero,
     fecha_r,
+    modDate,
     edad,
     direccion,
     ciudad,
@@ -378,13 +382,7 @@ function mostrarDatos() {
   // Baja (admin) - Con filtro
   onValue(bajaRef, (snapshot) => {
     const renderBaja = (filtro = "") =>
-      renderizarVacantes(
-        snapshot,
-        contenedores.dataBaja,
-        null,
-        true,
-        filtro
-      );
+      renderizarVacantes(snapshot, contenedores.dataBaja, null, true, filtro);
     renderBaja();
     agregarFiltro(filtros.filtroBaja, renderBaja);
   });
@@ -611,8 +609,7 @@ function mostrarDatos() {
           claseItem += "_noasistieron";
         else if (containerGreen.id === "data_contratado")
           claseItem += "_contratado";
-        else if (containerGreen.id === "data_baja") 
-          claseItem += "_baja";
+        else if (containerGreen.id === "data_baja") claseItem += "_baja";
         else
           claseItem += esAsistieron
             ? "_status"
@@ -651,7 +648,7 @@ function mostrarDatos() {
           data.problema_t === "No",
         ];
         cumplenCount = criterios.filter(Boolean).length;
-        const totalPreguntas = 4; 
+        const totalPreguntas = 4;
 
         criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
         criteriosContainer.appendChild(criteriosSpan);
@@ -798,11 +795,11 @@ function mostrarDatos() {
           btnNoAsistieron,
           btnAsistieron,
           btnContratado,
-          btnBaja,
+          btnBaja
         );
 
         containerEliminar.append(btnEliminar);
-        
+
         listItem.appendChild(btnContainer2);
         listItem.appendChild(Itemnombre);
         listItem.appendChild(infoContainer);
@@ -1670,7 +1667,7 @@ function descargarResumenExcel() {
       snapshot.forEach((childSnapshot) => {
         const uniqueKey = childSnapshot.key;
         const data = childSnapshot.val() || {};
-        const fechaStr = data.fecha_r || data.fecha_cita || "";
+        const fechaStr = data.modDate || "";
         let fecha;
 
         // Validar y parsear la fecha
@@ -1681,7 +1678,9 @@ function descargarResumenExcel() {
             return;
           }
         } catch (error) {
-          console.warn(`Error al parsear fecha en ${uniqueKey}: ${error.message}`);
+          console.warn(
+            `Error al parsear fecha en ${uniqueKey}: ${error.message}`
+          );
           return;
         }
 
@@ -1728,9 +1727,7 @@ function descargarResumenExcel() {
     get(refs.contratado).then((snapshot) =>
       procesarSnapshot(snapshot, "Contratado")
     ),
-    get(refs.baja).then((snapshot) =>
-      procesarSnapshot(snapshot, "Baja")
-    ),
+    get(refs.baja).then((snapshot) => procesarSnapshot(snapshot, "Baja")),
   ];
 
   // Ejecutar todas las promesas y generar el Excel
@@ -1788,11 +1785,11 @@ function descargarResumenExcel() {
       };
 
       const categoryStyles = {
-        "Vacantes": { fill: { fgColor: { rgb: "FFFFE0B2" } } }, // Amarillo claro
+        Vacantes: { fill: { fgColor: { rgb: "FFFFE0B2" } } }, // Amarillo claro
         "Citas Vacantes": { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Azul claro
-        "Asistieron": { fill: { fgColor: { rgb: "FFB2DFDB" } } }, // Verde claro
+        Asistieron: { fill: { fgColor: { rgb: "FFB2DFDB" } } }, // Verde claro
         "No Asistieron": { fill: { fgColor: { rgb: "FFFFCDD2" } } }, // Rojo claro
-        "Contratado": { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Púrpura claro
+        Contratado: { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Púrpura claro
       };
 
       // Aplicar estilo al encabezado
@@ -1822,7 +1819,10 @@ function descargarResumenExcel() {
         const style = categoryStyles[categoria] || {};
 
         headers.forEach((_, colIndex) => {
-          const cellRef = XLSX.utils.encode_cell({ r: rowIndex + 1, c: colIndex });
+          const cellRef = XLSX.utils.encode_cell({
+            r: rowIndex + 1,
+            c: colIndex,
+          });
           if (worksheet[cellRef]) {
             worksheet[cellRef].s = style;
           }
@@ -1835,7 +1835,8 @@ function descargarResumenExcel() {
 
       // Generar y descargar el archivo
       const mesActual = new Date().toLocaleString("es-ES", { month: "long" });
-      const mesFormateado = mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
+      const mesFormateado =
+        mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
       XLSX.writeFile(workbook, `Resumen_${mesFormateado}.xlsx`);
 
       console.log("Archivo Excel generado y descargado exitosamente.");
@@ -1892,7 +1893,7 @@ async function generarEstadisticasPDF() {
     if (snapshot.exists()) {
       snapshot.forEach((childSnapshot) => {
         const data = childSnapshot.val() || {};
-        const fechaStr = data.fecha_r || data.fecha_cita || "";
+        const fechaStr = data.modDate || "";
         let fecha;
 
         try {
@@ -1904,7 +1905,8 @@ async function generarEstadisticasPDF() {
         }
 
         if (fecha >= fechaLimite) {
-          const sucursal = data.sucursal || data.sucursal_cita || "Sin Sucursal";
+          const sucursal =
+            data.sucursal || data.sucursal_cita || "Sin Sucursal";
           if (!estadisticasPorSucursal[sucursal]) {
             estadisticasPorSucursal[sucursal] = {
               contratados: 0,
@@ -1937,10 +1939,10 @@ async function generarEstadisticasPDF() {
               estadisticasPorSucursal[sucursal].vacantes++;
               estadisticasTotales.vacantes++;
               break;
-              case "Baja":
-                estadisticasPorSucursal[sucursal].baja++;
-                estadisticasTotales.baja++;
-                break;
+            case "Baja":
+              estadisticasPorSucursal[sucursal].baja++;
+              estadisticasTotales.baja++;
+              break;
           }
         }
       });
@@ -1949,11 +1951,21 @@ async function generarEstadisticasPDF() {
 
   try {
     await Promise.all([
-      get(refs.vacantes).then((snapshot) => procesarSnapshot(snapshot, "Vacantes")),
-      get(refs.citas_vacantes).then((snapshot) => procesarSnapshot(snapshot, "Citas Vacantes")),
-      get(refs.asistieron).then((snapshot) => procesarSnapshot(snapshot, "Asistieron")),
-      get(refs.no_asistieron).then((snapshot) => procesarSnapshot(snapshot, "No Asistieron")),
-      get(refs.contratado).then((snapshot) => procesarSnapshot(snapshot, "Contratado")),
+      get(refs.vacantes).then((snapshot) =>
+        procesarSnapshot(snapshot, "Vacantes")
+      ),
+      get(refs.citas_vacantes).then((snapshot) =>
+        procesarSnapshot(snapshot, "Citas Vacantes")
+      ),
+      get(refs.asistieron).then((snapshot) =>
+        procesarSnapshot(snapshot, "Asistieron")
+      ),
+      get(refs.no_asistieron).then((snapshot) =>
+        procesarSnapshot(snapshot, "No Asistieron")
+      ),
+      get(refs.contratado).then((snapshot) =>
+        procesarSnapshot(snapshot, "Contratado")
+      ),
       get(refs.baja).then((snapshot) => procesarSnapshot(snapshot, "Baja")),
     ]);
   } catch (error) {
@@ -2039,7 +2051,10 @@ async function generarEstadisticasPDF() {
             legend: { position: "top" },
           },
           scales: {
-            y: { beginAtZero: true, title: { display: true, text: "Cantidad" } },
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: "Cantidad" },
+            },
             x: { title: { display: true, text: "Categoría" } },
           },
         },
@@ -2063,7 +2078,14 @@ async function generarEstadisticasPDF() {
       const chart = new Chart(ctx, {
         type: "pie",
         data: {
-          labels: ["Contratados", "Baja", "Asistieron", "No Asistieron", "Citas", "Pendientes"],
+          labels: [
+            "Contratados",
+            "Baja",
+            "Asistieron",
+            "No Asistieron",
+            "Citas",
+            "Pendientes",
+          ],
           datasets: [
             {
               data: [
@@ -2143,7 +2165,10 @@ async function generarEstadisticasPDF() {
   doc.text("Generado por Reclutador Web MMM", 8, 290);
 
   try {
-    const pastelGeneral = await generarGraficoPastel(estadisticasTotales, "Distribución General");
+    const pastelGeneral = await generarGraficoPastel(
+      estadisticasTotales,
+      "Distribución General"
+    );
     if (pastelGeneral.includes("data:image/png")) {
       doc.addImage(pastelGeneral, "PNG", 40, 120, 130, 130);
     } else {
@@ -2197,12 +2222,25 @@ async function generarEstadisticasPDF() {
       if (barrasSucursal.includes("data:image/png")) {
         doc.addImage(barrasSucursal, "PNG", 20, 120, 170, 130);
       } else {
-        console.warn(`Gráfico de barras para ${sucursal} no generado correctamente.`);
-        doc.text(`No se pudo generar el gráfico de barras para ${sucursal}.`, 20, 100);
+        console.warn(
+          `Gráfico de barras para ${sucursal} no generado correctamente.`
+        );
+        doc.text(
+          `No se pudo generar el gráfico de barras para ${sucursal}.`,
+          20,
+          100
+        );
       }
     } catch (error) {
-      console.error(`Error al generar gráfico de barras para ${sucursal}:`, error);
-      doc.text(`Error al generar el gráfico de barras para ${sucursal}.`, 20, 100);
+      console.error(
+        `Error al generar gráfico de barras para ${sucursal}:`,
+        error
+      );
+      doc.text(
+        `Error al generar el gráfico de barras para ${sucursal}.`,
+        20,
+        100
+      );
     }
   }
 
@@ -2236,45 +2274,61 @@ function moverVacante(uniqueKey, data, nuevaDB) {
     "contratado",
     "baja",
     "citas_vacantes",
-  ]; // Agregamos citas_vacantes
+  ];
   let antiguaRef = null;
 
-  // Buscar la referencia anterior en la base de datos
+  // Obtener la fecha actual
+  const fechaActual = new Date().toISOString().split("T")[0];
+
+  // Buscar la referencia anterior y actualizar modDate
   Promise.all(
     bases.map((base) =>
       get(ref(database, `${base}/${uniqueKey}`)).then((snapshot) => {
         if (snapshot.exists()) {
           antiguaRef = ref(database, `${base}/${uniqueKey}`);
+          // Actualizar modDate en la base de datos original
+          return update(antiguaRef, { modDate: fechaActual });
         }
       })
     )
-  ).then(() => {
-    if (!antiguaRef) {
-      console.error(
-        `❌ No se encontró la referencia anterior de "${uniqueKey}".`
-      );
-      mostrarAlertaAdmin("alertaMan_18");
-      mostrarAlertaAdmin("alerta_5");
-      return;
-    }
-
-    // Mover el dato si no existe en el destino
-    get(nuevaRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.warn(`⚠️ El vacante "${uniqueKey}" ya está en ${nuevaDB}.`);
-        mostrarAlertaAdmin("alerta_9");
-      } else {
-        set(nuevaRef, data)
-          .then(() => remove(antiguaRef))
-          .then(() => {
-            console.log(`✅ Vacante "${uniqueKey}" movida a ${nuevaDB}`);
-            mostrarAlertaAdmin("alerta_6");
-            mostrarDatos();
-          })
-          .catch((error) => console.error("❌ Error al mover vacante:", error));
+  )
+    .then(() => {
+      if (!antiguaRef) {
+        console.error(
+          `❌ No se encontró la referencia anterior de "${uniqueKey}".`
+        );
+        mostrarAlertaAdmin("alertaMan_18");
+        mostrarAlertaAdmin("alerta_5");
+        return;
       }
+
+      // Crear datos actualizados con el nuevo modDate
+      const datosActualizados = { ...data, modDate: fechaActual };
+
+      // Mover el dato si no existe en el destino
+      get(nuevaRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          console.warn(`⚠️ El vacante "${uniqueKey}" ya está en ${nuevaDB}.`);
+          mostrarAlertaAdmin("alerta_9");
+        } else {
+          set(nuevaRef, datosActualizados)
+            .then(() => remove(antiguaRef))
+            .then(() => {
+              console.log(`✅ Vacante "${uniqueKey}" movida a ${nuevaDB}`);
+              mostrarAlertaAdmin("alerta_6");
+              mostrarDatos();
+            })
+            .catch((error) => {
+              console.error("❌ Error al mover vacante:", error);
+              mostrarAlertaAdmin("alerta_5");
+            });
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("❌ Error al actualizar o mover vacante:", error);
+      mostrarAlertaAdmin("alerta_5");
     });
-  });
 }
 
 // Función para eliminar una vacante con confirmación
@@ -2317,7 +2371,7 @@ function eliminarVacante(uniqueKey, base, data) {
         no_asistieron: `no_asistieron/${uniqueKey}`,
         contratado: `contratado/${uniqueKey}`,
         baja: `baja/${uniqueKey}`,
-        citas_vacantes: `citas_vacantes/${uniqueKey}`, 
+        citas_vacantes: `citas_vacantes/${uniqueKey}`,
       };
 
       const ruta = rutas[base] || `vacantes/${uniqueKey}`; // Default a vacantes
@@ -2414,50 +2468,6 @@ function regresarAlLogin(tipo) {
   setThemeColor("#ec6223");
 
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
-}
-
-function manejarVisibilidadModales() {
-  const modales = [
-    document.getElementById("alert_eliminacion_vacante"),
-    document.getElementById("modal-container"),
-    document.getElementById("modal-user-info"),
-  ];
-  const elementosOcultar = [
-    document.querySelector(".settings"),
-    document.querySelector(".mensajes_usuarios"),
-    document.querySelector(".disponibilidad_sucu"),
-    document.querySelector(".disponibilidad_puestos"),
-    document.querySelector(".disponibilidad_resultados"),
-  ];
-
-  // Crear un MutationObserver para observar cambios en el atributo style de los modales
-  const observer = new MutationObserver((mutations) => {
-    let algunModalVisible = false;
-
-    // Verificar si algún modal está visible
-    modales.forEach((modal) => {
-      if (modal && window.getComputedStyle(modal).display === "flex") {
-        algunModalVisible = true;
-      }
-    });
-
-    // Actualizar la visibilidad de los elementos
-    elementosOcultar.forEach((elemento) => {
-      if (elemento) {
-        elemento.style.display = algunModalVisible ? "none" : "flex";
-      }
-    });
-  });
-
-  // Observar cada modal
-  modales.forEach((modal) => {
-    if (modal) {
-      observer.observe(modal, {
-        attributes: true,
-        attributeFilter: ["style"],
-      });
-    }
-  });
 }
 
 async function mostrarTextoPavoPorDefecto() {
@@ -3062,7 +3072,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (regreso2)
     regreso2.addEventListener("click", () => regresarAlLogin("manager"));
 
-  manejarVisibilidadModales();
   mostrarTextoPavoPorDefecto();
 
   // Esperar a que Firebase autentique al usuario

@@ -3011,8 +3011,8 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   align-items: center;
   flex-direction: column;
   width: 15vw;
-  height: 73.5vh;
-  top: 22vh;
+  height: 76vh;
+  top: 18.8vh;
   left: 17.5vw;
   text-align: center;
   color: #ffffff;
@@ -3340,8 +3340,8 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
   align-items: center;
   flex-direction: column;
   width: 15vw;
-  height: 73.5vh;
-  top: 22vh;
+  height: 76vh;
+  top: 18.8vh;
   left: 17.5vw;
   text-align: center;
   color: #ffffff;
@@ -3625,8 +3625,8 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
   align-items: center;
   flex-direction: column;
   width: 15vw;
-  height: 73.5vh;
-  top: 22vh;
+  height: 76vh;
+  top: 18.8vh;
   left: 17.5vw;
   text-align: center;
   color: #ffffff;
@@ -4107,7 +4107,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info {
   flex-direction: column;
   width: 15vw;
   height: 73.5vh;
-  top: 19.5vh;
+  top: 18.8vh;
   left: 17.5vw;
   text-align: center;
   color: #ffffff;
@@ -5016,7 +5016,7 @@ html main #pag3 .admin_cont .cont_citas {
   height: 87%;
   display: flex;
   position: absolute;
-  top: 13%;
+  top: 5.5vw;
   left: 17.5%;
   border-radius: 1.2vw;
   justify-content: start;
@@ -6732,8 +6732,12 @@ body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-contratado {
   display: none;
 }
-body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-eliminar,
-html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-eliminar {
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-baja,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-baja {
+  display: none;
+}
+body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .containerEliminar,
+html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .containerEliminar {
   display: none;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus,

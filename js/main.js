@@ -724,6 +724,51 @@ export function personalizarSelect(select) {
   select.style.display = "none"; // Ocultar el select nativo
 }
 
+
+function manejarVisibilidadModales() {
+  const modales = [
+    document.getElementById("alert_eliminacion_vacante"),
+    document.getElementById("modal-container"),
+    document.getElementById("modal-user-info"),
+  ];
+  const elementosOcultar = [
+    document.querySelector(".settings"),
+    document.querySelector(".mensajes_usuarios"),
+    document.querySelector(".disponibilidad_sucu"),
+    document.querySelector(".disponibilidad_puestos"),
+    document.querySelector(".disponibilidad_resultados"),
+  ];
+
+  // Crear un MutationObserver para observar cambios en el atributo style de los modales
+  const observer = new MutationObserver((mutations) => {
+    let algunModalVisible = false;
+
+    // Verificar si algún modal está visible
+    modales.forEach((modal) => {
+      if (modal && window.getComputedStyle(modal).display === "flex") {
+        algunModalVisible = true;
+      }
+    });
+
+    // Actualizar la visibilidad de los elementos
+    elementosOcultar.forEach((elemento) => {
+      if (elemento) {
+        elemento.style.display = algunModalVisible ? "none" : "flex";
+      }
+    });
+  });
+
+  // Observar cada modal
+  modales.forEach((modal) => {
+    if (modal) {
+      observer.observe(modal, {
+        attributes: true,
+        attributeFilter: ["style"],
+      });
+    }
+  });
+}
+
 // Función de checkboxes
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded");
@@ -860,6 +905,7 @@ function initializeApp() {
   initProgressBar();
   updateProgress();
   initializeCountryCode();
+  manejarVisibilidadModales();
 
   const isFormSubmitted = localStorage.getItem(FORM_KEY) === "true";
   console.log("Estado inicial del formulario:", isFormSubmitted);

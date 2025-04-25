@@ -1808,8 +1808,8 @@ html {
                 align-items: center;
                 flex-direction: column;
                 width: 15vw;
-                height: 73.5vh;
-                top: 22vh;
+                height: 76vh;
+                top: 18.8vh;
                 left: 17.5vw;
                 text-align: center;
                 color: $Texto;
@@ -2123,8 +2123,8 @@ html {
                 align-items: center;
                 flex-direction: column;
                 width: 15vw;
-                height: 73.5vh;
-                top: 22vh;
+                height: 76vh;
+                top: 18.8vh;
                 left: 17.5vw;
                 text-align: center;
                 color: $Texto;
@@ -2396,8 +2396,8 @@ html {
                 align-items: center;
                 flex-direction: column;
                 width: 15vw;
-                height: 73.5vh;
-                top: 22vh;
+                height: 76vh;
+                top: 18.8vh;
                 left: 17.5vw;
                 text-align: center;
                 color: $Texto;
@@ -2852,7 +2852,7 @@ html {
             flex-direction: column;
             width: 15vw;
             height: 73.5vh;
-            top: 19.5vh;
+            top: 18.8vh;
             left: 17.5vw;
             text-align: center;
             color: $Texto;
@@ -3535,7 +3535,7 @@ html {
           height: 87%;
           display: flex;
           position: absolute;
-          top: 13%;
+          top: 5.5vw;
           left: 17.5%;
           border-radius: 1.2vw;
           justify-content: start;
@@ -5124,6 +5124,7 @@ html {
                     }
                   }
 
+
                   .btn-noAsistieron {
                     background-color: $Red;
                   }
@@ -5135,10 +5136,14 @@ html {
                   .btn-contratado {
                     display: none;
                   }
-
-                  .btn-eliminar {
+                  
+                  .btn-baja {
                     display: none;
                   }
+                }
+                
+                .containerEliminar {
+                  display: none;
                 }
 
                 &:focus {
