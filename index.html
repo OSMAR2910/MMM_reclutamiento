@@ -16,7 +16,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="#ec6223">
   <meta property="og:title" content="¡Trabaja en MMM Pizza!">
 <meta property="og:description" content="Aplica ahora para unirte al equipo de MMM Pizza. ¡Oportunidades emocionantes te esperan!">
-<meta property="og:image" content="https://mmm-rh.netlify.app/img/Utilidades/RERTO MMM.png">
+<meta property="og:image" content="https://mmm-rh.netlify.app/img/Utilidades/RERTO-MMM.png">
 <meta property="og:url" content="https://mmm-rh.netlify.app">
 <meta name="twitter:card" content="summary_large_image">
   <!--Descargar PDF-->
@@ -669,11 +669,35 @@
               <p id="text_welcome_admin"></p>
             </div>
           </div>
+          <div class="chat_admin">
+            <div class="icons_chat_admin">
+              <input type="checkbox" id="chat_admin" />
+              <label class="label_icon" id="label_chat_admin" for="chat_admin">
+                <img src="img/Logos/interfaces/icons/mensajes.svg" alt="chat_admin">
+                <span>Chat</span>
+              </label>
+              <div class="chat_admin_info">
+                <div class="branch-carousel">
+                  <button class="carousel-arrow left" id="carousel-left" disabled></button>
+                  <div class="carousel-inner" id="carousel-inner">
+                    <!-- Los botones de sucursales se generarán dinámicamente aquí -->
+                  </div>
+                  <button class="carousel-arrow right" id="carousel-right"></button>
+                </div>
+                <div class="data_chat_admin" id="data_chat_admin"></div>
+                <hr>
+                <!-- Formulario de chat estático -->
+                <form class="admin_chat_form" id="admin_chat_form">
+                  <input type="text" id="admin_chat_input" name="message" placeholder="Escribe tu mensaje..." required ></button>
+                </form>
+              </div>
+            </div>
+          </div>
           <div class="mensajes_usuarios">
             <div class="icons_mj">
               <input type="checkbox" id="mj_user" />
               <label class="label_icon" id="label_mj_user" for="mj_user">
-                <img src="img/Logos/interfaces/icons/mensajes.svg" alt="mj">
+                <img src="img/Logos/interfaces/icons/bocadillo-de-dialogo-de-chatbot.svg" alt="mjbot">
                 <span>Mensajes</span>
               </label>
               <div class="mj_user_info">
@@ -926,6 +950,23 @@
           <div class="const_data" id="data_citas_manager"></div>
         </div>
       </div>
+      <div class="chat_manager">
+        <div class="icons_chat_manager">
+          <input type="checkbox" id="chat_manager" />
+          <label class="label_icon" id="label_chat_admin" for="chat_manager">
+            <img src="img/Logos/interfaces/icons/flecha.svg" alt="abrir_chat">
+            <span>Chat</span>
+          </label>
+          <div class="chat_manager_info">
+            <div class="data_chat_manager" id="data_chat_manager"></div>
+            <hr>
+            <!-- Formulario de chat estático -->
+            <form class="manager_chat_form" id="manager_chat_form">
+              <input type="text" id="manager_chat_input" name="message" placeholder="Escribe tu mensaje..." required ></button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="pages" id="ap_tc">
       <div>
@@ -1062,6 +1103,8 @@
   <script type="module" src="js/chatbot.js" defer></script>
   <script type="module" src="js/database.js" defer></script>
   <script type="module" src="js/main.js" defer></script>
+  <script type="module" src="js/chat_admin.js" defer></script>
+  <script type="module" src="js/chat_manager.js" defer></script>
 </body>
 
 </html>

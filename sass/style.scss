@@ -1711,7 +1711,7 @@ html {
             }
           }
 
-          .mensajes_usuarios {
+          .chat_admin {
             width: 4%;
             height: 100%;
             display: flex;
@@ -1719,6 +1719,336 @@ html {
             align-items: center;
             position: absolute;
             right: 1%;
+            top: 0;
+          
+            .icons_chat_admin {
+              width: 90%;
+              height: 90%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          
+              input {
+                display: none;
+          
+                &:checked ~ label {
+                  @include opacity;
+                  display: flex;
+                }
+          
+                &:checked ~ .chat_admin_info {
+                  display: flex;
+                  animation: fadeInRight 0.2s ease-in-out forwards;
+                }
+          
+                &:checked ~ .label_icon {
+                  img {
+                    transform: scale(1);
+                    &:hover {
+                      transform: scale(1);
+                    }
+                  }
+                  span {
+                    visibility: hidden;
+                    opacity: 0;
+                    &:hover {
+                      visibility: hidden;
+                      opacity: 0;
+                    }
+                  }
+                }
+              }
+          
+              .label_icon {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                  height: 60%;
+                  transform: scale(1);
+                  transition: all 0.2s ease-in-out;
+                }
+                span {
+                  width: 100%;
+                  position: absolute;
+                  visibility: hidden;
+                  opacity: 0;
+                  top: 85%;
+                  border-radius: 0 0 1rem 1rem;
+                  padding: 0.2rem 0.5rem;
+                  color: $Blanco;
+                  display: flex;
+                  font-family: $Letra2;
+                  font-size: 0.7em;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background-color: $Box_admin;
+                  transition: all 0.2s ease-in-out;
+                }
+                &:hover {
+                  img {
+                    transform: scale(1.1);
+                  }
+                  span {
+                    visibility: visible;
+                    opacity: 1;
+                  }
+                }
+              }
+          
+              .chat_admin_info {
+                position: absolute;
+                display: none;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                width: 19vw;
+                height: 92.5vh;
+                min-height: 0;
+                top: 100%;
+                right: -1vw;
+                text-align: center;
+                color: $Texto;
+                font-family: $Letra2;
+                font-size: 0.7vw;
+                padding: 0.5vw;
+                border-left: 0.1rem solid $Blanco;
+                background-color: $Blanco;
+          
+                // Carrusel de botones
+                .branch-carousel {
+                  width: 75%;
+                  display: flex;
+                  align-items: center;
+                  position: relative;
+                  margin-top: 1vh;
+                  margin-bottom: 1vh;
+                  background-color: $Box_admin;
+                  border-radius: 2rem;
+                  padding: 0.5vw;
+          
+                  .carousel-inner {
+                    display: flex;
+                    border-radius: 1rem;
+                    overflow-x: auto;
+                    scroll-behavior: smooth;
+                    gap: 0.5vw;
+                    scrollbar-width: none; // Oculta barra en Firefox
+                    &::-webkit-scrollbar {
+                      display: none; // Oculta barra en Chrome/Safari
+                    }
+                  }
+          
+                  .branch-button {
+                    flex: 0 0 auto;
+                    padding: 0.5vw 1vw;
+                    border: none;
+                    border-radius: 1vw;
+                    background: $Gray;
+                    color: $Blanco;
+                    font-family: $Letra2;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+          
+                    &.active {
+                      background: $Box_admin;
+                      color: $Texto;
+                      border: none;
+                    }
+          
+                    &:hover {
+                      background: $Box_admin;
+                      color: $Texto;
+                      border: none;
+                    }
+                  }
+          
+                  .carousel-arrow {
+                    width: 10%;
+                    aspect-ratio: 1/1;
+                    position: absolute;
+                    top: 50%;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    transform: translateY(-50%);
+                    background-color: $Gray;
+                    color: $Blanco;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    transition: all 0.2s ease-in-out;
+
+                    &.left {
+                      overflow: hidden;
+                      left: -12%;
+                      background-image: url("../img/Logos/interfaces/icons/flecha.svg");
+                      background-position: center;
+                      background-repeat: no-repeat;
+                      background-size: cover;
+                      transition: all 0.2s ease-in-out;
+                      transform: translateY(-50%) rotate(180deg);
+                      border: 0.1rem solid $Gray;
+
+                    }
+          
+                    &.right {
+                      overflow: hidden;
+                      right: -12%;
+                      background-image: url("../img/Logos/interfaces/icons/flecha.svg");
+                      background-position: center;
+                      background-repeat: no-repeat;
+                      background-size: cover;
+                      transition: all 0.2s ease-in-out;
+                      border: 0.1rem solid $Gray;
+                    }
+          
+                    &:disabled {
+                      background: $Blanco;
+                      cursor: not-allowed;
+                      opacity: 0;
+                    }
+          
+                    &:hover:not(:disabled) {
+                      background-color: $Box_admin;
+                      border: 0.1rem solid $Box_admin;
+                    }
+                  }
+                }
+          
+                .data_chat_admin {
+                  width: 95%; 
+                  height: 100%;
+                  min-height: 0;
+                  overflow-x: hidden;
+                  overflow-y: auto;
+                  display: flex;
+                  align-items: center; /* Ajustado de chat_box */
+                  padding: 2%; /* Ajustado de chat_box */
+                  justify-content: end; /* Ajustado de chat_box */
+                  flex-direction: column;
+                  color: $Box_admin;
+                  font-family: $Letra2;
+                  gap: 1vh;
+                
+                  p {
+                    font-weight: 170;
+                    font-size: 0.7vw;
+                  }
+                
+                  .rh_message,
+                  .branch_message {
+                    width: 90%; /* Ajustado de chat_box .bot_message y .user_message */
+                    display: flex;
+                    gap: 0.5vh;
+                    position: relative;
+                
+                    span {
+                      width: auto;
+                      font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
+                      color: $Box_admin;
+                      margin-left: 0; /* Ajustado de chat_box .bot_message span */
+                    }
+                
+                    p {
+                      width: auto; /* Ajustado de chat_box */
+                      text-align: center;
+                      margin: 0;
+                      max-width: 70%;
+                      padding: 3%;
+                      font-weight: 170;
+                      font-size: 0.7vw; /* Ajustado de chat_box */
+                      border: 1.5px solid $Box_admin; /* Ajustado de chat_box */
+                      border-radius: 1vw;
+                      color: $Box_admin;
+                
+                      a {
+                        text-decoration: none;
+                        color: $Principal; /* Ajustado de chat_box .bot_message p a */
+                      }
+                    }
+                  }
+                
+                  .rh_message {
+                    justify-content: end; /* Similar a .user_message */
+                    span {
+                      display: none; /* Mantenido del original */
+                    }
+                  }
+                
+                  .branch_message {
+                    justify-content: start; /* Similar a .bot_message */
+                    flex-direction: column; /* Mantenido del original */
+                    align-items: start; /* Ajustado de chat_box .bot_message */
+                    span {
+                      margin-left: 0; /* Ajustado para consistencia */
+                    }
+                  }
+                }
+          
+                hr {
+                  width: 90%;
+                  height: 1px;
+                  background-color: $Box_admin;
+                  border-radius: 100%;
+                  border: none;
+                }
+
+                // Formulario de entrada
+                .admin_chat_form {
+                  width: 95%;
+                  height: 3%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-top: 1vh;
+                  margin-bottom: 1vh;
+                  #admin_chat_input {
+                    width: 95%;
+                    height: 100%;
+                    display: flex;
+                    border-radius: 5rem;
+                    background: $Blanco;
+                    outline: none;
+                    border: none;
+                    padding: 0 1vw;
+                    color: $Box_admin;
+                    font-family: $Letra2;
+                    font-size: 0.7vw;
+          
+                    &::placeholder {
+                      color: $Box_admin;
+                    }
+          
+                    &:focus {
+                      border-color: $Blanco;
+                      box-shadow: 0px 0px 5px 2px $Blanco;
+                      background: $Blanco;
+                      color: $Box_admin;
+          
+                      &::placeholder {
+                        color: $Box_admin;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .mensajes_usuarios {
+            width: 4%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: absolute;
+            right: 6%;
             top: 0;
 
             .icons_mj {
@@ -1738,7 +2068,7 @@ html {
 
                 &:checked ~ .mj_user_info {
                   display: flex;
-                  animation: fadeIn 0.2s ease-in-out forwards;
+                  animation: fadeInRight 0.2s ease-in-out forwards;
                 }
                 
                 &:checked ~ .label_icon {
@@ -1802,20 +2132,21 @@ html {
               }
 
               .mj_user_info {
-                position: fixed;
+                position: absolute;
                 display: none;
                 justify-content: start;
                 align-items: center;
                 flex-direction: column;
-                width: 15vw;
-                height: 76vh;
-                top: 18.8vh;
-                left: 17.5vw;
+                width: 19vw;
+                height: 92.5vh;
+                top: 100%;
+                right: -6vw;
                 text-align: center;
                 color: $Texto;
                 font-family: $Letra2;
                 font-size: 0.7vw;
                 padding: 0.5vw;
+                border-left: .1rem solid $Blanco;
                 background-color: $Box_admin;
                 gap: 1.5vh;
 
@@ -1852,7 +2183,7 @@ html {
                       border-radius: 5rem;
                       font-size: 0.7vw;
                       display: flex;
-                      background-color: $Secundario;
+                      background-color: $Gray;
                       color: $Texto;
                       outline: none;
                       text-align: center;
@@ -1931,10 +2262,10 @@ html {
 
                     button {
                       width: 95%;
-                      height: 5vh;
+                      height: 6vh;
                       display: flex;
-                      background-color: $Texto;
-                      border-radius: 0.5vw;
+                      background-color: $Blanco;
+                      border-radius: 1vw;
                       justify-content: center;
                       border: none;
                       overflow-y: hidden;
@@ -1999,7 +2330,7 @@ html {
                                 margin: 0;
                                 font-size: 0.6vw;
                                 padding: 0.5vw;
-                                border: 1.5px solid $Box_admin;
+                                border: .1rem solid $Box_admin;
                                 padding: 3%;
                                 font-weight: 170;
                                 font-size: 0.7vw;
@@ -2030,7 +2361,7 @@ html {
             justify-content: space-evenly;
             align-items: center;
             position: absolute;
-            right: 6%;
+            right: 11%;
             top: 0;
 
             .icons_sucu {
@@ -2050,7 +2381,7 @@ html {
 
                 &:checked ~ .sucu_user_info {
                   display: flex;
-                  animation: fadeIn 0.2s ease-in-out forwards;
+                  animation: fadeInRight 0.2s ease-in-out forwards;
                 }
                 
                 &:checked ~ .label_icon {
@@ -2117,15 +2448,16 @@ html {
               }
 
               .sucu_user_info {
-                position: fixed;
+                position: absolute;
                 display: none;
                 justify-content: start;
                 align-items: center;
                 flex-direction: column;
-                width: 15vw;
-                height: 76vh;
-                top: 18.8vh;
-                left: 17.5vw;
+                width: 19vw;
+                height: 92.5vh;
+                top: 100%;
+                right: -11vw;
+                border-left: .1rem solid $Blanco;
                 text-align: center;
                 color: $Texto;
                 font-family: $Letra2;
@@ -2167,7 +2499,7 @@ html {
                       border-radius: 5rem;
                       font-size: 0.7vw;
                       display: flex;
-                      background-color: $Secundario;
+                      background-color: $Gray;
                       color: $Texto;
                       outline: none;
                       text-align: center;
@@ -2235,7 +2567,7 @@ html {
 
                     .sucursal_item {
                       width: 90%;
-                      height: 4vh;
+                      height: 5vh;
                       display: flex;
                       justify-content: space-between;
                       align-items: center;
@@ -2266,8 +2598,8 @@ html {
 
                         input[type="checkbox"] {
                           & ~ .sucursal_label {
-                            width: 20px;
-                            height: 20px;
+                            height: 70%;
+                            aspect-ratio: 2/2;
                             background-color: $Red;
                             border-radius: 50%;
                             display: inline-block;
@@ -2304,7 +2636,7 @@ html {
             justify-content: space-evenly;
             align-items: center;
             position: absolute;
-            right: 11%;
+            right: 16%;
             top: 0;
 
             .icons_puestos {
@@ -2324,7 +2656,7 @@ html {
 
                 &:checked ~ .puestos_user_info {
                   display: flex;
-                  animation: fadeIn 0.2s ease-in-out forwards;
+                  animation: fadeInRight 0.2s ease-in-out forwards;
                 }
 
                 &:checked ~ .label_icon {
@@ -2390,18 +2722,22 @@ html {
               }
 
               .puestos_user_info {
-                position: fixed;
+                position: absolute;
                 display: none;
                 justify-content: start;
                 align-items: center;
                 flex-direction: column;
-                width: 15vw;
-                height: 76vh;
-                top: 18.8vh;
-                left: 17.5vw;
+                width: 19vw;
+                height: 92.5vh;
+                top: 100%;
+                right: -16vw;
                 text-align: center;
                 color: $Texto;
                 font-family: $Letra2;
+                border-top: none;
+                border-right: none;
+                border-bottom: none;
+                border-left: .1rem solid $Blanco;
                 font-size: 0.7vw;
                 padding: 0.5vw;
                 background-color: $Box_admin;
@@ -2440,7 +2776,7 @@ html {
                       border-radius: 5rem;
                       font-size: 0.7vw;
                       display: flex;
-                      background-color: $Secundario;
+                      background-color: $Gray;
                       color: $Texto;
                       outline: none;
                       text-align: center;
@@ -2517,10 +2853,10 @@ html {
                     gap: 1.5vh;
                     button {
                       width: 95%;
-                      height: 5vh;
+                      height: 6vh;
                       display: flex;
-                      background-color: $Texto;
-                      border-radius: 0.5vw;
+                      background-color: $Blanco;
+                      border-radius: 1vw;
                       justify-content: center;
                       border: none;
                       overflow-y: hidden;
@@ -2577,8 +2913,8 @@ html {
                                 color: $Box_admin;
                               }
                               .puesto_admin_circle {
-                                width: 1.3rem;
-                                height: 1.3rem;
+                                height: 70%;
+                                aspect-ratio: 2/2;
                                 border-radius: 100%;
                                 &.no_disponible {
                                   background-color: $Red;
@@ -2609,7 +2945,7 @@ html {
             justify-content: space-evenly;
             align-items: center;
             position: absolute;
-            right: 16%;
+            right: 21%;
             top: 0;
 
             .icons_resultados {
@@ -2630,7 +2966,7 @@ html {
 
                 &:checked ~ .resultados_user_info {
                   display: flex;
-                  animation: fadeIn 0.2s ease-in-out forwards;
+                  animation: fadeInDown 0.2s ease-in-out forwards;
                 }
 
                 &:checked ~ .label_icon {
@@ -4886,14 +5222,14 @@ html {
 
       .cont_manager {
         width: 30vw;
-        height: 90vh;
+        height: 84vh;
         display: flex;
         justify-content: space-between;
         align-items: start;
         font-family: $Letra2;
         position: relative;
         border: none;
-        margin-bottom: 2vh;
+        margin-bottom: 8vh;
         padding: 0;
         gap: 2%;
         background-color: $Box_admin;
@@ -4932,7 +5268,7 @@ html {
             color: $Texto;
 
             .no_data {
-              margin-top: 40%;
+              margin-top: 20%;
               width: 40%;
               aspect-ratio: 2/2;
               background-image: url("../img//Utilidades/no_data.png");
@@ -5170,6 +5506,210 @@ html {
 
                   .btn-container {
                     display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .chat_manager {
+        width: 100vw;
+        height: 6vh;
+        display: flex;
+        background-color: $Box_admin;
+        justify-content: space-evenly;
+        align-items: center;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 10000;
+      
+        .icons_chat_manager {
+          width: 90%;
+          height: 90%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      
+          input {
+            display: none;
+      
+            &:checked ~ label {
+              display: flex;
+            }
+      
+            &:checked ~ .chat_manager_info {
+              display: flex;
+              animation: fadeIn 0.2s ease-in-out forwards;
+            }
+          }
+      
+          .label_icon {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row-reverse;
+            gap: 1vw;
+            img {
+              height: 50%;
+              transform: scale(1) rotate(270deg);
+              transition: all 0.2s ease-in-out;
+            }
+            span {
+              color: $Blanco;
+              display: flex;
+              font-family: $Letra2;
+              font-size: 1vw;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+            &:hover {
+              img {
+                transform: scale(1.1) rotate(270deg);
+              }
+            }
+          }
+      
+          .chat_manager_info {
+            position: fixed;
+            display: none;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            width: 30vw;
+            height: 82vh;
+            bottom: 8vh;
+            border-radius: 2vw;
+            text-align: center;
+            color: $Texto;
+            font-family: $Letra2;
+            font-size: 0.7vw;
+            padding: 0.5vw;
+            border-left: 0.1rem solid $Blanco;
+            background-color: $Blanco;
+      
+            // Área de mensajes
+            .data_chat_manager {
+              width: 95%;
+              height: 100%;
+              overflow-x: hidden;
+              overflow-y: scroll;
+              display: flex;
+              align-items: center; /* Ajustado de chat_box */
+              padding: 2%; /* Ajustado de chat_box */
+              justify-content: end; /* Ajustado de chat_box */
+              flex-direction: column;
+              color: $Box_admin;
+              font-family: $Letra2;
+              gap: 1vh;
+            
+              .rh_message,
+              .branch_message {
+                width: 90%; /* Ajustado de chat_box .bot_message y .user_message */
+                display: flex;
+                gap: 0.5vh;
+            
+                span {
+                  width: auto;
+                  font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
+                  color: $Box_admin;
+                  margin-left: 1vw; /* Ajustado de chat_box .bot_message span */
+                }
+            
+                p {
+                  width: auto; /* Ajustado de chat_box */
+                  text-align: center;
+                  margin: 0;
+                  max-width: 70%; /* Ajustado de chat_box */
+                  padding: 3%;
+                  font-weight: 170;
+                  font-size: 0.7vw; /* Ajustado de chat_box */
+                  border: 1.5px solid $Box_admin; /* Ajustado de chat_box */
+                  border-radius: 1vw;
+                  color: $Box_admin;
+            
+                  a {
+                    text-decoration: none;
+                    color: $Principal; /* Ajustado de chat_box .bot_message p a */
+                  }
+                }
+              }
+            
+              .rh_message {
+                justify-content: start; /* Mantenido del original, similar a .bot_message */
+                align-items: start; /* Ajustado de chat_box .bot_message */
+                flex-direction: column; /* Mantenido del original */
+                span {
+                  margin-left: 1vw; /* Ajustado para consistencia */
+                }
+              }
+            
+              .branch_message {
+                justify-content: end; /* Mantenido del original, similar a .user_message */
+                span {
+                  display: none; /* Mantenido del original */
+                }
+              }
+            
+              .typing {
+                color: $Box_admin;
+                font-style: italic;
+                font-size: 0.7vw;
+                position: absolute;
+                bottom: 5vh;
+                animation: fadeIn 0.2s ease-in-out;
+              }
+            }
+      
+            hr {
+              width: 90%;
+              height: 1px;
+              background-color: $Box_admin;
+              border-radius: 100%;
+              border: none;
+            }
+
+            // Formulario de entrada
+            .manager_chat_form {
+              width: 95%;
+              height: 3%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-top: 1vh;
+              margin-bottom: 1vh;
+              #manager_chat_input {
+                width: 95%;
+                height: 100%;
+                display: flex;
+                border-radius: 5rem;
+                background: $Blanco;
+                outline: none;
+                border: none;
+                padding: 0 1vw;
+                color: $Box_admin;
+                font-family: $Letra2;
+                font-size: 0.7vw;
+      
+                &::placeholder {
+                  color: $Box_admin;
+                }
+      
+                &:focus {
+                  border-color: $Blanco;
+                  box-shadow: 0px 0px 5px 2px $Blanco;
+                  background: $Blanco;
+                  color: $Box_admin;
+      
+                  &::placeholder {
+                    color: $Box_admin;
                   }
                 }
               }
@@ -5536,445 +6076,191 @@ html {
         }
       }
 
+
       #pag3 {
-        @include cover;
+  
+        .nav_admin {
+          .nav_cont {
 
-        .orientation-message {
-          display: flex;
-        }
-
-        .settings {
-          top: 1.3vh;
-          left: 2vw;
-          width: 15vw;
-          height: 4.5vh;
-          border-radius: 1vw;
-
-          .icons_settings {
-            .settings_info {
+            .settings {
               width: 15vw;
-              height: 9vh;
-              top: 5.5vh;
-              left: 1.5vw;
-              border-radius: 0 0 2vw 0;
-              background-color: $Fondo;
-
-              .data_settings {
-                background-color: $Fondo;
-              }
-            }
-          }
-        }
-
-        .estatus_vacantes {
-          top: 1.5vh;
-          left: 35.5vw;
-          width: 25vw;
-          height: 8.5vw;
-          padding: 2vw;
-          border-radius: 5vw;
-
-          .icons_status {
-            .status_info {
-              width: 95vw;
-              height: 90vh;
-              top: 8vh;
-              left: 1.5vw;
-
-              .box_status {
-                p {
-                  font-size: 3vw;
-                }
-              }
-
-              .data_status {
-                ul {
-                  .vacante_item_noasistieron,
-                  .vacante_item_asistieron,
-                  .vacante_item_contratado {
-                    border-radius: 2vw;
-
-                    .btn_container2 {
-                      width: 3%;
-                    }
-
-                    .vacante_info {
-                      width: 88%;
-                      grid-template-columns: repeat(3, 1fr);
-
-                      span {
-                        font-size: 2.5vw;
-
-                        strong {
-                          font-size: 3vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      width: 11.5%;
-                      height: 100%;
-
-                      button {
-                        width: 4.5vw;
-                      }
-                    }
-
-                    &:focus {
-                      height: 30vh;
-
-                      .btn-container {
-                        display: none;
-                      }
-
-                      .vacante_info {
-                        width: 95%;
-                        height: 95%;
-                        grid-template-columns: repeat(3, 1fr);
-
-                        span {
-                          font-size: 2vw;
-
-                          strong {
-                            font-size: 2.5vw;
-                          }
-                        }
-                      }
-
-                      .btn_container2 {
-                        display: none;
-                      }
-                    }
+              left: 2%;
+  
+              .icons_settings {
+  
+                input {
+                  display: none;
+  
+                  &:checked ~ .settings_info {
+                    left: 650%;
+                    width: 60%;
                   }
                 }
-              }
-            }
-          }
-        }
-
-        .admin_cont {
-          width: 97vw;
-          height: calc(var(--vh, 1vh) * 97);
-          position: absolute;
-          justify-content: start;
-          align-items: center;
-          flex-direction: column-reverse;
-          mask-size: 40vw, 15vw, 20vw;
-          mask-position: center top, left top, right top;
-
-          .cont_rechazados {
-            width: 95%;
-            height: 40vh;
-            margin: 0;
-            overflow: hidden;
-            justify-content: start;
-            align-items: center;
-
-            .box_red {
-              width: 100%;
-              height: 3vh;
-            }
-
-            .const_data {
-              .no_data {
-                margin-top: 60%;
-                width: 40%;
-              }
-
-              ul {
-                .vacante_item_red {
-                  overflow: hidden;
-                  border-radius: 1.5vw;
-
-                  .btn_container2 {
-                    width: 2.5%;
-                  }
-
-                  .vacante_info {
-                    width: 88%;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2.5vw;
-
-                      strong {
-                        font-size: 3vw;
-                      }
+  
+                .settings_info {
+                  top: 0;
+                  left: 0;
+                  gap: 1.5vh;
+                  .data_settings {
+                    gap: 5%;
+                    #infouserAdmin {
+                      display: none;
                     }
-                  }
-
-                  .btn-container {
-                    width: 11.5%;
-                    height: 100%;
-
                     button {
-                      width: 4.5vw;
-                    }
-                  }
-
-                  &:focus {
-                    height: 35vh;
-
-                    .btn_container2 {
-                      display: none;
-                    }
-
-                    .vacante_info {
-                      width: 95%;
-                      height: 95%;
-                      grid-template-columns: repeat(4, 1fr);
-                    }
-
-                    .btn-container {
-                      display: none;
+                      height: 70%;
+  
+                      img {
+                        height: 70%;
+                      }
+                      span {
+                        display: none;
+                      }
                     }
                   }
                 }
               }
             }
-          }
-
-          .cont_citas {
-            width: 95%;
-            height: 40vh;
-            margin: 0;
-            overflow: hidden;
-            justify-content: start;
-            align-items: center;
-
-            .box_gray {
-              width: 100%;
-              height: 3vh;
+  
+            .cont_welcome_admin {
+              .text_welcome_admin {
+                max-width: 45%;
+                p {
+                  font-size: 2vw;
+                }
+              }
             }
 
-            .const_data {
-              .no_data {
-                margin-top: 60%;
-                width: 40%;
-              }
-
-              ul {
-                .vacante_item_citas {
-                  overflow: hidden;
-                  border-radius: 1.5vw;
-
-                  .btn_container2 {
-                    width: 2%;
-
-                    .btn-descargar-pdf {
-                      height: 100%;
-                    }
-
-                    .btn-agendar-cita {
-                      display: none;
-                    }
-                  }
-
-                  .vacante_info {
-                    width: 98%;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2.5vw;
-
-                      strong {
-                        font-size: 3vw;
-                      }
-                    }
-                  }
-
-                  .btn-container {
+            .chat_admin {
+              right: 0;
+            
+              .icons_chat_admin {
+            
+                input {
+                  display: none;
+            
+                  &:checked ~ label {
                     display: none;
                   }
-
-                  &:focus {
-                    height: 10vh;
-
-                    .btn_container2 {
-                      display: none;
-                    }
-
-                    .vacante_info {
-                      width: 95%;
-                      height: 95%;
-                      grid-template-columns: repeat(4, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
-                      }
-                    }
-
-                    .btn-container {
-                      display: none;
-                    }
+            
+                  &:checked ~ .chat_admin_info {
+                    display: flex;
+                    animation: none;
                   }
                 }
-              }
-            }
-          }
-
-          .cont_aceptados {
-            width: 95%;
-            height: 40vh;
-            margin-top: 6.5vh;
-            overflow: hidden;
-            justify-content: start;
-            align-items: center;
-
-            .box_green {
-              width: 100%;
-              height: 3vh;
-            }
-
-            .const_data {
-              .no_data {
-                margin-top: 60%;
-                width: 40%;
-              }
-
-              ul {
-                .vacante_item_green {
-                  overflow: hidden;
-                  border-radius: 1.5vw;
-
-                  .btn_container2 {
-                    width: 2.5%;
+            
+                .label_icon {
+                  img {
+                    visibility: hidden;
+                    opacity: 0;
                   }
+                  span {
+                    visibility: hidden;
+                    opacity: 0;
+                  }
+                }
+            
+                .chat_admin_info {
+                  display: flex;
+                  width: 100vw;
+                  height: 94vh;
+                  top: 100%;
+                  right: 0;
+                  padding: 0;
+                  border-left: 0;
+            
+                  // Carrusel de botones
+                  .branch-carousel {
+                    width: 75%;
+                    margin-top: 2vh;
+                    margin-bottom: 1vh;
+                    border-radius: 3rem;
+                    padding: 2vw;
+                    font-size: 4.5vw;
+            
+                    .carousel-inner {
+                      border-radius: 3rem;
+                      gap: 2vw;
+                    }
+            
+                    .branch-button {
+                      padding: 2vw 4vw;
+                      border-radius: 3rem;
+                    }
+            
+                    .carousel-arrow {
+                      width: 10%;
+  
+                      &.left {
+                        left: -11.5%;
+  
+                      }
+            
+                      &.right {
+                        right: -11.5%;
+                      }
+                    }
+                  }
+            
+                  .data_chat_admin {
+                    padding: 2%;
+                    gap: 1vh;
 
-                  .vacante_info {
-                    width: 88%;
-                    grid-template-columns: repeat(3, 1fr);
-
-                    span {
-                      font-size: 2.5vw;
-
-                      strong {
+                    p {
+                      font-size: 3vw;
+                    }
+                  
+                    .rh_message,
+                    .branch_message {
+                      gap: 1.5vh;
+                  
+                      span {
                         font-size: 3vw;
                       }
-                    }
-                  }
-
-                  .btn-container {
-                    width: 11.5%;
-                    height: 100%;
-
-                    button {
-                      width: 4.5vw;
-                    }
-                  }
-
-                  &:focus {
-                    height: 35vh;
-
-                    .btn_container2 {
-                      display: none;
-                    }
-
-                    .vacante_info {
-                      width: 95%;
-                      height: 95%;
-                      grid-template-columns: repeat(4, 1fr);
-
-                      span {
-                        font-size: 2vw;
-
-                        strong {
-                          font-size: 2.5vw;
-                        }
+                  
+                      p {
+                        font-size: 4vw; 
+                        border-radius: 3vw;
                       }
                     }
-
-                    .btn-container {
-                      display: none;
+                  }
+  
+                  // Formulario de entrada
+                  .admin_chat_form {
+                    margin-top: 1vh;
+                    margin-bottom: 1vh;
+                    #admin_chat_input {
+                      padding: 0 2vw;
+                      font-size: 4vw;
                     }
                   }
                 }
               }
+            }
+  
+            .mensajes_usuarios {
+              display: none;
+            }
+  
+            .disponibilidad_sucu {
+              display: none;
+            }
+  
+            .disponibilidad_puestos {
+              display: none;
+            }
+  
+            .disponibilidad_resultados {
+              display: none;
             }
           }
         }
-
-        .mensajes_usuarios {
-          width: 15vw;
-          top: 0.4%;
-          height: 4.5vh;
-          border-radius: 3vw;
-
-          .icons_mj {
-            label {
-              border-radius: 10rem;
-            }
-
-            .mj_user_info {
-              width: 95vw;
-              height: 85vh;
-              top: 8vh;
-              left: 1.5vw;
-
-              .filter-container {
-                width: 100%;
-                height: 4vh;
-                border-radius: 2vw;
-
-                .input-field {
-                  input {
-                    @include cover;
-                    border-radius: 2vw;
-                    font-size: 2.5vw;
-                  }
-
-                  input:focus ~ label,
-                  input:not(:placeholder-shown) ~ label {
-                    font-size: 2vw;
-                  }
-
-                  label {
-                    font-size: 2.5vw;
-                  }
-                }
-              }
-
-              .data_mj_user {
-                ul {
-                  button {
-                    border-radius: 2.5vw;
-
-                    .user-div {
-                      font-size: 2.5vw;
-                    }
-
-                    &:focus {
-                      overflow: hidden;
-                      height: 30vh;
-
-                      .user-messages {
-                        .message {
-                          span {
-                            strong {
-                              font-size: 1.5vw;
-                            }
-
-                            p {
-                              font-size: 1.9vw;
-                              border-radius: 2vw;
-                            }
-
-                            time {
-                              font-size: 1.3vw;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+  
+        .estatus_vacantes {
+          display: none;
+        }
+  
+        .admin_cont {
+          display: none;
         }
       }
 
@@ -6183,7 +6469,7 @@ html {
 
         .cont_manager {
           width: 97vw;
-          height: 91%;
+          height: 85vh;
           position: absolute;
           justify-content: start;
           align-items: center;
@@ -6235,6 +6521,70 @@ html {
                       }
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+
+        .chat_manager {
+        
+          .icons_chat_manager {
+        
+            input {
+              display: none;
+        
+              &:checked ~ label {
+                display: flex;
+              }
+        
+              &:checked ~ .chat_manager_info {
+                display: flex;
+                animation: fadeIn 0.2s ease-in-out forwards;
+              }
+            }
+        
+            .label_icon {
+              gap: 3vw;
+              span {
+                font-size: 5vw;
+              }
+            }
+            
+            .chat_manager_info {
+              width: 100vw;
+              height: 88vh;
+              bottom: 6vh;
+        
+              // Área de mensajes
+              .data_chat_manager {
+                .rh_message,
+                .branch_message {
+                  span {
+                    font-size: .7rem;
+                  }
+        
+                  p {
+                    font-size: 1rem;
+                    border-radius: 1rem;
+                  }
+                }
+        
+                .rh_message {
+                  span {
+                    margin-left: -80%;
+                  }
+                }
+        
+                .typing {
+                  font-size: 1rem;
+                }
+              }
+  
+              // Formulario de entrada
+              .manager_chat_form {
+                #manager_chat_input {
+                  font-size: 1rem;
                 }
               }
             }

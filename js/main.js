@@ -774,10 +774,11 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded");
 
   const checkboxes = [
+    ...document.querySelectorAll(".chat_admin input[type='checkbox']"),
+    ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
     ...document.querySelectorAll('.disponibilidad_sucu input[type="checkbox"]'),
     ...document.querySelectorAll('.disponibilidad_puestos input[type="checkbox"]'),
     ...document.querySelectorAll('.disponibilidad_resultados input[type="checkbox"]'),
-    ...document.querySelectorAll('.mensajes_usuarios input[type="checkbox"]'),
     ...document.querySelectorAll('.estatus_vacantes input[type="checkbox"]'),
     ...document.querySelectorAll(
       '.estatus_citas_manager input[type="checkbox"]'

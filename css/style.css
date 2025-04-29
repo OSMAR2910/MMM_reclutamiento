@@ -2907,6 +2907,354 @@ html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
   font-size: 0.9em;
   font-family: "Nunito";
 }
+body main #pag3 .nav_admin .nav_cont .chat_admin,
+html main #pag3 .nav_admin .nav_cont .chat_admin {
+  width: 4%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  right: 1%;
+  top: 0;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ label,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ label {
+  opacity: 50%;
+  scale: 0.9;
+  display: flex;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .chat_admin_info,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .chat_admin_info {
+  display: flex;
+  animation: fadeInRight 0.2s ease-in-out forwards;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon img,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon img {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon img:hover,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon img:hover {
+  transform: scale(1);
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon span {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon span:hover,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .label_icon span:hover {
+  visibility: hidden;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon img,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon img {
+  height: 60%;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon span {
+  width: 100%;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 85%;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0.2rem 0.5rem;
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #1b3c59;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon:hover img,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon:hover img {
+  transform: scale(1.1);
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon:hover span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info {
+  position: absolute;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 19vw;
+  height: 92.5vh;
+  min-height: 0;
+  top: 100%;
+  right: -1vw;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+  padding: 0.5vw;
+  border-left: 0.1rem solid #ffffff;
+  background-color: #ffffff;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  background-color: #1b3c59;
+  border-radius: 2rem;
+  padding: 0.5vw;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-inner,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-inner {
+  display: flex;
+  border-radius: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 0.5vw;
+  scrollbar-width: none;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-inner::-webkit-scrollbar,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-inner::-webkit-scrollbar {
+  display: none;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button {
+  flex: 0 0 auto;
+  padding: 0.5vw 1vw;
+  border: none;
+  border-radius: 1vw;
+  background: #a6a6a6;
+  color: #ffffff;
+  font-family: "Nunito";
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button.active,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button.active {
+  background: #1b3c59;
+  color: #ffffff;
+  border: none;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button:hover,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button:hover {
+  background: #1b3c59;
+  color: #ffffff;
+  border: none;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow {
+  width: 10%;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: translateY(-50%);
+  background-color: #a6a6a6;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.left,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.left {
+  overflow: hidden;
+  left: -12%;
+  background-image: url("../img/Logos/interfaces/icons/flecha.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(-50%) rotate(180deg);
+  border: 0.1rem solid #a6a6a6;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.right,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.right {
+  overflow: hidden;
+  right: -12%;
+  background-image: url("../img/Logos/interfaces/icons/flecha.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.2s ease-in-out;
+  border: 0.1rem solid #a6a6a6;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:disabled,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:disabled {
+  background: #ffffff;
+  cursor: not-allowed;
+  opacity: 0;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:hover:not(:disabled),
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:hover:not(:disabled) {
+  background-color: #1b3c59;
+  border: 0.1rem solid #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin {
+  width: 95%;
+  height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  align-items: center; /* Ajustado de chat_box */
+  padding: 2%; /* Ajustado de chat_box */
+  justify-content: end; /* Ajustado de chat_box */
+  flex-direction: column;
+  color: #1b3c59;
+  font-family: "Nunito";
+  gap: 1vh;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin p,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin p {
+  font-weight: 170;
+  font-size: 0.7vw;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message,
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message {
+  width: 90%; /* Ajustado de chat_box .bot_message y .user_message */
+  display: flex;
+  gap: 0.5vh;
+  position: relative;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message span,
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span {
+  width: auto;
+  font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
+  color: #1b3c59;
+  margin-left: 0; /* Ajustado de chat_box .bot_message span */
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p,
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p {
+  width: auto; /* Ajustado de chat_box */
+  text-align: center;
+  margin: 0;
+  max-width: 70%;
+  padding: 3%;
+  font-weight: 170;
+  font-size: 0.7vw; /* Ajustado de chat_box */
+  border: 1.5px solid #1b3c59; /* Ajustado de chat_box */
+  border-radius: 1vw;
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p a,
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p a,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p a,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p a {
+  text-decoration: none;
+  color: #ec6223; /* Ajustado de chat_box .bot_message p a */
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message {
+  justify-content: end; /* Similar a .user_message */
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message span {
+  display: none; /* Mantenido del original */
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message {
+  justify-content: start; /* Similar a .bot_message */
+  flex-direction: column; /* Mantenido del original */
+  align-items: start; /* Ajustado de chat_box .bot_message */
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span {
+  margin-left: 0; /* Ajustado para consistencia */
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info hr,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info hr {
+  width: 90%;
+  height: 1px;
+  background-color: #1b3c59;
+  border-radius: 100%;
+  border: none;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form {
+  width: 95%;
+  height: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  border-radius: 5rem;
+  background: #ffffff;
+  outline: none;
+  border: none;
+  padding: 0 1vw;
+  color: #1b3c59;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::-moz-placeholder, html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::-moz-placeholder {
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::placeholder,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::placeholder {
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus {
+  border-color: #ffffff;
+  box-shadow: 0px 0px 5px 2px #ffffff;
+  background: #ffffff;
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::-moz-placeholder, html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::-moz-placeholder {
+  color: #1b3c59;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::placeholder,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::placeholder {
+  color: #1b3c59;
+}
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios {
   width: 4%;
@@ -2915,7 +3263,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios {
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
-  right: 1%;
+  right: 6%;
   top: 0;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj,
@@ -2939,7 +3287,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked 
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .mj_user_info {
   display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
+  animation: fadeInRight 0.2s ease-in-out forwards;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon img,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj input:checked ~ .label_icon img {
@@ -3005,20 +3353,21 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon:ho
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info {
-  position: fixed;
+  position: absolute;
   display: none;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  width: 15vw;
-  height: 76vh;
-  top: 18.8vh;
-  left: 17.5vw;
+  width: 19vw;
+  height: 92.5vh;
+  top: 100%;
+  right: -6vw;
   text-align: center;
   color: #ffffff;
   font-family: "Nunito";
   font-size: 0.7vw;
   padding: 0.5vw;
+  border-left: 0.1rem solid #ffffff;
   background-color: #1b3c59;
   gap: 1.5vh;
 }
@@ -3060,7 +3409,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   border-radius: 5rem;
   font-size: 0.7vw;
   display: flex;
-  background-color: #174891;
+  background-color: #a6a6a6;
   color: #ffffff;
   outline: none;
   text-align: center;
@@ -3148,10 +3497,10 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button {
   width: 95%;
-  height: 5vh;
+  height: 6vh;
   display: flex;
   background-color: #ffffff;
-  border-radius: 0.5vw;
+  border-radius: 1vw;
   justify-content: center;
   border: none;
   overflow-y: hidden;
@@ -3221,7 +3570,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   margin: 0;
   font-size: 0.6vw;
   padding: 0.5vw;
-  border: 1.5px solid #1b3c59;
+  border: 0.1rem solid #1b3c59;
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw;
@@ -3242,7 +3591,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu {
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
-  right: 6%;
+  right: 11%;
   top: 0;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu,
@@ -3266,7 +3615,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:chec
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .sucu_user_info {
   display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
+  animation: fadeInRight 0.2s ease-in-out forwards;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon img,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu input:checked ~ .label_icon img {
@@ -3334,15 +3683,16 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_ico
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info {
-  position: fixed;
+  position: absolute;
   display: none;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  width: 15vw;
-  height: 76vh;
-  top: 18.8vh;
-  left: 17.5vw;
+  width: 19vw;
+  height: 92.5vh;
+  top: 100%;
+  right: -11vw;
+  border-left: 0.1rem solid #ffffff;
   text-align: center;
   color: #ffffff;
   font-family: "Nunito";
@@ -3389,7 +3739,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
   border-radius: 5rem;
   font-size: 0.7vw;
   display: flex;
-  background-color: #174891;
+  background-color: #a6a6a6;
   color: #ffffff;
   outline: none;
   text-align: center;
@@ -3466,7 +3816,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item {
   width: 90%;
-  height: 4vh;
+  height: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3498,8 +3848,8 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label {
-  width: 20px;
-  height: 20px;
+  height: 70%;
+  aspect-ratio: 2/2;
   background-color: #ff3131;
   border-radius: 50%;
   display: inline-block;
@@ -3528,7 +3878,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos {
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
-  right: 11%;
+  right: 16%;
   top: 0;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos,
@@ -3552,7 +3902,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos inpu
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .puestos_user_info,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .puestos_user_info {
   display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
+  animation: fadeInRight 0.2s ease-in-out forwards;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon img,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos input:checked ~ .label_icon img {
@@ -3619,18 +3969,22 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .lab
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info {
-  position: fixed;
+  position: absolute;
   display: none;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  width: 15vw;
-  height: 76vh;
-  top: 18.8vh;
-  left: 17.5vw;
+  width: 19vw;
+  height: 92.5vh;
+  top: 100%;
+  right: -16vw;
   text-align: center;
   color: #ffffff;
   font-family: "Nunito";
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: 0.1rem solid #ffffff;
   font-size: 0.7vw;
   padding: 0.5vw;
   background-color: #1b3c59;
@@ -3674,7 +4028,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
   border-radius: 5rem;
   font-size: 0.7vw;
   display: flex;
-  background-color: #174891;
+  background-color: #a6a6a6;
   color: #ffffff;
   outline: none;
   text-align: center;
@@ -3762,10 +4116,10 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button {
   width: 95%;
-  height: 5vh;
+  height: 6vh;
   display: flex;
   background-color: #ffffff;
-  border-radius: 0.5vw;
+  border-radius: 1vw;
   justify-content: center;
   border: none;
   overflow-y: hidden;
@@ -3833,8 +4187,8 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle {
-  width: 1.3rem;
-  height: 1.3rem;
+  height: 70%;
+  aspect-ratio: 2/2;
   border-radius: 100%;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.no_disponible,
@@ -3859,7 +4213,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados {
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
-  right: 16%;
+  right: 21%;
   top: 0;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados,
@@ -3884,7 +4238,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .resultados_user_info,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .resultados_user_info {
   display: flex;
-  animation: fadeIn 0.2s ease-in-out forwards;
+  animation: fadeInDown 0.2s ease-in-out forwards;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon img,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados input:checked ~ .label_icon img {
@@ -6465,14 +6819,14 @@ html main #pag5 .sucursal_cont .sucursal {
 body main #pag5 .cont_manager,
 html main #pag5 .cont_manager {
   width: 30vw;
-  height: 90vh;
+  height: 84vh;
   display: flex;
   justify-content: space-between;
   align-items: start;
   font-family: "Nunito";
   position: relative;
   border: none;
-  margin-bottom: 2vh;
+  margin-bottom: 8vh;
   padding: 0;
   gap: 2%;
   background-color: #1b3c59;
@@ -6514,7 +6868,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data {
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data .no_data,
 html main #pag5 .cont_manager .cont_citas_manager .const_data .no_data {
-  margin-top: 40%;
+  margin-top: 20%;
   width: 40%;
   aspect-ratio: 2/2;
   background-image: url("../img//Utilidades/no_data.png");
@@ -6766,6 +7120,225 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .btn-container,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager:focus .btn-container {
   display: none;
+}
+body main #pag5 .chat_manager,
+html main #pag5 .chat_manager {
+  width: 100vw;
+  height: 6vh;
+  display: flex;
+  background-color: #1b3c59;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+}
+body main #pag5 .chat_manager .icons_chat_manager,
+html main #pag5 .chat_manager .icons_chat_manager {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body main #pag5 .chat_manager .icons_chat_manager input,
+html main #pag5 .chat_manager .icons_chat_manager input {
+  display: none;
+}
+body main #pag5 .chat_manager .icons_chat_manager input:checked ~ label,
+html main #pag5 .chat_manager .icons_chat_manager input:checked ~ label {
+  display: flex;
+}
+body main #pag5 .chat_manager .icons_chat_manager input:checked ~ .chat_manager_info,
+html main #pag5 .chat_manager .icons_chat_manager input:checked ~ .chat_manager_info {
+  display: flex;
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+body main #pag5 .chat_manager .icons_chat_manager .label_icon,
+html main #pag5 .chat_manager .icons_chat_manager .label_icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 1vw;
+}
+body main #pag5 .chat_manager .icons_chat_manager .label_icon img,
+html main #pag5 .chat_manager .icons_chat_manager .label_icon img {
+  height: 50%;
+  transform: scale(1) rotate(270deg);
+  transition: all 0.2s ease-in-out;
+}
+body main #pag5 .chat_manager .icons_chat_manager .label_icon span,
+html main #pag5 .chat_manager .icons_chat_manager .label_icon span {
+  color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  font-size: 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+body main #pag5 .chat_manager .icons_chat_manager .label_icon:hover img,
+html main #pag5 .chat_manager .icons_chat_manager .label_icon:hover img {
+  transform: scale(1.1) rotate(270deg);
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info {
+  position: fixed;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  width: 30vw;
+  height: 82vh;
+  bottom: 8vh;
+  border-radius: 2vw;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+  padding: 0.5vw;
+  border-left: 0.1rem solid #ffffff;
+  background-color: #ffffff;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager {
+  width: 95%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center; /* Ajustado de chat_box */
+  padding: 2%; /* Ajustado de chat_box */
+  justify-content: end; /* Ajustado de chat_box */
+  flex-direction: column;
+  color: #1b3c59;
+  font-family: "Nunito";
+  gap: 1vh;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message,
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message {
+  width: 90%; /* Ajustado de chat_box .bot_message y .user_message */
+  display: flex;
+  gap: 0.5vh;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span {
+  width: auto;
+  font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
+  color: #1b3c59;
+  margin-left: 1vw; /* Ajustado de chat_box .bot_message span */
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p,
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p {
+  width: auto; /* Ajustado de chat_box */
+  text-align: center;
+  margin: 0;
+  max-width: 70%; /* Ajustado de chat_box */
+  padding: 3%;
+  font-weight: 170;
+  font-size: 0.7vw; /* Ajustado de chat_box */
+  border: 1.5px solid #1b3c59; /* Ajustado de chat_box */
+  border-radius: 1vw;
+  color: #1b3c59;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p a,
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p a,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p a,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p a {
+  text-decoration: none;
+  color: #ec6223; /* Ajustado de chat_box .bot_message p a */
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message {
+  justify-content: start; /* Mantenido del original, similar a .bot_message */
+  align-items: start; /* Ajustado de chat_box .bot_message */
+  flex-direction: column; /* Mantenido del original */
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span {
+  margin-left: 1vw; /* Ajustado para consistencia */
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message {
+  justify-content: end; /* Mantenido del original, similar a .user_message */
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span {
+  display: none; /* Mantenido del original */
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing {
+  color: #1b3c59;
+  font-style: italic;
+  font-size: 0.7vw;
+  position: absolute;
+  bottom: 5vh;
+  animation: fadeIn 0.2s ease-in-out;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info hr,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info hr {
+  width: 90%;
+  height: 1px;
+  background-color: #1b3c59;
+  border-radius: 100%;
+  border: none;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form {
+  width: 95%;
+  height: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  border-radius: 5rem;
+  background: #ffffff;
+  outline: none;
+  border: none;
+  padding: 0 1vw;
+  color: #1b3c59;
+  font-family: "Nunito";
+  font-size: 0.7vw;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::-moz-placeholder, html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::-moz-placeholder {
+  color: #1b3c59;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::placeholder,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::placeholder {
+  color: #1b3c59;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus {
+  border-color: #ffffff;
+  box-shadow: 0px 0px 5px 2px #ffffff;
+  background: #ffffff;
+  color: #1b3c59;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::-moz-placeholder, html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::-moz-placeholder {
+  color: #1b3c59;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::placeholder,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::placeholder {
+  color: #1b3c59;
 }
 body main #ap_tc,
 html main #ap_tc {
@@ -7075,469 +7648,183 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 8vw;
     left: 0;
   }
-  body main #pag3,
-  html main #pag3 {
-    width: 100%;
-    height: 100%;
+  body main #pag3 .nav_admin .nav_cont .settings,
+  html main #pag3 .nav_admin .nav_cont .settings {
+    width: 15vw;
+    left: 2%;
   }
-  body main #pag3 .orientation-message,
-  html main #pag3 .orientation-message {
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings input,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings input {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .settings_info,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings input:checked ~ .settings_info {
+    left: 650%;
+    width: 60%;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info {
+    top: 0;
+    left: 0;
+    gap: 1.5vh;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings {
+    gap: 5%;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings #infouserAdmin,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings #infouserAdmin {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button {
+    height: 70%;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button img {
+    height: 70%;
+  }
+  body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button span,
+  html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button span {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin,
+  html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
+    max-width: 45%;
+  }
+  body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p,
+  html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
+    font-size: 2vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin,
+  html main #pag3 .nav_admin .nav_cont .chat_admin {
+    right: 0;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ label,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ label {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .chat_admin_info,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin input:checked ~ .chat_admin_info {
     display: flex;
+    animation: none;
   }
-  body main #pag3 .settings,
-  html main #pag3 .settings {
-    top: 1.3vh;
-    left: 2vw;
-    width: 15vw;
-    height: 4.5vh;
-    border-radius: 1vw;
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon img,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon img {
+    visibility: hidden;
+    opacity: 0;
   }
-  body main #pag3 .settings .icons_settings .settings_info,
-  html main #pag3 .settings .icons_settings .settings_info {
-    width: 15vw;
-    height: 9vh;
-    top: 5.5vh;
-    left: 1.5vw;
-    border-radius: 0 0 2vw 0;
-    background-color: #ec6223;
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon span,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon span {
+    visibility: hidden;
+    opacity: 0;
   }
-  body main #pag3 .settings .icons_settings .settings_info .data_settings,
-  html main #pag3 .settings .icons_settings .settings_info .data_settings {
-    background-color: #ec6223;
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info {
+    display: flex;
+    width: 100vw;
+    height: 94vh;
+    top: 100%;
+    right: 0;
+    padding: 0;
+    border-left: 0;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel {
+    width: 75%;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+    border-radius: 3rem;
+    padding: 2vw;
+    font-size: 4.5vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-inner,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-inner {
+    border-radius: 3rem;
+    gap: 2vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button {
+    padding: 2vw 4vw;
+    border-radius: 3rem;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow {
+    width: 10%;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.left,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.left {
+    left: -11.5%;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.right,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.right {
+    right: -11.5%;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin {
+    padding: 2%;
+    gap: 1vh;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin p,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin p {
+    font-size: 3vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message,
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message {
+    gap: 1.5vh;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message span,
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message span,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span {
+    font-size: 3vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p,
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p {
+    font-size: 4vw;
+    border-radius: 3vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+  body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input,
+  html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input {
+    padding: 0 2vw;
+    font-size: 4vw;
+  }
+  body main #pag3 .nav_admin .nav_cont .mensajes_usuarios,
+  html main #pag3 .nav_admin .nav_cont .mensajes_usuarios {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu,
+  html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos,
+  html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados,
+  html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados {
+    display: none;
   }
   body main #pag3 .estatus_vacantes,
   html main #pag3 .estatus_vacantes {
-    top: 1.5vh;
-    left: 35.5vw;
-    width: 25vw;
-    height: 8.5vw;
-    padding: 2vw;
-    border-radius: 5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info {
-    width: 95vw;
-    height: 90vh;
-    top: 8vh;
-    left: 1.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .box_status p,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .box_status p {
-    font-size: 3vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado {
-    border-radius: 2vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn_container2 {
-    width: 3%;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info {
-    width: 88%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong {
-    font-size: 3vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container {
-    width: 11.5%;
-    height: 100%;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container button,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container button,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container button {
-    width: 4.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus {
-    height: 30vh;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn-container,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .vacante_info span strong,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
-  body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron:focus .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron:focus .btn_container2,
-  html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado:focus .btn_container2 {
     display: none;
   }
   body main #pag3 .admin_cont,
   html main #pag3 .admin_cont {
-    width: 97vw;
-    height: calc(var(--vh, 1vh) * 97);
-    position: absolute;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column-reverse;
-    -webkit-mask-size: 40vw, 15vw, 20vw;
-            mask-size: 40vw, 15vw, 20vw;
-    -webkit-mask-position: center top, left top, right top;
-            mask-position: center top, left top, right top;
-  }
-  body main #pag3 .admin_cont .cont_rechazados,
-  html main #pag3 .admin_cont .cont_rechazados {
-    width: 95%;
-    height: 40vh;
-    margin: 0;
-    overflow: hidden;
-    justify-content: start;
-    align-items: center;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .box_red,
-  html main #pag3 .admin_cont .cont_rechazados .box_red {
-    width: 100%;
-    height: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data .no_data,
-  html main #pag3 .admin_cont .cont_rechazados .const_data .no_data {
-    margin-top: 60%;
-    width: 40%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red {
-    overflow: hidden;
-    border-radius: 1.5vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 {
-    width: 2.5%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info {
-    width: 88%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong {
-    font-size: 3vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container {
-    width: 11.5%;
-    height: 100%;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container button,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container button {
-    width: 4.5vw;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus {
-    height: 35vh;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn_container2,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn_container2 {
     display: none;
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container,
-  html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas,
-  html main #pag3 .admin_cont .cont_citas {
-    width: 95%;
-    height: 40vh;
-    margin: 0;
-    overflow: hidden;
-    justify-content: start;
-    align-items: center;
-  }
-  body main #pag3 .admin_cont .cont_citas .box_gray,
-  html main #pag3 .admin_cont .cont_citas .box_gray {
-    width: 100%;
-    height: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data .no_data,
-  html main #pag3 .admin_cont .cont_citas .const_data .no_data {
-    margin-top: 60%;
-    width: 40%;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas {
-    overflow: hidden;
-    border-radius: 1.5vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 {
-    width: 2%;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-descargar-pdf,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-descargar-pdf {
-    height: 100%;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-agendar-cita,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-agendar-cita {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info {
-    width: 98%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span strong {
-    font-size: 3vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn-container {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus {
-    height: 10vh;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn_container2,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn-container,
-  html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_aceptados,
-  html main #pag3 .admin_cont .cont_aceptados {
-    width: 95%;
-    height: 40vh;
-    margin-top: 6.5vh;
-    overflow: hidden;
-    justify-content: start;
-    align-items: center;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .box_green,
-  html main #pag3 .admin_cont .cont_aceptados .box_green {
-    width: 100%;
-    height: 3vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data .no_data,
-  html main #pag3 .admin_cont .cont_aceptados .const_data .no_data {
-    margin-top: 60%;
-    width: 40%;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green {
-    overflow: hidden;
-    border-radius: 1.5vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2 {
-    width: 2.5%;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info {
-    width: 88%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong {
-    font-size: 3vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container {
-    width: 11.5%;
-    height: 100%;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container button,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container button {
-    width: 4.5vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus {
-    height: 35vh;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2 {
-    display: none;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info {
-    width: 95%;
-    height: 95%;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span {
-    font-size: 2vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span strong,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .vacante_info span strong {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container,
-  html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn-container {
-    display: none;
-  }
-  body main #pag3 .mensajes_usuarios,
-  html main #pag3 .mensajes_usuarios {
-    width: 15vw;
-    top: 0.4%;
-    height: 4.5vh;
-    border-radius: 3vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj label,
-  html main #pag3 .mensajes_usuarios .icons_mj label {
-    border-radius: 10rem;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info {
-    width: 95vw;
-    height: 85vh;
-    top: 8vh;
-    left: 1.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container {
-    width: 100%;
-    height: 4vh;
-    border-radius: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input {
-    width: 100%;
-    height: 100%;
-    border-radius: 2vw;
-    font-size: 2.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
-    font-size: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus ~ label,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
-    font-size: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field label {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button {
-    border-radius: 2.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-div {
-    font-size: 2.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus {
-    overflow: hidden;
-    height: 30vh;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong {
-    font-size: 1.5vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span p {
-    font-size: 1.9vw;
-    border-radius: 2vw;
-  }
-  body main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time,
-  html main #pag3 .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span time {
-    font-size: 1.3vw;
   }
   body main #pag4 .Logincont .Login-cont,
   html main #pag4 .Logincont .Login-cont {
@@ -7755,7 +8042,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .cont_manager,
   html main #pag5 .cont_manager {
     width: 97vw;
-    height: 91%;
+    height: 85vh;
     position: absolute;
     justify-content: start;
     align-items: center;
@@ -7811,6 +8098,58 @@ html .cambiar_nav nav ul .circulo_icon {
     height: 4vh;
     top: 0;
     left: 0;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager input,
+  html main #pag5 .chat_manager .icons_chat_manager input {
+    display: none;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager input:checked ~ label,
+  html main #pag5 .chat_manager .icons_chat_manager input:checked ~ label {
+    display: flex;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager input:checked ~ .chat_manager_info,
+  html main #pag5 .chat_manager .icons_chat_manager input:checked ~ .chat_manager_info {
+    display: flex;
+    animation: fadeIn 0.2s ease-in-out forwards;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .label_icon,
+  html main #pag5 .chat_manager .icons_chat_manager .label_icon {
+    gap: 3vw;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .label_icon span,
+  html main #pag5 .chat_manager .icons_chat_manager .label_icon span {
+    font-size: 5vw;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info {
+    width: 100vw;
+    height: 88vh;
+    bottom: 6vh;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span {
+    font-size: 0.7rem;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p,
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p {
+    font-size: 1rem;
+    border-radius: 1rem;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span {
+    margin-left: -80%;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing {
+    font-size: 1rem;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input {
+    font-size: 1rem;
   }
   body main #ap_tc div,
   html main #ap_tc div {
