@@ -2994,6 +2994,28 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon s
   background-color: #1b3c59;
   transition: all 0.2s ease-in-out;
 }
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .indicador_total,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .indicador_total {
+  width: 0.9vw;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 0.5vh;
+  right: 0.4vw;
+  background-color: #00bf63;
+  border: 0.2vw solid #1b3c59;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito";
+  text-align: center;
+  font-size: 0.7vw;
+  color: #ffffff;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .indicador_total.active,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .indicador_total.active {
+  display: flex;
+}
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon:hover img,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon:hover img {
   transform: scale(1.1);
@@ -3059,6 +3081,29 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   font-family: "Nunito";
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  position: relative;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button .unread-badge,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button .unread-badge {
+  width: 0.7vw;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: -0.3vh;
+  right: -0.3vw;
+  background-color: #00bf63;
+  border: 0.2vw solid #1b3c59;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito";
+  text-align: center;
+  font-size: 0.5vw;
+  color: #ffffff;
+}
+body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button .unread-badge.active,
+html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button .unread-badge.active {
+  display: flex;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button.active,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button.active {
@@ -7214,12 +7259,17 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_
   overflow-y: scroll;
   display: flex;
   align-items: center; /* Ajustado de chat_box */
-  padding: 2%; /* Ajustado de chat_box */
+  padding: 3%; /* Ajustado de chat_box */
   justify-content: end; /* Ajustado de chat_box */
   flex-direction: column;
   color: #1b3c59;
   font-family: "Nunito";
   gap: 1vh;
+}
+body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager p,
+html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager p {
+  font-weight: 170;
+  font-size: 0.7vw;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message,
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message,
@@ -7277,15 +7327,6 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span {
   display: none; /* Mantenido del original */
-}
-body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing,
-html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing {
-  color: #1b3c59;
-  font-style: italic;
-  font-size: 0.7vw;
-  position: absolute;
-  bottom: 5vh;
-  animation: fadeIn 0.2s ease-in-out;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info hr,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info hr {
@@ -8126,6 +8167,10 @@ html .cambiar_nav nav ul .circulo_icon {
     height: 88vh;
     bottom: 6vh;
   }
+  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager p,
+  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager p {
+    font-size: 3vw;
+  }
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
@@ -8138,10 +8183,6 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p {
     font-size: 1rem;
     border-radius: 1rem;
-  }
-  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing,
-  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing {
-    font-size: 1rem;
   }
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input {

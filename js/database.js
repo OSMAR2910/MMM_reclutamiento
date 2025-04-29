@@ -23,6 +23,7 @@ import {
   mostrarAlerta,
   setThemeColor,
 } from "./main.js";
+import { updateUnreadChatsCount } from "./chat_admin.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -2961,6 +2962,7 @@ function mostrarBotonEntrar(tipo) {
 
           mostrarAlertaAdmin("alerta_4");
           setThemeColor("#1b3c59");
+          updateUnreadChatsCount();
 
           if (isManager) {
             const sucursalActivaElement =
@@ -3094,9 +3096,8 @@ document.addEventListener("DOMContentLoaded", () => {
           admin: !isManager,
           admin_manager: isManager,
         });
-
-        // Actualizar la URL con el hash correspondiente
-        window.location.hash = isManager ? "#pag4" : "#pag3"; // Ajusta según tus hashes reales
+        
+        updateUnreadChatsCount();
 
         if (elements.header) elements.header.style.display = "none";
         if (elements.pavo_cont) elements.pavo_cont.style.display = "none";

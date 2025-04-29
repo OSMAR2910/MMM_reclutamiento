@@ -1790,6 +1790,26 @@ html {
                   background-color: $Box_admin;
                   transition: all 0.2s ease-in-out;
                 }
+                .indicador_total {
+                  width: .9vw;
+                  aspect-ratio: 1/1;
+                  position: absolute;
+                  top: .5vh;
+                  right: .4vw;
+                  background-color: $Green;
+                  border: 0.2vw solid $Box_admin;
+                  border-radius: 50%;
+                  display: none; 
+                  justify-content: center;
+                  align-items: center;
+                  font-family: $Letra2;
+                  text-align: center;
+                  font-size: 0.7vw;
+                  color: $Texto;
+                  &.active {
+                    display: flex;
+                  }
+                }
                 &:hover {
                   img {
                     transform: scale(1.1);
@@ -1854,6 +1874,28 @@ html {
                     font-family: $Letra2;
                     cursor: pointer;
                     transition: all 0.2s ease-in-out;
+                    position: relative;
+
+                    .unread-badge {
+                      width: .7vw;
+                      aspect-ratio: 1/1;
+                      position: absolute;
+                      top: -.3vh;
+                      right: -.3vw;
+                      background-color: $Green;
+                      border: 0.2vw solid $Box_admin;
+                      border-radius: 50%;
+                      display: none; 
+                      justify-content: center;
+                      align-items: center;
+                      font-family: $Letra2;
+                      text-align: center;
+                      font-size: 0.5vw;
+                      color: $Texto;
+                      &.active {
+                        display: flex;
+                      }
+                    }
           
                     &.active {
                       background: $Box_admin;
@@ -5603,12 +5645,17 @@ html {
               overflow-y: scroll;
               display: flex;
               align-items: center; /* Ajustado de chat_box */
-              padding: 2%; /* Ajustado de chat_box */
+              padding: 3%; /* Ajustado de chat_box */
               justify-content: end; /* Ajustado de chat_box */
               flex-direction: column;
               color: $Box_admin;
               font-family: $Letra2;
               gap: 1vh;
+
+              p {
+                font-weight: 170;
+                font-size: 0.7vw;
+              }
             
               .rh_message,
               .branch_message {
@@ -5656,15 +5703,6 @@ html {
                 span {
                   display: none; /* Mantenido del original */
                 }
-              }
-            
-              .typing {
-                color: $Box_admin;
-                font-style: italic;
-                font-size: 0.7vw;
-                position: absolute;
-                bottom: 5vh;
-                animation: fadeIn 0.2s ease-in-out;
               }
             }
       
@@ -6558,6 +6596,9 @@ html {
         
               // Área de mensajes
               .data_chat_manager {
+                p {
+                  font-size: 3vw;
+                }
                 .rh_message,
                 .branch_message {
                   span {
@@ -6567,10 +6608,6 @@ html {
                     font-size: 1rem;
                     border-radius: 1rem;
                   }
-                }
-        
-                .typing {
-                  font-size: 1rem;
                 }
               }
   

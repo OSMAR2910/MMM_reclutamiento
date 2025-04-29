@@ -42,8 +42,18 @@ async function loadBranchesFromJson() {
       const button = document.createElement("button");
       button.id = `branch_${branch}`;
       button.className = "branch-button";
-      button.textContent = branch.charAt(0).toUpperCase() + branch.slice(1);
       button.dataset.branch = branch;
+
+      // Crear contenedor para el texto y el badge
+      const textSpan = document.createElement("span");
+      textSpan.textContent = branch.charAt(0).toUpperCase() + branch.slice(1);
+      const badgeSpan = document.createElement("span");
+      badgeSpan.className = "unread-badge";
+      badgeSpan.id = `unread_badge_${branch}`;
+      badgeSpan.textContent = "0"; // Inicialmente 0, se actualizará después
+
+      button.appendChild(textSpan);
+      button.appendChild(badgeSpan);
       carouselInner.appendChild(button);
     });
 
@@ -59,6 +69,9 @@ async function loadBranchesFromJson() {
         updateCarouselArrows();
       });
     });
+
+    // Actualizar el contador de chats no contestados
+    await updateUnreadChatsCount();
   } catch (error) {
     console.error("Error al cargar sucursales desde JSON:", error);
   }
@@ -68,7 +81,6 @@ async function loadBranchesFromJson() {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Inicializando chat_admin.js");
 
-  // Verificar Firebase
   if (!database) {
     console.error("Error: Firebase database no está inicializado");
     return;
@@ -80,6 +92,73 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // Función para inicializar el chat
+  function initializeChat() {
+    console.log("Panel de chat visible, inicializando eventos");
+
+    // Cargar sucursales y actualizar contadores
+    loadBranchesFromJson();
+
+    // Asegurar que el contador se actualice al cargar
+    updateUnreadChatsCount();
+
+    // Manejar flechas de navegación
+    const carouselInner = document.getElementById("carousel-inner");
+    const carouselLeft = document.getElementById("carousel-left");
+    const carouselRight = document.getElementById("carousel-right");
+    if (!carouselInner || !carouselLeft || !carouselRight) {
+      console.error("Error: No se encontraron los elementos #carousel-inner, #carousel-left o #carousel-right");
+      return;
+    }
+
+    carouselLeft.addEventListener("click", () => {
+      carouselInner.scrollBy({ left: -100, behavior: "smooth" });
+      setTimeout(updateCarouselArrows, 300);
+    });
+
+    carouselRight.addEventListener("click", () => {
+      carouselInner.scrollBy({ left: 100, behavior: "smooth" });
+      setTimeout(updateCarouselArrows, 300);
+    });
+
+    carouselInner.addEventListener("scroll", updateCarouselArrows);
+
+    // Manejar envío de mensajes
+    const form = document.getElementById("admin_chat_form");
+    if (!form) {
+      console.error("Error: No se encontró el elemento #admin_chat_form en el DOM");
+      return;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const messageInput = document.getElementById("admin_chat_input");
+      if (!messageInput) {
+        console.error("Error: No se encontró el elemento #admin_chat_input en el DOM");
+        return;
+      }
+      const message = messageInput.value.trim();
+      if (!message) {
+        console.warn("Mensaje vacío, no se enviará");
+        return;
+      }
+
+      console.log(`Enviando mensaje: ${message}`);
+      messageInput.disabled = true;
+      sendMessage(rhId, message);
+      messageInput.value = "";
+      messageInput.disabled = false;
+      messageInput.focus();
+    });
+
+    // Listener global para detectar nuevos mensajes en cualquier sucursal
+    const globalChatRef = ref(database, `chatAdmin/rh_to_branch`);
+    onValue(globalChatRef, (snapshot) => {
+      console.log("Cambio detectado en chatAdmin/rh_to_branch, actualizando indicadores");
+      updateUnreadChatsCount();
+    });
+  }
+
   chatAdminInput.addEventListener("change", (e) => {
     const chatAdminInfo = document.querySelector(".chat_admin_info");
     if (!chatAdminInfo) {
@@ -88,20 +167,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (e.target.checked) {
-      console.log("Panel de chat visible, inicializando eventos");
+      initializeChat();
+    }
+  });
 
-      // Cargar sucursales desde JSON
-      loadBranchesFromJson();
+  // Si el chat ya está visible al cargar la página, inicializarlo
+  if (chatAdminInput.checked) {
+    initializeChat();
+  }
 
-      // Manejar flechas de navegación
-      const carouselInner = document.getElementById("carousel-inner");
-      const carouselLeft = document.getElementById("carousel-left");
-      const carouselRight = document.getElementById("carousel-right");
-      if (!carouselInner || !carouselLeft || !carouselRight) {
-        console.error("Error: No se encontraron los elementos #carousel-inner, #carousel-left o #carousel-right");
-        return;
-      }
+  // Inicialización móvil
+  if (window.innerWidth <= 500) {
+    console.log("Inicialización móvil detectada");
 
+    const carouselInner = document.getElementById("carousel-inner");
+    const carouselLeft = document.getElementById("carousel-left");
+    const carouselRight = document.getElementById("carousel-right");
+
+    if (carouselInner && carouselLeft && carouselRight) {
       carouselLeft.addEventListener("click", () => {
         carouselInner.scrollBy({ left: -100, behavior: "smooth" });
         setTimeout(updateCarouselArrows, 300);
@@ -113,28 +196,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       carouselInner.addEventListener("scroll", updateCarouselArrows);
+    }
 
-      // Manejar envío de mensajes
-      const form = document.getElementById("admin_chat_form");
-      if (!form) {
-        console.error("Error: No se encontró el elemento #admin_chat_form en el DOM");
-        return;
-      }
-
+    const form = document.getElementById("admin_chat_form");
+    if (form) {
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         const messageInput = document.getElementById("admin_chat_input");
-        if (!messageInput) {
-          console.error("Error: No se encontró el elemento #admin_chat_input en el DOM");
-          return;
-        }
-        const message = messageInput.value.trim();
-        if (!message) {
-          console.warn("Mensaje vacío, no se enviará");
-          return;
-        }
+        if (!messageInput) return;
 
-        console.log(`Enviando mensaje: ${message}`);
+        const message = messageInput.value.trim();
+        if (!message) return;
+
         messageInput.disabled = true;
         sendMessage(rhId, message);
         messageInput.value = "";
@@ -142,55 +215,11 @@ document.addEventListener("DOMContentLoaded", () => {
         messageInput.focus();
       });
     }
-  });
 
-  if (window.innerWidth <= 500) {
-    console.log("Inicialización móvil detectada");
-  
-    // Inicializar el carrusel de flechas
-    const carouselInner = document.getElementById("carousel-inner");
-    const carouselLeft = document.getElementById("carousel-left");
-    const carouselRight = document.getElementById("carousel-right");
-  
-    if (carouselInner && carouselLeft && carouselRight) {
-      carouselLeft.addEventListener("click", () => {
-        carouselInner.scrollBy({ left: -100, behavior: "smooth" });
-        setTimeout(updateCarouselArrows, 300);
-      });
-  
-      carouselRight.addEventListener("click", () => {
-        carouselInner.scrollBy({ left: 100, behavior: "smooth" });
-        setTimeout(updateCarouselArrows, 300);
-      }); 
-  
-      carouselInner.addEventListener("scroll", updateCarouselArrows);
-    }
-
-    // Registrar el evento de envío del formulario manualmente
-const form = document.getElementById("admin_chat_form");
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const messageInput = document.getElementById("admin_chat_input");
-    if (!messageInput) return;
-
-    const message = messageInput.value.trim();
-    if (!message) return;
-
-    messageInput.disabled = true;
-    sendMessage(rhId, message);
-    messageInput.value = "";
-    messageInput.disabled = false;
-    messageInput.focus();
-  });
-}
-
-  
-    // Cargar datos del chat
+    // Cargar sucursales y actualizar contadores para móviles
     loadBranchesFromJson();
+    updateUnreadChatsCount();
   }
-  
-
 });
 
 // Cargar historial de chat para la sucursal seleccionada
@@ -327,16 +356,18 @@ async function sendMessage(sender, message) {
     return;
   }
 
-  // Guardar mensaje en Firebase
   try {
     const chatRef = ref(database, `chatAdmin/rh_to_branch/${selectedBranch}`);
     const newMessageRef = await push(chatRef);
     await set(newMessageRef, {
       sender,
       message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
     console.log(`Mensaje guardado en Firebase para ${selectedBranch}, ID: ${newMessageRef.key}`);
+
+    // Actualizar los indicadores
+    await updateUnreadChatsCount();
   } catch (error) {
     console.error("Error guardando mensaje en Firebase:", error);
     const alerta = document.getElementById("alerta_3");
@@ -346,6 +377,81 @@ async function sendMessage(sender, message) {
     } else {
       console.error("Error: No se encontró el elemento #alerta_3");
     }
+  }
+}
+
+// Contar chats no contestados en todas las sucursales
+export async function updateUnreadChatsCount() {
+  try {
+    // Cargar sucursales desde sucursales.json
+    const response = await fetch("../json/sucursales.json");
+    if (!response.ok) {
+      throw new Error(`Error al cargar sucursales.json: ${response.statusText}`);
+    }
+    const data = await response.json();
+    const branches = data.sucursalesValidas;
+
+    let totalUnreadChats = 0;
+
+    // Iterar sobre cada sucursal
+    for (const branch of branches) {
+      const chatRef = ref(database, `chatAdmin/rh_to_branch/${branch}`);
+      const snapshot = await new Promise((resolve) => {
+        onValue(chatRef, resolve, { onlyOnce: true });
+      });
+
+      let unreadCount = 0;
+      const messages = snapshot.val();
+      if (messages) {
+        // Convertir mensajes a array y ordenar por timestamp
+        const messageArray = Object.entries(messages).map(([id, msg]) => ({
+          id,
+          ...msg,
+        }));
+        messageArray.sort(
+          (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+        );
+
+        // Verificar si el último mensaje es de la sucursal (no de RH)
+        const lastMessage = messageArray[messageArray.length - 1];
+        if (lastMessage && lastMessage.sender !== rhId) {
+          unreadCount = 1; // Consideramos el chat como no contestado
+          totalUnreadChats++;
+          console.log(`Chat no contestado detectado en sucursal: ${branch}`);
+        }
+      }
+
+      // Actualizar el badge de la sucursal
+      const badge = document.getElementById(`unread_badge_${branch}`);
+      if (badge) {
+        badge.textContent = unreadCount;
+        // Usar classList para preservar clases existentes
+        if (unreadCount > 0) {
+          badge.classList.add("active");
+        } else {
+          badge.classList.remove("active");
+        }
+      } else {
+        console.warn(`No se encontró el badge para la sucursal: ${branch}`);
+      }
+    }
+
+    // Actualizar el indicador_total
+    const indicadorTotal = document.getElementById("indicador_total");
+    if (!indicadorTotal) {
+      console.error("Error: No se encontró el elemento #indicador_total en el DOM");
+      return;
+    }
+    indicadorTotal.textContent = totalUnreadChats;
+    // Usar classList para agregar o quitar la clase active sin afectar otras clases
+    if (totalUnreadChats > 0) {
+      indicadorTotal.classList.add("active");
+    } else {
+      indicadorTotal.classList.remove("active");
+    }
+    console.log(`Total de chats no contestados: ${totalUnreadChats}`);
+  } catch (error) {
+    console.error("Error al contar chats no contestados:", error);
   }
 }
 
