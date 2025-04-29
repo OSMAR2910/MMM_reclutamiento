@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
       carouselRight.addEventListener("click", () => {
         carouselInner.scrollBy({ left: 100, behavior: "smooth" });
         setTimeout(updateCarouselArrows, 300);
-      });
+      }); 
   
       carouselInner.addEventListener("scroll", updateCarouselArrows);
     }

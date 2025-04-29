@@ -8139,10 +8139,6 @@ html .cambiar_nav nav ul .circulo_icon {
     font-size: 1rem;
     border-radius: 1rem;
   }
-  body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span,
-  html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message span {
-    margin-left: -80%;
-  }
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .typing {
     font-size: 1rem;
