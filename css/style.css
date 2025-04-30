@@ -46,44 +46,18 @@
     z-index: 1003;
   }
 }
-@keyframes pavo_moving {
+@keyframes pavo_saludo {
   0% {
-    transform: translateX(0);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
-  25% {
-    transform: translateX(150%);
+  49% {
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
   50% {
-    transform: translateX(300%);
-  }
-  51% {
-    transform: translateX(300%);
-  }
-  75% {
-    transform: translateX(150%);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
   100% {
-    transform: translateX(0);
-  }
-}
-@keyframes pavo_rotate {
-  0% {
-    transform: rotateY(180deg);
-  }
-  25% {
-    transform: rotateY(180deg);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  51% {
-    transform: rotateY(0deg);
-  }
-  75% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(0deg);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
 }
 @keyframes btncita {
@@ -172,44 +146,18 @@
     z-index: 1003;
   }
 }
-@keyframes pavo_moving {
+@keyframes pavo_saludo {
   0% {
-    transform: translateX(0);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
-  25% {
-    transform: translateX(150%);
+  49% {
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
   50% {
-    transform: translateX(300%);
-  }
-  51% {
-    transform: translateX(300%);
-  }
-  75% {
-    transform: translateX(150%);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
   100% {
-    transform: translateX(0);
-  }
-}
-@keyframes pavo_rotate {
-  0% {
-    transform: rotateY(180deg);
-  }
-  25% {
-    transform: rotateY(180deg);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  51% {
-    transform: rotateY(0deg);
-  }
-  75% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(0deg);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
 }
 @keyframes btncita {
@@ -437,44 +385,18 @@ body canvas {
     z-index: 1003;
   }
 }
-@keyframes pavo_moving {
+@keyframes pavo_saludo {
   0% {
-    transform: translateX(0);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
-  25% {
-    transform: translateX(150%);
+  49% {
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
   50% {
-    transform: translateX(300%);
-  }
-  51% {
-    transform: translateX(300%);
-  }
-  75% {
-    transform: translateX(150%);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
   100% {
-    transform: translateX(0);
-  }
-}
-@keyframes pavo_rotate {
-  0% {
-    transform: rotateY(180deg);
-  }
-  25% {
-    transform: rotateY(180deg);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  51% {
-    transform: rotateY(0deg);
-  }
-  75% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(0deg);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
 }
 @keyframes btncita {
@@ -609,20 +531,18 @@ body canvas {
   box-shadow: 0px 0px 7px 4px #174891;
 }
 .max_chat .chat_header .chat_icon {
-  width: 12%;
+  width: 14%;
   aspect-ratio: 2/2;
   display: flex;
   margin-left: 4%;
-  background-color: #1b3c59;
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
-  background-size: 75%;
-  background-position: center;
-  background-repeat: no-repeat;
   position: relative;
+}
+.max_chat .chat_header .chat_icon img {
+  height: 100%;
 }
 .max_chat .chat_header .chat_icon .status_green {
   width: 0.6em;
@@ -975,9 +895,8 @@ body canvas {
   height: 8vh;
   display: flex;
   position: fixed;
-  animation: pavo_moving 5s ease-in-out infinite;
-  right: 19vw;
-  bottom: 0;
+  right: 8vw;
+  bottom: 5vh;
   z-index: 9998;
 }
 .pavo_cont .pavo_msj {
@@ -988,8 +907,8 @@ body canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  left: -4.5vw;
-  bottom: 11vh;
+  left: -1vw;
+  bottom: 9vh;
   border-radius: 2vw;
   font-size: 0.6vw;
   font-family: "Nunito";
@@ -998,13 +917,12 @@ body canvas {
   text-align: center;
 }
 .pavo_cont .pavo {
-  width: 100%;
-  height: 100%;
-}
-.pavo_cont .pavo img {
-  width: 100%;
-  height: 100%;
-  animation: pavo_rotate 5s ease-in-out infinite;
+  animation: pavo_saludo 1s ease-in-out infinite;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 4vw;
+  height: 12vh;
 }
 
 .agregar_dis {
@@ -1047,7 +965,7 @@ body canvas {
     margin-left: 3%;
   }
   .max_chat .chat_header .chat_present {
-    left: 25%;
+    left: 20%;
   }
   .max_chat .chat_header .chat_present h3 {
     font-size: 3.5vw;
@@ -1105,15 +1023,20 @@ body canvas {
   }
   .pavo_cont {
     width: 15vw;
-    right: 74vw;
+    right: 30vw;
+    bottom: 4vh;
   }
   .pavo_cont .pavo_msj {
     width: 37vw;
     padding: 0.8rem;
-    left: -10vw;
+    left: -1vw;
     bottom: 9vh;
     border-radius: 5vw;
     font-size: 2.3vw;
+  }
+  .pavo_cont .pavo {
+    width: 15vw;
+    height: 10vh;
   }
   .chatbot_color {
     background-color: #174891;
@@ -2878,14 +2801,13 @@ html main #pag3 .nav_admin .nav_cont .cont_welcome_admin {
 }
 body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin,
 html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin {
-  height: 75%;
+  height: 80%;
   aspect-ratio: 1/1;
-  background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
-  background-size: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 50%;
-  background-color: #122435;
+}
+body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin img,
+html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin img {
+  height: 100%;
 }
 body main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin,
 html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
@@ -6286,12 +6208,11 @@ body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin,
 html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin {
   height: 75%;
   aspect-ratio: 1/1;
-  background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
-  background-size: 80%;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 50%;
-  background-color: #122435;
+}
+body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin img,
+html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .icon_welcome_admin img {
+  height: 100%;
 }
 body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin,
 html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
@@ -7982,7 +7903,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .estatus_citas_manager .icons_status .status_info,
   html main #pag5 .estatus_citas_manager .icons_status .status_info {
     width: 95vw;
-    height: 80%;
+    height: 75%;
     top: 17vh;
     left: 1.7vw;
     border-radius: 10vw;

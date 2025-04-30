@@ -23,45 +23,19 @@
     z-index: 1003;
   }
 }
-@keyframes pavo_moving {
+@keyframes pavo_saludo {
   0% {
-    transform: translateX(0);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
-  25% {
-    transform: translateX(150%);
+  49% {
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
   }
   50% {
-    transform: translateX(300%);
-  }
-  51% {
-    transform: translateX(300%);
-  }
-  75% {
-    transform: translateX(150%);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
   100% {
-    transform: translateX(0);
+    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
   }
-}
-@keyframes pavo_rotate {
-  0% {
-    transform: rotateY(180deg);
-  }
-  25% {
-    transform: rotateY(180deg);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  51% {
-    transform: rotateY(0deg);
-  }
-  75% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  } 
 }
 @keyframes btncita {
   0% {

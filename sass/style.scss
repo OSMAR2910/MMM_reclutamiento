@@ -1680,14 +1680,12 @@ html {
             gap: 0.8rem;
 
             .icon_welcome_admin {
-              height: 75%;
+              height: 80%;
               aspect-ratio: 1/1;
-              background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
-              background-size: 80%;
-              background-position: center;
-              background-repeat: no-repeat;
               border-radius: 50%;
-              background-color: $Box_admin2;
+              img {
+                height: 100%;
+              }
             }
 
             .text_welcome_admin {
@@ -4763,12 +4761,10 @@ html {
             .icon_welcome_admin {
               height: 75%;
               aspect-ratio: 1/1;
-              background-image: url("../img/Utilidades/pavochava-removebg-preview.png");
-              background-size: 80%;
-              background-position: center;
-              background-repeat: no-repeat;
               border-radius: 50%;
-              background-color: $Box_admin2;
+              img {
+                height: 100%;
+              }
             }
 
             .text_welcome_admin {
@@ -6430,7 +6426,7 @@ html {
           .icons_status {
             .status_info {
               width: 95vw;
-              height: 80%;
+              height: 75%;
               top: 17vh;
               left: 1.7vw;
               border-radius: 10vw;
