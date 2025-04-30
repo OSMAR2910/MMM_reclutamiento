@@ -24,6 +24,7 @@ import {
   setThemeColor,
 } from "./main.js";
 import { updateUnreadChatsCount } from "./chat_admin.js";
+import { updateUnreadMessagesCount } from "./chat_manager.js";
 
 // Inicializar Firebase Auth
 const auth = getAuth(app);
@@ -2965,6 +2966,7 @@ function mostrarBotonEntrar(tipo) {
           updateUnreadChatsCount();
 
           if (isManager) {
+            updateUnreadMessagesCount();
             const sucursalActivaElement =
               document.getElementById("sucursal_activa");
             const sucursalGuardada = localStorage.getItem("sucursal");
@@ -3098,6 +3100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         
         updateUnreadChatsCount();
+        updateUnreadMessagesCount();
 
         if (elements.header) elements.header.style.display = "none";
         if (elements.pavo_cont) elements.pavo_cont.style.display = "none";

@@ -50,6 +50,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Cargar historial de chat al iniciar
   loadChatHistory();
 
+  // Actualizar el contador de mensajes no contestados
+  updateUnreadMessagesCount();
+
+  // Listener para detectar nuevos mensajes en la sucursal
+  const chatRef = ref(database, `chatAdmin/rh_to_branch/${selectedBranch}`);
+  onValue(chatRef, () => {
+    console.log(`Cambio detectado en chatAdmin/rh_to_branch/${selectedBranch}, actualizando contador`);
+    updateUnreadMessagesCount();
+  });
+
   const chatManagerInput = document.getElementById("chat_manager");
   if (!chatManagerInput) {
     console.error("Error: No se encontró el elemento #chat_manager en el DOM");
@@ -246,6 +256,73 @@ async function sendMessage(sender, message) {
       alerta.style.display = "flex";
       setTimeout(() => (alerta.style.display = "none"), 3000);
     }
+  }
+}
+
+// Contar mensajes no contestados para la sucursal actual
+export async function updateUnreadMessagesCount() {
+  try {
+    if (!selectedBranch) {
+      console.warn("No hay sucursal seleccionada, no se puede contar mensajes no contestados");
+      return;
+    }
+
+    console.log(`Consultando mensajes para la sucursal: ${selectedBranch}`);
+
+    const chatRef = ref(database, `chatAdmin/rh_to_branch/${selectedBranch}`);
+    const snapshot = await new Promise((resolve, reject) => {
+      onValue(chatRef, resolve, { onlyOnce: true }, (error) => reject(error));
+    });
+
+    let unreadCount = 0;
+    const messages = snapshot.val();
+    console.log(`Mensajes recuperados para ${selectedBranch}:`, messages);
+
+    if (messages) {
+      // Convertir mensajes a array y ordenar por timestamp
+      const messageArray = Object.entries(messages).map(([id, msg]) => ({
+        id,
+        ...msg,
+      }));
+      messageArray.sort(
+        (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+      );
+      console.log(`Mensajes ordenados:`, messageArray);
+
+      // Verificar si el último mensaje es de RH
+      const lastMessage = messageArray[messageArray.length - 1];
+      console.log(`Último mensaje:`, lastMessage);
+
+      if (lastMessage && lastMessage.sender === rhId) {
+        unreadCount = 1; // El chat se considera no contestado
+        console.log(`Mensaje no contestado detectado en sucursal: ${selectedBranch}, Sender: ${lastMessage.sender}`);
+      }
+    } else {
+      console.log(`No hay mensajes para la sucursal ${selectedBranch}`);
+    }
+
+    // Actualizar el indicador_total_sucu
+    const indicadorTotal = document.getElementById("indicador_total_sucu");
+    if (!indicadorTotal) {
+      console.error("Error: No se encontró el elemento #indicador_total_sucu en el DOM");
+      return;
+    }
+
+    indicadorTotal.textContent = unreadCount.toString();
+    console.log(`Actualizando indicador_total_sucu con valor: ${unreadCount}`);
+
+    // Usar classList para agregar o quitar la clase active
+    if (unreadCount > 0) {
+      indicadorTotal.classList.add("active");
+      console.log(`Clase 'active' añadida a indicador_total_sucu`);
+    } else {
+      indicadorTotal.classList.remove("active");
+      console.log(`Clase 'active' removida de indicador_total_sucu`);
+    }
+
+    console.log(`Mensajes no contestados en ${selectedBranch}: ${unreadCount}`);
+  } catch (error) {
+    console.error("Error al contar mensajes no contestados:", error);
   }
 }
 

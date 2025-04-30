@@ -3098,7 +3098,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   align-items: center;
   font-family: "Nunito";
   text-align: center;
-  font-size: 0.5vw;
+  font-size: 0;
   color: #ffffff;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button .unread-badge.active,
@@ -7227,6 +7227,28 @@ html main #pag5 .chat_manager .icons_chat_manager .label_icon span {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+body main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total,
+html main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total {
+  width: 4vw;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 7%;
+  left: 31vw;
+  background-color: #00bf63;
+  border: 1vw solid #1b3c59;
+  border-radius: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito";
+  text-align: center;
+  font-size: 0;
+  color: #ffffff;
+}
+body main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total.active,
+html main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total.active {
+  display: flex;
 }
 body main #pag5 .chat_manager .icons_chat_manager .label_icon:hover img,
 html main #pag5 .chat_manager .icons_chat_manager .label_icon:hover img {

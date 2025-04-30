@@ -1890,7 +1890,7 @@ html {
                       align-items: center;
                       font-family: $Letra2;
                       text-align: center;
-                      font-size: 0.5vw;
+                      font-size: 0;
                       color: $Texto;
                       &.active {
                         display: flex;
@@ -5611,6 +5611,26 @@ html {
               justify-content: center;
               align-items: center;
               text-align: center;
+            }
+            .indicador_total {
+              width: 4vw;
+              aspect-ratio: 1/1;
+              position: absolute;
+              top: 7%;
+              left: 31vw;
+              background-color: $Green;
+              border: 1vw solid $Box_admin;
+              border-radius: 50%;
+              display: none; 
+              justify-content: center;
+              align-items: center;
+              font-family: $Letra2;
+              text-align: center;
+              font-size: 0;
+              color: $Texto;
+              &.active {
+                display: flex;
+              }
             }
             &:hover {
               img {
