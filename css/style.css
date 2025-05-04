@@ -1042,7 +1042,7 @@ body canvas {
     position: fixed !important;
     bottom: 0 !important;
     width: 100% !important;
-    padding-bottom: env(safe-area-inset-bottom, 20px) !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 50px) + 10px) !important;
     box-sizing: border-box !important;
     z-index: 1000 !important;
   }

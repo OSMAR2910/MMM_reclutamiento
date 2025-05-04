@@ -207,10 +207,12 @@ function scrollToBottom() {
 
   setTimeout(() => {
     if (isIOS) {
-      // Desplazar para asegurar que el chat_form esté visible
+      // Desplazar el formulario para que esté visible
       chatForm.scrollIntoView({ behavior: "smooth", block: "end" });
-      // También desplazar el chat_box para los mensajes
+      // Desplazar el chat_box para los mensajes
       chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+      // Ajustar el viewport para asegurar visibilidad
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     } else {
       chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
     }
@@ -292,12 +294,12 @@ function adjustChatbotHeight() {
     document.documentElement.style.setProperty("--keyboard-height", "0px");
 
     // Ajustar chat_form para evitar la barra de herramientas
-    chatForm.style.position = "fixed"; // Usar fixed en iOS para pegarlo al viewport
+    chatForm.style.position = "fixed";
     chatForm.style.bottom = "0";
-    chatForm.style.width = "100%"; // Asegurar que ocupe todo el ancho
-    chatForm.style.paddingBottom = "env(safe-area-inset-bottom, 20px)"; // Compensar barra de herramientas
+    chatForm.style.width = "100%";
+    chatForm.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)"; // Mayor padding para barra de herramientas
     chatForm.style.boxSizing = "border-box";
-    chatForm.style.zIndex = "1000"; // Asegurar que esté por encima de otros elementos
+    chatForm.style.zIndex = "1000";
 
     console.log("iOS: Chatbot maximizado con position: fixed, chat_form ajustado");
   } else {
@@ -324,6 +326,7 @@ function adjustChatbotHeight() {
   chatForm.style.display = "flex";
   scrollToBottom();
 }
+
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
   const width = window.innerWidth;
@@ -430,8 +433,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       setTimeout(() => {
         scrollToBottom();
-        // Ajustar el padding dinámicamente para la barra de herramientas
-        chatForm.style.paddingBottom = `calc(env(safe-area-inset-bottom, 20px) + 10px)`;
+        // Ajustar el padding dinámicamente para el teclado y barra de herramientas
+        chatForm.style.paddingBottom = `calc(env(safe-area-inset-bottom, 50px) + 20px)`;
+        chatForm.style.bottom = "0"; // Forzar que se mantenga en la parte inferior
       }, 300); // Retraso para esperar a que el teclado aparezca
     }
   });
@@ -439,7 +443,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   input.addEventListener("blur", () => {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       // Restaurar padding cuando el teclado se oculta
-      chatForm.style.paddingBottom = "env(safe-area-inset-bottom, 20px)";
+      chatForm.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)";
     }
   });
 
