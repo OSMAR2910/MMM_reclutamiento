@@ -212,7 +212,7 @@
     display: flex;
     align-items: center;
     padding: 2%;
-    justify-content: start;
+    justify-content: end;
     flex-direction: column;
     color: $Secundario;
     font-family: $Letra2;
@@ -445,8 +445,8 @@
     display: none;
     justify-content: center;
     align-items: center;
-    position: sticky;
-    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
     -webkit-overflow-scrolling: touch;
     .chat_input {
       width: 80%;

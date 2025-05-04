@@ -623,7 +623,7 @@ body canvas {
   display: flex;
   align-items: center;
   padding: 2%;
-  justify-content: start;
+  justify-content: end;
   flex-direction: column;
   color: #2a4e91;
   font-family: "Nunito";
@@ -852,8 +852,8 @@ body canvas {
   display: none;
   justify-content: center;
   align-items: center;
-  position: sticky;
-  margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
   -webkit-overflow-scrolling: touch;
 }
 .max_chat .chat_form .chat_input {
