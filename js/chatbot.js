@@ -202,8 +202,18 @@ function handleNameForm() {
 
 function scrollToBottom() {
   const chatBox = document.getElementById("chat_box");
+  const chatForm = document.getElementById("chat_form");
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
   setTimeout(() => {
-    chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+    if (isIOS) {
+      // Desplazar para asegurar que el chat_form esté visible
+      chatForm.scrollIntoView({ behavior: "smooth", block: "end" });
+      // También desplazar el chat_box para los mensajes
+      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+    } else {
+      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+    }
   }, 100);
 }
 
@@ -270,17 +280,26 @@ function adjustChatbotHeight() {
 
   if (isIOS) {
     // Simplificar para iOS: usar fixed y dimensiones completas
-    chatbot.style.position = "fixed"; // Usar fixed para alinear con el viewport
+    chatbot.style.position = "fixed";
     chatbot.style.top = "0";
     chatbot.style.left = "0";
     chatbot.style.right = "auto";
     chatbot.style.bottom = "auto";
     chatbot.style.width = "100vw";
-    chatbot.style.height = "100vh"; // Usar 100vh para cubrir toda la pantalla
+    chatbot.style.height = "100vh";
     chatbot.style.margin = "0";
-    chatbot.style.maxHeight = "none"; // Eliminar max-height para evitar conflictos
+    chatbot.style.maxHeight = "none";
     document.documentElement.style.setProperty("--keyboard-height", "0px");
-    console.log("iOS: Chatbot maximizado con position: fixed");
+
+    // Ajustar chat_form para evitar la barra de herramientas
+    chatForm.style.position = "fixed"; // Usar fixed en iOS para pegarlo al viewport
+    chatForm.style.bottom = "0";
+    chatForm.style.width = "100%"; // Asegurar que ocupe todo el ancho
+    chatForm.style.paddingBottom = "env(safe-area-inset-bottom, 20px)"; // Compensar barra de herramientas
+    chatForm.style.boxSizing = "border-box";
+    chatForm.style.zIndex = "1000"; // Asegurar que esté por encima de otros elementos
+
+    console.log("iOS: Chatbot maximizado con position: fixed, chat_form ajustado");
   } else {
     // Comportamiento original para Android y otros dispositivos (sin cambios)
     if (width <= 500) {
@@ -295,14 +314,16 @@ function adjustChatbotHeight() {
       document.documentElement.style.setProperty("--keyboard-height", "0px");
       console.log("PC Height:", chatbot.style.height);
     }
+    // Restaurar sticky para Android
+    chatForm.style.position = "sticky";
+    chatForm.style.bottom = "0";
+    chatForm.style.paddingBottom = "0";
+    chatForm.style.width = "90%";
   }
 
   chatForm.style.display = "flex";
-  chatForm.style.position = "sticky";
-  chatForm.style.bottom = "0";
   scrollToBottom();
 }
-
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
   const width = window.innerWidth;
@@ -357,7 +378,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.visualViewport?.removeEventListener("resize", adjustChatbotPosition);
     window.removeEventListener("resize", adjustChatbotPosition);
   }
- 
+
   initializeChatbot();
   chatMinButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -409,7 +430,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       setTimeout(() => {
         scrollToBottom();
+        // Ajustar el padding dinámicamente para la barra de herramientas
+        chatForm.style.paddingBottom = `calc(env(safe-area-inset-bottom, 20px) + 10px)`;
       }, 300); // Retraso para esperar a que el teclado aparezca
+    }
+  });
+
+  input.addEventListener("blur", () => {
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      // Restaurar padding cuando el teclado se oculta
+      chatForm.style.paddingBottom = "env(safe-area-inset-bottom, 20px)";
     }
   });
 
