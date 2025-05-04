@@ -434,6 +434,7 @@ body canvas {
   background-color: #e36b2f;
   box-shadow: 0 0 10px 5px #e36b2f;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 .chatbot .chat_header {
   width: 100%;
@@ -627,6 +628,7 @@ body canvas {
   color: #2a4e91;
   font-family: "Nunito";
   gap: 1vh;
+  -webkit-overflow-scrolling: touch;
 }
 .max_chat .chat_box p {
   font-weight: 170;
@@ -852,6 +854,7 @@ body canvas {
   align-items: center;
   position: sticky;
   margin-bottom: 0;
+  -webkit-overflow-scrolling: touch;
 }
 .max_chat .chat_form .chat_input {
   width: 80%;

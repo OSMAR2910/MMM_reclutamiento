@@ -207,34 +207,6 @@ function scrollToBottom() {
   }, 100);
 }
 
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  const width = window.innerWidth;
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isIOS) {
-    // Simplificar posición en iOS
-    chatbot.style.bottom = "0";
-    chatbot.style.top = "auto";
-    chatbot.style.right = "0";
-    chatbot.style.margin = "0";
-  } else {
-    // Mantener comportamiento original para Android y otros dispositivos
-    if (width > 500) {
-      chatbot.style.bottom = "20px";
-      chatbot.style.top = "auto";
-    } else {
-      if (chatbot.classList.contains("max_chat")) {
-        chatbot.style.top = "0";
-        chatbot.style.bottom = "auto";
-      } else {
-        chatbot.style.bottom = "10px";
-        chatbot.style.top = "auto";
-      }
-    }
-  }
-}
-
 function maximizeChatbot() {
   const chatbot = document.getElementById("chatbot");
   const pavo = document.getElementById("pavo_cont");
@@ -292,16 +264,17 @@ function adjustChatbotHeight() {
 
   if (isIOS) {
     // Simplificar para iOS: dejar que el navegador maneje el teclado
-    chatbot.style.position = "absolute"; // Cambiar a absolute para evitar conflictos con el teclado
+    chatbot.style.position = "relative"; // Usar relative para comportamiento natural
     chatbot.style.top = "auto";
-    chatbot.style.bottom = "0";
-    chatbot.style.height = "auto"; // Permitir que el contenido determine la altura
+    chatbot.style.bottom = "auto";
+    chatbot.style.height = "auto"; // Altura automática para adaptarse al contenido
     chatbot.style.width = "100%";
     chatbot.style.margin = "0";
+    chatbot.style.maxHeight = "100vh"; // Limitar altura máxima para evitar desbordamiento
     document.documentElement.style.setProperty("--keyboard-height", "0px");
     console.log("iOS: Comportamiento simplificado para teclado virtual");
   } else {
-    // Mantener comportamiento original para Android y otros dispositivos
+    // Comportamiento original para Android y otros dispositivos (sin cambios)
     if (width <= 500) {
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.width = "100vw";
@@ -322,6 +295,34 @@ function adjustChatbotHeight() {
   scrollToBottom();
 }
 
+function adjustChatbotPosition() {
+  const chatbot = document.getElementById("chatbot");
+  const width = window.innerWidth;
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isIOS) {
+    // Simplificar posición en iOS
+    chatbot.style.position = "relative"; // Usar relative para comportamiento natural
+    chatbot.style.top = "auto";
+    chatbot.style.bottom = "auto";
+    chatbot.style.right = "0";
+    chatbot.style.margin = "0";
+  } else {
+    // Comportamiento original para Android y otros dispositivos (sin cambios)
+    if (width > 500) {
+      chatbot.style.bottom = "20px";
+      chatbot.style.top = "auto";
+    } else {
+      if (chatbot.classList.contains("max_chat")) {
+        chatbot.style.top = "0";
+        chatbot.style.bottom = "auto";
+      } else {
+        chatbot.style.bottom = "10px";
+        chatbot.style.top = "auto";
+      }
+    }
+  }
+}
 
 function initializeChatbot() {
   const chatbot = document.getElementById("chatbot");
@@ -339,6 +340,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const chatMinButton = document.getElementById("chat_min");
   if (isStandalone() && chatMinButton) {
     chatMinButton.style.display = "none";
+  }
+
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    window.visualViewport?.removeEventListener("resize", adjustChatbotHeight);
+    window.removeEventListener("resize", adjustChatbotHeight);
+    window.visualViewport?.removeEventListener("resize", adjustChatbotPosition);
+    window.removeEventListener("resize", adjustChatbotPosition);
   }
  
   initializeChatbot();
@@ -386,6 +394,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, 2000);
 
     input.value = "";
+  });
+
+  input.addEventListener("focus", () => {
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      setTimeout(() => {
+        scrollToBottom();
+      }, 300); // Retraso para esperar a que el teclado aparezca
+    }
   });
 
   window.addEventListener("beforeunload", () => {

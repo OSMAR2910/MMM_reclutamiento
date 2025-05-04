@@ -27,6 +27,7 @@
   background-color: $Principal;
   box-shadow: 0 0 10px 5px $Principal;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
   .chat_header {
     @include cover;
     justify-content: center;
@@ -216,6 +217,7 @@
     color: $Secundario;
     font-family: $Letra2;
     gap: 1vh;
+    -webkit-overflow-scrolling: touch;
     p {
       font-weight: 170;
       font-size: 0.7vw;
@@ -445,6 +447,7 @@
     align-items: center;
     position: sticky;
     margin-bottom: 0;
+    -webkit-overflow-scrolling: touch;
     .chat_input {
       width: 80%;
       height: 90%;
