@@ -210,17 +210,27 @@ function scrollToBottom() {
 function adjustChatbotPosition() {
   const chatbot = document.getElementById("chatbot");
   const width = window.innerWidth;
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if (width > 500) {
-    chatbot.style.bottom = "20px";
+  if (isIOS) {
+    // Simplificar posición en iOS
+    chatbot.style.bottom = "0";
     chatbot.style.top = "auto";
+    chatbot.style.right = "0";
+    chatbot.style.margin = "0";
   } else {
-    if (chatbot.classList.contains("max_chat")) {
-      chatbot.style.top = "0";
-      chatbot.style.bottom = "auto";
-    } else {
-      chatbot.style.bottom = "10px";
+    // Mantener comportamiento original para Android y otros dispositivos
+    if (width > 500) {
+      chatbot.style.bottom = "20px";
       chatbot.style.top = "auto";
+    } else {
+      if (chatbot.classList.contains("max_chat")) {
+        chatbot.style.top = "0";
+        chatbot.style.bottom = "auto";
+      } else {
+        chatbot.style.bottom = "10px";
+        chatbot.style.top = "auto";
+      }
     }
   }
 }
@@ -258,7 +268,7 @@ function minimizeChatbot() {
     chatForm.style.display = "none";
     pavo.style.display = "flex";
     adjustChatbotPosition();
-    setThemeColor('#ec6223');
+    setThemeColor('#e36b2f');
   }
 }
 
@@ -280,32 +290,30 @@ function adjustChatbotHeight() {
   const width = window.innerWidth;
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if (width <= 500) {
-    if (isIOS) {
-      // Ajuste específico para iOS: forzar top: 0 y altura exacta
-      chatbot.style.position = "fixed";
-      chatbot.style.top = "0";
-      chatbot.style.right = "0";
-      chatbot.style.bottom = "auto";
-      chatbot.style.height = `${viewportHeight}px`;
-      chatbot.style.width = "100%"; // Cambiado a 100% para evitar conflictos con vw
-      chatbot.style.margin = "0"; // Eliminar márgenes residuales
-      document.documentElement.style.setProperty("--keyboard-height", "0px");
-      console.log("iOS Mobile Height:", viewportHeight);
-    } else {
-      // Comportamiento original para Android
+  if (isIOS) {
+    // Simplificar para iOS: dejar que el navegador maneje el teclado
+    chatbot.style.position = "absolute"; // Cambiar a absolute para evitar conflictos con el teclado
+    chatbot.style.top = "auto";
+    chatbot.style.bottom = "0";
+    chatbot.style.height = "auto"; // Permitir que el contenido determine la altura
+    chatbot.style.width = "100%";
+    chatbot.style.margin = "0";
+    document.documentElement.style.setProperty("--keyboard-height", "0px");
+    console.log("iOS: Comportamiento simplificado para teclado virtual");
+  } else {
+    // Mantener comportamiento original para Android y otros dispositivos
+    if (width <= 500) {
       chatbot.style.height = `${viewportHeight}px`;
       chatbot.style.width = "100vw";
       document.documentElement.style.setProperty("--keyboard-height", "0px");
-      console.log("Mobile Height:", viewportHeight);
+      console.log("Mobile Height (non-iOS):", viewportHeight);
+    } else {
+      chatbot.style.height = "70vh";
+      chatbot.style.width = "20vw";
+      chatbot.style.margin = "0";
+      document.documentElement.style.setProperty("--keyboard-height", "0px");
+      console.log("PC Height:", chatbot.style.height);
     }
-  } else {
-    // Comportamiento para pantallas grandes (PC)
-    chatbot.style.height = "70vh";
-    chatbot.style.width = "20vw";
-    chatbot.style.margin = "0";
-    document.documentElement.style.setProperty("--keyboard-height", "0px");
-    console.log("PC Height:", chatbot.style.height);
   }
 
   chatForm.style.display = "flex";
@@ -313,6 +321,7 @@ function adjustChatbotHeight() {
   chatForm.style.bottom = "0";
   scrollToBottom();
 }
+
 
 function initializeChatbot() {
   const chatbot = document.getElementById("chatbot");

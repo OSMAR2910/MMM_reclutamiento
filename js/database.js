@@ -2467,7 +2467,7 @@ function regresarAlLogin(tipo) {
 
   console.log("Llamando a mostrarBotonEntrar...");
   mostrarBotonEntrar(tipo);
-  setThemeColor("#ec6223");
+  setThemeColor("#e36b2f");
 
   console.log(`Regresando al login ${isManager ? "manager" : "admin"} - Fin`);
 }
