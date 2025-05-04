@@ -48,16 +48,16 @@
 }
 @keyframes pavo_saludo {
   0% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
+    background-image: url("../img/Utilidades/pavo5.1.png");
   }
   49% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
+    background-image: url("../img/Utilidades/pavo5.1.png");
   }
   50% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
+    background-image: url("../img/Utilidades/pavo5.png");
   }
   100% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
+    background-image: url("../img/Utilidades/pavo5.png");
   }
 }
 @keyframes btncita {
@@ -81,7 +81,7 @@
 #loader {
   width: 100vw;
   height: 100vh;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -148,16 +148,16 @@
 }
 @keyframes pavo_saludo {
   0% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
+    background-image: url("../img/Utilidades/pavo5.1.png");
   }
   49% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
+    background-image: url("../img/Utilidades/pavo5.1.png");
   }
   50% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
+    background-image: url("../img/Utilidades/pavo5.png");
   }
   100% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
+    background-image: url("../img/Utilidades/pavo5.png");
   }
 }
 @keyframes btncita {
@@ -215,7 +215,7 @@ html {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #174891;
+  background-color: #2a4e91;
   border: 1px solid #ffffff;
   transition: all 0.15s ease-in-out;
   opacity: 1;
@@ -229,7 +229,7 @@ html {
 }
 .c-cursor.is-link-hovered .c-cursor__inner {
   transform: scale(0.75) translateZ(0);
-  background-color: #0f3061;
+  background-color: #2d3f66;
 }
 
 .has-custom-cursor,
@@ -288,9 +288,9 @@ body .alertasgame .alertagame {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: #f18f62;
-  border: 2px solid #f18f62;
-  box-shadow: 0px 0px 10px 0px #f18f62;
+  background-color: #f3a078;
+  border: 2px solid #f3a078;
+  box-shadow: 0px 0px 10px 0px #f3a078;
   border-radius: 5rem;
   animation: fadeInDown 0.5s ease-in-out forwards;
 }
@@ -387,16 +387,16 @@ body canvas {
 }
 @keyframes pavo_saludo {
   0% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
+    background-image: url("../img/Utilidades/pavo5.1.png");
   }
   49% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.0.png");
+    background-image: url("../img/Utilidades/pavo5.1.png");
   }
   50% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
+    background-image: url("../img/Utilidades/pavo5.png");
   }
   100% {
-    background-image: url("../img/Utilidades/pavo_chava_2d_1.5.png");
+    background-image: url("../img/Utilidades/pavo5.png");
   }
 }
 @keyframes btncita {
@@ -431,8 +431,8 @@ body canvas {
   justify-content: center;
   align-items: center;
   gap: 0;
-  background-color: #ec6223;
-  box-shadow: 0 0 10px 5px #ec6223;
+  background-color: #e36b2f;
+  box-shadow: 0 0 10px 5px #e36b2f;
   overflow: hidden;
 }
 .chatbot .chat_header {
@@ -440,7 +440,7 @@ body canvas {
   height: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -455,7 +455,7 @@ body canvas {
   width: 100%;
   height: 100%;
   margin: none;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   aspect-ratio: 2/2;
   background-image: url("../img/Logos/interfaces/icons/mensajes.svg");
   background-size: 55%;
@@ -527,8 +527,8 @@ body canvas {
   position: relative;
   justify-content: space-between;
   align-items: center;
-  background-color: #174891;
-  box-shadow: 0px 0px 7px 4px #174891;
+  background-color: #2a4e91;
+  box-shadow: 0px 0px 7px 4px #2a4e91;
 }
 .max_chat .chat_header .chat_icon {
   width: 14%;
@@ -547,7 +547,7 @@ body canvas {
 .max_chat .chat_header .chat_icon .status_green {
   width: 0.6em;
   aspect-ratio: 2/2;
-  border: 2px solid #174891;
+  border: 2px solid #2a4e91;
   background-color: #00bf63;
   border-radius: 100%;
   bottom: 0;
@@ -600,8 +600,8 @@ body canvas {
 .max_chat .chat_header .name_id {
   width: 30%;
   height: 2.5vh;
-  background-color: #0f3061;
-  box-shadow: 0px 0px 5px 2px #0f3061;
+  background-color: #2d3f66;
+  box-shadow: 0px 0px 5px 2px #2d3f66;
   border-radius: 1vw;
   display: flex;
   justify-content: center;
@@ -624,7 +624,7 @@ body canvas {
   padding: 2%;
   justify-content: start;
   flex-direction: column;
-  color: #174891;
+  color: #2a4e91;
   font-family: "Nunito";
   gap: 1vh;
 }
@@ -651,7 +651,7 @@ body canvas {
   margin: 0;
   max-width: 70%;
   padding: 0;
-  border: 1.5px solid #174891;
+  border: 1.5px solid #2a4e91;
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw;
@@ -659,7 +659,7 @@ body canvas {
 }
 .max_chat .chat_box .bot_message p a {
   text-decoration: none;
-  color: #ec6223;
+  color: #e36b2f;
 }
 .max_chat .chat_box .user_message {
   width: 90%;
@@ -671,7 +671,7 @@ body canvas {
   margin: none;
   padding: none;
   max-width: 70%;
-  border: 1.5px solid #174891;
+  border: 1.5px solid #2a4e91;
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw;
@@ -682,7 +682,7 @@ body canvas {
   width: 90%;
   height: 1px;
   border-radius: 1vw;
-  background-color: #174891;
+  background-color: #2a4e91;
   padding: 0;
   margin: 0;
   border: none;
@@ -693,8 +693,8 @@ body canvas {
   animation: fadeInUp 0.2s ease-in-out forwards;
   height: 50%;
   display: none;
-  background-color: #174891;
-  box-shadow: 0px 0px 5px 3px #174891;
+  background-color: #2a4e91;
+  box-shadow: 0px 0px 5px 3px #2a4e91;
   position: absolute;
   bottom: 0;
   border-radius: 4vw 4vw 0 0;
@@ -746,7 +746,7 @@ body canvas {
   outline: none;
   border: 0;
   display: flex;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   text-align: center;
 }
@@ -769,24 +769,24 @@ body canvas {
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #1b3c59;
+  color: #2a4566;
   outline: none;
   border: 0;
 }
 .max_chat .user_info_container form .input-form .input .select-selected:focus {
   border: 0;
   outline: none;
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
   color: #ffffff;
 }
 .max_chat .user_info_container form .input-form .input:focus {
   border: 0;
   outline: none;
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
   color: #ffffff;
 }
 .max_chat .user_info_container form .input-form .input:focus .select-items {
@@ -804,9 +804,9 @@ body canvas {
   overflow-y: scroll;
   border: 0;
   outline: none;
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 2px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 2px #2d3f66;
+  background: #2d3f66;
   color: #ffffff;
 }
 .max_chat .user_info_container form .input-form .select-items div.disabled {
@@ -818,10 +818,10 @@ body canvas {
   cursor: pointer;
 }
 .max_chat .user_info_container form .input-form .input::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 .max_chat .user_info_container form .input-form .input::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 .max_chat .user_info_container form .input-form .input:focus::-moz-placeholder {
   color: #ffffff;
@@ -836,13 +836,13 @@ body canvas {
   padding: 0.5vw;
   color: #ffffff;
   border-radius: 1vw;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   font-family: "Nunito";
   transition: all 0.3s ease-in-out;
 }
 .max_chat .user_info_container form .start_chat_button:hover {
-  background-color: #f18f62;
-  box-shadow: 0px 0px 10px 0px #f18f62;
+  background-color: #f3a078;
+  box-shadow: 0px 0px 10px 0px #f3a078;
 }
 .max_chat .chat_form {
   width: 90%;
@@ -857,15 +857,15 @@ body canvas {
   width: 80%;
   height: 90%;
   display: flex;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   border: none;
 }
 .max_chat .chat_form .chat_input::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 .max_chat .chat_form .chat_input::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 .max_chat .chat_form .chat_input:focus {
   border: none;
@@ -879,7 +879,7 @@ body canvas {
   border: none;
   justify-content: center;
   align-items: center;
-  background-color: #0f3061;
+  background-color: #2d3f66;
   color: #ffffff;
   font-family: "Nunito";
   font-size: 1.5vw;
@@ -891,12 +891,12 @@ body canvas {
 }
 
 .pavo_cont {
-  width: 4vw;
-  height: 8vh;
+  height: 13vh;
+  aspect-ratio: 2.3/3;
   display: flex;
   position: fixed;
-  right: 8vw;
-  bottom: 5vh;
+  right: 7vw;
+  bottom: 1vh;
   z-index: 9998;
 }
 .pavo_cont .pavo_msj {
@@ -907,22 +907,22 @@ body canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  left: -1vw;
-  bottom: 9vh;
+  left: 0vw;
+  bottom: 14vh;
   border-radius: 2vw;
   font-size: 0.6vw;
   font-family: "Nunito";
-  background-color: #0f3061;
+  background-color: #2d3f66;
   color: #ffffff;
   text-align: center;
 }
 .pavo_cont .pavo {
+  width: 100%;
+  height: 100%;
   animation: pavo_saludo 1s ease-in-out infinite;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 4vw;
-  height: 12vh;
 }
 
 .agregar_dis {
@@ -958,7 +958,7 @@ body canvas {
     height: 8%;
     min-height: 4rem;
     border-radius: 7vw;
-    box-shadow: 0px 0px 10px 5px #174891;
+    box-shadow: 0px 0px 10px 5px #2a4e91;
   }
   .max_chat .chat_header .chat_icon {
     width: 14%;
@@ -1001,7 +1001,7 @@ body canvas {
     border-radius: 4vw;
   }
   .max_chat .user_info_container {
-    box-shadow: 0px 0px 10px 5px #1b3c59;
+    box-shadow: 0px 0px 10px 5px #2a4566;
     border-radius: 8vw 8vw 0 0;
     min-height: 10rem;
   }
@@ -1022,31 +1022,28 @@ body canvas {
     height: 90%;
   }
   .pavo_cont {
-    width: 15vw;
-    right: 30vw;
-    bottom: 4vh;
+    height: 12vh;
+    aspect-ratio: 2.3/3;
+    right: 25vw;
+    bottom: 1vh;
   }
   .pavo_cont .pavo_msj {
     width: 37vw;
     padding: 0.8rem;
     left: -1vw;
-    bottom: 9vh;
+    bottom: 13vh;
     border-radius: 5vw;
     font-size: 2.3vw;
   }
-  .pavo_cont .pavo {
-    width: 15vw;
-    height: 10vh;
-  }
   .chatbot_color {
-    background-color: #174891;
-    box-shadow: 0px 0px 10px 5px #174891;
+    background-color: #2a4e91;
+    box-shadow: 0px 0px 10px 5px #2a4e91;
   }
   .chatbot_color .chat_header {
-    background-color: #174891;
+    background-color: #2a4e91;
   }
   .chatbot_color .chat_header .chat_min {
-    background-color: #174891;
+    background-color: #2a4e91;
   }
 }
 @media screen and (max-height: 580px) {
@@ -1098,7 +1095,7 @@ html {
   padding: 0;
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
-  background-color: #ec6223;
+  background-color: #e36b2f;
   overflow-x: hidden;
   overscroll-behavior: none;
   display: flex;
@@ -1168,9 +1165,9 @@ html .alertas .alerta {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: #f18f62;
-  border: 2px solid #f18f62;
-  box-shadow: 0px 0px 10px 0px #f18f62;
+  background-color: #f3a078;
+  border: 2px solid #f3a078;
+  box-shadow: 0px 0px 10px 0px #f3a078;
   border-radius: 5rem;
   animation: fadeInDown 0.2s ease-in-out forwards;
 }
@@ -1195,8 +1192,8 @@ html .alertas_modal .alert_eliminacion_vacante {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #f18f62;
-  background-image: url("../img/Logos/Logo (2).svg");
+  background-color: #f3a078;
+  background-image: url("../img/Utilidades/pavo2.png");
   background-position: 80vw center;
   background-size: 35%;
   background-repeat: no-repeat;
@@ -1220,7 +1217,7 @@ html .alertas_modal .alert_eliminacion_vacante .alert_box {
   border-radius: 1rem;
   font-size: 1vw;
   text-align: center;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont,
 html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont {
@@ -1245,12 +1242,12 @@ html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert
 }
 body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.confirm,
 html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.confirm {
-  background-color: #f18f62;
+  background-color: #f3a078;
   color: white;
 }
 body .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.cancel,
 html .alertas_modal .alert_eliminacion_vacante .alert_box .alert_btn_cont .alert-btn.cancel {
-  background-color: #1b3c59;
+  background-color: #2a4566;
   color: white;
 }
 body .alertas_modal .modal-container,
@@ -1260,8 +1257,8 @@ html .alertas_modal .modal-container {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #f18f62;
-  background-image: url("../img/Logos/Logo (2).svg");
+  background-color: #f3a078;
+  background-image: url("../img/Utilidades/pavo4.png");
   background-position: 80vw center;
   background-size: 35%;
   background-repeat: no-repeat;
@@ -1292,7 +1289,7 @@ html .alertas_modal .modal-container .modal-content h2 {
   margin-bottom: 3vh;
   font-size: 1.3vw;
   letter-spacing: 0.2rem;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "NIMBUS";
   text-align: center;
 }
@@ -1324,7 +1321,7 @@ html .alertas_modal .modal-container .modal-content form .input-form .input {
   width: 100%;
   height: 100%;
   border-radius: 5rem;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   outline: none;
   border: 0;
   color: #ffffff;
@@ -1361,18 +1358,18 @@ body .alertas_modal .modal-container .modal-content form .input-form .input .sel
 html .alertas_modal .modal-container .modal-content form .input-form .input .select-selected:focus {
   border: 0;
   outline: none;
-  border: 2px solid #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  background: #1b3c59;
+  border: 2px solid #2a4566;
+  box-shadow: 0px 0px 10px 0px #2a4566;
+  background: #2a4566;
   color: #ffffff;
 }
 body .alertas_modal .modal-container .modal-content form .input-form .input:focus,
 html .alertas_modal .modal-container .modal-content form .input-form .input:focus {
   border: 0;
   outline: none;
-  border: 2px solid #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
-  background-color: #1b3c59;
+  border: 2px solid #2a4566;
+  box-shadow: 0px 0px 10px 0px #2a4566;
+  background-color: #2a4566;
   color: #ffffff;
 }
 body .alertas_modal .modal-container .modal-content form .input-form .input:focus .select-items,
@@ -1392,9 +1389,9 @@ html .alertas_modal .modal-container .modal-content form .input-form .select-ite
   overflow-y: scroll;
   border: 0;
   outline: none;
-  border: 2px solid #1b3c59;
-  box-shadow: 0px 0px 10px 2px #1b3c59;
-  background: #1b3c59;
+  border: 2px solid #2a4566;
+  box-shadow: 0px 0px 10px 2px #2a4566;
+  background: #2a4566;
   color: #ffffff;
 }
 body .alertas_modal .modal-container .modal-content form .input-form .select-items div.disabled,
@@ -1408,11 +1405,11 @@ html .alertas_modal .modal-container .modal-content form .input-form .select-ite
   cursor: pointer;
 }
 body .alertas_modal .modal-container .modal-content form .input-form .input::-moz-placeholder, html .alertas_modal .modal-container .modal-content form .input-form .input::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body .alertas_modal .modal-container .modal-content form .input-form .input::placeholder,
 html .alertas_modal .modal-container .modal-content form .input-form .input::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body .alertas_modal .modal-container .modal-content form .input-form .input:focus::-moz-placeholder, html .alertas_modal .modal-container .modal-content form .input-form .input:focus::-moz-placeholder {
   color: #ffffff;
@@ -1437,10 +1434,10 @@ html .alertas_modal .modal-container .modal-content form .input-form label {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: #f18f62;
+  background-color: #f3a078;
   transition: all 0.2s ease-in-out;
   border-radius: 5rem;
-  box-shadow: 0px 0px 10px 0px #f18f62;
+  box-shadow: 0px 0px 10px 0px #f3a078;
 }
 body .alertas_modal .modal-container .modal-content form .input-form label span,
 html .alertas_modal .modal-container .modal-content form .input-form label span {
@@ -1496,12 +1493,12 @@ html .alertas_modal .modal-container .modal-content form .modal-buttons button#c
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #f18f62;
+  background-color: #f3a078;
   position: absolute;
 }
 body .alertas_modal .modal-container .modal-content form .modal-buttons button#enviar_cita,
 html .alertas_modal .modal-container .modal-content form .modal-buttons button#enviar_cita {
-  background-color: #1b3c59;
+  background-color: #2a4566;
   color: white;
 }
 body .alertas_modal #modal-user-info,
@@ -1514,6 +1511,7 @@ html .alertas_modal #modal-user-info {
   height: 100%;
   justify-content: center;
   align-items: center;
+  background-image: url("../img/Utilidades/pavo1.png");
 }
 body .alertas_modal #modal-user-info .modal-content,
 html .alertas_modal #modal-user-info .modal-content {
@@ -1558,7 +1556,7 @@ body .alertas_modal #modal-user-info .modal-content .user-info-content .user-inf
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont span,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont span {
   width: auto;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont .edit-btn,
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn,
@@ -1570,7 +1568,7 @@ html .alertas_modal #modal-user-info .modal-content .user-info-content .user-inf
   background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #174891;
+  background-color: #2a4e91;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -1580,13 +1578,13 @@ body .alertas_modal #modal-user-info .modal-content .user-info-content .user-inf
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn:hover,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .user-name-display-cont .edit-btn:hover,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item .employee-number-display-cont .edit-btn:hover {
-  background-color: #0f3061;
+  background-color: #2d3f66;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item strong,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item strong {
   width: 100%;
   font-weight: bold;
-  color: #1b3c59;
+  color: #2a4566;
   margin-bottom: 1rem;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container,
@@ -1667,7 +1665,7 @@ html .alertas_modal #modal-user-info .modal-content .user-info-content .user-inf
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-name-input,
 html .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-employee-container #edit-employee-input {
   font-size: 0.9rem;
-  color: #1b3c59;
+  color: #2a4566;
   outline: none;
   border: none;
 }
@@ -1703,18 +1701,18 @@ html .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn {
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #f18f62;
+  background-color: #f3a078;
 }
 body .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn:hover,
 html .alertas_modal #modal-user-info .modal-content .modal_buttons .close_btn:hover {
-  background-color: #ec6223;
+  background-color: #e36b2f;
 }
 body header,
 html header {
   width: 20vw;
   height: 6vw;
   display: flex;
-  background-color: #174891;
+  background-color: #2a4e91;
   border-radius: 5rem;
   position: fixed;
   z-index: 1000;
@@ -1927,7 +1925,7 @@ html main #pag1 article .cont_form {
 body main #pag1 article .cont_form .progress-bar,
 html main #pag1 article .cont_form .progress-bar {
   height: 2%;
-  background-color: #174891;
+  background-color: #2a4e91;
   border-radius: 1rem;
   transition: all 0.5s ease-in-out;
 }
@@ -1974,7 +1972,7 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .custom-drop
   align-items: center;
   gap: 5px;
   z-index: 10;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .custom-dropdown .dropdown-list,
 html main #pag1 article .cont_form form .cont_inputform .input-form .custom-dropdown .dropdown-list {
@@ -2019,7 +2017,7 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .input {
   background-color: #ffffff;
   outline: none;
   border: 0;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   text-align: center;
 }
@@ -2044,7 +2042,7 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .input .sele
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #1b3c59;
+  color: #2a4566;
   outline: none;
   border: 0;
 }
@@ -2052,18 +2050,18 @@ body main #pag1 article .cont_form form .cont_inputform .input-form .input .sele
 html main #pag1 article .cont_form form .cont_inputform .input-form .input .select-selected:focus {
   border: 0;
   outline: none;
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
   color: #ffffff;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus,
 html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus {
   border: 0;
   outline: none;
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
   color: #ffffff;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus .select-items,
@@ -2083,9 +2081,9 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .select-item
   overflow-y: scroll;
   border: 0;
   outline: none;
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 2px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 2px #2d3f66;
+  background: #2d3f66;
   color: #ffffff;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .select-items div.disabled,
@@ -2099,11 +2097,11 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .select-item
   cursor: pointer;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input::-moz-placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input::placeholder,
 html main #pag1 article .cont_form form .cont_inputform .input-form .input::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::-moz-placeholder, html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus::-moz-placeholder {
   color: #ffffff;
@@ -2128,10 +2126,10 @@ html main #pag1 article .cont_form form .cont_inputform .input-form label {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: #f18f62;
+  background-color: #f3a078;
   transition: all 0.2s ease-in-out;
   border-radius: 5rem;
-  box-shadow: 0px 0px 10px 0px #f18f62;
+  box-shadow: 0px 0px 10px 0px #f3a078;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form label span,
 html main #pag1 article .cont_form form .cont_inputform .input-form label span {
@@ -2185,7 +2183,7 @@ html main #pag1 article .cont_form form .exito_form .exito_compartir button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #174891;
+  background-color: #2a4e91;
   border-radius: 5rem;
   border: none;
   color: #ffffff;
@@ -2218,7 +2216,7 @@ html main #pag1 article .cont_form::-webkit-scrollbar-track {
 }
 body main #pag1 article .cont_form::-webkit-scrollbar-thumb,
 html main #pag1 article .cont_form::-webkit-scrollbar-thumb {
-  background-color: #ec6223;
+  background-color: #e36b2f;
   border-radius: 1rem;
   border: 3px solid #ffffff;
 }
@@ -2274,9 +2272,9 @@ html main #pag2 .cont-install-btn .install-btn {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: #174891;
+  background-color: #2a4e91;
   border: none;
-  border: 0.3rem solid #1b3c59;
+  border: 0.3rem solid #2a4566;
   border-radius: 50%;
 }
 body main #pag2 .cont-install-btn .install-btn img,
@@ -2300,7 +2298,7 @@ html main #pag2 .Logincont .Login-cont {
   width: 17vw;
   aspect-ratio: 2/2;
   border-radius: 2vw;
-  background-color: #174891;
+  background-color: #2a4e91;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2401,9 +2399,9 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:focus,
 html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:focus {
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
 }
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
 body main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label,
@@ -2412,7 +2410,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .input-field input
   top: 0;
   font-size: 0.7vw;
   padding: 0 6px;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 1% 3%;
@@ -2462,7 +2460,7 @@ html main #pag2 .Logincont .Login-cont .Login-son .form-login .label_btn_log {
   color: #ffffff;
   bottom: 10%;
   border-radius: 3vw;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   padding: 0.3rem 0.7rem;
   position: absolute;
   font-family: "Nunito";
@@ -2528,10 +2526,10 @@ html main #pag2 .Logincont .entrar-btn {
   width: 10vw;
   aspect-ratio: 1/1;
   display: flex;
-  background-color: #174891;
+  background-color: #2a4e91;
   border-radius: 50%;
   color: #ffffff;
-  border: 0.5rem solid #0f3061;
+  border: 0.5rem solid #2d3f66;
   font-family: "NIMBUS";
   font-size: 1.5vw;
   transition: all 0.2s ease-in-out;
@@ -2584,7 +2582,7 @@ html main #pag3 .orientation-message {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   color: #ffffff;
   font-family: "Nunito";
   display: none;
@@ -2604,7 +2602,7 @@ html main #pag3 .nav_admin {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   z-index: 10020;
 }
 body main #pag3 .nav_admin .nav_cont,
@@ -2702,7 +2700,7 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings label span {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings label:hover img,
@@ -2779,7 +2777,7 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .d
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .data_settings button:hover img,
@@ -2913,7 +2911,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon s
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .indicador_total,
@@ -2924,7 +2922,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .
   top: 0.5vh;
   right: 0.4vw;
   background-color: #00bf63;
-  border: 0.2vw solid #1b3c59;
+  border: 0.2vw solid #2a4566;
   border-radius: 50%;
   display: none;
   justify-content: center;
@@ -2975,7 +2973,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   position: relative;
   margin-top: 1vh;
   margin-bottom: 1vh;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   border-radius: 2rem;
   padding: 0.5vw;
 }
@@ -3013,7 +3011,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   top: -0.3vh;
   right: -0.3vw;
   background-color: #00bf63;
-  border: 0.2vw solid #1b3c59;
+  border: 0.2vw solid #2a4566;
   border-radius: 50%;
   display: none;
   justify-content: center;
@@ -3029,13 +3027,13 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button.active,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button.active {
-  background: #1b3c59;
+  background: #2a4566;
   color: #ffffff;
   border: none;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button:hover,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .branch-button:hover {
-  background: #1b3c59;
+  background: #2a4566;
   color: #ffffff;
   border: none;
 }
@@ -3087,8 +3085,8 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:hover:not(:disabled),
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:hover:not(:disabled) {
-  background-color: #1b3c59;
-  border: 0.1rem solid #1b3c59;
+  background-color: #2a4566;
+  border: 0.1rem solid #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin {
@@ -3102,7 +3100,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   padding: 2%; /* Ajustado de chat_box */
   justify-content: end; /* Ajustado de chat_box */
   flex-direction: column;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   gap: 1vh;
 }
@@ -3126,7 +3124,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message span {
   width: auto;
   font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
-  color: #1b3c59;
+  color: #2a4566;
   margin-left: 0; /* Ajustado de chat_box .bot_message span */
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p,
@@ -3140,16 +3138,16 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw; /* Ajustado de chat_box */
-  border: 1.5px solid #1b3c59; /* Ajustado de chat_box */
+  border: 1.5px solid #2a4566; /* Ajustado de chat_box */
   border-radius: 1vw;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p a,
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p a,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message p a,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .branch_message p a {
   text-decoration: none;
-  color: #ec6223; /* Ajustado de chat_box .bot_message p a */
+  color: #e36b2f; /* Ajustado de chat_box .bot_message p a */
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .data_chat_admin .rh_message {
@@ -3173,7 +3171,7 @@ body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info hr {
   width: 90%;
   height: 1px;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   border-radius: 100%;
   border: none;
 }
@@ -3197,30 +3195,30 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   outline: none;
   border: none;
   padding: 0 1vw;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   font-size: 0.7vw;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::-moz-placeholder, html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::placeholder,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus {
   border-color: #ffffff;
   box-shadow: 0px 0px 5px 2px #ffffff;
   background: #ffffff;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::-moz-placeholder, html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::placeholder,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .admin_chat_form #admin_chat_input:focus::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios {
@@ -3306,7 +3304,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon sp
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon:hover img,
@@ -3335,7 +3333,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   font-size: 0.7vw;
   padding: 0.5vw;
   border-left: 0.1rem solid #ffffff;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container,
@@ -3384,13 +3382,13 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:focus {
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
   top: -1%;
   font-size: 0.5vw;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 0 3%;
@@ -3401,7 +3399,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
   top: -1%;
   font-size: 0.5vw;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 0 3%;
@@ -3483,7 +3481,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   justify-content: center;
   align-items: center;
   font-size: 1vw;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-messages,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button .user-messages {
@@ -3522,7 +3520,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   justify-content: center;
   align-items: start;
   text-align: start;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong,
 html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info .data_mj_user ul button:focus .user-messages .message span strong {
@@ -3537,7 +3535,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   margin: 0;
   font-size: 0.6vw;
   padding: 0.5vw;
-  border: 0.1rem solid #1b3c59;
+  border: 0.1rem solid #2a4566;
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw;
@@ -3554,7 +3552,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu {
   width: 3%;
   height: 100%;
   display: flex;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
@@ -3636,7 +3634,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_ico
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_icon:hover img,
@@ -3665,7 +3663,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
   font-family: "Nunito";
   font-size: 0.7vw;
   padding: 0.5vw;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container,
@@ -3714,13 +3712,13 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:focus {
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
   top: -1%;
   font-size: 0.5vw;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 0 3%;
@@ -3731,7 +3729,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
   top: -1%;
   font-size: 0.5vw;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 0 3%;
@@ -3802,7 +3800,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info strong,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .sucursal_info strong {
-  color: #1b3c59;
+  color: #2a4566;
   font-size: 1vw;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container,
@@ -3841,7 +3839,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos {
   width: 3%;
   height: 100%;
   display: flex;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
@@ -3922,7 +3920,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .lab
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .label_icon:hover img,
@@ -3954,7 +3952,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
   border-left: 0.1rem solid #ffffff;
   font-size: 0.7vw;
   padding: 0.5vw;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container,
@@ -4003,13 +4001,13 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:focus,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:focus {
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label, html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:-moz-placeholder-shown) ~ label {
   top: -1%;
   font-size: 0.5vw;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 0 3%;
@@ -4020,7 +4018,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .filter-container .input-field input:not(:placeholder-shown) ~ label {
   top: -1%;
   font-size: 0.5vw;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 0 3%;
@@ -4100,7 +4098,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
   display: flex;
   font-size: 1.3em;
   font-family: "Nunito";
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button .puestos_admin_items,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button .puestos_admin_items {
@@ -4150,7 +4148,7 @@ body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_nombre {
   font-size: 1.5em;
   font-family: "Nunito";
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle {
@@ -4176,7 +4174,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados {
   width: 3%;
   height: 100%;
   display: flex;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
@@ -4258,7 +4256,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .label_icon:hover img,
@@ -4286,7 +4284,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   font-size: 0.7vw;
   padding: 0.5vw;
   border-radius: 0 0 1vw 1vw;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user,
@@ -4335,7 +4333,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultados .resultados_user_info .data_resultados_user button:hover img,
@@ -4354,7 +4352,7 @@ html main #pag3 .estatus_vacantes {
   width: 12vw;
   height: 2.5vw;
   display: flex;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   padding: 1vw;
   border-radius: 5vw;
   justify-content: center;
@@ -4435,7 +4433,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info {
   font-family: "Nunito";
   font-size: 0.7vw;
   padding: 0.5vw;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status,
@@ -4575,7 +4573,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-descargar-pdf:hover,
@@ -4603,7 +4601,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #0f3061;
+  background-color: #2d3f66;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn_container2 .btn-agendar-cita:hover,
@@ -4647,7 +4645,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   justify-content: center;
   align-items: center;
   font-size: 0.8vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info,
@@ -4679,7 +4677,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   justify-content: center;
   align-items: center;
   font-size: 1.2vh;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .vacante_info span strong,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .vacante_info span strong,
@@ -4690,7 +4688,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .vacante_info span strong,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .vacante_info span strong {
   font-size: 1.4vh;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .criterios_container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .criterios_container,
@@ -4730,10 +4728,10 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  border: 0.2em solid #1b3c59;
+  border: 0.2em solid #2a4566;
   font-size: 0.5vw;
   font-family: "Nunito";
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container,
@@ -4860,7 +4858,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   background-image: url("../../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -4995,7 +4993,7 @@ html main #pag3 .admin_cont {
   margin-bottom: 2vh;
   padding: 0;
   gap: 1%;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   -webkit-mask: url("../img/Utilidades/top-center.png") center/contain no-repeat, linear-gradient(#000000 0 0);
   -webkit-mask-size: 20vw;
           mask-size: 20vw;
@@ -5126,7 +5124,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .b
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 .btn-descargar-pdf:hover,
@@ -5142,7 +5140,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .b
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #0f3061;
+  background-color: #2d3f66;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2 .btn-agendar-cita:hover,
@@ -5168,7 +5166,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .I
   justify-content: center;
   align-items: center;
   font-size: 0.7vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info {
@@ -5192,12 +5190,12 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .v
   justify-content: center;
   align-items: center;
   font-size: 0.6vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .vacante_info span strong {
   font-size: 0.7vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container {
@@ -5215,10 +5213,10 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .c
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  border: 0.2vw solid #1b3c59;
+  border: 0.2vw solid #2a4566;
   font-size: 0.7vw;
   font-family: "Nunito";
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemstatus,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .Itemstatus {
@@ -5280,7 +5278,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .c
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   background-image: url("../../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -5343,7 +5341,7 @@ html main #pag3 .admin_cont .cont_citas {
   justify-content: start;
   align-items: end;
   flex-direction: column;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_citas .box_gray,
@@ -5453,7 +5451,7 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2 .btn-descargar-pdf:hover,
@@ -5483,7 +5481,7 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .Item
   justify-content: center;
   align-items: center;
   font-size: 0.8vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info {
@@ -5507,12 +5505,12 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vaca
   justify-content: center;
   align-items: center;
   font-size: 0.6vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span strong,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .vacante_info span strong {
   font-size: 0.7vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .criterios_container,
 html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .criterios_container {
@@ -5560,7 +5558,7 @@ html main #pag3 .admin_cont .cont_aceptados {
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag3 .admin_cont .cont_aceptados .box_green,
@@ -5673,7 +5671,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2 .btn-descargar-pdf:hover,
@@ -5689,7 +5687,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #0f3061;
+  background-color: #2d3f66;
   transition: all 0.2s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2 .btn-agendar-cita:hover,
@@ -5715,7 +5713,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   justify-content: center;
   align-items: center;
   font-size: 1vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info {
@@ -5735,12 +5733,12 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   justify-content: center;
   align-items: center;
   font-size: 0.6vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .vacante_info span strong {
   font-size: 0.7vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container {
@@ -5758,10 +5756,10 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  border: 0.2vw solid #1b3c59;
+  border: 0.2vw solid #2a4566;
   font-size: 0.7vw;
   font-family: "Nunito";
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemstatus,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .Itemstatus {
@@ -5830,7 +5828,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   background-image: url("../../img/Logos/interfaces/icons/cerrar.svg");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -5897,7 +5895,7 @@ html main #pag4 .Logincont .Login-cont {
   width: 17vw;
   aspect-ratio: 2/2;
   border-radius: 2vw;
-  background-color: #174891;
+  background-color: #2a4e91;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5998,9 +5996,9 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:focus,
 html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:focus {
-  border: 2px solid #0f3061;
-  box-shadow: 0px 0px 10px 0px #0f3061;
-  background: #0f3061;
+  border: 2px solid #2d3f66;
+  box-shadow: 0px 0px 10px 0px #2d3f66;
+  background: #2d3f66;
 }
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:focus ~ label,
 body main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input:valid ~ label,
@@ -6009,7 +6007,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .input-field input
   top: 0;
   font-size: 0.7vw;
   padding: 0 6px;
-  background: #ec6223;
+  background: #e36b2f;
   color: #ffffff;
   border-radius: 1rem;
   padding: 1% 3%;
@@ -6059,7 +6057,7 @@ html main #pag4 .Logincont .Login-cont .Login-son .form-login .label_btn_log {
   color: #ffffff;
   bottom: 10%;
   border-radius: 3vw;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   padding: 0.3rem 0.7rem;
   position: absolute;
   font-family: "Nunito";
@@ -6125,10 +6123,10 @@ html main #pag4 .Logincont .entrar-btn {
   width: 10vw;
   aspect-ratio: 1/1;
   display: flex;
-  background-color: #174891;
+  background-color: #2a4e91;
   border-radius: 50%;
   color: #ffffff;
-  border: 0.5rem solid #0f3061;
+  border: 0.5rem solid #2d3f66;
   font-family: "NIMBUS";
   font-size: 1.5vw;
   transition: all 0.2s ease-in-out;
@@ -6184,7 +6182,7 @@ html main #pag5 .nav_admin {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   z-index: 10020;
 }
 body main #pag5 .nav_admin .nav_cont,
@@ -6223,7 +6221,7 @@ html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin {
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.5rem;
 }
 body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p,
 html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
@@ -6277,7 +6275,7 @@ html main #pag5 .settings .icons_settings label {
   align-items: center;
   border-radius: 10rem;
   transition: all 0.2s ease-in-out;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   z-index: 10000;
   cursor: pointer;
 }
@@ -6301,7 +6299,7 @@ html main #pag5 .settings .icons_settings .settings_info {
   color: #ffffff;
   font-family: "Nunito";
   padding: 0.5vw;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   overflow: hidden;
   gap: 1.5vh;
 }
@@ -6314,7 +6312,7 @@ html main #pag5 .settings .icons_settings .settings_info .data_settings {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   align-items: center;
 }
 body main #pag5 .settings .icons_settings .settings_info .data_settings button,
@@ -6342,7 +6340,7 @@ html main #pag5 .estatus_citas_manager {
   width: 8vw;
   height: 4vw;
   display: flex;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   padding: 1vw;
   border-radius: 3vw;
   justify-content: space-evenly;
@@ -6408,7 +6406,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info {
   font-family: "Nunito";
   font-size: 0.7vw;
   padding: 0.5vw;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   gap: 1.5vh;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status,
@@ -6506,7 +6504,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   transition: all 0.2s ease-in-out;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn_container2 .btn-descargar-pdf:hover,
@@ -6544,7 +6542,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   justify-content: center;
   align-items: center;
   font-size: 5em;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .criterios_container,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .criterios_container,
@@ -6580,14 +6578,14 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   justify-content: center;
   align-items: center;
   font-size: 1.2vh;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info span strong,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .vacante_info span strong,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .vacante_info span strong,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .vacante_info span strong {
   font-size: 1.4vh;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container,
@@ -6615,7 +6613,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   width: 2vw;
   aspect-ratio: 2/2;
   border: none;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
   position: relative;
   display: inline-block;
@@ -6637,7 +6635,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #1b3c59;
+  color: #2a4566;
   outline: none;
   border: 0;
 }
@@ -6651,8 +6649,8 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .custom-select .select-selected:focus {
   border: 0;
   outline: none;
-  border: 2px solid #1b3c59;
-  background: #1b3c59;
+  border: 2px solid #2a4566;
+  background: #2a4566;
   color: #ffffff;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container button .select-items,
@@ -6675,7 +6673,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   overflow-y: scroll;
   border: 0;
   outline: none;
-  background: #1b3c59;
+  background: #2a4566;
   color: #ffffff;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container button .select-items div.disabled,
@@ -6765,7 +6763,7 @@ html main #pag5 .sucursal_cont {
   width: 4vw;
   height: 2vh;
   display: flex;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   padding: 1vw;
   border-radius: 2vw;
   justify-content: center;
@@ -6795,7 +6793,7 @@ html main #pag5 .cont_manager {
   margin-bottom: 8vh;
   padding: 0;
   gap: 2%;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   -webkit-mask: url("../img/Utilidades/top-center2.png") center/contain no-repeat, url("../img/Utilidades/top-left.png") center/contain no-repeat, linear-gradient(#000000 0 0);
   -webkit-mask-size: 15vw, 0;
           mask-size: 15vw, 0;
@@ -6814,8 +6812,8 @@ html main #pag5 .cont_manager .cont_citas_manager {
   justify-content: start;
   align-items: end;
   flex-direction: column;
-  background-color: #1b3c59;
-  box-shadow: 0px 0px 10px 0px #1b3c59;
+  background-color: #2a4566;
+  box-shadow: 0px 0px 10px 0px #2a4566;
   margin-top: 15vh;
   gap: 1.5vh;
 }
@@ -6889,7 +6887,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #ec6223;
+  background-color: #e36b2f;
   transition: all 0.2s ease-in-out;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn_container2 .btn-descargar-pdf:hover,
@@ -6919,7 +6917,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   justify-content: center;
   align-items: center;
   font-size: 1em;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info {
@@ -6941,12 +6939,12 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   justify-content: center;
   align-items: center;
   font-size: 0.6vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span strong,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .vacante_info span strong {
   font-size: 0.7vw;
-  color: #0f3061;
+  color: #2d3f66;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .criterios_container,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .criterios_container {
@@ -6975,7 +6973,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   height: 2vw;
   aspect-ratio: 2/2;
   border: none;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   transition: all 0.2s ease-in-out;
   position: relative;
   display: inline-block;
@@ -6993,7 +6991,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #1b3c59;
+  color: #2a4566;
   outline: none;
   border: 0;
 }
@@ -7003,7 +7001,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .custom-select .select-selected:focus {
   border: 0;
   outline: none;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   color: #ffffff;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button .select-items,
@@ -7022,7 +7020,7 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
   overflow-y: scroll;
   border: 0;
   outline: none;
-  background: #1b3c59;
+  background: #2a4566;
   color: #ffffff;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container button .select-items div.disabled,
@@ -7092,7 +7090,7 @@ html main #pag5 .chat_manager {
   width: 100vw;
   height: 6vh;
   display: flex;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
@@ -7157,7 +7155,7 @@ html main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total {
   top: 7%;
   left: 31vw;
   background-color: #00bf63;
-  border: 1vw solid #1b3c59;
+  border: 1vw solid #2a4566;
   border-radius: 50%;
   display: none;
   justify-content: center;
@@ -7205,7 +7203,7 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_
   padding: 3%; /* Ajustado de chat_box */
   justify-content: end; /* Ajustado de chat_box */
   flex-direction: column;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   gap: 1vh;
 }
@@ -7228,7 +7226,7 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message span {
   width: auto;
   font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
-  color: #1b3c59;
+  color: #2a4566;
   margin-left: 1vw; /* Ajustado de chat_box .bot_message span */
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p,
@@ -7242,16 +7240,16 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw; /* Ajustado de chat_box */
-  border: 1.5px solid #1b3c59; /* Ajustado de chat_box */
+  border: 1.5px solid #2a4566; /* Ajustado de chat_box */
   border-radius: 1vw;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p a,
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p a,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message p a,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .branch_message p a {
   text-decoration: none;
-  color: #ec6223; /* Ajustado de chat_box .bot_message p a */
+  color: #e36b2f; /* Ajustado de chat_box .bot_message p a */
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager .rh_message {
@@ -7275,7 +7273,7 @@ body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info hr,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info hr {
   width: 90%;
   height: 1px;
-  background-color: #1b3c59;
+  background-color: #2a4566;
   border-radius: 100%;
   border: none;
 }
@@ -7299,30 +7297,30 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_ch
   outline: none;
   border: none;
   padding: 0 1vw;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
   font-size: 0.7vw;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::-moz-placeholder, html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::placeholder,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus {
   border-color: #ffffff;
   box-shadow: 0px 0px 5px 2px #ffffff;
   background: #ffffff;
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::-moz-placeholder, html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::-moz-placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::placeholder,
 html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input:focus::placeholder {
-  color: #1b3c59;
+  color: #2a4566;
 }
 body main #ap_tc,
 html main #ap_tc {
@@ -7338,7 +7336,7 @@ html main #ap_tc div {
   margin-bottom: 10%;
   display: flex;
   gap: 5%;
-  color: #1b3c59;
+  color: #2a4566;
   font-family: "Nunito";
 }
 body main #ap_tc div div,
@@ -7366,7 +7364,7 @@ html main aside {
   width: 50%;
   height: 100%;
   display: none;
-  background-color: #174891;
+  background-color: #2a4e91;
   justify-items: center;
   align-items: center;
   z-index: 1000;
@@ -7624,7 +7622,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag2 .Logincont .entrar-btn {
     width: 60vw;
     border-radius: 50%;
-    border: 0.7rem solid #0f3061;
+    border: 0.7rem solid #2d3f66;
     font-size: 8vw;
   }
   body main #pag2 .btn_cita,
@@ -7790,16 +7788,32 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag3 .nav_admin .nav_cont .mensajes_usuarios {
     display: none;
   }
+  body main #pag3 .nav_admin .nav_cont .mensajes_usuarios .label_icon,
+  html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .label_icon {
+    display: none;
+  }
   body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu,
   html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .label_icon,
+  html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .label_icon {
     display: none;
   }
   body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos,
   html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos {
     display: none;
   }
+  body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .label_icon,
+  html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .label_icon {
+    display: none;
+  }
   body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados,
   html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados {
+    display: none;
+  }
+  body main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .label_icon,
+  html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .label_icon {
     display: none;
   }
   body main #pag3 .estatus_vacantes,
@@ -7845,7 +7859,7 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag4 .Logincont .entrar-btn {
     width: 60vw;
     border-radius: 50%;
-    border: 0.7rem solid #0f3061;
+    border: 0.7rem solid #2d3f66;
     font-size: 8vw;
   }
   body main #pag4 .btn_admin2,
@@ -7864,7 +7878,8 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p,
   html main #pag5 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
-    font-size: 0.6em;
+    height: 100%;
+    font-size: 0.5em;
   }
   body main #pag5 .settings,
   html main #pag5 .settings {
@@ -7881,11 +7896,11 @@ html .cambiar_nav nav ul .circulo_icon {
     top: 8vh;
     left: 19vw;
     border-radius: 3vw;
-    background-color: #ec6223;
+    background-color: #e36b2f;
   }
   body main #pag5 .settings .icons_settings .settings_info .data_settings,
   html main #pag5 .settings .icons_settings .settings_info .data_settings {
-    background-color: #ec6223;
+    background-color: #e36b2f;
   }
   body main #pag5 .settings .icons_settings .settings_info .data_settings button img,
   html main #pag5 .settings .icons_settings .settings_info .data_settings button img {

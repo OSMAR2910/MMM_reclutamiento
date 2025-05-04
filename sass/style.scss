@@ -150,7 +150,7 @@ html {
       width: 100vw;
       height: 100vh;
       background-color: $Resalte2;
-      background-image: url("../img/Logos/Logo\ \(2\).svg");
+      background-image: url("../img/Utilidades/pavo2.png");
       background-position: 80vw center;
       background-size: 35%;
       background-repeat: no-repeat;
@@ -214,7 +214,7 @@ html {
       width: 100vw;
       height: 100vh;
       background-color: $Resalte2;
-      background-image: url("../img/Logos/Logo\ \(2\).svg");
+      background-image: url("../img/Utilidades/pavo4.png");
       background-position: 80vw center;
       background-size: 35%;
       background-repeat: no-repeat;
@@ -459,6 +459,7 @@ html {
       height: 100%;
       justify-content: center;
       align-items: center;
+      background-image: url("../img/Utilidades/pavo1.png");
 
       .modal-content {
         background-color: $Blanco;
@@ -4775,7 +4776,7 @@ html {
               justify-content: center;
               align-items: center;
               border-radius: 1rem;
-              padding: 0.2rem 0.7rem;
+              padding: 0.2rem 0.5rem;
 
               p {
                 display: none;
@@ -6130,7 +6131,6 @@ html {
         }
       }
 
-
       #pag3 {
   
         .nav_admin {
@@ -6293,18 +6293,30 @@ html {
   
             .mensajes_usuarios {
               display: none;
+              .label_icon {
+                display: none;
+              }
             }
   
             .disponibilidad_sucu {
               display: none;
+              .label_icon {
+                display: none;
+              }
             }
   
             .disponibilidad_puestos {
               display: none;
+              .label_icon {
+                display: none;
+              }
             }
   
             .disponibilidad_resultados {
               display: none;
+              .label_icon {
+                display: none;
+              }
             }
           }
         }
@@ -6379,7 +6391,8 @@ html {
               .text_welcome_admin {
                 max-width: 60%;
                 p {
-                  font-size: 0.6em;
+                  height: 100%;
+                  font-size: 0.5em;
                 }
               }
             }
