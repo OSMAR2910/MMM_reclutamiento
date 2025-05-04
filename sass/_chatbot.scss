@@ -620,6 +620,20 @@
         height: 90%;
       }
     }
+    .ios-max-chat {
+      position: fixed !important; // Forzar fixed en iOS
+      top: 0 !important;
+      left: 0 !important;
+      right: auto !important;
+      bottom: auto !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      transform: none !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
   }
   .pavo_cont {
     height: 12vh;
