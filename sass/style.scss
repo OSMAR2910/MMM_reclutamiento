@@ -39,7 +39,7 @@
   min-height: var(--main-vh);
   max-height: var(--main-vh);
   position: relative;
-  overflow: hidden; // Asegurar que no haya scroll interno
+  overflow: hidden;
 }
 
 body,
@@ -53,7 +53,7 @@ html {
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
   background-color: $Fondo;
-  overflow-x: hidden;
+  overflow: hidden;
   overscroll-behavior: none;
   display: flex;
   justify-content: center;
@@ -1972,7 +1972,7 @@ html {
                   display: flex;
                   align-items: center; /* Ajustado de chat_box */
                   padding: 2%; /* Ajustado de chat_box */
-                  justify-content: end; /* Ajustado de chat_box */
+                  justify-content: start; /* Ajustado de chat_box */
                   flex-direction: column;
                   color: $Box_admin;
                   font-family: $Letra2;

@@ -212,6 +212,7 @@
             "tag": "Groserias",
             "keywords": [
                 "caca",
+                "chupamela",
                 "sexo",
                 "panocha",
                 "puto",
@@ -475,10 +476,12 @@
             "tag": "ubicacion_oficina",
             "keywords": [
                 "oficina",
-                "contratación"
+                "contratación",
+                "recursos humanos",
+                "rh"
             ],
             "responses": [
-                "📍 Nuestra oficina está ubicada en Siglo 21, Tijuana. Entre la sucursal y el Oxxo hay una puerta gris. Toca el timbre 🔔, jala la puerta y sube las escaleras. Aquí puedes llevar tus documentos físicos o digitales para iniciar el proceso."
+                "📍 Nuestra oficina está ubicada en Siglo 21, Tijuana. Entre la sucursal y el Oxxo hay una puerta gris. Toca el timbre 🔔, jala la puerta y sube las escaleras. Aquí puedes llevar tus documentos físicos o digitales para iniciar el proceso <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>¡Ven a visitarnos! 🦃✨</a>."
             ]
         },
         {
@@ -723,6 +726,45 @@
             ],
             "responses": [
                 "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Las sucursales con disponibilidad se muestran en el formulario, Dime la sucursal que quieras ir ${userName}, para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️"
+            ]
+        },
+        {
+            "tag": "formulario1",
+            "keywords": [
+                "casa-sucursal",
+                "casa sucursal"
+            ],
+            "responses": [
+                "En el apartado del formulario, ¿Cuántos minutos tardas en llegar desde tu domicilio a la sucursal? ⏱️"
+            ]
+        },
+        {
+            "tag": "reaccion_risas",
+            "keywords": [
+                "jajaja",
+                "jajaja",
+                "jajaja",
+                "jajajaja",
+                "hahaha",
+                "hahahaha",
+                "glugluteando"
+            ],
+            "responses": [
+                "¡Glu-glu, ${userName}! Veo que te ríes... ¡Como un pavo feliz! 🦃😂",
+                "¡Jajaja, ${userName}! Tus risas son contagiosas. 🦃🤣",
+                "¡Hahaha, ${userName}! Un pavo feliz siempre brilla. ✨🦃😄",
+                "¡Qué risas, ${userName}! ¿Cuál es el chiste? 🦃😆",
+                "¡Ja ja ja, ${userName}! Cacareando de felicidad. Glu-glu! 🦃🎉",
+                "¡Hahahaha, ${userName}! No te quedes sin plumas de tanto reír. 🦃😅",
+                "¡Glu-glu, ${userName}! Sigues riendo... ¡El pavo también! 🦃🥳",
+                "¡Jajajaja, ${userName}! El pavo se une a la fiesta. 🦃🎊",
+                "¡Haha, ${userName}! Un pavo sonriente es encantador. 🦃😁",
+                "¡Ja ja ja, ${userName}! Tus risas son como maíz fresco. 🌽🦃😄",
+                "¡Hahahaha, ${userName}! Contagiando alegría al pavo. 🦃😊",
+                "¡Qué risueño, ${userName}! Pronto habrá coro de pavos riendo. 🦃🎶",
+                "¡Jajaja, ${userName}! Como ver a un pavo bailar. 🦃💃",
+                "¡Haha, ${userName}! Risas musicales para el pavo. 🦃🎵",
+                "¡Ja ja ja, ${userName}! Expert@ en hacer reír pavos. 🦃😄"
             ]
         }
     ]

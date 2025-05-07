@@ -623,7 +623,7 @@ body canvas {
   display: flex;
   align-items: center;
   padding: 2%;
-  justify-content: end;
+  justify-content: start;
   flex-direction: column;
   color: #2a4e91;
   font-family: "Nunito";
@@ -1121,7 +1121,7 @@ html {
   padding-top: var(--safe-top);
   padding-bottom: var(--safe-bottom);
   background-color: #e36b2f;
-  overflow-x: hidden;
+  overflow: hidden;
   overscroll-behavior: none;
   display: flex;
   justify-content: center;
@@ -3124,7 +3124,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   display: flex;
   align-items: center; /* Ajustado de chat_box */
   padding: 2%; /* Ajustado de chat_box */
-  justify-content: end; /* Ajustado de chat_box */
+  justify-content: start; /* Ajustado de chat_box */
   flex-direction: column;
   color: #2a4566;
   font-family: "Nunito";
