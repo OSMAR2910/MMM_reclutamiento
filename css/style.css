@@ -679,16 +679,6 @@ body canvas {
   font-size: 0.7vw;
   border-radius: 1vw;
 }
-.max_chat hr {
-  display: flex;
-  width: 90%;
-  height: 1px;
-  border-radius: 1vw;
-  background-color: #2a4e91;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
 .max_chat .user_info_container {
   width: 100%;
   height: 100%;
@@ -847,31 +837,33 @@ body canvas {
   box-shadow: 0px 0px 10px 0px #f3a078;
 }
 .max_chat .chat_form {
-  width: 90%;
-  height: 8%;
+  width: 100%;
+  height: 9%;
   display: none;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   position: absolute;
   bottom: 0;
   -webkit-overflow-scrolling: touch;
 }
 .max_chat .chat_form .chat_input {
-  width: 80%;
-  height: 90%;
+  width: 100%;
+  height: 70%;
   display: flex;
-  color: #2a4566;
+  color: #2a4e91;
   font-family: "Nunito";
-  border: none;
+  border: 1.5px solid #2a4e91;
+  text-align: center;
+  border-radius: 1rem;
 }
 .max_chat .chat_form .chat_input::-moz-placeholder {
-  color: #2a4566;
+  color: #2a4e91;
 }
 .max_chat .chat_form .chat_input::placeholder {
-  color: #2a4566;
+  color: #2a4e91;
 }
 .max_chat .chat_form .chat_input:focus {
-  border: none;
+  border: 1.5px solid #2a4e91;
   outline: none;
 }
 .max_chat .chat_form .chat_submit {
@@ -4740,6 +4732,37 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   justify-content: center;
   align-items: center;
 }
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .pendiente,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .pendiente,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .pendiente,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .pendiente,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .pendiente,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .pendiente,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .pendiente,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .pendiente {
+  border: 0.2em solid #FFD700;
+  font-size: 0.3vw;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .apto,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .apto,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .apto,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .apto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .apto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .apto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .apto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .apto {
+  border: 0.2em solid #00bf63;
+}
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .noapto,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .noapto,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .noapto,
+body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .noapto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .noapto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .noapto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .noapto,
+html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .noapto {
+  border: 0.2em solid #ff3131;
+}
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus span,
@@ -4754,7 +4777,6 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  border: 0.2em solid #2a4566;
   font-size: 0.5vw;
   font-family: "Nunito";
   color: #2a4566;
@@ -5230,6 +5252,18 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .c
   display: flex;
   justify-content: center;
   align-items: center;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .alto,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .alto {
+  border: 0.2vw solid #00bf63;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .medio,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .medio {
+  border: 0.2vw solid #FFD700;
+}
+body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .muyBajo,
+html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .muyBajo {
+  border: 0.2vw solid #ff3131;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span {
@@ -5774,6 +5808,18 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   justify-content: center;
   align-items: center;
 }
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .alto,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .alto {
+  border: 0.2vw solid #00bf63;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .medio,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .medio {
+  border: 0.2vw solid #FFD700;
+}
+body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .muyBajo,
+html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .muyBajo {
+  border: 0.2vw solid #ff3131;
+}
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span {
   width: 80%;
@@ -5782,7 +5828,6 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  border: 0.2vw solid #2a4566;
   font-size: 0.7vw;
   font-family: "Nunito";
   color: #2a4566;
@@ -5868,7 +5913,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus {
-  height: 10vh;
+  height: 15vh;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green:focus .btn_container2 {
@@ -6814,11 +6859,10 @@ html main #pag5 .cont_manager {
   justify-content: space-between;
   align-items: start;
   font-family: "Nunito";
-  position: relative;
+  position: fixed;
+  top: 7.5vh;
   border: none;
-  margin-bottom: 8vh;
   padding: 0;
-  gap: 2%;
   background-color: #2a4566;
   -webkit-mask: url("../img/Utilidades/top-center2.png") center/contain no-repeat, url("../img/Utilidades/top-left.png") center/contain no-repeat, linear-gradient(#000000 0 0);
   -webkit-mask-size: 15vw, 0;

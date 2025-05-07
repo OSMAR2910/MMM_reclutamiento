@@ -3432,6 +3432,16 @@ html {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    .pendiente {
+                      border: 0.2em solid $Orange;
+                      font-size: .3vw;
+                    }
+                    .apto {
+                      border: 0.2em solid $Green;
+                    }
+                    .noapto {
+                      border: 0.2em solid $Red;
+                    }
                     span {
                       width: 80%;
                       height: 80%;
@@ -3439,7 +3449,6 @@ html {
                       justify-content: center;
                       align-items: center;
                       border-radius: 100%;
-                      border: 0.2em solid $Box_admin;
                       font-size: .5vw;
                       font-family: $Letra2;
                       color: $Box_admin;
@@ -3781,6 +3790,15 @@ html {
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  .alto {
+                    border: 0.2vw solid $Green;
+                  }
+                  .medio {
+                    border: 0.2vw solid $Orange;
+                  }
+                  .muyBajo {
+                    border: 0.2vw solid $Red;
+                  }
                   span {
                     width: 80%;
                     height: 80%;
@@ -4310,6 +4328,15 @@ html {
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  .alto {
+                    border: 0.2vw solid $Green;
+                  }
+                  .medio {
+                    border: 0.2vw solid $Orange;
+                  }
+                  .muyBajo {
+                    border: 0.2vw solid $Red;
+                  }
                   span {
                     width: 80%;
                     height: 80%;
@@ -4317,7 +4344,6 @@ html {
                     justify-content: center;
                     align-items: center;
                     border-radius: 100%;
-                    border: 0.2vw solid $Box_admin;
                     font-size: .7vw;
                     font-family: $Letra2;
                     color: $Box_admin;
@@ -4401,7 +4427,7 @@ html {
                 }
 
                 &:focus {
-                  height: 10vh;
+                  height: 15vh;
 
                   .btn_container2 {
                     display: none;
@@ -5267,11 +5293,10 @@ html {
         justify-content: space-between;
         align-items: start;
         font-family: $Letra2;
-        position: relative;
+        position: fixed;
+        top: 7.5vh;
         border: none;
-        margin-bottom: 8vh;
         padding: 0;
-        gap: 2%;
         background-color: $Box_admin;
         -webkit-mask: url("../img/Utilidades/top-center2.png") center / contain
             no-repeat,

@@ -634,13 +634,15 @@ function mostrarDatos() {
         Itemstatus.classList.add("Itemstatus");
         const Itemstatusspan = document.createElement("span");
         Itemstatusspan.innerHTML = `${data.aptoStatus}`;
+        const claseNormalizada = data.aptoStatus.toLowerCase().replace(/\s+/g, '-');
+        Itemstatusspan.classList.add(claseNormalizada);   
         Itemstatus.appendChild(Itemstatusspan);
 
         const criteriosContainer = document.createElement("div");
-        criteriosContainer.classList.add("criterios_container");
+        criteriosContainer.classList.add("criterios_container")
 
         const criteriosSpan = document.createElement("span");
-        criteriosSpan.classList.add("criterios_count");
+        criteriosSpan.classList.add("criterios_count"); 
 
         let cumplenCount = 0;
         const criterios = [
@@ -653,6 +655,8 @@ function mostrarDatos() {
         const totalPreguntas = 4;
 
         criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
+        criteriosSpan.classList.remove("muyBajo", "medio", "alto");
+        criteriosSpan.classList.add(cumplenCount === 4 ? "alto" : cumplenCount >= 2 ? "medio" : "muyBajo");
         criteriosContainer.appendChild(criteriosSpan);
 
         const infoContainer = document.createElement("div");
