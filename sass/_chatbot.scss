@@ -267,6 +267,17 @@
         border-radius: 1vw;
       }
     }
+    .typing {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3.5vw;
+      margin: 2%;
+      padding: 0;
+      color: $Secundario;
+      font-family: $Letra2;
+    }
   }
   .user_info_container {
     @include cover;
@@ -435,8 +446,6 @@
     display: none;
     justify-content: center;
     align-items: start;
-    position: absolute;
-    bottom: 0;
     -webkit-overflow-scrolling: touch;
     .chat_input {
       width: 100%;
@@ -515,11 +524,11 @@
 
 @media screen and (max-width: 500px) {
   .chatbot {
-    width: 13vw;
+    width: 14vw;
     margin: 5%;
     top: auto;
-    bottom: 3vw;
-    right: 3vw; 
+    bottom: 7vw;
+    right: 5vw; 
     transform: scale(1); // Asegurar escala normal
     .chat_header {
       .chat_min {
@@ -568,7 +577,7 @@
       }
     }
     .chat_box {
-      height: 79%;
+      flex-grow: 1;
       p {
         font-size: 3.5vw;
       }
@@ -606,9 +615,10 @@
     }
     .chat_form {
       height: 6%;
+      margin-bottom: 3%;
       min-height: 3rem;
       .chat_input {
-        width: 80%;
+        width: 88%;
         height: 90%;
       }
     }

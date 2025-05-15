@@ -679,6 +679,17 @@ body canvas {
   font-size: 0.7vw;
   border-radius: 1vw;
 }
+.max_chat .chat_box .typing {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5vw;
+  margin: 2%;
+  padding: 0;
+  color: #2a4e91;
+  font-family: "Nunito";
+}
 .max_chat .user_info_container {
   width: 100%;
   height: 100%;
@@ -842,8 +853,6 @@ body canvas {
   display: none;
   justify-content: center;
   align-items: start;
-  position: absolute;
-  bottom: 0;
   -webkit-overflow-scrolling: touch;
 }
 .max_chat .chat_form .chat_input {
@@ -926,11 +935,11 @@ body canvas {
 
 @media screen and (max-width: 500px) {
   .chatbot {
-    width: 13vw;
+    width: 14vw;
     margin: 5%;
     top: auto;
-    bottom: 3vw;
-    right: 3vw;
+    bottom: 7vw;
+    right: 5vw;
     transform: scale(1);
   }
   .chatbot .chat_header .chat_min {
@@ -978,7 +987,7 @@ body canvas {
     min-height: 1rem;
   }
   .max_chat .chat_box {
-    height: 79%;
+    flex-grow: 1;
   }
   .max_chat .chat_box p {
     font-size: 3.5vw;
@@ -1010,10 +1019,11 @@ body canvas {
   }
   .max_chat .chat_form {
     height: 6%;
+    margin-bottom: 3%;
     min-height: 3rem;
   }
   .max_chat .chat_form .chat_input {
-    width: 80%;
+    width: 88%;
     height: 90%;
   }
   .max_chat .ios-max-chat {
@@ -2292,13 +2302,12 @@ html main #pag2 .cont-install-btn .install-btn {
   cursor: pointer;
   background-color: #2a4e91;
   border: none;
-  border: 0.3rem solid #2a4566;
   border-radius: 50%;
 }
 body main #pag2 .cont-install-btn .install-btn img,
 html main #pag2 .cont-install-btn .install-btn img {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -7690,10 +7699,10 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag2 .Logincont .entrar-btn,
   html main #pag2 .Logincont .entrar-btn {
-    width: 60vw;
+    width: 50vw;
     border-radius: 50%;
     border: 0.7rem solid #2d3f66;
-    font-size: 8vw;
+    font-size: 7vw;
   }
   body main #pag2 .btn_cita,
   html main #pag2 .btn_cita {
@@ -7927,10 +7936,10 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag4 .Logincont .entrar-btn,
   html main #pag4 .Logincont .entrar-btn {
-    width: 60vw;
+    width: 50vw;
     border-radius: 50%;
     border: 0.7rem solid #2d3f66;
-    font-size: 8vw;
+    font-size: 7vw;
   }
   body main #pag4 .btn_admin2,
   html main #pag4 .btn_admin2 {

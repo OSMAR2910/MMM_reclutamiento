@@ -1167,12 +1167,11 @@ html {
           cursor: pointer;
           background-color: $Secundario;
           border: none;
-          border: 0.3rem solid $Box_admin;
           border-radius: 50%;
 
           img {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
             object-fit: contain;
           }
         }
@@ -6144,10 +6143,10 @@ html {
           }
 
           .entrar-btn {
-            width: 60vw;
+            width: 50vw;
             border-radius: 50%;
             border: 0.7rem solid $Resalte;
-            font-size: 8vw;
+            font-size: 7vw;
           }
         }
 
@@ -6395,10 +6394,10 @@ html {
           }
 
           .entrar-btn {
-            width: 60vw;
+            width: 50vw;
             border-radius: 50%;
             border: 0.7rem solid $Resalte;
-            font-size: 8vw;
+            font-size: 7vw;
           }
         }
 

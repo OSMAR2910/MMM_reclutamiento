@@ -254,9 +254,9 @@ function minimizeChatbot() {
     chatbot.style.bottom = "";
     chatbot.style.right = "";
     chatbot.style.margin = "";
-    chatbot.style.transform = "none";
-    chatForm.style.display = "none";
-    pavo.style.display = "flex";
+    chatbot.style.transform = "";
+    chatForm.style.display = "";
+    pavo.style.display = "";
     adjustChatbotPosition();
     setThemeColor('#e36b2f');
   }
@@ -283,10 +283,10 @@ function adjustChatbotHeight() {
   if (isIOS) {
     // Simplificar para iOS: usar fixed y dimensiones completas
     chatbot.style.position = "fixed";
-    chatbot.style.top = "0";
-    chatbot.style.left = "0";
-    chatbot.style.right = "auto";
-    chatbot.style.bottom = "auto";
+    chatbot.style.top = "";
+    chatbot.style.left = "";
+    chatbot.style.right = "";
+    chatbot.style.bottom = "";
     chatbot.style.width = "100vw";
     chatbot.style.height = "100vh";
     chatbot.style.margin = "0";
@@ -294,8 +294,6 @@ function adjustChatbotHeight() {
     document.documentElement.style.setProperty("--keyboard-height", "0px");
 
     // Ajustar chat_form para evitar la barra de herramientas
-    chatForm.style.position = "fixed";
-    chatForm.style.bottom = "0";
     chatForm.style.width = "100%";
     chatForm.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)"; // Mayor padding para barra de herramientas
     chatForm.style.boxSizing = "border-box";
@@ -316,9 +314,6 @@ function adjustChatbotHeight() {
       document.documentElement.style.setProperty("--keyboard-height", "0px");
       console.log("PC Height:", chatbot.style.height);
     }
-    // Restaurar sticky para Android
-    chatForm.style.position = "sticky";
-    chatForm.style.bottom = "0";
     chatForm.style.paddingBottom = "0";
     chatForm.style.width = "90%";
   }
@@ -335,23 +330,23 @@ function adjustChatbotPosition() {
   if (isIOS) {
     // Simplificar posición en iOS
     chatbot.style.position = "fixed"; // Usar fixed para alinear con el viewport
-    chatbot.style.top = "0";
-    chatbot.style.left = "0";
-    chatbot.style.right = "auto";
-    chatbot.style.bottom = "auto";
+    chatbot.style.top = "";
+    chatbot.style.left = "";
+    chatbot.style.right = "auo";
+    chatbot.style.bottom = "";
     chatbot.style.margin = "0";
   } else {
     // Comportamiento original para Android y otros dispositivos (sin cambios)
     if (width > 500) {
-      chatbot.style.bottom = "20px";
-      chatbot.style.top = "auto";
+      chatbot.style.bottom = "";
+      chatbot.style.top = "";
     } else {
       if (chatbot.classList.contains("max_chat")) {
-        chatbot.style.top = "0";
-        chatbot.style.bottom = "auto";
+        chatbot.style.top = "";
+        chatbot.style.bottom = "";
       } else {
-        chatbot.style.bottom = "10px";
-        chatbot.style.top = "auto";
+        chatbot.style.bottom = "";
+        chatbot.style.top = "";
       }
     }
   }
@@ -401,6 +396,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const input = document.getElementById("chat_input");
   const sendButton = document.getElementById("chat_submit");
   const chatBox = document.getElementById("chat_box");
+  const chatbot = document.getElementById("chatbot");
 
   if (!form || !input || !sendButton || !chatBox) {
     console.error("Elementos del chat no encontrados.");
@@ -434,8 +430,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       setTimeout(() => {
         scrollToBottom();
         // Ajustar el padding dinámicamente para el teclado y barra de herramientas
-        chatForm.style.paddingBottom = `calc(env(safe-area-inset-bottom, 50px) + 20px)`;
-        chatForm.style.bottom = "0"; // Forzar que se mantenga en la parte inferior
+        chatbot.style.paddingBottom = `calc(env(safe-area-inset-bottom, 50px) + 20px)`;
+        chatbot.style.bottom = "0"; // Forzar que se mantenga en la parte inferior
       }, 300); // Retraso para esperar a que el teclado aparezca
     }
   });
@@ -443,7 +439,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   input.addEventListener("blur", () => {
     if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
       // Restaurar padding cuando el teclado se oculta
-      chatForm.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)";
+      chatbot.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)";
     }
   });
 
