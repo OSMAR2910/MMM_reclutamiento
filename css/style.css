@@ -684,7 +684,7 @@ body canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3.5vw;
+  font-size: 0.7vw;
   margin: 2%;
   padding: 0;
   color: #2a4e91;
@@ -1004,6 +1004,9 @@ body canvas {
     font-size: 3.5vw;
     border-radius: 4vw;
   }
+  .max_chat .chat_box .typing {
+    font-size: 3.5vw;
+  }
   .max_chat .user_info_container {
     box-shadow: 0px 0px 10px 5px #2a4566;
     border-radius: 8vw 8vw 0 0;
@@ -1073,7 +1076,7 @@ body canvas {
     background-color: #2a4e91;
   }
 }
-@media screen and (max-height: 580px) {
+@media screen and (max-height: 600px) {
   .pavo_cont {
     display: none;
     animation: none;
@@ -2146,9 +2149,9 @@ html main #pag1 article .cont_form form .cont_inputform .input-form .input:focus
 body main #pag1 article .cont_form form .cont_inputform .input-form label,
 html main #pag1 article .cont_form form .cont_inputform .input-form label {
   animation: fadeIn 0.3s ease-in-out forwards;
-  top: 20vh;
-  left: 14.5vw;
-  width: 20vw;
+  bottom: 0;
+  left: 0vw;
+  width: 50vw;
   height: 4vw;
   position: fixed;
   display: none;
@@ -2156,7 +2159,7 @@ html main #pag1 article .cont_form form .cont_inputform .input-form label {
   align-items: center;
   background-color: #f3a078;
   transition: all 0.2s ease-in-out;
-  border-radius: 5rem;
+  border-radius: 0;
   box-shadow: 0px 0px 10px 0px #f3a078;
 }
 body main #pag1 article .cont_form form .cont_inputform .input-form label span,
@@ -5332,7 +5335,7 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .b
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar {
-  width: 9%;
+  width: 15%;
   height: 90%;
   display: flex;
   justify-content: space-between;
@@ -7648,9 +7651,10 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label,
   html main #pag1 article .cont_form form .cont_inputform .input-form label {
-    top: 18vh;
-    left: 10vw;
-    width: 70vw;
+    top: 12vh;
+    bottom: auto;
+    left: -5vw;
+    width: 100vw;
     height: 15vw;
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
@@ -8284,7 +8288,7 @@ html .cambiar_nav nav ul .circulo_icon {
     height: 2.8vw;
   }
 }
-@media screen and (max-height: 580px) {
+@media screen and (max-height: 600px) {
   body main #pag1 article,
   html main #pag1 article {
     margin-top: 12vh;
@@ -8296,7 +8300,7 @@ html .cambiar_nav nav ul .circulo_icon {
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label,
   html main #pag1 article .cont_form form .cont_inputform .input-form label {
-    top: 15vh;
+    top: 14vh;
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
   html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
@@ -8325,7 +8329,8 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag1 article .cont_form form .cont_inputform .input-form label,
   html main #pag1 article .cont_form form .cont_inputform .input-form label {
     top: 19vh;
-    left: 15vw;
+    left: 0;
+    width: 100vw;
   }
   body main #pag1 article .cont_form form .cont_inputform .input-form label span p,
   html main #pag1 article .cont_form form .cont_inputform .input-form label span p {
@@ -8357,9 +8362,8 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag1 article .cont_form form .cont_inputform .input-form label,
   html main #pag1 article .cont_form form .cont_inputform .input-form label {
     top: auto;
-    bottom: 2vh;
-    left: 20vw;
-    width: 60vw;
+    bottom: 0;
+    width: 100vw;
     height: 15vw;
     z-index: 100;
   }

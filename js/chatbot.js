@@ -297,7 +297,7 @@ function adjustChatbotHeight() {
     chatForm.style.width = "100%";
     chatForm.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)"; // Mayor padding para barra de herramientas
     chatForm.style.boxSizing = "border-box";
-    chatForm.style.zIndex = "1000";
+    chatForm.style.zIndex = "900";
 
     console.log("iOS: Chatbot maximizado con position: fixed, chat_form ajustado");
   } else {

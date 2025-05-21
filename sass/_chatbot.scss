@@ -272,7 +272,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 3.5vw;
+      font-size: .7vw;
       margin: 2%;
       padding: 0;
       color: $Secundario;
@@ -597,6 +597,9 @@
           border-radius: 4vw;
         }
       }
+      .typing {
+        font-size: 3.5vw;
+      }
     }
     .user_info_container {
       box-shadow: 0px 0px 10px 5px $Box_admin;
@@ -671,7 +674,7 @@
   }
 }
 
-@media screen and (max-height: 580px) {
+@media screen and (max-height: 600px) {
   .pavo_cont {
     display: none;
     animation: none;

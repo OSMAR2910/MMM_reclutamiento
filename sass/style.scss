@@ -1012,9 +1012,9 @@ html {
 
                 label {
                   animation: fadeIn 0.3s ease-in-out forwards;
-                  top: 20vh;
-                  left: 14.5vw;
-                  width: 20vw;
+                  bottom: 0;
+                  left: 0vw;
+                  width: 50vw;
                   height: 4vw;
                   position: fixed;
                   display: none;
@@ -1022,7 +1022,7 @@ html {
                   align-items: center;
                   background-color: $Resalte2;
                   transition: all 0.2s ease-in-out;
-                  border-radius: 5rem;
+                  border-radius: 0;
                   box-shadow: 0px 0px 10px 0px $Resalte2;
 
                   span {
@@ -3856,7 +3856,7 @@ html {
                 }
                 
                 .containerEliminar {
-                  width: 9%;
+                  width: 15%;
                   height: 90%;
                   display: flex;
                   justify-content: space-between;
@@ -6077,9 +6077,10 @@ html {
                   }
 
                   label {
-                    top: 18vh;
-                    left: 10vw;
-                    width: 70vw;
+                    top: 12vh;
+                    bottom: auto;
+                    left: -5vw;
+                    width: 100vw;
                     height: 15vw;
 
                     span {
@@ -6741,7 +6742,7 @@ html {
       }
     }
   }
-  @media screen and (max-height: 580px) {
+  @media screen and (max-height: 600px) {
     main {
       #pag1 {
         article {
@@ -6754,7 +6755,7 @@ html {
               .cont_inputform {
                 .input-form {
                   label {
-                    top: 15vh;
+                    top: 14vh;
 
                     span {
                       p {
@@ -6792,7 +6793,8 @@ html {
                 .input-form {
                   label {
                     top: 19vh;
-                    left: 15vw;
+                    left: 0;
+                    width: 100vw;
                     span {
                       p {
                         font-size: 3vw;
@@ -6836,9 +6838,8 @@ html {
                 .input-form {
                   label {
                     top: auto;
-                    bottom: 2vh;
-                    left: 20vw;
-                    width: 60vw;
+                    bottom: 0;
+                    width: 100vw;
                     height: 15vw;
                     z-index: 100;
                     span {
