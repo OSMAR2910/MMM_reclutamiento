@@ -4,8 +4,8 @@
     "description": "Reclutador automatico de MMM",
     "start_url": "/index.html#pag2",
     "display": "standalone",
-    "background_color": "#ec6223",
-    "theme_color": "#ec6223",
+    "background_color": "#e36b2f",
+    "theme_color": "#e36b2f",
     "icons": [
       {
         "src": "img/Logos/Logo (5).svg",

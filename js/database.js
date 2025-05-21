@@ -2966,7 +2966,7 @@ function mostrarBotonEntrar(tipo) {
           if (elements.chatbot) elements.chatbot.style.display = "none";
 
           mostrarAlertaAdmin("alerta_4");
-          setThemeColor("#1b3c59");
+          setThemeColor("#2a4566");
           updateUnreadChatsCount();
 
           if (isManager) {
@@ -3089,7 +3089,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const redirectAfterLogin = localStorage.getItem("redirectAfterLogin");
       if (redirectAfterLogin) {
         console.log(`Redirigiendo automáticamente a ${redirectAfterLogin}...`);
+        redirectAfterLogin
         const isManager = redirectAfterLogin === "manager";
+        setThemeColor("#2a4566");
 
         // Cambiar la vista al panel correspondiente
         toggleView({
