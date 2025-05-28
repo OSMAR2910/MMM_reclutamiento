@@ -389,452 +389,456 @@ function mostrarDatos() {
     agregarFiltro(filtros.filtroBaja, renderBaja);
   });
 
-  function renderizarVacantes(
-    snapshot,
-    containerGreen,
-    containerRed,
-    esAsistieron = false,
-    filtro = ""
-  ) {
-    const fragmentGreen = document.createDocumentFragment();
-    const fragmentRed = document.createDocumentFragment();
-    const sucursalActual = localStorage.getItem("sucursal");
-    const isManagerLoggedIn =
-      localStorage.getItem("isManagerLoggedIn") === "true";
+function renderizarVacantes(
+  snapshot,
+  containerGreen,
+  containerRed,
+  esAsistieron = false,
+  filtro = ""
+) {
+  const fragmentGreen = document.createDocumentFragment();
+  const fragmentRed = document.createDocumentFragment();
+  const sucursalActual = localStorage.getItem("sucursal");
+  const isManagerLoggedIn =
+    localStorage.getItem("isManagerLoggedIn") === "true";
 
-    containerGreen.innerHTML = "";
-    if (containerRed) containerRed.innerHTML = "";
+  containerGreen.innerHTML = "";
+  if (containerRed) containerRed.innerHTML = "";
 
-    let vacantesActuales = new Set();
+  let vacantesActuales = new Set();
+  let vacantesArray = []; // Array para almacenar las vacantes
 
-    if (snapshot.exists()) {
-      const ulGreen = document.createElement("ul");
-      const ulRed = document.createElement("ul");
+  if (snapshot.exists()) {
+    // Recolectar todas las vacantes en un array
+    snapshot.forEach((childSnapshot) => {
+      const uniqueKey = childSnapshot.key;
+      const data = childSnapshot.val() || {};
+      data.aptoStatus = data.aptoStatus || "Pendiente";
+      data.nombre = data.nombre || "";
+      vacantesArray.push({ uniqueKey, data });
+    });
 
-      snapshot.forEach((childSnapshot) => {
-        const uniqueKey = childSnapshot.key;
-        const data = childSnapshot.val() || {};
-        const nombre = data.nombre || "";
-        data.aptoStatus = data.aptoStatus || "Pendiente";
+    // Ordenar las vacantes por fecha_r en orden descendente
+    vacantesArray.sort((a, b) => {
+      const fechaA = new Date(a.data.fecha_r || "1970-01-01");
+      const fechaB = new Date(b.data.fecha_r || "1970-01-01");
+      return fechaB - fechaA; // Orden descendente
+    });
 
-        // Normalizar filtro y analizar si tiene formato "campo:valor"
-        const filtroNormalizado = filtro.trim().toLowerCase();
-        let campoFiltro = null;
-        let valorFiltro = filtroNormalizado;
+    const ulGreen = document.createElement("ul");
+    const ulRed = document.createElement("ul");
 
-        if (filtroNormalizado.includes(":")) {
-          [campoFiltro, valorFiltro] = filtroNormalizado.split(":", 2);
-          valorFiltro = valorFiltro.trim();
-        }
+    // Procesar las vacantes ordenadas
+    vacantesArray.forEach(({ uniqueKey, data }) => {
+      const nombre = data.nombre;
 
-        // Función para verificar coincidencia con fechas
-        const coincideFecha = (fechaStr, filtroFecha) => {
-          if (!fechaStr) return false;
-          const fecha = new Date(fechaStr);
-          const [dia, mes, anio] = filtroFecha.split("/").map(Number);
-          const anioCompleto = anio < 100 ? 2000 + anio : anio; // Soporte para "25" -> 2025
-          return (
-            fecha.getDate() === dia &&
-            fecha.getMonth() + 1 === mes &&
-            fecha.getFullYear() === anioCompleto
-          );
-        };
+      // Normalizar filtro y analizar si tiene formato "campo:valor"
+      const filtroNormalizado = filtro.trim().toLowerCase();
+      let campoFiltro = null;
+      let valorFiltro = filtroNormalizado;
 
-        // Aplicar filtro
-        let coincide = true;
-        if (filtro) {
-          if (campoFiltro) {
-            switch (campoFiltro) {
-              case "nombre":
-                coincide = nombre.toLowerCase().includes(valorFiltro);
-                break;
-              case "edad":
-                coincide = String(data.edad) === valorFiltro; // Comparación exacta para números
-                break;
-              case "puesto":
-                coincide = (data.puesto || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "horario":
-                coincide = (data.horario || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "numero":
-                coincide = (data.numero || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "fecha": // Para fecha_r o fecha_cita
-                coincide =
-                  coincideFecha(data.fecha_r, valorFiltro) ||
-                  coincideFecha(data.fecha_cita, valorFiltro);
-                break;
-              case "direccion":
-                coincide = (data.direccion || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "ciudad":
-                coincide = (data.ciudad || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "cp":
-                coincide = (data.cp || "").toLowerCase().includes(valorFiltro);
-                break;
-              case "docu":
-                coincide = (data.docu || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "casa_suc":
-                coincide = (data.casa_suc || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "transporte":
-                coincide = (data.transporte || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "empleo":
-                coincide = (data.empleo || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "sexo":
-                coincide = (data.sexo || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "nacion":
-                coincide = (data.nacion || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "e_c": // Estado civil
-                coincide = (data.e_c || "").toLowerCase().includes(valorFiltro);
-                break;
-              case "sucursal":
-                coincide = (data.sucursal || data.sucursal_cita || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "problema_t":
-                coincide = (data.problema_t || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              case "f_n": // Fecha de nacimiento
-                coincide = coincideFecha(data.f_n, valorFiltro);
-                break;
-              case "estatus": // aptoStatus
-                coincide = (data.aptoStatus || "")
-                  .toLowerCase()
-                  .includes(valorFiltro);
-                break;
-              default:
-                coincide = JSON.stringify(data)
-                  .toLowerCase()
-                  .includes(filtroNormalizado); // Fallback
-            }
-          } else {
-            // Filtrado general: buscar en todos los campos
-            coincide =
-              nombre.toLowerCase().includes(filtroNormalizado) ||
-              String(data.edad).includes(filtroNormalizado) ||
-              (data.puesto || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.horario || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.numero || "").toLowerCase().includes(filtroNormalizado) ||
-              coincideFecha(data.fecha_r, filtroNormalizado) ||
-              coincideFecha(data.fecha_cita, filtroNormalizado) ||
-              (data.direccion || "")
+      if (filtroNormalizado.includes(":")) {
+        [campoFiltro, valorFiltro] = filtroNormalizado.split(":", 2);
+        valorFiltro = valorFiltro.trim();
+      }
+
+      // Función para verificar coincidencia con fechas
+      const coincideFecha = (fechaStr, filtroFecha) => {
+        if (!fechaStr) return false;
+        const fecha = new Date(fechaStr);
+        const [dia, mes, anio] = filtroFecha.split("/").map(Number);
+        const anioCompleto = anio < 100 ? 2000 + anio : anio;
+        return (
+          fecha.getDate() === dia &&
+          fecha.getMonth() + 1 === mes &&
+          fecha.getFullYear() === anioCompleto
+        );
+      };
+
+      // Aplicar filtro
+      let coincide = true;
+      if (filtro) {
+        if (campoFiltro) {
+          switch (campoFiltro) {
+            case "nombre":
+              coincide = nombre.toLowerCase().includes(valorFiltro);
+              break;
+            case "edad":
+              coincide = String(data.edad) === valorFiltro;
+              break;
+            case "puesto":
+              coincide = (data.puesto || "").toLowerCase().includes(valorFiltro);
+              break;
+            case "horario":
+              coincide = (data.horario || "")
                 .toLowerCase()
-                .includes(filtroNormalizado) ||
-              (data.ciudad || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.cp || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.docu || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.casa_suc || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.transporte || "")
+                .includes(valorFiltro);
+              break;
+            case "numero":
+              coincide = (data.numero || "")
                 .toLowerCase()
-                .includes(filtroNormalizado) ||
-              (data.empleo || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.sexo || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.nacion || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.e_c || "").toLowerCase().includes(filtroNormalizado) ||
-              (data.sucursal || data.sucursal_cita || "")
+                .includes(valorFiltro);
+              break;
+            case "fecha":
+              coincide =
+                coincideFecha(data.fecha_r, valorFiltro) ||
+                coincideFecha(data.fecha_cita, valorFiltro);
+              break;
+            case "direccion":
+              coincide = (data.direccion || "")
                 .toLowerCase()
-                .includes(filtroNormalizado) ||
-              (data.problema_t || "")
+                .includes(valorFiltro);
+              break;
+            case "ciudad":
+              coincide = (data.ciudad || "").toLowerCase().includes(valorFiltro);
+              break;
+            case "cp":
+              coincide = (data.cp || "").toLowerCase().includes(valorFiltro);
+              break;
+            case "docu":
+              coincide = (data.docu || "").toLowerCase().includes(valorFiltro);
+              break;
+            case "casa_suc":
+              coincide = (data.casa_suc || "")
                 .toLowerCase()
-                .includes(filtroNormalizado) ||
-              coincideFecha(data.f_n, filtroNormalizado) ||
-              (data.aptoStatus || "").toLowerCase().includes(filtroNormalizado);
+                .includes(valorFiltro);
+              break;
+            case "transporte":
+              coincide = (data.transporte || "")
+                .toLowerCase()
+                .includes(valorFiltro);
+              break;
+            case "empleo":
+              coincide = (data.empleo || "")
+                .toLowerCase()
+                .includes(valorFiltro);
+              break;
+            case "sexo":
+              coincide = (data.sexo || "").toLowerCase().includes(valorFiltro);
+              break;
+            case "nacion":
+              coincide = (data.nacion || "")
+                .toLowerCase()
+                .includes(valorFiltro);
+              break;
+            case "e_c":
+              coincide = (data.e_c || "").toLowerCase().includes(valorFiltro);
+              break;
+            case "sucursal":
+              coincide = (data.sucursal || data.sucursal_cita || "")
+                .toLowerCase()
+                .includes(valorFiltro);
+              break;
+            case "problema_t":
+              coincide = (data.problema_t || "")
+                .toLowerCase()
+                .includes(valorFiltro);
+              break;
+            case "f_n":
+              coincide = coincideFecha(data.f_n, valorFiltro);
+              break;
+            case "estatus":
+              coincide = (data.aptoStatus || "")
+                .toLowerCase()
+                .includes(valorFiltro);
+              break;
+            default:
+              coincide = JSON.stringify(data)
+                .toLowerCase()
+                .includes(filtroNormalizado);
           }
+        } else {
+          coincide =
+            nombre.toLowerCase().includes(filtroNormalizado) ||
+            String(data.edad).includes(filtroNormalizado) ||
+            (data.puesto || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.horario || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.numero || "").toLowerCase().includes(filtroNormalizado) ||
+            coincideFecha(data.fecha_r, filtroNormalizado) ||
+            coincideFecha(data.fecha_cita, filtroNormalizado) ||
+            (data.direccion || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.ciudad || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.cp || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.docu || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.casa_suc || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.transporte || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.empleo || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.sexo || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.nacion || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.e_c || "").toLowerCase().includes(filtroNormalizado) ||
+            (data.sucursal || data.sucursal_cita || "")
+              .toLowerCase()
+              .includes(filtroNormalizado) ||
+            (data.problema_t || "").toLowerCase().includes(filtroNormalizado) ||
+            coincideFecha(data.f_n, filtroNormalizado) ||
+            (data.aptoStatus || "").toLowerCase().includes(filtroNormalizado);
         }
+      }
 
-        if (!coincide) return; // Saltar si no coincide con el filtro
+      if (!coincide) return;
 
-        // Filtrar por sucursal para managers (sin cambios)
-        const esContenedorCitas = [
-          "data_citas",
-          "data_citas_manager",
-          "data_cita_no_asistieron",
-          "data_cita_asistieron",
-        ].includes(containerGreen.id);
+      const esContenedorCitas = [
+        "data_citas",
+        "data_citas_manager",
+        "data_cita_no_asistieron",
+        "data_cita_asistieron",
+      ].includes(containerGreen.id);
 
-        if (
-          isManagerLoggedIn &&
-          esContenedorCitas &&
-          sucursalActual &&
-          data.sucursal_cita !== sucursalActual
-        ) {
-          return;
-        }
+      if (
+        isManagerLoggedIn &&
+        esContenedorCitas &&
+        sucursalActual &&
+        data.sucursal_cita !== sucursalActual
+      ) {
+        return;
+      }
 
-        vacantesActuales.add(nombre);
+      vacantesActuales.add(nombre);
 
-        const listItem = document.createElement("button");
-        let claseItem = "vacante_item";
-        if (containerGreen.id === "data_citas") claseItem += "_citas";
-        else if (containerGreen.id === "data_citas_manager")
-          claseItem += "_citasManager";
-        else if (containerGreen.id === "data_cita_no_asistieron")
-          claseItem += "_citasManagerNoasistio";
-        else if (containerGreen.id === "data_cita_asistieron")
-          claseItem += "_citasManagerAsistio";
-        else if (containerGreen.id === "data_asistieron")
-          claseItem += "_asistieron";
-        else if (containerGreen.id === "data_no_asistieron")
-          claseItem += "_noasistieron";
-        else if (containerGreen.id === "data_contratado")
-          claseItem += "_contratado";
-        else if (containerGreen.id === "data_baja") claseItem += "_baja";
-        else
-          claseItem += esAsistieron
-            ? "_status"
-            : data.empleo === "Fijo" &&
-              data.horario === "Rotativo" &&
-              data.docu === "Si" &&
-              data.problema_t === "No"
-            ? "_green"
-            : "_red";
+      const listItem = document.createElement("button");
+      let claseItem = "vacante_item";
+      if (containerGreen.id === "data_citas") claseItem += "_citas";
+      else if (containerGreen.id === "data_citas_manager")
+        claseItem += "_citasManager";
+      else if (containerGreen.id === "data_cita_no_asistieron")
+        claseItem += "_citasManagerNoasistio";
+      else if (containerGreen.id === "data_cita_asistieron")
+        claseItem += "_citasManagerAsistio";
+      else if (containerGreen.id === "data_asistieron")
+        claseItem += "_asistieron";
+      else if (containerGreen.id === "data_no_asistieron")
+        claseItem += "_noasistieron";
+      else if (containerGreen.id === "data_contratado")
+        claseItem += "_contratado";
+      else if (containerGreen.id === "data_baja") claseItem += "_baja";
+      else
+        claseItem += esAsistieron
+          ? "_status"
+          : data.empleo === "Fijo" &&
+            data.horario === "Rotativo" &&
+            data.docu === "Si" &&
+            data.problema_t === "No"
+          ? "_green"
+          : "_red";
 
-        listItem.classList.add(claseItem);
+      listItem.classList.add(claseItem);
 
-        const Itemnombre = document.createElement("div");
-        Itemnombre.classList.add("Itemnombre");
-        const Itemnombrespan = document.createElement("span");
-        Itemnombrespan.innerHTML = `${data.nombre}`;
-        Itemnombre.appendChild(Itemnombrespan);
+      const Itemnombre = document.createElement("div");
+      Itemnombre.classList.add("Itemnombre");
+      const Itemnombrespan = document.createElement("span");
+      Itemnombrespan.innerHTML = `${data.nombre}`;
+      Itemnombre.appendChild(Itemnombrespan);
 
-        const Itemstatus = document.createElement("div");
-        Itemstatus.classList.add("Itemstatus");
-        const Itemstatusspan = document.createElement("span");
-        Itemstatusspan.innerHTML = `${data.aptoStatus}`;
-        const claseNormalizada = data.aptoStatus.toLowerCase().replace(/\s+/g, '-');
-        Itemstatusspan.classList.add(claseNormalizada);   
-        Itemstatus.appendChild(Itemstatusspan);
+      const Itemstatus = document.createElement("div");
+      Itemstatus.classList.add("Itemstatus");
+      const Itemstatusspan = document.createElement("span");
+      Itemstatusspan.innerHTML = `${data.aptoStatus}`;
+      const claseNormalizada = data.aptoStatus.toLowerCase().replace(/\s+/g, "-");
+      Itemstatusspan.classList.add(claseNormalizada);
+      Itemstatus.appendChild(Itemstatusspan);
 
-        const criteriosContainer = document.createElement("div");
-        criteriosContainer.classList.add("criterios_container")
+      const criteriosContainer = document.createElement("div");
+      criteriosContainer.classList.add("criterios_container");
 
-        const criteriosSpan = document.createElement("span");
-        criteriosSpan.classList.add("criterios_count"); 
+      const criteriosSpan = document.createElement("span");
+      criteriosSpan.classList.add("criterios_count");
 
-        let cumplenCount = 0;
-        const criterios = [
-          data.empleo === "Fijo",
-          data.horario === "Rotativo",
-          data.docu === "Si",
-          data.problema_t === "No",
-        ];
-        cumplenCount = criterios.filter(Boolean).length;
-        const totalPreguntas = 4;
+      let cumplenCount = 0;
+      const criterios = [
+        data.empleo === "Fijo",
+        data.horario === "Rotativo",
+        data.docu === "Si",
+        data.problema_t === "No",
+      ];
+      cumplenCount = criterios.filter(Boolean).length;
+      const totalPreguntas = 4;
 
-        criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
-        criteriosSpan.classList.remove("muyBajo", "medio", "alto");
-        criteriosSpan.classList.add(cumplenCount === 4 ? "alto" : cumplenCount >= 2 ? "medio" : "muyBajo");
-        criteriosContainer.appendChild(criteriosSpan);
+      criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
+      criteriosSpan.classList.remove("muyBajo", "medio", "alto");
+      criteriosSpan.classList.add(
+        cumplenCount === 4
+          ? "alto"
+          : cumplenCount >= 2
+          ? "medio"
+          : "muyBajo"
+      );
+      criteriosContainer.appendChild(criteriosSpan);
 
-        const infoContainer = document.createElement("div");
-        infoContainer.classList.add("vacante_info");
+      const infoContainer = document.createElement("div");
+      infoContainer.classList.add("vacante_info");
 
-        const campos =
-          containerGreen.id === "data_citas" ||
-          containerGreen.id === "data_citas_manager" ||
-          containerGreen.id === "data_cita_no_asistieron" ||
-          containerGreen.id === "data_cita_asistieron"
-            ? [
-                { label: "Nombre", value: nombre, isName: true },
-                {
-                  label: "Fecha Cita",
-                  value: data.fecha_cita || "No disponible",
-                },
-                {
-                  label: "Hora Cita",
-                  value: data.hora_cita || "No disponible",
-                },
-                {
-                  label: "Sucursal Cita",
-                  value: data.sucursal_cita || "No disponible",
-                },
-                { label: "Puesto", value: data.puesto || "No disponible" },
-                { label: "Número", value: data.numero || "No disponible" },
-                { label: "Estatus", value: data.aptoStatus, isApto: true },
-              ]
-            : [
-                {
-                  label: "Fecha",
-                  value: data.fecha_r
-                    ? new Date(data.fecha_r).toLocaleDateString()
-                    : "No disponible",
-                },
-                { label: "Nombre", value: nombre, isName: true },
-                { label: "Puesto", value: data.puesto || "No disponible" },
-                { label: "Sucursal", value: data.sucursal || "No disponible" },
-                { label: "Número", value: data.numero || "No disponible" },
-                { label: "Edad", value: data.edad || "No disponible" },
-                { label: "F.Nacimiento", value: data.f_n || "No disponible" },
-                { label: "Sexo", value: data.sexo || "No disponible" },
-                {
-                  label: "Nacionalidad",
-                  value: data.nacion || "No disponible",
-                },
-                { label: "Estado Civil", value: data.e_c || "No disponible" },
-                { label: "Documentacion", value: data.docu || "No disponible" },
-                { label: "Horario", value: data.horario || "No disponible" },
-                { label: "Empleo", value: data.empleo || "No disponible" },
-                { label: "Ciudad", value: data.ciudad || "No disponible" },
-                {
-                  label: "Dirección",
-                  value: data.direccion || "No disponible",
-                },
-                { label: "CP", value: data.cp || "No disponible" },
-                {
-                  label: "Transporte",
-                  value: data.transporte || "No disponible",
-                },
-                { label: "Cas/Sucu", value: data.casa_suc || "No disponible" },
-                {
-                  label: "Problema/T",
-                  value: data.problema_t || "No disponible",
-                },
-                { label: "Estatus", value: data.aptoStatus, isApto: true },
-              ];
+      const campos =
+        containerGreen.id === "data_citas" ||
+        containerGreen.id === "data_citas_manager" ||
+        containerGreen.id === "data_cita_no_asistieron" ||
+        containerGreen.id === "data_cita_asistieron"
+          ? [
+              { label: "Nombre", value: nombre, isName: true },
+              {
+                label: "Fecha Cita",
+                value: data.fecha_cita || "No disponible",
+              },
+              {
+                label: "Hora Cita",
+                value: data.hora_cita || "No disponible",
+              },
+              {
+                label: "Sucursal Cita",
+                value: data.sucursal_cita || "No disponible",
+              },
+              { label: "Puesto", value: data.puesto || "No disponible" },
+              { label: "Número", value: data.numero || "No disponible" },
+              { label: "Estatus", value: data.aptoStatus, isApto: true },
+            ]
+          : [
+              {
+                label: "Fecha",
+                value: data.fecha_r
+                  ? new Date(data.fecha_r).toLocaleDateString()
+                  : "No disponible",
+              },
+              { label: "Nombre", value: nombre, isName: true },
+              { label: "Puesto", value: data.puesto || "No disponible" },
+              { label: "Sucursal", value: data.sucursal || "No disponible" },
+              { label: "Número", value: data.numero || "No disponible" },
+              { label: "Edad", value: data.edad || "No disponible" },
+              { label: "F.Nacimiento", value: data.f_n || "No disponible" },
+              { label: "Sexo", value: data.sexo || "No disponible" },
+              {
+                label: "Nacionalidad",
+                value: data.nacion || "No disponible",
+              },
+              { label: "Estado Civil", value: data.e_c || "No disponible" },
+              {
+                label: "Documentacion",
+                value: data.docu || "No disponible",
+              },
+              { label: "Horario", value: data.horario || "No disponible" },
+              { label: "Empleo", value: data.empleo || "No disponible" },
+              { label: "Ciudad", value: data.ciudad || "No disponible" },
+              {
+                label: "Dirección",
+                value: data.direccion || "No disponible",
+              },
+              { label: "CP", value: data.cp || "No disponible" },
+              {
+                label: "Transporte",
+                value: data.transporte || "No disponible",
+              },
+              {
+                label: "Cas/Sucu",
+                value: data.casa_suc || "No disponible",
+              },
+              {
+                label: "Problema/T",
+                value: data.problema_t || "No disponible",
+              },
+              { label: "Estatus", value: data.aptoStatus, isApto: true },
+            ];
 
-        campos.forEach((campo) => {
-          const span = document.createElement("span");
-          if (campo.isName) span.classList.add("dbname");
-          span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
-          infoContainer.appendChild(span);
-        });
-
-        const btnContainer2 = document.createElement("div");
-        btnContainer2.classList.add("btn_container2");
-        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
-          descargarPDF(uniqueKey, data)
-        );
-        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () =>
-          abrirModalCita(uniqueKey, data)
-        );
-        btnContainer2.append(btnDescargarPDF, btnAgendarCita);
-
-        const btnContainer = document.createElement("div");
-        btnContainer.classList.add("btn-container");
-
-        if (
-          containerGreen.id === "data_citas_manager" ||
-          containerGreen.id === "data_cita_no_asistieron" ||
-          containerGreen.id === "data_cita_asistieron"
-        ) {
-          const aptoSelect = document.createElement("select");
-          aptoSelect.classList.add("apto-select");
-          aptoSelect.id = `apto-select-${nombre}`;
-          const options = [
-            { value: "Pendiente", text: "⏳" },
-            { value: "Apto", text: "👍" },
-            { value: "No apto", text: "👎" },
-          ];
-          options.forEach((opt) => {
-            const option = document.createElement("option");
-            option.value = opt.value;
-            option.textContent = opt.text;
-            if (data.aptoStatus === opt.value) option.selected = true;
-            aptoSelect.appendChild(option);
-          });
-          aptoSelect.addEventListener("change", () =>
-            updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id)
-          );
-          btnContainer.appendChild(aptoSelect);
-          personalizarSelect(aptoSelect);
-        }
-
-        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
-          moverVacante(uniqueKey, data, "no_asistieron")
-        );
-        const btnAsistieron = crearBoton("", "btn-asistieron", () =>
-          moverVacante(uniqueKey, data, "asistieron")
-        );
-        const btnContratado = crearBoton("", "btn-contratado", () =>
-          moverVacante(uniqueKey, data, "contratado")
-        );
-        const btnBaja = crearBoton("", "btn-baja", () =>
-          moverVacante(uniqueKey, data, "baja")
-        );
-
-        const containerEliminar = document.createElement("div");
-        containerEliminar.classList.add("containerEliminar");
-
-        const btnEliminar = crearBoton("", "btn-eliminar", () => {
-          let base = "vacantes";
-          if (containerGreen.id === "data_no_asistieron")
-            base = "no_asistieron";
-          if (containerGreen.id === "data_asistieron") base = "asistieron";
-          if (containerGreen.id === "data_contratado") base = "contratado";
-          eliminarVacante(uniqueKey, base, data);
-        });
-
-        btnContainer.append(
-          btnNoAsistieron,
-          btnAsistieron,
-          btnContratado,
-          btnBaja
-        );
-
-        containerEliminar.append(btnEliminar);
-
-        listItem.appendChild(btnContainer2);
-        listItem.appendChild(Itemnombre);
-        listItem.appendChild(infoContainer);
-        listItem.appendChild(criteriosContainer);
-        listItem.appendChild(Itemstatus);
-        listItem.appendChild(btnContainer);
-        listItem.appendChild(containerEliminar);
-
-        if (esAsistieron) ulGreen.appendChild(listItem);
-        else
-          data.empleo === "Fijo" &&
-          data.horario === "Rotativo" &&
-          data.docu === "Si" &&
-          data.problema_t === "No"
-            ? ulGreen.appendChild(listItem)
-            : ulRed.appendChild(listItem);
+      campos.forEach((campo) => {
+        const span = document.createElement("span");
+        if (campo.isName) span.classList.add("dbname");
+        span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
+        infoContainer.appendChild(span);
       });
 
-      fragmentGreen.appendChild(ulGreen);
-      if (containerRed) fragmentRed.appendChild(ulRed);
-      containerGreen.appendChild(fragmentGreen);
-      if (containerRed) containerRed.appendChild(fragmentRed);
-    } else {
-      containerGreen.innerHTML = "<div class='no_data'></div>";
-      if (containerRed) containerRed.innerHTML = "<div class='no_data'></div>";
-    }
+      const btnContainer2 = document.createElement("div");
+      btnContainer2.classList.add("btn_container2");
+      const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
+        descargarPDF(uniqueKey, data)
+      );
+      const btnAgendarCita = crearBoton("", "btn-agendar-cita", () =>
+        abrirModalCita(uniqueKey, data)
+      );
+      btnContainer2.append(btnDescargarPDF, btnAgendarCita);
 
-    vacantesPrevias = vacantesActuales;
+      const btnContainer = document.createElement("div");
+      btnContainer.classList.add("btn-container");
+
+      if (
+        containerGreen.id === "data_citas_manager" ||
+        containerGreen.id === "data_cita_no_asistieron" ||
+        containerGreen.id === "data_cita_asistieron"
+      ) {
+        const aptoSelect = document.createElement("select");
+        aptoSelect.classList.add("apto-select");
+        aptoSelect.id = `apto-select-${nombre}`;
+        const options = [
+          { value: "Pendiente", text: "⏳" },
+          { value: "Apto", text: "👍" },
+          { value: "No apto", text: "👎" },
+        ];
+        options.forEach((opt) => {
+          const option = document.createElement("option");
+          option.value = opt.value;
+          option.textContent = opt.text;
+          if (data.aptoStatus === opt.value) option.selected = true;
+          aptoSelect.appendChild(option);
+        });
+        aptoSelect.addEventListener("change", () =>
+          updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id)
+        );
+        btnContainer.appendChild(aptoSelect);
+        personalizarSelect(aptoSelect);
+      }
+
+      const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
+        moverVacante(uniqueKey, data, "no_asistieron")
+      );
+      const btnAsistieron = crearBoton("", "btn-asistieron", () =>
+        moverVacante(uniqueKey, data, "asistieron")
+      );
+      const btnContratado = crearBoton("", "btn-contratado", () =>
+        moverVacante(uniqueKey, data, "contratado")
+      );
+      const btnBaja = crearBoton("", "btn-baja", () =>
+        moverVacante(uniqueKey, data, "baja")
+      );
+
+      const containerEliminar = document.createElement("div");
+      containerEliminar.classList.add("containerEliminar");
+
+      const btnEliminar = crearBoton("", "btn-eliminar", () => {
+        let base = "vacantes";
+        if (containerGreen.id === "data_no_asistieron") base = "no_asistieron";
+        if (containerGreen.id === "data_asistieron") base = "asistieron";
+        if (containerGreen.id === "data_contratado") base = "contratado";
+        eliminarVacante(uniqueKey, base, data);
+      });
+
+      btnContainer.append(btnNoAsistieron, btnAsistieron, btnContratado, btnBaja);
+      containerEliminar.append(btnEliminar);
+
+      listItem.appendChild(btnContainer2);
+      listItem.appendChild(Itemnombre);
+      listItem.appendChild(infoContainer);
+      listItem.appendChild(criteriosContainer);
+      listItem.appendChild(Itemstatus);
+      listItem.appendChild(btnContainer);
+      listItem.appendChild(containerEliminar);
+
+      if (esAsistieron) ulGreen.appendChild(listItem);
+      else
+        data.empleo === "Fijo" &&
+        data.horario === "Rotativo" &&
+        data.docu === "Si" &&
+        data.problema_t === "No"
+          ? ulGreen.appendChild(listItem)
+          : ulRed.appendChild(listItem);
+    });
+
+    fragmentGreen.appendChild(ulGreen);
+    if (containerRed) fragmentRed.appendChild(ulRed);
+    containerGreen.appendChild(fragmentGreen);
+    if (containerRed) containerRed.appendChild(fragmentRed);
+  } else {
+    containerGreen.innerHTML = "<div class='no_data'></div>";
+    if (containerRed) containerRed.innerHTML = "<div class='no_data'></div>";
   }
+
+  vacantesPrevias = vacantesActuales;
+}
   function updateAptoStatus(uniqueKey, nuevoEstado, containerId) {
     let rutaDB;
     switch (containerId) {

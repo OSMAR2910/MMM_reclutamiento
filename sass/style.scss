@@ -6160,6 +6160,7 @@ html {
       #pag3 {
   
         .nav_admin {
+          min-height: 2.5rem;
           .nav_cont {
 
             .settings {
@@ -6412,6 +6413,7 @@ html {
         @include cover;
 
         .nav_admin {
+          min-height: 2.5rem;
           .nav_cont {
             .cont_welcome_admin {
               .text_welcome_admin {
@@ -6668,6 +6670,7 @@ html {
   
               // Formulario de entrada
               .manager_chat_form {
+          min-height: 1rem;
                 #manager_chat_input {
                   font-size: 1rem;
                 }
