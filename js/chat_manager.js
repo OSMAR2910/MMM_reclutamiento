@@ -18,6 +18,21 @@ function getBranchFromLocalStorage() {
   return branch;
 }
 
+// Detectar teclado virtual
+function handleVirtualKeyboard() {
+  const chatContainer = document.querySelector(".chat_manager_container");
+  if (!chatContainer) return;
+
+  let initialWindowHeight = window.innerHeight;
+  window.addEventListener("resize", () => {
+    const isKeyboardOpen = window.innerHeight < initialWindowHeight * 0.9; // Detecta reducción significativa
+    chatContainer.classList.toggle("keyboard-active", isKeyboardOpen);
+    if (isKeyboardOpen) {
+      scrollToBottom(); // Asegura que el chat esté visible
+    }
+  });
+}
+
 // Inicializar el chat del manager
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Inicializando chat_manager.js");
@@ -33,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!selectedBranch) {
     const alerta = document.getElementById("alerta_1");
     if (alerta) {
-      alerta.style.display = "flex";
-      setTimeout(() => (alerta.style.display = "none"), 3000);
+      alerta.classList.add("visible");
+      setTimeout(() => alerta.classList.remove("visible"), 3000);
     }
     return;
   }
@@ -60,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUnreadMessagesCount();
   });
 
+  // Manejar visibilidad del chat
   const chatManagerInput = document.getElementById("chat_manager");
   if (!chatManagerInput) {
     console.error("Error: No se encontró el elemento #chat_manager en el DOM");
@@ -73,37 +89,43 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (e.target.checked) {
-      console.log("Panel de chat del manager visible");
+    chatManagerInfo.classList.toggle("visible", e.target.checked);
+    console.log(`Panel de chat del manager: ${e.target.checked ? "visible" : "oculto"}`);
 
-      // Manejar envío de mensajes
-      const form = document.getElementById("manager_chat_form");
-      if (!form) {
-        console.error("Error: No se encontró el elemento #manager_chat_form en el DOM");
+    if (e.target.checked) {
+      // Desplazar al final cuando se abre el chat
+      scrollToBottom();
+      // Activar manejo del teclado virtual
+      handleVirtualKeyboard();
+    }
+
+    // Manejar envío de mensajes
+    const form = document.getElementById("manager_chat_form");
+    if (!form) {
+      console.error("Error: No se encontró el elemento #manager_chat_form en el DOM");
+      return;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const messageInput = document.getElementById("manager_chat_input");
+      if (!messageInput) {
+        console.error("Error: No se encontró el elemento #manager_chat_input en el DOM");
+        return;
+      }
+      const message = messageInput.value.trim();
+      if (!message) {
+        console.warn("Mensaje vacío, no se enviará");
         return;
       }
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const messageInput = document.getElementById("manager_chat_input");
-        if (!messageInput) {
-          console.error("Error: No se encontró el elemento #manager_chat_input en el DOM");
-          return;
-        }
-        const message = messageInput.value.trim();
-        if (!message) {
-          console.warn("Mensaje vacío, no se enviará");
-          return;
-        }
-
-        console.log(`Enviando mensaje: ${message}`);
-        messageInput.disabled = true;
-        sendMessage(selectedBranch, message);
-        messageInput.value = "";
-        messageInput.disabled = false;
-        messageInput.focus();
-      });
-    }
+      console.log(`Enviando mensaje: ${message}`);
+      messageInput.disabled = true;
+      sendMessage(selectedBranch, message);
+      messageInput.value = "";
+      messageInput.disabled = false;
+      messageInput.focus();
+    });
   });
 });
 
@@ -233,8 +255,8 @@ async function sendMessage(sender, message) {
     console.warn("No se ha seleccionado ninguna sucursal");
     const alerta = document.getElementById("alerta_1");
     if (alerta) {
-      alerta.style.display = "flex";
-      setTimeout(() => (alerta.style.display = "none"), 3000);
+      alerta.classList.add("visible");
+      setTimeout(() => alerta.classList.remove("visible"), 3000);
     }
     return;
   }
@@ -253,8 +275,8 @@ async function sendMessage(sender, message) {
     console.error("Error guardando mensaje en Firebase:", error);
     const alerta = document.getElementById("alerta_3");
     if (alerta) {
-      alerta.style.display = "flex";
-      setTimeout(() => (alerta.style.display = "none"), 3000);
+      alerta.classList.add("visible");
+      setTimeout(() => alerta.classList.remove("visible"), 3000);
     }
   }
 }
@@ -338,8 +360,10 @@ function scrollToBottom() {
   const isNearBottom = chatBox.scrollHeight - chatBox.scrollTop <= chatBox.clientHeight + 50;
   if (isNearBottom) {
     console.log("Desplazando al final del chat");
+    chatBox.classList.add("scroll-to-bottom"); // Añadir clase para desplazamiento suave
     setTimeout(() => {
       chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
+      chatBox.classList.remove("scroll-to-bottom"); // Remover clase después del desplazamiento
     }, 100);
   } else {
     console.log("Usuario está desplazándose arriba, no se fuerza el scroll");

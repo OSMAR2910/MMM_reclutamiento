@@ -389,456 +389,475 @@ function mostrarDatos() {
     agregarFiltro(filtros.filtroBaja, renderBaja);
   });
 
-function renderizarVacantes(
-  snapshot,
-  containerGreen,
-  containerRed,
-  esAsistieron = false,
-  filtro = ""
-) {
-  const fragmentGreen = document.createDocumentFragment();
-  const fragmentRed = document.createDocumentFragment();
-  const sucursalActual = localStorage.getItem("sucursal");
-  const isManagerLoggedIn =
-    localStorage.getItem("isManagerLoggedIn") === "true";
+  function renderizarVacantes(
+    snapshot,
+    containerGreen,
+    containerRed,
+    esAsistieron = false,
+    filtro = ""
+  ) {
+    const fragmentGreen = document.createDocumentFragment();
+    const fragmentRed = document.createDocumentFragment();
+    const sucursalActual = localStorage.getItem("sucursal");
+    const isManagerLoggedIn =
+      localStorage.getItem("isManagerLoggedIn") === "true";
 
-  containerGreen.innerHTML = "";
-  if (containerRed) containerRed.innerHTML = "";
+    containerGreen.innerHTML = "";
+    if (containerRed) containerRed.innerHTML = "";
 
-  let vacantesActuales = new Set();
-  let vacantesArray = []; // Array para almacenar las vacantes
+    let vacantesActuales = new Set();
+    let vacantesArray = []; // Array para almacenar las vacantes
 
-  if (snapshot.exists()) {
-    // Recolectar todas las vacantes en un array
-    snapshot.forEach((childSnapshot) => {
-      const uniqueKey = childSnapshot.key;
-      const data = childSnapshot.val() || {};
-      data.aptoStatus = data.aptoStatus || "Pendiente";
-      data.nombre = data.nombre || "";
-      vacantesArray.push({ uniqueKey, data });
-    });
+    if (snapshot.exists()) {
+      // Recolectar todas las vacantes en un array
+      snapshot.forEach((childSnapshot) => {
+        const uniqueKey = childSnapshot.key;
+        const data = childSnapshot.val() || {};
+        data.aptoStatus = data.aptoStatus || "Pendiente";
+        data.nombre = data.nombre || "";
+        vacantesArray.push({ uniqueKey, data });
+      });
 
-    // Ordenar las vacantes por fecha_r en orden descendente
-    vacantesArray.sort((a, b) => {
-      const fechaA = new Date(a.data.fecha_r || "1970-01-01");
-      const fechaB = new Date(b.data.fecha_r || "1970-01-01");
-      return fechaB - fechaA; // Orden descendente
-    });
+      // Ordenar las vacantes por fecha_r en orden descendente
+      vacantesArray.sort((a, b) => {
+        const fechaA = new Date(a.data.fecha_r || "1970-01-01");
+        const fechaB = new Date(b.data.fecha_r || "1970-01-01");
+        return fechaB - fechaA; // Orden descendente
+      });
 
-    const ulGreen = document.createElement("ul");
-    const ulRed = document.createElement("ul");
+      const ulGreen = document.createElement("ul");
+      const ulRed = document.createElement("ul");
 
-    // Procesar las vacantes ordenadas
-    vacantesArray.forEach(({ uniqueKey, data }) => {
-      const nombre = data.nombre;
+      // Procesar las vacantes ordenadas
+      vacantesArray.forEach(({ uniqueKey, data }) => {
+        const nombre = data.nombre;
 
-      // Normalizar filtro y analizar si tiene formato "campo:valor"
-      const filtroNormalizado = filtro.trim().toLowerCase();
-      let campoFiltro = null;
-      let valorFiltro = filtroNormalizado;
+        // Normalizar filtro y analizar si tiene formato "campo:valor"
+        const filtroNormalizado = filtro.trim().toLowerCase();
+        let campoFiltro = null;
+        let valorFiltro = filtroNormalizado;
 
-      if (filtroNormalizado.includes(":")) {
-        [campoFiltro, valorFiltro] = filtroNormalizado.split(":", 2);
-        valorFiltro = valorFiltro.trim();
-      }
-
-      // Función para verificar coincidencia con fechas
-      const coincideFecha = (fechaStr, filtroFecha) => {
-        if (!fechaStr) return false;
-        const fecha = new Date(fechaStr);
-        const [dia, mes, anio] = filtroFecha.split("/").map(Number);
-        const anioCompleto = anio < 100 ? 2000 + anio : anio;
-        return (
-          fecha.getDate() === dia &&
-          fecha.getMonth() + 1 === mes &&
-          fecha.getFullYear() === anioCompleto
-        );
-      };
-
-      // Aplicar filtro
-      let coincide = true;
-      if (filtro) {
-        if (campoFiltro) {
-          switch (campoFiltro) {
-            case "nombre":
-              coincide = nombre.toLowerCase().includes(valorFiltro);
-              break;
-            case "edad":
-              coincide = String(data.edad) === valorFiltro;
-              break;
-            case "puesto":
-              coincide = (data.puesto || "").toLowerCase().includes(valorFiltro);
-              break;
-            case "horario":
-              coincide = (data.horario || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "numero":
-              coincide = (data.numero || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "fecha":
-              coincide =
-                coincideFecha(data.fecha_r, valorFiltro) ||
-                coincideFecha(data.fecha_cita, valorFiltro);
-              break;
-            case "direccion":
-              coincide = (data.direccion || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "ciudad":
-              coincide = (data.ciudad || "").toLowerCase().includes(valorFiltro);
-              break;
-            case "cp":
-              coincide = (data.cp || "").toLowerCase().includes(valorFiltro);
-              break;
-            case "docu":
-              coincide = (data.docu || "").toLowerCase().includes(valorFiltro);
-              break;
-            case "casa_suc":
-              coincide = (data.casa_suc || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "transporte":
-              coincide = (data.transporte || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "empleo":
-              coincide = (data.empleo || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "sexo":
-              coincide = (data.sexo || "").toLowerCase().includes(valorFiltro);
-              break;
-            case "nacion":
-              coincide = (data.nacion || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "e_c":
-              coincide = (data.e_c || "").toLowerCase().includes(valorFiltro);
-              break;
-            case "sucursal":
-              coincide = (data.sucursal || data.sucursal_cita || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "problema_t":
-              coincide = (data.problema_t || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            case "f_n":
-              coincide = coincideFecha(data.f_n, valorFiltro);
-              break;
-            case "estatus":
-              coincide = (data.aptoStatus || "")
-                .toLowerCase()
-                .includes(valorFiltro);
-              break;
-            default:
-              coincide = JSON.stringify(data)
-                .toLowerCase()
-                .includes(filtroNormalizado);
-          }
-        } else {
-          coincide =
-            nombre.toLowerCase().includes(filtroNormalizado) ||
-            String(data.edad).includes(filtroNormalizado) ||
-            (data.puesto || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.horario || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.numero || "").toLowerCase().includes(filtroNormalizado) ||
-            coincideFecha(data.fecha_r, filtroNormalizado) ||
-            coincideFecha(data.fecha_cita, filtroNormalizado) ||
-            (data.direccion || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.ciudad || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.cp || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.docu || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.casa_suc || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.transporte || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.empleo || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.sexo || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.nacion || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.e_c || "").toLowerCase().includes(filtroNormalizado) ||
-            (data.sucursal || data.sucursal_cita || "")
-              .toLowerCase()
-              .includes(filtroNormalizado) ||
-            (data.problema_t || "").toLowerCase().includes(filtroNormalizado) ||
-            coincideFecha(data.f_n, filtroNormalizado) ||
-            (data.aptoStatus || "").toLowerCase().includes(filtroNormalizado);
+        if (filtroNormalizado.includes(":")) {
+          [campoFiltro, valorFiltro] = filtroNormalizado.split(":", 2);
+          valorFiltro = valorFiltro.trim();
         }
-      }
 
-      if (!coincide) return;
+        // Función para verificar coincidencia con fechas
+        const coincideFecha = (fechaStr, filtroFecha) => {
+          if (!fechaStr) return false;
+          const fecha = new Date(fechaStr);
+          const [dia, mes, anio] = filtroFecha.split("/").map(Number);
+          const anioCompleto = anio < 100 ? 2000 + anio : anio;
+          return (
+            fecha.getDate() === dia &&
+            fecha.getMonth() + 1 === mes &&
+            fecha.getFullYear() === anioCompleto
+          );
+        };
 
-      const esContenedorCitas = [
-        "data_citas",
-        "data_citas_manager",
-        "data_cita_no_asistieron",
-        "data_cita_asistieron",
-      ].includes(containerGreen.id);
+        // Aplicar filtro
+        let coincide = true;
+        if (filtro) {
+          if (campoFiltro) {
+            switch (campoFiltro) {
+              case "nombre":
+                coincide = nombre.toLowerCase().includes(valorFiltro);
+                break;
+              case "edad":
+                coincide = String(data.edad) === valorFiltro;
+                break;
+              case "puesto":
+                coincide = (data.puesto || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "horario":
+                coincide = (data.horario || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "numero":
+                coincide = (data.numero || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "fecha":
+                coincide =
+                  coincideFecha(data.fecha_r, valorFiltro) ||
+                  coincideFecha(data.fecha_cita, valorFiltro);
+                break;
+              case "direccion":
+                coincide = (data.direccion || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "ciudad":
+                coincide = (data.ciudad || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "cp":
+                coincide = (data.cp || "").toLowerCase().includes(valorFiltro);
+                break;
+              case "docu":
+                coincide = (data.docu || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "casa_suc":
+                coincide = (data.casa_suc || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "transporte":
+                coincide = (data.transporte || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "empleo":
+                coincide = (data.empleo || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "sexo":
+                coincide = (data.sexo || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "nacion":
+                coincide = (data.nacion || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "e_c":
+                coincide = (data.e_c || "").toLowerCase().includes(valorFiltro);
+                break;
+              case "sucursal":
+                coincide = (data.sucursal || data.sucursal_cita || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "problema_t":
+                coincide = (data.problema_t || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              case "f_n":
+                coincide = coincideFecha(data.f_n, valorFiltro);
+                break;
+              case "estatus":
+                coincide = (data.aptoStatus || "")
+                  .toLowerCase()
+                  .includes(valorFiltro);
+                break;
+              default:
+                coincide = JSON.stringify(data)
+                  .toLowerCase()
+                  .includes(filtroNormalizado);
+            }
+          } else {
+            coincide =
+              nombre.toLowerCase().includes(filtroNormalizado) ||
+              String(data.edad).includes(filtroNormalizado) ||
+              (data.puesto || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.horario || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.numero || "").toLowerCase().includes(filtroNormalizado) ||
+              coincideFecha(data.fecha_r, filtroNormalizado) ||
+              coincideFecha(data.fecha_cita, filtroNormalizado) ||
+              (data.direccion || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              (data.ciudad || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.cp || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.docu || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.casa_suc || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.transporte || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              (data.empleo || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.sexo || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.nacion || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.e_c || "").toLowerCase().includes(filtroNormalizado) ||
+              (data.sucursal || data.sucursal_cita || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              (data.problema_t || "")
+                .toLowerCase()
+                .includes(filtroNormalizado) ||
+              coincideFecha(data.f_n, filtroNormalizado) ||
+              (data.aptoStatus || "").toLowerCase().includes(filtroNormalizado);
+          }
+        }
 
-      if (
-        isManagerLoggedIn &&
-        esContenedorCitas &&
-        sucursalActual &&
-        data.sucursal_cita !== sucursalActual
-      ) {
-        return;
-      }
+        if (!coincide) return;
 
-      vacantesActuales.add(nombre);
+        const esContenedorCitas = [
+          "data_citas",
+          "data_citas_manager",
+          "data_cita_no_asistieron",
+          "data_cita_asistieron",
+        ].includes(containerGreen.id);
 
-      const listItem = document.createElement("button");
-      let claseItem = "vacante_item";
-      if (containerGreen.id === "data_citas") claseItem += "_citas";
-      else if (containerGreen.id === "data_citas_manager")
-        claseItem += "_citasManager";
-      else if (containerGreen.id === "data_cita_no_asistieron")
-        claseItem += "_citasManagerNoasistio";
-      else if (containerGreen.id === "data_cita_asistieron")
-        claseItem += "_citasManagerAsistio";
-      else if (containerGreen.id === "data_asistieron")
-        claseItem += "_asistieron";
-      else if (containerGreen.id === "data_no_asistieron")
-        claseItem += "_noasistieron";
-      else if (containerGreen.id === "data_contratado")
-        claseItem += "_contratado";
-      else if (containerGreen.id === "data_baja") claseItem += "_baja";
-      else
-        claseItem += esAsistieron
-          ? "_status"
-          : data.empleo === "Fijo" &&
-            data.horario === "Rotativo" &&
-            data.docu === "Si" &&
-            data.problema_t === "No"
-          ? "_green"
-          : "_red";
+        if (
+          isManagerLoggedIn &&
+          esContenedorCitas &&
+          sucursalActual &&
+          data.sucursal_cita !== sucursalActual
+        ) {
+          return;
+        }
 
-      listItem.classList.add(claseItem);
+        vacantesActuales.add(nombre);
 
-      const Itemnombre = document.createElement("div");
-      Itemnombre.classList.add("Itemnombre");
-      const Itemnombrespan = document.createElement("span");
-      Itemnombrespan.innerHTML = `${data.nombre}`;
-      Itemnombre.appendChild(Itemnombrespan);
+        const listItem = document.createElement("button");
+        let claseItem = "vacante_item";
+        if (containerGreen.id === "data_citas") claseItem += "_citas";
+        else if (containerGreen.id === "data_citas_manager")
+          claseItem += "_citasManager";
+        else if (containerGreen.id === "data_cita_no_asistieron")
+          claseItem += "_citasManagerNoasistio";
+        else if (containerGreen.id === "data_cita_asistieron")
+          claseItem += "_citasManagerAsistio";
+        else if (containerGreen.id === "data_asistieron")
+          claseItem += "_asistieron";
+        else if (containerGreen.id === "data_no_asistieron")
+          claseItem += "_noasistieron";
+        else if (containerGreen.id === "data_contratado")
+          claseItem += "_contratado";
+        else if (containerGreen.id === "data_baja") claseItem += "_baja";
+        else
+          claseItem += esAsistieron
+            ? "_status"
+            : data.empleo === "Fijo" &&
+              data.horario === "Rotativo" &&
+              data.docu === "Si" &&
+              data.problema_t === "No"
+            ? "_green"
+            : "_red";
 
-      const Itemstatus = document.createElement("div");
-      Itemstatus.classList.add("Itemstatus");
-      const Itemstatusspan = document.createElement("span");
-      Itemstatusspan.innerHTML = `${data.aptoStatus}`;
-      const claseNormalizada = data.aptoStatus.toLowerCase().replace(/\s+/g, "-");
-      Itemstatusspan.classList.add(claseNormalizada);
-      Itemstatus.appendChild(Itemstatusspan);
+        listItem.classList.add(claseItem);
 
-      const criteriosContainer = document.createElement("div");
-      criteriosContainer.classList.add("criterios_container");
+        const Itemnombre = document.createElement("div");
+        Itemnombre.classList.add("Itemnombre");
+        const Itemnombrespan = document.createElement("span");
+        Itemnombrespan.innerHTML = `${data.nombre}`;
+        Itemnombre.appendChild(Itemnombrespan);
 
-      const criteriosSpan = document.createElement("span");
-      criteriosSpan.classList.add("criterios_count");
+        const Itemstatus = document.createElement("div");
+        Itemstatus.classList.add("Itemstatus");
+        const Itemstatusspan = document.createElement("span");
+        Itemstatusspan.innerHTML = `${data.aptoStatus}`;
+        const claseNormalizada = data.aptoStatus
+          .toLowerCase()
+          .replace(/\s+/g, "-");
+        Itemstatusspan.classList.add(claseNormalizada);
+        Itemstatus.appendChild(Itemstatusspan);
 
-      let cumplenCount = 0;
-      const criterios = [
-        data.empleo === "Fijo",
-        data.horario === "Rotativo",
-        data.docu === "Si",
-        data.problema_t === "No",
-      ];
-      cumplenCount = criterios.filter(Boolean).length;
-      const totalPreguntas = 4;
+        const criteriosContainer = document.createElement("div");
+        criteriosContainer.classList.add("criterios_container");
 
-      criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
-      criteriosSpan.classList.remove("muyBajo", "medio", "alto");
-      criteriosSpan.classList.add(
-        cumplenCount === 4
-          ? "alto"
-          : cumplenCount >= 2
-          ? "medio"
-          : "muyBajo"
-      );
-      criteriosContainer.appendChild(criteriosSpan);
+        const criteriosSpan = document.createElement("span");
+        criteriosSpan.classList.add("criterios_count");
 
-      const infoContainer = document.createElement("div");
-      infoContainer.classList.add("vacante_info");
-
-      const campos =
-        containerGreen.id === "data_citas" ||
-        containerGreen.id === "data_citas_manager" ||
-        containerGreen.id === "data_cita_no_asistieron" ||
-        containerGreen.id === "data_cita_asistieron"
-          ? [
-              { label: "Nombre", value: nombre, isName: true },
-              {
-                label: "Fecha Cita",
-                value: data.fecha_cita || "No disponible",
-              },
-              {
-                label: "Hora Cita",
-                value: data.hora_cita || "No disponible",
-              },
-              {
-                label: "Sucursal Cita",
-                value: data.sucursal_cita || "No disponible",
-              },
-              { label: "Puesto", value: data.puesto || "No disponible" },
-              { label: "Número", value: data.numero || "No disponible" },
-              { label: "Estatus", value: data.aptoStatus, isApto: true },
-            ]
-          : [
-              {
-                label: "Fecha",
-                value: data.fecha_r
-                  ? new Date(data.fecha_r).toLocaleDateString()
-                  : "No disponible",
-              },
-              { label: "Nombre", value: nombre, isName: true },
-              { label: "Puesto", value: data.puesto || "No disponible" },
-              { label: "Sucursal", value: data.sucursal || "No disponible" },
-              { label: "Número", value: data.numero || "No disponible" },
-              { label: "Edad", value: data.edad || "No disponible" },
-              { label: "F.Nacimiento", value: data.f_n || "No disponible" },
-              { label: "Sexo", value: data.sexo || "No disponible" },
-              {
-                label: "Nacionalidad",
-                value: data.nacion || "No disponible",
-              },
-              { label: "Estado Civil", value: data.e_c || "No disponible" },
-              {
-                label: "Documentacion",
-                value: data.docu || "No disponible",
-              },
-              { label: "Horario", value: data.horario || "No disponible" },
-              { label: "Empleo", value: data.empleo || "No disponible" },
-              { label: "Ciudad", value: data.ciudad || "No disponible" },
-              {
-                label: "Dirección",
-                value: data.direccion || "No disponible",
-              },
-              { label: "CP", value: data.cp || "No disponible" },
-              {
-                label: "Transporte",
-                value: data.transporte || "No disponible",
-              },
-              {
-                label: "Cas/Sucu",
-                value: data.casa_suc || "No disponible",
-              },
-              {
-                label: "Problema/T",
-                value: data.problema_t || "No disponible",
-              },
-              { label: "Estatus", value: data.aptoStatus, isApto: true },
-            ];
-
-      campos.forEach((campo) => {
-        const span = document.createElement("span");
-        if (campo.isName) span.classList.add("dbname");
-        span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
-        infoContainer.appendChild(span);
-      });
-
-      const btnContainer2 = document.createElement("div");
-      btnContainer2.classList.add("btn_container2");
-      const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
-        descargarPDF(uniqueKey, data)
-      );
-      const btnAgendarCita = crearBoton("", "btn-agendar-cita", () =>
-        abrirModalCita(uniqueKey, data)
-      );
-      btnContainer2.append(btnDescargarPDF, btnAgendarCita);
-
-      const btnContainer = document.createElement("div");
-      btnContainer.classList.add("btn-container");
-
-      if (
-        containerGreen.id === "data_citas_manager" ||
-        containerGreen.id === "data_cita_no_asistieron" ||
-        containerGreen.id === "data_cita_asistieron"
-      ) {
-        const aptoSelect = document.createElement("select");
-        aptoSelect.classList.add("apto-select");
-        aptoSelect.id = `apto-select-${nombre}`;
-        const options = [
-          { value: "Pendiente", text: "⏳" },
-          { value: "Apto", text: "👍" },
-          { value: "No apto", text: "👎" },
+        let cumplenCount = 0;
+        const criterios = [
+          data.empleo === "Fijo",
+          data.horario === "Rotativo",
+          data.docu === "Si",
+          data.problema_t === "No",
         ];
-        options.forEach((opt) => {
-          const option = document.createElement("option");
-          option.value = opt.value;
-          option.textContent = opt.text;
-          if (data.aptoStatus === opt.value) option.selected = true;
-          aptoSelect.appendChild(option);
-        });
-        aptoSelect.addEventListener("change", () =>
-          updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id)
+        cumplenCount = criterios.filter(Boolean).length;
+        const totalPreguntas = 4;
+
+        criteriosSpan.textContent = `${cumplenCount}/${totalPreguntas}`;
+        criteriosSpan.classList.remove("muyBajo", "medio", "alto");
+        criteriosSpan.classList.add(
+          cumplenCount === 4 ? "alto" : cumplenCount >= 2 ? "medio" : "muyBajo"
         );
-        btnContainer.appendChild(aptoSelect);
-        personalizarSelect(aptoSelect);
-      }
+        criteriosContainer.appendChild(criteriosSpan);
 
-      const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
-        moverVacante(uniqueKey, data, "no_asistieron")
-      );
-      const btnAsistieron = crearBoton("", "btn-asistieron", () =>
-        moverVacante(uniqueKey, data, "asistieron")
-      );
-      const btnContratado = crearBoton("", "btn-contratado", () =>
-        moverVacante(uniqueKey, data, "contratado")
-      );
-      const btnBaja = crearBoton("", "btn-baja", () =>
-        moverVacante(uniqueKey, data, "baja")
-      );
+        const infoContainer = document.createElement("div");
+        infoContainer.classList.add("vacante_info");
 
-      const containerEliminar = document.createElement("div");
-      containerEliminar.classList.add("containerEliminar");
+        const campos =
+          containerGreen.id === "data_citas" ||
+          containerGreen.id === "data_citas_manager" ||
+          containerGreen.id === "data_cita_no_asistieron" ||
+          containerGreen.id === "data_cita_asistieron"
+            ? [
+                { label: "Nombre", value: nombre, isName: true },
+                {
+                  label: "Fecha Cita",
+                  value: data.fecha_cita || "No disponible",
+                },
+                {
+                  label: "Hora Cita",
+                  value: data.hora_cita || "No disponible",
+                },
+                {
+                  label: "Sucursal Cita",
+                  value: data.sucursal_cita || "No disponible",
+                },
+                { label: "Puesto", value: data.puesto || "No disponible" },
+                { label: "Número", value: data.numero || "No disponible" },
+                { label: "Estatus", value: data.aptoStatus, isApto: true },
+              ]
+            : [
+                {
+                  label: "Fecha",
+                  value: data.fecha_r
+                    ? new Date(data.fecha_r).toLocaleDateString()
+                    : "No disponible",
+                },
+                { label: "Nombre", value: nombre, isName: true },
+                { label: "Puesto", value: data.puesto || "No disponible" },
+                { label: "Sucursal", value: data.sucursal || "No disponible" },
+                { label: "Número", value: data.numero || "No disponible" },
+                { label: "Edad", value: data.edad || "No disponible" },
+                { label: "F.Nacimiento", value: data.f_n || "No disponible" },
+                { label: "Sexo", value: data.sexo || "No disponible" },
+                {
+                  label: "Nacionalidad",
+                  value: data.nacion || "No disponible",
+                },
+                { label: "Estado Civil", value: data.e_c || "No disponible" },
+                {
+                  label: "Documentacion",
+                  value: data.docu || "No disponible",
+                },
+                { label: "Horario", value: data.horario || "No disponible" },
+                { label: "Empleo", value: data.empleo || "No disponible" },
+                { label: "Ciudad", value: data.ciudad || "No disponible" },
+                {
+                  label: "Dirección",
+                  value: data.direccion || "No disponible",
+                },
+                { label: "CP", value: data.cp || "No disponible" },
+                {
+                  label: "Transporte",
+                  value: data.transporte || "No disponible",
+                },
+                {
+                  label: "Cas/Sucu",
+                  value: data.casa_suc || "No disponible",
+                },
+                {
+                  label: "Problema/T",
+                  value: data.problema_t || "No disponible",
+                },
+                { label: "Estatus", value: data.aptoStatus, isApto: true },
+              ];
 
-      const btnEliminar = crearBoton("", "btn-eliminar", () => {
-        let base = "vacantes";
-        if (containerGreen.id === "data_no_asistieron") base = "no_asistieron";
-        if (containerGreen.id === "data_asistieron") base = "asistieron";
-        if (containerGreen.id === "data_contratado") base = "contratado";
-        eliminarVacante(uniqueKey, base, data);
+        campos.forEach((campo) => {
+          const span = document.createElement("span");
+          if (campo.isName) span.classList.add("dbname");
+          span.innerHTML = `<strong>${campo.label}:</strong> ${campo.value}`;
+          infoContainer.appendChild(span);
+        });
+
+        const btnContainer2 = document.createElement("div");
+        btnContainer2.classList.add("btn_container2");
+        const btnDescargarPDF = crearBoton("", "btn-descargar-pdf", () =>
+          descargarPDF(uniqueKey, data)
+        );
+        const btnAgendarCita = crearBoton("", "btn-agendar-cita", () =>
+          abrirModalCita(uniqueKey, data)
+        );
+        btnContainer2.append(btnDescargarPDF, btnAgendarCita);
+
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("btn-container");
+
+        if (
+          containerGreen.id === "data_citas_manager" ||
+          containerGreen.id === "data_cita_no_asistieron" ||
+          containerGreen.id === "data_cita_asistieron"
+        ) {
+          const aptoSelect = document.createElement("select");
+          aptoSelect.classList.add("apto-select");
+          aptoSelect.id = `apto-select-${nombre}`;
+          const options = [
+            { value: "Pendiente", text: "⏳" },
+            { value: "Apto", text: "👍" },
+            { value: "No apto", text: "👎" },
+          ];
+          options.forEach((opt) => {
+            const option = document.createElement("option");
+            option.value = opt.value;
+            option.textContent = opt.text;
+            if (data.aptoStatus === opt.value) option.selected = true;
+            aptoSelect.appendChild(option);
+          });
+          aptoSelect.addEventListener("change", () =>
+            updateAptoStatus(uniqueKey, aptoSelect.value, containerGreen.id)
+          );
+          btnContainer.appendChild(aptoSelect);
+          personalizarSelect(aptoSelect);
+        }
+
+        const btnNoAsistieron = crearBoton("", "btn-noAsistieron", () =>
+          moverVacante(uniqueKey, data, "no_asistieron")
+        );
+        const btnAsistieron = crearBoton("", "btn-asistieron", () =>
+          moverVacante(uniqueKey, data, "asistieron")
+        );
+        const btnContratado = crearBoton("", "btn-contratado", () =>
+          moverVacante(uniqueKey, data, "contratado")
+        );
+        const btnBaja = crearBoton("", "btn-baja", () =>
+          moverVacante(uniqueKey, data, "baja")
+        );
+
+        const containerEliminar = document.createElement("div");
+        containerEliminar.classList.add("containerEliminar");
+
+        const btnEliminar = crearBoton("", "btn-eliminar", () => {
+          let base = "vacantes";
+          if (containerGreen.id === "data_no_asistieron")
+            base = "no_asistieron";
+          if (containerGreen.id === "data_asistieron") base = "asistieron";
+          if (containerGreen.id === "data_contratado") base = "contratado";
+          if (containerGreen.id === "data_baja") base = "baja";
+          eliminarVacante(uniqueKey, base, data);
+        });
+
+        btnContainer.append(
+          btnNoAsistieron,
+          btnAsistieron,
+          btnContratado,
+          btnBaja
+        );
+        containerEliminar.append(btnEliminar);
+
+        listItem.appendChild(btnContainer2);
+        listItem.appendChild(Itemnombre);
+        listItem.appendChild(infoContainer);
+        listItem.appendChild(criteriosContainer);
+        listItem.appendChild(Itemstatus);
+        listItem.appendChild(btnContainer);
+        listItem.appendChild(containerEliminar);
+
+        if (esAsistieron) ulGreen.appendChild(listItem);
+        else
+          data.empleo === "Fijo" &&
+          data.horario === "Rotativo" &&
+          data.docu === "Si" &&
+          data.problema_t === "No"
+            ? ulGreen.appendChild(listItem)
+            : ulRed.appendChild(listItem);
       });
 
-      btnContainer.append(btnNoAsistieron, btnAsistieron, btnContratado, btnBaja);
-      containerEliminar.append(btnEliminar);
+      fragmentGreen.appendChild(ulGreen);
+      if (containerRed) fragmentRed.appendChild(ulRed);
+      containerGreen.appendChild(fragmentGreen);
+      if (containerRed) containerRed.appendChild(fragmentRed);
+    } else {
+      containerGreen.innerHTML = "<div class='no_data'></div>";
+      if (containerRed) containerRed.innerHTML = "<div class='no_data'></div>";
+    }
 
-      listItem.appendChild(btnContainer2);
-      listItem.appendChild(Itemnombre);
-      listItem.appendChild(infoContainer);
-      listItem.appendChild(criteriosContainer);
-      listItem.appendChild(Itemstatus);
-      listItem.appendChild(btnContainer);
-      listItem.appendChild(containerEliminar);
-
-      if (esAsistieron) ulGreen.appendChild(listItem);
-      else
-        data.empleo === "Fijo" &&
-        data.horario === "Rotativo" &&
-        data.docu === "Si" &&
-        data.problema_t === "No"
-          ? ulGreen.appendChild(listItem)
-          : ulRed.appendChild(listItem);
-    });
-
-    fragmentGreen.appendChild(ulGreen);
-    if (containerRed) fragmentRed.appendChild(ulRed);
-    containerGreen.appendChild(fragmentGreen);
-    if (containerRed) containerRed.appendChild(fragmentRed);
-  } else {
-    containerGreen.innerHTML = "<div class='no_data'></div>";
-    if (containerRed) containerRed.innerHTML = "<div class='no_data'></div>";
+    vacantesPrevias = vacantesActuales;
   }
-
-  vacantesPrevias = vacantesActuales;
-}
   function updateAptoStatus(uniqueKey, nuevoEstado, containerId) {
     let rutaDB;
     switch (containerId) {
@@ -873,111 +892,139 @@ function renderizarVacantes(
       }
     });
   }
-  function descargarPDF(uniqueKey, data) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+function descargarPDF(uniqueKey, data) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-    // Validar que 'data' sea un objeto válido
-    if (!data || typeof data !== "object") {
-      console.error("Datos inválidos para generar el PDF:", data);
-      return;
-    }
-
-    // Fondo y estilos
-    doc.setFillColor(245, 245, 245);
-    doc.rect(0, 0, 210, 297, "F");
-    const colorTitulo = [23, 72, 145];
-    const colorEtiquetas = [60, 60, 60];
-    const colorValores = [0, 0, 0];
-    const colorLinea = [0, 0, 0];
-
-    // Título
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.setTextColor(...colorTitulo);
-    doc.text("Información del Vacante", 20, 20);
-    doc.setDrawColor(...colorLinea);
-    doc.line(20, 22, 190, 22);
-
-    // Contenido
-    let yPosition = 30;
+  // Validar que 'data' sea un objeto válido
+  if (!data || typeof data !== "object") {
+    console.error("Datos inválidos para generar el PDF:", data);
+    doc.setFont("helvetica", "italic");
     doc.setFontSize(12);
-    const campoStyle = {
-      font: "helvetica",
-      size: 12,
-      weight: "normal",
-      color: colorEtiquetas,
-    };
-    const valueStyle = {
-      font: "helvetica",
-      size: 12,
-      weight: "normal",
-      color: colorValores,
-    };
-
-    const content = [
-      {
-        label: "Fecha de llenado",
-        value: data.fecha_r
-          ? new Date(data.fecha_r).toLocaleDateString()
-          : "No disponible",
-      },
-      { label: "Nombre", value: data.nombre || "No disponible" }, // Corregido: usar data.nombre
-      { label: "Puesto", value: data.puesto || "No disponible" },
-      { label: "Sucursal", value: data.sucursal || "No disponible" },
-      { label: "Número", value: data.numero || "No disponible" },
-      { label: "Edad", value: data.edad ? String(data.edad) : "No disponible" }, // Convertir a cadena
-      { label: "F.Nacimiento", value: data.f_n || "No disponible" },
-      { label: "Sexo", value: data.sexo || "No disponible" },
-      { label: "Nacionalidad", value: data.nacion || "No disponible" },
-      { label: "Estado Civil", value: data.e_c || "No disponible" },
-      { label: "Documentacion", value: data.docu || "No disponible" },
-      { label: "Horario", value: data.horario || "No disponible" },
-      { label: "Empleo", value: data.empleo || "No disponible" },
-      { label: "Ciudad", value: data.ciudad || "No disponible" },
-      { label: "Dirección", value: data.direccion || "No disponible" },
-      { label: "CP", value: data.cp ? String(data.cp) : "No disponible" }, // Convertir a cadena
-      { label: "Transporte", value: data.transporte || "No disponible" },
-      {
-        label: "Cas/Sucu",
-        value: data.casa_suc ? String(data.casa_suc) : "No disponible",
-      }, // Convertir a cadena
-      { label: "Problema/T", value: data.problema_t || "No disponible" },
-      { label: "Estatus", value: data.aptoStatus || "No disponible" },
-    ];
-
-    content.forEach((item) => {
-      // Asegurarse de que item.value sea una cadena
-      const valor = String(item.value || "No disponible"); // Convertir a cadena explícitamente
-
-      doc.setFont(campoStyle.font, campoStyle.weight);
-      doc.setFontSize(campoStyle.size);
-      doc.setTextColor(...campoStyle.color);
-      doc.text(`${item.label}:`, 20, yPosition);
-
-      doc.setFont(valueStyle.font, valueStyle.weight);
-      doc.setFontSize(valueStyle.size);
-      doc.setTextColor(...valueStyle.color);
-      doc.text(valor, 80, yPosition);
-
-      yPosition += 12;
-    });
-
-    // Línea y pie de página
-    doc.setDrawColor(...colorLinea);
-    doc.line(20, yPosition + 10, 190, yPosition + 10);
-    yPosition += 20;
-    doc.setFontSize(10);
-    doc.setTextColor(...colorTitulo);
-    doc.text("Generado por el reclutador Web de MMM.", 20, yPosition);
-
-    // Guardar el PDF
-    const fileName = `Vacante_${data.nombre || "SinNombre"}.pdf`;
-    doc.save(fileName);
-
-    // Mostrar alertas de éxito
-    mostrarAlertaAdmin("alerta_16");
+    doc.setTextColor(255, 0, 0);
+    doc.text("No se pudo generar el PDF debido a datos inválidos.", 30, 140);
+    doc.save(`Vacante_${uniqueKey}.pdf`);
+    return;
   }
+
+  // Estilos alineados con generarEstadisticasPDF
+  const colorFondo = [245, 245, 245]; // #F5F5F5
+  const colorTitulo = [23, 72, 145]; // #174891
+  const colorTexto = [60, 60, 60]; // #3C3C3C
+  const colorRecuadro = [230, 230, 230]; // #E6E6E6
+  const colorBorde = [200, 200, 200]; // #C8C8C8
+
+  // Fondo de la página
+  doc.setFillColor(...colorFondo);
+  doc.rect(0, 0, 210, 297, "F");
+
+  // Recuadro principal
+  doc.setDrawColor(...colorBorde);
+  doc.roundedRect(15, 15, 180, 270, 5, 5, "FD");
+
+  // Título
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(25);
+  doc.setTextColor(...colorTitulo);
+  doc.text("Información del Vacante", 105, 30, { align: "center" });
+
+  // Subtítulo con fecha de generación
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(14);
+  doc.setTextColor(...colorTexto);
+  doc.text(
+    `Generado el ${new Date().toLocaleDateString("es-ES")}`,
+    105,
+    40,
+    { align: "center" }
+  );
+  doc.line(15, 45, 195, 45); // Línea divisoria
+
+  // Recuadro para datos (altura aumentada para abarcar texto más grande)
+  doc.setFillColor(...colorRecuadro);
+  doc.roundedRect(20, 50, 170, 230, 3, 3, "F"); // Altura aumentada a 235 mm
+
+  // Contenido
+  let yPosition = 60;
+  const campoStyle = {
+    font: "helvetica",
+    size: 15, // Aumentado de 12 a 14
+    weight: "bold",
+    color: colorTexto,
+  };
+  const valueStyle = {
+    font: "helvetica",
+    size: 14, // Aumentado de 12 a 13
+    weight: "normal",
+    color: [0, 0, 0], // #000000
+  };
+
+  const content = [
+    {
+      label: "Fecha de llenado",
+      value: data.fecha_r
+        ? new Date(data.fecha_r).toLocaleDateString()
+        : "No disponible",
+    },
+    { label: "Nombre", value: data.nombre || "No disponible" },
+    { label: "Puesto", value: data.puesto || "No disponible" },
+    { label: "Sucursal", value: data.sucursal || "No disponible" },
+    { label: "Número", value: data.numero || "No disponible" },
+    { label: "Edad", value: data.edad ? String(data.edad) : "No disponible" },
+    { label: "F.Nacimiento", value: data.f_n || "No disponible" },
+    { label: "Sexo", value: data.sexo || "No disponible" },
+    { label: "Nacionalidad", value: data.nacion || "No disponible" },
+    { label: "Estado Civil", value: data.e_c || "No disponible" },
+    { label: "Documentación", value: data.docu || "No disponible" },
+    { label: "Horario", value: data.horario || "No disponible" },
+    { label: "Empleo", value: data.empleo || "No disponible" },
+    { label: "Ciudad", value: data.ciudad || "No disponible" },
+    { label: "Dirección", value: data.direccion || "No disponible" },
+    { label: "CP", value: data.cp ? String(data.cp) : "No disponible" },
+    { label: "Transporte", value: data.transporte || "No disponible" },
+    {
+      label: "Cas/Sucu",
+      value: data.casa_suc ? String(data.casa_suc) : "No disponible",
+    },
+    { label: "Problema/T", value: data.problema_t || "No disponible" },
+    { label: "Estatus", value: data.aptoStatus || "No disponible" },
+  ];
+
+  // Ajustar el texto para evitar desbordamiento
+  content.forEach((item) => {
+    const valor = String(item.value || "No disponible");
+    // Dividir el texto si es demasiado largo
+    const maxWidth = 85; // Reducido ligeramente para el tamaño de fuente más grande
+    const splitText = doc.splitTextToSize(valor, maxWidth);
+
+    doc.setFont(campoStyle.font, campoStyle.weight);
+    doc.setFontSize(campoStyle.size);
+    doc.setTextColor(...campoStyle.color);
+    doc.text(`${item.label}:`, 25, yPosition);
+
+    doc.setFont(valueStyle.font, valueStyle.weight);
+    doc.setFontSize(valueStyle.size);
+    doc.setTextColor(...valueStyle.color);
+    doc.text(splitText, 80, yPosition);
+
+    // Ajustar yPosition según el número de líneas del texto
+    const lineCount = splitText.length;
+    yPosition += 11.3 * lineCount; // Espaciado ajustado a 11 mm por línea
+  });
+
+  // Pie de página (sin número de página)
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(...colorTexto);
+  doc.text("Generado por el reclutador Web de MMM.", 30, 290);
+
+  // Guardar el PDF
+  const fileName = `Vacante_${data.nombre || "SinNombre"}.pdf`;
+  doc.save(fileName);
+
+  // Mostrar alerta de éxito
+  mostrarAlertaAdmin("alerta_16");
+}
   function abrirModalCita(uniqueKey, data) {
     const modalContainer = document.getElementById("modal-container");
     const formAgendarCita = document.getElementById("form_agendar_cita");
@@ -1645,11 +1692,148 @@ function actualizarPuestosDisponibles(sucursal) {
     });
 }
 
-function descargarResumenExcel() {
+async function seleccionarMesYAno() {
+  return new Promise((resolve, reject) => {
+    const modal = document.getElementById("modal-month-year");
+    const form = document.getElementById("form_select_month_year");
+    const selectMonth = document.getElementById("select_month");
+    const selectYear = document.getElementById("select_year");
+    const confirmBtn = document.getElementById("confirm_month_year");
+    const cancelBtn = document.getElementById("cancel_month_year");
+
+    // Verificar que todos los elementos existan
+    if (
+      !modal ||
+      !form ||
+      !selectMonth ||
+      !selectYear ||
+      !confirmBtn ||
+      !cancelBtn
+    ) {
+      console.error(
+        "Elementos del modal de selección de mes/año no encontrados."
+      );
+      mostrarAlertaAdmin("alerta_24");
+      reject(new Error("Elementos del modal no encontrados."));
+      return;
+    }
+
+    // Verificar que los selects estén poblados
+    if (selectMonth.options.length === 0 || selectYear.options.length === 0) {
+      console.error("Los selects de mes o año están vacíos.");
+      mostrarAlertaAdmin("alerta_24");
+      reject(new Error("Selects de mes o año vacíos."));
+      return;
+    }
+
+    // Mostrar el modal
+    modal.style.display = "flex";
+    modal.style.opacity = "1";
+    selectMonth.style.display = "flex";
+    selectYear.style.display = "flex";
+
+    // Manejador de submit
+    const submitHandler = (e) => {
+      e.preventDefault();
+      const monthValue = selectMonth.value.trim();
+      const yearValue = selectYear.value.trim();
+
+      console.log("Valores en submit - Mes:", monthValue, "Año:", yearValue);
+
+      // Validar que los valores no estén vacíos
+      if (!monthValue || !yearValue) {
+        console.warn(
+          "Campos vacíos detectados - Mes:",
+          monthValue,
+          "Año:",
+          yearValue
+        );
+        mostrarAlertaAdmin("alerta_10");
+        return;
+      }
+
+      const month = parseInt(monthValue, 10);
+      const year = parseInt(yearValue, 10);
+
+      // Validar que los valores sean números válidos
+      if (isNaN(month) || isNaN(year)) {
+        console.warn(
+          "Mes o año no son números válidos - Mes:",
+          monthValue,
+          "Año:",
+          yearValue
+        );
+        mostrarAlertaAdmin("alerta_10");
+        return;
+      }
+
+      // Validar rango de año
+      if (year < 2000 || year > 2050) {
+        console.warn(`Año fuera de rango: ${year}`);
+        mostrarAlertaAdmin("alerta_26");
+        return;
+      }
+
+      // Validar rango de mes
+      if (month < 1 || month > 12) {
+        console.warn(`Mes fuera de rango: ${month}`);
+        mostrarAlertaAdmin("alerta_10");
+        return;
+      }
+
+      // Ocultar modal y resolver la promesa
+      modal.style.display = "none";
+      mostrarAlertaAdmin("alerta_27");
+      resolve({ month, year });
+
+      // Limpiar eventos
+      form.removeEventListener("submit", submitHandler);
+      cancelBtn.removeEventListener("click", cancelHandler);
+    };
+
+    // Manejador de cancelación
+    const cancelHandler = () => {
+      console.log("Selección de mes/año cancelada por el usuario.");
+      modal.style.display = "none";
+      mostrarAlertaAdmin("alerta_28");
+      reject(new Error("Selección cancelada por el usuario."));
+
+      // Limpiar eventos
+      form.removeEventListener("submit", submitHandler);
+      cancelBtn.removeEventListener("click", cancelHandler);
+    };
+
+    // Limpiar eventos previos
+    form.removeEventListener("submit", submitHandler);
+    cancelBtn.removeEventListener("click", cancelHandler);
+
+    // Asignar eventos
+    form.addEventListener("submit", submitHandler);
+    confirmBtn.addEventListener("click", () => {
+      console.log("Botón Confirmar clicado");
+      form.dispatchEvent(new Event("submit"));
+    });
+    cancelBtn.addEventListener("click", cancelHandler);
+  });
+}
+
+async function descargarResumenExcel() {
   const auth = getAuth(app);
   if (!auth.currentUser) {
     console.log("Usuario no autenticado, no se pueden descargar datos.");
     mostrarAlertaAdmin("alerta_1");
+    return;
+  }
+
+  let month, year;
+  try {
+    ({ month, year } = await seleccionarMesYAno());
+    console.log(
+      `Valores recibidos en descargarResumenExcel - Mes: ${month}, Año: ${year}`
+    ); // Depuración
+  } catch (error) {
+    console.log("Selección de mes/año cancelada:", error.message);
+    mostrarAlertaAdmin("alerta_28"); // Cancelado
     return;
   }
 
@@ -1663,15 +1847,9 @@ function descargarResumenExcel() {
     baja: ref(database, "baja/"),
   };
 
-  // Fecha límite (hace 30 días)
-  const fechaLimite = new Date();
-  fechaLimite.setDate(fechaLimite.getDate() - 30);
-  console.log("Filtrando vacantes desde:", fechaLimite.toISOString());
-
-  // Array para almacenar todas las vacantes
   let todasLasVacantes = [];
 
-  // Función para procesar un snapshot y agregar datos con categoría
+  // Función para procesar un snapshot
   function procesarSnapshot(snapshot, categoria) {
     if (snapshot.exists()) {
       snapshot.forEach((childSnapshot) => {
@@ -1680,7 +1858,6 @@ function descargarResumenExcel() {
         const fechaStr = data.modDate || "";
         let fecha;
 
-        // Validar y parsear la fecha
         try {
           fecha = new Date(fechaStr);
           if (isNaN(fecha.getTime())) {
@@ -1694,14 +1871,14 @@ function descargarResumenExcel() {
           return;
         }
 
-        // Filtrar por fecha (último mes)
-        if (fecha >= fechaLimite) {
+        // Filtrar por mes y año
+        if (fecha.getMonth() + 1 === month && fecha.getFullYear() === year) {
           todasLasVacantes.push({
             Fecha_Registro: data.fecha_r
-              ? new Date(data.fecha_r).toLocaleDateString()
+              ? new Date(data.fecha_r).toLocaleDateString("es-ES")
               : "No disponible",
             Fecha_Cita: data.fecha_cita
-              ? new Date(data.fecha_cita).toLocaleDateString()
+              ? new Date(data.fecha_cita).toLocaleDateString("es-ES")
               : "No disponible",
             Hora_Cita: data.hora_cita || "No disponible",
             Nombre: data.nombre || "No disponible",
@@ -1720,90 +1897,35 @@ function descargarResumenExcel() {
     }
   }
 
-  // Promesas para obtener datos de todos los nodos
-  const promesas = [
-    get(refs.vacantes).then((snapshot) =>
-      procesarSnapshot(snapshot, "Pendientes")
-    ),
-    get(refs.citas_vacantes).then((snapshot) =>
-      procesarSnapshot(snapshot, "Citas Vacantes")
-    ),
-    get(refs.asistieron).then((snapshot) =>
-      procesarSnapshot(snapshot, "Asistieron")
-    ),
-    get(refs.no_asistieron).then((snapshot) =>
-      procesarSnapshot(snapshot, "No Asistieron")
-    ),
-    get(refs.contratado).then((snapshot) =>
-      procesarSnapshot(snapshot, "Contratado")
-    ),
-    get(refs.baja).then((snapshot) => procesarSnapshot(snapshot, "Baja")),
-  ];
+  try {
+    await Promise.all([
+      get(refs.vacantes).then((snapshot) =>
+        procesarSnapshot(snapshot, "Pendientes")
+      ),
+      get(refs.citas_vacantes).then((snapshot) =>
+        procesarSnapshot(snapshot, "Citas Vacantes")
+      ),
+      get(refs.asistieron).then((snapshot) =>
+        procesarSnapshot(snapshot, "Asistieron")
+      ),
+      get(refs.no_asistieron).then((snapshot) =>
+        procesarSnapshot(snapshot, "No Asistieron")
+      ),
+      get(refs.contratado).then((snapshot) =>
+        procesarSnapshot(snapshot, "Contratado")
+      ),
+      get(refs.baja).then((snapshot) => procesarSnapshot(snapshot, "Baja")),
+    ]);
 
-  // Ejecutar todas las promesas y generar el Excel
-  Promise.all(promesas)
-    .then(() => {
-      if (todasLasVacantes.length === 0) {
-        console.log("No hay vacantes en el último mes.");
-        mostrarAlertaAdmin("alerta_22"); // Mostrar alerta de error o "sin datos"
-        return;
-      }
+    if (todasLasVacantes.length === 0) {
+      console.log(`No hay vacantes para ${month}/${year}.`);
+      mostrarAlertaAdmin("alerta_22");
+      return;
+    }
 
-      // Crear una hoja de trabajo
-      const worksheet = XLSX.utils.json_to_sheet(todasLasVacantes, {
-        header: [
-          "Fecha_Registro",
-          "Fecha_Cita",
-          "Hora_Cita",
-          "Nombre",
-          "Sexo",
-          "Puesto",
-          "Sucursal",
-          "Edad",
-          "Número",
-          "Empleo",
-          "Ciudad",
-          "Categoría",
-          "Estatus",
-        ],
-      });
-
-      // Ajustar el ancho de las columnas automáticamente
-      const colWidths = Object.keys(todasLasVacantes[0]).map((key, i) => ({
-        wch: Math.max(
-          key.length,
-          ...todasLasVacantes.map((row) =>
-            String(row[key]).length > 100 ? 100 : String(row[key]).length
-          )
-        ),
-      }));
-      worksheet["!cols"] = colWidths;
-
-      // Definir estilos
-      const headerStyle = {
-        fill: {
-          fgColor: { rgb: "FF4CAF50" }, // Verde oscuro para el encabezado
-        },
-        font: {
-          bold: true,
-          color: { rgb: "FFFFFFFF" }, // Texto blanco
-        },
-        alignment: {
-          horizontal: "center",
-          vertical: "center",
-        },
-      };
-
-      const categoryStyles = {
-        Vacantes: { fill: { fgColor: { rgb: "FFFFE0B2" } } }, // Amarillo claro
-        "Citas Vacantes": { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Azul claro
-        Asistieron: { fill: { fgColor: { rgb: "FFB2DFDB" } } }, // Verde claro
-        "No Asistieron": { fill: { fgColor: { rgb: "FFFFCDD2" } } }, // Rojo claro
-        Contratado: { fill: { fgColor: { rgb: "FFB3E5FC" } } }, // Púrpura claro
-      };
-
-      // Aplicar estilo al encabezado
-      const headers = [
+    // Crear hoja de trabajo
+    const worksheet = XLSX.utils.json_to_sheet(todasLasVacantes, {
+      header: [
         "Fecha_Registro",
         "Fecha_Cita",
         "Hora_Cita",
@@ -1817,47 +1939,285 @@ function descargarResumenExcel() {
         "Ciudad",
         "Categoría",
         "Estatus",
-      ];
-      headers.forEach((header, index) => {
-        const cellRef = XLSX.utils.encode_cell({ r: 0, c: index });
-        worksheet[cellRef].s = headerStyle;
-      });
-
-      // Aplicar estilos a las filas según la categoría
-      todasLasVacantes.forEach((row, rowIndex) => {
-        const categoria = row["Categoría"];
-        const style = categoryStyles[categoria] || {};
-
-        headers.forEach((_, colIndex) => {
-          const cellRef = XLSX.utils.encode_cell({
-            r: rowIndex + 1,
-            c: colIndex,
-          });
-          if (worksheet[cellRef]) {
-            worksheet[cellRef].s = style;
-          }
-        });
-      });
-
-      // Crear un libro de trabajo
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Vacantes Último Mes");
-
-      // Generar y descargar el archivo
-      const mesActual = new Date().toLocaleString("es-ES", { month: "long" });
-      const mesFormateado =
-        mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
-      XLSX.writeFile(workbook, `Resumen_${mesFormateado}.xlsx`);
-
-      console.log("Archivo Excel generado y descargado exitosamente.");
-      mostrarAlertaAdmin("alerta_23"); // Mostrar alerta de éxito
-    })
-    .catch((error) => {
-      console.error("Error al obtener datos:", error);
-      mostrarAlertaAdmin("alerta_24"); // Mostrar alerta de error
+      ],
     });
+
+    // Ajustar ancho de columnas
+    const colWidths = Object.keys(todasLasVacantes[0]).map((key) => ({
+      wch: Math.max(
+        key.length,
+        ...todasLasVacantes.map((row) => String(row[key] || "").length)
+      ),
+    }));
+    worksheet["!cols"] = colWidths;
+
+    // Crear libro de trabajo
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Vacantes");
+
+    // Generar nombre del archivo
+    const mesFormateado = new Date(year, month - 1).toLocaleString("es-ES", {
+      month: "long",
+    });
+    const mesCapitalizado =
+      mesFormateado.charAt(0).toUpperCase() + mesFormateado.slice(1);
+    XLSX.writeFile(workbook, `Resumen_${mesCapitalizado}_${year}.xlsx`);
+
+    console.log(`Archivo Excel generado para ${mesCapitalizado} ${year}.`);
+    mostrarAlertaAdmin("alerta_23"); // Éxito
+  } catch (error) {
+    console.error("Error al generar Excel:", error);
+    mostrarAlertaAdmin("alerta_24"); // Error
+  }
 }
 
+// Registrar plugin ChartDataLabels
+if (typeof Chart !== "undefined" && typeof ChartDataLabels !== "undefined") {
+  Chart.register(ChartDataLabels);
+}
+
+// Variable para rastrear el gráfico actual
+let currentChart = null;
+
+// Función para generar gráfico de pastel
+async function generarGraficoPastel(data, title, ctx) {
+  return new Promise((resolve, reject) => {
+    // Validar datos
+    const total = Object.values(data).reduce((a, b) => a + b, 0);
+    if (total === 0) {
+      reject(new Error("No hay datos para generar el gráfico de pastel"));
+      return;
+    }
+
+    // Destruir gráfico anterior si existe
+    if (currentChart) {
+      console.log("Destruyendo gráfico anterior en generarGraficoPastel");
+      currentChart.destroy();
+      currentChart = null;
+    }
+
+    // Crear el gráfico
+    currentChart = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: [
+          "Contratados",
+          "Bajas",
+          "Asistieron",
+          "No Asistieron",
+          "Citas",
+          "Pendientes",
+        ],
+        datasets: [
+          {
+            data: [
+              data.contratados,
+              data.baja,
+              data.asistieron,
+              data.no_asistieron,
+              data.citas,
+              data.vacantes,
+            ],
+            backgroundColor: [
+              "#4CAF50",
+              "#F44336",
+              "#2196F3",
+              "#FFCA28",
+              "#B0BEC5",
+              "#1E88E5",
+            ],
+            borderColor: "#FFFFFF",
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: false, // Desactivar animaciones para renderizado inmediato
+        plugins: {
+          title: {
+            display: true,
+            text: title,
+            font: { family: "Helvetica", size: 22, weight: "bold" },
+            color: "#333333",
+            padding: { top: 10, bottom: 20 },
+          },
+          legend: {
+            display: true,
+            position: "right",
+            labels: {
+              font: { family: "Helvetica", size: 14 },
+              color: "#333333",
+              padding: 15,
+              usePointStyle: true,
+              pointStyle: "circle",
+            },
+          },
+          tooltip: {
+            enabled: false, // Desactivar tooltips para PDF
+          },
+          datalabels: {
+            display: true,
+            color: "#FFFFFF",
+            font: { family: "Helvetica", size: 12, weight: "bold" },
+            formatter: (value, context) => {
+              const total = context.dataset.data.reduce((a, b) => a + b, 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return value > 0 ? `${percentage}%` : "";
+            },
+          },
+        },
+      },
+    });
+
+    // Capturar la imagen inmediatamente
+    try {
+      const image = ctx.canvas.toDataURL("image/png");
+      console.log("Imagen de pastel generada:", image.substring(0, 50));
+      currentChart.destroy();
+      currentChart = null;
+      resolve(image);
+    } catch (error) {
+      currentChart.destroy();
+      currentChart = null;
+      reject(error);
+    }
+  });
+}
+
+// Función para generar gráfico de barras
+async function generarGraficoBarras(data, title, ctx) {
+  return new Promise((resolve, reject) => {
+    // Validar datos
+    const total = Object.values(data).reduce((a, b) => a + b, 0);
+    if (total === 0) {
+      reject(new Error("No hay datos para generar el gráfico de barras"));
+      return;
+    }
+
+    // Destruir gráfico anterior si existe
+    if (currentChart) {
+      console.log("Destruyendo gráfico anterior en generarGraficoBarras");
+      currentChart.destroy();
+      currentChart = null;
+    }
+
+    // Crear el gráfico
+    currentChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: [
+          "Contratados",
+          "Bajas",
+          "Asistieron",
+          "No Asistieron",
+          "Citas",
+          "Pendientes",
+        ],
+        datasets: [
+          {
+            label: "Estadísticas",
+            data: [
+              data.contratados,
+              data.baja,
+              data.asistieron,
+              data.no_asistieron,
+              data.citas,
+              data.vacantes,
+            ],
+            backgroundColor: [
+              "#4CAF50",
+              "#F44336",
+              "#2196F3",
+              "#FFCA28",
+              "#B0BEC5",
+              "#1E88E5",
+            ],
+            borderColor: [
+              "#388E3C",
+              "#D32F2F",
+              "#1976D2",
+              "#FFB300",
+              "#90A4AE",
+              "#1565C0",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: false, // Desactivar animaciones para renderizado inmediato
+        plugins: {
+          title: {
+            display: true,
+            text: title,
+            font: { family: "Helvetica", size: 22, weight: "bold" },
+            color: "#333333",
+            padding: { top: 10, bottom: 20 },
+          },
+          legend: { display: false },
+          tooltip: { enabled: false }, // Desactivar tooltips para PDF
+          datalabels: {
+            display: true,
+            color: "#333333",
+            font: { family: "Helvetica", size: 12, weight: "bold" },
+            anchor: "end",
+            align: "top",
+            formatter: (value) => (value > 0 ? value : ""),
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Cantidad",
+              font: { family: "Helvetica", size: 14, weight: "bold" },
+              color: "#333333",
+            },
+            ticks: {
+              font: { family: "Helvetica", size: 12 },
+              color: "#333333",
+            },
+            grid: { color: "rgba(0, 0, 0, 0.1)" },
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Categoría",
+              font: { family: "Helvetica", size: 14, weight: "bold" },
+              color: "#333333",
+            },
+            ticks: {
+              font: { family: "Helvetica", size: 12 },
+              color: "#333333",
+            },
+            grid: { display: false },
+          },
+        },
+        elements: { bar: { borderRadius: 4 } },
+      },
+    });
+
+    // Capturar la imagen inmediatamente
+    try {
+      const image = ctx.canvas.toDataURL("image/png");
+      console.log("Imagen de barras generada:", image.substring(0, 50));
+      currentChart.destroy();
+      currentChart = null;
+      resolve(image);
+    } catch (error) {
+      currentChart.destroy();
+      currentChart = null;
+      reject(error);
+    }
+  });
+}
+
+// Función principal para generar el PDF
 async function generarEstadisticasPDF() {
   const auth = getAuth(app);
   if (!auth.currentUser) {
@@ -1869,15 +2229,23 @@ async function generarEstadisticasPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
+  let month, year;
+  try {
+    ({ month, year } = await seleccionarMesYAno());
+    console.log(
+      `Valores recibidos en generarEstadisticasPDF - Mes: ${month}, Año: ${year}`
+    );
+  } catch (error) {
+    console.log("Selección de mes/año cancelada:", error.message);
+    mostrarAlertaAdmin("alerta_28");
+    return;
+  }
+
   // Estilos
   const colorTitulo = [23, 72, 145];
   const colorTexto = [60, 60, 60];
-  const colorLinea = [200, 200, 200];
   const colorFondo = [245, 245, 245];
-
-  // Fecha límite (últimos 30 días)
-  const fechaLimite = new Date();
-  fechaLimite.setDate(fechaLimite.getDate() - 30);
+  const colorRecuadro = [230, 230, 230];
 
   // Obtener datos de Firebase
   const refs = {
@@ -1914,7 +2282,7 @@ async function generarEstadisticasPDF() {
           return;
         }
 
-        if (fecha >= fechaLimite) {
+        if (fecha.getMonth() + 1 === month && fecha.getFullYear() === year) {
           const sucursal =
             data.sucursal || data.sucursal_cita || "Sin Sucursal";
           if (!estadisticasPorSucursal[sucursal]) {
@@ -1978,288 +2346,258 @@ async function generarEstadisticasPDF() {
       ),
       get(refs.baja).then((snapshot) => procesarSnapshot(snapshot, "Baja")),
     ]);
+
+    if (Object.keys(estadisticasPorSucursal).length === 0) {
+      console.log(`No hay datos para ${month}/${year}.`);
+      mostrarAlertaAdmin("alerta_22");
+      return;
+    }
   } catch (error) {
     console.error("Error al obtener datos:", error);
     mostrarAlertaAdmin("alerta_24");
     return;
   }
 
-  if (Object.keys(estadisticasPorSucursal).length === 0) {
-    console.log("No hay datos para el último mes.");
-    mostrarAlertaAdmin("alerta_22");
-    return;
-  }
+  console.log("Estadísticas totales:", estadisticasTotales);
+  console.log("Estadísticas por sucursal:", estadisticasPorSucursal);
 
-  // Crear canvas oculto para gráficos
+  // Crear canvas para gráficos
   let canvas = document.getElementById("chartCanvas");
   if (!canvas) {
     canvas = document.createElement("canvas");
     canvas.id = "chartCanvas";
-    canvas.style.display = "none";
+    canvas.style.display = "none"; // Cambia a "block" para depuración
+    canvas.width = 800;
+    canvas.height = 500;
     document.body.appendChild(canvas);
   }
   const ctx = canvas.getContext("2d");
 
-  // Función para limpiar el canvas
+  // Función para limpiar canvas
   function limpiarCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-  }
-
-  // Función para generar gráfico de barras
-  async function generarGraficoBarras(data, labels, title) {
-    limpiarCanvas();
-    canvas.width = 600;
-    canvas.height = 400;
-
-    return new Promise((resolve) => {
-      const chart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Contratados",
-              data: data.contratados,
-              backgroundColor: "rgb(0, 191, 99)",
-            },
-            {
-              label: "Baja",
-              data: data.baja,
-              backgroundColor: "rgb(255, 49, 49)",
-            },
-            {
-              label: "Asistieron",
-              data: data.asistieron,
-              backgroundColor: "rgb(23, 162, 184)",
-            },
-            {
-              label: "No Asistieron",
-              data: data.no_asistieron,
-              backgroundColor: "rgb(255, 215, 0)",
-            },
-            {
-              label: "Citas",
-              data: data.citas,
-              backgroundColor: "rgb(166, 166, 166)",
-            },
-            {
-              label: "Pendientes",
-              data: data.vacantes,
-              backgroundColor: "rgb(27, 60, 89)",
-            },
-          ],
-        },
-        options: {
-          responsive: false,
-          plugins: {
-            title: {
-              display: true,
-              text: title,
-              font: { size: 16 },
-            },
-            legend: { position: "top" },
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: { display: true, text: "Cantidad" },
-            },
-            x: { title: { display: true, text: "Categoría" } },
-          },
-        },
-      });
-
-      setTimeout(() => {
-        const image = canvas.toDataURL("image/png");
-        chart.destroy();
-        resolve(image);
-      }, 500); // Retraso para asegurar el renderizado
-    });
-  }
-
-  // Función para generar gráfico de pastel
-  async function generarGraficoPastel(data, title) {
-    limpiarCanvas();
-    canvas.width = 400;
-    canvas.height = 400;
-
-    return new Promise((resolve) => {
-      const chart = new Chart(ctx, {
-        type: "pie",
-        data: {
-          labels: [
-            "Contratados",
-            "Baja",
-            "Asistieron",
-            "No Asistieron",
-            "Citas",
-            "Pendientes",
-          ],
-          datasets: [
-            {
-              data: [
-                data.contratados,
-                data.baja,
-                data.asistieron,
-                data.no_asistieron,
-                data.citas,
-                data.vacantes,
-              ],
-              backgroundColor: [
-                "rgb(0, 191, 99)",
-                "rgb(255, 49, 49)",
-                "rgb(23, 162, 184)",
-                "rgb(255, 215, 0)",
-                "rgb(166, 166, 166)",
-                "rgb(27, 60, 89)",
-              ],
-            },
-          ],
-        },
-        options: {
-          responsive: false,
-          plugins: {
-            title: {
-              display: true,
-              text: title,
-              font: { size: 16 },
-            },
-          },
-        },
-      });
-
-      setTimeout(() => {
-        const image = canvas.toDataURL("image/png");
-        chart.destroy();
-        resolve(image);
-      }, 500); // Retraso para asegurar el renderizado
-    });
+    // Asegurar que no haya gráfico activo
+    if (currentChart) {
+      console.log("Limpieza adicional: destruyendo gráfico activo");
+      currentChart.destroy();
+      currentChart = null;
+    }
   }
 
   // Portada
+  const mesFormateado = new Date(year, month - 1).toLocaleString("es-ES", {
+    month: "long",
+  });
+  const mesCapitalizado =
+    mesFormateado.charAt(0).toUpperCase() + mesFormateado.slice(1);
   doc.setFillColor(...colorFondo);
   doc.rect(0, 0, 210, 297, "F");
   doc.setFont("helvetica", "bold");
   doc.setFontSize(30);
   doc.setTextColor(...colorTitulo);
-  const mesActual = new Date().toLocaleString("es-ES", { month: "long" });
-  const mesFormateado = mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
-  doc.text(`Estadísticas de Vacantes - ${mesFormateado}`, 25, 150);
+  doc.text(`Estadísticas - ${mesCapitalizado} ${year}`, 105, 140, {
+    align: "center",
+    maxWidth: 160,
+  });
+  doc.setFont("helvetica", "normal");
   doc.setFontSize(16);
   doc.setTextColor(...colorTexto);
-  doc.text("Generado por Reclutador Web MMM", 55, 170);
+  doc.text("Reclutador Web MMM", 105, 160, { align: "center" });
   doc.setFontSize(12);
+  doc.text(`Generado el ${new Date().toLocaleDateString("es-ES")}`, 105, 180, {
+    align: "center",
+  });
 
-  // Diapositiva 1: Resumen General
+  // Resumen General
   doc.addPage();
   doc.setFillColor(...colorFondo);
   doc.rect(0, 0, 210, 297, "F");
+  doc.setDrawColor(200, 200, 200);
+  doc.roundedRect(15, 15, 180, 260, 5, 5, "FD");
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(20);
+  doc.setFontSize(22);
   doc.setTextColor(...colorTitulo);
-  doc.text("Resumen General", 20, 20);
-  doc.setDrawColor(...colorLinea);
-  doc.line(20, 22, 190, 22);
-
+  doc.text("Resumen General", 105, 30, { align: "center" });
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(12);
+  doc.setFontSize(14);
   doc.setTextColor(...colorTexto);
-  doc.text(`Total Contratados: ${estadisticasTotales.contratados}`, 20, 40);
-  doc.text(`Total Baja: ${estadisticasTotales.baja}`, 20, 50);
-  doc.text(`Total Asistieron: ${estadisticasTotales.asistieron}`, 20, 60);
-  doc.text(`Total No Asistieron: ${estadisticasTotales.no_asistieron}`, 20, 70);
-  doc.text(`Total Citas: ${estadisticasTotales.citas}`, 20, 80);
-  doc.text(`Total Pendientes: ${estadisticasTotales.vacantes}`, 20, 90);
-  doc.setTextColor(...colorTitulo);
-  doc.text("Generado por Reclutador Web MMM", 8, 290);
+  doc.text(`Estadísticas globales para ${mesCapitalizado} ${year}`, 105, 40, {
+    align: "center",
+  });
+  doc.line(15, 45, 195, 45);
 
+  // Datos numéricos en un recuadro
+  doc.setFillColor(...colorRecuadro);
+  doc.roundedRect(20, 50, 170, 80, 3, 3, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.setTextColor(...colorTexto);
+  let yPosition = 60;
+  const stats = [
+    { label: "Total Contratados", value: estadisticasTotales.contratados },
+    { label: "Total Bajas", value: estadisticasTotales.baja },
+    { label: "Total Asistieron", value: estadisticasTotales.asistieron },
+    { label: "Total No Asistieron", value: estadisticasTotales.no_asistieron },
+    { label: "Total Citas", value: estadisticasTotales.citas },
+    { label: "Total Pendientes", value: estadisticasTotales.vacantes },
+  ];
+
+  stats.forEach((stat) => {
+    doc.setFont("helvetica", "normal");
+    doc.text(`${stat.label}:`, 25, yPosition);
+    doc.setFont("helvetica", "bold");
+    doc.text(`${stat.value}`, 100, yPosition);
+    yPosition += 12;
+  });
+
+  // Gráfico de pastel
   try {
-    const pastelGeneral = await generarGraficoPastel(
-      estadisticasTotales,
-      "Distribución General"
-    );
-    if (pastelGeneral.includes("data:image/png")) {
-      doc.addImage(pastelGeneral, "PNG", 40, 120, 130, 130);
+    const total = Object.values(estadisticasTotales).reduce((a, b) => a + b, 0);
+    if (total === 0) {
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(12);
+      doc.setTextColor(255, 0, 0);
+      doc.text("No hay datos suficientes para el gráfico de pastel.", 30, 140);
     } else {
-      console.warn("Gráfico de pastel no generado correctamente.");
-      doc.text("No se pudo generar el gráfico de pastel.", 50, 100);
+      limpiarCanvas();
+      const pastelGeneral = await generarGraficoPastel(
+        estadisticasTotales,
+        `Distribución General - ${mesCapitalizado} ${year}`,
+        ctx
+      );
+      console.log("Imagen de pastel:", pastelGeneral.substring(0, 50));
+      doc.addImage(pastelGeneral, "PNG", 30, 140, 150, 100);
     }
   } catch (error) {
     console.error("Error al generar gráfico de pastel:", error);
-    doc.text("Error al generar el gráfico de pastel.", 50, 100);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(12);
+    doc.setTextColor(255, 0, 0);
+    doc.text("No se pudo generar el gráfico de pastel.", 30, 140);
   }
 
-  // Diapositivas por Sucursal
+  // Estadísticas por Sucursal
   const sucursales = Object.keys(estadisticasPorSucursal).sort();
   for (const sucursal of sucursales) {
     doc.addPage();
     doc.setFillColor(...colorFondo);
     doc.rect(0, 0, 210, 297, "F");
+    doc.setDrawColor(200, 200, 200);
+    doc.roundedRect(15, 15, 180, 260, 5, 5, "FD");
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
+    doc.setFontSize(20);
     doc.setTextColor(...colorTitulo);
-    doc.text(`Estadísticas - ${sucursal}`, 20, 20);
-    doc.setDrawColor(...colorLinea);
-    doc.line(20, 22, 190, 22);
-
+    doc.text(`Estadísticas - ${sucursal}`, 105, 30, {
+      align: "center",
+      maxWidth: 170,
+    });
     doc.setFont("helvetica", "normal");
-    doc.setFontSize(12);
+    doc.setFontSize(14);
     doc.setTextColor(...colorTexto);
-    const stats = estadisticasPorSucursal[sucursal];
-    doc.text(`Contratados: ${stats.contratados}`, 20, 40);
-    doc.text(`Baja: ${stats.baja}`, 20, 50);
-    doc.text(`Asistieron: ${stats.asistieron}`, 20, 60);
-    doc.text(`No Asistieron: ${stats.no_asistieron}`, 20, 70);
-    doc.text(`Citas: ${stats.citas}`, 20, 80);
-    doc.text(`Pendientes: ${stats.vacantes}`, 20, 90);
-    doc.setTextColor(...colorTitulo);
-    doc.text("Generado por Reclutador Web MMM", 8, 290);
+    doc.text(`${mesCapitalizado} ${year}`, 105, 40, { align: "center" });
+    doc.line(15, 45, 195, 45);
 
+    // Datos numéricos en un recuadro
+    doc.setFillColor(...colorRecuadro);
+    doc.roundedRect(20, 50, 170, 80, 3, 3, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.setTextColor(...colorTexto);
+    yPosition = 60;
+    const statsSucursal = [
+      {
+        label: "Contratados",
+        value: estadisticasPorSucursal[sucursal].contratados,
+      },
+      { label: "Bajas", value: estadisticasPorSucursal[sucursal].baja },
+      {
+        label: "Asistieron",
+        value: estadisticasPorSucursal[sucursal].asistieron,
+      },
+      {
+        label: "No Asistieron",
+        value: estadisticasPorSucursal[sucursal].no_asistieron,
+      },
+      { label: "Citas", value: estadisticasPorSucursal[sucursal].citas },
+      {
+        label: "Pendientes",
+        value: estadisticasPorSucursal[sucursal].vacantes,
+      },
+    ];
+
+    statsSucursal.forEach((stat) => {
+      doc.setFont("helvetica", "normal");
+      doc.text(`${stat.label}:`, 25, yPosition);
+      doc.setFont("helvetica", "bold");
+      doc.text(`${stat.value}`, 100, yPosition);
+      yPosition += 12;
+    });
+
+    // Gráfico de barras
     try {
-      const barrasSucursal = await generarGraficoBarras(
-        {
-          contratados: [stats.contratados],
-          baja: [stats.baja],
-          asistieron: [stats.asistieron],
-          no_asistieron: [stats.no_asistieron],
-          citas: [stats.citas],
-          vacantes: [stats.vacantes],
-        },
-        ["Estadísticas"],
-        `Estadísticas de ${sucursal}`
+      const total = Object.values(estadisticasPorSucursal[sucursal]).reduce(
+        (a, b) => a + b,
+        0
       );
-      if (barrasSucursal.includes("data:image/png")) {
-        doc.addImage(barrasSucursal, "PNG", 20, 120, 170, 130);
-      } else {
-        console.warn(
-          `Gráfico de barras para ${sucursal} no generado correctamente.`
-        );
+      if (total === 0) {
+        doc.setFont("helvetica", "italic");
+        doc.setFontSize(12);
+        doc.setTextColor(255, 0, 0);
         doc.text(
-          `No se pudo generar el gráfico de barras para ${sucursal}.`,
-          20,
-          100
+          `No hay datos suficientes para el gráfico de barras de ${sucursal}.`,
+          30,
+          140
         );
+      } else {
+        limpiarCanvas();
+        const barrasSucursal = await generarGraficoBarras(
+          estadisticasPorSucursal[sucursal],
+          `Estadísticas de ${sucursal} - ${mesCapitalizado} ${year}`,
+          ctx
+        );
+        console.log(
+          "Imagen de barras para",
+          sucursal,
+          ":",
+          barrasSucursal.substring(0, 50)
+        );
+        doc.addImage(barrasSucursal, "PNG", 30, 140, 150, 100);
       }
     } catch (error) {
       console.error(
         `Error al generar gráfico de barras para ${sucursal}:`,
         error
       );
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(12);
+      doc.setTextColor(255, 0, 0);
       doc.text(
-        `Error al generar el gráfico de barras para ${sucursal}.`,
-        20,
-        100
+        `No se pudo generar el gráfico de barras para ${sucursal}.`,
+        30,
+        140
       );
     }
   }
 
-  // Guardar PDF
+  // Pie de página en todas las páginas
+  for (let i = 1; i <= doc.getNumberOfPages(); i++) {
+    doc.setPage(i);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(10);
+    doc.setTextColor(...colorTexto);
+    doc.text(`Página ${i} de ${doc.getNumberOfPages()}`, 180, 290, {
+      align: "right",
+    });
+    doc.text("Reclutador Web MMM", 30, 290);
+  }
+
   try {
-    doc.save(`Grafica_${mesFormateado}.pdf`);
+    doc.save(`Estadisticas_${mesCapitalizado}_${year}.pdf`);
+    console.log(`PDF generado para ${mesCapitalizado} ${year}.`);
     mostrarAlertaAdmin("alerta_25");
   } catch (error) {
-    console.error("Error al guardar el PDF:", error);
+    console.error("Error al guardar PDF:", error);
     mostrarAlertaAdmin("alerta_24");
   }
 }
@@ -3093,7 +3431,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const redirectAfterLogin = localStorage.getItem("redirectAfterLogin");
       if (redirectAfterLogin) {
         console.log(`Redirigiendo automáticamente a ${redirectAfterLogin}...`);
-        redirectAfterLogin
+        redirectAfterLogin;
         const isManager = redirectAfterLogin === "manager";
         setThemeColor("#2a4566");
 
@@ -3108,7 +3446,7 @@ document.addEventListener("DOMContentLoaded", () => {
           admin: !isManager,
           admin_manager: isManager,
         });
-        
+
         updateUnreadChatsCount();
         updateUnreadMessagesCount();
 

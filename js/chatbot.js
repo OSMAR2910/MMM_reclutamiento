@@ -1,90 +1,281 @@
-// Importar Firebase
+// chatbot.js
 import { app, database, ref, push, set } from "./firebase.js";
-import { isStandalone, setThemeColor } from "./main.js";
 
 let intents = [];
 let messageBuffer = [];
 let userName = localStorage.getItem("userName") || "Humano";
 let userIdName = localStorage.getItem("userIdName");
+let lastIntentTag = null; // Para mantener contexto de conversación
+let conversationContext = []; // Historial de intents recientes
 
 function generateRandomId() {
   return Math.random().toString(36).substring(2, 8);
 }
 
-async function loadIntents() {
-  try {
-    const response = await fetch("https://mmm-rh.netlify.app/json/intents.json", {
-      method: 'GET',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
+// Función de similitud de texto (distancia de Levenshtein simplificada)
+function calculateSimilarity(str1, str2) {
+  const longer = str1.length > str2.length ? str1 : str2;
+  const shorter = str1.length > str2.length ? str2 : str1;
+  
+  if (longer.length === 0) return 1.0;
+  
+  const distance = levenshteinDistance(longer, shorter);
+  return (longer.length - distance) / longer.length;
+}
+
+// Distancia de Levenshtein para comparar similitud de strings
+function levenshteinDistance(str1, str2) {
+  const matrix = [];
+  
+  for (let i = 0; i <= str2.length; i++) {
+    matrix[i] = [i];
+  }
+  
+  for (let j = 0; j <= str1.length; j++) {
+    matrix[0][j] = j;
+  }
+  
+  for (let i = 1; i <= str2.length; i++) {
+    for (let j = 1; j <= str1.length; j++) {
+      if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j] + 1
+        );
       }
+    }
+  }
+  
+  return matrix[str2.length][str1.length];
+}
+
+// Función para obtener contexto de conversación
+function getConversationContext() {
+  return conversationContext.slice(-3); // Últimos 3 intents
+}
+
+// Función para detectar si el mensaje es una continuación del contexto
+function isContextContinuation(message, intentTag) {
+  const context = getConversationContext();
+  const contextKeywords = {
+    'Preguntas_Empleo': ['requisitos', 'documentos', 'sueldo', 'beneficios', 'horarios', 'sucursal'],
+    'Requisitos_Empleo': ['sueldo', 'beneficios', 'horarios', 'sucursal', 'aplicar', 'postular'],
+    'Beneficios_Salario': ['horarios', 'sucursal', 'aplicar', 'postular', 'requisitos'],
+    'Horarios_Trabajo': ['sucursal', 'aplicar', 'postular', 'requisitos', 'sueldo'],
+    'Sucursales_Ubicacion': ['aplicar', 'postular', 'requisitos', 'sueldo', 'horarios']
+  };
+  
+  const normalizedMessage = normalizeText(message);
+  const relevantKeywords = contextKeywords[intentTag] || [];
+  
+  return relevantKeywords.some(keyword => 
+    normalizedMessage.includes(keyword) || 
+    calculateSimilarity(normalizedMessage, keyword) > 0.6
+  );
+}
+
+async function loadIntents() {
+  const cachedIntents = localStorage.getItem("intents");
+  if (cachedIntents) {
+    intents = JSON.parse(cachedIntents).intents || [];
+    console.log("✅ Intents cargados desde caché:", intents);
+    return;
+  }
+
+  try {
+    // Primero intentamos cargar localmente
+    try {
+      const localResponse = await fetch("/json/intents.json");
+      if (localResponse.ok) {
+        const data = await localResponse.json();
+        intents = data.intents || [];
+        localStorage.setItem("intents", JSON.stringify(data));
+        console.log("✅ Intents cargados localmente:", intents);
+        return;
+      }
+    } catch (localError) {
+      console.log("⚠️ No se pudo cargar localmente, intentando desde URL...");
+    }
+
+    // Si falla la carga local, intentamos desde la URL
+    const response = await fetch("https://mmm-rh.netlify.app/json/intents.json", {
+      method: "GET",
+      mode: "cors",
+      headers: { "Content-Type": "application/json", "Cache-Control": "no-cache" },
     });
+    
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
     intents = data.intents || [];
-    console.log("✅ Intents cargados correctamente:", intents);
+    localStorage.setItem("intents", JSON.stringify(data));
+    console.log("✅ Intents cargados desde URL:", intents);
   } catch (error) {
-    console.error("❌ Error cargando intents.json:", error);
+    console.error("❌ Error cargando intents:", error);
+    showError("No se pudieron cargar las respuestas. Intenta de nuevo más tarde.");
   }
 }
 
 function normalizeText(text) {
-  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
 }
 
+// Función mejorada para obtener el mejor intent
 function getBestIntent(message) {
-  message = normalizeText(message);
+  const normalizedMessage = normalizeText(message);
   let bestMatch = null;
   let bestScore = 0;
 
   for (const intent of intents) {
     let score = 0;
+    
+    // 1. Análisis de similitud con cada keyword
     for (const keyword of intent.keywords) {
       const normalizedKeyword = normalizeText(keyword);
-      if (message.includes(normalizedKeyword)) {
-        score++;
+      
+      // Coincidencia exacta (máxima puntuación)
+      if (normalizedMessage === normalizedKeyword) {
+        score += 10;
+        continue;
+      }
+      
+      // Coincidencia de frase completa
+      if (normalizedMessage.includes(normalizedKeyword)) {
+        score += 5;
+        // Bonus por longitud de keyword (palabras más largas tienen más peso)
+        score += normalizedKeyword.length * 0.2;
+      }
+      
+      // Análisis de similitud para errores ortográficos y variaciones
+      const similarity = calculateSimilarity(normalizedMessage, normalizedKeyword);
+      if (similarity > 0.8) {
+        score += 4; // Muy similar
+      } else if (similarity > 0.6) {
+        score += 2; // Similar
+      } else if (similarity > 0.4) {
+        score += 1; // Algo similar
+      }
+      
+      // Bonus por palabras individuales en frases largas
+      const messageWords = normalizedMessage.split(' ');
+      const keywordWords = normalizedKeyword.split(' ');
+      
+      for (const word of keywordWords) {
+        if (messageWords.includes(word) && word.length > 2) {
+          score += 1;
+        }
       }
     }
+
+    // 2. Bonus por contexto de conversación
+    if (lastIntentTag === intent.tag) {
+      score += 3; // Mismo tema de conversación
+    }
+    
+    // 3. Bonus por continuación de contexto
+    if (isContextContinuation(message, intent.tag)) {
+      score += 2;
+    }
+    
+    // 4. Penalización por mensajes muy cortos (excepto saludos)
+    if (normalizedMessage.length < 3 && intent.tag !== "Saludos") {
+      score *= 0.5;
+    }
+    
+    // 5. Bonus por intents específicos vs generales
+    if (intent.tag === "Saludos" && normalizedMessage.length < 10) {
+      score += 1; // Los saludos cortos son más probables
+    }
+
+    // Actualizar el mejor match si encontramos una puntuación más alta
     if (score > bestScore) {
       bestScore = score;
       bestMatch = intent;
     }
   }
-  return bestScore > 0 ? bestMatch : null;
+
+  // Solo devolver un match si la puntuación es significativa
+  const threshold = normalizedMessage.length < 5 ? 3 : 2;
+  if (bestScore >= threshold) {
+    // Actualizar contexto de conversación
+    if (bestMatch) {
+      lastIntentTag = bestMatch.tag;
+      conversationContext.push(bestMatch.tag);
+      // Mantener solo los últimos 5 intents
+      if (conversationContext.length > 5) {
+        conversationContext.shift();
+      }
+    }
+    return bestMatch;
+  }
+  
+  return null;
 }
 
 function getResponse(message) {
-  if (!intents.length) {
-    console.error("⚠️ Intents no están cargados.");
-    return "Lo siento, no puedo responder en este momento.";
-  }
-
+  if (!intents.length) return "Lo siento, no puedo responder en este momento.";
+  
   const bestIntent = getBestIntent(message);
   if (bestIntent) {
-    let response = bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)];
-    return response.replace("${userName}", userName);
-  } else {
-    console.log("🚫 No encontré una respuesta adecuada para:", message);
-    saveUnansweredMessage(message);
-    return `¡Glu-glu! No estoy seguro de lo que quieres decir, ${userName}. ¿Podrías explicarlo de otra manera? ¡Prometo no picotear tu respuesta! 🦃✨`;
+    return bestIntent.responses[Math.floor(Math.random() * bestIntent.responses.length)].replace(
+      "${userName}",
+      userName
+    );
   }
+  
+  // Respuesta mejorada cuando no entiende
+  saveUnansweredMessage(message);
+  
+  // Sugerir temas basados en el contexto
+  const context = getConversationContext();
+  let suggestion = "";
+  
+  if (context.length > 0) {
+    const lastContext = context[context.length - 1];
+    const suggestions = {
+      'Preguntas_Empleo': '¿Te gustaría saber sobre requisitos, sueldo o sucursales?',
+      'Requisitos_Empleo': '¿Quieres conocer el sueldo, horarios o dónde aplicar?',
+      'Beneficios_Salario': '¿Te interesa saber sobre horarios o sucursales disponibles?',
+      'Horarios_Trabajo': '¿Quieres conocer las sucursales o cómo aplicar?',
+      'Sucursales_Ubicacion': '¿Te gustaría saber cómo aplicar o los requisitos?'
+    };
+    suggestion = suggestions[lastContext] || "";
+  }
+  
+  const baseResponse = `¡Glu-glu! No estoy seguro de lo que quieres decir, ${userName}. ¿Podrías explicarlo de otra manera? 🦃✨`;
+  
+  if (suggestion) {
+    return `${baseResponse}\n\n${suggestion}`;
+  }
+  
+  return `${baseResponse}\n\nPuedes preguntarme sobre:\n• Vacantes disponibles 🏢\n• Requisitos para aplicar 📋\n• Sueldo y beneficios 💰\n• Horarios de trabajo ⏰\n• Sucursales disponibles 📍`;
 }
 
 async function saveMessagesToFirebase() {
-  if (!userIdName || messageBuffer.length === 0) {
-    console.log("🚫 No se guardan mensajes: userIdName o buffer vacío", { userIdName, bufferLength: messageBuffer.length });
-    return;
-  }
-
+  if (!userIdName || !messageBuffer.length) return;
   try {
     const userRef = ref(database, `chatMessages/${userIdName}`);
     await push(userRef, { messages: [...messageBuffer] });
-    console.log(`✅ ${messageBuffer.length} mensajes añadidos al historial en Firebase para ${userIdName}`);
+    console.log(`✅ ${messageBuffer.length} mensajes guardados en Firebase`);
     messageBuffer = [];
   } catch (error) {
     console.error("❌ Error guardando mensajes en Firebase:", error);
+  }
+}
+
+async function saveUnansweredMessage(message) {
+  try {
+    const messagesRef = ref(database, "mensajes_error");
+    await set(push(messagesRef), { message, timestamp: new Date().toISOString() });
+    console.log("📌 Mensaje sin respuesta guardado:", message);
+  } catch (error) {
+    console.error("❌ Error guardando mensaje sin respuesta:", error);
   }
 }
 
@@ -92,45 +283,35 @@ function sendMessage(sender, message, isBot = false) {
   const chatBox = document.getElementById("chat_box");
   const messageElement = document.createElement("div");
   messageElement.className = isBot ? "bot_message" : "user_message";
-
-  if (isBot) {
-    messageElement.innerHTML = `<span>Sr.Pavo Chava</span><p>${message}</p>`;
-    messageBuffer.push({ sender: "Sr.Pavo Chava", message, timestamp: new Date().toISOString() });
-  } else {
-    messageElement.innerHTML = `<p>${message}</p>`;
-    messageBuffer.push({ sender: userIdName, message, timestamp: new Date().toISOString() });
-  }
-
-  console.log("📩 Mensaje añadido al buffer. Total:", messageBuffer.length, "Mensajes:", messageBuffer);
-  if (messageBuffer.length >= 10) {
-    console.log("📤 Guardando mensajes en Firebase...");
-    saveMessagesToFirebase();
-  }
-
+  messageElement.innerHTML = isBot
+    ? `<span>Sr.Pavo Chava</span><p>${message}</p>`
+    : `<p>${message}</p>`;
+  
+  messageBuffer.push({ 
+    sender: isBot ? "Sr.Pavo Chava" : userIdName, 
+    message, 
+    timestamp: new Date().toISOString() 
+  });
+  
   chatBox.appendChild(messageElement);
+  
+  // Asegurar que el mensaje sea visible
+  if (!isBot) {
   scrollToBottom();
+  } else {
+    // Para mensajes del bot, esperar a que se renderice
+    setTimeout(scrollToBottom, 100);
+  }
+
+  if (messageBuffer.length >= 10) saveMessagesToFirebase();
 }
 
-function updateUserIdDisplay() {
-  const userIdElement = document.getElementById("user_id_display");
-  if (userIdElement) {
-    userIdElement.innerHTML = "";
-    userIdElement.textContent = userIdName ? `${userIdName}` : "Usuario no identificado";
-  }
-}
-
-async function saveUnansweredMessage(message) {
-  try {
-    const messagesRef = ref(database, "mensajes_error");
-    const newMessageRef = push(messagesRef);
-    await set(newMessageRef, {
-      message: message,
-      timestamp: new Date().toISOString(),
-    });
-    console.log("📌 Mensaje sin respuesta guardado en Firebase:", message);
-  } catch (error) {
-    console.error("❌ Error guardando mensaje sin respuesta en Firebase:", error);
-  }
+function insertarEspaciadorInicial() {
+  const chatBox = document.getElementById("chat_box");
+  const espaciador = document.createElement("div");
+  espaciador.style.height = "100%"; // o el espacio que necesites
+  espaciador.className = "espaciador-inicial";
+  chatBox.appendChild(espaciador);
 }
 
 function showTypingIndicator() {
@@ -143,33 +324,89 @@ function showTypingIndicator() {
   return typingIndicator;
 }
 
-function sendWelcomeMessage() {
-  if (!userIdName) return;
-
-  const saludosIntent = intents.find(intent => intent.tag === "Saludos");
-  if (saludosIntent && saludosIntent.responses && saludosIntent.responses.length > 0) {
-    let randomSaludo = saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)];
-    randomSaludo = randomSaludo.replace("${userName}", userName);
-    showTypingIndicator();
-    setTimeout(() => {
-      document.querySelector(".typing")?.remove();
-      sendMessage("bot", randomSaludo, true);
-    }, 2000);
-  } else {
-    sendMessage("bot", `¡Hola, ${userName}! ¿En qué puedo ayudarte? 😃`, true);
+function scrollToBottom() {
+  const chatBox = document.getElementById("chat_box");
+  if (chatBox) {
+    const scrollOptions = {
+      top: chatBox.scrollHeight,
+      behavior: 'smooth'
+    };
+    
+    // En iOS, usar scrollTo con un pequeño delay para mejor compatibilidad
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      setTimeout(() => {
+        chatBox.scrollTo(scrollOptions);
+      }, 100);
+    } else {
+      chatBox.scrollTo(scrollOptions);
+    }
   }
 }
 
+function sendWelcomeMessage() {
+  if (!userIdName) return;
+  const saludosIntent = intents.find((intent) => intent.tag === "Saludos");
+  const message = saludosIntent
+    ? saludosIntent.responses[Math.floor(Math.random() * saludosIntent.responses.length)].replace(
+        "${userName}",
+        userName
+      )
+    : `¡Hola, ${userName}! ¿En qué puedo ayudarte? 😃`;
+  const typingIndicator = showTypingIndicator();
+  setTimeout(() => {
+    typingIndicator.remove();
+    sendMessage("bot", message, true);
+  }, 1500);
+}
+
 function getRandomTienesPreguntasResponse() {
-  const tienesPreguntasIntent = intents.find(intent => intent.tag === "tienes_preguntas");
-  let response = tienesPreguntasIntent?.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)] || "¿En qué puedo ayudarte?";
+  const tienesPreguntasIntent = intents.find((intent) => intent.tag === "tienes_preguntas");
+  let response =
+    tienesPreguntasIntent?.responses[Math.floor(Math.random() * tienesPreguntasIntent.responses.length)] ||
+    "¿En qué puedo ayudarte?";
   return response.replace("${userName}", userName);
 }
 
 function updatePavoMsj() {
   const pavoMsjElement = document.getElementById("pavo_msj");
   if (pavoMsjElement) {
-    pavoMsjElement.innerHTML = `${getRandomTienesPreguntasResponse()}`;
+    pavoMsjElement.innerHTML = getRandomTienesPreguntasResponse();
+  }
+}
+
+function toggleChatbot() {
+  const chatbot = document.getElementById("chatbot");
+  const pavoCont = document.getElementById("pavo_cont");
+  const chatForm = document.getElementById("chat_form");
+  const userInfoContainer = document.getElementById("user_info_container");
+  const isMobile = window.innerWidth <= 500;
+
+  if (chatbot.classList.contains("max_chat")) {
+    // Minimizar
+    chatbot.classList.remove("max_chat");
+    chatbot.classList.add("chatbot_color");
+    pavoCont.style.display = "flex";
+    chatForm.style.display = "none";
+    userInfoContainer.style.display = "none";
+    updatePavoMsj();
+  } else {
+    // Maximizar
+    chatbot.classList.add("max_chat");
+    chatbot.classList.remove("chatbot_color");
+    pavoCont.style.display = "none";
+    chatForm.style.display = userIdName ? "flex" : "none";
+    userInfoContainer.style.display = userIdName ? "none" : "flex";
+    
+    // En móviles, ajustar el viewport
+    if (isMobile) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
+    }
+    
+    scrollToBottom();
+    if (userIdName) sendWelcomeMessage();
   }
 }
 
@@ -177,10 +414,14 @@ function handleNameForm() {
   const nameForm = document.getElementById("name_form");
   const userInfoContainer = document.getElementById("user_info_container");
   const chatForm = document.getElementById("chat_form");
+  const chatbot = document.getElementById("chatbot");
 
   if (!userIdName) {
     userInfoContainer.style.display = "flex";
     chatForm.style.display = "none";
+    chatbot.classList.add("max_chat");
+    chatbot.classList.remove("chatbot_color");
+    scrollToBottom();
     nameForm.addEventListener("submit", (event) => {
       event.preventDefault();
       userName = document.getElementById("user_name").value.trim() || "Humano";
@@ -189,221 +430,146 @@ function handleNameForm() {
       localStorage.setItem("userName", userName);
       userInfoContainer.style.display = "none";
       chatForm.style.display = "flex";
-      updateUserIdDisplay();
+      document.getElementById("user_id_display").textContent = userIdName;
+      scrollToBottom();
       sendWelcomeMessage();
-      maximizeChatbot();
     });
   } else {
     userInfoContainer.style.display = "none";
     chatForm.style.display = "flex";
-    updateUserIdDisplay();
+    document.getElementById("user_id_display").textContent = userIdName;
+    scrollToBottom();
   }
 }
 
-function scrollToBottom() {
+function handleVirtualKeyboard() {
+  const chatForm = document.getElementById("chat_form");
   const chatBox = document.getElementById("chat_box");
-  const chatForm = document.getElementById("chat_form");
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  setTimeout(() => {
-    if (isIOS) {
-      // Desplazar el formulario para que esté visible
-      chatForm.scrollIntoView({ behavior: "smooth", block: "end" });
-      // Desplazar el chat_box para los mensajes
-      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
-      // Ajustar el viewport para asegurar visibilidad
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    } else {
-      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: "smooth" });
-    }
-  }, 100);
-}
-
-function maximizeChatbot() {
+  const input = document.getElementById("chat_input");
   const chatbot = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-  const chatForm = document.getElementById("chat_form");
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  let fullViewportHeight = window.innerHeight;
+  let isKeyboardOpen = false;
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
+  let resizeTimeout;
 
-  if (!chatbot.classList.contains("max_chat")) {
-    chatbot.classList.add("max_chat");
-    if (isIOS) {
-      chatbot.classList.add("ios-max-chat"); // Agregar clase específica para iOS
-    }
-    chatForm.style.display = "flex";
-    pavo.style.display = "none";
-    chatbot.classList.remove("chatbot_color");
-    adjustChatbotHeight();
-    adjustChatbotPosition();
-    sendWelcomeMessage();
-    setThemeColor('#ffffff');
-  }
-}
- 
-function minimizeChatbot() {
-  const chatbot = document.getElementById("chatbot");
-  const pavo = document.getElementById("pavo_cont");
-  const chatForm = document.getElementById("chat_form");
-  if (chatbot.classList.contains("max_chat")) {
-    chatbot.classList.remove("max_chat");
-    chatbot.classList.remove("ios-max-chat"); // Eliminar clase iOS
-    chatbot.classList.add("chatbot_color");
-    chatbot.style.height = "";
-    chatbot.style.width = "";
-    chatbot.style.top = "";
-    chatbot.style.bottom = "";
-    chatbot.style.right = "";
-    chatbot.style.margin = "";
-    chatbot.style.transform = "";
-    chatForm.style.display = "";
-    pavo.style.display = "";
-    adjustChatbotPosition();
-    setThemeColor('#e36b2f');
-  }
-}
-
-function toggleChatbot() {
-  const chatbot = document.getElementById("chatbot");
-  if (chatbot.classList.contains("max_chat")) {
-    minimizeChatbot();
-  } else {
-    maximizeChatbot();
-  }
-}
-
-function adjustChatbotHeight() {
-  const chatbot = document.getElementById("chatbot");
-  const chatForm = document.getElementById("chat_form");
-  if (!chatbot.classList.contains("max_chat")) return;
-
-  const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const width = window.innerWidth;
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isIOS) {
-    // Simplificar para iOS: usar fixed y dimensiones completas
-    chatbot.style.position = "fixed";
-    chatbot.style.top = "";
-    chatbot.style.left = "";
-    chatbot.style.right = "";
-    chatbot.style.bottom = "";
-    chatbot.style.width = "100vw";
-    chatbot.style.height = "100vh";
-    chatbot.style.margin = "0";
-    chatbot.style.maxHeight = "none";
-    document.documentElement.style.setProperty("--keyboard-height", "0px");
-
-    // Ajustar chat_form para evitar la barra de herramientas
-    chatForm.style.width = "100%";
-    chatForm.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)"; // Mayor padding para barra de herramientas
-    chatForm.style.boxSizing = "border-box";
-    chatForm.style.zIndex = "900";
-
-    console.log("iOS: Chatbot maximizado con position: fixed, chat_form ajustado");
-  } else {
-    // Comportamiento original para Android y otros dispositivos (sin cambios)
-    if (width <= 500) {
-      chatbot.style.height = `${viewportHeight}px`;
-      chatbot.style.width = "100vw";
-      document.documentElement.style.setProperty("--keyboard-height", "0px");
-      console.log("Mobile Height (non-iOS):", viewportHeight);
-    } else {
-      chatbot.style.height = "70vh";
-      chatbot.style.width = "20vw";
-      chatbot.style.margin = "0";
-      document.documentElement.style.setProperty("--keyboard-height", "0px");
-      console.log("PC Height:", chatbot.style.height);
-    }
-    chatForm.style.paddingBottom = "0";
-    chatForm.style.width = "90%";
+  function debounce(func, wait) {
+    return function (...args) {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => func.apply(this, args), wait);
+    };
   }
 
-  chatForm.style.display = "flex";
-  scrollToBottom();
-}
+  function handleKeyboardShow() {
+    const visualHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const isInputFocused = document.activeElement === input;
+    isKeyboardOpen = visualHeight < fullViewportHeight * 0.95 && isInputFocused;
 
-function adjustChatbotPosition() {
-  const chatbot = document.getElementById("chatbot");
-  const width = window.innerWidth;
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isKeyboardOpen) {
+      chatbot.classList.add('keyboard-visible');
+      const keyboardHeight = fullViewportHeight - visualHeight;
 
-  if (isIOS) {
-    // Simplificar posición en iOS
-    chatbot.style.position = "fixed"; // Usar fixed para alinear con el viewport
-    chatbot.style.top = "";
-    chatbot.style.left = "";
-    chatbot.style.right = "auo";
-    chatbot.style.bottom = "";
-    chatbot.style.margin = "0";
-  } else {
-    // Comportamiento original para Android y otros dispositivos (sin cambios)
-    if (width > 500) {
-      chatbot.style.bottom = "";
-      chatbot.style.top = "";
-    } else {
-      if (chatbot.classList.contains("max_chat")) {
-        chatbot.style.top = "";
-        chatbot.style.bottom = "";
-      } else {
-        chatbot.style.bottom = "";
-        chatbot.style.top = "";
+      // Ajustar el viewport para iOS
+      if (isIOS) {
+        document.body.style.height = `${visualHeight}px`;
+        document.body.style.overflow = 'hidden';
       }
+
+      // Mantener el input visible
+      if (input) {
+        const rect = input.getBoundingClientRect();
+        const offsetTop = rect.top + window.scrollY;
+        const desiredScroll = offsetTop - (visualHeight - keyboardHeight - rect.height - 20); // Margen de 20px
+        window.scrollTo({
+          top: desiredScroll,
+          behavior: 'smooth'
+        });
+      }
+
+      // Asegurar que el chat esté en la parte inferior
+      setTimeout(() => scrollToBottom(), 200);
     }
   }
-}
 
-function initializeChatbot() {
-  const chatbot = document.getElementById("chatbot");
-  chatbot.style.opacity = "1";
-  chatbot.style.visibility = "visible";
-  chatbot.classList.remove("max_chat");
-  adjustChatbotPosition();
+  function handleKeyboardHide() {
+    isKeyboardOpen = false;
+    chatbot.classList.remove('keyboard-visible');
+    fullViewportHeight = window.innerHeight;
+
+    if (isIOS) {
+      document.body.style.height = '';
+      document.body.style.overflow = '';
+    }
+
+    setTimeout(() => scrollToBottom(), 200);
+  }
+
+  input.addEventListener("focus", handleKeyboardShow);
+  input.addEventListener("blur", handleKeyboardHide);
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', debounce(() => {
+      const visualHeight = window.visualViewport.height;
+      if (visualHeight < fullViewportHeight * 0.95 && document.activeElement === input) {
+        handleKeyboardShow();
+      } else {
+        handleKeyboardHide();
+      }
+    }, 100));
+  }
+
+  window.addEventListener('resize', debounce(() => {
+    const currentHeight = window.innerHeight;
+    if (currentHeight < fullViewportHeight * 0.95 && document.activeElement === input) {
+      handleKeyboardShow();
+    } else {
+      handleKeyboardHide();
+    }
+    fullViewportHeight = window.innerHeight;
+  }, 100));
+
+  if (isIOS) {
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        fullViewportHeight = window.innerHeight;
+        if (isKeyboardOpen) handleKeyboardShow();
+      }, 200);
+    });
+  }
+
+  document.body.addEventListener('touchmove', (e) => {
+    if (isKeyboardOpen && !e.target.closest('#chat_box')) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadIntents();
-  updatePavoMsj();
   handleNameForm();
+  updatePavoMsj();
+  handleVirtualKeyboard()
 
+  const chatbot = document.getElementById("chatbot");
   const chatMinButton = document.getElementById("chat_min");
-  if (isStandalone() && chatMinButton) {
-    chatMinButton.style.display = "none";
-  }
-
-  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    window.visualViewport?.removeEventListener("resize", adjustChatbotHeight);
-    window.removeEventListener("resize", adjustChatbotHeight);
-    window.visualViewport?.removeEventListener("resize", adjustChatbotPosition);
-    window.removeEventListener("resize", adjustChatbotPosition);
-  }
-
-  initializeChatbot();
-  chatMinButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleChatbot();
-  });
-
-  window.visualViewport?.addEventListener("resize", () => {
-    adjustChatbotHeight();
-    adjustChatbotPosition();
-  });
-  window.addEventListener("resize", () => {
-    adjustChatbotHeight();
-    adjustChatbotPosition();
-  });
-
   const form = document.getElementById("chat_form");
   const input = document.getElementById("chat_input");
   const sendButton = document.getElementById("chat_submit");
   const chatBox = document.getElementById("chat_box");
-  const chatbot = document.getElementById("chatbot");
 
-  if (!form || !input || !sendButton || !chatBox) {
-    console.error("Elementos del chat no encontrados.");
+  if (!form || !input || !sendButton || !chatBox || !chatMinButton) {
+    console.error("Elementos del chatbot no encontrados.");
     return;
   }
 
   chatBox.innerHTML = localStorage.getItem("chatHistory") || "";
+  insertarEspaciadorInicial();
+  chatbot.classList.remove("max_chat");
+
+  chatMinButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleChatbot();
+  });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -420,32 +586,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       sendMessage("bot", botResponse, true);
       localStorage.setItem("chatHistory", chatBox.innerHTML);
       sendButton.disabled = false;
-    }, 2000);
+      scrollToBottom();
+    }, 1500);
 
     input.value = "";
   });
 
-  input.addEventListener("focus", () => {
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      setTimeout(() => {
-        scrollToBottom();
-        // Ajustar el padding dinámicamente para el teclado y barra de herramientas
-        chatbot.style.paddingBottom = `calc(env(safe-area-inset-bottom, 50px) + 20px)`;
-        chatbot.style.bottom = "0"; // Forzar que se mantenga en la parte inferior
-      }, 300); // Retraso para esperar a que el teclado aparezca
-    }
-  });
-
-  input.addEventListener("blur", () => {
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      // Restaurar padding cuando el teclado se oculta
-      chatbot.style.paddingBottom = "calc(env(safe-area-inset-bottom, 50px) + 10px)";
-    }
-  });
-
   window.addEventListener("beforeunload", () => {
-    if (messageBuffer.length > 0) {
-      saveMessagesToFirebase();
+    if (messageBuffer.length > 0) saveMessagesToFirebase();
+  });
+
+  // Manejo del teclado virtual
+  input.addEventListener("focus", () => {
+    if (/iPhone|iPad|iPod|Android/.test(navigator.userAgent)) {
+      setTimeout(() => {
+        // No desplazar automáticamente, mantener el formulario visible
+        const chatForm = document.getElementById("chat_form");
+        if (chatForm) {
+          chatForm.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+      }, 300);
     }
   });
-});
+}); 

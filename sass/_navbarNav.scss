@@ -1,0 +1,79 @@
+#flexed {
+    width: 100vw;
+    position: fixed;
+    *{
+        transition: all 0.5s;
+    }
+    #slogan {
+        padding: 0;
+        background-color: #552579;
+        display: flex;
+        justify-content: center;
+        p {
+            padding: 1.3%;
+            margin: 0%;
+            color: $Blanco2;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 220%;
+            letter-spacing: 0.3em;
+        }
+    }
+    #navbarNav {
+        width: 100%;
+        height: 15rem;
+        position: absolute;
+        z-index: 1;
+        display: flex;
+        margin-top: 2.5%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        #barra {
+            width: 90%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0;
+            border-radius: 200px 200px 200px 200px;
+            -moz-border-radius: 200px 200px 200px 200px;
+            -webkit-border-radius: 200px 200px 200px 200px;
+            background-color: $Secundario;
+            ul {
+                padding: 0;
+                li {
+                    padding: 0;
+                    list-style: none;
+                    a {
+                        text-decoration: none;
+                        color: $Negro2;
+                        font-family: 'Quicksand', sans-serif;
+                        font-size: 210%; 
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+        #logo {
+            width: 15%;
+            height: 50%;
+            background-color: $Secundario;
+            display: flex;
+            border-radius: 0px 0px  10rem 10rem;
+            justify-content: center;
+            padding: 0;
+            img {
+                height: 80%;
+                margin: -6%;
+            }
+        }
+    }
+    #slogan.abajo {
+        background-color: $Transparente;
+        p {
+            padding: 0;
+            margin: 0;
+            font-size: 0;
+        }
+    }
+}

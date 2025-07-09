@@ -146,7 +146,7 @@
         {
             "tag": "alerta_22",
             "responses": [
-                "¡Glu-glu, ${userName}! No hubo vacantes en el último mes. ¡Pero el pavo te avisará cuando haya novedades! 🦃🔍"
+                "¡Glu-glu, ${userName}! No hubo vacantes en la fecha seleccionada. ¡Pero el pavo te avisará cuando haya novedades! 🦃🔍"
             ]
         },
         {
@@ -165,6 +165,24 @@
             "tag": "alerta_25",
             "responses": [
                 "¡Glu-glu! Descargaste el PDF de las gráficas del mes correctamente, ${userName}. ¡El pavo aprueba este éxito! 🦃📊✨"
+            ]
+        },
+        {
+            "tag": "alerta_26",
+            "responses": [
+                "🦃 ¡Glu-glu! Ese mes y año no me hacen sentido… elige unos que no estén en el pavo-verso. 😵‍💫"
+            ]
+        },
+        {
+            "tag": "alerta_27",
+            "responses": [
+                "🦃 ¡Pavito en acción! Dame un momento mientras picoteo tus datos. 📡😬"
+            ]
+        },
+        {
+            "tag": "alerta_28",
+            "responses": [
+                "🦃 ¡Glu-glu-glu! Cancelaste la búsqueda… ¡espero que no haya sido por culpa mía! 😢"
             ]
         }
     ]

@@ -112,100 +112,6 @@ function adjustViewForPWA() {
   }
 }
 
-let fullViewportHeight = window.innerHeight;
-let isKeyboardOpen = false;
-
-// Función para manejar el viewport y el teclado virtual
-function setRealViewportHeight(forceUpdate = false) {
-  // Obtener la altura del viewport (usamos siempre la altura completa)
-  const realHeight = window.innerHeight;
-  const visualHeight = window.visualViewport?.height || realHeight;
-
-  // Detectar si el teclado virtual está activo
-  const isInputFocused = document.activeElement.tagName === 'INPUT' || 
-                        document.activeElement.tagName === 'TEXTAREA';
-  isKeyboardOpen = visualHeight < fullViewportHeight * 0.95 && isInputFocused; // Umbral del 95%
-
-  // Actualizar fullViewportHeight solo si se fuerza (por ejemplo, cambio de orientación)
-  if (forceUpdate) {
-    fullViewportHeight = realHeight;
-  }
-
-  // Establecer --main-vh siempre a la altura completa
-  document.documentElement.style.setProperty('--main-vh', `${fullViewportHeight}px`);
-
-  // Ajustar el contenedor principal para mantener el tamaño completo
-  document.body.style.height = `${fullViewportHeight}px`;
-  document.body.style.minHeight = `${fullViewportHeight}px`;
-  document.body.style.overflow = 'auto'; // Permitir scroll siempre
-
-  if (isKeyboardOpen) {
-    // Calcular el desplazamiento necesario para el input activo
-    const activeElement = document.activeElement;
-    if (activeElement) {
-      const keyboardHeight = fullViewportHeight - visualHeight;
-      const rect = activeElement.getBoundingClientRect();
-      const offsetTop = rect.top + window.scrollY;
-
-      // Desplazar el contenido para que el input quede visible
-      const desiredScroll = offsetTop - (fullViewportHeight - keyboardHeight - rect.height - 50); // 50px de margen
-      window.scrollTo({
-        top: desiredScroll,
-        behavior: 'smooth'
-      });
-    }
-  }
-
-  // Manejar safe area insets
-  const safeTop = getComputedStyle(document.documentElement).getPropertyValue('env(safe-area-inset-top)') || '0px';
-  document.documentElement.style.setProperty('--safe-top', safeTop);
-}
-
-// Inicializar al cargar
-window.addEventListener('load', () => {
-  fullViewportHeight = window.innerHeight;
-  setRealViewportHeight();
-});
-
-// Manejar cambios en visualViewport (teclado virtual)
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    setRealViewportHeight();
-  });
-}
-
-// Debounce para el evento resize
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    setRealViewportHeight(true);
-  }, 100);
-});
-
-// Actualizar en cambio de orientación
-window.addEventListener('orientationchange', () => {
-  setTimeout(() => {
-    setRealViewportHeight(true);
-  }, 200);
-});
-
-// Asegurar que el input activo permanezca visible al abrir el teclado
-document.addEventListener('focusin', (e) => {
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-    setTimeout(() => {
-      setRealViewportHeight(); // Reajustar inmediatamente
-    }, 300); // Retraso para esperar la aparición del teclado
-  }
-});
-
-// Restaurar al perder foco
-document.addEventListener('focusout', () => {
-  setTimeout(() => {
-    setRealViewportHeight(); // Restaurar estado
-  }, 300);
-});
-
 const shareButton = document.getElementById('shareButton');
 
 shareButton.addEventListener('click', async () => {
@@ -436,17 +342,70 @@ export function toggleView({
 
 // Funciones para cada botón
 function btn_home() {
-  toggleView({ home: true });
-  console.log("Botón Home clicado");
+  // Animar las manchas antes de cambiar de vista
+  const mancha1 = document.querySelector('.mancha1');
+  const mancha2 = document.querySelector('.mancha2');
+  
+  if (mancha1 && mancha2) {
+    // Aplicar animaciones
+    mancha1.style.animation = 'fadeInDown 0.4s ease-in-out forwards';
+    mancha2.style.animation = 'fadeInUp 0.4s ease-in-out forwards';
+    
+    // Esperar a que termine la animación antes de cambiar de vista
+    setTimeout(() => {
+      toggleView({ home: true });
+    }, 400);
+  } else {
+    // Si no se encuentran las manchas, cambiar de vista inmediatamente
+      toggleView({ home: true });
+  }
+  console.log("Botón Form clicado");
 }
 
 function btn_form() {
-  toggleView({ header: true, form: true, aside: true, chatbotcolor: true });
+  // Animar las manchas antes de cambiar de vista
+  const mancha1 = document.querySelector('.mancha1');
+  const mancha2 = document.querySelector('.mancha2');
+  
+  if (mancha1 && mancha2) {
+    // Aplicar animaciones
+    mancha1.style.animation = 'fadeOutUp 0.4s ease-in-out forwards';
+    mancha2.style.animation = 'fadeOutDown 0.4s ease-in-out forwards';
+    // Agregar cambiar_nav al header inmediatamente
+    if (elements.header) elements.header.classList.add("cambiar_nav");
+    
+    // Esperar a que termine la animación antes de cambiar de vista
+    setTimeout(() => {
+      toggleView({ header: true, form: true, aside: true, chatbotcolor: true });
+    }, 400);
+  } else {
+    // Si no se encuentran las manchas, cambiar de vista inmediatamente
+    toggleView({ header: true, form: true, aside: true, chatbotcolor: true });
+  }
   console.log("Botón Form clicado");
 }
 
 function btn_admin() {
-  toggleView({ header: true, login: true, aside: true, chatbotcolor: true });
+  // Animar las manchas antes de cambiar de vista
+  const mancha1 = document.querySelector('.mancha1');
+  const mancha2 = document.querySelector('.mancha2');
+  
+  if (mancha1 && mancha2) {
+    // Aplicar animaciones
+    mancha1.style.animation = 'fadeOutUp 0.4s ease-in-out forwards';
+    mancha2.style.animation = 'fadeOutDown 0.4s ease-in-out forwards';
+    
+    // Agregar cambiar_nav al header inmediatamente
+    if (elements.header) elements.header.classList.add("cambiar_nav");
+    
+    // Esperar a que termine la animación antes de cambiar de vista
+    setTimeout(() => {
+      toggleView({ header: true, login: true, aside: true, chatbotcolor: true });
+    }, 400);
+  } else {
+    // Si no se encuentran las manchas, cambiar de vista inmediatamente
+    toggleView({ header: true, login: true, aside: true, chatbotcolor: true });
+  }
   console.log("Botón Admin clicado");
 }
 
@@ -723,7 +682,6 @@ export function personalizarSelect(select) {
   select.parentNode.insertBefore(customSelect, select);
   select.style.display = "none"; // Ocultar el select nativo
 }
-
 
 function manejarVisibilidadModales() {
   const modales = [

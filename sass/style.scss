@@ -451,6 +451,122 @@ html {
       }
     }
 
+    .modal-ym {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: $Resalte2;
+      background-image: url("../img/Utilidades/pavo2.png");
+      background-position: 80vw center;
+      background-size: 35%;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      z-index: 10011;
+
+      .modal-content {
+        width: 15vw;
+        height: 25vh;
+        background-color: $Blanco;
+        display: flex;
+        font-family: $Letra2;
+        justify-content: end;
+        align-items: center;
+        flex-direction: column;
+        padding: 1vw;
+        border-radius: 1.5vw;
+        text-align: center;
+        position: relative;
+
+        h2 {
+            position: absolute;
+            justify-content: center;
+            top: 10%;
+            width: 100%;
+            display: flex;
+            font-size: 1.3vw;
+            margin: 0;
+            letter-spacing: 0.2rem;
+            color: $Box_admin;
+            font-family: $Letra1;
+            text-align: center;
+          }
+
+        form {
+          width: 100%;
+          height: 95%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 1vw;
+          .custom-select {
+            display: none;
+          }
+          select {
+            width: 85%;
+            height: 6vh;
+            border-radius: 5rem;
+            background-color: $Box_admin;
+            outline: none;
+            border: 0;
+            color: $Texto;
+            font-family: $Letra2;
+            text-align: center;
+            font-size: 0.7vw;
+
+            option {
+              color: $Texto;
+              border-radius: 5rem;
+              background-color: $Box_admin2;
+            }
+
+            &:focus {
+              border: 0;
+              outline: none;
+              border: 2px solid $Box_admin;
+              box-shadow: 0px 0px 10px 0px $Box_admin;
+              background-color: $Box_admin;
+              color: $Texto;
+            }
+          }
+          .modal-buttons {
+            position: absolute;
+            bottom: 5%;
+            width: 90%;
+            display: flex;
+            gap: 0.5vw;
+            #cancel_month_year {
+              background-color: $Resalte2;
+            }
+            #confirm_month_year {
+              background-color: $Box_admin;
+            } 
+          button {
+            width: 50%;
+            height: 3vh;
+            font-family: $Letra2;
+              color: $Texto;
+            font-size: 0.7vw;
+            border-radius: 5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+
+            &:hover,
+            &:focus {
+              @include opacity;
+            }
+          }
+          }
+        }
+      }
+    }
+
     #modal-user-info {
       display: none;
       position: fixed;
@@ -629,6 +745,30 @@ html {
     position: fixed;
     z-index: 1000;
     top: 45vh;
+    left: 40vw; // Posición inicial
+    transform: rotate(0deg);
+    transition: 
+      width 0.4s ease-in-out,
+      height 0.4s ease-in-out,
+      top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      transform 0.4s ease-in-out;
+  
+    &.cambiar_nav {
+      top: 5vh; // Posición final
+      left: 18vw;
+      width: 14vw;
+      height: 4vw;
+      nav {
+        ul {
+          .circulo_icon {
+            width: .7vw;
+            height: .7vw;
+            transition: all 0.4s ease-in-out;
+          }
+        }
+      }
+    }
 
     nav {
       width: 100%;
@@ -654,6 +794,7 @@ html {
           background-color: $Texto;
           border-radius: 100%;
           position: absolute;
+          transition: all 0.4s ease-in-out;
           top: 50%;
           left: 39%;
           animation: moverpuntolog 3s ease-in-out infinite;
@@ -718,6 +859,7 @@ html {
       width: 50%;
       height: var(--main-vh);
       min-height: var(--main-vh);
+      position: relative;
       justify-items: center;
       justify-content: center;
       align-items: center;
@@ -725,6 +867,9 @@ html {
       overflow-x: hidden;
       overflow-y: auto;
       display: none;
+      &.exit-animation {
+        animation: fadeOut 0.5s ease-in-out forwards;
+      }
     }
 
     #home {
@@ -779,7 +924,6 @@ html {
 
     #pag1 {
       animation: fadeInLeftBig 0.5s ease-in-out forwards;
-
       article {
         width: 90%;
         height: 80%;
@@ -1080,7 +1224,7 @@ html {
                   color: $Texto;
                   font-family: $Letra2;
                   font-size: 1em;
-                  padding: .5em;
+                  padding: 0.5em;
                   transition: all 0.2s ease-in-out;
 
                   &:hover {
@@ -1293,7 +1437,7 @@ html {
                 input:focus ~ label,
                 input:valid ~ label {
                   top: 0;
-                  font-size: .7vw;
+                  font-size: 0.7vw;
                   padding: 0 6px;
                   background: $Principal;
                   color: $Texto;
@@ -1324,7 +1468,7 @@ html {
                   top: 50%;
                   transform: translateY(-50%);
                   color: $Texto;
-                  font-size: .8vw;
+                  font-size: 0.8vw;
                   pointer-events: none;
                   transition: 0.3s;
 
@@ -1505,7 +1649,7 @@ html {
             width: 4%;
             height: 100%;
             position: absolute;
-            left: .5%;
+            left: 0.5%;
             top: 0;
             display: flex;
             justify-content: space-evenly;
@@ -1530,7 +1674,6 @@ html {
                   transition: all 0.2s ease-in-out;
                 }
 
-                
                 &:checked ~ label {
                   img {
                     transform: scale(1);
@@ -1572,11 +1715,11 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem .5rem;
+                  padding: 0.2rem 0.5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -1646,11 +1789,11 @@ html {
                       opacity: 0;
                       top: 100%;
                       border-radius: 0 0 1rem 1rem;
-                      padding: .2rem .5rem;
+                      padding: 0.2rem 0.5rem;
                       color: $Blanco;
                       display: flex;
                       font-family: $Letra2;
-                      font-size: 0.7em;
+                      font-size: 0.7vw;
                       display: flex;
                       justify-content: center;
                       align-items: center;
@@ -1704,7 +1847,7 @@ html {
                 padding: 0;
                 margin: 0;
                 text-align: center;
-                font-size: 0.9em;
+                font-size: 0.9vw;
                 font-family: $Letra2;
               }
             }
@@ -1719,27 +1862,27 @@ html {
             position: absolute;
             right: 1%;
             top: 0;
-          
+
             .icons_chat_admin {
               width: 90%;
               height: 90%;
               display: flex;
               justify-content: center;
               align-items: center;
-          
+
               input {
                 display: none;
-          
+
                 &:checked ~ label {
                   @include opacity;
                   display: flex;
                 }
-          
+
                 &:checked ~ .chat_admin_info {
                   display: flex;
                   animation: fadeInRight 0.2s ease-in-out forwards;
                 }
-          
+
                 &:checked ~ .label_icon {
                   img {
                     transform: scale(1);
@@ -1757,7 +1900,7 @@ html {
                   }
                 }
               }
-          
+
               .label_icon {
                 width: 100%;
                 height: 100%;
@@ -1781,7 +1924,7 @@ html {
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -1790,15 +1933,15 @@ html {
                   transition: all 0.2s ease-in-out;
                 }
                 .indicador_total {
-                  width: .9vw;
+                  width: 0.9vw;
                   aspect-ratio: 1/1;
                   position: absolute;
-                  top: .5vh;
-                  right: .4vw;
+                  top: 0.5vh;
+                  right: 0.4vw;
                   background-color: $Green;
                   border: 0.2vw solid $Box_admin;
                   border-radius: 50%;
-                  display: none; 
+                  display: none;
                   justify-content: center;
                   align-items: center;
                   font-family: $Letra2;
@@ -1819,7 +1962,7 @@ html {
                   }
                 }
               }
-          
+
               .chat_admin_info {
                 position: absolute;
                 display: none;
@@ -1838,7 +1981,7 @@ html {
                 padding: 0.5vw;
                 border-left: 0.1rem solid $Blanco;
                 background-color: $Blanco;
-          
+
                 // Carrusel de botones
                 .branch-carousel {
                   width: 75%;
@@ -1850,7 +1993,7 @@ html {
                   background-color: $Box_admin;
                   border-radius: 2rem;
                   padding: 0.5vw;
-          
+
                   .carousel-inner {
                     display: flex;
                     border-radius: 1rem;
@@ -1862,7 +2005,7 @@ html {
                       display: none; // Oculta barra en Chrome/Safari
                     }
                   }
-          
+
                   .branch-button {
                     flex: 0 0 auto;
                     padding: 0.5vw 1vw;
@@ -1876,15 +2019,15 @@ html {
                     position: relative;
 
                     .unread-badge {
-                      width: .7vw;
+                      width: 0.7vw;
                       aspect-ratio: 1/1;
                       position: absolute;
-                      top: -.3vh;
-                      right: -.3vw;
+                      top: -0.3vh;
+                      right: -0.3vw;
                       background-color: $Green;
                       border: 0.2vw solid $Box_admin;
                       border-radius: 50%;
-                      display: none; 
+                      display: none;
                       justify-content: center;
                       align-items: center;
                       font-family: $Letra2;
@@ -1895,20 +2038,20 @@ html {
                         display: flex;
                       }
                     }
-          
+
                     &.active {
                       background: $Box_admin;
                       color: $Texto;
                       border: none;
                     }
-          
+
                     &:hover {
                       background: $Box_admin;
                       color: $Texto;
                       border: none;
                     }
                   }
-          
+
                   .carousel-arrow {
                     width: 10%;
                     aspect-ratio: 1/1;
@@ -1935,9 +2078,8 @@ html {
                       transition: all 0.2s ease-in-out;
                       transform: translateY(-50%) rotate(180deg);
                       border: 0.1rem solid $Gray;
-
                     }
-          
+
                     &.right {
                       overflow: hidden;
                       right: -12%;
@@ -1948,22 +2090,22 @@ html {
                       transition: all 0.2s ease-in-out;
                       border: 0.1rem solid $Gray;
                     }
-          
+
                     &:disabled {
                       background: $Blanco;
                       cursor: not-allowed;
                       opacity: 0;
                     }
-          
+
                     &:hover:not(:disabled) {
                       background-color: $Box_admin;
                       border: 0.1rem solid $Box_admin;
                     }
                   }
                 }
-          
+
                 .data_chat_admin {
-                  width: 95%; 
+                  width: 95%;
                   height: 100%;
                   min-height: 0;
                   overflow-x: hidden;
@@ -1976,26 +2118,26 @@ html {
                   color: $Box_admin;
                   font-family: $Letra2;
                   gap: 1vh;
-                
+
                   p {
                     font-weight: 170;
                     font-size: 0.7vw;
                   }
-                
+
                   .rh_message,
                   .branch_message {
                     width: 90%; /* Ajustado de chat_box .bot_message y .user_message */
                     display: flex;
                     gap: 0.5vh;
                     position: relative;
-                
+
                     span {
                       width: auto;
                       font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
                       color: $Box_admin;
                       margin-left: 0; /* Ajustado de chat_box .bot_message span */
                     }
-                
+
                     p {
                       width: auto; /* Ajustado de chat_box */
                       text-align: center;
@@ -2007,21 +2149,21 @@ html {
                       border: 1.5px solid $Box_admin; /* Ajustado de chat_box */
                       border-radius: 1vw;
                       color: $Box_admin;
-                
+
                       a {
                         text-decoration: none;
                         color: $Principal; /* Ajustado de chat_box .bot_message p a */
                       }
                     }
                   }
-                
+
                   .rh_message {
                     justify-content: end; /* Similar a .user_message */
                     span {
                       display: none; /* Mantenido del original */
                     }
                   }
-                
+
                   .branch_message {
                     justify-content: start; /* Similar a .bot_message */
                     flex-direction: column; /* Mantenido del original */
@@ -2031,7 +2173,7 @@ html {
                     }
                   }
                 }
-          
+
                 hr {
                   width: 90%;
                   height: 1px;
@@ -2061,17 +2203,17 @@ html {
                     color: $Box_admin;
                     font-family: $Letra2;
                     font-size: 0.7vw;
-          
+
                     &::placeholder {
                       color: $Box_admin;
                     }
-          
+
                     &:focus {
                       border-color: $Blanco;
                       box-shadow: 0px 0px 5px 2px $Blanco;
                       background: $Blanco;
                       color: $Box_admin;
-          
+
                       &::placeholder {
                         color: $Box_admin;
                       }
@@ -2111,7 +2253,7 @@ html {
                   display: flex;
                   animation: fadeInRight 0.2s ease-in-out forwards;
                 }
-                
+
                 &:checked ~ .label_icon {
                   img {
                     transform: scale(1);
@@ -2149,11 +2291,11 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem .5rem;
+                  padding: 0.2rem 0.5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -2187,7 +2329,7 @@ html {
                 font-family: $Letra2;
                 font-size: 0.7vw;
                 padding: 0.5vw;
-                border-left: .1rem solid $Blanco;
+                border-left: 0.1rem solid $Blanco;
                 background-color: $Box_admin;
                 gap: 1.5vh;
 
@@ -2371,7 +2513,7 @@ html {
                                 margin: 0;
                                 font-size: 0.6vw;
                                 padding: 0.5vw;
-                                border: .1rem solid $Box_admin;
+                                border: 0.1rem solid $Box_admin;
                                 padding: 3%;
                                 font-weight: 170;
                                 font-size: 0.7vw;
@@ -2424,7 +2566,7 @@ html {
                   display: flex;
                   animation: fadeInRight 0.2s ease-in-out forwards;
                 }
-                
+
                 &:checked ~ .label_icon {
                   img {
                     transform: scale(1);
@@ -2465,11 +2607,11 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem .5rem;
+                  padding: 0.2rem 0.5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -2498,7 +2640,7 @@ html {
                 height: 92.5vh;
                 top: 100%;
                 right: -11vw;
-                border-left: .1rem solid $Blanco;
+                border-left: 0.1rem solid $Blanco;
                 text-align: center;
                 color: $Texto;
                 font-family: $Letra2;
@@ -2739,11 +2881,11 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem .5rem;
+                  padding: 0.2rem 0.5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: 0.7em;
+                  font-size: 0.7vw;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -2778,7 +2920,7 @@ html {
                 border-top: none;
                 border-right: none;
                 border-bottom: none;
-                border-left: .1rem solid $Blanco;
+                border-left: 0.1rem solid $Blanco;
                 font-size: 0.7vw;
                 padding: 0.5vw;
                 background-color: $Box_admin;
@@ -3049,11 +3191,11 @@ html {
                   opacity: 0;
                   top: 85%;
                   border-radius: 0 0 1rem 1rem;
-                  padding: .2rem .5rem;
+                  padding: 0.2rem 0.5rem;
                   color: $Blanco;
                   display: flex;
                   font-family: $Letra2;
-                  font-size: 0.7em;
+                  font-size: 0.6vw;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -3089,7 +3231,6 @@ html {
                 border-radius: 0 0 1vw 1vw;
                 background-color: $Box_admin;
                 gap: 1.5vh;
-                
 
                 .data_resultados_user {
                   width: 100%;
@@ -3124,11 +3265,11 @@ html {
                       opacity: 0;
                       top: 100%;
                       border-radius: 0 0 1rem 1rem;
-                      padding: .2rem .5rem;
+                      padding: 0.2rem 0.5rem;
                       color: $Blanco;
                       display: flex;
                       font-family: $Letra2;
-                      font-size: 0.6em;
+                      font-size: 0.5vw;
                       display: flex;
                       justify-content: center;
                       align-items: center;
@@ -3282,7 +3423,7 @@ html {
             .box_status3 {
               background-color: $Azul;
             }
-            
+
             .box_status4 {
               background-color: $Green;
             }
@@ -3333,7 +3474,7 @@ html {
                   border: none;
                   overflow-y: hidden;
                   align-items: center;
-                  gap: .5em;
+                  gap: 0.5em;
                   transition: all 0.3s ease-in-out;
 
                   .btn_container2 {
@@ -3391,7 +3532,7 @@ html {
                       flex-direction: column;
                       justify-content: center;
                       align-items: center;
-                      font-size: .8vw;
+                      font-size: 0.8vw;
                       color: $Resalte;
                     }
                   }
@@ -3433,7 +3574,7 @@ html {
                     align-items: center;
                     .pendiente {
                       border: 0.2em solid $Orange;
-                      font-size: .3vw;
+                      font-size: 0.3vw;
                     }
                     .apto {
                       border: 0.2em solid $Green;
@@ -3448,7 +3589,7 @@ html {
                       justify-content: center;
                       align-items: center;
                       border-radius: 100%;
-                      font-size: .5vw;
+                      font-size: 0.5vw;
                       font-family: $Letra2;
                       color: $Box_admin;
                     }
@@ -3480,19 +3621,19 @@ html {
                     .btn-noAsistieron {
                       background-color: $Orange;
                     }
-  
+
                     .btn-asistieron {
                       background-color: $Azul;
                     }
-  
+
                     .btn-contratado {
                       background-color: $Green;
                     }
-  
+
                     .btn-baja {
                       background-color: $Red;
                     }
-  
+
                     .btn-eliminar {
                       background-image: url("../img/Logos/interfaces/icons/cerrar.svg");
                       background-repeat: no-repeat;
@@ -3537,7 +3678,7 @@ html {
                     }
 
                     .Itemnombre {
-                      display: none; 
+                      display: none;
                     }
 
                     .vacante_info {
@@ -3556,17 +3697,17 @@ html {
                     }
 
                     .criterios_container {
-                      display: none; 
+                      display: none;
                     }
 
                     .Itemstatus {
-                      display: none; 
+                      display: none;
                     }
 
                     .btn_container2 {
                       display: none;
                     }
-                    
+
                     .containerEliminar {
                       display: none;
                     }
@@ -3606,7 +3747,6 @@ html {
           position: absolute;
           top: 1%;
           left: 1%;
-          border-radius: 1.2vw;
           justify-content: start;
           align-items: center;
           flex-direction: column;
@@ -3686,12 +3826,12 @@ html {
                 justify-content: center;
                 align-items: center;
                 background-color: $Texto;
-                border-radius: 0.6rem;
-                border: none;
+                border-radius: .6vw;
+                border: none; 
                 cursor: pointer;
                 outline: none;
                 overflow: hidden;
-                gap: .5rem;
+                gap: .6vw;
                 transition: all 0.3s ease-in-out;
 
                 .btn_container2 {
@@ -3749,7 +3889,7 @@ html {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: .7vw;
+                    font-size: 0.7vw;
                     color: $Resalte;
                   }
                 }
@@ -3806,14 +3946,14 @@ html {
                     align-items: center;
                     border-radius: 100%;
                     border: 0.2vw solid $Box_admin;
-                    font-size: .7vw;
+                    font-size: 0.7vw;
                     font-family: $Letra2;
                     color: $Box_admin;
                   }
                 }
 
                 .Itemstatus {
-                  display: none; 
+                  display: none;
                 }
 
                 .btn-container {
@@ -3848,13 +3988,12 @@ html {
                   .btn-contratado {
                     background-color: $Green;
                   }
-                  
+
                   .btn-baja {
                     background-color: $Red;
                   }
-
                 }
-                
+
                 .containerEliminar {
                   width: 15%;
                   height: 90%;
@@ -4013,12 +4152,12 @@ html {
                 justify-content: center;
                 align-items: center;
                 background-color: $Texto;
-                border-radius: 0.6rem;
+                border-radius: 0.6vw;
                 border: none;
                 cursor: pointer;
                 outline: none;
                 overflow: hidden;
-                gap: 5%;
+                gap: .6vw;
                 transition: all 0.3s ease-in-out;
 
                 .btn_container2 {
@@ -4065,7 +4204,7 @@ html {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: .8vw;
+                    font-size: 0.8vw;
                     color: $Resalte;
                   }
                 }
@@ -4104,13 +4243,13 @@ html {
                 }
 
                 .Itemstatus {
-                  display: none; 
+                  display: none;
                 }
 
                 .btn-container {
                   display: none;
                 }
-                
+
                 .containerEliminar {
                   display: none;
                 }
@@ -4226,7 +4365,7 @@ html {
                 height: 5vh;
                 display: flex;
                 background-color: $Texto;
-                border-radius: 0.6rem;
+                border-radius: 0.6vw;
                 justify-content: center;
                 align-items: center;
                 border: none;
@@ -4234,7 +4373,7 @@ html {
                 outline: none;
                 transition: all 0.3s ease-in-out;
                 overflow: hidden;
-                gap: .5rem;
+                gap: 0.6vw;
 
                 .btn_container2 {
                   width: 1%;
@@ -4343,14 +4482,14 @@ html {
                     justify-content: center;
                     align-items: center;
                     border-radius: 100%;
-                    font-size: .7vw;
+                    font-size: 0.7vw;
                     font-family: $Letra2;
                     color: $Box_admin;
                   }
                 }
 
                 .Itemstatus {
-                  display: none; 
+                  display: none;
                 }
 
                 .btn-container {
@@ -4587,7 +4726,7 @@ html {
                 input:focus ~ label,
                 input:valid ~ label {
                   top: 0;
-                  font-size: .7vw;
+                  font-size: 0.7vw;
                   padding: 0 6px;
                   background: $Principal;
                   color: $Texto;
@@ -4618,7 +4757,7 @@ html {
                   top: 50%;
                   transform: translateY(-50%);
                   color: $Texto;
-                  font-size: .8vw;
+                  font-size: 0.8vw;
                   pointer-events: none;
                   transition: 0.3s;
 
@@ -4922,7 +5061,7 @@ html {
         top: 8vh;
         left: 45vw;
         width: 8vw;
-        height: 4vw;
+        height: 3.5vw;
         display: flex;
         background-color: $Box_admin;
         padding: 1vw;
@@ -4978,7 +5117,7 @@ html {
             align-items: center;
             flex-direction: column;
             width: 28vw;
-            height: 75vh;
+            height: 65vh;
             top: 21vh;
             left: 35.5vw;
             text-align: center;
@@ -5057,7 +5196,7 @@ html {
                   overflow-y: hidden;
                   align-items: center;
                   transition: all 0.3s ease-in-out;
-                  gap: .5em;
+                  gap: 0.5em;
 
                   .btn_container2 {
                     width: 3%;
@@ -5095,7 +5234,7 @@ html {
                     justify-content: center;
                     align-items: center;
                     transition: all 0.2s ease-in-out;
-  
+
                     span {
                       width: 100%;
                       height: 100%;
@@ -5103,17 +5242,17 @@ html {
                       flex-direction: column;
                       justify-content: center;
                       align-items: center;
-                      font-size: 5em;
+                      font-size: 2em;
                       color: $Resalte;
                     }
                   }
-                  
+
                   .criterios_container {
                     display: none;
                   }
 
                   .Itemstatus {
-                    display: none; 
+                    display: none;
                   }
 
                   .vacante_info {
@@ -5150,7 +5289,7 @@ html {
                     justify-items: center;
                     align-content: center;
                     flex-direction: column;
-                    gap: 2em;
+                    gap: 1em;
 
                     button,
                     .custom-select {
@@ -5227,9 +5366,13 @@ html {
                       display: none;
                     }
 
-                    .btn-eliminar {
+                    .btn-baja {
                       display: none;
                     }
+                  }
+                  
+                  .containerEliminar {
+                    display: none;
                   }
 
                   &:focus {
@@ -5366,7 +5509,7 @@ html {
                 outline: none;
                 overflow: hidden;
                 transition: all 0.3s ease-in-out;
-                gap: .5em;
+                gap: 0.5em;
 
                 .btn_container2 {
                   width: 5%;
@@ -5443,13 +5586,13 @@ html {
                     }
                   }
                 }
-                
+
                 .criterios_container {
                   display: none;
                 }
 
                 .Itemstatus {
-                  display: none; 
+                  display: none;
                 }
 
                 .btn-container {
@@ -5459,7 +5602,7 @@ html {
                   grid-template-columns: repeat(3, 1fr);
                   justify-items: center;
                   align-content: center;
-                  gap: .5em;
+                  gap: 0.5em;
 
                   button,
                   .custom-select {
@@ -5524,7 +5667,6 @@ html {
                     }
                   }
 
-
                   .btn-noAsistieron {
                     background-color: $Red;
                   }
@@ -5536,12 +5678,12 @@ html {
                   .btn-contratado {
                     display: none;
                   }
-                  
+
                   .btn-baja {
                     display: none;
                   }
                 }
-                
+
                 .containerEliminar {
                   display: none;
                 }
@@ -5589,27 +5731,27 @@ html {
         right: 0;
         bottom: 0;
         z-index: 10000;
-      
+
         .icons_chat_manager {
           width: 90%;
           height: 90%;
           display: flex;
           justify-content: center;
           align-items: center;
-      
+
           input {
             display: none;
-      
+
             &:checked ~ label {
               display: flex;
             }
-      
+
             &:checked ~ .chat_manager_info {
               display: flex;
               animation: fadeIn 0.2s ease-in-out forwards;
             }
           }
-      
+
           .label_icon {
             width: 100%;
             height: 100%;
@@ -5618,9 +5760,12 @@ html {
             justify-content: center;
             align-items: center;
             flex-direction: row-reverse;
+            background-color: transparent !important;
             gap: 1vw;
             img {
               height: 50%;
+              width: auto;
+              aspect-ratio: 1/1;
               transform: scale(1) rotate(270deg);
               transition: all 0.2s ease-in-out;
             }
@@ -5628,22 +5773,22 @@ html {
               color: $Blanco;
               display: flex;
               font-family: $Letra2;
-              font-size: 1vw;
+              font-size: 1.5vw;
               display: flex;
               justify-content: center;
               align-items: center;
               text-align: center;
             }
             .indicador_total {
-              width: 4vw;
+              width: .8vw;
               aspect-ratio: 1/1;
               position: absolute;
-              top: 7%;
-              left: 31vw;
+              top: 5%;
+              left: 41.5vw;
               background-color: $Green;
-              border: 1vw solid $Box_admin;
+              border: .3vw solid $Box_admin;
               border-radius: 50%;
-              display: none; 
+              display: none;
               justify-content: center;
               align-items: center;
               font-family: $Letra2;
@@ -5660,7 +5805,7 @@ html {
               }
             }
           }
-      
+
           .chat_manager_info {
             position: fixed;
             display: none;
@@ -5668,8 +5813,9 @@ html {
             align-items: center;
             flex-direction: column;
             width: 30vw;
-            height: 82vh;
-            bottom: 8vh;
+            height: 83vh;
+            top: 7vh;
+            left: 34.5vw;
             border-radius: 2vw;
             text-align: center;
             color: $Texto;
@@ -5678,7 +5824,7 @@ html {
             padding: 0.5vw;
             border-left: 0.1rem solid $Blanco;
             background-color: $Blanco;
-      
+
             // Área de mensajes
             .data_chat_manager {
               width: 95%;
@@ -5698,20 +5844,20 @@ html {
                 font-weight: 170;
                 font-size: 0.7vw;
               }
-            
+
               .rh_message,
               .branch_message {
                 width: 90%; /* Ajustado de chat_box .bot_message y .user_message */
                 display: flex;
                 gap: 0.5vh;
-            
+
                 span {
                   width: auto;
                   font-size: 0.5vw; /* Ajustado de chat_box .bot_message span */
                   color: $Box_admin;
                   margin-left: 1vw; /* Ajustado de chat_box .bot_message span */
                 }
-            
+
                 p {
                   width: auto; /* Ajustado de chat_box */
                   text-align: center;
@@ -5723,14 +5869,14 @@ html {
                   border: 1.5px solid $Box_admin; /* Ajustado de chat_box */
                   border-radius: 1vw;
                   color: $Box_admin;
-            
+
                   a {
                     text-decoration: none;
                     color: $Principal; /* Ajustado de chat_box .bot_message p a */
                   }
                 }
               }
-            
+
               .rh_message {
                 justify-content: start; /* Mantenido del original, similar a .bot_message */
                 align-items: start; /* Ajustado de chat_box .bot_message */
@@ -5739,7 +5885,7 @@ html {
                   margin-left: 1vw; /* Ajustado para consistencia */
                 }
               }
-            
+
               .branch_message {
                 justify-content: end; /* Mantenido del original, similar a .user_message */
                 span {
@@ -5747,7 +5893,7 @@ html {
                 }
               }
             }
-      
+
             hr {
               width: 90%;
               height: 1px;
@@ -5763,7 +5909,6 @@ html {
               display: flex;
               justify-content: center;
               align-items: center;
-              margin-top: 1vh;
               margin-bottom: 1vh;
               #manager_chat_input {
                 width: 95%;
@@ -5777,17 +5922,17 @@ html {
                 color: $Box_admin;
                 font-family: $Letra2;
                 font-size: 0.7vw;
-      
+
                 &::placeholder {
                   color: $Box_admin;
                 }
-      
+
                 &:focus {
                   border-color: $Blanco;
                   box-shadow: 0px 0px 5px 2px $Blanco;
                   background: $Blanco;
                   color: $Box_admin;
-      
+
                   &::placeholder {
                     color: $Box_admin;
                   }
@@ -5891,24 +6036,6 @@ html {
     }
   }
 
-  .cambiar_nav {
-    top: 5vh;
-    left: 18vw;
-    width: 14vw;
-    height: 4vw;
-
-    nav {
-      ul {
-        .circulo_icon {
-          width: 0.8vw;
-          height: 0.8vw;
-          top: 50%;
-          left: 38%;
-        }
-      }
-    }
-  }
-
   @media screen and (max-width: 500px) {
     .alertas {
       .alerta {
@@ -5992,7 +6119,23 @@ html {
 
     header {
       width: 65vw;
-      height: 20vw;
+      height: 20vw;    
+      left: 17.5vw;
+      
+      &.cambiar_nav {
+        top: 5vh;
+        left: 25vw;
+        width: 50vw;
+        height: 15vw;
+        nav {
+          ul {
+            .circulo_icon {
+              width: 2.8vw;
+              height: 2.8vw;
+            }
+          }
+        }
+      }
 
       nav {
         ul {
@@ -6158,26 +6301,23 @@ html {
       }
 
       #pag3 {
-  
         .nav_admin {
           min-height: 2.5rem;
           .nav_cont {
-
             .settings {
               width: 15vw;
               left: 2%;
-  
+
               .icons_settings {
-  
                 input {
                   display: none;
-  
+
                   &:checked ~ .settings_info {
                     left: 650%;
                     width: 60%;
                   }
                 }
-  
+
                 .settings_info {
                   top: 0;
                   left: 0;
@@ -6189,7 +6329,7 @@ html {
                     }
                     button {
                       height: 70%;
-  
+
                       img {
                         height: 70%;
                       }
@@ -6201,7 +6341,7 @@ html {
                 }
               }
             }
-  
+
             .cont_welcome_admin {
               .text_welcome_admin {
                 max-width: 45%;
@@ -6213,22 +6353,21 @@ html {
 
             .chat_admin {
               right: 0;
-            
+
               .icons_chat_admin {
-            
                 input {
                   display: none;
-            
+
                   &:checked ~ label {
                     display: none;
                   }
-            
+
                   &:checked ~ .chat_admin_info {
                     display: flex;
                     animation: none;
                   }
                 }
-            
+
                 .label_icon {
                   img {
                     visibility: hidden;
@@ -6239,16 +6378,16 @@ html {
                     opacity: 0;
                   }
                 }
-            
+
                 .chat_admin_info {
                   display: flex;
                   width: 100vw;
-                  height: 94vh;
-                  top: 100%;
+                  height: 100vh;
+                  top: 0;
                   right: 0;
                   padding: 0;
                   border-left: 0;
-            
+
                   // Carrusel de botones
                   .branch-carousel {
                     width: 75%;
@@ -6257,31 +6396,30 @@ html {
                     border-radius: 3rem;
                     padding: 2vw;
                     font-size: 4.5vw;
-            
+
                     .carousel-inner {
                       border-radius: 3rem;
                       gap: 2vw;
                     }
-            
+
                     .branch-button {
                       padding: 2vw 4vw;
                       border-radius: 3rem;
                     }
-            
+
                     .carousel-arrow {
                       width: 10%;
-  
+
                       &.left {
                         left: -11.5%;
-  
                       }
-            
+
                       &.right {
                         right: -11.5%;
                       }
                     }
                   }
-            
+
                   .data_chat_admin {
                     padding: 2%;
                     gap: 1vh;
@@ -6289,22 +6427,22 @@ html {
                     p {
                       font-size: 3vw;
                     }
-                  
+
                     .rh_message,
                     .branch_message {
                       gap: 1.5vh;
-                  
+
                       span {
                         font-size: 3vw;
                       }
-                  
+
                       p {
-                        font-size: 4vw; 
+                        font-size: 4vw;
                         border-radius: 3vw;
                       }
                     }
                   }
-  
+
                   // Formulario de entrada
                   .admin_chat_form {
                     margin-top: 1vh;
@@ -6317,28 +6455,28 @@ html {
                 }
               }
             }
-  
+
             .mensajes_usuarios {
               display: none;
               .label_icon {
                 display: none;
               }
             }
-  
+
             .disponibilidad_sucu {
               display: none;
               .label_icon {
                 display: none;
               }
             }
-  
+
             .disponibilidad_puestos {
               display: none;
               .label_icon {
                 display: none;
               }
             }
-  
+
             .disponibilidad_resultados {
               display: none;
               .label_icon {
@@ -6347,11 +6485,11 @@ html {
             }
           }
         }
-  
+
         .estatus_vacantes {
           display: none;
         }
-  
+
         .admin_cont {
           display: none;
         }
@@ -6623,34 +6761,33 @@ html {
         }
 
         .chat_manager {
-        
-          .icons_chat_manager {
-        
-            input {
-              display: none;
-        
-              &:checked ~ label {
-                display: flex;
-              }
-        
-              &:checked ~ .chat_manager_info {
-                display: flex;
-                animation: fadeIn 0.2s ease-in-out forwards;
-              }
+        .icons_chat_manager {
+          .label_icon {
+            gap: 3vw;
+            img {
+              height: 50%; /* Reducido para evitar que sea demasiado grande */
             }
-        
-            .label_icon {
-              gap: 3vw;
-              span {
-                font-size: 5vw;
-              }
+            span {
+              font-size: 5vw;
             }
-            
+            .indicador_total {
+              height: 30%;
+              width: auto;
+              aspect-ratio: 1/1;
+              top: 15%;
+              left: 32vw;
+              border: .8vw solid $Box_admin;
+            }
+          }
+
             .chat_manager_info {
               width: 100vw;
-              height: 88vh;
-              bottom: 6vh;
-        
+              height: 87.5vh;
+              border-radius: 0;
+              box-shadow: none;
+              top: 6vh;
+              left: 0;
+
               // Área de mensajes
               .data_chat_manager {
                 p {
@@ -6659,7 +6796,7 @@ html {
                 .rh_message,
                 .branch_message {
                   span {
-                    font-size: .7rem;
+                    font-size: 0.7rem;
                   }
                   p {
                     font-size: 1rem;
@@ -6667,10 +6804,11 @@ html {
                   }
                 }
               }
-  
+
               // Formulario de entrada
               .manager_chat_form {
-          min-height: 1rem;
+                min-height: 1rem;
+                margin-top: 0;
                 #manager_chat_input {
                   font-size: 1rem;
                 }
@@ -6724,22 +6862,6 @@ html {
             width: 0;
             height: 0;
             font-size: 0;
-          }
-        }
-      }
-    }
-
-    .cambiar_nav {
-      top: 5vh;
-      left: 25vw;
-      width: 50vw;
-      height: 15vw;
-
-      nav {
-        ul {
-          .circulo_icon {
-            width: 2.8vw;
-            height: 2.8vw;
           }
         }
       }

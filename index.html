@@ -8,21 +8,23 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="manifest" href="/manifest.json">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#e36b2f">
   <meta name="msapplication-navbutton-color" content="#e36b2f" />
   <meta name="apple-mobile-web-app-status-bar-style" content="#e36b2f">
   <meta property="og:title" content="¡Trabaja en MMM Pizza!">
-<meta property="og:description" content="Aplica ahora para unirte al equipo de MMM Pizza. ¡Oportunidades emocionantes te esperan!">
-<meta property="og:image" content="https://mmm-rh.netlify.app/img/Utilidades/RERTO-MMM.png">
-<meta property="og:url" content="https://mmm-rh.netlify.app">
-<meta name="twitter:card" content="summary_large_image">
-  <!--Descargar PDF-->
+  <meta property="og:description"
+    content="Aplica ahora para unirte al equipo de MMM Pizza. ¡Oportunidades emocionantes te esperan!">
+  <meta property="og:image" content="https://mmm-rh.netlify.app/img/Utilidades/RERTO-MMM.png">
+  <meta property="og:url" content="https://mmm-rh.netlify.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <!--Descargar PDF--> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <!--Crear Graficas-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <!--Descargar Exel-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <!--Animaciones-->
@@ -107,7 +109,7 @@
     <!-- Tu navegador no es compatible  🤡 -->
     <div class="alerta" id="alerta_4">
       <span>
-        <p>Tu navegador no es compatible  🤡</p>
+        <p>Tu navegador no es compatible 🤡</p>
       </span>
     </div>
     <!-- ¡Enlace y mensaje copiados al portapapeles! Pégalo para compartir 🫡 -->
@@ -317,6 +319,43 @@
         </div>
       </div>
     </div>
+    <div class="modal-ym" id="modal-month-year">
+      <div class="modal-content">
+        <h2>Eligue la fecha</h2>
+        <form id="form_select_month_year">
+          <select id="select_month" name="month">
+            <option value="" disabled selected>Selecciona un mes</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+          </select>
+          <select id="select_year" name="year">
+            <option value="" disabled selected>Selecciona un año</option>
+            <!-- Ejemplo: valores dinámicos o estáticos -->
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <!-- Agrega más años hasta 2050 si es necesario -->
+          </select>
+          <div class="modal-buttons">
+          <button type="button" id="cancel_month_year">Cancelar</button>
+          <button type="button" id="confirm_month_year">Confirmar</button>
+        </div>
+        </form>
+      </div>
+    </div>
     </div>
   </section>
   <header id="header">
@@ -455,7 +494,7 @@
               </div>
             </div>
             <!--Sucursal, Puesto, Ciudad-->
-            <div class="cont_inputform" id="inputform3"> 
+            <div class="cont_inputform" id="inputform3">
               <div class="input-form">
                 <select name="sucursal" class="input" id="sucursal" required>
                 </select>
@@ -689,7 +728,8 @@
                 <hr>
                 <!-- Formulario de chat estático -->
                 <form class="admin_chat_form" id="admin_chat_form">
-                  <input type="text" id="admin_chat_input" name="message" placeholder="Escribe tu mensaje..." required ></button>
+                  <input type="text" id="admin_chat_input" name="message" placeholder="Escribe tu mensaje..."
+                    required></button>
                 </form>
               </div>
             </div>
@@ -715,7 +755,7 @@
           <div class="disponibilidad_sucu">
             <div class="icons_sucu">
               <input type="checkbox" id="sucu_user" />
-              <label class="label_icon"  id="label_sucu_user" for="sucu_user">
+              <label class="label_icon" id="label_sucu_user" for="sucu_user">
                 <img src="img/Logos/interfaces/icons/bloqueo-de-tienda.svg" alt="sucu">
                 <span>Tiendas</span>
               </label>
@@ -779,8 +819,7 @@
           </label>
           <div class="status_info">
             <div class="box_status box_status1">
-              <input type="text" id="filtro-baja" class="filtro-vacantes"
-                placeholder="Buscar bajas..." />
+              <input type="text" id="filtro-baja" class="filtro-vacantes" placeholder="Buscar bajas..." />
             </div>
             <div class="data_status" id="data_baja"></div>
           </div>
@@ -965,7 +1004,8 @@
             <hr>
             <!-- Formulario de chat estático -->
             <form class="manager_chat_form" id="manager_chat_form">
-              <input type="text" id="manager_chat_input" name="message" placeholder="Escribe tu mensaje..." required ></button>
+              <input type="text" id="manager_chat_input" name="message" placeholder="Escribe tu mensaje..."
+                required></button>
             </form>
           </div>
         </div>
@@ -975,7 +1015,7 @@
       <div>
         <div>
           <h2>AVISO DE PRIVACIDAD</h2>
-          <p>Última actualización: [11/feb/25] Responsable del tratamiento de datos: Damián Osmar Sifuentes Flores 1.
+          <p>Última actualización: [28/MAY/25] Responsable del tratamiento de datos: Damián Osmar Sifuentes Flores 1.
             Introducción
             El presente Aviso de Privacidad describe cómo se recopilan, utilizan, almacenan y protegen los datos
             personales proporcionados por los usuarios a través de la herramienta web desarrollada para MMM Pizza ,
@@ -1014,7 +1054,7 @@
             Cancelar sus datos cuando consideren que ya no son necesarios para los fines establecidos.
             Oponerse al tratamiento de sus datos para fines específicos.
             Para ejercer estos derechos, los usuarios pueden contactar a Damián Osmar Sifuentes Flores a través del
-            siguiente correo electrónico: [TU CORREO ELECTRÓNICO].
+            siguiente correo electrónico: <a href="mailto:osmar.sifuentes.2910@gmail.com">Mandar correo</a>.
 
             7. Seguridad de los datos
             Se implementan medidas de seguridad técnicas, administrativas y físicas para proteger los datos personales
@@ -1027,7 +1067,7 @@
         </div>
         <div>
           <h2>TÉRMINOS Y CONDICIONES</h2>
-          <p>Última actualización: [11/feb/25]
+          <p>Última actualización: [11/FEB/25]
             Responsable del servicio: Damián Osmar Sifuentes Flores
 
             1. Introducción

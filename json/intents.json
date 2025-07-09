@@ -37,14 +37,39 @@
             ]
         },
         {
-            "tag": "que_haces",
+            "tag": "Saludos",
+            "keywords": [
+                "hola",
+                "buenos dias",
+                "buenas noches",
+                "buenas tardes",
+                "que tal",
+                "como estas",
+                "que gusto verte",
+                "hace dias que no se de ti",
+                "buen dia",
+                "buena noche",
+                "buena tarde",
+                "saludos",
+                "hey",
+                "hi",
+                "hello"
+            ],
+            "responses": [
+                "¡Holaaa ${userName}! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
+                "Hola hola ${userName}, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
+                "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta ${userName}.",
+                "Hola, ${userName} 🙌. Espero que tengas paciencia, los pavos somos lentos para contestar 🐾.",
+                "Holiiii ${userName}, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?"
+            ]
+        },
+        {
+            "tag": "Informacion_General",
             "keywords": [
                 "que haces",
                 "como te va",
-                "como te va",
                 "que cuentas",
                 "que pasa",
-                "como estas",
                 "como andas",
                 "que tal",
                 "como va",
@@ -69,33 +94,229 @@
                 "un placer saludarte",
                 "como andas",
                 "como va todo",
-                "como estas"
+                "como estas",
+                "dudas"
             ],
             "responses": [
-                "¡Feliz como un pavo en Acción de Gracias! 🦃🎉 (Bueno, casi).",
-                "Aquí, con plumas limpias y buen humor 🧹😊.",
-                "Con ganas de una buena conversación y algo de maíz 🌾✨.",
-                "Bien, gracias. Pero si me invitas a una fiesta, mejor aún 🎈.",
-                "Listo para ayudarte y charlar un rato 🦿😎.",
-                "Como siempre, pavoneándome por aquí 💃🦃.",
-                "Un poco cansado de tanto picotear, pero feliz de verte 😅.",
-                "¡De lujo! Solo necesito un poco más de energía... ¿Tienes café?.",
-                "¡Pues aquí, cacareando contigo! 🐥💬 ¿Qué más podría hacer?",
-                "Nada del otro mundo, solo pensando en cómo conquistar el corral 🏰.",
-                "Haciendo lo que mejor sé: ser un pavo servicial y encantador 🦃✨.",
-                "Picoteando información para ayudarte mejor 📚🪶.",
-                "Planeando mi próximo baile de pavos... ¡Espera y verás! 💃🦃.",
-                "Aquí, esperando que alguien me traiga maíz 🌽😅.",
-                "Solo vigilando que nadie se coma mis snacks virtuales 🍕.",
-                "Pensando en cómo volar más alto... aunque sea en sueños 🦃🌙.",
-                "¡Pues mira, aquí picoteando el día a día! 🦃 Todo bien, gracias por preguntar.",
-                "Glu-glu, no me quejo... ¡Soy un pavo feliz! 😊",
-                "De maravilla, humano. Solo pensando en cuándo será la próxima comida 🌽😂.",
-                "Aquí ando, sobreviviendo como todo pavo en su gallinero 🏠🌾.",
-                "¡Genial! Aunque echo de menos más maíz en mi vida 🌾✨.",
-                "Bien, gracias. Pero si me das un snack, estaré aún mejor 🍿🦃.",
-                "Como siempre, viviendo la vida pavosa al máximo 🦃.",
-                "No me puedo quejar... Bueno, tal vez un poco, pero soy un pavo optimista 😎."
+                "¡Glu-glu! Estoy aquí para ayudarte con información sobre nuestras vacantes y sucursales 🦃✨",
+                "¡Hola ${userName}! Soy el pavo asistente virtual, ¿en qué puedo ayudarte hoy? 🦃💼",
+                "¡Estoy picoteando información para ti! ¿Qué te gustaría saber sobre nuestras oportunidades laborales? 🌟🦃",
+                "¡Aquí estoy, listo para responder todas tus dudas sobre el trabajo! ¿Qué te interesa saber? 💭🦃",
+                "¡Glu-glu! Estoy aquí para guiarte en tu proceso de aplicación. ¿Por dónde quieres empezar? 🦃🎯"
+            ]
+        },
+        {
+            "tag": "Preguntas_Empleo",
+            "keywords": [
+                "trabajo",
+                "empleo",
+                "vacante",
+                "puesto",
+                "oportunidad",
+                "busco trabajo",
+                "necesito trabajo",
+                "quiero trabajar",
+                "hay vacantes",
+                "tienen trabajo",
+                "buscan personal",
+                "necesitan personal",
+                "contratan",
+                "estan contratando",
+                "buscan empleados",
+                "necesitan empleados",
+                "hay puestos disponibles",
+                "tienen puestos abiertos",
+                "buscan gente",
+                "necesitan gente",
+                "hay oportunidades",
+                "tienen oportunidades",
+                "busco empleo",
+                "necesito empleo",
+                "quiero empleo",
+                "hay trabajo",
+                "tienen trabajo",
+                "buscan trabajadores",
+                "necesitan trabajadores"
+            ],
+            "responses": [
+                "¡Claro ${userName}! Tenemos varias posiciones disponibles. ¿Te gustaría saber sobre algún puesto en específico? 🦃✨",
+                "¡Glu-glu! Tenemos oportunidades en cocina, mostrador y reparto. ¿Cuál te interesa más? 🦃💼",
+                "¡Excelente pregunta! Contamos con diferentes puestos. ¿Prefieres trabajar en cocina, atención al cliente o reparto? 🦃🎯",
+                "¡Sí! Estamos buscando personal. ¿Te gustaría saber más sobre nuestros puestos disponibles? 🦃🌟",
+                "¡Por supuesto! Tenemos varias vacantes. ¿En qué área te gustaría trabajar? 🦃💫"
+            ]
+        },
+        {
+            "tag": "Requisitos_Empleo",
+            "keywords": [
+                "requisitos",
+                "documentos",
+                "documentacion",
+                "necesito",
+                "papeles",
+                "postular",
+                "tramite",
+                "ocupo",
+                "informacion",
+                "que necesito",
+                "que documentos",
+                "que papeles",
+                "que requisitos",
+                "que necesito para aplicar",
+                "que necesito para postular",
+                "que necesito para trabajar",
+                "que necesito para empleo",
+                "que necesito para vacante",
+                "que necesito para puesto",
+                "que necesito para oportunidad",
+                "que necesito para trabajo",
+                "que necesito para empleo",
+                "que necesito para contratacion",
+                "que necesito para ser contratado",
+                "que necesito para ser empleado",
+                "que necesito para ser trabajador"
+            ],
+            "responses": [
+                "📋 Te platico ${userName}!, necesitarás:\n• Disponibilidad de horario\n• Facilidad de transporte 🚗\n• Documentación: INE, RFC, CURP, NSS, acta de nacimiento\n• Buena imagen personal\n• Antidoping de orina 💉\n• Disposición para trabajar días festivos 🎆\n• Uniforme: Pantalón azul marino y zapatos negros 👔\n\n¿Necesitas más detalles sobre algún requisito? 🦃✨"
+            ]
+        },
+        {
+            "tag": "Beneficios_Salario",
+            "keywords": [
+                "salario",
+                "sueldo",
+                "beneficios",
+                "pago",
+                "ganar",
+                "pagar",
+                "cuanto pagan",
+                "remuneracion",
+                "prestaciones",
+                "compensacion",
+                "pagan",
+                "que pagan",
+                "cuanto gano",
+                "que gano",
+                "que sueldo",
+                "que salario",
+                "que beneficios",
+                "que prestaciones",
+                "que compensacion",
+                "que remuneracion",
+                "que pago",
+                "que ganancia",
+                "que ingreso",
+                "que retribucion",
+                "que retribuyen",
+                "que ofrecen",
+                "que dan"
+            ],
+            "responses": [
+                "💰 ¡Claro ${userName}! Nuestro paquete incluye:\n• Salario semanal de $2,940 libres\n• Todas las prestaciones de Ley 📋\n• Consumo subsidiado (75% descuento) 🍕\n• Eventos empresariales 🎉\n• Bonos de asistencia y puntualidad ⭐\n\n¿Te gustaría saber más detalles sobre algún beneficio? 🦃✨"
+            ]
+        },
+        {
+            "tag": "Ubicaciones_Sucursales",
+            "keywords": [
+                "sucursales",
+                "tiendas",
+                "ubicaciones",
+                "direcciones",
+                "donde estan",
+                "donde quedan",
+                "donde se encuentran",
+                "donde hay",
+                "donde hay sucursales",
+                "donde hay tiendas",
+                "donde hay locales",
+                "donde hay establecimientos",
+                "donde hay restaurantes",
+                "donde hay pizzerias",
+                "donde hay pizzerías",
+                "donde hay pizzerias",
+                "donde hay pizzerías",
+                "donde hay pizzerias",
+                "donde hay pizzerías",
+                "donde hay pizzerias",
+                "donde hay pizzerías",
+                "donde hay pizzerias",
+                "donde hay pizzerías",
+                "donde hay pizzerias",
+                "donde hay pizzerías"
+            ],
+            "responses": [
+                "🏪 Contamos con sucursales en: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. ¿De cuál te gustaría saber su ubicación exacta? 🦃✨"
+            ]
+        },
+        {
+            "tag": "Proceso_Contratacion",
+            "keywords": [
+                "contratacion",
+                "capacitacion",
+                "proceso",
+                "seleccion",
+                "entrevista",
+                "contrato",
+                "reclutamiento",
+                "como aplicar",
+                "como postular",
+                "como solicitar",
+                "como inscribirme",
+                "como registrarme",
+                "como entrar",
+                "como trabajar",
+                "como emplearme",
+                "como conseguir trabajo",
+                "como conseguir empleo",
+                "como conseguir vacante",
+                "como conseguir puesto",
+                "como conseguir oportunidad",
+                "como conseguir trabajo",
+                "como conseguir empleo",
+                "como conseguir contratacion",
+                "como conseguir ser contratado",
+                "como conseguir ser empleado",
+                "como conseguir ser trabajador"
+            ],
+            "responses": [
+                "📝 El proceso es sencillo ${userName}:\n1. Llena el formulario en línea ✍️\n2. Te contactaremos para entrevista 📞\n3. Presenta documentación 📋\n4. Realiza prueba de antidoping 💉\n5. Capacitación inicial 🎓\n\n¿Te gustaría empezar con el formulario? 🦃✨"
+            ]
+        },
+        {
+            "tag": "Despedida",
+            "keywords": [
+                "adios",
+                "hasta luego",
+                "nos vemos",
+                "hasta pronto",
+                "hasta la proxima",
+                "que estes bien",
+                "cuídate",
+                "que te vaya bien",
+                "que tengas buen dia",
+                "que tengas buena noche",
+                "que tengas buena tarde",
+                "que descanses",
+                "que te vaya genial",
+                "que te vaya excelente",
+                "que te vaya maravilloso",
+                "que te vaya fenomenal",
+                "que te vaya estupendo",
+                "que te vaya perfecto",
+                "que te vaya increible",
+                "que te vaya asombroso",
+                "que te vaya espectacular",
+                "que te vaya magnifico",
+                "que te vaya fabuloso",
+                "que te vaya sensacional",
+                "que te vaya maravilloso"
+            ],
+            "responses": [
+                "¡Hasta pronto ${userName}! Si tienes más dudas, aquí estaré. ¡Glu-glu! 🦃✨",
+                "¡Nos vemos ${userName}! Recuerda que puedes volver cuando quieras. 🦃👋",
+                "¡Que tengas un excelente día ${userName}! Vuelve cuando necesites más información. 🦃🌟",
+                "¡Adiós ${userName}! Fue un placer ayudarte. ¡Vuelve pronto! 🦃💫",
+                "¡Hasta la próxima ${userName}! Si necesitas algo más, aquí estaré. 🦃🎯"
             ]
         },
         {
@@ -119,45 +340,6 @@
             ]
         },
         {
-            "tag": "Despedir",
-            "keywords": [
-                "by",
-                "bay",
-                "hasta luego",
-                "nos vemos",
-                "adios",
-                "cuídate",
-                "hasta luego",
-                "nos vemos pronto",
-                "cuidate mucho",
-                "que tengas un gran dia",
-                "adios, fue un placer",
-                "hasta la proxima",
-                "que estes bien",
-                "nos estamos hablando",
-                "que te vaya genial",
-                "hasta pronto, cuidate",
-                "fue un gusto verte o escucharte",
-                "hasta mañana",
-                "buenas noches, descansa",
-                "que tengas un buen viaje",
-                "cuidate y nos escribimos"
-            ],
-            "responses": [
-                "Me voy al gallinero ${userName}, pero volveré 🏠🌾.",
-                "¡Hasta la próxima aventura pavo-humana! 🦃🦸‍♂️.",
-                "Adiós ${userName}, pero no llores mucho por mí 😅💧.",
-                "Adiós ${userName}, espero no haber sido demasiado pavo 🦃😏.",
-                "¡Nos vemos ${userName}! Pero si me olvidas, lo entenderé 😒翎.",
-                "Me despido ${userName}, aunque igual ya estaba aburrido 😴🌾.",
-                "¡Hasta nunca ${userName}! (Es broma, nos vemos pronto) 😂翎.",
-                "Adiós ${userName}, pero si me buscas, estaré en mi trono de paja 👑🪴.",
-                "Un placer ${userName}, como siempre. Hasta pronto, noble humano 🙇‍♂️翎.",
-                "Gracias por tu tiempo ${userName}, ahora vuelvo a mi vida de pavo VIP 🦃👑.",
-                "Nos despedimos ${userName}, pero recuerda: los pavos siempre volvemos 🔄🌾."
-            ]
-        },
-        {
             "tag": "Agradecer",
             "keywords": [
                 "gracias",
@@ -177,35 +359,6 @@
                 "¡Ya, déjalo ${userName}! No fue nada, solo mi trabajo como pavo virtual 🖥️翎.",
                 "No te preocupes ${userName}, los pavos no llevamos la cuenta de favores 😌🪶.",
                 "¡Esooo! Siempre agradecido/a, ¿eh? Me caes bien ${userName} 🤙✨."
-            ]
-        },
-        {
-            "tag": "Saludos",
-            "keywords": [
-                "hola",
-                "buenos dias",
-                "buenas noches",
-                "buenas tardes",
-                "que tal",
-                "buenos dias/tardes/noches",
-                "como estas",
-                "que gusto verte",
-                "hace dias que no se de ti"
-            ],
-            "responses": [
-                "¡Holaaa ${userName}! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
-                "Hola hola ${userName}, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
-                "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta ${userName}.",
-                "Hola, ${userName} 🙌. Espero que tengas paciencia, los pavos somos lentos para contestar 🐾.",
-                "Holiiii ${userName}, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?",
-                "¡Hola! ${userName} Ya estaba por enviar una carta, pero llegaste justo a tiempo ✉️😂.",
-                "Hola, hola... ¿eres real o solo otro spam en mi vida? 🤔📩",
-                "¡Glu-glu-glu! Traducción: hola, encantado de verte por aquí ${userName} 🐥👋.",
-                "Hola ${userName} ✋. Prepárate para un nivel experto de pavadas 🦃💭.",
-                "¡Holaaaa! Dime que no eres un robot disfrazado de persona 🤖🤨.",
-                "Hola ${userName}, aquí reportándome como tu pavo favorito 🦃. ¿Qué se cuece?🍲",
-                "¡Hola ${userName}! Pensé que te habías perdido en el gallinero 🐓🌾. ¡Bienvenido!",
-                "¡Hola ${userName}! No te asustes si tardo en contestar, es que estoy pensando en comida 🌽🤤."
             ]
         },
         {
@@ -244,7 +397,7 @@
                 "¡Eh, eh! Modales ${userName}, que tengo plumas pero no oídos de alcantarilla 🚽🐔.",
                 "Tranqui ${userName}, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨.",
                 "Ey, menos lodo en las palabras ${userName}, que ya bastante picoteo llevo encima 🦿💩.",
-                "¡Guácala! Guarda ese vocabulario pa’ otro gallinero ${userName} 🐓❌.",
+                "¡Guácala! Guarda ese vocabulario pa' otro gallinero ${userName} 🐓❌.",
                 "${userName}, respeto por mi pico: no todo lo que suena bien en la calle suena bien en el corral 🏠🌾.",
                 "Ojo 👀, que soy un pavo culto 📚, no un loro pirata ${userName} 🦜🏴‍☠️.",
                 "Cuidadito con lo que sale de tu boca ${userName}, que yo no quiero que me confundan con un buzón de insultos 📮🤬.",
@@ -383,24 +536,6 @@
             ],
             "responses": [
                 "Si ${userName}!, Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta 🏍️, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza 🧹 y organización.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍕.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también sabemos manejar motos! 🦃🏍️"
-            ]
-        },
-        {
-            "tag": "requisitos_generales",
-            "keywords": [
-                "requisitos",
-                "documentos",
-                "documentacion",
-                "documento",
-                "necesito",
-                "papeles",
-                "postular",
-                "empleo",
-                "tramite",
-                "ocupo"
-            ],
-            "responses": [
-                "Te platico ${userName}!,📋 • Disponibilidad de horario.\n• Facilidad de transporte 🚗.\n• Documentación requerida: Acta de nacimiento, comprobante de estudios, comprobante de domicilio, INE, RFC (constancia de situación fiscal actualizada 2025), NSS (Número de Seguridad Social), CURP, Licencia de moto vigente (en caso de ser repartidor).\n• Disposición para actividades de limpieza 🧹 y volanteo.\n• Buena imagen personal (higiene, uñas cortas, sin esmalte ni uñas acrílicas, sin barba en áreas de cocina o atención al cliente, cabello corto o recogido).\n• Antidoping de orina (sin costo para ti) 💉.\n• Disposición para trabajar días festivos si la operación lo requiere 🎆.\n• En el caso de preparación y atención al cliente, disposición para apoyar en otras áreas si es necesario.\n• Uniforme: Pantalón tipo Dickies o similar en color azul marino, zapatos negros cerrados. Nota: El seguimiento es en línea, nosotros lo contactaremos a la entrega de documentos."
             ]
         },
         {

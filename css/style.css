@@ -429,6 +429,7 @@ body canvas {
   border-radius: 100%;
   overflow-y: hidden;
   justify-content: center;
+  transition: height 0.3s ease-in-out;
   align-items: center;
   gap: 0;
   background-color: #e36b2f;
@@ -509,11 +510,11 @@ body canvas {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  border-radius: 1.5vw;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  border-radius: 2vw;
+  overflow: hidden;
   behavior: smooth;
   background-color: #ffffff;
+  transition: height 0.3s ease-in-out;
   box-shadow: 0px 0px 15px 2px #ffffff;
   opacity: 1;
   visibility: visible;
@@ -522,7 +523,7 @@ body canvas {
   width: 90%;
   height: 10%;
   z-index: 10000;
-  border-radius: 1.2vw;
+  border-radius: 2vw;
   display: flex;
   margin-top: 6%;
   position: relative;
@@ -532,10 +533,10 @@ body canvas {
   box-shadow: 0px 0px 7px 4px #2a4e91;
 }
 .max_chat .chat_header .chat_icon {
-  width: 14%;
+  height: 95%;
   aspect-ratio: 2/2;
   display: flex;
-  margin-left: 4%;
+  margin-left: 2%;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -549,16 +550,17 @@ body canvas {
   width: 0.6em;
   aspect-ratio: 2/2;
   border: 2px solid #2a4e91;
-  background-color: #00bf63;
+  background-color: #4CAF50;
   border-radius: 100%;
   bottom: 0;
   right: 0;
   position: absolute;
+  animation: pulse 2s ease-in-out infinite;
 }
 .max_chat .chat_header .chat_present {
   display: flex;
   position: absolute;
-  left: 20%;
+  left: 23%;
   flex-direction: column;
 }
 .max_chat .chat_header .chat_present h3 {
@@ -578,7 +580,7 @@ body canvas {
   padding: 0;
   font-size: 0.5vw;
   font-weight: 100;
-  color: #00bf63;
+  color: #4CAF50;
   font-family: "Nunito";
 }
 .max_chat .chat_header .chat_min {
@@ -616,19 +618,18 @@ body canvas {
 }
 .max_chat .chat_box {
   width: 95%;
-  height: 75%;
-  flex-grow: 1;
+  min-height: 75%;
+  overflow-y: auto;
   overflow-x: hidden;
-  overflow-y: scroll;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 2%;
-  justify-content: start;
-  flex-direction: column;
   color: #2a4e91;
   font-family: "Nunito";
   gap: 1vh;
   -webkit-overflow-scrolling: touch;
+  overflow-anchor: none;
 }
 .max_chat .chat_box p {
   font-weight: 170;
@@ -657,7 +658,7 @@ body canvas {
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw;
-  border-radius: 1vw;
+  border-radius: 1vw 1vw 1vw 0;
 }
 .max_chat .chat_box .bot_message p a {
   text-decoration: none;
@@ -677,7 +678,7 @@ body canvas {
   padding: 3%;
   font-weight: 170;
   font-size: 0.7vw;
-  border-radius: 1vw;
+  border-radius: 1vw 1vw 0 1vw;
 }
 .max_chat .chat_box .typing {
   width: 100%;
@@ -685,7 +686,7 @@ body canvas {
   justify-content: center;
   align-items: center;
   font-size: 0.7vw;
-  margin: 2%;
+  margin: 1% 0;
   padding: 0;
   color: #2a4e91;
   font-family: "Nunito";
@@ -848,8 +849,8 @@ body canvas {
   box-shadow: 0px 0px 10px 0px #f3a078;
 }
 .max_chat .chat_form {
-  width: 100%;
-  height: 9%;
+  width: 95%;
+  height: 30%;
   display: none;
   justify-content: center;
   align-items: start;
@@ -857,13 +858,13 @@ body canvas {
 }
 .max_chat .chat_form .chat_input {
   width: 100%;
-  height: 70%;
+  height: 80%;
   display: flex;
   color: #2a4e91;
   font-family: "Nunito";
   border: 1.5px solid #2a4e91;
   text-align: center;
-  border-radius: 1rem;
+  border-radius: 1.5vw;
 }
 .max_chat .chat_form .chat_input::-moz-placeholder {
   color: #2a4e91;
@@ -938,8 +939,8 @@ body canvas {
     width: 14vw;
     margin: 5%;
     top: auto;
-    bottom: 5vw;
-    right: 5vw;
+    bottom: 1vh;
+    right: 2vw;
     transform: scale(1);
   }
   .chatbot .chat_header .chat_min {
@@ -947,29 +948,51 @@ body canvas {
     transform: scale(1);
   }
   .max_chat {
-    width: 100vw;
-    height: 100%;
-    max-height: 100%;
-    margin: 0;
-    border-radius: 0;
-    position: absolute;
-    top: 0;
+    position: fixed;
     right: 0;
-    bottom: auto;
-    transform: none;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-height: 100%;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px 2px #ffffff;
+    border-radius: 1.5vw;
   }
   .max_chat .chat_header {
+    position: relative;
+    width: 90%;
     height: 8%;
     min-height: 4rem;
-    border-radius: 7vw;
-    box-shadow: 0px 0px 10px 5px #2a4e91;
+    z-index: 10000;
+    border-radius: 10vw;
+    display: flex;
+    margin-top: 6%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a4e91;
+    box-shadow: 0px 0px 7px 4px #2a4e91;
+    flex-shrink: 0;
   }
   .max_chat .chat_header .chat_icon {
-    width: 14%;
-    margin-left: 3%;
+    height: 95%;
+    aspect-ratio: 2/2;
+    margin-left: 1vw;
+  }
+  .max_chat .chat_header .chat_icon .status_green {
+    width: 4vw;
+    border: 1vw solid #2a4e91;
   }
   .max_chat .chat_header .chat_present {
-    left: 20%;
+    left: 21vw;
   }
   .max_chat .chat_header .chat_present h3 {
     font-size: 3.5vw;
@@ -979,7 +1002,7 @@ body canvas {
   }
   .max_chat .chat_header .chat_min {
     transform: rotate(90deg);
-    background-size: 105%;
+    background-size: 110%;
   }
   .max_chat .chat_header .name_id {
     border-radius: 3vw;
@@ -987,10 +1010,27 @@ body canvas {
     min-height: 1rem;
   }
   .max_chat .chat_box {
-    flex-grow: 1;
+    flex: 1;
+    width: 95%;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+    color: #2a4e91;
+    font-family: "Nunito";
+    gap: 1vh;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
   .max_chat .chat_box p {
+    font-weight: 170;
     font-size: 3.5vw;
+  }
+  .max_chat .chat_box .bot_message {
+    width: 90%;
   }
   .max_chat .chat_box .bot_message span {
     font-size: 2.5vw;
@@ -998,58 +1038,94 @@ body canvas {
   }
   .max_chat .chat_box .bot_message p {
     font-size: 3.5vw;
-    border-radius: 4vw;
+    border-radius: 4vw 4vw 4vw 0;
+  }
+  .max_chat .chat_box .user_message {
+    width: 90%;
   }
   .max_chat .chat_box .user_message p {
     font-size: 3.5vw;
-    border-radius: 4vw;
+    border-radius: 4vw 4vw 0 4vw;
   }
   .max_chat .chat_box .typing {
     font-size: 3.5vw;
   }
   .max_chat .user_info_container {
-    box-shadow: 0px 0px 10px 5px #2a4566;
-    border-radius: 8vw 8vw 0 0;
-    min-height: 10rem;
+    border-radius: 15vw 15vw 0 0;
+    height: 40%;
   }
   .max_chat .user_info_container form .what_name {
     font-size: 4vw;
   }
   .max_chat .user_info_container form .start_chat_button {
+    font-size: 4vw;
     padding: 2vw;
-    border-radius: 1.5vw;
-    font-size: 3vw;
+    border-radius: 10vw;
   }
   .max_chat .chat_form {
-    height: 6%;
-    margin-bottom: 3%;
+    position: relative;
+    width: 95%;
     min-height: 3rem;
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+    flex-shrink: 0;
+    background-color: #ffffff;
   }
   .max_chat .chat_form .chat_input {
-    width: 88%;
-    height: 90%;
+    width: 100%;
+    height: 75%;
+    font-size: 3.5vw;
+    border: 1.5px solid #2a4e91;
+    border-radius: 10vw;
+    text-align: center;
+    color: #2a4e91;
+    font-family: "Nunito";
   }
-  .max_chat .ios-max-chat {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: auto !important;
-    bottom: auto !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    transform: none !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
+  .max_chat.keyboard-visible {
+    height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    overflow: hidden;
   }
-  .max_chat .ios-max-chat .chat_form {
-    position: fixed !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    padding-bottom: calc(env(safe-area-inset-bottom, 50px) + 10px) !important;
-    box-sizing: border-box !important;
-    z-index: 1000 !important;
+  .max_chat.keyboard-visible .chat_header {
+    position: fixed;
+    top: env(safe-area-inset-top);
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    padding: 1rem;
+    background-color: #2a4e91;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .max_chat.keyboard-visible .chat_box {
+    margin-top: calc(4rem + env(safe-area-inset-top));
+    height: calc(100% - 8rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  .max_chat.keyboard-visible .chat_form {
+    position: fixed;
+    bottom: env(safe-area-inset-bottom);
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+    background-color: #ffffff;
+    z-index: 9999;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+  @supports (-webkit-touch-callout: none) {
+    .max_chat.keyboard-visible {
+      height: calc(100% - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
   }
   .pavo_cont {
     height: 12vh;
@@ -1075,6 +1151,250 @@ body canvas {
   .chatbot_color .chat_header .chat_min {
     background-color: #2a4e91;
   }
+  .chat_admin_info,
+  .chat_manager_info {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-height: 100%;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px 2px #ffffff;
+    border-radius: 1.5vw;
+    z-index: 10000;
+  }
+  .chat_admin_info .branch-carousel,
+  .chat_manager_info .branch-carousel {
+    width: 90%;
+    margin: 6% auto 2%;
+    border-radius: 10vw;
+    padding: 0.75rem;
+    background-color: #2a4e91;
+    box-shadow: 0px 0px 7px 4px #2a4e91;
+  }
+  .chat_admin_info .branch-carousel .carousel-inner,
+  .chat_manager_info .branch-carousel .carousel-inner {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem;
+  }
+  .chat_admin_info .branch-carousel .branch-button,
+  .chat_manager_info .branch-carousel .branch-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 3rem;
+    background: #ffffff;
+    color: #2a4e91;
+    font-size: 3.5vw;
+    white-space: nowrap;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .chat_admin_info .branch-carousel .branch-button .unread-badge,
+  .chat_manager_info .branch-carousel .branch-button .unread-badge {
+    width: 3.5vw;
+    height: 3.5vw;
+    border: 0.3vw solid #2a4e91;
+    font-size: 2.5vw;
+  }
+  .chat_admin_info .data_chat_admin,
+  .chat_admin_info .data_chat_manager,
+  .chat_manager_info .data_chat_admin,
+  .chat_manager_info .data_chat_manager {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    margin-top: 1rem;
+  }
+  .chat_admin_info .data_chat_admin .rh_message,
+  .chat_admin_info .data_chat_admin .branch_message,
+  .chat_admin_info .data_chat_manager .rh_message,
+  .chat_admin_info .data_chat_manager .branch_message,
+  .chat_manager_info .data_chat_admin .rh_message,
+  .chat_manager_info .data_chat_admin .branch_message,
+  .chat_manager_info .data_chat_manager .rh_message,
+  .chat_manager_info .data_chat_manager .branch_message {
+    width: 90%;
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  .chat_admin_info .data_chat_admin .rh_message span,
+  .chat_admin_info .data_chat_admin .branch_message span,
+  .chat_admin_info .data_chat_manager .rh_message span,
+  .chat_admin_info .data_chat_manager .branch_message span,
+  .chat_manager_info .data_chat_admin .rh_message span,
+  .chat_manager_info .data_chat_admin .branch_message span,
+  .chat_manager_info .data_chat_manager .rh_message span,
+  .chat_manager_info .data_chat_manager .branch_message span {
+    font-size: 2.5vw;
+    color: #2a4e91;
+    margin-left: 1vw;
+  }
+  .chat_admin_info .data_chat_admin .rh_message p,
+  .chat_admin_info .data_chat_admin .branch_message p,
+  .chat_admin_info .data_chat_manager .rh_message p,
+  .chat_admin_info .data_chat_manager .branch_message p,
+  .chat_manager_info .data_chat_admin .rh_message p,
+  .chat_manager_info .data_chat_admin .branch_message p,
+  .chat_manager_info .data_chat_manager .rh_message p,
+  .chat_manager_info .data_chat_manager .branch_message p {
+    font-size: 3.5vw;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    margin: 0;
+    background: #f0f0f0;
+    color: #2a4e91;
+  }
+  .chat_admin_info .data_chat_admin .rh_message p,
+  .chat_admin_info .data_chat_manager .rh_message p,
+  .chat_manager_info .data_chat_admin .rh_message p,
+  .chat_manager_info .data_chat_manager .rh_message p {
+    border-radius: 1rem 1rem 0 1rem;
+    background: #2a4e91;
+    color: #ffffff;
+  }
+  .chat_admin_info .data_chat_admin .branch_message p,
+  .chat_admin_info .data_chat_manager .branch_message p,
+  .chat_manager_info .data_chat_admin .branch_message p,
+  .chat_manager_info .data_chat_manager .branch_message p {
+    border-radius: 1rem 1rem 1rem 0;
+  }
+  .chat_admin_info .admin_chat_form,
+  .chat_admin_info .manager_chat_form,
+  .chat_manager_info .admin_chat_form,
+  .chat_manager_info .manager_chat_form {
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  .chat_admin_info .admin_chat_form #admin_chat_input,
+  .chat_admin_info .admin_chat_form #manager_chat_input,
+  .chat_admin_info .manager_chat_form #admin_chat_input,
+  .chat_admin_info .manager_chat_form #manager_chat_input,
+  .chat_manager_info .admin_chat_form #admin_chat_input,
+  .chat_manager_info .admin_chat_form #manager_chat_input,
+  .chat_manager_info .manager_chat_form #admin_chat_input,
+  .chat_manager_info .manager_chat_form #manager_chat_input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 3rem;
+    background: #ffffff;
+    outline: none;
+    border: 2px solid #2a4e91;
+    padding: 0 1rem;
+    color: #2a4e91;
+    font-size: 3.5vw;
+    font-family: "Nunito";
+  }
+  .chat_admin_info .admin_chat_form #admin_chat_input::-moz-placeholder, .chat_admin_info .admin_chat_form #manager_chat_input::-moz-placeholder, .chat_admin_info .manager_chat_form #admin_chat_input::-moz-placeholder, .chat_admin_info .manager_chat_form #manager_chat_input::-moz-placeholder, .chat_manager_info .admin_chat_form #admin_chat_input::-moz-placeholder, .chat_manager_info .admin_chat_form #manager_chat_input::-moz-placeholder, .chat_manager_info .manager_chat_form #admin_chat_input::-moz-placeholder, .chat_manager_info .manager_chat_form #manager_chat_input::-moz-placeholder {
+    color: #2a4e91;
+    opacity: 0.7;
+  }
+  .chat_admin_info .admin_chat_form #admin_chat_input::placeholder,
+  .chat_admin_info .admin_chat_form #manager_chat_input::placeholder,
+  .chat_admin_info .manager_chat_form #admin_chat_input::placeholder,
+  .chat_admin_info .manager_chat_form #manager_chat_input::placeholder,
+  .chat_manager_info .admin_chat_form #admin_chat_input::placeholder,
+  .chat_manager_info .admin_chat_form #manager_chat_input::placeholder,
+  .chat_manager_info .manager_chat_form #admin_chat_input::placeholder,
+  .chat_manager_info .manager_chat_form #manager_chat_input::placeholder {
+    color: #2a4e91;
+    opacity: 0.7;
+  }
+  .chat_admin_info .admin_chat_form #admin_chat_input:focus,
+  .chat_admin_info .admin_chat_form #manager_chat_input:focus,
+  .chat_admin_info .manager_chat_form #admin_chat_input:focus,
+  .chat_admin_info .manager_chat_form #manager_chat_input:focus,
+  .chat_manager_info .admin_chat_form #admin_chat_input:focus,
+  .chat_manager_info .admin_chat_form #manager_chat_input:focus,
+  .chat_manager_info .manager_chat_form #admin_chat_input:focus,
+  .chat_manager_info .manager_chat_form #manager_chat_input:focus {
+    border-color: #2a4e91;
+    box-shadow: 0 0 5px 2px rgba(42, 78, 145, 0.2);
+  }
+  .chat_admin,
+  .chat_manager {
+    position: fixed;
+    bottom: 3vh;
+    right: 3vh;
+    width: 14vw;
+    height: 14vw;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .chat_admin .icons_chat_admin,
+  .chat_admin .icons_chat_manager,
+  .chat_manager .icons_chat_admin,
+  .chat_manager .icons_chat_manager {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .chat_admin .icons_chat_admin .label_icon,
+  .chat_admin .icons_chat_manager .label_icon,
+  .chat_manager .icons_chat_admin .label_icon,
+  .chat_manager .icons_chat_manager .label_icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2a4e91;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 5px rgba(42, 78, 145, 0.3);
+    transition: all 0.3s ease;
+  }
+  .chat_admin .icons_chat_admin .label_icon img,
+  .chat_admin .icons_chat_manager .label_icon img,
+  .chat_manager .icons_chat_admin .label_icon img,
+  .chat_manager .icons_chat_manager .label_icon img {
+    width: 55%;
+    height: 55%;
+    filter: brightness(0) invert(1);
+  }
+  .chat_admin .icons_chat_admin .label_icon .indicador_total,
+  .chat_admin .icons_chat_manager .label_icon .indicador_total,
+  .chat_manager .icons_chat_admin .label_icon .indicador_total,
+  .chat_manager .icons_chat_manager .label_icon .indicador_total {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4vw;
+    height: 4vw;
+    background-color: #00bf63;
+    border: 0.3vw solid #2a4e91;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vw;
+    color: #ffffff;
+  }
 }
 @media screen and (max-height: 600px) {
   .pavo_cont {
@@ -1088,6 +1408,175 @@ body canvas {
     display: none;
   }
 }
+:root {
+  --vh: 1vh;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+       user-select: none;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+       user-select: text;
+}
+
+html,
+body {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .max_chat.keyboard-visible {
+    position: fixed;
+    height: 100%;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+}
+.chat_manager_info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+@media screen and (max-width: 500px) {
+  .chat_manager_info.keyboard-visible .chat_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .chat_manager_info.keyboard-visible .data_chat_manager {
+    margin-top: 60px;
+    height: calc(100% - 120px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chat_manager_info.keyboard-visible .manager_chat_form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+  }
+}
+.chat_manager_info .chat_header {
+  background: white;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chat_manager_info .chat_header h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+.chat_manager_info .chat_header .close_chat {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #666;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+.chat_manager_info .chat_header .close_chat:hover {
+  color: #333;
+}
+.chat_manager_info .data_chat_manager {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  -webkit-overflow-scrolling: touch;
+}
+.chat_manager_info .data_chat_manager .message {
+  margin-bottom: 15px;
+  max-width: 80%;
+  clear: both;
+}
+.chat_manager_info .data_chat_manager .message.user_message {
+  float: right;
+  background: #007bff;
+  color: white;
+  border-radius: 15px 15px 0 15px;
+  padding: 10px 15px;
+}
+.chat_manager_info .data_chat_manager .message.bot_message {
+  float: left;
+  background: #f1f1f1;
+  color: #333;
+  border-radius: 15px 15px 15px 0;
+  padding: 10px 15px;
+}
+.chat_manager_info .manager_chat_form {
+  background: white;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+}
+.chat_manager_info .manager_chat_form input[type=text] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.chat_manager_info .manager_chat_form input[type=text]:focus {
+  border-color: #007bff;
+}
+.chat_manager_info .manager_chat_form button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.chat_manager_info .manager_chat_form button:hover {
+  background: #0056b3;
+}
+.chat_manager_info .manager_chat_form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 * {
   scroll-behavior: smooth;
   -webkit-scroll-behavior: smooth;
@@ -1532,6 +2021,129 @@ html .alertas_modal .modal-container .modal-content form .modal-buttons button#e
   background-color: #2a4566;
   color: white;
 }
+body .alertas_modal .modal-ym,
+html .alertas_modal .modal-ym {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f3a078;
+  background-image: url("../img/Utilidades/pavo2.png");
+  background-position: 80vw center;
+  background-size: 35%;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  z-index: 10011;
+}
+body .alertas_modal .modal-ym .modal-content,
+html .alertas_modal .modal-ym .modal-content {
+  width: 15vw;
+  height: 25vh;
+  background-color: #ffffff;
+  display: flex;
+  font-family: "Nunito";
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+  padding: 1vw;
+  border-radius: 1.5vw;
+  text-align: center;
+  position: relative;
+}
+body .alertas_modal .modal-ym .modal-content h2,
+html .alertas_modal .modal-ym .modal-content h2 {
+  position: absolute;
+  justify-content: center;
+  top: 10%;
+  width: 100%;
+  display: flex;
+  font-size: 1.3vw;
+  margin: 0;
+  letter-spacing: 0.2rem;
+  color: #2a4566;
+  font-family: "NIMBUS";
+  text-align: center;
+}
+body .alertas_modal .modal-ym .modal-content form,
+html .alertas_modal .modal-ym .modal-content form {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1vw;
+}
+body .alertas_modal .modal-ym .modal-content form .custom-select,
+html .alertas_modal .modal-ym .modal-content form .custom-select {
+  display: none;
+}
+body .alertas_modal .modal-ym .modal-content form select,
+html .alertas_modal .modal-ym .modal-content form select {
+  width: 85%;
+  height: 6vh;
+  border-radius: 5rem;
+  background-color: #2a4566;
+  outline: none;
+  border: 0;
+  color: #ffffff;
+  font-family: "Nunito";
+  text-align: center;
+  font-size: 0.7vw;
+}
+body .alertas_modal .modal-ym .modal-content form select option,
+html .alertas_modal .modal-ym .modal-content form select option {
+  color: #ffffff;
+  border-radius: 5rem;
+  background-color: #1c2e44;
+}
+body .alertas_modal .modal-ym .modal-content form select:focus,
+html .alertas_modal .modal-ym .modal-content form select:focus {
+  border: 0;
+  outline: none;
+  border: 2px solid #2a4566;
+  box-shadow: 0px 0px 10px 0px #2a4566;
+  background-color: #2a4566;
+  color: #ffffff;
+}
+body .alertas_modal .modal-ym .modal-content form .modal-buttons,
+html .alertas_modal .modal-ym .modal-content form .modal-buttons {
+  position: absolute;
+  bottom: 5%;
+  width: 90%;
+  display: flex;
+  gap: 0.5vw;
+}
+body .alertas_modal .modal-ym .modal-content form .modal-buttons #cancel_month_year,
+html .alertas_modal .modal-ym .modal-content form .modal-buttons #cancel_month_year {
+  background-color: #f3a078;
+}
+body .alertas_modal .modal-ym .modal-content form .modal-buttons #confirm_month_year,
+html .alertas_modal .modal-ym .modal-content form .modal-buttons #confirm_month_year {
+  background-color: #2a4566;
+}
+body .alertas_modal .modal-ym .modal-content form .modal-buttons button,
+html .alertas_modal .modal-ym .modal-content form .modal-buttons button {
+  width: 50%;
+  height: 3vh;
+  font-family: "Nunito";
+  color: #ffffff;
+  font-size: 0.7vw;
+  border-radius: 5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+body .alertas_modal .modal-ym .modal-content form .modal-buttons button:hover, body .alertas_modal .modal-ym .modal-content form .modal-buttons button:focus,
+html .alertas_modal .modal-ym .modal-content form .modal-buttons button:hover,
+html .alertas_modal .modal-ym .modal-content form .modal-buttons button:focus {
+  opacity: 50%;
+  scale: 0.9;
+}
 body .alertas_modal #modal-user-info,
 html .alertas_modal #modal-user-info {
   display: none;
@@ -1661,7 +2273,7 @@ html .alertas_modal #modal-user-info .modal-content .user-info-content .user-inf
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #00bf63;
+  background-color: #4CAF50;
   transition: all 0.3s ease-in-out;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .save-btn:hover,
@@ -1678,7 +2290,7 @@ html .alertas_modal #modal-user-info .modal-content .user-info-content .user-inf
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #ff3131;
+  background-color: #F44336;
   transition: all 0.3s ease-in-out;
 }
 body .alertas_modal #modal-user-info .modal-content .user-info-content .user-info-item #edit-name-container .cancel-btn:hover,
@@ -1748,6 +2360,22 @@ html header {
   position: fixed;
   z-index: 1000;
   top: 45vh;
+  left: 40vw;
+  transform: rotate(0deg);
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out, top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.4s ease-in-out;
+}
+body header.cambiar_nav,
+html header.cambiar_nav {
+  top: 5vh;
+  left: 18vw;
+  width: 14vw;
+  height: 4vw;
+}
+body header.cambiar_nav nav ul .circulo_icon,
+html header.cambiar_nav nav ul .circulo_icon {
+  width: 0.7vw;
+  height: 0.7vw;
+  transition: all 0.4s ease-in-out;
 }
 body header nav,
 html header nav {
@@ -1776,6 +2404,7 @@ html header nav ul .circulo_icon {
   background-color: #ffffff;
   border-radius: 100%;
   position: absolute;
+  transition: all 0.4s ease-in-out;
   top: 50%;
   left: 39%;
   animation: moverpuntolog 3s ease-in-out infinite;
@@ -1839,6 +2468,7 @@ html main .pages {
   width: 50%;
   height: var(--main-vh);
   min-height: var(--main-vh);
+  position: relative;
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -1846,6 +2476,10 @@ html main .pages {
   overflow-x: hidden;
   overflow-y: auto;
   display: none;
+}
+body main .pages.exit-animation,
+html main .pages.exit-animation {
+  animation: fadeOut 0.5s ease-in-out forwards;
 }
 body main #home,
 html main #home {
@@ -2725,7 +3359,7 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings label span {
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2802,7 +3436,7 @@ html main #pag3 .nav_admin .nav_cont .settings .icons_settings .settings_info .d
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2854,7 +3488,7 @@ html main #pag3 .nav_admin .nav_cont .cont_welcome_admin .text_welcome_admin p {
   padding: 0;
   margin: 0;
   text-align: center;
-  font-size: 0.9em;
+  font-size: 0.9vw;
   font-family: "Nunito";
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin,
@@ -2936,7 +3570,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon s
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2951,7 +3585,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .label_icon .
   position: absolute;
   top: 0.5vh;
   right: 0.4vw;
-  background-color: #00bf63;
+  background-color: #4CAF50;
   border: 0.2vw solid #2a4566;
   border-radius: 50%;
   display: none;
@@ -3026,7 +3660,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   padding: 0.5vw 1vw;
   border: none;
   border-radius: 1vw;
-  background: #a6a6a6;
+  background: #B0BEC5;
   color: #ffffff;
   font-family: "Nunito";
   cursor: pointer;
@@ -3040,7 +3674,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   position: absolute;
   top: -0.3vh;
   right: -0.3vw;
-  background-color: #00bf63;
+  background-color: #4CAF50;
   border: 0.2vw solid #2a4566;
   border-radius: 50%;
   display: none;
@@ -3077,7 +3711,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   background-position: center;
   background-repeat: no-repeat;
   transform: translateY(-50%);
-  background-color: #a6a6a6;
+  background-color: #B0BEC5;
   color: #ffffff;
   border: none;
   cursor: pointer;
@@ -3094,7 +3728,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   background-size: cover;
   transition: all 0.2s ease-in-out;
   transform: translateY(-50%) rotate(180deg);
-  border: 0.1rem solid #a6a6a6;
+  border: 0.1rem solid #B0BEC5;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.right,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow.right {
@@ -3105,7 +3739,7 @@ html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_i
   background-repeat: no-repeat;
   background-size: cover;
   transition: all 0.2s ease-in-out;
-  border: 0.1rem solid #a6a6a6;
+  border: 0.1rem solid #B0BEC5;
 }
 body main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:disabled,
 html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info .branch-carousel .carousel-arrow:disabled {
@@ -3329,7 +3963,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .label_icon sp
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3404,7 +4038,7 @@ html main #pag3 .nav_admin .nav_cont .mensajes_usuarios .icons_mj .mj_user_info 
   border-radius: 5rem;
   font-size: 0.7vw;
   display: flex;
-  background-color: #a6a6a6;
+  background-color: #B0BEC5;
   color: #ffffff;
   outline: none;
   text-align: center;
@@ -3659,7 +4293,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .label_ico
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3734,7 +4368,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
   border-radius: 5rem;
   font-size: 0.7vw;
   display: flex;
-  background-color: #a6a6a6;
+  background-color: #B0BEC5;
   color: #ffffff;
   outline: none;
   text-align: center;
@@ -3845,13 +4479,13 @@ body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox] ~ .sucursal_label {
   height: 70%;
   aspect-ratio: 2/2;
-  background-color: #ff3131;
+  background-color: #F44336;
   border-radius: 50%;
   display: inline-block;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox]:checked ~ .sucursal_label,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container input[type=checkbox]:checked ~ .sucursal_label {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_sucu .icons_sucu .sucu_user_info .data_sucu_user .sucursal_list .sucursal_item .checkbox_container .sucursal_label {
@@ -3945,7 +4579,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .lab
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.7vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4023,7 +4657,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
   border-radius: 5rem;
   font-size: 0.7vw;
   display: flex;
-  background-color: #a6a6a6;
+  background-color: #B0BEC5;
   color: #ffffff;
   outline: none;
   text-align: center;
@@ -4188,11 +4822,11 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .pue
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.no_disponible,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.no_disponible {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.disponible,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle.disponible {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle:hover,
 html main #pag3 .nav_admin .nav_cont .disponibilidad_puestos .icons_puestos .puestos_user_info .data_puestos_user ul button:focus .puestos_admin_items .puesto_admin_puesto .puesto_admin_container .puesto_admin_circle:hover {
@@ -4281,7 +4915,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.7em;
+  font-size: 0.6vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4358,7 +4992,7 @@ html main #pag3 .nav_admin .nav_cont .disponibilidad_resultados .icons_resultado
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 0.6em;
+  font-size: 0.5vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4432,19 +5066,19 @@ html main #pag3 .estatus_vacantes .icons_status label img {
 }
 body main #pag3 .estatus_vacantes .icons_status #label_status1,
 html main #pag3 .estatus_vacantes .icons_status #label_status1 {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag3 .estatus_vacantes .icons_status #label_status2,
 html main #pag3 .estatus_vacantes .icons_status #label_status2 {
-  background-color: #FFD700;
+  background-color: #FFCA28;
 }
 body main #pag3 .estatus_vacantes .icons_status #label_status3,
 html main #pag3 .estatus_vacantes .icons_status #label_status3 {
-  background-color: #17a2b8;
+  background-color: #2196F3;
 }
 body main #pag3 .estatus_vacantes .icons_status #label_status4,
 html main #pag3 .estatus_vacantes .icons_status #label_status4 {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info,
 html main #pag3 .estatus_vacantes .icons_status .status_info {
@@ -4504,19 +5138,19 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .box_status .filtro
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status1,
 html main #pag3 .estatus_vacantes .icons_status .status_info .box_status1 {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status2,
 html main #pag3 .estatus_vacantes .icons_status .status_info .box_status2 {
-  background-color: #FFD700;
+  background-color: #FFCA28;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status3,
 html main #pag3 .estatus_vacantes .icons_status .status_info .box_status3 {
-  background-color: #17a2b8;
+  background-color: #2196F3;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .box_status4,
 html main #pag3 .estatus_vacantes .icons_status .status_info .box_status4 {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status {
@@ -4752,7 +5386,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .pendiente,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .pendiente,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .pendiente {
-  border: 0.2em solid #FFD700;
+  border: 0.2em solid #FFCA28;
   font-size: 0.3vw;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .apto,
@@ -4763,7 +5397,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .apto,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .apto,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .apto {
-  border: 0.2em solid #00bf63;
+  border: 0.2em solid #4CAF50;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus .noapto,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .noapto,
@@ -4773,7 +5407,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus .noapto,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .Itemstatus .noapto,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .Itemstatus .noapto {
-  border: 0.2em solid #ff3131;
+  border: 0.2em solid #F44336;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .Itemstatus span,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .Itemstatus span,
@@ -4844,7 +5478,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-noAsistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-noAsistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-noAsistieron {
-  background-color: #FFD700;
+  background-color: #FFCA28;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-asistieron,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-asistieron,
@@ -4854,7 +5488,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-asistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-asistieron,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-asistieron {
-  background-color: #17a2b8;
+  background-color: #2196F3;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-contratado,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-contratado,
@@ -4864,7 +5498,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-contratado,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-contratado,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-contratado {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-baja,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-baja,
@@ -4874,7 +5508,7 @@ html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .va
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-baja,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_asistieron .btn-container .btn-baja,
 html main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_contratado .btn-container .btn-baja {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_baja .btn-container .btn-eliminar,
 body main #pag3 .estatus_vacantes .icons_status .status_info .data_status ul .vacante_item_noasistieron .btn-container .btn-eliminar,
@@ -5071,7 +5705,6 @@ html main #pag3 .admin_cont .cont_rechazados {
   position: absolute;
   top: 1%;
   left: 1%;
-  border-radius: 1.2vw;
   justify-content: start;
   align-items: center;
   flex-direction: column;
@@ -5082,7 +5715,7 @@ html main #pag3 .admin_cont .cont_rechazados .box_red {
   width: 100%;
   height: 3vh;
   margin-top: 1vh;
-  background-color: #ff3131;
+  background-color: #F44336;
   border-radius: 1rem;
   display: flex;
   overflow: hidden;
@@ -5158,12 +5791,12 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  border-radius: 0.6rem;
+  border-radius: 0.6vw;
   border: none;
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  gap: 0.5rem;
+  gap: 0.6vw;
   transition: all 0.3s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn_container2,
@@ -5267,15 +5900,15 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .c
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .alto,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .alto {
-  border: 0.2vw solid #00bf63;
+  border: 0.2vw solid #4CAF50;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .medio,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .medio {
-  border: 0.2vw solid #FFD700;
+  border: 0.2vw solid #FFCA28;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .muyBajo,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container .muyBajo {
-  border: 0.2vw solid #ff3131;
+  border: 0.2vw solid #F44336;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .criterios_container span {
@@ -5319,19 +5952,19 @@ html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .b
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-noAsistieron,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-noAsistieron {
-  background-color: #FFD700;
+  background-color: #FFCA28;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-asistieron,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-asistieron {
-  background-color: #17a2b8;
+  background-color: #2196F3;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-contratado,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-contratado {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-baja,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .btn-container .btn-baja {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar,
 html main #pag3 .admin_cont .cont_rechazados .const_data ul .vacante_item_red .containerEliminar {
@@ -5421,7 +6054,7 @@ html main #pag3 .admin_cont .cont_citas .box_gray {
   width: 100%;
   height: 3vh;
   margin-top: 1vh;
-  background-color: #a6a6a6;
+  background-color: #B0BEC5;
   border-radius: 1rem;
   display: flex;
   overflow: hidden;
@@ -5497,12 +6130,12 @@ html main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  border-radius: 0.6rem;
+  border-radius: 0.6vw;
   border: none;
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  gap: 5%;
+  gap: 0.6vw;
   transition: all 0.3s ease-in-out;
 }
 body main #pag3 .admin_cont .cont_citas .const_data ul .vacante_item_citas .btn_container2,
@@ -5638,7 +6271,7 @@ html main #pag3 .admin_cont .cont_aceptados .box_green {
   width: 100%;
   height: 3vh;
   margin-top: 1vh;
-  background-color: #00bf63;
+  background-color: #4CAF50;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -5715,7 +6348,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green {
   height: 5vh;
   display: flex;
   background-color: #ffffff;
-  border-radius: 0.6rem;
+  border-radius: 0.6vw;
   justify-content: center;
   align-items: center;
   border: none;
@@ -5723,7 +6356,7 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green {
   outline: none;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  gap: 0.5rem;
+  gap: 0.6vw;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn_container2 {
@@ -5822,15 +6455,15 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .alto,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .alto {
-  border: 0.2vw solid #00bf63;
+  border: 0.2vw solid #4CAF50;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .medio,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .medio {
-  border: 0.2vw solid #FFD700;
+  border: 0.2vw solid #FFCA28;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .muyBajo,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container .muyBajo {
-  border: 0.2vw solid #ff3131;
+  border: 0.2vw solid #F44336;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .criterios_container span {
@@ -5873,19 +6506,19 @@ html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-noAsistieron,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-noAsistieron {
-  background-color: #FFD700;
+  background-color: #FFCA28;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-asistieron,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-asistieron {
-  background-color: #17a2b8;
+  background-color: #2196F3;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-contratado,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-contratado {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-baja,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-baja {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-eliminar,
 html main #pag3 .admin_cont .cont_aceptados .const_data ul .vacante_item_green .btn-container .btn-eliminar {
@@ -6421,7 +7054,7 @@ html main #pag5 .estatus_citas_manager {
   top: 8vh;
   left: 45vw;
   width: 8vw;
-  height: 4vw;
+  height: 3.5vw;
   display: flex;
   background-color: #2a4566;
   padding: 1vw;
@@ -6466,11 +7099,11 @@ html main #pag5 .estatus_citas_manager .icons_status label {
 }
 body main #pag5 .estatus_citas_manager .icons_status #label_status1_manager,
 html main #pag5 .estatus_citas_manager .icons_status #label_status1_manager {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag5 .estatus_citas_manager .icons_status #label_status2_manager,
 html main #pag5 .estatus_citas_manager .icons_status #label_status2_manager {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info,
 html main #pag5 .estatus_citas_manager .icons_status .status_info {
@@ -6480,7 +7113,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info {
   align-items: center;
   flex-direction: column;
   width: 28vw;
-  height: 75vh;
+  height: 65vh;
   top: 21vh;
   left: 35.5vw;
   text-align: center;
@@ -6508,11 +7141,11 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .box_status p 
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status1,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .box_status1 {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .box_status2,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .box_status2 {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status {
@@ -6624,7 +7257,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 5em;
+  font-size: 2em;
   color: #2d3f66;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .criterios_container,
@@ -6682,7 +7315,7 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
   justify-items: center;
   align-content: center;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container button,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .custom-select,
@@ -6786,13 +7419,13 @@ body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-noAsistieron,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-noAsistieron,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-noAsistieron {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-asistieron,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-asistieron,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-asistieron,
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-asistieron {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-contratado,
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-contratado,
@@ -6800,10 +7433,16 @@ html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status u
 html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-contratado {
   display: none;
 }
-body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-eliminar,
-body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-eliminar,
-html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-eliminar,
-html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-eliminar {
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-baja,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-baja,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .btn-container .btn-baja,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .btn-container .btn-baja {
+  display: none;
+}
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .containerEliminar,
+body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .containerEliminar,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio .containerEliminar,
+html main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerAsistio .containerEliminar {
   display: none;
 }
 body main #pag5 .estatus_citas_manager .icons_status .status_info .data_status ul .vacante_item_citasManagerNoasistio:focus,
@@ -7122,11 +7761,11 @@ html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_c
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-noAsistieron,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-noAsistieron {
-  background-color: #ff3131;
+  background-color: #F44336;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-asistieron,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-asistieron {
-  background-color: #00bf63;
+  background-color: #4CAF50;
 }
 body main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-contratado,
 html main #pag5 .cont_manager .cont_citas_manager .const_data ul .vacante_item_citasManager .btn-container .btn-contratado {
@@ -7210,11 +7849,14 @@ html main #pag5 .chat_manager .icons_chat_manager .label_icon {
   justify-content: center;
   align-items: center;
   flex-direction: row-reverse;
+  background-color: transparent !important;
   gap: 1vw;
 }
 body main #pag5 .chat_manager .icons_chat_manager .label_icon img,
 html main #pag5 .chat_manager .icons_chat_manager .label_icon img {
   height: 50%;
+  width: auto;
+  aspect-ratio: 1/1;
   transform: scale(1) rotate(270deg);
   transition: all 0.2s ease-in-out;
 }
@@ -7223,7 +7865,7 @@ html main #pag5 .chat_manager .icons_chat_manager .label_icon span {
   color: #ffffff;
   display: flex;
   font-family: "Nunito";
-  font-size: 1vw;
+  font-size: 1.5vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7231,13 +7873,13 @@ html main #pag5 .chat_manager .icons_chat_manager .label_icon span {
 }
 body main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total,
 html main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total {
-  width: 4vw;
+  width: 0.8vw;
   aspect-ratio: 1/1;
   position: absolute;
-  top: 7%;
-  left: 31vw;
-  background-color: #00bf63;
-  border: 1vw solid #2a4566;
+  top: 5%;
+  left: 41.5vw;
+  background-color: #4CAF50;
+  border: 0.3vw solid #2a4566;
   border-radius: 50%;
   display: none;
   justify-content: center;
@@ -7263,8 +7905,9 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info {
   align-items: center;
   flex-direction: column;
   width: 30vw;
-  height: 82vh;
-  bottom: 8vh;
+  height: 83vh;
+  top: 7vh;
+  left: 34.5vw;
   border-radius: 2vw;
   text-align: center;
   color: #ffffff;
@@ -7366,7 +8009,6 @@ html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_ch
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1vh;
   margin-bottom: 1vh;
 }
 body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input,
@@ -7496,20 +8138,6 @@ body main .agregar_dis,
 html main .agregar_dis {
   display: flex;
 }
-body .cambiar_nav,
-html .cambiar_nav {
-  top: 5vh;
-  left: 18vw;
-  width: 14vw;
-  height: 4vw;
-}
-body .cambiar_nav nav ul .circulo_icon,
-html .cambiar_nav nav ul .circulo_icon {
-  width: 0.8vw;
-  height: 0.8vw;
-  top: 50%;
-  left: 38%;
-}
 @media screen and (max-width: 500px) {
   body .alertas .alerta,
   html .alertas .alerta {
@@ -7581,6 +8209,19 @@ html .cambiar_nav nav ul .circulo_icon {
   html header {
     width: 65vw;
     height: 20vw;
+    left: 17.5vw;
+  }
+  body header.cambiar_nav,
+  html header.cambiar_nav {
+    top: 5vh;
+    left: 25vw;
+    width: 50vw;
+    height: 15vw;
+  }
+  body header.cambiar_nav nav ul .circulo_icon,
+  html header.cambiar_nav nav ul .circulo_icon {
+    width: 2.8vw;
+    height: 2.8vw;
   }
   body header nav ul .circulo_icon,
   html header nav ul .circulo_icon {
@@ -7796,8 +8437,8 @@ html .cambiar_nav nav ul .circulo_icon {
   html main #pag3 .nav_admin .nav_cont .chat_admin .icons_chat_admin .chat_admin_info {
     display: flex;
     width: 100vw;
-    height: 94vh;
-    top: 100%;
+    height: 100vh;
+    top: 0;
     right: 0;
     padding: 0;
     border-left: 0;
@@ -8189,32 +8830,35 @@ html .cambiar_nav nav ul .circulo_icon {
     top: 0;
     left: 0;
   }
-  body main #pag5 .chat_manager .icons_chat_manager input,
-  html main #pag5 .chat_manager .icons_chat_manager input {
-    display: none;
-  }
-  body main #pag5 .chat_manager .icons_chat_manager input:checked ~ label,
-  html main #pag5 .chat_manager .icons_chat_manager input:checked ~ label {
-    display: flex;
-  }
-  body main #pag5 .chat_manager .icons_chat_manager input:checked ~ .chat_manager_info,
-  html main #pag5 .chat_manager .icons_chat_manager input:checked ~ .chat_manager_info {
-    display: flex;
-    animation: fadeIn 0.2s ease-in-out forwards;
-  }
   body main #pag5 .chat_manager .icons_chat_manager .label_icon,
   html main #pag5 .chat_manager .icons_chat_manager .label_icon {
     gap: 3vw;
+  }
+  body main #pag5 .chat_manager .icons_chat_manager .label_icon img,
+  html main #pag5 .chat_manager .icons_chat_manager .label_icon img {
+    height: 50%; /* Reducido para evitar que sea demasiado grande */
   }
   body main #pag5 .chat_manager .icons_chat_manager .label_icon span,
   html main #pag5 .chat_manager .icons_chat_manager .label_icon span {
     font-size: 5vw;
   }
+  body main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total,
+  html main #pag5 .chat_manager .icons_chat_manager .label_icon .indicador_total {
+    height: 30%;
+    width: auto;
+    aspect-ratio: 1/1;
+    top: 15%;
+    left: 32vw;
+    border: 0.8vw solid #2a4566;
+  }
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info {
     width: 100vw;
-    height: 88vh;
-    bottom: 6vh;
+    height: 87.5vh;
+    border-radius: 0;
+    box-shadow: none;
+    top: 6vh;
+    left: 0;
   }
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager p,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .data_chat_manager p {
@@ -8236,6 +8880,7 @@ html .cambiar_nav nav ul .circulo_icon {
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form {
     min-height: 1rem;
+    margin-top: 0;
   }
   body main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input,
   html main #pag5 .chat_manager .icons_chat_manager .chat_manager_info .manager_chat_form #manager_chat_input {
@@ -8286,18 +8931,6 @@ html .cambiar_nav nav ul .circulo_icon {
     width: 0;
     height: 0;
     font-size: 0;
-  }
-  body .cambiar_nav,
-  html .cambiar_nav {
-    top: 5vh;
-    left: 25vw;
-    width: 50vw;
-    height: 15vw;
-  }
-  body .cambiar_nav nav ul .circulo_icon,
-  html .cambiar_nav nav ul .circulo_icon {
-    width: 2.8vw;
-    height: 2.8vw;
   }
 }
 @media screen and (max-height: 600px) {
