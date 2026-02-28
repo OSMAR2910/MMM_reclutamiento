@@ -36,7 +36,7 @@ exports.handler = async function (event) {
         max_tokens: 50,
         messages: [{
           role: "user",
-          content: `Eres un clasificador de intenciones para un chatbot de RH de una pizzería.\n\nMensaje del usuario: "${message}"\n\nIntenciones disponibles: ${intentList}\n\nResponde ÚNICAMENTE con el nombre exacto del intent que mejor corresponde.\nSi ninguno encaja, responde: null`
+          content: `Intent classify. Message: "${message}"\nTags: ${intentList}\nReply only the matching tag or null.`
         }]
       })
     });
