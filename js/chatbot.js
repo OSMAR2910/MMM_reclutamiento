@@ -11,44 +11,11 @@ function generateRandomId() {
 }
 
 // ── Configuración de umbrales ─────────────────────────────────────────────────
+// ── Configuración de umbrales ─────────────────────────────────────────────────
 const SCORE = {
-  HIGH: 8,       // ≥8  → responde directo del JSON
-  LOW: 3,        // 3-7 → consulta caché Firebase
+  HIGH: 5,       // ≥5 → responde directo del JSON (match confiable)
   CACHE_SIM: 0.72,
 };
-
-// ── Palabras que indican INTENCIÓN PRINCIPAL (pesan mucho más) ────────────────
-// Si el usuario escribe estas palabras, el saludo pasa a segundo plano
-const INTENT_SIGNAL_WORDS = [
-  // Información general
-  "info", "informacion", "quiero saber", "dame info", "necesito saber",
-  "cuentame", "explicame", "dime", "digame",
-  // Empleo
-  "trabajo", "empleo", "vacante", "contratan", "chamba", "jale",
-  "aplicar", "postular", "requisitos", "documentos",
-  // Beneficios
-  "sueldo", "salario", "beneficios", "prestaciones", "pagan",
-  // Proceso
-  "proceso", "entrevista", "contratacion", "capacitacion",
-  // Ubicación
-  "sucursal", "ubicacion", "direccion", "donde estan",
-  // Horarios
-  "horario", "turno", "dias", "descanso",
-  // Puestos
-  "cocinero", "mostrador", "repartidor", "cocina", "reparto",
-];
-
-// ── Tags que son SOLO saludo/conversación (se penalizan si hay señal de intención) ──
-const SMALL_TALK_TAGS = [
-  "Saludos",
-  "Despedida",
-  "reaccion_risas",
-  "Agradecer",
-  "chistes",
-  "tienes_preguntas",
-  "Groserias",
-  "Soy_gay",
-];
 
 // ── normalizeText ─────────────────────────────────────────────────────────────
 function normalizeText(text) {
@@ -86,104 +53,68 @@ function calculateSimilarity(str1, str2) {
   return (longer.length - levenshteinDistance(longer, shorter)) / longer.length;
 }
 
-// ── NUEVA: detectar si el mensaje tiene señal de intención fuerte ─────────────
-function detectIntentSignals(normalizedMsg) {
-  const signals = [];
-  for (const signal of INTENT_SIGNAL_WORDS) {
-    if (normalizedMsg.includes(normalizeText(signal))) {
-      signals.push(signal);
-    }
-  }
-  return signals;
-}
-
-// ── NUEVA: score por densidad (evita que intents grandes con keywords triviales ganen) ──
-// En lugar de sumar puntos crudos, también considera cuán relevante es el mejor match
-function scoreKeyword(normalizedMsg, normalizedKw, msgWords) {
-  let score = 0;
-
-  // Coincidencia exacta total
-  if (normalizedMsg === normalizedKw) return 15;
-
-  // Frase completa contenida — bonus extra si la keyword es larga (más específica)
-  if (normalizedMsg.includes(normalizedKw)) {
-    const specificityBonus = Math.min(normalizedKw.length * 0.2, 6); // max +6 bonus
-    return 6 + specificityBonus;
-  }
-
-  // Similitud Levenshtein vs mensaje completo
-  const sim = calculateSimilarity(normalizedMsg, normalizedKw);
-  if (sim > 0.85) score += 5;
-  else if (sim > 0.7) score += 3;
-  else if (sim > 0.55) score += 1.5;
-
-  // Palabras individuales — las largas valen más, las muy cortas (<4 chars) valen menos
-  const kwWords = normalizedKw.split(" ").filter((w) => w.length > 2);
-  for (const word of kwWords) {
-    if (msgWords.includes(word)) {
-      if (word.length <= 3) score += 0.5;        // palabras muy cortas: poco peso
-      else if (word.length <= 5) score += 1;     // palabras medias: peso normal
-      else score += 1.5;                          // palabras largas: más peso (más específicas)
-    }
-  }
-
-  return score;
-}
-
-// ── CAPA 2: getBestIntent con detección de intención mejorada ─────────────────
+// ── getBestIntent — diseñado para un JSON con pocas keywords muy precisas ─────
+// Principio: el mejor match individual gana. No se acumulan puntos de keywords
+// genéricas. Una keyword específica que matchea exacto vale mucho más que 10
+// palabras cortas que aparecen como substring.
 function getBestIntent(message) {
   const normalizedMsg = normalizeText(message);
-  const msgWords = normalizedMsg.split(" ").filter((w) => w.length > 2);
-
-  // Detectar si hay señales de intención explícita en el mensaje
-  const intentSignals = detectIntentSignals(normalizedMsg);
-  const hasStrongIntent = intentSignals.length > 0;
-
-  console.log(`🔍 Señales de intención detectadas: [${intentSignals.join(", ")}]`);
+  const msgWords = normalizedMsg.split(" ").filter((w) => w.length >= 4);
 
   let best = null;
   let bestScore = 0;
-  let scores = []; // para debug
+  let scores = [];
 
   for (const intent of intents) {
-    let rawScore = 0;
-    let bestKeywordScore = 0; // el mejor match individual de este intent
+    let topScore = 0; // solo el MEJOR match de este intent cuenta
 
     for (const keyword of intent.keywords) {
-      const normalizedKw = normalizeText(keyword);
-      const kwScore = scoreKeyword(normalizedMsg, normalizedKw, msgWords);
+      const kw = normalizeText(keyword);
+      let s = 0;
 
-      rawScore += kwScore;
-      if (kwScore > bestKeywordScore) bestKeywordScore = kwScore;
+      // Coincidencia exacta total
+      if (normalizedMsg === kw) {
+        s = 20;
+      }
+      // El mensaje contiene la keyword completa
+      else if (normalizedMsg.includes(kw)) {
+        // Cuanto más larga la keyword → más específica → más confiable
+        if (kw.length >= 15) s = 10;      // frase larga y específica
+        else if (kw.length >= 10) s = 7;  // frase media
+        else if (kw.length >= 6)  s = 5;  // palabra larga
+        else if (kw.length >= 4)  s = 2;  // palabra corta (menos confiable)
+        else s = 0.5;                      // muy corta: casi no suma
+      }
+      // Similitud alta (typos, errores de escritura)
+      else {
+        const sim = calculateSimilarity(normalizedMsg, kw);
+        if (sim >= 0.88) s = 6;
+        else if (sim >= 0.80) s = 3;
+        // Bajo 0.80 no suma — demasiado ruido
+
+        // Palabras largas de la keyword presentes en el mensaje
+        const kwWords = kw.split(" ").filter((w) => w.length >= 6);
+        for (const word of kwWords) {
+          if (msgWords.includes(word)) s += 2;
+        }
+      }
+
+      if (s > topScore) topScore = s;
     }
 
-    // ── Penalización para mensajes muy cortos (sin contexto) ──
-    if (normalizedMsg.length < 4 && intent.tag !== "Saludos") rawScore *= 0.4;
-
-    // ── Penalización para small talk cuando hay señal de intención fuerte ──
-    // Ejemplo: "que onda, quiero info del trabajo" → Saludos se penaliza
-    let finalScore = rawScore;
-    if (hasStrongIntent && SMALL_TALK_TAGS.includes(intent.tag)) {
-      finalScore *= 0.25; // reducir al 25% — el saludo es secundario
-      console.log(`⬇️  ${intent.tag} penalizado (small talk + señal de intención)`);
-    }
-
-    // ── Bonus si el mejor keyword individual fue muy específico ──
-    // Esto ayuda a que un match muy exacto gane sobre muchos matches mediocres
-    if (bestKeywordScore >= 10) finalScore += 5;
-    else if (bestKeywordScore >= 6) finalScore += 2;
-
-    scores.push({ tag: intent.tag, raw: rawScore.toFixed(1), final: finalScore.toFixed(1) });
-
-    if (finalScore > bestScore) {
-      bestScore = finalScore;
+    scores.push({ tag: intent.tag, score: topScore });
+    if (topScore > bestScore) {
+      bestScore = topScore;
       best = intent;
     }
   }
 
-  // Debug: top 3 intents
-  scores.sort((a, b) => b.final - a.final);
-  console.log("📊 Top intents:", scores.slice(0, 3).map(s => `${s.tag}(${s.final})`).join(" | "));
+  // Debug: top 3
+  scores.sort((a, b) => b.score - a.score);
+  console.log(
+    "📊 Top intents:",
+    scores.slice(0, 3).map(s => `${s.tag}(${s.score.toFixed(1)})`).join(" | ")
+  );
 
   return { intent: best, score: bestScore };
 }
@@ -261,42 +192,40 @@ async function classifyWithClaude(message) {
 async function getResponse(message) {
   if (!intents.length) return "Lo siento, no puedo responder en este momento.";
 
-  // CAPA 2: Levenshtein + detección de intención
+  // CAPA 1: JSON local — solo responde si el match es confiable (score >= HIGH)
   const { intent, score } = getBestIntent(message);
-  console.log(`📊 Score final: ${score.toFixed(1)} → ${intent?.tag}`);
+  console.log(`📊 Score: ${score.toFixed(1)} → ${intent?.tag}`);
 
   if (score >= SCORE.HIGH && intent) {
-    console.log(`✅ CAPA 2 → ${intent.tag}`);
+    console.log(`✅ LOCAL → ${intent.tag}`);
     return buildResponse(intent);
   }
 
-  // CAPA 3: Caché Firebase
-  if (score >= SCORE.LOW) {
-    const cachedTag = await checkFirebaseCache(message);
-    if (cachedTag) {
-      const cachedIntent = intents.find((i) => i.tag === cachedTag);
-      if (cachedIntent) {
-        console.log(`✅ CAPA 3 → ${cachedTag}`);
-        return buildResponse(cachedIntent);
-      }
+  // CAPA 2: Firebase caché — respuestas que Claude ya resolvió antes
+  const cachedTag = await checkFirebaseCache(message);
+  if (cachedTag) {
+    const cachedIntent = intents.find((i) => i.tag === cachedTag);
+    if (cachedIntent) {
+      console.log(`✅ CACHÉ → ${cachedTag}`);
+      return buildResponse(cachedIntent);
     }
   }
 
-  // CAPA 4: Claude
-  console.log(`🧠 CAPA 4 → Claude...`);
+  // CAPA 3: Claude — clasifica lo que el JSON no reconoció con confianza
+  console.log(`🧠 CLAUDE → clasificando...`);
   const claudeTag = await classifyWithClaude(message);
   if (claudeTag) {
     const claudeIntent = intents.find((i) => i.tag === claudeTag);
     if (claudeIntent) {
-      console.log(`✅ CAPA 4 → ${claudeTag}`);
-      saveToFirebaseCache(message, claudeTag);
+      console.log(`✅ CLAUDE → ${claudeTag}`);
+      saveToFirebaseCache(message, claudeTag); // guardar para próxima vez
       return buildResponse(claudeIntent);
     }
   }
 
-  // FALLBACK
+  // FALLBACK — Claude no pudo clasificar
   saveUnansweredMessage(message);
-  return `¡Glu-glu! No estoy seguro de lo que quieres decir, ${userName}. ¿Podrías explicarlo de otra manera? 🦃✨\n\nPuedes preguntarme sobre:\n• Vacantes disponibles 🏢\n• Requisitos para aplicar 📋\n• Sueldo y beneficios 💰\n• Horarios de trabajo ⏰\n• Sucursales disponibles 📍`;
+  return `¡Glu-glu! No entendí bien tu pregunta ${userName} 🦃. ¿Podrías reformularla? Puedo ayudarte con vacantes, requisitos, sueldo, horarios y sucursales. 💬✨`;
 }
 
 function buildResponse(intent) {

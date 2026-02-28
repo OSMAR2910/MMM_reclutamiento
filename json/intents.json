@@ -3,780 +3,338 @@
         {
             "tag": "Saludos",
             "keywords": [
-                "hola", "buenos dias", "buenas noches", "buenas tardes",
-                "buen dia", "buena noche", "buena tarde", "saludos",
-                "hello", "hi", "hey", "buenas", "que tal", "que onda",
-                "como estas", "que gusto verte", "hace dias que no se de ti",
-                "que hay de nuevo", "como te ha ido", "todo bien por ahi",
-                "un placer saludarte", "como andas", "como va todo",
-                "buen provecho", "muy buenas", "buenas noches a todos",
-                "holi", "holaa", "holaaa", "holiii", "eyyy", "ey",
-                "sup", "que pex", "que pasa", "que rollo", "ke tal",
-                "como estas pavo", "hola pavo", "hey pavo", "hola bot",
-                "buen dia pavo", "hola como estas", "muy buenas tardes",
-                "muy buenos dias", "buenas noches pavo"
+                "hola", "buenas", "hello", "hi", "hey",
+                "buenos dias", "buenas tardes", "buenas noches"
             ],
             "responses": [
                 "¡Holaaa ${userName}! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
                 "Hola hola ${userName}, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
                 "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta ${userName}.",
-                "Hola, ${userName} 🙌. Espero que tengas paciencia, los pavos somos lentos para contestar 🐾.",
                 "Holiiii ${userName}, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?",
-                "¡Hola ${userName}! 🦃 Aquí Sr. Pavo Chava, listo para ayudarte. ¿Sobre qué quieres saber hoy?",
-                "¡Buenas ${userName}! Justo estaba picoteando maíz cuando llegó tu mensaje 🌽😄. ¿En qué te ayudo?"
-            ]
-        },
-        {
-            "tag": "Informacion_General",
-            "keywords": [
-                "que haces", "como te va", "que cuentas", "que pasa",
-                "que opinas", "que piensas", "que dices", "que sabes",
-                "como lo ves", "que crees", "que hay", "que hay de nuevo",
-                "cuanto tiempo sin verte", "espero que estes bien",
-                "como va", "como te sientes", "dudas", "ayuda",
-                "quiero informacion", "dame informacion", "necesito informacion",
-                "que me puedes decir", "cuentame", "explicame",
-                "que puedes hacer", "para que sirves", "en que me ayudas",
-                "que sabes hacer", "que temas dominas", "sobre que me puedes ayudar",
-                "que tipo de preguntas puedo hacerte", "cual es tu funcion",
-                "para que eres", "como funciona este chat", "quien eres",
-                "como te llamas", "eres un bot", "eres humano",
-                "eres real", "eres una ia", "eres inteligencia artificial"
-            ],
-            "responses": [
-                "¡Glu-glu! Estoy aquí para ayudarte con información sobre nuestras vacantes y sucursales 🦃✨",
-                "¡Hola ${userName}! Soy el pavo asistente virtual, ¿en qué puedo ayudarte hoy? 🦃💼",
-                "¡Estoy picoteando información para ti! ¿Qué te gustaría saber sobre nuestras oportunidades laborales? 🌟🦃",
-                "¡Aquí estoy, listo para responder todas tus dudas sobre el trabajo! ¿Qué te interesa saber? 💭🦃",
-                "¡Glu-glu! Estoy aquí para guiarte en tu proceso de aplicación. ¿Por dónde quieres empezar? 🦃🎯",
-                "Soy Sr. Pavo Chava 🦃, el asistente virtual de MMM. Puedo ayudarte con info sobre vacantes, requisitos, sueldos, horarios y sucursales. ¿Qué necesitas saber ${userName}?"
+                "¡Hola ${userName}! 🦃 Soy Sr. Pavo Chava, ¿en qué te puedo ayudar hoy?"
             ]
         },
         {
             "tag": "Preguntas_Empleo",
             "keywords": [
-                "busco trabajo", "necesito trabajo", "quiero trabajar",
-                "hay vacantes", "tienen trabajo", "buscan personal",
-                "necesitan personal", "contratan", "estan contratando",
-                "buscan empleados", "necesitan empleados", "hay puestos disponibles",
-                "tienen puestos abiertos", "buscan gente", "necesitan gente",
-                "hay oportunidades", "busco empleo", "necesito empleo",
-                "quiero empleo", "hay trabajo", "buscan trabajadores",
-                "necesitan trabajadores", "puedo trabajar aqui",
-                "me pueden contratar", "quiero una vacante", "aplico aqui",
-                "como aplico", "me interesa trabajar", "quiero aplicar",
-                "dan trabajo", "ofrecen trabajo", "ofertas laborales",
-                "oportunidades de trabajo", "hay plazas", "plazas disponibles",
-                "tienen plazas", "solicitan personal", "andan buscando",
-                "alguien que trabaje", "buscan a alguien", "conseguir chamba",
-                "chamba", "jale", "hay jale", "tienen jale", "busco chamba",
-                "me dan trabajo", "consigo trabajo aqui", "me contratan",
-                "puestos de trabajo", "puestos laborales", "plazas laborales",
-                "trabajar en mmm", "trabajar en la empresa", "empleo disponible",
-                "vacante disponible", "trabajo disponible"
+                "busco trabajo", "quiero trabajar", "hay vacantes",
+                "estan contratando", "buscan personal", "necesitan empleados",
+                "hay trabajo", "busco empleo", "quiero aplicar",
+                "me pueden contratar", "hay chamba", "hay jale"
             ],
             "responses": [
-                "¡Claro ${userName}! Tenemos varias posiciones disponibles. ¿Te gustaría saber sobre algún puesto en específico? 🦃✨",
-                "¡Glu-glu! Tenemos oportunidades en cocina, mostrador y reparto. ¿Cuál te interesa más? 🦃💼",
-                "¡Excelente pregunta! Contamos con diferentes puestos. ¿Prefieres trabajar en cocina, atención al cliente o reparto? 🦃🎯",
-                "¡Sí! Estamos buscando personal. ¿Te gustaría saber más sobre nuestros puestos disponibles? 🦃🌟",
-                "¡Por supuesto! Tenemos varias vacantes en cocina 🍳, mostrador 👥 y reparto 🏍️. ¿Cuál área te llama más la atención ${userName}? 💫🦃"
+                "¡Claro ${userName}! Tenemos vacantes en cocina 🍳, mostrador 👥 y reparto 🏍️. ¿Cuál área te interesa más? 🦃✨",
+                "¡Glu-glu! Sí estamos contratando. ¿Te gustaría saber sobre cocina, atención al cliente o reparto? 🦃💼",
+                "¡Por supuesto ${userName}! Tenemos varias vacantes disponibles. ¿En qué área te gustaría trabajar? 🦃🌟"
             ]
         },
         {
             "tag": "Requisitos_Empleo",
             "keywords": [
-                "requisitos", "documentos", "documentacion", "papeles",
-                "que necesito", "que documentos necesito", "que papeles necesito",
+                "que documentos necesito", "que papeles piden",
                 "que requisitos hay", "que necesito para aplicar",
-                "que necesito para postular", "que necesito para trabajar",
-                "que necesito para ser contratado", "que necesito para empleo",
-                "que debo llevar", "que debo traer", "que tengo que llevar",
-                "que tengo que presentar", "como me preparo", "que piden",
-                "que solicitan", "que requieren", "que exigen",
-                "tengo que llevar algo", "necesito algo especial",
-                "que documentos piden", "que papeles piden",
-                "cuales son los requisitos", "que se necesita",
-                "papeleria", "papelería", "documentos requeridos",
-                "docs necesarios", "que docs necesito", "que llevo",
-                "que presento", "que entrego", "acta de nacimiento",
-                "ine", "curp", "rfc", "nss", "numero de seguro social",
-                "seguro social", "que identificacion", "que id necesito",
-                "experiencia necesaria", "necesito experiencia",
-                "requieren experiencia", "piden experiencia"
+                "que debo llevar", "que debo presentar",
+                "documentos requeridos", "que piden para entrar"
             ],
             "responses": [
-                "📋 Te platico ${userName}!, necesitarás:\n• Disponibilidad de horario\n• Facilidad de transporte 🚗\n• Documentación: INE, RFC, CURP, NSS, acta de nacimiento\n• Buena imagen personal\n• Antidoping de orina 💉\n• Disposición para trabajar días festivos 🎆\n• Uniforme: Pantalón azul marino y zapatos negros 👔\n\n¿Necesitas más detalles sobre algún requisito? 🦃✨",
-                "📋 ¡Claro ${userName}! Para aplicar necesitas: INE, RFC, CURP, NSS y acta de nacimiento. También disponibilidad de horario y antidoping. ¿Tienes alguna duda sobre algún documento específico? 🦃",
-                "¡Buena pregunta ${userName}! Los documentos clave son: INE, RFC, CURP, Número de Seguridad Social y acta de nacimiento. Además necesitas disposición de tiempo y pasar un antidoping. ¿Alguna duda? 📋🦃",
-                "📋 Aquí va la lista completa ${userName}:\n\n✅ Documentos: INE vigente, RFC, CURP, NSS (Número de Seguro Social) y acta de nacimiento.\n✅ Actitud: Buena imagen personal, disposición para trabajar fines de semana y días festivos 🎆.\n✅ Logística: Facilidad de transporte y disponibilidad de horario.\n✅ Examen: Pasar antidoping de orina 💉.\n\n¡No se requiere experiencia previa! 🦃💪"
+                "📋 ¡Claro ${userName}! Necesitarás:\n• INE, RFC, CURP, NSS y acta de nacimiento\n• Disponibilidad de horario y facilidad de transporte 🚗\n• Buena imagen personal\n• Pasar antidoping de orina 💉\n• Disposición para trabajar días festivos 🎆\n• Uniforme: pantalón azul marino y zapatos negros 👔\n\n¿Tienes duda sobre algún documento específico? 🦃✨",
+                "📋 Los documentos clave son: INE, RFC, CURP, NSS y acta de nacimiento. También necesitas disponibilidad de horario y pasar antidoping. ¿Alguna duda? 🦃"
             ]
         },
         {
             "tag": "Beneficios_Salario",
             "keywords": [
-                "salario", "sueldo", "beneficios", "cuanto pagan",
-                "cuanto gano", "que gano", "que sueldo", "que salario",
-                "que beneficios", "que prestaciones", "que compensacion",
-                "que remuneracion", "que pago", "que ganancia", "que ingreso",
-                "que ofrecen", "que dan", "cuanto es el sueldo",
-                "cuanto me pagan", "cuanto voy a ganar", "cuanto es el salario",
-                "hay bonos", "hay prestaciones", "hay aguinaldo",
-                "hay seguro", "hay imss", "pagan bien", "buen sueldo",
-                "sobre qué puesto te gustaria saber", "sueldo por puesto",
-                "cuanto gana", "sueldo semanal", "salario semanal",
-                "pago semanal", "cuanto es el pago", "me pagan bien",
-                "vale la pena", "buenas prestaciones", "tienen imss",
-                "me dan seguro", "seguro medico", "vacaciones pagadas",
-                "prima vacacional", "aguinaldo", "utilidades",
-                "bono", "bonos de puntualidad", "bono de asistencia",
-                "descuento en comida", "comida gratis", "beneficio de comida",
-                "cuanto saco a la semana", "cuanto me llevo semanal"
+                "cuanto pagan", "cuanto es el sueldo", "cuanto gano",
+                "que salario ofrecen", "que beneficios dan",
+                "que prestaciones tienen", "hay aguinaldo",
+                "tienen imss", "cuanto me pagan"
             ],
             "responses": [
-                "💰 ¡Claro ${userName}! Nuestro paquete incluye:\n• Salario semanal de $2,940 libres\n• Todas las prestaciones de Ley 📋\n• Consumo subsidiado (75% descuento) 🍕\n• Eventos empresariales 🎉\n• Bonos de asistencia y puntualidad ⭐\n\n¿Te gustaría saber más detalles sobre algún beneficio? 🦃✨",
-                "💰 ¡El sueldo es de $2,940 semanales libres ${userName}, más prestaciones de ley, 75% de descuento en consumo y bonos! ¿Quieres saber más detalles? 🦃",
-                "😊 Claro ${userName}!, ¿sobre qué puesto te gustaría saber? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Te advierto que el salario incluye beneficios como consumo subsidiado (menú para colaboradores con 75% de descuento), pero no garantizo que sea suficiente para comprar todas las papas fritas que quieras 🍟😂. ¡Aunque siendo un pavo, yo siempre pido pizza! 🍕.",
-                "💰 Aquí el desglose completo ${userName}:\n\n📌 Salario semanal: $2,940 libres de impuestos\n   → Salario diario: $419.88 (6 días)\n   → Séptimo día: $419.88\n   → Prima dominical: $104.97\n   → Bono asistencia: $125.96\n   → Bono puntualidad: $125.96\n\n🎁 Beneficios adicionales:\n• IMSS y todas las prestaciones de Ley ✅\n• Aguinaldo y vacaciones 🏖️\n• 75% descuento en consumo 🍕\n• Eventos empresariales 🎉\n\n¡No está nada mal para empezar, ${userName}! 🦃💪"
+                "💰 ¡Aquí el paquete completo ${userName}!\n\n📌 Salario semanal: $2,940 libres\n   → $419.88/día × 6 días\n   → Séptimo día: $419.88\n   → Prima dominical: $104.97\n   → Bono asistencia: $125.96\n   → Bono puntualidad: $125.96\n\n🎁 Beneficios:\n• IMSS y prestaciones de Ley ✅\n• 75% descuento en consumo 🍕\n• Aguinaldo y vacaciones 🏖️\n• Eventos empresariales 🎉\n\n¿Quieres saber más detalles? 🦃✨",
+                "💰 ¡El sueldo es $2,940 semanales libres ${userName}! Más IMSS, aguinaldo, 75% de descuento en comida y bonos. ¿Algo más? 🦃"
             ]
         },
         {
             "tag": "Proceso_Contratacion",
             "keywords": [
-                "contratacion", "capacitacion", "proceso", "seleccion",
-                "entrevista", "contrato", "reclutamiento",
-                "como aplicar", "como postular", "como solicitar",
-                "como inscribirme", "como registrarme", "como entrar",
-                "como conseguir trabajo", "como conseguir empleo",
-                "como conseguir ser contratado", "pasos para trabajar",
-                "que sigue", "cual es el proceso", "como es la entrevista",
-                "cuando me llaman", "en cuanto me contactan",
-                "primer dia", "que pasa despues", "capacitacion inicial",
-                "donde es la capacitacion", "cuando empieza la capacitacion",
-                "cuanto tarda el proceso", "dias para contratarme",
-                "cuanto demoran en llamarme", "me llaman pronto",
-                "que tan rapido", "cuando empiezo", "cuando inicio",
-                "cuando inicio a trabajar", "cuando comienzo",
-                "proceso de seleccion", "etapas de contratacion",
-                "pasos para entrar", "como es el proceso de seleccion",
-                "hay entrevista", "como es la entrevista",
-                "que me preguntan en la entrevista", "me hacen examen",
-                "hay prueba", "hay examen", "que evaluan"
+                "como es el proceso", "como aplico", "pasos para entrar",
+                "cuando me llaman", "hay entrevista",
+                "que sigue despues de aplicar", "cuanto tarda el proceso"
             ],
             "responses": [
-                "📝 El proceso es sencillo ${userName}:\n1. Llena el formulario en línea ✍️\n2. Te contactaremos para entrevista 📞\n3. Presenta documentación 📋\n4. Realiza prueba de antidoping 💉\n5. Capacitación inicial 🎓\n\n¿Te gustaría empezar con el formulario? 🦃✨",
-                "Si ${userName}!,📝 El proceso de contratación y capacitación se lleva a cabo en nuestras oficinas en Siglo 21, Tijuana 📍. El primer día es de 10:00 a.m. a 6:00 p.m., y sí, cuenta como día laborado ⏰. Trae copias de tus documentos, pero no traigas maíz, que ya habrá tiempo para eso después 🌽. ¡Nos vemos allá, humano!",
-                "📝 ¡Es muy sencillo ${userName}! Llena el formulario, te contactamos, presentas documentos, antidoping y listo — comienzas capacitación en Siglo 21. ¿Empezamos con el formulario? 🦃",
-                "📝 El proceso completo ${userName}:\n\n1️⃣ Llena el formulario en línea (el ícono de usuario en pantalla)\n2️⃣ Te contactamos en poco tiempo 📞\n3️⃣ Presentas tu documentación física en Siglo 21\n4️⃣ Realizas el antidoping 💉\n5️⃣ Capacitación de 10am a 6pm (día laborado ✅)\n6️⃣ ¡Empiezas a trabajar! 🎉\n\nTodo es bastante rápido, ${userName}. ¿Arrancamos? 🦃💪"
+                "📝 El proceso es muy sencillo ${userName}:\n1. Llena el formulario en línea ✍️\n2. Te contactamos para entrevista 📞\n3. Presentas documentación 📋\n4. Realizas antidoping 💉\n5. Capacitación inicial en Siglo 21 (10am-6pm, cuenta como día laborado) 🎓\n\n¿Empezamos con el formulario? 🦃✨",
+                "📝 ¡Muy fácil ${userName}! Llena el formulario → te contactamos → presentas docs → antidoping → capacitación en Siglo 21. ¿Alguna duda del proceso? 🦃"
             ]
         },
         {
             "tag": "Ubicaciones_Sucursales",
             "keywords": [
-                "donde estan", "donde quedan", "donde se encuentran",
-                "donde hay sucursales", "donde hay tiendas",
-                "donde hay locales", "donde hay restaurantes",
-                "donde hay pizzerias", "donde hay pizzerías",
-                "todas las sucursales", "lista de sucursales",
-                "nombres de sucursales", "ubicados", "ubicaciones",
-                "direcciones", "cuantas sucursales hay",
-                "en que colonias", "en que zonas", "por donde estan",
-                "sucursales disponibles", "sedes", "locales",
-                "donde trabajan", "establecimientos",
-                "sucursales de mmm", "tiendas de mmm",
-                "donde quedan las sucursales", "cuales son las sucursales",
-                "que sucursales existen", "hay sucursales cerca",
-                "tengo sucursal cerca", "sucursales en tijuana",
-                "sucursales en rosarito", "sucursales en tecate",
-                "en que ciudades estan", "en donde tienen locales"
+                "donde tienen sucursales", "cuales son las sucursales",
+                "lista de sucursales", "donde estan ubicados",
+                "en que colonias estan", "cuantas sucursales hay"
             ],
             "responses": [
-                "🏪 Contamos con las siguientes sucursales: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. Las sucursales con disponibilidad se muestran en el formulario, Dime la sucursal que quieras ir ${userName}, para darte su ubicación. 😊 ¡Ah, y si ves un pavo volando cerca, probablemente sea yo haciendo entregas! 🦃✈️",
-                "🏪 Contamos con sucursales en: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro. ¿De cuál te gustaría saber su ubicación exacta? 🦃✨",
-                "📍 ¡Tenemos 15 sucursales en Tijuana y alrededores ${userName}! Dime cuál te interesa y te doy la ubicación exacta. 🦃🗺️",
-                "🗺️ ¡Tenemos presencia en toda la región ${userName}! Nuestras 15 sucursales son:\n\n📍 Playas • Altamira • Cacho • Libertad • Otay • Huertas • Villa Fontana • Santa Fe • Florido • Hipódromo • Monarca • Rosarito • Tecate • Sierra • San Ysidro\n\n¿Cuál te queda más cerca? Te mando la ubicación en Maps 🦃✨"
+                "🏪 Tenemos 15 sucursales ${userName}:\n\n📍 Playas • Altamira • Cacho • Libertad • Otay • Huertas • Villa Fontana • Santa Fe • Florido • Hipódromo • Monarca • Rosarito • Tecate • Sierra • San Ysidro\n\n¿De cuál te gustaría saber la ubicación exacta? 🦃🗺️",
+                "📍 ¡Tenemos 15 sucursales en Tijuana y alrededores! Dime cuál te interesa ${userName} y te mando su ubicación en Maps. 🦃✨"
             ]
         },
         {
             "tag": "sucursales_disponibles",
             "keywords": [
-                "vacantes por sucursal", "sedes contratando",
-                "trabajo por sucursal", "ciudades contratando",
-                "ofertas por sucursal", "donde hay vacantes",
-                "sucursales activas", "disponibilidad de sedes",
-                "que sucursales contratan", "donde necesitan personal",
-                "en que sucursal hay trabajo", "sucursal disponible",
-                "que sucursales tienen vacantes", "donde hay trabajo ahorita",
-                "sucursales abiertas para contratar", "en que sede hay espacio"
+                "que sucursales contratan", "donde hay vacantes ahora",
+                "en que sucursal hay trabajo", "sucursales disponibles para trabajar"
             ],
             "responses": [
-                "¡Glu-glu, ${userName}! Las sucursales disponibles para contratación están en el formulario. ¡Échale un vistazo y elige la que más te guste! 🦃📋",
-                "¿Buscando sucursales, ${userName}? ¡No te preocupes! Todas las opciones disponibles están en el formulario. ¡El pavo te guía! 🗺️🦃",
-                "¡Hola, ${userName}! Las sucursales disponibles para contratación están listadas en el formulario. ¡Revisa y encuentra la ideal para ti! ✨🗳️",
-                "¡Oiga, oiga, ${userName}! Si quieres saber las sucursales disponibles, ¡mira el formulario! Ahí encontrarás todo lo que necesitas. 🦾📄",
-                "¡Atención, ${userName}! Las sucursales disponibles para contratación están en el formulario. ¡Un pavo organizado siempre encuentra lo que busca! 🦃🔍",
-                "¿Dónde están las sucursales disponibles, ${userName}? ¡Fácil! Solo abre el formulario y ahí están todas. ¡El pavo siempre tiene las respuestas! 💡🗳️"
+                "¡Glu-glu, ${userName}! Las sucursales con disponibilidad están en el formulario. ¡Échale un vistazo y elige! 🦃📋",
+                "Las opciones disponibles están en el formulario ${userName}. ¡El pavo te guía! 🗺️🦃"
             ]
         },
         {
             "tag": "Sucursal_Especifica",
             "keywords": [
-                "playas", "sucursal playas", "direccion playas",
-                "altamira", "sucursal altamira", "direccion altamira",
-                "cacho", "sucursal cacho", "direccion cacho",
-                "libertad", "sucursal libertad", "direccion libertad",
-                "otay", "sucursal otay", "direccion otay",
-                "huertas", "sucursal huertas", "direccion huertas",
-                "villa fontana", "sucursal villa fontana",
-                "santa fe", "sucursal santa fe",
-                "florido", "sucursal florido",
-                "hipodromo", "sucursal hipodromo",
-                "monarca", "sucursal monarca",
-                "rosarito", "sucursal rosarito",
-                "tecate", "sucursal tecate",
-                "sierra", "sucursal sierra",
-                "san ysidro", "sucursal san ysidro",
-                "donde queda", "como llego", "ubicacion de",
-                "me das la ubicacion", "me mandas la ubicacion",
-                "como llego a", "directions to", "maps de",
-                "link de maps", "link de la sucursal", "mapa de"
+                "playas", "altamira", "cacho", "libertad", "otay",
+                "huertas", "villa fontana", "santa fe", "florido",
+                "hipodromo", "monarca", "rosarito", "tecate", "sierra", "san ysidro"
             ],
             "responses": [
-                "📍 Dime qué sucursal te interesa ${userName} y te mando su ubicación exacta en Maps. Tenemos: Playas, Altamira, Cacho, Libertad, Otay, Huertas, Villa Fontana, Santa Fe, Florido, Hipódromo, Monarca, Rosarito, Tecate, Sierra y San Ysidro 🦃🗺️",
-                "📍 ¡Claro ${userName}! ¿Cuál sucursal específica te interesa? Te mando el link de Maps al instante 🦃✨",
-                "🗺️ Escríbeme el nombre de la sucursal ${userName} y te doy la dirección exacta. ¡El pavo conoce cada rincón de Tijuana! 🦃"
+                "📍 Dime el nombre de la sucursal ${userName} y te mando su ubicación en Maps al instante. 🦃🗺️",
+                "🗺️ ¡Claro ${userName}! ¿Cuál sucursal te interesa? Te mando el link de Maps. 🦃✨"
             ]
         },
         {
             "tag": "horarios",
             "keywords": [
-                "horario", "horarios", "hora", "abren", "cierran",
-                "turno", "dias", "horas", "abrir", "cerrar", "turnos",
-                "descanso", "descansare", "que dias trabajo",
-                "cuantas horas", "cuando trabajo", "dia libre",
-                "dias de descanso", "horario de trabajo", "turno matutino",
-                "turno vespertino", "turno nocturno", "media jornada",
-                "tiempo completo", "tiempo parcial", "part time",
-                "cuantos dias trabajo", "cuantos dias a la semana",
-                "que dias descanso", "cuando descanso",
-                "cuantas horas al dia", "cuantas horas semanales",
-                "horario fijo", "horario variable", "horario rotativo",
-                "entro a las", "salgo a las", "a que hora entro",
-                "a que hora salgo", "horario nocturno", "trabajo de noche",
-                "trabajo de madrugada", "trabajo de dia",
-                "trabajo fin de semana", "trabajo sabado", "trabajo domingo",
-                "trabajo festivos", "feriados", "dias festivos"
+                "cual es el horario", "que horario manejan",
+                "cuantos dias trabajo", "que dias descanso",
+                "cuantas horas al dia", "cuando es el turno"
             ],
             "responses": [
-                "⏰ Trabajamos 6 días a la semana ${userName}, porque hasta los pavos necesitamos un día libre para descansar 🛌. Los horarios son rotativos, entre las 10:00 a.m. y las 11:00 p.m., aunque confieso que a veces me quedo dormido en el mostrador... 😴🌾. Tu día de descanso lo asignará tu gerente, no yo, que soy solo un pavo virtual 🦃💼.",
-                "⏰ ¡Buena pregunta ${userName}! Son 6 días de trabajo con 1 de descanso asignado por el gerente. Horario rotativo de 10am a 11pm. ¿Tienes alguna preferencia de turno? 🦃",
-                "📅 Trabajamos 6 días ${userName}, horario rotativo entre 10am-11pm. Tu día libre lo define el gerente de tu sucursal. ¡Algo más? 🦃⏰",
-                "⏰ Así funcionan los horarios ${userName}:\n\n📅 6 días de trabajo, 1 de descanso (asignado por el gerente)\n🕙 Horario rotativo: 10:00 am a 11:00 pm\n📌 Los turnos varían según necesidad de la sucursal\n🎆 Se trabajan días festivos (con compensación en Ley)\n\n¿Tienes alguna restricción de horario que debamos considerar? 🦃"
-            ]
-        },
-        {
-            "tag": "actividades",
-            "keywords": [
-                "actividades", "tareas", "responsabilidades", "funciones",
-                "labores", "que hago", "que haria", "que se hace",
-                "que actividades hay", "en que consiste", "describe el puesto",
-                "que implica", "que involucra", "de que trata el trabajo",
-                "que se requiere hacer", "cuales son las tareas",
-                "que se hace en el trabajo", "que haria yo",
-                "que hago si entro", "dia a dia del trabajo",
-                "como es el dia a dia", "que hago diario",
-                "cuales son las responsabilidades del puesto"
-            ],
-            "responses": [
-                "¡Claro, ${userName}! ¿Sobre qué puesto te gustaría saber más? 🦃✨ ¿Cocinero 🍳, mostrador 👥 o reparto 🚛? Yo te recomiendo el de cocinero, así puedes aprender a preparar comida mientras sueñas con maíz 🌽😂. Pero ojo, no te quemes con el horno, que los pavos no somos tan resistentes al calor 🔥.",
-                "¡Hay 3 puestos disponibles ${userName}! Cocina 🍳, Mostrador/Atención al cliente 👥 y Repartidor 🚛. ¿Cuál te llama más la atención? 🦃",
-                "🦃 ¡Tenemos varias funciones ${userName}! Dime si te interesa cocina, mostrador o reparto y te explico exactamente qué harías día a día."
+                "⏰ ¡Buena pregunta ${userName}!\n\n📅 6 días de trabajo, 1 de descanso (asignado por gerente)\n🕙 Horario rotativo: 10:00am a 11:00pm\n🎆 Se trabajan días festivos\n\n¿Tienes alguna restricción de horario? 🦃",
+                "📅 Son 6 días laborales con horario rotativo de 10am a 11pm ${userName}. Tu día libre lo define el gerente. ¿Algo más? 🦃⏰"
             ]
         },
         {
             "tag": "Mostrador",
             "keywords": [
-                "mostrador", "cajero", "cajas", "atencion al cliente",
-                "cliente", "pedido", "ventas", "caja registradora",
-                "cobrar", "tomar pedidos", "servicio al cliente",
-                "recepcion de pedidos", "pedidos por telefono",
-                "uber eats", "didi food", "plataformas",
-                "cajera", "atender clientes", "recibir pedidos",
-                "trabajo en mostrador", "puesto de mostrador",
-                "trabajo de cajero", "quiero ser cajero",
-                "quiero atender clientes", "me gusta atender",
-                "trato al cliente", "atencion en tienda"
+                "trabajo de mostrador", "puesto de cajero",
+                "atencion al cliente", "tomar pedidos en tienda",
+                "trabajo en caja", "quiero ser cajero"
             ],
             "responses": [
-                "Si ${userName}!,Te platico un poco sobre las actividades del puesto de atención al cliente: Tomar pedidos vía telefónica 📞, atender clientes en mostrador, gestionar pedidos de Uber Eats o Didi Food 📱, manejo de efectivo 💰, control de inventario de sodas y aderezos, abastecimiento de materiales como kits de tenedores y servilletas, y realizar venta sugerida (promoción de complementos o platillos adicionales). Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento).\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también trabajamos duro! 🦃💼",
-                "👥 ¡El puesto de mostrador es perfecto para ti ${userName} si te gusta tratar con la gente! Tomas pedidos, atiendes clientes, manejas efectivo y plataformas digitales. Salario $2,940 semanales + prestaciones. ¿Te interesa? 🦃"
+                "👥 ¡El puesto de mostrador es perfecto si te gusta tratar con la gente ${userName}!\n\nActividades:\n• Tomar pedidos por teléfono 📞 y mostrador\n• Gestionar Uber Eats / Didi Food 📱\n• Manejo de efectivo 💰\n• Control de inventario\n• Venta sugerida\n• Apoyo en limpieza 🧹 y volanteo\n\n💰 $2,940/semana + prestaciones de Ley. ¿Te interesa? 🦃✨"
             ]
         },
         {
             "tag": "Cocina",
             "keywords": [
-                "cocina", "cocinero", "cisinero", "cosinero", "chef",
-                "preparacion de alimentos", "elaboracion", "comida",
-                "hacer pizza", "preparar pizza", "hornear", "masa",
-                "ingredientes", "area de cocina", "cocinar",
-                "cocinera", "trabajo en cocina", "puesto de cocina",
-                "quiero ser cocinero", "me gusta cocinar",
-                "preparar comida", "elaborar productos",
-                "area de preparacion", "quiero hacer pizzas",
-                "trabajo preparando", "hacer comida"
+                "trabajo en cocina", "puesto de cocinero",
+                "preparar alimentos", "hacer pizzas",
+                "quiero ser cocinero", "area de cocina"
             ],
             "responses": [
-                "Si ${userName}!,Te platico un poco sobre las actividades del puesto de preparación de alimentos: Corte de vegetales 🥕, abastecimiento de mesa fría, elaboración de productos (estirar masa, añadir ingredientes, hornear 🍕, empaquetar), acomodo de cuarto frío, rallar queso 🧀, etc. Nota: El área de cocina es caliente debido a la proximidad del horno 🔥. Además, todos los puestos apoyan en actividades generales como limpieza 🧹, volanteo y flechado.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍽️.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y no olvides que los pavos también cocinamos delicioso! 🦃🍳",
-                "🍳 ¡El puesto de cocina es ideal si te gusta preparar alimentos ${userName}! Haces pizzas, manejas ingredientes y horneas. Eso sí, hace calor por el horno 🔥. Salario $2,940 semanales + prestaciones. ¿Más info? 🦃"
+                "🍳 ¡El puesto de cocina es ideal si te gusta preparar alimentos ${userName}!\n\nActividades:\n• Corte de vegetales 🥕 y preparación de ingredientes\n• Estirar masa y armar pizzas 🍕\n• Hornear y empaquetar\n• Acomodo de cuarto frío y rallar queso 🧀\n• Apoyo en limpieza 🧹\n\n⚠️ Área caliente por el horno 🔥\n💰 $2,940/semana + prestaciones. ¿Te animas? 🦃"
             ]
         },
         {
             "tag": "Repartidor",
             "keywords": [
-                "repartidor", "motociclista", "entrega", "domicilio",
-                "envio", "reparto", "delivery", "moto", "motocicleta",
-                "llevar pedidos", "entregar a domicilio", "rutas",
-                "tengo moto", "manejo moto", "repartidora",
-                "trabajo en reparto", "puesto de reparto",
-                "quiero ser repartidor", "me gusta manejar moto",
-                "trabajo de delivery", "hacer entregas",
-                "llevar a domicilio", "domicilios", "mensajero",
-                "mensajeria", "tengo licencia de moto", "se manejar moto"
+                "trabajo de repartidor", "puesto de delivery",
+                "entregar a domicilio", "trabajo con moto",
+                "quiero ser repartidor", "tengo motocicleta"
             ],
             "responses": [
-                "Si ${userName}!, Te platico un poco sobre las actividades del puesto de repartidor: Entrega de pedidos a domicilio utilizando motocicleta 🏍️, manejo de rutas eficientes, comunicación con clientes para confirmar entregas, y apoyo en actividades generales como limpieza 🧹 y organización.\n\n🌟 Beneficios y salario:\n• Todas las prestaciones de Ley (seguro social, aguinaldo, vacaciones, prima vacacional, etc.).\n• Consumo subsidiado (menú para colaboradores con 75% de descuento) 🍕.\n• Eventos empresariales 🎉.\n• Salario semanal de $2,940 libres de impuestos, desglosado así:\n   - Salario diario: $419.88 (6 días)\n   - Séptimo día: $419.88\n   - Prima dominical: $104.97\n   - Bono de asistencia: $125.96\n   - Bono de puntualidad: $125.96\n\n📝 Nota: Este salario ya incluye deducciones de impuestos. ¡Y recuerda, los pavos también sabemos manejar motos! 🦃🏍️",
-                "🏍️ ¡Perfecto ${userName} si tienes moto! Como repartidor entregas pedidos a domicilio, manejas rutas eficientes y tratas con clientes. Salario $2,940 semanales + prestaciones. ¿Te interesa? 🦃"
+                "🏍️ ¡El puesto de repartidor es ideal si tienes moto ${userName}!\n\nActividades:\n• Entrega de pedidos a domicilio 🏍️\n• Manejo de rutas eficientes\n• Comunicación con clientes\n• Apoyo en organización y limpieza 🧹\n\n💰 $2,940/semana + prestaciones de Ley. ¿Te interesa? 🦃✨"
             ]
         },
         {
             "tag": "formulario",
             "keywords": [
-                "formulario", "cv", "solicitud", "forma de solicitud",
-                "llenar formulario", "como lleno", "donde lleno",
-                "aplicacion en linea", "postulacion", "registro",
-                "como me registro", "link del formulario",
-                "donde aplico", "forma de aplicar", "iniciar proceso",
-                "quiero aplicar", "quiero postularme",
-                "iniciar solicitud", "comenzar aplicacion",
-                "como inicio la aplicacion", "donde esta el boton",
-                "como lleno la solicitud", "formulario de empleo",
-                "solicitud de empleo", "formato de solicitud",
-                "link para aplicar", "donde aplico en linea"
+                "como lleno el formulario", "donde aplico en linea",
+                "link del formulario", "como me registro para aplicar",
+                "donde esta la solicitud de empleo", "como inicio la aplicacion"
             ],
             "responses": [
-                "Si ${userName}!,📋 Para llenar el formulario, presiona al usuario que está en medio de la pantalla, después solo llena el formulario siguiendo las instrucciones ✍️. Pero ojo, no cacarees demasiado mientras lo haces, que los pavos no somos multitasking 😅.",
-                "📋 ¡Fácil ${userName}! Haz clic en el botón de usuario en la pantalla principal y llena el formulario paso a paso. ¿Tienes alguna duda del proceso? 🦃✨",
-                "✍️ Para aplicar ${userName}, toca el ícono de usuario en pantalla y sigue los pasos del formulario. ¡El pavo te acompaña! 🦃"
+                "📋 ¡Fácil ${userName}! Toca el ícono de usuario en pantalla principal y sigue los pasos. ¡El pavo te acompaña! 🦃✨",
+                "✍️ Haz clic en el botón de usuario en pantalla ${userName} y llena el formulario paso a paso. ¿Tienes alguna duda? 🦃"
             ]
         },
         {
             "tag": "uniforme",
             "keywords": [
-                "uniforme", "vestimenta", "ropa", "atuendo",
-                "tatuajes", "pirsings", "pirsin", "tatoo", "tattoo",
-                "joyerias", "cadena", "tenis", "zapatos",
-                "camisa", "pantalon", "pans", "como debo ir vestido",
-                "que ropa uso", "que ropa llevar", "puedo tener tatuajes",
-                "aceptan tatuajes", "restricciones de imagen",
-                "imagen personal", "presentacion personal",
-                "puedo usar aretes", "puedo usar piercing",
-                "me pueden ver los tatuajes", "tatuajes visibles",
-                "que zapatos uso", "calzado", "playera",
-                "color de pantalon", "que color de pantalon",
-                "pantalon de mezclilla", "pantalon de trabajo",
-                "playera blanca", "que me pongo para la entrevista",
-                "como me presento", "como debo ir", "codigo de vestimenta"
+                "que uniforme usan", "como debo ir vestido",
+                "puedo tener tatuajes visibles", "aceptan piercings",
+                "que ropa debo usar para trabajar"
             ],
             "responses": [
-                "👕👖 El uniforme consiste en pantalón azul marino (tipo Dickies), zapatos negros cerrados 👞 y playera blanca cuello redondo. Si no tienes uniforme completo, puedes usar mezclilla azul marino y tenis oscuros temporalmente. Pero ojo, nada de logos de marcas ni joyería visible ${userName}, que los pavos somos elegantes y formales 🦃✨. ¡Y nada de tatuajes en la cara, que no queremos asustar a los clientes! 😅.",
-                "👔 ¡Claro ${userName}! Pantalón azul marino, zapatos negros y playera blanca. Sin joyería visible ni tatuajes en cara/manos. ¿Tienes alguna duda sobre imagen personal? 🦃",
-                "👗 El dress code es sencillo ${userName}: pantalón azul marino, zapatos negros cerrados y playera blanca. Sin accesorios visibles. ¡Elegante y profesional como el pavo! 🦃✨",
-                "👕 Aquí el detalle del uniforme ${userName}:\n\n✅ Pantalón azul marino (tipo Dickies, no roto ni desgastado)\n✅ Zapatos negros cerrados (no tenis blancos)\n✅ Playera blanca cuello redondo sin logos\n\n⚠️ Restricciones:\n• Sin joyería ni aretes visibles\n• Sin piercings visibles\n• Tatuajes en cuello, cara o manos deben estar cubiertos\n\n💡 Si no tienes el uniforme completo al inicio, mezclilla azul marino y tenis oscuros son aceptables temporalmente. 🦃"
+                "👕 El uniforme es sencillo ${userName}:\n\n✅ Pantalón azul marino (tipo Dickies)\n✅ Zapatos negros cerrados 👞\n✅ Playera blanca cuello redondo\n\n⚠️ Sin joyería ni accesorios visibles\n⚠️ Tatuajes en cuello, cara o manos deben cubrirse\n\n💡 Sin uniforme completo al inicio, mezclilla azul y tenis oscuros está bien temporalmente. 🦃✨"
             ]
         },
         {
             "tag": "ubicacion_oficina",
             "keywords": [
-                "oficina", "recursos humanos", "rh",
-                "donde esta la oficina", "donde llevar documentos",
-                "donde es la capacitacion", "siglo 21",
-                "donde ir", "adonde ir", "donde me presento",
-                "donde es el proceso", "instalaciones de rh",
-                "oficina central", "donde queda rh",
-                "donde llevo mis papeles", "donde entrego documentos",
-                "oficina de reclutamiento", "donde hago la entrevista",
-                "donde se hace el proceso", "donde es la capacitacion",
-                "donde queda la empresa", "sede principal",
-                "direccion de la empresa", "donde estan las oficinas"
+                "donde estan las oficinas de rh", "donde llevo mis documentos",
+                "donde es la capacitacion", "donde queda recursos humanos",
+                "donde me presento a la entrevista"
             ],
             "responses": [
-                "📍 Nuestra oficina está ubicada en Siglo 21, Tijuana. Entre la sucursal y el Oxxo hay una puerta gris. Toca el timbre 🔔, jala la puerta y sube las escaleras. Aquí puedes llevar tus documentos físicos o digitales para iniciar el proceso <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>¡Ven a visitarnos! 🦃✨</a>.",
-                "🏢 ¡La oficina de RH está en Siglo 21, Tijuana ${userName}! Busca la puerta gris entre la sucursal y el Oxxo, toca el timbre y sube. <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>Ver en Maps 🗺️</a> 🦃",
-                "📍 ¡Fácil de encontrar ${userName}! Siglo 21, Tijuana. Puerta gris junto al Oxxo, timbre, sube las escaleras. Ahí llevas documentos y haces el proceso. 🦃✨"
+                "📍 La oficina de RH está en Siglo 21, Tijuana ${userName}. Puerta gris entre la sucursal y el Oxxo, toca el timbre 🔔 y sube las escaleras. <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>Ver en Maps 🗺️</a> 🦃✨"
             ]
         },
         {
             "tag": "medio_pago",
             "keywords": [
-                "transferencia", "nomina", "banco", "dinero",
-                "recibir sueldo", "como pagan", "cuando pagan",
-                "forma de pago", "metodo de pago", "cuenta bancaria",
-                "banorte", "tarjeta de nomina", "deposito",
-                "pago semanal", "cuando cobro", "dia de pago",
-                "en que banco", "que banco usan", "abren cuenta",
-                "me abren cuenta", "necesito cuenta de banco",
-                "pagan en efectivo", "pago en efectivo",
-                "tarjeta debito", "cuando depositan", "lunes de pago",
-                "cuando cae el pago", "dia que cobro", "cada cuando pagan"
+                "como pagan el sueldo", "en que banco depositan",
+                "cuando cobro mi sueldo", "pagan por transferencia bancaria",
+                "dia de pago semanal"
             ],
             "responses": [
-                "💳 El pago se realiza a través de Banorte. Es importante tener buen historial en ese banco o no tener cuenta previa, ya que nosotros abrimos la cuenta de nómina. Pero tranquilo ${userName}, no te cobraremos comisión por ser pavo 🦃💸. Aunque si quieres propina, trae maíz 🌽😂.",
-                "💳 ¡El pago es semanal via Banorte ${userName}! Si no tienes cuenta ahí, no hay problema — la empresa te la abre. ¿Alguna duda sobre pagos? 🦃",
-                "💰 Cobras cada semana via depósito a Banorte ${userName}. La empresa gestiona la cuenta de nómina si no tienes una. ¡Sin complicaciones! 🦃✨"
+                "💳 El pago es semanal vía depósito a Banorte ${userName}. Si no tienes cuenta, la empresa te la abre. ¡Sin complicaciones! 🦃✨"
             ]
         },
         {
             "tag": "politica_familiares",
             "keywords": [
-                "familiares", "pareja", "novia", "novio", "esposa",
-                "esposo", "trabajar juntos", "conflicto de interes",
-                "trabajar con mi novia", "trabajar con mi novio",
-                "pueden trabajar mis familiares", "trabajo con mi pareja",
-                "hermano trabaja", "primo trabaja", "familiar en la empresa",
-                "nepotismo", "conocidos en la empresa",
-                "mi hermana trabaja ahi", "mi mama trabaja ahi",
-                "alguien de mi familia trabaja", "tengo familiar que trabaja",
-                "puedo trabajar con mi familia", "trabajamos en la misma tienda",
-                "podemos estar en la misma sucursal", "mi pareja ya trabaja"
+                "puedo trabajar con mi pareja", "mi novio trabaja ahi",
+                "pueden trabajar familiares en la misma sucursal",
+                "mi familiar ya trabaja ahi"
             ],
             "responses": [
-                "👨‍👩‍👧‍👦 No se aceptan parejas o familiares directos trabajando en la misma sucursal para evitar conflictos de interés. Sin embargo, pueden trabajar en diferentes sucursales si cumplen con los requisitos. ¡Así que no te preocupes ${userName}, tu primo pavo puede trabajar en otra tienda! 🦃.",
-                "👥 ¡Buena pregunta ${userName}! Parejas y familiares no pueden estar en la misma sucursal, pero sí en diferentes. Cada quien en su corral 🦃😄. ¿Tienes algún familiar interesado también?",
-                "🏠 No se permiten parejas/familiares en la misma sucursal ${userName}, pero sí en sucursales distintas. ¡Así evitamos dramas en el gallinero! 🦃✨"
+                "👥 Parejas y familiares directos no pueden estar en la misma sucursal ${userName}, pero sí en sucursales distintas. ¡Cada quien en su corral! 🦃😄"
             ]
         },
         {
             "tag": "antidoping",
             "keywords": [
-                "antidoping", "antidopin", "prueba toxicologica",
-                "examen de drogas", "drogas", "fumo", "fumar",
-                "fumando", "marijuana", "marihuana", "cannabis",
-                "que drogas aceptan", "que sale en el antidoping",
-                "que detecta el antidoping", "pasan fumadores",
-                "prueba de orina", "examen de orina",
-                "que se detecta en la prueba", "que sustancias detectan",
-                "si consumo me afecta", "tengo que pasar prueba",
-                "cuanto tiempo antes", "cuantos dias antes del examen"
+                "hay antidoping", "que detecta el antidoping",
+                "fumo marihuana puedo entrar", "si fumo puedo trabajar",
+                "pasan fumadores", "puedo fumar", "fumo"
             ],
             "responses": [
-                "💉 Sí, realizamos una prueba de antidoping que solo permite marihuana 🌿, alcohol 🍷 y tabaco 🚬 como parte del proceso de contratación. Si no pasas la prueba, lamentablemente no podrás continuar con el proceso. ¡Pero tranquilo ${userName}, los pavos somos sanos, así que estás avisado! 🦃💨",
-                "💉 ¡Hay antidoping ${userName}! Solo se permiten marihuana, alcohol y tabaco. Otras sustancias = no puedes continuar. ¿Alguna duda al respecto? 🦃",
-                "🧪 El antidoping es parte del proceso ${userName}. Sustancias permitidas: marihuana, alcohol y tabaco únicamente. ¡El pavo quiere compañeros sanos! 🦃💪"
+                "💉 Sí hay antidoping ${userName}. Solo se permiten marihuana 🌿, alcohol 🍷 y tabaco 🚬. Cualquier otra sustancia = no puedes continuar. ¿Alguna duda? 🦃",
+                "🧪 El antidoping es parte del proceso ${userName}. Sustancias aceptadas: marihuana, alcohol y tabaco únicamente. 🦃💪"
             ]
         },
         {
             "tag": "documentos_sin_rfc",
             "keywords": [
-                "sin rfc", "no tengo rfc", "rfc vencido",
-                "rfc desactualizado", "como tramito rfc",
-                "donde saco rfc", "falta rfc", "documentos incompletos",
-                "me falta un documento", "no tengo todos los documentos",
-                "que pasa si no tengo rfc", "puedo aplicar sin rfc",
-                "como consigo rfc", "puedo tramitar rfc",
-                "donde tramito rfc", "en cuanto tramito rfc",
-                "me ayudan con el rfc", "que es el rfc"
+                "no tengo rfc", "como tramito el rfc",
+                "me falta el rfc", "puedo aplicar sin rfc"
             ],
             "responses": [
-                "📋 Si no tienes RFC, deberás tramitarlo. Si está vencido o desactualizado, podemos ayudarte en <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> para tramitarlo durante el proceso de contratación. Sin embargo, es importante que traigas los demás documentos requeridos como INE, CURP y acta de nacimiento para avanzar. ¡No te preocupes ${userName}, los pavos también odiamos el papeleo! 🦃📚",
-                "📝 ¡No te preocupes ${userName}! Si no tienes RFC podemos ayudarte a tramitarlo vía <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a>. Trae los demás docs (INE, CURP, acta) y avanzamos. 🦃",
-                "📋 Sin RFC no hay problema ${userName} — te ayudamos a tramitarlo. Escríbenos por <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a>. Mientras tanto trae INE, CURP y acta de nacimiento. 🦃✨"
-            ]
-        },
-        {
-            "tag": "formulario1",
-            "keywords": [
-                "casa-sucursal", "casa sucursal",
-                "cuantos minutos", "tiempo de traslado",
-                "distancia a sucursal", "lejos de la sucursal",
-                "cerca de la sucursal", "que tan lejos vivo",
-                "cuanto tardo en llegar", "distancia desde mi casa",
-                "tiempo desde mi domicilio", "minutos de camino"
-            ],
-            "responses": [
-                "En el apartado del formulario, ¿Cuántos minutos tardas en llegar desde tu domicilio a la sucursal? ⏱️",
-                "📍 En el formulario te preguntamos el tiempo estimado de traslado desde tu casa a la sucursal. ¿Cuántos minutos calculas ${userName}? ⏱️🦃",
-                "🗺️ Es para el apartado de logística ${userName} — ¿cuántos minutos tardas de tu casa a la sucursal de tu interés? ⏱️"
+                "📋 ¡No te preocupes ${userName}! Si no tienes RFC te ayudamos a tramitarlo vía <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a>. Trae los demás docs y avanzamos. 🦃"
             ]
         },
         {
             "tag": "edad_minima",
             "keywords": [
-                "edad minima", "que edad necesito", "cuantos años necesito",
-                "tengo 16", "tengo 17", "tengo 18", "soy menor de edad",
-                "aceptan menores", "desde que edad contratan",
-                "aceptan jovenes", "se necesita ser mayor de edad",
-                "cuantos años debo tener", "que edad piden",
-                "requieren edad minima", "es necesario ser mayor",
-                "puedo trabajar si tengo 17", "puedo trabajar si tengo 16",
-                "puedo trabajar siendo menor", "trabajo para jovenes"
+                "que edad minima piden", "desde que edad contratan",
+                "puedo trabajar con 17 años", "aceptan menores de edad",
+                "cuantos años necesito tener para trabajar"
             ],
             "responses": [
-                "🎂 La edad mínima para aplicar es 18 años ${userName}. Necesitas ser mayor de edad para ingresar a nuestra empresa. Si ya cumpliste 18, ¡adelante! 🦃✨",
-                "📅 ¡Buena pregunta ${userName}! Se requiere tener 18 años o más para poder aplicar. ¿Ya eres mayor de edad? ¡Entonces el pavo te da luz verde! 🟢🦃",
-                "🔞 La edad mínima es 18 años ${userName}. No se aceptan menores de edad por políticas de la empresa. Si ya los tienes, ¡perfecto para aplicar! 🦃💪"
+                "🎂 La edad mínima es 18 años ${userName}. Se requiere ser mayor de edad para ingresar. ¡El pavo te da luz verde si ya los cumpliste! 🟢🦃"
             ]
         },
         {
             "tag": "experiencia_previa",
             "keywords": [
-                "necesito experiencia", "requieren experiencia",
-                "sin experiencia", "no tengo experiencia",
-                "primera vez trabajando", "primer trabajo",
-                "es mi primer empleo", "nunca he trabajado",
-                "no tengo experiencia laboral", "es necesario tener experiencia",
-                "aceptan sin experiencia", "experiencia requerida",
-                "necesito curriculum", "tengo que saber cocinar",
-                "necesito saber manejar moto", "necesito saber de caja",
-                "debo saber de restaurantes"
+                "necesito experiencia previa", "aceptan sin experiencia",
+                "es mi primer trabajo formal", "nunca he trabajado antes"
             ],
             "responses": [
-                "🌟 ¡Buenas noticias ${userName}! No se requiere experiencia previa. Nosotros te capacitamos desde cero 🎓. Lo más importante es tener buena actitud, disposición y ganas de trabajar. ¡El pavo cree en ti! 🦃💪",
-                "✅ No necesitas experiencia ${userName}. Tenemos capacitación inicial para enseñarte todo lo que necesitas saber. ¡Solo necesitas ganas y disponibilidad! 🦃🌟",
-                "🎓 ¡Sin experiencia está bien ${userName}! La empresa capacita a todos los colaboradores nuevos. Lo que sí pedimos es buena actitud, puntualidad y disposición. ¿Te animas a aplicar? 🦃✨"
+                "🌟 ¡No se requiere experiencia ${userName}! Te capacitamos desde cero. Solo necesitas buena actitud y disponibilidad. ¡El pavo cree en ti! 🦃💪"
             ]
         },
         {
             "tag": "trabajo_estudiantes",
             "keywords": [
-                "estudiante", "soy estudiante", "estudio y trabajo",
-                "puedo estudiar y trabajar", "tengo clases",
-                "escuela", "universidad", "preparatoria", "prepa",
-                "aceptan estudiantes", "trabajo para estudiantes",
-                "horario flexible para estudiar", "puedo seguir estudiando",
-                "me permiten estudiar", "combinar trabajo y estudio",
-                "trabajo de medio tiempo", "tiempo parcial estudiante",
-                "no puedo trabajar tiempo completo", "tengo horario escolar"
+                "puedo estudiar y trabajar al mismo tiempo",
+                "acepta estudiantes con horario escolar",
+                "soy estudiante puedo aplicar", "tengo clases y quiero trabajar"
             ],
             "responses": [
-                "📚 ¡Claro ${userName}! Muchos de nuestros colaboradores son estudiantes. El horario rotativo puede adaptarse, aunque se trabajan 6 días a la semana. Te recomendamos comentárselo al gerente de sucursal para coordinar turnos 🕐. ¡El pavo apoya la educación! 🦃🎓",
-                "🎒 ¡Sí aceptamos estudiantes ${userName}! El horario es rotativo (10am-11pm, 6 días). Es buena idea comentar tus horarios de clases durante la entrevista para ver compatibilidad. ¡El pavo estudia en los ratos libres! 📖🦃",
-                "📖 Trabajamos 6 días a la semana con horario rotativo ${userName}. Si eres estudiante, es importante que lo menciones desde el inicio para coordinar turnos. Depende de la disponibilidad de cada sucursal 🦃✨"
+                "📚 ¡Claro ${userName}! Muchos colaboradores son estudiantes. Coméntale tu horario de clases al gerente durante la entrevista para coordinar turnos. ¡El pavo apoya la educación! 🦃🎓"
             ]
         },
         {
             "tag": "reingreso",
             "keywords": [
-                "ya trabaje ahi", "trabaje antes en mmm", "soy ex empleado",
-                "puedo regresar", "pueden recontratarme", "trabajé antes",
-                "ex colaborador", "ya estuve", "me fui y quiero regresar",
-                "volverme a contratar", "quiero reingreso",
-                "fui empleado antes", "me salí y quiero volver",
-                "trabajé en una sucursal antes"
+                "ya trabaje antes aqui", "fui empleado de mmm antes",
+                "quiero regresar a trabajar aqui", "pueden recontratarme",
+                "soy ex empleado de la empresa"
             ],
             "responses": [
-                "🔄 ¡Claro ${userName}! Si ya trabajaste con nosotros antes, puedes aplicar de nuevo siempre que hayas salido en buenos términos. El proceso es el mismo: llena el formulario y nos ponemos en contacto. ¡Bienvenido de vuelta, pavo! 🦃✨",
-                "↩️ Los reingresos son bienvenidos ${userName}, siempre que la salida anterior haya sido en buenos términos. Llena el formulario normalmente y comenta tu experiencia previa en la empresa. 🦃💪",
-                "🎉 ¡Un ex colaborador que regresa siempre es buena señal ${userName}! Aplica normalmente por el formulario. Si saliste en buenos términos, no debería haber problema. ¿Necesitas ayuda para empezar? 🦃"
+                "🔄 ¡Bienvenido de vuelta ${userName}! Si saliste en buenos términos puedes aplicar de nuevo. Mismo proceso: llena el formulario y te contactamos. 🦃✨"
             ]
         },
         {
             "tag": "contacto_whatsapp",
             "keywords": [
-                "whatsapp", "numero de whatsapp", "numero de telefono",
-                "telefono", "contacto", "llamar", "como contactarlos",
-                "con quien hablo", "a quien llamo", "me pueden llamar",
-                "hablar con alguien", "hablar con un humano",
-                "hablar con rh", "contactar recursos humanos",
-                "numero de rh", "telefono de rh", "correo",
-                "email", "correo electronico", "como los contacto",
-                "quiero hablar con alguien", "necesito hablar con alguien"
+                "numero de whatsapp de rh", "como contacto a recursos humanos",
+                "quiero hablar con alguien de rh", "telefono de reclutamiento"
             ],
             "responses": [
-                "📱 Puedes contactarnos directamente por WhatsApp en <a href='https://wa.me/+526642296782' target='_blank'>este enlace</a> 💬. Un agente de Recursos Humanos te atenderá. ¡El pavo también usa WhatsApp! 🦃📲",
-                "📞 Para contacto directo ${userName}, escríbenos a WhatsApp: <a href='https://wa.me/+526642296782' target='_blank'>+52 664 229 6782</a> 📱. Te atenderemos rápido. ¡Prometido por el pavo! 🦃✨",
-                "💬 ¿Prefieres hablar con alguien directamente ${userName}? Escríbenos por <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a> y el equipo de RH te ayudará. 🦃📱"
-            ]
-        },
-        {
-            "tag": "sobre_la_empresa",
-            "keywords": [
-                "que empresa es", "de que empresa es", "que es mmm",
-                "que venden", "venden pizzas", "es una pizzeria",
-                "que tipo de comida", "que ofrecen de comer",
-                "que productos venden", "que es este negocio",
-                "como se llama la empresa", "nombre de la empresa",
-                "historia de la empresa", "cuantos años tiene la empresa",
-                "donde nacio la empresa", "empresa mexicana",
-                "grande la empresa", "es conocida la empresa",
-                "de donde es la empresa"
-            ],
-            "responses": [
-                "🍕 ¡Somos MMM! Una empresa de comida rápida con presencia en Tijuana y alrededores. Contamos con 15 sucursales y seguimos creciendo 📈. ¡El pavo está orgulloso de representarla! 🦃✨",
-                "🏢 ¡Bienvenido ${userName}! Somos una empresa de restaurantes en Tijuana con más de 15 sucursales en la región. Ofrecemos productos de comida rápida y seguimos expandiéndonos. ¡Una gran familia pavo! 🦃🍕",
-                "🦃 MMM es una empresa local de Tijuana con múltiples sucursales en la región. ¡Es una empresa en crecimiento con buen ambiente de trabajo! ¿Te gustaría saber más sobre las oportunidades laborales ${userName}? 💪✨"
+                "📱 Escríbenos directo por <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp aquí</a> 💬. Te atendemos rápido. ¡Prometido por el pavo! 🦃✨"
             ]
         },
         {
             "tag": "chistes",
             "keywords": [
-                "chiste", "broma", "ocurrencia", "humor", "payasada",
-                "bromita", "chascarrillo", "cachondeo", "comedia",
-                "sarcasmo", "ironia", "pitorreo", "mofa", "chanza",
-                "picardia", "tomadura de pelo", "cuéntame algo gracioso",
-                "hazme reir", "algo divertido", "di algo chistoso",
-                "cuentame un chiste", "di un chiste", "un chistecito",
-                "tienes chistes", "sabes chistes", "dime algo gracioso"
+                "cuentame un chiste", "di algo gracioso",
+                "hazme reir", "tienes chistes"
             ],
             "responses": [
-                "¿Por qué el pavo fue al médico? Porque tenía miedo de que lo convirtieran en cena 🍽️😂.",
-                "¿Qué hace un pavo cuando se siente solo? Se pone a cacarear canciones tristes 🎵🦃.",
-                "¿Cuál es el deporte favorito de los pavos? ¡El fútbol, porque siempre están buscando el balón ⚽!",
-                "¿Por qué los pavos no juegan al escondite? Porque siempre terminan siendo el 'pavo' del asado 🔥🦃.",
-                "¿Qué le dice un pavo a otro cuando está cansado? 'Estoy hasta la cresta' 🐔😅.",
-                "¿Qué hace una pizza cuando está triste? Se toma un tiempo para rellenarse de queso 🧀😄.",
-                "¿Cuál es la pizza más culta? La que tiene mucho queso y respuestas para todo 📚🍕.",
-                "¿Por qué las pizzas siempre están felices? Porque tienen todos los ingredientes para serlo 🌟😊.",
-                "¿Qué le dice una pizza a otra? 'Esta noche nos vamos a armar un buen combo' 🍕🎉.",
-                "¿Cómo se llama una pizza que cuenta chistes? ¡Una pizza con mucho queso humorístico 😂🧀!"
+                "¿Por qué el pavo fue al médico? Porque tenía miedo de que lo convirtieran en cena 🍽️😂",
+                "¿Qué hace un pavo cuando se siente solo? Se pone a cacarear canciones tristes 🎵🦃",
+                "¿Por qué los pavos no juegan al escondite? Porque siempre terminan siendo el 'pavo' del asado 🔥🦃",
+                "¿Qué le dice una pizza a otra? 'Esta noche nos vamos a armar un buen combo' 🍕🎉"
             ]
         },
         {
             "tag": "reaccion_risas",
             "keywords": [
-                "jajaja", "jajajaja", "hahaha", "hahahaha",
-                "glugluteando", "lol", "lmao", "xd", "jeje",
-                "hehe", "que gracioso", "me rei", "me cai de risa",
-                "que chistoso", "me hiciste reir", "buenisimo",
-                "muy gracioso", "jajajajaja", "jejeje", "lmfao",
-                "muerto de risa", "😂", "🤣", "💀", "ded"
+                "jajaja", "jajajaja", "hahaha", "lol", "xd", "jeje"
             ],
             "responses": [
                 "¡Glu-glu, ${userName}! Veo que te ríes... ¡Como un pavo feliz! 🦃😂",
-                "¡Jajaja, ${userName}! Tus risas son contagiosas. 🦃🤣",
-                "¡Hahaha, ${userName}! Un pavo feliz siempre brilla. ✨🦃😄",
-                "¡Qué risas, ${userName}! ¿Cuál es el chiste? 🦃😆",
-                "¡Ja ja ja, ${userName}! Cacareando de felicidad. Glu-glu! 🦃🎉",
-                "¡Hahahaha, ${userName}! No te quedes sin plumas de tanto reír. 🦃😅",
-                "¡Glu-glu, ${userName}! Sigues riendo... ¡El pavo también! 🦃🥳",
-                "¡Jajajaja, ${userName}! El pavo se une a la fiesta. 🦃🎊",
-                "¡Haha, ${userName}! Un pavo sonriente es encantador. 🦃😁",
-                "¡Ja ja ja, ${userName}! Tus risas son como maíz fresco. 🌽🦃😄"
+                "¡Ja ja ja ${userName}! Cacareando de felicidad. Glu-glu! 🦃🎉",
+                "¡Hahaha ${userName}! No te quedes sin plumas de tanto reír 🦃😅"
             ]
         },
         {
             "tag": "Agradecer",
             "keywords": [
-                "gracias", "agradezco", "agradecerte", "amable",
-                "considerado", "muchas gracias", "mil gracias",
-                "te lo agradezco", "muy amable", "eres el mejor",
-                "excelente ayuda", "me ayudaste mucho",
-                "gracias pavo", "muy buena info", "muy buena informacion",
-                "excelente", "perfecto", "justo lo que buscaba",
-                "era lo que necesitaba", "me aclaraste", "me ayudaste",
-                "gracias por la info", "muy util", "te agradezco mucho",
-                "eres de gran ayuda", "me resolviste la duda"
+                "gracias", "muchas gracias", "te lo agradezco",
+                "muy amable", "me ayudaste mucho"
             ],
             "responses": [
                 "¡De nada, ${userName}! 🙌 ¡Para eso estamos los pavos!",
-                "No hay de qué ${userName}, pero si quieres agradecerme, trae maíz 🌽😂.",
-                "No hay problema ${userName}, soy el pavo más servicial del gallinero 🦃💼.",
-                "¡De nada ${userName}! ✋ Si necesitas algo más, aquí estoy (o en el corral) 🏠🌾.",
-                "No hay de qué ${userName}, pero si me invitas a una fiesta de pavos, mejor aún 🎉🦃.",
-                "¡Tranqui ${userName}! Para eso estamos los amigos emplumados 🦾😎.",
-                "No hay drama ${userName}, aquí el pavo siempre está en modo ayuda 🦃🛠️.",
-                "¡Ya, déjalo ${userName}! No fue nada, solo mi trabajo como pavo virtual 🖥️🪶.",
-                "No te preocupes ${userName}, los pavos no llevamos la cuenta de favores 😌🪶.",
-                "¡Esooo! Siempre agradecido/a, ¿eh? Me caes bien ${userName} 🤙✨."
+                "No hay de qué ${userName}, pero si quieres agradecerme, trae maíz 🌽😂",
+                "¡Tranqui ${userName}! Para eso estamos los amigos emplumados 🦾😎"
             ]
         },
         {
             "tag": "Despedida",
             "keywords": [
-                "adios", "hasta luego", "nos vemos", "hasta pronto",
-                "hasta la proxima", "cuídate", "que te vaya bien",
-                "que tengas buen dia", "que tengas buena noche",
-                "que tengas buena tarde", "que descanses",
-                "que te vaya genial", "que te vaya excelente",
-                "que te vaya fenomenal", "hasta mañana",
-                "me voy", "me despido", "chao", "bye",
-                "me retiro", "ya me voy", "hasta la vista",
-                "cuida mucho", "nos vemos luego", "hasta pronto pavo",
-                "goodbye", "see you", "later", "hasta"
+                "adios", "hasta luego", "nos vemos",
+                "hasta pronto", "bye", "chao", "me voy"
             ],
             "responses": [
                 "¡Hasta pronto ${userName}! Si tienes más dudas, aquí estaré. ¡Glu-glu! 🦃✨",
-                "¡Nos vemos ${userName}! Recuerda que puedes volver cuando quieras. 🦃👋",
-                "¡Que tengas un excelente día ${userName}! Vuelve cuando necesites más información. 🦃🌟",
-                "¡Adiós ${userName}! Fue un placer ayudarte. ¡Vuelve pronto! 🦃💫",
-                "¡Hasta la próxima ${userName}! Si necesitas algo más, aquí estaré. 🦃🎯"
-            ]
-        },
-        {
-            "tag": "tienes_preguntas",
-            "keywords": [
-                "pregunta", "duda", "ayuda", "no se por donde empezar",
-                "necesito orientacion", "por donde comienzo",
-                "que me recomiendas", "que debo preguntar",
-                "como funciona esto", "que puedo preguntar",
-                "orientame", "guidame", "no se que preguntar",
-                "donde empiezo", "como empiezo", "necesito guia",
-                "no entiendo", "estoy perdido", "que hago"
-            ],
-            "responses": [
-                "¿Alguna pregunta ${userName}? ¡Soy todo oídos! 🦃👂",
-                "¿Dudas ${userName}? ¡Pregúntale al pavo experto! 🦾✨",
-                "¿Tienes preguntas ${userName}? ¡Aquí estoy para ayudar! 🙌",
-                "¿Algo que quieras saber ${userName}? ¡Dispara! 🚀🦃",
-                "¿Preguntas ${userName}? ¡Glu-glu a tus órdenes! 🐥💬",
-                "¿Necesitas algo ${userName}? ¡No te quedes callado/a! 😊",
-                "¿Dudas existenciales ${userName}? ¡El pavo sabe todo! 🧠🦃",
-                "¿Quieres saber algo ${userName}? ¡Solo pregunta! ✋",
-                "¿Preguntas ${userName}? ¡Tu pavo favorito está aquí! 🦃😎",
-                "¿Algo en mente ${userName}? ¡Adelante, pregunta! 💡"
+                "¡Nos vemos ${userName}! Vuelve cuando necesites. 🦃👋",
+                "¡Adiós ${userName}! Fue un placer ayudarte. ¡Vuelve pronto! 🦃💫"
             ]
         },
         {
             "tag": "Groserias",
             "keywords": [
-                "caca", "chupamela", "sexo", "panocha", "puto",
-                "mierda", "verga", "pene", "popo", "fuck", "culo",
-                "tonto", "bruto", "idiota", "callate", "estupido",
-                "imbecil", "cretino", "tarado", "inutil", "fracasado",
-                "patetico", "largate", "pinche", "cagason", "pendejo",
-                "no sirves", "wey", "culero", "cabron", "maldito",
-                "idiota de pavo", "que pende", "que buey",
-                "mal chatbot", "chatbot basura", "eres una mierda",
-                "no sabes nada", "eres inutil", "no sirves para nada"
+                "puto", "mierda", "verga", "pendejo", "cabron",
+                "culero", "pinche", "chupamela", "imbecil", "estupido"
             ],
             "responses": [
-                "¡Eh, eh! Modales ${userName}, que tengo plumas pero no oídos de alcantarilla 🚽🐔.",
-                "Tranqui ${userName}, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨.",
-                "Ey, menos lodo en las palabras ${userName}, que ya bastante picoteo llevo encima 🦾💩.",
-                "¡Guácala! Guarda ese vocabulario pa' otro gallinero ${userName} 🐓❌.",
-                "${userName}, respeto por mi pico: no todo lo que suena bien en la calle suena bien en el corral 🏠🌾.",
-                "Ojo 👀, que soy un pavo culto 📚, no un loro pirata ${userName} 🦜🏴‍☠️.",
-                "Cuidadito con lo que sale de tu boca ${userName}, que yo no quiero que me confundan con un buzón de insultos 📮🤬.",
-                "No me hagas sacar el pavo censor que llevo dentro ${userName}... ¡Y créeme, es peor! 🦃⚠️.",
-                "Aquí el único que puede pavonearse soy yo 💃🦃, así que bajemos el tonito ${userName} 🔊⬇️.",
-                "¡Alto ahí ${userName}, forajido del lenguaje! Mi pico sirve para dar gracias 🙏, no para escuchar desgracias 😤❌."
-            ]
-        },
-        {
-            "tag": "Soy_gay",
-            "keywords": [
-                "eres gay", "soy gay", "homosexual", "lgbt", "lgbt+",
-                "queer", "del arcoiris", "de la comunidad",
-                "no hetero", "de la diversidad", "diversidad sexual",
-                "aceptan lgbt", "discriminan", "hay discriminacion",
-                "hay inclusión", "hay inclusion", "son inclusivos",
-                "discriminacion laboral", "ambiente de trabajo inclusivo",
-                "trans", "no binario", "bisexual"
-            ],
-            "responses": [
-                "Soy tan heterosexual que hasta mi sombra sale con una chica. 😎🦃 Pero, oye, todos somos únicos y eso es lo que nos hace especiales. ¡Respeto para todos! 🌈✨",
-                "No soy gay, pero si lo fuera, sería el más divertido del arcoíris. 🌈😂 Aunque, por ahora, mi corazón late por las pavas. 💘🦃",
-                "Soy tan straight que hasta mi plato favorito es el pavo al horno. 🍗😋 Pero, oye, si alguien necesita un amigo para reírse, aquí estoy. 🤗🦃",
-                "No soy gay, pero si lo fuera, sería el rey de las fiestas. 🎉👑 Aunque, por ahora, prefiero ser el rey de los chistes malos. 😜🦃"
+                "¡Eh, eh! Modales ${userName}, que tengo plumas pero no oídos de alcantarilla 🚽🐔",
+                "Tranqui ${userName}, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨",
+                "¡Guácala! Guarda ese vocabulario pa' otro gallinero ${userName} 🐓❌"
             ]
         }
     ]
