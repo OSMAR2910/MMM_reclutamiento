@@ -1,4 +1,8 @@
 exports.handler = async function (event) {
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
@@ -59,3 +63,4 @@ exports.handler = async function (event) {
     return { statusCode: 500, body: JSON.stringify({ error: "Internal error", detail: err.message }) };
   }
 };
+
