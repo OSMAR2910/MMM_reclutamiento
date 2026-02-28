@@ -1,341 +1,40 @@
-{
-    "intents": [
-        {
-            "tag": "Saludos",
-            "keywords": [
-                "hola", "buenas", "hello", "hi", "hey",
-                "buenos dias", "buenas tardes", "buenas noches"
-            ],
-            "responses": [
-                "¡Holaaa ${userName}! 👋 ¿Traes snacks o solo vienes a picotear conversación?🍿",
-                "Hola hola ${userName}, aquí el pavo más fino del chat 🦃✨. ¿Qué cuentas?",
-                "¡Eyyyy! Pensé que nunca escribirías 😅. Hola de vuelta ${userName}.",
-                "Holiiii ${userName}, aquí en modo pavo low cost 🦃💸. ¿Qué pasa?",
-                "¡Hola ${userName}! 🦃 Soy Sr. Pavo Chava, ¿en qué te puedo ayudar hoy?"
-            ]
-        },
-        {
-            "tag": "Preguntas_Empleo",
-            "keywords": [
-                "busco trabajo", "quiero trabajar", "hay vacantes",
-                "estan contratando", "buscan personal", "necesitan empleados",
-                "hay trabajo", "busco empleo", "quiero aplicar",
-                "me pueden contratar", "hay chamba", "hay jale"
-            ],
-            "responses": [
-                "¡Claro ${userName}! Tenemos vacantes en cocina 🍳, mostrador 👥 y reparto 🏍️. ¿Cuál área te interesa más? 🦃✨",
-                "¡Glu-glu! Sí estamos contratando. ¿Te gustaría saber sobre cocina, atención al cliente o reparto? 🦃💼",
-                "¡Por supuesto ${userName}! Tenemos varias vacantes disponibles. ¿En qué área te gustaría trabajar? 🦃🌟"
-            ]
-        },
-        {
-            "tag": "Requisitos_Empleo",
-            "keywords": [
-                "que documentos necesito", "que papeles piden",
-                "que requisitos hay", "que necesito para aplicar",
-                "que debo llevar", "que debo presentar",
-                "documentos requeridos", "que piden para entrar"
-            ],
-            "responses": [
-                "📋 ¡Claro ${userName}! Necesitarás:\n• INE, RFC, CURP, NSS y acta de nacimiento\n• Disponibilidad de horario y facilidad de transporte 🚗\n• Buena imagen personal\n• Pasar antidoping de orina 💉\n• Disposición para trabajar días festivos 🎆\n• Uniforme: pantalón azul marino y zapatos negros 👔\n\n¿Tienes duda sobre algún documento específico? 🦃✨",
-                "📋 Los documentos clave son: INE, RFC, CURP, NSS y acta de nacimiento. También necesitas disponibilidad de horario y pasar antidoping. ¿Alguna duda? 🦃"
-            ]
-        },
-        {
-            "tag": "Beneficios_Salario",
-            "keywords": [
-                "cuanto pagan", "cuanto es el sueldo", "cuanto gano",
-                "que salario ofrecen", "que beneficios dan",
-                "que prestaciones tienen", "hay aguinaldo",
-                "tienen imss", "cuanto me pagan"
-            ],
-            "responses": [
-                "💰 ¡Aquí el paquete completo ${userName}!\n\n📌 Salario semanal: $2,940 libres\n   → $419.88/día × 6 días\n   → Séptimo día: $419.88\n   → Prima dominical: $104.97\n   → Bono asistencia: $125.96\n   → Bono puntualidad: $125.96\n\n🎁 Beneficios:\n• IMSS y prestaciones de Ley ✅\n• 75% descuento en consumo 🍕\n• Aguinaldo y vacaciones 🏖️\n• Eventos empresariales 🎉\n\n¿Quieres saber más detalles? 🦃✨",
-                "💰 ¡El sueldo es $2,940 semanales libres ${userName}! Más IMSS, aguinaldo, 75% de descuento en comida y bonos. ¿Algo más? 🦃"
-            ]
-        },
-        {
-            "tag": "Proceso_Contratacion",
-            "keywords": [
-                "como es el proceso", "como aplico", "pasos para entrar",
-                "cuando me llaman", "hay entrevista",
-                "que sigue despues de aplicar", "cuanto tarda el proceso"
-            ],
-            "responses": [
-                "📝 El proceso es muy sencillo ${userName}:\n1. Llena el formulario en línea ✍️\n2. Te contactamos para entrevista 📞\n3. Presentas documentación 📋\n4. Realizas antidoping 💉\n5. Capacitación inicial en Siglo 21 (10am-6pm, cuenta como día laborado) 🎓\n\n¿Empezamos con el formulario? 🦃✨",
-                "📝 ¡Muy fácil ${userName}! Llena el formulario → te contactamos → presentas docs → antidoping → capacitación en Siglo 21. ¿Alguna duda del proceso? 🦃"
-            ]
-        },
-        {
-            "tag": "Ubicaciones_Sucursales",
-            "keywords": [
-                "donde tienen sucursales", "cuales son las sucursales",
-                "lista de sucursales", "donde estan ubicados",
-                "en que colonias estan", "cuantas sucursales hay"
-            ],
-            "responses": [
-                "🏪 Tenemos 15 sucursales ${userName}:\n\n📍 Playas • Altamira • Cacho • Libertad • Otay • Huertas • Villa Fontana • Santa Fe • Florido • Hipódromo • Monarca • Rosarito • Tecate • Sierra • San Ysidro\n\n¿De cuál te gustaría saber la ubicación exacta? 🦃🗺️",
-                "📍 ¡Tenemos 15 sucursales en Tijuana y alrededores! Dime cuál te interesa ${userName} y te mando su ubicación en Maps. 🦃✨"
-            ]
-        },
-        {
-            "tag": "sucursales_disponibles",
-            "keywords": [
-                "que sucursales contratan", "donde hay vacantes ahora",
-                "en que sucursal hay trabajo", "sucursales disponibles para trabajar"
-            ],
-            "responses": [
-                "¡Glu-glu, ${userName}! Las sucursales con disponibilidad están en el formulario. ¡Échale un vistazo y elige! 🦃📋",
-                "Las opciones disponibles están en el formulario ${userName}. ¡El pavo te guía! 🗺️🦃"
-            ]
-        },
-        {
-            "tag": "Sucursal_Especifica",
-            "keywords": [
-                "playas", "altamira", "cacho", "libertad", "otay",
-                "huertas", "villa fontana", "santa fe", "florido",
-                "hipodromo", "monarca", "rosarito", "tecate", "sierra", "san ysidro"
-            ],
-            "responses": [
-                "📍 Dime el nombre de la sucursal ${userName} y te mando su ubicación en Maps al instante. 🦃🗺️",
-                "🗺️ ¡Claro ${userName}! ¿Cuál sucursal te interesa? Te mando el link de Maps. 🦃✨"
-            ]
-        },
-        {
-            "tag": "horarios",
-            "keywords": [
-                "cual es el horario", "que horario manejan",
-                "cuantos dias trabajo", "que dias descanso",
-                "cuantas horas al dia", "cuando es el turno"
-            ],
-            "responses": [
-                "⏰ ¡Buena pregunta ${userName}!\n\n📅 6 días de trabajo, 1 de descanso (asignado por gerente)\n🕙 Horario rotativo: 10:00am a 11:00pm\n🎆 Se trabajan días festivos\n\n¿Tienes alguna restricción de horario? 🦃",
-                "📅 Son 6 días laborales con horario rotativo de 10am a 11pm ${userName}. Tu día libre lo define el gerente. ¿Algo más? 🦃⏰"
-            ]
-        },
-        {
-            "tag": "Mostrador",
-            "keywords": [
-                "trabajo de mostrador", "puesto de cajero",
-                "atencion al cliente", "tomar pedidos en tienda",
-                "trabajo en caja", "quiero ser cajero"
-            ],
-            "responses": [
-                "👥 ¡El puesto de mostrador es perfecto si te gusta tratar con la gente ${userName}!\n\nActividades:\n• Tomar pedidos por teléfono 📞 y mostrador\n• Gestionar Uber Eats / Didi Food 📱\n• Manejo de efectivo 💰\n• Control de inventario\n• Venta sugerida\n• Apoyo en limpieza 🧹 y volanteo\n\n💰 $2,940/semana + prestaciones de Ley. ¿Te interesa? 🦃✨"
-            ]
-        },
-        {
-            "tag": "Cocina",
-            "keywords": [
-                "trabajo en cocina", "puesto de cocinero",
-                "preparar alimentos", "hacer pizzas",
-                "quiero ser cocinero", "area de cocina"
-            ],
-            "responses": [
-                "🍳 ¡El puesto de cocina es ideal si te gusta preparar alimentos ${userName}!\n\nActividades:\n• Corte de vegetales 🥕 y preparación de ingredientes\n• Estirar masa y armar pizzas 🍕\n• Hornear y empaquetar\n• Acomodo de cuarto frío y rallar queso 🧀\n• Apoyo en limpieza 🧹\n\n⚠️ Área caliente por el horno 🔥\n💰 $2,940/semana + prestaciones. ¿Te animas? 🦃"
-            ]
-        },
-        {
-            "tag": "Repartidor",
-            "keywords": [
-                "trabajo de repartidor", "puesto de delivery",
-                "entregar a domicilio", "trabajo con moto",
-                "quiero ser repartidor", "tengo motocicleta"
-            ],
-            "responses": [
-                "🏍️ ¡El puesto de repartidor es ideal si tienes moto ${userName}!\n\nActividades:\n• Entrega de pedidos a domicilio 🏍️\n• Manejo de rutas eficientes\n• Comunicación con clientes\n• Apoyo en organización y limpieza 🧹\n\n💰 $2,940/semana + prestaciones de Ley. ¿Te interesa? 🦃✨"
-            ]
-        },
-        {
-            "tag": "formulario",
-            "keywords": [
-                "como lleno el formulario", "donde aplico en linea",
-                "link del formulario", "como me registro para aplicar",
-                "donde esta la solicitud de empleo", "como inicio la aplicacion"
-            ],
-            "responses": [
-                "📋 ¡Fácil ${userName}! Toca el ícono de usuario en pantalla principal y sigue los pasos. ¡El pavo te acompaña! 🦃✨",
-                "✍️ Haz clic en el botón de usuario en pantalla ${userName} y llena el formulario paso a paso. ¿Tienes alguna duda? 🦃"
-            ]
-        },
-        {
-            "tag": "uniforme",
-            "keywords": [
-                "que uniforme usan", "como debo ir vestido",
-                "puedo tener tatuajes visibles", "aceptan piercings",
-                "que ropa debo usar para trabajar"
-            ],
-            "responses": [
-                "👕 El uniforme es sencillo ${userName}:\n\n✅ Pantalón azul marino (tipo Dickies)\n✅ Zapatos negros cerrados 👞\n✅ Playera blanca cuello redondo\n\n⚠️ Sin joyería ni accesorios visibles\n⚠️ Tatuajes en cuello, cara o manos deben cubrirse\n\n💡 Sin uniforme completo al inicio, mezclilla azul y tenis oscuros está bien temporalmente. 🦃✨"
-            ]
-        },
-        {
-            "tag": "ubicacion_oficina",
-            "keywords": [
-                "donde estan las oficinas de rh", "donde llevo mis documentos",
-                "donde es la capacitacion", "donde queda recursos humanos",
-                "donde me presento a la entrevista"
-            ],
-            "responses": [
-                "📍 La oficina de RH está en Siglo 21, Tijuana ${userName}. Puerta gris entre la sucursal y el Oxxo, toca el timbre 🔔 y sube las escaleras. <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>Ver en Maps 🗺️</a> 🦃✨"
-            ]
-        },
-        {
-            "tag": "medio_pago",
-            "keywords": [
-                "como pagan el sueldo", "en que banco depositan",
-                "cuando cobro mi sueldo", "pagan por transferencia bancaria",
-                "dia de pago semanal"
-            ],
-            "responses": [
-                "💳 El pago es semanal vía depósito a Banorte ${userName}. Si no tienes cuenta, la empresa te la abre. ¡Sin complicaciones! 🦃✨"
-            ]
-        },
-        {
-            "tag": "politica_familiares",
-            "keywords": [
-                "puedo trabajar con mi pareja", "mi novio trabaja ahi",
-                "pueden trabajar familiares en la misma sucursal",
-                "mi familiar ya trabaja ahi"
-            ],
-            "responses": [
-                "👥 Parejas y familiares directos no pueden estar en la misma sucursal ${userName}, pero sí en sucursales distintas. ¡Cada quien en su corral! 🦃😄"
-            ]
-        },
-        {
-            "tag": "antidoping",
-            "keywords": [
-                "hay antidoping", "que detecta el antidoping",
-                "fumo marihuana puedo entrar", "si fumo puedo trabajar",
-                "pasan fumadores", "puedo fumar", "fumo"
-            ],
-            "responses": [
-                "💉 Sí hay antidoping ${userName}. Solo se permiten marihuana 🌿, alcohol 🍷 y tabaco 🚬. Cualquier otra sustancia = no puedes continuar. ¿Alguna duda? 🦃",
-                "🧪 El antidoping es parte del proceso ${userName}. Sustancias aceptadas: marihuana, alcohol y tabaco únicamente. 🦃💪"
-            ]
-        },
-        {
-            "tag": "documentos_sin_rfc",
-            "keywords": [
-                "no tengo rfc", "como tramito el rfc",
-                "me falta el rfc", "puedo aplicar sin rfc"
-            ],
-            "responses": [
-                "📋 ¡No te preocupes ${userName}! Si no tienes RFC te ayudamos a tramitarlo vía <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a>. Trae los demás docs y avanzamos. 🦃"
-            ]
-        },
-        {
-            "tag": "edad_minima",
-            "keywords": [
-                "que edad minima piden", "desde que edad contratan",
-                "puedo trabajar con 17 años", "aceptan menores de edad",
-                "cuantos años necesito tener para trabajar"
-            ],
-            "responses": [
-                "🎂 La edad mínima es 18 años ${userName}. Se requiere ser mayor de edad para ingresar. ¡El pavo te da luz verde si ya los cumpliste! 🟢🦃"
-            ]
-        },
-        {
-            "tag": "experiencia_previa",
-            "keywords": [
-                "necesito experiencia previa", "aceptan sin experiencia",
-                "es mi primer trabajo formal", "nunca he trabajado antes"
-            ],
-            "responses": [
-                "🌟 ¡No se requiere experiencia ${userName}! Te capacitamos desde cero. Solo necesitas buena actitud y disponibilidad. ¡El pavo cree en ti! 🦃💪"
-            ]
-        },
-        {
-            "tag": "trabajo_estudiantes",
-            "keywords": [
-                "puedo estudiar y trabajar al mismo tiempo",
-                "acepta estudiantes con horario escolar",
-                "soy estudiante puedo aplicar", "tengo clases y quiero trabajar"
-            ],
-            "responses": [
-                "📚 ¡Claro ${userName}! Muchos colaboradores son estudiantes. Coméntale tu horario de clases al gerente durante la entrevista para coordinar turnos. ¡El pavo apoya la educación! 🦃🎓"
-            ]
-        },
-        {
-            "tag": "reingreso",
-            "keywords": [
-                "ya trabaje antes aqui", "fui empleado de mmm antes",
-                "quiero regresar a trabajar aqui", "pueden recontratarme",
-                "soy ex empleado de la empresa"
-            ],
-            "responses": [
-                "🔄 ¡Bienvenido de vuelta ${userName}! Si saliste en buenos términos puedes aplicar de nuevo. Mismo proceso: llena el formulario y te contactamos. 🦃✨"
-            ]
-        },
-        {
-            "tag": "contacto_whatsapp",
-            "keywords": [
-                "numero de whatsapp de rh", "como contacto a recursos humanos",
-                "quiero hablar con alguien de rh", "telefono de reclutamiento"
-            ],
-            "responses": [
-                "📱 Escríbenos directo por <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp aquí</a> 💬. Te atendemos rápido. ¡Prometido por el pavo! 🦃✨"
-            ]
-        },
-        {
-            "tag": "chistes",
-            "keywords": [
-                "cuentame un chiste", "di algo gracioso",
-                "hazme reir", "tienes chistes"
-            ],
-            "responses": [
-                "¿Por qué el pavo fue al médico? Porque tenía miedo de que lo convirtieran en cena 🍽️😂",
-                "¿Qué hace un pavo cuando se siente solo? Se pone a cacarear canciones tristes 🎵🦃",
-                "¿Por qué los pavos no juegan al escondite? Porque siempre terminan siendo el 'pavo' del asado 🔥🦃",
-                "¿Qué le dice una pizza a otra? 'Esta noche nos vamos a armar un buen combo' 🍕🎉"
-            ]
-        },
-        {
-            "tag": "reaccion_risas",
-            "keywords": [
-                "jajaja", "jajajaja", "hahaha", "lol", "xd", "jeje"
-            ],
-            "responses": [
-                "¡Glu-glu, ${userName}! Veo que te ríes... ¡Como un pavo feliz! 🦃😂",
-                "¡Ja ja ja ${userName}! Cacareando de felicidad. Glu-glu! 🦃🎉",
-                "¡Hahaha ${userName}! No te quedes sin plumas de tanto reír 🦃😅"
-            ]
-        },
-        {
-            "tag": "Agradecer",
-            "keywords": [
-                "gracias", "muchas gracias", "te lo agradezco",
-                "muy amable", "me ayudaste mucho"
-            ],
-            "responses": [
-                "¡De nada, ${userName}! 🙌 ¡Para eso estamos los pavos!",
-                "No hay de qué ${userName}, pero si quieres agradecerme, trae maíz 🌽😂",
-                "¡Tranqui ${userName}! Para eso estamos los amigos emplumados 🦾😎"
-            ]
-        },
-        {
-            "tag": "Despedida",
-            "keywords": [
-                "adios", "hasta luego", "nos vemos",
-                "hasta pronto", "bye", "chao", "me voy"
-            ],
-            "responses": [
-                "¡Hasta pronto ${userName}! Si tienes más dudas, aquí estaré. ¡Glu-glu! 🦃✨",
-                "¡Nos vemos ${userName}! Vuelve cuando necesites. 🦃👋",
-                "¡Adiós ${userName}! Fue un placer ayudarte. ¡Vuelve pronto! 🦃💫"
-            ]
-        },
-        {
-            "tag": "Groserias",
-            "keywords": [
-                "puto", "mierda", "verga", "pendejo", "cabron",
-                "culero", "pinche", "chupamela", "imbecil", "estupido"
-            ],
-            "responses": [
-                "¡Eh, eh! Modales ${userName}, que tengo plumas pero no oídos de alcantarilla 🚽🐔",
-                "Tranqui ${userName}, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨",
-                "¡Guácala! Guarda ese vocabulario pa' otro gallinero ${userName} 🐓❌"
-            ]
-        }
-    ]
-}
+{"intents":[
+{"tag":"Saludos","keywords":["hola","buenas","hello","hi","hey","buenos dias","buenas tardes","buenas noches"],"responses":["¡Holaaa ${userName}! 👋 ¿En qué te puedo ayudar hoy?","Hola ${userName}, aquí el pavo más fino del chat 🦃✨. ¿Qué necesitas?","¡Hola ${userName}! 🦃 Soy Sr. Pavo Chava, ¿en qué te puedo ayudar?"]},
+{"tag":"Preguntas_Empleo","keywords":["busco trabajo","quiero trabajar","hay vacantes","estan contratando","hay chamba","hay jale","busco empleo","quiero aplicar"],"responses":["¡Claro ${userName}! Tenemos vacantes en cocina 🍳, mostrador 👥 y reparto 🏍️. ¿Cuál área te interesa? 🦃✨","¡Sí estamos contratando ${userName}! ¿Te interesa cocina, mostrador o reparto? 🦃💼"]},
+{"tag":"Requisitos_Documentos","keywords":["que documentos necesito","que papeles piden","documentos requeridos","que piden de papeles","que debo llevar"],"responses":["📋 Los documentos que necesitas ${userName}:\n• INE\n• RFC\n• CURP\n• NSS\n• Acta de nacimiento\n\n¿Tienes duda sobre alguno? 🦃✨"]},
+{"tag":"Requisitos_Generales","keywords":["que requisitos hay","que necesito para aplicar","que piden para entrar","que debo cumplir"],"responses":["✅ Requisitos generales ${userName}:\n• Mayor de 18 años\n• Disponibilidad de horario\n• Buena imagen personal\n• Pasar antidoping\n• Trabajar días festivos\n• Uniforme: pantalón azul marino y zapatos negros\n\n¿Tienes alguna duda? 🦃"]},
+{"tag":"Salario_Monto","keywords":["cuanto pagan","cuanto es el sueldo","cuanto gano","cuanto me pagan","de cuanto es el sueldo","cuanto se gana"],"responses":["💰 El salario semanal es $2,940 libres ${userName}:\n• $419.88/día × 6 días\n• Séptimo día: $419.88\n• Prima dominical: $104.97\n• Bono asistencia: $125.96\n• Bono puntualidad: $125.96\n🦃✨"]},
+{"tag":"Beneficios_Prestaciones","keywords":["que prestaciones tienen","hay aguinaldo","tienen imss","que beneficios dan","que beneficios laborales"],"responses":["🎁 Prestaciones ${userName}:\n• IMSS ✅\n• Aguinaldo 🎄\n• Vacaciones 🏖️\n• Todos los beneficios de Ley\n🦃✨"]},
+{"tag":"Beneficios_Descuento","keywords":["hay descuento en comida","descuento para empleados","cuanto descuento dan","descuento en pizzas"],"responses":["🍕 ¡75% de descuento en consumo ${userName}! Comes rico y barato. 🦃✨"]},
+{"tag":"Proceso_Contratacion","keywords":["como es el proceso","cuales son los pasos","como aplico","que sigue despues de aplicar","cuanto tarda el proceso"],"responses":["📝 Proceso de contratación ${userName}:\n1. Llena el formulario ✍️\n2. Te contactamos 📞\n3. Presentas documentos 📋\n4. Antidoping 💉\n5. Capacitación en Siglo 21 🎓\n\n¿Empezamos? 🦃"]},
+{"tag":"Hay_Entrevista","keywords":["hay entrevista","como es la entrevista","tengo que ir a entrevista","me van a entrevistar"],"responses":["📞 Sí hay entrevista ${userName}. Después de llenar el formulario te contactamos para agendar. ¡Es rápida y sencilla! 🦃✨"]},
+{"tag":"Capacitacion","keywords":["como es la capacitacion","donde es la capacitacion","cuanto dura la capacitacion","la capacitacion se paga"],"responses":["🎓 La capacitación es en Siglo 21 ${userName}, de 10am a 6pm. ¡Cuenta como día laborado y se paga! 🦃✨"]},
+{"tag":"Ubicaciones_Sucursales","keywords":["cuales son las sucursales","lista de sucursales","donde estan ubicados","cuantas sucursales hay","todas las sucursales"],"responses":["🏪 Tenemos 15 sucursales ${userName}:\n📍 Playas • Altamira • Cacho • Libertad • Otay • Huertas • Villa Fontana • Santa Fe • Florido • Hipódromo • Monarca • Rosarito • Tecate • Sierra • San Ysidro\n\n¿Cuál te interesa? 🦃🗺️"]},
+{"tag":"Sucursales_Con_Vacantes","keywords":["que sucursales contratan","donde hay vacantes","en que sucursal hay trabajo","donde hay chamba disponible"],"responses":["📋 Las sucursales con disponibilidad están en el formulario ${userName}. ¡Ahí puedes ver cuál tiene lugar! 🦃"]},
+{"tag":"Ubicacion_Sucursal_Especifica","keywords":["donde queda la sucursal","como llego a la sucursal","ubicacion de sucursal","donde esta la sucursal de"],"responses":["🗺️ Dime qué sucursal ${userName} y te mando el link de Maps al instante. 🦃✨"]},
+{"tag":"Horario_Dias","keywords":["cuantos dias trabajo","que dias descanso","cuantos dias a la semana","cuando descansamos"],"responses":["📅 Son 6 días de trabajo y 1 de descanso ${userName}. El día libre lo asigna el gerente. 🦃"]},
+{"tag":"Horario_Turnos","keywords":["cual es el horario","que horario manejan","cuantas horas al dia","cuando es el turno","como son los turnos"],"responses":["⏰ Horario rotativo de 10:00am a 11:00pm ${userName}. También se trabajan días festivos. 🦃"]},
+{"tag":"Puesto_Mostrador","keywords":["trabajo de mostrador","puesto de cajero","trabajo en caja","quiero ser cajero","trabajar en mostrador"],"responses":["👥 Mostrador ${userName}:\n• Tomar pedidos (teléfono y mostrador)\n• Gestionar Uber Eats / Didi Food 📱\n• Manejo de efectivo 💰\n• Control de inventario\n• Apoyo en limpieza y volanteo\n\n💰 $2,940/semana + prestaciones. ¿Te interesa? 🦃✨"]},
+{"tag":"Puesto_Cocina","keywords":["trabajo en cocina","puesto de cocinero","quiero ser cocinero","trabajar en cocina","area de cocina"],"responses":["🍳 Cocina ${userName}:\n• Corte de vegetales y preparación\n• Estirar masa y armar pizzas 🍕\n• Hornear y empaquetar\n• Acomodo de cuarto frío\n• Apoyo en limpieza\n\n⚠️ Área caliente 🔥 | 💰 $2,940/semana + prestaciones. 🦃"]},
+{"tag":"Puesto_Repartidor","keywords":["trabajo de repartidor","puesto de delivery","quiero ser repartidor","tengo motocicleta","trabajar de repartidor"],"responses":["🏍️ Repartidor ${userName}:\n• Entrega de pedidos a domicilio\n• Manejo de rutas eficientes\n• Comunicación con clientes\n\n💰 $2,940/semana + prestaciones. ¿Tienes moto? 🦃✨"]},
+{"tag":"Formulario_Como","keywords":["como lleno el formulario","donde aplico en linea","como me registro","donde esta la solicitud","como inicio la aplicacion"],"responses":["📋 Toca el ícono de usuario en la pantalla principal ${userName} y sigue los pasos. ¡Fácil! 🦃✨"]},
+{"tag":"Uniforme_Ropa","keywords":["que uniforme usan","que ropa debo usar","como es el uniforme","que ropa piden"],"responses":["👕 Uniforme ${userName}:\n✅ Pantalón azul marino (tipo Dickies)\n✅ Zapatos negros cerrados\n✅ Playera blanca cuello redondo\n\n💡 Al inicio, mezclilla azul y tenis oscuros está bien temporalmente. 🦃"]},
+{"tag":"Uniforme_Tatuajes","keywords":["puedo tener tatuajes visibles","aceptan piercings","puedo tener tatuajes","tatuajes en el trabajo"],"responses":["⚠️ Tatuajes en cuello, cara o manos deben cubrirse ${userName}. Sin joyería ni accesorios visibles. 🦃"]},
+{"tag":"Oficina_RH","keywords":["donde estan las oficinas de rh","donde llevo mis documentos","donde queda recursos humanos","donde me presento a la entrevista","donde queda rh"],"responses":["📍 RH está en Siglo 21, Tijuana ${userName}. Puerta gris entre la sucursal y el Oxxo, toca el timbre 🔔 y sube las escaleras. <a href='https://maps.app.goo.gl/CGNBHR8rZCHMUm547' target='_blank'>Ver en Maps 🗺️</a> 🦃"]},
+{"tag":"Pago_Metodo","keywords":["como pagan el sueldo","en que banco depositan","pagan por transferencia","en que banco pagan"],"responses":["💳 El pago es semanal por depósito a Banorte ${userName}. Si no tienes cuenta, la empresa te la abre. 🦃✨"]},
+{"tag":"Pago_Dia","keywords":["cuando cobro","dia de pago","cuando es el pago","cada cuando pagan"],"responses":["📅 El pago es semanal ${userName}. Tu gerente te confirma el día exacto de corte. 🦃💰"]},
+{"tag":"Politica_Familiares","keywords":["puedo trabajar con mi pareja","mi familiar ya trabaja ahi","pueden trabajar juntos","mi novio trabaja ahi"],"responses":["👥 Parejas y familiares directos no pueden estar en la misma sucursal ${userName}, pero sí en sucursales distintas. 🦃😄"]},
+{"tag":"Antidoping_Info","keywords":["hay antidoping","me van a hacer antidoping","como es el antidoping","que detecta el antidoping","hay prueba de drogas"],"responses":["💉 Sí hay antidoping ${userName}. Es una prueba de orina que forma parte del proceso de contratación. 🦃"]},
+{"tag":"Antidoping_Sustancias","keywords":["que pasa si fumo","si fumo marihuana puedo entrar","fumo marihuana puedo trabajar","si fumo puedo trabajar","pasan fumadores","aceptan fumadores","puedo fumar marihuana"],"responses":["🌿 Las sustancias aceptadas en el antidoping son: marihuana, alcohol y tabaco ${userName}. Cualquier otra sustancia = no puedes continuar el proceso. 🦃"]},
+{"tag":"RFC_Sin","keywords":["no tengo rfc","como tramito el rfc","me falta el rfc","puedo aplicar sin rfc","donde saco el rfc"],"responses":["📋 ¡Sin RFC no hay problema ${userName}! Te ayudamos a tramitarlo por <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp</a>. Trae los demás documentos y avanzamos. 🦃"]},
+{"tag":"Edad_Minima","keywords":["que edad minima piden","desde que edad contratan","aceptan menores de edad","que edad necesito","tengo 17 anos puedo"],"responses":["🎂 La edad mínima es 18 años ${userName}. Se requiere ser mayor de edad. 🦃"]},
+{"tag":"Experiencia_Previa","keywords":["necesito experiencia previa","aceptan sin experiencia","nunca he trabajado","no tengo experiencia","piden experiencia"],"responses":["🌟 ¡No se requiere experiencia ${userName}! Te capacitamos desde cero. Solo buena actitud y disponibilidad. 🦃💪"]},
+{"tag":"Estudiantes","keywords":["soy estudiante puedo aplicar","puedo estudiar y trabajar","tengo clases y quiero trabajar","acepta estudiantes"],"responses":["📚 ¡Claro ${userName}! Muchos colaboradores son estudiantes. Coméntale tu horario al gerente en la entrevista. 🦃🎓"]},
+{"tag":"Reingreso","keywords":["ya trabaje antes aqui","quiero regresar a trabajar","pueden recontratarme","soy ex empleado","trabaje antes en mmm"],"responses":["🔄 ¡Bienvenido de vuelta ${userName}! Si saliste en buenos términos puedes aplicar de nuevo. Mismo proceso: llena el formulario. 🦃✨"]},
+{"tag":"Contacto_RH","keywords":["numero de whatsapp de rh","como contacto a recursos humanos","quiero hablar con rh","telefono de reclutamiento","quiero contactar a rh"],"responses":["📱 Escríbenos directo por <a href='https://wa.me/+526642296782' target='_blank'>WhatsApp aquí</a> 💬. ¡Te atendemos rápido! 🦃✨"]},
+{"tag":"Chistes","keywords":["cuentame un chiste","di algo gracioso","hazme reir","dime un chiste"],"responses":["¿Por qué el pavo fue al médico? Porque tenía miedo de que lo convirtieran en cena 🍽️😂","¿Qué hace un pavo cuando se siente solo? Se pone a cacarear canciones tristes 🎵🦃","¿Por qué los pavos no juegan al escondite? Siempre terminan siendo el 'pavo' del asado 🔥🦃"]},
+{"tag":"Reaccion_Risas","keywords":["jajaja","jajajaja","hahaha","lol","xd","jeje"],"responses":["¡Glu-glu, ${userName}! Veo que te ríes como pavo feliz 🦃😂","¡Ja ja ja ${userName}! Cacareando de felicidad. Glu-glu! 🦃🎉"]},
+{"tag":"Agradecer","keywords":["gracias","muchas gracias","te lo agradezco","muy amable","me ayudaste mucho"],"responses":["¡De nada, ${userName}! 🙌 ¡Para eso estamos los pavos!","No hay de qué ${userName}, pero si quieres agradecerme, trae maíz 🌽😂"]},
+{"tag":"Despedida","keywords":["adios","hasta luego","nos vemos","hasta pronto","bye","chao","me voy"],"responses":["¡Hasta pronto ${userName}! Si tienes más dudas, aquí estaré. ¡Glu-glu! 🦃✨","¡Adiós ${userName}! Fue un placer ayudarte. ¡Vuelve pronto! 🦃💫"]},
+{"tag":"Groserias","keywords":["puto","mierda","verga","pendejo","cabron","culero","pinche","chupamela","imbecil","estupido"],"responses":["¡Eh, eh! Modales ${userName}, que tengo plumas pero no oídos de alcantarilla 🚽🐔","Tranqui ${userName}, que soy un pavo fino 🎩, no un camión de carga verbal 🚛💨"]}
+]}
