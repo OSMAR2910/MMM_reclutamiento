@@ -10,18 +10,47 @@ function generateRandomId() {
   return Math.random().toString(36).substring(2, 8);
 }
 
-////////////Aqui nueva funcion con Claude
-
-// ─── PEGAR ESTO en chatbot.js donde estaban las funciones borradas ────────────
-
 // ── Configuración de umbrales ─────────────────────────────────────────────────
 const SCORE = {
-  HIGH: 8, // ≥8  → responde directo del JSON
-  LOW: 3, // 3-7 → consulta caché Firebase
+  HIGH: 8,       // ≥8  → responde directo del JSON
+  LOW: 3,        // 3-7 → consulta caché Firebase
   CACHE_SIM: 0.72,
 };
 
-// ── normalizeText (reemplaza la que tenías, ahora también quita puntuación) ────
+// ── Palabras que indican INTENCIÓN PRINCIPAL (pesan mucho más) ────────────────
+// Si el usuario escribe estas palabras, el saludo pasa a segundo plano
+const INTENT_SIGNAL_WORDS = [
+  // Información general
+  "info", "informacion", "quiero saber", "dame info", "necesito saber",
+  "cuentame", "explicame", "dime", "digame",
+  // Empleo
+  "trabajo", "empleo", "vacante", "contratan", "chamba", "jale",
+  "aplicar", "postular", "requisitos", "documentos",
+  // Beneficios
+  "sueldo", "salario", "beneficios", "prestaciones", "pagan",
+  // Proceso
+  "proceso", "entrevista", "contratacion", "capacitacion",
+  // Ubicación
+  "sucursal", "ubicacion", "direccion", "donde estan",
+  // Horarios
+  "horario", "turno", "dias", "descanso",
+  // Puestos
+  "cocinero", "mostrador", "repartidor", "cocina", "reparto",
+];
+
+// ── Tags que son SOLO saludo/conversación (se penalizan si hay señal de intención) ──
+const SMALL_TALK_TAGS = [
+  "Saludos",
+  "Despedida",
+  "reaccion_risas",
+  "Agradecer",
+  "chistes",
+  "tienes_preguntas",
+  "Groserias",
+  "Soy_gay",
+];
+
+// ── normalizeText ─────────────────────────────────────────────────────────────
 function normalizeText(text) {
   return text
     .normalize("NFD")
@@ -43,7 +72,7 @@ function levenshteinDistance(a, b) {
           : Math.min(
               matrix[i - 1][j - 1] + 1,
               matrix[i][j - 1] + 1,
-              matrix[i - 1][j] + 1,
+              matrix[i - 1][j] + 1
             );
     }
   }
@@ -57,52 +86,104 @@ function calculateSimilarity(str1, str2) {
   return (longer.length - levenshteinDistance(longer, shorter)) / longer.length;
 }
 
-// ── CAPA 2: getBestIntent optimizado ─────────────────────────────────────────
+// ── NUEVA: detectar si el mensaje tiene señal de intención fuerte ─────────────
+function detectIntentSignals(normalizedMsg) {
+  const signals = [];
+  for (const signal of INTENT_SIGNAL_WORDS) {
+    if (normalizedMsg.includes(normalizeText(signal))) {
+      signals.push(signal);
+    }
+  }
+  return signals;
+}
+
+// ── NUEVA: score por densidad (evita que intents grandes con keywords triviales ganen) ──
+// En lugar de sumar puntos crudos, también considera cuán relevante es el mejor match
+function scoreKeyword(normalizedMsg, normalizedKw, msgWords) {
+  let score = 0;
+
+  // Coincidencia exacta total
+  if (normalizedMsg === normalizedKw) return 15;
+
+  // Frase completa contenida — bonus extra si la keyword es larga (más específica)
+  if (normalizedMsg.includes(normalizedKw)) {
+    const specificityBonus = Math.min(normalizedKw.length * 0.2, 6); // max +6 bonus
+    return 6 + specificityBonus;
+  }
+
+  // Similitud Levenshtein vs mensaje completo
+  const sim = calculateSimilarity(normalizedMsg, normalizedKw);
+  if (sim > 0.85) score += 5;
+  else if (sim > 0.7) score += 3;
+  else if (sim > 0.55) score += 1.5;
+
+  // Palabras individuales — las largas valen más, las muy cortas (<4 chars) valen menos
+  const kwWords = normalizedKw.split(" ").filter((w) => w.length > 2);
+  for (const word of kwWords) {
+    if (msgWords.includes(word)) {
+      if (word.length <= 3) score += 0.5;        // palabras muy cortas: poco peso
+      else if (word.length <= 5) score += 1;     // palabras medias: peso normal
+      else score += 1.5;                          // palabras largas: más peso (más específicas)
+    }
+  }
+
+  return score;
+}
+
+// ── CAPA 2: getBestIntent con detección de intención mejorada ─────────────────
 function getBestIntent(message) {
   const normalizedMsg = normalizeText(message);
   const msgWords = normalizedMsg.split(" ").filter((w) => w.length > 2);
+
+  // Detectar si hay señales de intención explícita en el mensaje
+  const intentSignals = detectIntentSignals(normalizedMsg);
+  const hasStrongIntent = intentSignals.length > 0;
+
+  console.log(`🔍 Señales de intención detectadas: [${intentSignals.join(", ")}]`);
+
   let best = null;
   let bestScore = 0;
+  let scores = []; // para debug
 
   for (const intent of intents) {
-    let score = 0;
+    let rawScore = 0;
+    let bestKeywordScore = 0; // el mejor match individual de este intent
 
     for (const keyword of intent.keywords) {
       const normalizedKw = normalizeText(keyword);
+      const kwScore = scoreKeyword(normalizedMsg, normalizedKw, msgWords);
 
-      // Coincidencia exacta de frase completa
-      if (normalizedMsg === normalizedKw) {
-        score += 12;
-        continue;
-      }
-
-      // Frase contenida
-      if (normalizedMsg.includes(normalizedKw)) {
-        score += 6 + normalizedKw.length * 0.15;
-        continue;
-      }
-
-      // Similitud Levenshtein
-      const sim = calculateSimilarity(normalizedMsg, normalizedKw);
-      if (sim > 0.85) score += 5;
-      else if (sim > 0.7) score += 3;
-      else if (sim > 0.55) score += 1.5;
-
-      // Palabras individuales (las largas valen más)
-      const kwWords = normalizedKw.split(" ").filter((w) => w.length > 2);
-      for (const word of kwWords) {
-        if (msgWords.includes(word)) score += 1 + (word.length > 5 ? 0.5 : 0);
-      }
+      rawScore += kwScore;
+      if (kwScore > bestKeywordScore) bestKeywordScore = kwScore;
     }
 
-    // Penalización mensajes muy cortos
-    if (normalizedMsg.length < 4 && intent.tag !== "Saludos") score *= 0.4;
+    // ── Penalización para mensajes muy cortos (sin contexto) ──
+    if (normalizedMsg.length < 4 && intent.tag !== "Saludos") rawScore *= 0.4;
 
-    if (score > bestScore) {
-      bestScore = score;
+    // ── Penalización para small talk cuando hay señal de intención fuerte ──
+    // Ejemplo: "que onda, quiero info del trabajo" → Saludos se penaliza
+    let finalScore = rawScore;
+    if (hasStrongIntent && SMALL_TALK_TAGS.includes(intent.tag)) {
+      finalScore *= 0.25; // reducir al 25% — el saludo es secundario
+      console.log(`⬇️  ${intent.tag} penalizado (small talk + señal de intención)`);
+    }
+
+    // ── Bonus si el mejor keyword individual fue muy específico ──
+    // Esto ayuda a que un match muy exacto gane sobre muchos matches mediocres
+    if (bestKeywordScore >= 10) finalScore += 5;
+    else if (bestKeywordScore >= 6) finalScore += 2;
+
+    scores.push({ tag: intent.tag, raw: rawScore.toFixed(1), final: finalScore.toFixed(1) });
+
+    if (finalScore > bestScore) {
+      bestScore = finalScore;
       best = intent;
     }
   }
+
+  // Debug: top 3 intents
+  scores.sort((a, b) => b.final - a.final);
+  console.log("📊 Top intents:", scores.slice(0, 3).map(s => `${s.tag}(${s.final})`).join(" | "));
 
   return { intent: best, score: bestScore };
 }
@@ -126,13 +207,12 @@ async function checkFirebaseCache(message) {
       const cached = snap.val();
       const sim = calculateSimilarity(
         normalizeText(message),
-        normalizeText(cached.originalMessage),
+        normalizeText(cached.originalMessage)
       );
       if (sim >= SCORE.CACHE_SIM) {
-        // Incrementar uso (no bloqueante)
         set(
           ref(database, `intent_cache/${fingerprint}/usedCount`),
-          (cached.usedCount || 0) + 1,
+          (cached.usedCount || 0) + 1
         );
         console.log(`✅ Cache hit Firebase: ${cached.intentTag}`);
         return cached.intentTag;
@@ -177,13 +257,13 @@ async function classifyWithClaude(message) {
   }
 }
 
-// ── ORQUESTADOR: reemplaza getResponse() ─────────────────────────────────────
+// ── ORQUESTADOR ───────────────────────────────────────────────────────────────
 async function getResponse(message) {
   if (!intents.length) return "Lo siento, no puedo responder en este momento.";
 
-  // CAPA 2: Levenshtein
+  // CAPA 2: Levenshtein + detección de intención
   const { intent, score } = getBestIntent(message);
-  console.log(`📊 Score Levenshtein: ${score.toFixed(1)}`);
+  console.log(`📊 Score final: ${score.toFixed(1)} → ${intent?.tag}`);
 
   if (score >= SCORE.HIGH && intent) {
     console.log(`✅ CAPA 2 → ${intent.tag}`);
@@ -209,7 +289,7 @@ async function getResponse(message) {
     const claudeIntent = intents.find((i) => i.tag === claudeTag);
     if (claudeIntent) {
       console.log(`✅ CAPA 4 → ${claudeTag}`);
-      saveToFirebaseCache(message, claudeTag); // guardar para la próxima
+      saveToFirebaseCache(message, claudeTag);
       return buildResponse(claudeIntent);
     }
   }
@@ -234,7 +314,6 @@ async function loadIntents() {
   }
 
   try {
-    // Primero intentamos cargar localmente
     try {
       const localResponse = await fetch("/json/intents.json");
       if (localResponse.ok) {
@@ -248,7 +327,6 @@ async function loadIntents() {
       console.log("⚠️ No se pudo cargar localmente, intentando desde URL...");
     }
 
-    // Si falla la carga local, intentamos desde la URL
     const response = await fetch(
       "https://mmm-rh.netlify.app/json/intents.json",
       {
@@ -258,7 +336,7 @@ async function loadIntents() {
           "Content-Type": "application/json",
           "Cache-Control": "no-cache",
         },
-      },
+      }
     );
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -268,9 +346,7 @@ async function loadIntents() {
     console.log("✅ Intents cargados desde URL:", intents);
   } catch (error) {
     console.error("❌ Error cargando intents:", error);
-    showError(
-      "No se pudieron cargar las respuestas. Intenta de nuevo más tarde.",
-    );
+    showError("No se pudieron cargar las respuestas. Intenta de nuevo más tarde.");
   }
 }
 
@@ -315,11 +391,9 @@ function sendMessage(sender, message, isBot = false) {
 
   chatBox.appendChild(messageElement);
 
-  // Asegurar que el mensaje sea visible
   if (!isBot) {
     scrollToBottom();
   } else {
-    // Para mensajes del bot, esperar a que se renderice
     setTimeout(scrollToBottom, 100);
   }
 
@@ -329,7 +403,7 @@ function sendMessage(sender, message, isBot = false) {
 function insertarEspaciadorInicial() {
   const chatBox = document.getElementById("chat_box");
   const espaciador = document.createElement("div");
-  espaciador.style.height = "100%"; // o el espacio que necesites
+  espaciador.style.height = "100%";
   espaciador.className = "espaciador-inicial";
   chatBox.appendChild(espaciador);
 }
@@ -352,7 +426,6 @@ function scrollToBottom() {
       behavior: "smooth",
     };
 
-    // En iOS, usar scrollTo con un pequeño delay para mejor compatibilidad
     if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
       setTimeout(() => {
         chatBox.scrollTo(scrollOptions);
@@ -380,7 +453,7 @@ function sendWelcomeMessage() {
 
 function getRandomTienesPreguntasResponse() {
   const tienesPreguntasIntent = intents.find(
-    (intent) => intent.tag === "tienes_preguntas",
+    (intent) => intent.tag === "tienes_preguntas"
   );
   let response =
     tienesPreguntasIntent?.responses[
@@ -404,7 +477,6 @@ function toggleChatbot() {
   const isMobile = window.innerWidth <= 500;
 
   if (chatbot.classList.contains("max_chat")) {
-    // Minimizar
     chatbot.classList.remove("max_chat");
     chatbot.classList.add("chatbot_color");
     pavoCont.style.display = "flex";
@@ -412,14 +484,12 @@ function toggleChatbot() {
     userInfoContainer.style.display = "none";
     updatePavoMsj();
   } else {
-    // Maximizar
     chatbot.classList.add("max_chat");
     chatbot.classList.remove("chatbot_color");
     pavoCont.style.display = "none";
     chatForm.style.display = userIdName ? "flex" : "none";
     userInfoContainer.style.display = userIdName ? "none" : "flex";
 
-    // En móviles, ajustar el viewport
     if (isMobile) {
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
@@ -493,25 +563,19 @@ function handleVirtualKeyboard() {
       chatbot.classList.add("keyboard-visible");
       const keyboardHeight = fullViewportHeight - visualHeight;
 
-      // Ajustar el viewport para iOS
       if (isIOS) {
         document.body.style.height = `${visualHeight}px`;
         document.body.style.overflow = "hidden";
       }
 
-      // Mantener el input visible
       if (input) {
         const rect = input.getBoundingClientRect();
         const offsetTop = rect.top + window.scrollY;
         const desiredScroll =
-          offsetTop - (visualHeight - keyboardHeight - rect.height - 20); // Margen de 20px
-        window.scrollTo({
-          top: desiredScroll,
-          behavior: "smooth",
-        });
+          offsetTop - (visualHeight - keyboardHeight - rect.height - 20);
+        window.scrollTo({ top: desiredScroll, behavior: "smooth" });
       }
 
-      // Asegurar que el chat esté en la parte inferior
       setTimeout(() => scrollToBottom(), 200);
     }
   }
@@ -545,7 +609,7 @@ function handleVirtualKeyboard() {
         } else {
           handleKeyboardHide();
         }
-      }, 100),
+      }, 100)
     );
   }
 
@@ -562,7 +626,7 @@ function handleVirtualKeyboard() {
         handleKeyboardHide();
       }
       fullViewportHeight = window.innerHeight;
-    }, 100),
+    }, 100)
   );
 
   if (isIOS) {
@@ -581,7 +645,7 @@ function handleVirtualKeyboard() {
         e.preventDefault();
       }
     },
-    { passive: false },
+    { passive: false }
   );
 }
 
@@ -635,11 +699,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (messageBuffer.length > 0) saveMessagesToFirebase();
   });
 
-  // Manejo del teclado virtual
   input.addEventListener("focus", () => {
     if (/iPhone|iPad|iPod|Android/.test(navigator.userAgent)) {
       setTimeout(() => {
-        // No desplazar automáticamente, mantener el formulario visible
         const chatForm = document.getElementById("chat_form");
         if (chatForm) {
           chatForm.scrollIntoView({ behavior: "smooth", block: "end" });
