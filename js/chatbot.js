@@ -6,6 +6,22 @@ let messageBuffer = [];
 let userName = localStorage.getItem("userName") || "Humano";
 let userIdName = localStorage.getItem("userIdName");
 
+// ── Contexto de conversación (últimas 4 interacciones) ────────────────────────
+let conversationContext = []; // [{role: "user"|"bot", message, tag}]
+const MAX_CONTEXT = 4;
+
+function addToContext(role, message, tag = null) {
+  conversationContext.push({ role, message, tag });
+  if (conversationContext.length > MAX_CONTEXT) conversationContext.shift();
+}
+
+function getContextSummary() {
+  if (!conversationContext.length) return "";
+  return conversationContext
+    .map(c => `${c.role === "user" ? "Usuario" : "Bot"}: "${c.message}"${c.tag ? ` [tema: ${c.tag}]` : ""}`)
+    .join("\n");
+}
+
 function generateRandomId() {
   return Math.random().toString(36).substring(2, 8);
 }
@@ -173,11 +189,12 @@ async function saveToFirebaseCache(message, intentTag) {
 // ── CAPA 4: Claude via Netlify Function ───────────────────────────────────────
 async function classifyWithClaude(message) {
   const intentList = intents.map((i) => i.tag).join(", ");
+  const context = getContextSummary();
   try {
     const response = await fetch("/.netlify/functions/classify-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, intentList }),
+      body: JSON.stringify({ message, intentList, context }),
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
@@ -192,13 +209,18 @@ async function classifyWithClaude(message) {
 async function getResponse(message) {
   if (!intents.length) return "Lo siento, no puedo responder en este momento.";
 
+  // Guardar mensaje del usuario en contexto
+  addToContext("user", message);
+
   // CAPA 1: JSON local — solo responde si el match es confiable (score >= HIGH)
   const { intent, score } = getBestIntent(message);
   console.log(`📊 Score: ${score.toFixed(1)} → ${intent?.tag}`);
 
   if (score >= SCORE.HIGH && intent) {
     console.log(`✅ LOCAL → ${intent.tag}`);
-    return buildResponse(intent);
+    const response = buildResponse(intent);
+    addToContext("bot", response, intent.tag);
+    return response;
   }
 
   // CAPA 2: Firebase caché — respuestas que Claude ya resolvió antes
@@ -207,7 +229,9 @@ async function getResponse(message) {
     const cachedIntent = intents.find((i) => i.tag === cachedTag);
     if (cachedIntent) {
       console.log(`✅ CACHÉ → ${cachedTag}`);
-      return buildResponse(cachedIntent);
+      const response = buildResponse(cachedIntent);
+      addToContext("bot", response, cachedTag);
+      return response;
     }
   }
 
@@ -218,14 +242,17 @@ async function getResponse(message) {
     const claudeIntent = intents.find((i) => i.tag === claudeTag);
     if (claudeIntent) {
       console.log(`✅ CLAUDE → ${claudeTag}`);
-      saveToFirebaseCache(message, claudeTag); // guardar para próxima vez
-      return buildResponse(claudeIntent);
+      saveToFirebaseCache(message, claudeTag);
+      const response = buildResponse(claudeIntent);
+      addToContext("bot", response, claudeTag);
+      return response;
     }
   }
 
   // FALLBACK — Claude no pudo clasificar
-  saveUnansweredMessage(message);
-  return `¡Glu-glu! No entendí bien tu pregunta ${userName} 🦃. ¿Podrías reformularla? Puedo ayudarte con vacantes, requisitos, sueldo, horarios y sucursales. 💬✨`;
+  const fallback = `¡Glu-glu! No entendí bien tu pregunta ${userName} 🦃. ¿Podrías reformularla? Puedo ayudarte con vacantes, requisitos, sueldo, horarios y sucursales. 💬✨`;
+  addToContext("bot", fallback);
+  return fallback;
 }
 
 function buildResponse(intent) {
@@ -291,18 +318,6 @@ async function saveMessagesToFirebase() {
   }
 }
 
-async function saveUnansweredMessage(message) {
-  try {
-    const messagesRef = ref(database, "mensajes_error");
-    await set(push(messagesRef), {
-      message,
-      timestamp: new Date().toISOString(),
-    });
-    console.log("📌 Mensaje sin respuesta guardado:", message);
-  } catch (error) {
-    console.error("❌ Error guardando mensaje sin respuesta:", error);
-  }
-}
 
 function sendMessage(sender, message, isBot = false) {
   const chatBox = document.getElementById("chat_box");
@@ -339,12 +354,24 @@ function insertarEspaciadorInicial() {
 
 function showTypingIndicator() {
   const chatBox = document.getElementById("chat_box");
-  const typingIndicator = document.createElement("p");
+  if (!chatBox) return { remove: () => {} }; // guard: si no existe el DOM aún
+
+  // Eliminar cualquier indicador previo que haya quedado huérfano
+  const existing = chatBox.querySelector(".typing");
+  if (existing) existing.remove();
+
+  const typingIndicator = document.createElement("div");
   typingIndicator.className = "typing";
-  typingIndicator.innerText = "Sr. Pavo Chava escribiendo...";
+  typingIndicator.innerHTML = `<span>Sr.Pavo Chava</span><p>escribiendo...</p>`;
   chatBox.appendChild(typingIndicator);
   scrollToBottom();
-  return typingIndicator;
+
+  // Retorna objeto con remove() seguro — no falla aunque ya no esté en el DOM
+  return {
+    remove() {
+      if (typingIndicator.parentNode) typingIndicator.remove();
+    }
+  };
 }
 
 function scrollToBottom() {
@@ -464,118 +491,59 @@ function handleNameForm() {
 }
 
 function handleVirtualKeyboard() {
-  const chatForm = document.getElementById("chat_form");
-  const chatBox = document.getElementById("chat_box");
   const input = document.getElementById("chat_input");
   const chatbot = document.getElementById("chatbot");
-  let fullViewportHeight = window.innerHeight;
-  let isKeyboardOpen = false;
+  const chatBox = document.getElementById("chat_box");
+  if (!input || !chatbot || !chatBox) return;
+
   const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
   const isAndroid = /Android/.test(navigator.userAgent);
-  let resizeTimeout;
+  const isMobile = isIOS || isAndroid;
+  if (!isMobile) return; // en desktop no hace falta nada
 
-  function debounce(func, wait) {
-    return function (...args) {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
+  // ── Enfoque único: visualViewport (soportado en todos los móviles modernos) ──
+  if (!window.visualViewport) return;
 
-  function handleKeyboardShow() {
-    const visualHeight = window.visualViewport
-      ? window.visualViewport.height
-      : window.innerHeight;
-    const isInputFocused = document.activeElement === input;
-    isKeyboardOpen = visualHeight < fullViewportHeight * 0.95 && isInputFocused;
+  let keyboardOpen = false;
+  const baseHeight = window.visualViewport.height;
 
-    if (isKeyboardOpen) {
+  function onViewportResize() {
+    const currentHeight = window.visualViewport.height;
+    const diff = baseHeight - currentHeight;
+    const keyboardVisible = diff > 100; // el teclado ocupa al menos 100px
+
+    if (keyboardVisible && !keyboardOpen) {
+      keyboardOpen = true;
       chatbot.classList.add("keyboard-visible");
-      const keyboardHeight = fullViewportHeight - visualHeight;
 
       if (isIOS) {
-        document.body.style.height = `${visualHeight}px`;
-        document.body.style.overflow = "hidden";
-      }
-
-      if (input) {
-        const rect = input.getBoundingClientRect();
-        const offsetTop = rect.top + window.scrollY;
-        const desiredScroll =
-          offsetTop - (visualHeight - keyboardHeight - rect.height - 20);
-        window.scrollTo({ top: desiredScroll, behavior: "smooth" });
-      }
-
-      setTimeout(() => scrollToBottom(), 200);
-    }
-  }
-
-  function handleKeyboardHide() {
-    isKeyboardOpen = false;
-    chatbot.classList.remove("keyboard-visible");
-    fullViewportHeight = window.innerHeight;
-
-    if (isIOS) {
-      document.body.style.height = "";
-      document.body.style.overflow = "";
-    }
-
-    setTimeout(() => scrollToBottom(), 200);
-  }
-
-  input.addEventListener("focus", handleKeyboardShow);
-  input.addEventListener("blur", handleKeyboardHide);
-
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener(
-      "resize",
-      debounce(() => {
-        const visualHeight = window.visualViewport.height;
-        if (
-          visualHeight < fullViewportHeight * 0.95 &&
-          document.activeElement === input
-        ) {
-          handleKeyboardShow();
-        } else {
-          handleKeyboardHide();
-        }
-      }, 100)
-    );
-  }
-
-  window.addEventListener(
-    "resize",
-    debounce(() => {
-      const currentHeight = window.innerHeight;
-      if (
-        currentHeight < fullViewportHeight * 0.95 &&
-        document.activeElement === input
-      ) {
-        handleKeyboardShow();
+        // iOS: el viewport se encoge — empujamos el chatbot hacia arriba
+        chatbot.style.transform = `translateY(-${diff}px)`;
       } else {
-        handleKeyboardHide();
+        // Android: el viewport ya se ajusta solo — solo hacemos scroll
+        chatbot.style.transform = "";
       }
-      fullViewportHeight = window.innerHeight;
-    }, 100)
-  );
 
-  if (isIOS) {
-    window.addEventListener("orientationchange", () => {
-      setTimeout(() => {
-        fullViewportHeight = window.innerHeight;
-        if (isKeyboardOpen) handleKeyboardShow();
-      }, 200);
-    });
+      // Pequeño delay para que el teclado termine de abrirse
+      setTimeout(() => scrollToBottom(), 150);
+
+    } else if (!keyboardVisible && keyboardOpen) {
+      keyboardOpen = false;
+      chatbot.classList.remove("keyboard-visible");
+      chatbot.style.transform = "";
+      setTimeout(() => scrollToBottom(), 150);
+    }
   }
 
-  document.body.addEventListener(
-    "touchmove",
-    (e) => {
-      if (isKeyboardOpen && !e.target.closest("#chat_box")) {
-        e.preventDefault();
-      }
-    },
-    { passive: false }
-  );
+  window.visualViewport.addEventListener("resize", onViewportResize);
+  window.visualViewport.addEventListener("scroll", onViewportResize);
+
+  // Prevenir scroll del body cuando el teclado está abierto (evita saltos en iOS)
+  document.body.addEventListener("touchmove", (e) => {
+    if (keyboardOpen && !e.target.closest("#chat_box")) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -605,12 +573,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     toggleChatbot();
   });
 
+  // ── Contador de caracteres ────────────────────────────────────────────────
+  const MAX_CHARS = 200;
+  const charCounter = document.createElement("span");
+  charCounter.id = "char_counter";
+  charCounter.style.cssText = "font-size:11px;color:#999;position:absolute;bottom:6px;right:48px;pointer-events:none;";
+  charCounter.textContent = `0/${MAX_CHARS}`;
+  form.style.position = "relative";
+  form.appendChild(charCounter);
+
+  input.setAttribute("maxlength", MAX_CHARS);
+  input.addEventListener("input", () => {
+    const len = input.value.length;
+    charCounter.textContent = `${len}/${MAX_CHARS}`;
+    charCounter.style.color = len >= MAX_CHARS * 0.9 ? "#e74c3c" : "#999";
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const userMessage = input.value.trim();
     if (!userMessage) return;
 
     input.value = "";
+    charCounter.textContent = `0/${MAX_CHARS}`;
+    charCounter.style.color = "#999";
     sendButton.disabled = true;
     sendMessage("user", userMessage);
     const typingIndicator = showTypingIndicator();

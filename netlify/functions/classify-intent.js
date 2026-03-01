@@ -7,9 +7,9 @@ exports.handler = async function (event) {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  let message, intentList;
+  let message, intentList, context;
   try {
-    ({ message, intentList } = JSON.parse(event.body));
+    ({ message, intentList, context } = JSON.parse(event.body));
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
   }
@@ -36,7 +36,12 @@ exports.handler = async function (event) {
         max_tokens: 50,
         messages: [{
           role: "user",
-          content: `Intent classify. Message: "${message}"\nTags: ${intentList}\nReply only the matching tag or null.`
+          content: `Eres un clasificador de intents para un chatbot de reclutamiento. Clasifica el mensaje del usuario en uno de los tags disponibles.
+
+${context ? `Conversación previa (para entender referencias como "¿y allá?", "¿y eso?", "¿también?"):\n${context}\n` : ""}Mensaje actual: "${message}"
+Tags disponibles: ${intentList}
+
+Responde SOLO con el tag más apropiado, o null si ninguno aplica. Sin explicaciones.`
         }]
       })
     });
@@ -63,4 +68,3 @@ exports.handler = async function (event) {
     return { statusCode: 500, body: JSON.stringify({ error: "Internal error", detail: err.message }) };
   }
 };
-

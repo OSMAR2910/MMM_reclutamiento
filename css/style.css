@@ -951,31 +951,34 @@ body canvas {
     position: fixed;
     right: 0;
     top: 0;
+    left: 0;
     bottom: 0;
     margin: 0;
     width: 100vw;
     height: 100dvh;
+    height: 100vh;
     max-height: 100%;
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    box-shadow: 0px 0px 15px 2px #ffffff;
-    border-radius: 1.5vw;
+    box-shadow: none;
+    border-radius: 0;
   }
   .max_chat .chat_header {
     position: relative;
     width: 90%;
-    height: 8%;
+    height: auto;
     min-height: 4rem;
+    max-height: 5rem;
     z-index: 10000;
     border-radius: 10vw;
     display: flex;
-    margin-top: 6%;
+    margin-top: 4%;
     justify-content: space-between;
     align-items: center;
     background-color: #2a4e91;
@@ -1010,24 +1013,22 @@ body canvas {
     min-height: 1rem;
   }
   .max_chat .chat_box {
-    flex: 1;
-    width: 95%;
+    flex: 1 1 0;
     min-height: 0;
+    width: 95%;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2%;
-    color: #2a4e91;
-    font-family: "Nunito";
     gap: 1vh;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
   }
   .max_chat .chat_box p {
-    font-weight: 170;
     font-size: 3.5vw;
+    font-weight: 170;
   }
   .max_chat .chat_box .bot_message {
     width: 90%;
@@ -1049,10 +1050,25 @@ body canvas {
   }
   .max_chat .chat_box .typing {
     font-size: 3.5vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .max_chat .chat_box .typing span {
+    font-size: 2.5vw;
+    margin-left: 2vw;
+  }
+  .max_chat .chat_box .typing p {
+    border: none;
+    padding: 0;
+    font-size: 3.5vw;
+    opacity: 0.6;
   }
   .max_chat .user_info_container {
     border-radius: 15vw 15vw 0 0;
-    height: 40%;
+    height: 45%;
+    flex-shrink: 0;
   }
   .max_chat .user_info_container form .what_name {
     font-size: 4vw;
@@ -1066,66 +1082,30 @@ body canvas {
     position: relative;
     width: 95%;
     min-height: 3rem;
-    height: 7%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3%;
+    margin-bottom: max(3%, env(safe-area-inset-bottom, 12px));
     flex-shrink: 0;
     background-color: #ffffff;
   }
   .max_chat .chat_form .chat_input {
     width: 100%;
-    height: 75%;
+    height: 2.8rem;
     font-size: 3.5vw;
     border: 1.5px solid #2a4e91;
     border-radius: 10vw;
     text-align: center;
     color: #2a4e91;
     font-family: "Nunito";
-  }
-  .max_chat.keyboard-visible {
-    height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    overflow: hidden;
-  }
-  .max_chat.keyboard-visible .chat_header {
-    position: fixed;
-    top: env(safe-area-inset-top);
-    left: 0;
-    width: 100%;
-    z-index: 10000;
-    padding: 1rem;
-    background-color: #2a4e91;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .max_chat.keyboard-visible .chat_box {
-    margin-top: calc(4rem + env(safe-area-inset-top));
-    height: calc(100% - 8rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    font-size: max(3.5vw, 16px);
   }
   .max_chat.keyboard-visible .chat_form {
-    position: fixed;
-    bottom: env(safe-area-inset-bottom);
-    left: 0;
-    width: 100%;
-    padding: 1rem;
-    padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
-    background-color: #ffffff;
-    z-index: 9999;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: max(1rem, env(safe-area-inset-bottom, 8px));
   }
-  @supports (-webkit-touch-callout: none) {
-    .max_chat.keyboard-visible {
-      height: calc(100% - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-      transform: translateY(0);
-      transition: transform 0.3s ease;
-    }
+  .max_chat.keyboard-visible .chat_box {
+    overscroll-behavior-y: contain;
   }
   .pavo_cont {
     height: 12vh;
@@ -1409,7 +1389,6 @@ body canvas {
   }
 }
 :root {
-  --vh: 1vh;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
@@ -1418,10 +1397,6 @@ body canvas {
 
 * {
   -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-       user-select: none;
 }
 
 input,
@@ -1431,24 +1406,6 @@ textarea {
        user-select: text;
 }
 
-html,
-body {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overscroll-behavior-y: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-@supports (-webkit-touch-callout: none) {
-  .max_chat.keyboard-visible {
-    position: fixed;
-    height: 100%;
-    transform: translateY(0);
-    transition: transform 0.3s ease;
-  }
-}
 .chat_manager_info {
   position: fixed;
   top: 0;
